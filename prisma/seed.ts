@@ -88,9 +88,9 @@ async function main() {
       data: {
         title: `A nova geração de talentos: uma análise aprofundada`,
         summary: 'O futebol de base revela surpresas e promessas que podem mudar o cenário do esporte nos próximos anos.',
-        content: '## O Futuro é Agora
+        content: `## O Futuro é Agora
 
-O cenário do futebol de base nunca esteve tão aquecido. Com a tecnologia, jovens talentos ganham visibilidade de formas antes inimagináveis. Esta é uma análise sobre as principais tendências e nomes para ficar de olho.',
+O cenário do futebol de base nunca esteve tão aquecido. Com a tecnologia, jovens talentos ganham visibilidade de formas antes inimagináveis. Esta é uma análise sobre as principais tendências e nomes para ficar de olho.`,
         category: articleCategories[pressUsers.indexOf(user) % articleCategories.length],
         authorId: user.id,
         published: true,

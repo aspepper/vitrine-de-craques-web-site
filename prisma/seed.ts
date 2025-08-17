@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -7,7 +7,7 @@ async function main() {
 
   // Seed Users and Profiles
   const users = [];
-  const roles: Role[] = ['ATHLETE', 'FAN', 'AGENT', 'PRESS'];
+  const roles = ['ATHLETE', 'FAN', 'AGENT', 'PRESS'] as const;
   const names = [
     'Carlos Pereira', 'Sofia Mendes', 'Lucas Alves', 'Juliana Costa',
     'Matheus Oliveira', 'Beatriz Santos', 'Gabriel Lima', 'Larissa Souza',

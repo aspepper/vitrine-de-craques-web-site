@@ -16,7 +16,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   
-  role          Role      @default(FAN)
+  role          String    @default("FAN")
   profile       Profile?
   videos        Video[]
   articles      Article[]
@@ -90,7 +90,7 @@ model Video {
   likes       Int       @default(0)
   comments    Int       @default(0)
   shares      Int       @default(0)
-  copyrightStatus CopyrightStatus @default(OK)
+  copyrightStatus String @default("OK")
 }
 
 model Article {
@@ -197,17 +197,5 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-enum Role {
-  ATHLETE
-  GUARDIAN
-  AGENT
-  PRESS
-  FAN
-  ADMIN
-}
-
-enum CopyrightStatus {
-  OK
-  POSSIBLE_INFRINGEMENT
-  BLOCKED
-}
+// Using string fields instead of Prisma enums because SQLite
+// does not support native enum types.

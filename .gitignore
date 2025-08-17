@@ -10,11 +10,18 @@ pnpm-debug.log*
 .pnpm-store/
 
 # NestJS
+.next/
+.turbo/
+.vercel/
+.DS_Store
+playwright-report/
 /coverage
 *.tsbuildinfo
 *.log
 
+
 # Prisma
+prisma/*.db
 /prisma/migrations/*
 !/prisma/migrations/schema.prisma # Keep schema.prisma in migrations
 !/prisma/migrations/index.ts # If using custom migration scripts

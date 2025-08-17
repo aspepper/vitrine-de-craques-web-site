@@ -31,7 +31,7 @@ export default async function ConfederationsPage() {
                   alt={`Logo da ${conf.name}`}
                   width={100}
                   height={100}
-                  className="rounded-full bg-surface p-2"
+                  className="rounded-full bg-surface p-2 object-contain"
                 />
               </CardHeader>
               <CardContent className="text-center">

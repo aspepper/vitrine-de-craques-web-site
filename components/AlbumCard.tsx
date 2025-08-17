@@ -18,6 +18,7 @@ export default function AlbumCard({ href, imageUrl, name, details }: AlbumCardPr
             src={imageUrl}
             alt={`Foto de ${name}`}
             fill
+            sizes="(max-width: 640px) 100vw, 250px"
             className="object-cover"
           />
         </div>

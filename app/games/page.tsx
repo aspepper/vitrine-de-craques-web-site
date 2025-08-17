@@ -25,10 +25,11 @@ export default async function GamesPage() {
           <Card key={game.id} className="overflow-hidden">
             <CardHeader className="p-0">
               <div className="aspect-video relative">
-                <Image 
-                  src={game.imageUrl ?? "https://placehold.co/600x400/0EA5E9/FFFFFF/png?text=Game"} 
-                  alt={game.title} 
-                  fill 
+                <Image
+                  src={game.imageUrl ?? "https://placehold.co/600x400/0EA5E9/FFFFFF/png?text=Game"}
+                  alt={game.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="object-cover"
                 />
                 <div className="absolute top-4 left-4">

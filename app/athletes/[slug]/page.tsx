@@ -79,7 +79,11 @@ export default async function AthleteProfilePage({ params }: { params: { slug: s
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {athlete.videos.map(video => (
               <Card key={video.id} className="overflow-hidden">
-                <video src="https://placehold.co/300x400.mp4" poster={`https://placehold.co/300x400/22C55E/FFFFFF/png?text=${video.title}`} className="w-full h-auto" controls />
+                <video
+                  src="/videos/sample.mp4"
+                  poster={`https://placehold.co/300x400/22C55E/FFFFFF/png?text=${video.title}`}
+                  className="w-full h-auto"
+                  controls />
                 <div className="p-2">
                   <p className="font-semibold truncate">{video.title}</p>
                 </div>

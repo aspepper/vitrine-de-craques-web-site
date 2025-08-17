@@ -70,7 +70,7 @@ async function main() {
       data: {
         title: `Melhores momentos de ${user.name}`,
         description: 'Uma compilação das minhas melhores jogadas.',
-        url: 'https://placehold.co/1080x1920.mp4',
+        url: '/videos/sample.mp4', // Placeholder video path 1080x1920.mp4
         authorId: user.id,
         likes: Math.floor(Math.random() * 1000),
         comments: Math.floor(Math.random() * 200),

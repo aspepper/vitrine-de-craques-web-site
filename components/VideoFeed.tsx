@@ -95,8 +95,8 @@ export default function VideoFeed({ initialVideos }: { initialVideos: VideoWithA
                     className="relative h-full w-full snap-start flex-shrink-0"
                 >
                     <video
-                        ref={el => videoRefs.current[index] = el}
-                        src="https://placehold.co/1080x1920.mp4" // Placeholder video
+                        ref={el => (videoRefs.current[index] = el)}
+                        src="/videos/sample.mp4"     
                         loop
                         muted
                         playsInline

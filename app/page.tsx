@@ -74,7 +74,14 @@ export default async function Home() {
               {latestVideos.map(video => (
                 <Card key={video.id} className="overflow-hidden">
                   <CardContent className="p-0">
-                    <video src="https://placehold.co/300x400.mp4" className="w-full h-auto" poster="https://placehold.co/300x400/16a34a/white?text=Play" muted loop playsInline />
+                    <video
+                      src="/videos/sample.mp4"
+                      className="w-full h-auto"
+                      poster="https://placehold.co/300x400/16a34a/white?text=Play"
+                      muted
+                      loop
+                      playsInline
+                    />
                     <div className="p-4">
                       <h3 className="font-bold text-lg">{video.title}</h3>
                       <p className="text-sm text-muted-foreground">por {video.author.name}</p>

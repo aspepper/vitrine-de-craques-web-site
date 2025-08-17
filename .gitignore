@@ -28,4 +28,7 @@ prisma/*.db
 !/prisma/schema.prisma # Keep the main schema.prisma file
 /prisma/dev.db # If using SQLite for development
 
+*.zip.next
 *.zip
+out
+dist

@@ -27,3 +27,5 @@ prisma/*.db
 !/prisma/migrations/index.ts # If using custom migration scripts
 !/prisma/schema.prisma # Keep the main schema.prisma file
 /prisma/dev.db # If using SQLite for development
+
+*.zip

@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import {
   Menu,
   Search,
@@ -74,6 +81,12 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
+              <SheetHeader>
+                <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Links principais do site
+                </SheetDescription>
+              </SheetHeader>
               <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
                 <Building className="h-6 w-6 text-primary" />
                 <span className="font-bold">Vitrine de Craques</span>

@@ -1,0 +1,1 @@
+Componentes esperados e estados.

@@ -1,0 +1,1 @@
+Spec resumida do projeto.

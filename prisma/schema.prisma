@@ -1,188 +1,28 @@
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  
-  role          String    @default("FAN")
-  profile       Profile?
-  videos        Video[]
-  articles      Article[]
-  interests     Interest[]
-  sentMessages  Message[] @relation("SentMessages")
-  receivedMessages Message[] @relation("ReceivedMessages")
-  notifications Notification[]
-}
-
-model Profile {
-  id          String    @id @default(cuid())
-  bio         String?
-  user        User      @relation(fields: [userId], references: [id])
-  userId      String    @unique
-  
-  // Athlete specific
-  athlete     Athlete?
-  
-  // Fan specific
-  fan         Fan?
-
-  // Agent specific
-  agent       Agent?
-}
-
-model Athlete {
-  id          String @id @default(cuid())
-  profile     Profile @relation(fields: [profileId], references: [id])
-  profileId   String @unique
-  position    String?
-  height      Int? // in cm
-  city        String?
-  state       String?
-  teamHistory TeamHistory[]
-}
-
-model Fan {
-  id          String @id @default(cuid())
-  profile     Profile @relation(fields: [profileId], references: [id])
-  profileId   String @unique
-  favoriteTeam String?
-  city        String?
-}
-
-model Agent {
-  id          String @id @default(cuid())
-  profile     Profile @relation(fields: [profileId], references: [id])
-  profileId   String @unique
-  contact     String?
-  state       String?
-  athletesOfInterest Interest[]
-}
-
-model TeamHistory {
-  id          String @id @default(cuid())
-  athlete     Athlete @relation(fields: [athleteId], references: [id])
-  athleteId   String
-  clubName    String
-  startDate   DateTime
-  endDate     DateTime?
-}
-
-model Video {
-  id          String    @id @default(cuid())
-  title       String
-  description String?
-  url         String
-  author      User      @relation(fields: [authorId], references: [id])
-  authorId    String
-  createdAt   DateTime  @default(now())
-  likes       Int       @default(0)
-  comments    Int       @default(0)
-  shares      Int       @default(0)
-  copyrightStatus String @default("OK")
-}
-
-model Article {
-  id          String    @id @default(cuid())
-  title       String
-  content     String
-  summary     String?
-  category    String
-  author      User      @relation(fields: [authorId], references: [id])
-  authorId    String
-  createdAt   DateTime  @default(now())
-  published   Boolean   @default(false)
-}
-
-model Club {
-  id          String    @id @default(cuid())
-  name        String
-  slug        String    @unique
-  coatOfArmsUrl String?
-  country     String
-  state       String
-  facts       ClubFact[]
-}
-
-model ClubFact {
-  id          String    @id @default(cuid())
-  club        Club      @relation(fields: [clubId], references: [id])
-  clubId      String
-  factType    String // e.g., "Foundation", "Titles", "Best Players"
-  content     String
-}
-
-model Confederation {
-  id          String @id @default(cuid())
-  name        String
-  slug        String @unique
-  logoUrl     String?
-  description String?
-}
-
-model Game {
-  id          String @id @default(cuid())
-  title       String
-  slug        String @unique
-  imageUrl    String?
-  tag         String
-  description String
-  ctaUrl      String
-}
-
-model Interest {
-  id          String    @id @default(cuid())
-  agent       Agent     @relation(fields: [agentId], references: [id])
-  agentId     String
-  athlete     User      @relation(fields: [athleteId], references: [id])
-  athleteId   String
-  createdAt   DateTime  @default(now())
-}
-
-model Message {
-  id          String    @id @default(cuid())
-  sender      User      @relation("SentMessages", fields: [senderId], references: [id])
-  senderId    String
-  receiver    User      @relation("ReceivedMessages", fields: [receiverId], references: [id])
-  receiverId  String
-  content     String
-  isRead      Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-}
-
-model Notification {
-  id          String    @id @default(cuid())
-  user        User      @relation(fields: [userId], references: [id])
-  userId      String
-  content     String
-  isRead      Boolean   @default(false)
-  createdAt   DateTime  @default(now())
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?
-  access_token       String?
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -197,5 +37,41 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-// Using string fields instead of Prisma enums because SQLite
-// does not support native enum types.
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  videos        Video[]
+  profile       Profile? 
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Profile {
+  id     String  @id @default(cuid())
+  bio    String?
+  user   User    @relation(fields: [userId], references: [id])
+  userId String  @unique
+}
+
+model Video {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  videoUrl    String
+  thumbnailUrl String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+}

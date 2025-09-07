@@ -7,6 +7,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.s3.amazonaws.com', // Exemplo para S3
       },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
     ],
   },
 };

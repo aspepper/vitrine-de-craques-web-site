@@ -16,10 +16,10 @@ export function Header() {
           <Link href="/games" className="hover:text-primary">Games</Link>
         </div>
         <div className="flex items-center space-x-2">
-          <Button asChild variant="outline">
+          <Button asChild size="md" rounded="pill" className="px-6">
             <Link href="/login">Login</Link>
           </Button>
-          <Button asChild>
+          <Button asChild variant="secondary" size="md" rounded="pill" className="px-6">
             <Link href="/cadastro">Cadastre-se</Link>
           </Button>
         </div>

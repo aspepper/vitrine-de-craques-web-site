@@ -1,0 +1,147 @@
+[
+  {
+    "slug": "agente-perfil",
+    "suggested_route": "/agentes/[id]",
+    "exists_in_project": false
+  },
+  {
+    "slug": "agentes-grid",
+    "suggested_route": "/agentes",
+    "exists_in_project": true
+  },
+  {
+    "slug": "atleta-perfil",
+    "suggested_route": "/atletas/[id]",
+    "exists_in_project": false
+  },
+  {
+    "slug": "atletas",
+    "suggested_route": "/atletas",
+    "exists_in_project": false
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "suggested_route": "/cadastro/atleta-18",
+    "exists_in_project": false
+  },
+  {
+    "slug": "cadastro-clube",
+    "suggested_route": "/cadastro/clube",
+    "exists_in_project": false
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "suggested_route": "/cadastro/de-agentes-licenciados",
+    "exists_in_project": false
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "suggested_route": "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis",
+    "exists_in_project": false
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "suggested_route": "/cadastro/imprensa-jornalistablogueiro",
+    "exists_in_project": false
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "suggested_route": "/cadastro/responsavel",
+    "exists_in_project": false
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "suggested_route": "/cadastro/torcedor",
+    "exists_in_project": false
+  },
+  {
+    "slug": "clube-detalhe",
+    "suggested_route": "/clubes/[id]",
+    "exists_in_project": false
+  },
+  {
+    "slug": "clubes-grid",
+    "suggested_route": "/clubes",
+    "exists_in_project": true
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "suggested_route": "/confederacoes/[id]",
+    "exists_in_project": false
+  },
+  {
+    "slug": "confederacoes",
+    "suggested_route": "/confederacoes",
+    "exists_in_project": false
+  },
+  {
+    "slug": "feeds",
+    "suggested_route": "/feed",
+    "exists_in_project": false
+  },
+  {
+    "slug": "game-detalhe",
+    "suggested_route": "/games/[id]",
+    "exists_in_project": false
+  },
+  {
+    "slug": "games-lista",
+    "suggested_route": "/games",
+    "exists_in_project": true
+  },
+  {
+    "slug": "home",
+    "suggested_route": "/",
+    "exists_in_project": true
+  },
+  {
+    "slug": "home-logado",
+    "suggested_route": "/",
+    "exists_in_project": true
+  },
+  {
+    "slug": "login",
+    "suggested_route": "/login",
+    "exists_in_project": false
+  },
+  {
+    "slug": "noticia-detalhe",
+    "suggested_route": "/noticias/[id]",
+    "exists_in_project": false
+  },
+  {
+    "slug": "noticias",
+    "suggested_route": "/noticias",
+    "exists_in_project": true
+  },
+  {
+    "slug": "perfil",
+    "suggested_route": "/perfil",
+    "exists_in_project": true
+  },
+  {
+    "slug": "privacidade",
+    "suggested_route": "/privacidade",
+    "exists_in_project": false
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "suggested_route": "/registrar-escolha-perfil",
+    "exists_in_project": false
+  },
+  {
+    "slug": "sobre",
+    "suggested_route": "/sobre",
+    "exists_in_project": false
+  },
+  {
+    "slug": "torcida-grid",
+    "suggested_route": "/torcida",
+    "exists_in_project": true
+  },
+  {
+    "slug": "upload-de-videos",
+    "suggested_route": "/upload",
+    "exists_in_project": true
+  }
+]

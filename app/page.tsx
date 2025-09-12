@@ -1,6 +1,11 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { VideoCard } from "@/components/VideoCard";
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import Link from "next/link"
+
+import { Footer } from "@/components/Footer"
+import { Header } from "@/components/Header"
+import { VideoCard } from "@/components/VideoCard"
+import { Button } from "@/components/ui/button"
 
 // Dados mocados para o feed
 const mockVideos = [
@@ -8,9 +13,32 @@ const mockVideos = [
   { id: '2', title: 'Drible desconcertante', author: 'Jogador Habilidoso', thumbnailUrl: 'https://via.placeholder.com/400x225.png/000000/FFFFFF?text=Video' },
   { id: '3', title: 'Defesa espetacular', author: 'Muralha', thumbnailUrl: 'https://via.placeholder.com/400x225.png/000000/FFFFFF?text=Video' },
   { id: '4', title: 'Falta no ângulo', author: 'Artilheiro', thumbnailUrl: 'https://via.placeholder.com/400x225.png/000000/FFFFFF?text=Video' },
-];
+]
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow container mx-auto flex flex-col items-center justify-center p-4 text-center">
+          <h1 className="text-3xl font-bold font-heading mb-4">Vitrine de Craques</h1>
+          <p className="mb-6">Faça login ou registre-se para participar.</p>
+          <div className="flex space-x-4">
+            <Button asChild size="lg" rounded="pill" className="px-6">
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button asChild variant="secondary" size="lg" rounded="pill" className="px-6">
+              <Link href="/cadastro">Registrar</Link>
+            </Button>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -25,5 +53,6 @@ export default function HomePage() {
       </main>
       <Footer />
     </div>
-  );
+  )
 }
+

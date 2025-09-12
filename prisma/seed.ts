@@ -3,6 +3,15 @@ import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
 async function main() {
   console.log('Start seeding ...')
 
@@ -11,10 +20,11 @@ async function main() {
   const confed = await prisma.confederation.create({
     data: {
       name: 'Confederação Brasileira',
+      slug: slugify('Confederação Brasileira'),
       clubs: {
         create: [
-          { name: 'Clube A' },
-          { name: 'Clube B' },
+          { name: 'Clube A', slug: slugify('Clube A') },
+          { name: 'Clube B', slug: slugify('Clube B') },
         ],
       },
     },
@@ -114,6 +124,7 @@ async function main() {
   await prisma.game.create({
     data: {
       date: new Date(),
+      slug: `${confed.clubs[0].slug}-vs-${confed.clubs[1].slug}`,
       homeClubId: confed.clubs[0].id,
       awayClubId: confed.clubs[1].id,
       scoreHome: 0,

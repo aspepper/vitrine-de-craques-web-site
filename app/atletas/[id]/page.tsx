@@ -1,21 +1,21 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import Image from "next/image";
-import prisma from "@/lib/db";
-import { notFound } from "next/navigation";
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
+import Image from 'next/image'
+import prisma from '@/lib/db'
+import { notFound } from 'next/navigation'
 
 interface PageProps {
-  params: { id: string };
+  params: { id: string }
 }
 
 export default async function AtletaDetalhePage({ params }: PageProps) {
-  const profile = await prisma.profile.findUnique({ where: { id: params.id } });
-  if (!profile || profile.role !== "ATLETA") {
-    notFound();
+  const profile = await prisma.profile.findUnique({ where: { id: params.id } })
+  if (!profile || profile.role !== 'ATLETA') {
+    notFound()
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
+    <div className="flex min-h-screen flex-col bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
         <div className="mx-auto max-w-3xl">
@@ -23,22 +23,23 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
             <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
               <Image
                 src={profile.avatarUrl}
-                alt={profile.displayName || "Atleta"}
+                alt={profile.displayName || 'Atleta'}
                 fill
                 className="object-cover"
+                loading="lazy"
               />
             </div>
           )}
-          <h1 className="mb-4 text-3xl font-bold font-heading">
+          <h1 className="mb-4 font-heading text-3xl font-bold">
             {profile.displayName}
           </h1>
           {profile.bio && (
-            <p className="text-lg leading-relaxed text-muted-foreground mb-4">
+            <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
               {profile.bio}
             </p>
           )}
           {profile.data && (
-            <pre className="bg-slate-100 p-4 rounded">
+            <pre className="rounded bg-slate-100 p-4">
               {JSON.stringify(profile.data, null, 2)}
             </pre>
           )}
@@ -46,6 +47,5 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
       </main>
       <Footer />
     </div>
-  );
+  )
 }
-

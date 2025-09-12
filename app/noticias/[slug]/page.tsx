@@ -3,16 +3,21 @@ import { Footer } from "@/components/Footer";
 import Image from "next/image";
 
 interface PageProps {
-  params: { id: string };
+  params: { slug: string };
 }
 
-export default function NoticiaDetalhePage({ params }: PageProps) {
-  const article = {
-    title: `Notícia ${params.id}`,
-    image: "/hero/stadium.svg",
-    content:
-      "Conteúdo da notícia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  };
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
+async function getNews(slug: string) {
+  const res = await fetch(`${baseUrl}/api/noticias/${slug}`, { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error("Notícia não encontrada");
+  }
+  return res.json();
+}
+
+export default async function NoticiaDetalhePage({ params }: PageProps) {
+  const article = await getNews(params.slug);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
@@ -22,7 +27,7 @@ export default function NoticiaDetalhePage({ params }: PageProps) {
           <h1 className="mb-4 text-3xl font-bold font-heading">{article.title}</h1>
           <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
             <Image
-              src={article.image}
+              src="/hero/stadium.svg"
               alt={article.title}
               fill
               className="object-cover"
@@ -35,4 +40,3 @@ export default function NoticiaDetalhePage({ params }: PageProps) {
     </div>
   );
 }
-

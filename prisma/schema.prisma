@@ -93,12 +93,14 @@ model Video {
 model Confederation {
   id    String @id @default(cuid())
   name  String
+  slug  String @unique
   clubs Club[]
 }
 
 model Club {
   id               String         @id @default(cuid())
   name             String         @unique
+  slug             String         @unique
   confederation    Confederation? @relation(fields: [confederationId], references: [id])
   confederationId  String?
   homeGames        Game[]         @relation("HomeClub")
@@ -117,6 +119,7 @@ model News {
 
 model Game {
   id         String   @id @default(cuid())
+  slug       String   @unique
   date       DateTime
   homeClub   Club     @relation("HomeClub", fields: [homeClubId], references: [id])
   homeClubId String

@@ -4,30 +4,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Confederation {
-  id: string;
-  name: string;
-  image: string;
+interface PageProps {
+  searchParams: { page?: string };
 }
 
-const confederations: Confederation[] = [
-  { id: "1", name: "Confederação 1", image: "/hero/stadium.svg" },
-  { id: "2", name: "Confederação 2", image: "/hero/stadium.svg" },
-];
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
-export default function ConfederacoesPage() {
+async function getConfeds(page: number) {
+  const res = await fetch(`${baseUrl}/api/confederacoes?page=${page}`, { cache: "no-store" });
+  return res.json();
+}
+
+export default async function ConfederacoesPage({ searchParams }: PageProps) {
+  const page = Number(searchParams.page) || 1;
+  const { items, totalPages } = await getConfeds(page);
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
         <h1 className="mb-6 text-2xl font-bold font-heading">Confederações</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {confederations.map((confed) => (
-            <Link key={confed.id} href={`/confederacoes/${confed.id}`}>
+          {items.map((confed: any) => (
+            <Link key={confed.slug} href={`/confederacoes/${confed.slug}`}>
               <Card className="overflow-hidden hover:shadow-lg">
                 <CardHeader className="p-0">
                   <div className="relative h-40 w-full">
-                    <Image src={confed.image} alt={confed.name} fill className="object-cover" />
+                    <Image src="/hero/stadium.svg" alt={confed.name} fill className="object-cover" />
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">
@@ -36,6 +39,18 @@ export default function ConfederacoesPage() {
               </Card>
             </Link>
           ))}
+        </div>
+        <div className="mt-6 flex justify-between">
+          {page > 1 ? (
+            <Link href={`/confederacoes?page=${page - 1}`}>Anterior</Link>
+          ) : (
+            <span />
+          )}
+          {page < totalPages ? (
+            <Link href={`/confederacoes?page=${page + 1}`}>Próxima</Link>
+          ) : (
+            <span />
+          )}
         </div>
       </main>
       <Footer />

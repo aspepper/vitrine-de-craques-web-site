@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
+import { HERO_PLACEHOLDER } from "@/lib/heroImage";
 
 interface PageProps {
   params: { slug: string };
@@ -25,7 +26,13 @@ export default async function GameDetalhePage({ params }: PageProps) {
       <main className="container mx-auto flex-grow p-4">
         <div className="mx-auto max-w-3xl">
           <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
-            <Image src="/hero/stadium.svg" alt={game.slug} fill className="object-cover" />
+            <Image
+              src={HERO_PLACEHOLDER}
+              alt={game.slug}
+              fill
+              className="object-cover"
+              loading="lazy"
+            />
           </div>
           <h1 className="mb-4 text-3xl font-bold font-heading">
             {game.homeClub.name} vs {game.awayClub.name}

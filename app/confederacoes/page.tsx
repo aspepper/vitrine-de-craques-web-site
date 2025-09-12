@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { HERO_PLACEHOLDER } from "@/lib/heroImage";
 
 interface PageProps {
   searchParams: { page?: string };
@@ -30,7 +31,13 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
               <Card className="overflow-hidden hover:shadow-lg">
                 <CardHeader className="p-0">
                   <div className="relative h-40 w-full">
-                    <Image src="/hero/stadium.svg" alt={confed.name} fill className="object-cover" />
+                    <Image
+                      src={HERO_PLACEHOLDER}
+                      alt={confed.name}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">

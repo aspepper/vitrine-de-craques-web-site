@@ -37,4 +37,10 @@
 
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Inter', sans-serif;
+
+  /* Typography */
+  --text-h1: 2.25rem; /* 36px */
+  --text-h2: 1.875rem; /* 30px */
+  --text-h3: 1.5rem; /* 24px */
+  --text-body: 1rem; /* 16px */
 }

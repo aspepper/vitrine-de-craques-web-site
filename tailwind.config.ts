@@ -18,6 +18,7 @@ const config = {
       },
     },
     extend: {
+      // Semantic color tokens
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

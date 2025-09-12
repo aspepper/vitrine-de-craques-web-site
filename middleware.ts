@@ -12,4 +12,4 @@ export default withAuth(
   }
 )
 
-export const config = { matcher: ["/perfil/:path*", "/upload/:path*"] }
+export const config = { matcher: ["/perfil", "/upload/:path*"] }

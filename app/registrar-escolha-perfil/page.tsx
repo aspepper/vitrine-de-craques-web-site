@@ -5,8 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const perfis = [
   { slug: "torcedor", title: "Torcedor" },
-  { slug: "atleta", title: "Atleta" },
-  { slug: "agente", title: "Agente" },
+  { slug: "atleta-18", title: "Atleta" },
+  { slug: "responsavel", title: "Responsável" },
+  { slug: "imprensa-jornalistablogueiro", title: "Imprensa" },
+  { slug: "clube", title: "Clube" },
+  { slug: "de-agentes-licenciados", title: "Agente Licenciado" },
+  { slug: "de-documentos-necessarios-para-pais-e-responsaveis", title: "Documentos para Responsáveis" },
 ];
 
 export default function RegistrarEscolhaPerfilPage() {

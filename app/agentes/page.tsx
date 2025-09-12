@@ -5,16 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/db";
 import { HERO_PLACEHOLDER } from "@/lib/heroImage";
+import type { Profile } from "@prisma/client";
 
 export default async function AgentesPage() {
-  const agents = await prisma.profile.findMany({ where: { role: "AGENTE" } });
+  const agents: Profile[] = await prisma.profile.findMany({ where: { role: "AGENTE" } });
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
         <h1 className="mb-6 text-2xl font-bold font-heading">Agentes</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {agents.map((agent) => (
+          {agents.map((agent: Profile) => (
             <Link key={agent.id} href={`/agentes/${agent.id}`}>
               <Card className="overflow-hidden hover:shadow-lg">
                 <CardHeader className="p-0">

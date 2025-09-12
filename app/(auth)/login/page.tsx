@@ -9,6 +9,8 @@ import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Email inválido." }),
@@ -18,12 +20,23 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>
 
 export default function LoginPage() {
+  const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginFormValues) => {
-    signIn('credentials', { ...data, callbackUrl: '/' });
+  const onSubmit = async (data: LoginFormValues) => {
+    setErrorMessage(null)
+    const res = await signIn('credentials', {
+      ...data,
+      redirect: false
+    })
+    if (res?.error) {
+      setErrorMessage('Credenciais inválidas')
+    } else {
+      router.push('/')
+    }
   };
 
   return (
@@ -49,6 +62,7 @@ export default function LoginPage() {
               <Input id="password" type="password" {...register("password")} />
               {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
             </div>
+            {errorMessage && <p className="text-sm text-destructive">{errorMessage}</p>}
             <Button type="submit" className="w-full">Login</Button>
           </form>
           <div className="mt-4 text-center text-sm">

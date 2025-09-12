@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
+import { HERO_PLACEHOLDER } from "@/lib/heroImage";
 
 interface PageProps {
   params: { slug: string };
@@ -27,9 +28,10 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
           <h1 className="mb-4 text-3xl font-bold font-heading">{article.title}</h1>
           <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
             <Image
-              src="/hero/stadium.svg"
+              src={HERO_PLACEHOLDER}
               alt={article.title}
               fill
+              loading="lazy"
               className="object-cover"
             />
           </div>

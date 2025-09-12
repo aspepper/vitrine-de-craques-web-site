@@ -3,15 +3,17 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const fontSans = Inter({ 
+const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
 });
 
 const fontHeading = Inter({
   subsets: ["latin"],
   variable: "--font-heading",
   weight: "700",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

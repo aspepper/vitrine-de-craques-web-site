@@ -54,12 +54,11 @@ interface PageProps {
 export default function CadastroPerfilPage({ params }: PageProps) {
   const config = PROFILE_CONFIG[params.slug]
   const router = useRouter()
+  const form = useForm<any>({ resolver: zodResolver(config?.schema ?? z.object({})) })
 
   if (!config) {
     return <p className='p-4'>Perfil inválido</p>
   }
-
-  const form = useForm<any>({ resolver: zodResolver(config.schema) })
 
   async function onSubmit(data: any) {
     await fetch('/api/profile', {

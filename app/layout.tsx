@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Providers } from "@/components/Providers";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
   description: "A sua plataforma para mostrar seu talento no futebol.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable, fontHeading.variable)}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

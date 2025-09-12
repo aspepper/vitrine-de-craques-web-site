@@ -92,7 +92,7 @@ export function UploadForm() {
         <Input id="thumbnail" name="thumbnail" type="file" accept="image/*" />
         {thumbnailPreview && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={thumbnailPreview} alt="Prévia" className="mt-2 w-32 rounded" />
+          <img src={thumbnailPreview} alt="Prévia" loading="lazy" className="mt-2 w-32 rounded" />
         )}
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}

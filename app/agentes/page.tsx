@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/db";
+import { HERO_PLACEHOLDER } from "@/lib/heroImage";
 
 export default async function AgentesPage() {
   const agents = await prisma.profile.findMany({ where: { role: "AGENTE" } });
@@ -19,9 +20,10 @@ export default async function AgentesPage() {
                 <CardHeader className="p-0">
                   <div className="relative h-40 w-full">
                     <Image
-                      src={agent.avatarUrl || "/hero/stadium.svg"}
+                      src={agent.avatarUrl || HERO_PLACEHOLDER}
                       alt={agent.displayName || "Agente"}
                       fill
+                      loading="lazy"
                       className="object-cover"
                     />
                   </div>

@@ -1,12 +1,8 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from "@prisma/client";
-
-// NOTA: Em um projeto real, usaríamos bcrypt para hashing de senhas.
-// const bcrypt = require('bcrypt');
-
-const prisma = new PrismaClient();
+import bcrypt from "bcrypt";
+import prisma from "@/lib/db";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -26,19 +22,17 @@ export const authOptions: NextAuthOptions = {
           where: { email: credentials.email },
         });
 
-        if (!user) {
+        if (!user || !user.passwordHash) {
           return null;
         }
 
-        // NOTA: Lógica de comparação de senha. Substituir por bcrypt em produção.
-        // const isPasswordValid = await bcrypt.compare(credentials.password, user.passwordHash);
-        const isPasswordValid = true; // Placeholder
+        const isPasswordValid = await bcrypt.compare(credentials.password, user.passwordHash);
 
-        if (isPasswordValid) {
-          return user;
-        } else {
+        if (!isPasswordValid) {
           return null;
         }
+
+        return user;
       },
     }),
   ],

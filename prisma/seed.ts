@@ -1,9 +1,12 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
 async function main() {
   console.log(`Start seeding ...`)
+
+  const hashedPassword = await bcrypt.hash('password', 10)
 
   const user = await prisma.user.upsert({
     where: { email: 'test@example.com' },
@@ -11,6 +14,7 @@ async function main() {
     create: {
       email: 'test@example.com',
       name: 'Test User',
+      passwordHash: hashedPassword,
       profile: {
         create: {
           bio: 'This is a test user bio.',

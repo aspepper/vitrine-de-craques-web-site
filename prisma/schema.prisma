@@ -56,6 +56,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   videos        Video[]
+  news          News[]
   profile       Profile?
 }
 
@@ -68,7 +69,7 @@ model VerificationToken {
 }
 
 model Profile {
-  id          String   @id @default(cuid())
+  id          String  @id @default(cuid())
   displayName String?
   avatarUrl   String?
   bio         String?
@@ -98,13 +99,13 @@ model Confederation {
 }
 
 model Club {
-  id               String         @id @default(cuid())
-  name             String         @unique
-  slug             String         @unique
-  confederation    Confederation? @relation(fields: [confederationId], references: [id])
-  confederationId  String?
-  homeGames        Game[]         @relation("HomeClub")
-  awayGames        Game[]         @relation("AwayClub")
+  id              String         @id @default(cuid())
+  name            String         @unique
+  slug            String         @unique
+  confederation   Confederation? @relation(fields: [confederationId], references: [id])
+  confederationId String?
+  homeGames       Game[]         @relation("HomeClub")
+  awayGames       Game[]         @relation("AwayClub")
 }
 
 model News {

@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { ensureImage } from "@/lib/ensureImage";
 import prisma from "@/lib/db";
@@ -24,7 +22,6 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
-      <Header />
       <main className="container mx-auto flex-grow p-4">
         <article className="mx-auto max-w-3xl">
           <h1>{article.title}</h1>
@@ -40,7 +37,6 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
           <p className="text-muted-foreground">{article.content}</p>
         </article>
       </main>
-      <Footer />
     </div>
   );
 }

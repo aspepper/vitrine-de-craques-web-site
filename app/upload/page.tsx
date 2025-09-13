@@ -1,5 +1,3 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -14,7 +12,6 @@ export default async function UploadPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <main className="flex-grow container mx-auto p-4">
         <Card className="max-w-4xl mx-auto mt-8">
           <CardHeader>
@@ -26,7 +23,6 @@ export default async function UploadPage() {
           </CardContent>
         </Card>
       </main>
-      <Footer />
     </div>
   );
 }

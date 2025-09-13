@@ -82,7 +82,7 @@ export default function RegistrarEscolhaPerfilPage() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow py-12">
-        <section className="mb-12 text-center">
+        <section className="mb-12">
           <h1 className="mb-2 text-3xl font-heading font-bold">
             Crie sua conta — Selecione seu perfil
           </h1>

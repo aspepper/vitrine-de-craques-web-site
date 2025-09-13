@@ -13,11 +13,11 @@ const providers = [
 
 export function SocialAuth() {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex w-full flex-col items-start gap-4">
       <p className="text-sm text-muted-foreground">
-        Entrar com rede social (opcional)
+        Entre com rede social (opcional) ou preencha o formulário
       </p>
-      <div className="flex flex-wrap justify-center gap-2">
+      <div className="flex flex-wrap justify-start gap-2">
         {providers.map((provider) => (
           <Button
             key={provider.id}
@@ -38,6 +38,10 @@ export function SocialAuth() {
           </Button>
         ))}
       </div>
+      <p className="text-xs text-muted-foreground">
+        Após autenticar, voltaremos para a Home e enviaremos um e-mail para
+        completar o cadastro.
+      </p>
     </div>
   )
 }

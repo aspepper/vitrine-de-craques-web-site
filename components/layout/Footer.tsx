@@ -1,118 +1,124 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Button } from '@/components/ui/button'
-
 export function Footer() {
   return (
-    <footer className="border-t bg-surface">
-      <div className="container grid gap-8 py-12 md:grid-cols-3">
+    <footer
+      className="
+        text-white
+        border-t border-white/10
+        bg-[linear-gradient(to_bottom,var(--footer-bg-start),var(--footer-bg-end))]
+      "
+    >
+      {/* bloco superior */}
+      <div className="container grid gap-10 py-12 md:grid-cols-[1.2fr,1fr,auto]">
+        {/* Marca + CTA */}
         <div className="flex flex-col gap-4">
-          <Image
-            src="/brand/logo.svg"
-            alt="Vitrine de Craques"
-            width={48}
-            height={48}
-          />
-          <p className="text-muted-foreground">
-            Descubra talentos do futebol 10-23 anos.
+          <div className="flex items-center gap-3">
+            <Image
+              src="/brand/logo.svg"
+              alt="Vitrine de Craques"
+              width={48}
+              height={48}
+              priority
+            />
+            <div className="font-semibold italic leading-tight">
+              Vitrine de Craques
+            </div>
+          </div>
+
+          <p className="max-w-sm text-white/70">
+            Descubra talentos do futebol • 14–22 anos
           </p>
-          <Button
-            asChild
-            className="text-success-foreground w-max bg-success hover:brightness-105"
+
+          <Link
+            href="https://wa.me/5500000000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex w-max items-center justify-center rounded-full
+              bg-[#16A34A] px-6 py-3 text-sm font-semibold text-white
+              shadow-sm ring-1 ring-black/5 transition
+              hover:brightness-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#16A34A]
+            "
           >
-            <Link
-              href="https://wa.me/5500000000000"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Falar no WhatsApp
-            </Link>
-          </Button>
+            Falar no WhatsApp
+          </Link>
         </div>
+
+        {/* Links rápidos */}
         <div>
-          <h4 className="mb-4 font-bold">Links rápidos</h4>
-          <ul className="grid grid-cols-2 gap-2 text-sm text-muted-foreground">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/feed">Feed</Link>
-            </li>
-            <li>
-              <Link href="/atletas">Atletas</Link>
-            </li>
-            <li>
-              <Link href="/torcida">Torcida</Link>
-            </li>
-            <li>
-              <Link href="/agentes">Agentes</Link>
-            </li>
-            <li>
-              <Link href="/clubes">Clubes</Link>
-            </li>
-            <li>
-              <Link href="/noticias">Notícias</Link>
-            </li>
-            <li>
-              <Link href="/games">Games</Link>
-            </li>
-            <li>
-              <Link href="/confederacoes">Confederações</Link>
-            </li>
-            <li>
-              <Link href="/sobre">Sobre</Link>
-            </li>
-            <li>
-              <Link href="/privacidade">Privacidade</Link>
-            </li>
+          <h4 className="mb-4 font-bold italic">Links rápidos</h4>
+          <ul className="grid grid-cols-2 gap-2 text-sm">
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/">Home</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/clubes">Clubes</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/feed">Feeds</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/noticias">Notícias</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/atletas">Atletas</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/games">Games</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/torcida">Torcida</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/confederacoes">Confederações</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/agentes">Agentes</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/sobre">Sobre</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/privacidade">Privacidade</Link></li>
           </ul>
         </div>
+
+        {/* Redes sociais */}
         <div>
-          <h4 className="mb-4 font-bold">Nossas redes</h4>
-          <div className="flex gap-4">
-            <Link href="#">
-              <Image
-                src="/icons/icon-instagram.svg"
-                alt="Instagram"
-                width={24}
-                height={24}
-              />
+          <h4 className="mb-4 font-bold italic">Nossas redes</h4>
+          <div className="flex items-center gap-3">
+            {/* Para cada rede, um “badge” circular com leve ring */}
+            <Link
+              href="#"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="Instagram"
+            >
+              <Image src="/icons/icon-instagram.svg" alt="" width={18} height={18} />
             </Link>
-            <Link href="#">
-              <Image
-                src="/icons/icon-youtube.svg"
-                alt="YouTube"
-                width={24}
-                height={24}
-              />
+            <Link
+              href="#"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="TikTok"
+            >
+              <Image src="/icons/icon-tiktok.svg" alt="" width={18} height={18} />
             </Link>
-            <Link href="#">
-              <Image src="/icons/icon-x.svg" alt="X" width={24} height={24} />
+            <Link
+              href="#"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="YouTube"
+            >
+              <Image src="/icons/icon-youtube.svg" alt="" width={20} height={20} />
             </Link>
-            <Link href="#">
-              <Image
-                src="/icons/icon-facebook.svg"
-                alt="Facebook"
-                width={24}
-                height={24}
-              />
+            <Link
+              href="#"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="X"
+            >
+              <Image src="/icons/icon-x.svg" alt="" width={18} height={18} />
             </Link>
-            <Link href="#">
-              <Image
-                src="/icons/icon-tiktok.svg"
-                alt="TikTok"
-                width={24}
-                height={24}
-              />
+            <Link
+              href="#"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="Facebook"
+            >
+              <Image src="/icons/icon-facebook.svg" alt="" width={16} height={16} />
+            </Link>
+            <Link
+              href="#"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="LinkedIn"
+            >
+              <Image src="/icons/icon-linkedin.svg" alt="" width={19} height={19} />
             </Link>
           </div>
         </div>
       </div>
-      <div className="border-t">
-        <div className="container py-4 text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Vitrine de Craques. Todos os
-          direitos reservados.
+
+      {/* linha divisória + copyright */}
+      <div className="border-t border-white/10">
+        <div className="container py-4 text-left text-xs text-white/60">
+          © {new Date().getFullYear()} Vitrine de Craques. Todos os direitos reservados.
         </div>
       </div>
     </footer>

@@ -22,13 +22,13 @@ export default async function GamesPage({ searchParams }: PageProps) {
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
-        <h1 className="mb-6 text-2xl font-bold font-heading">Games</h1>
+        <h1>Games</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((game: any) => (
             <Link key={game.slug} href={`/games/${game.slug}`}>
               <Card className="hover:shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-lg">
+                  <CardTitle>
                     {game.homeClub.name} vs {game.awayClub.name}
                   </CardTitle>
                 </CardHeader>

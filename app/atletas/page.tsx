@@ -22,15 +22,15 @@ export default async function AtletasPage({ searchParams }: PageProps) {
   const page = Number(searchParams.page) || 1;
   const { items, totalPages } = await getAthletes(page);
   const heroImage = ensureImage(
-    "placeholders/hero-placeholder.webp",
+    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
     "atletas",
-    "hero-placeholder"
+    "stadium@1920"
   );
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
-        <h1 className="mb-6 text-2xl font-bold font-heading">Atletas</h1>
+        <h1>Atletas</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((athlete: any) => (
             <Link key={athlete.id} href={`/atletas/${athlete.id}`}>
@@ -47,7 +47,7 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CardTitle className="text-lg">
+                  <CardTitle>
                     {athlete.displayName || "Atleta"}
                   </CardTitle>
                 </CardContent>

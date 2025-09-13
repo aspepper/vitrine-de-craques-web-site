@@ -6,6 +6,10 @@ export function ensureImage(
   slug: string,
   nodeName: string
 ): string {
+  if (/^https?:\/\//.test(relPath)) {
+    return relPath;
+  }
+
   const cleaned = relPath.replace(/^\/+/, '');
   const filePath = path.join(process.cwd(), 'public', cleaned);
   if (!fs.existsSync(filePath)) {

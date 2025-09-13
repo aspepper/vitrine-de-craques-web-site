@@ -20,9 +20,9 @@ async function getConfed(slug: string) {
 export default async function ConfederacaoDetalhePage({ params }: PageProps) {
   const confed = await getConfed(params.slug);
   const heroImage = ensureImage(
-    "placeholders/hero-placeholder.webp",
+    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
     "confederacao-detalhe",
-    "hero-placeholder"
+    "stadium@1920"
   );
 
   return (
@@ -39,11 +39,11 @@ export default async function ConfederacaoDetalhePage({ params }: PageProps) {
               loading="lazy"
             />
           </div>
-          <h1 className="mb-4 text-3xl font-bold font-heading">{confed.name}</h1>
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            Clubes: {confed.clubs.map((c: any) => c.name).join(', ')}
-          </p>
-        </div>
+            <h1>{confed.name}</h1>
+            <p className="text-muted-foreground">
+              Clubes: {confed.clubs.map((c: any) => c.name).join(', ')}
+            </p>
+          </div>
       </main>
       <Footer />
     </div>

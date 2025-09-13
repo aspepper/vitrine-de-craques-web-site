@@ -60,13 +60,17 @@ const config = {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "var(--radius-lg)",
+        md: "var(--radius-md)",
+        sm: "var(--radius-sm)",
       },
       // === SOMBRAS ===
       boxShadow: {
-        soft: "0 2px 10px rgba(0,0,0,.08)",
+        sm: "var(--shadow-sm)",
+        DEFAULT: "var(--shadow-md)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        soft: "var(--shadow-md)",
       },
       keyframes: {
         "accordion-down": {
@@ -85,6 +89,12 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
         heading: ["var(--font-heading)", "sans-serif"],
+      },
+      fontSize: {
+        h1: ["var(--text-h1)", { lineHeight: "1.1" }],
+        h2: ["var(--text-h2)", { lineHeight: "1.2" }],
+        h3: ["var(--text-h3)", { lineHeight: "1.3" }],
+        body: ["var(--text-body)", { lineHeight: "1.5" }],
       },
     },
   },

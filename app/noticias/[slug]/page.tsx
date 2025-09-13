@@ -17,9 +17,9 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
   }
 
   const heroImage = ensureImage(
-    "placeholders/hero-placeholder.webp",
+    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
     "noticia-detalhe",
-    "hero-placeholder"
+    "stadium@1920"
   );
 
   return (
@@ -27,7 +27,7 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
       <Header />
       <main className="container mx-auto flex-grow p-4">
         <article className="mx-auto max-w-3xl">
-          <h1 className="mb-4 text-3xl font-bold font-heading">{article.title}</h1>
+          <h1>{article.title}</h1>
           <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
             <Image
               src={heroImage}
@@ -37,9 +37,7 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
               className="object-cover"
             />
           </div>
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            {article.content}
-          </p>
+          <p className="text-muted-foreground">{article.content}</p>
         </article>
       </main>
       <Footer />

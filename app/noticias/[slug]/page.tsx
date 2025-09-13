@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
-import { HERO_PLACEHOLDER } from "@/lib/heroImage";
+import { ensureImage } from "@/lib/ensureImage";
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 
@@ -16,6 +16,12 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
     notFound();
   }
 
+  const heroImage = ensureImage(
+    "placeholders/hero-placeholder.webp",
+    "noticia-detalhe",
+    "hero-placeholder"
+  );
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
@@ -24,7 +30,7 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
           <h1 className="mb-4 text-3xl font-bold font-heading">{article.title}</h1>
           <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
             <Image
-              src={HERO_PLACEHOLDER}
+              src={heroImage}
               alt={article.title}
               fill
               loading="lazy"

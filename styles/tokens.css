@@ -1,6 +1,9 @@
 :root {
   --background: 0 0% 97%; /* #F8F9FC */
   --foreground: 222.2 84% 4.9%; /* #0B0F10 */
+  
+  --footer-bg-start: #0B1E3A;
+  --footer-bg-end:   #0E2A52;
 
   --card: 0 0% 100%;
   --card-foreground: 222.2 84% 4.9%;

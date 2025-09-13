@@ -13,15 +13,18 @@ import { Button } from '@/components/ui/button'
 
 const formSchema = z.object({
   nomeClube: z.string().min(1, { message: 'Nome obrigatório' }),
-  cnpj: z.string().min(1, { message: 'CNPJ obrigatório' }),
+  nomeFantasia: z.string().optional(),
   telefone: z.string().min(1, { message: 'Telefone obrigatório' }),
   emailClube: z.string().email({ message: 'Email inválido' }),
-  estado: z.string().min(1, { message: 'Estado obrigatório' }),
+  uf: z.string().min(1, { message: 'UF obrigatória' }),
   cidade: z.string().min(1, { message: 'Cidade obrigatória' }),
+  cnpj: z.string().min(1, { message: 'CNPJ obrigatório' }),
+  inscricaoEstadual: z.string().optional(),
   representanteNome: z.string().min(1, { message: 'Nome obrigatório' }),
   representanteCpf: z.string().min(1, { message: 'CPF obrigatório' }),
   representanteEmail: z.string().email({ message: 'Email inválido' }),
-  representanteTelefone: z.string().min(1, { message: 'Telefone obrigatório' }),
+  whatsapp: z.string().min(1, { message: 'Telefone obrigatório' }),
+  termos: z.boolean().refine(v => v, { message: 'Obrigatório' }),
 })
 
 type FormValues = z.infer<typeof formSchema>
@@ -38,7 +41,7 @@ export default function CadastroClubePage() {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <main className="container mx-auto flex-grow py-12">
-        <h1 className="mb-8 text-center text-3xl font-bold">Cadastro Clube/Entidade Desportiva</h1>
+        <h1 className="mb-8 text-3xl font-bold">Cadastro Clube/Entidade Desportiva</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />
         </div>
@@ -56,11 +59,8 @@ export default function CadastroClubePage() {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="cnpj">CNPJ</Label>
-                <Input id="cnpj" {...form.register('cnpj')} />
-                {form.formState.errors.cnpj && (
-                  <p className="text-sm text-destructive">{form.formState.errors.cnpj.message}</p>
-                )}
+                <Label htmlFor="nomeFantasia">Nome opcional</Label>
+                <Input id="nomeFantasia" {...form.register('nomeFantasia')} />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="telefone">Telefone</Label>
@@ -77,10 +77,10 @@ export default function CadastroClubePage() {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="estado">Estado</Label>
-                <Input id="estado" {...form.register('estado')} />
-                {form.formState.errors.estado && (
-                  <p className="text-sm text-destructive">{form.formState.errors.estado.message}</p>
+                <Label htmlFor="uf">UF</Label>
+                <Input id="uf" {...form.register('uf')} />
+                {form.formState.errors.uf && (
+                  <p className="text-sm text-destructive">{form.formState.errors.uf.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
@@ -89,6 +89,17 @@ export default function CadastroClubePage() {
                 {form.formState.errors.cidade && (
                   <p className="text-sm text-destructive">{form.formState.errors.cidade.message}</p>
                 )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="cnpj">CNPJ</Label>
+                <Input id="cnpj" {...form.register('cnpj')} />
+                {form.formState.errors.cnpj && (
+                  <p className="text-sm text-destructive">{form.formState.errors.cnpj.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="inscricaoEstadual">Inscrição estadual</Label>
+                <Input id="inscricaoEstadual" {...form.register('inscricaoEstadual')} />
               </div>
             </CardContent>
           </Card>
@@ -120,18 +131,20 @@ export default function CadastroClubePage() {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="representanteTelefone">Telefone</Label>
-                <Input id="representanteTelefone" {...form.register('representanteTelefone')} />
-                {form.formState.errors.representanteTelefone && (
-                  <p className="text-sm text-destructive">{form.formState.errors.representanteTelefone.message}</p>
+                <Label htmlFor="whatsapp">Celular/WhatsApp</Label>
+                <Input id="whatsapp" {...form.register('whatsapp')} />
+                {form.formState.errors.whatsapp && (
+                  <p className="text-sm text-destructive">{form.formState.errors.whatsapp.message}</p>
                 )}
               </div>
             </CardContent>
           </Card>
 
-          <div className="flex justify-end">
-            <Button type="submit">Criar conta</Button>
-          </div>
+          <Label className="flex items-center gap-2">
+            <input id="termos" type="checkbox" className="h-4 w-4" {...form.register('termos')} />
+            <span>Aceito os Termos de Uso e a Política de Privacidade</span>
+          </Label>
+          <Button type="submit">Criar conta</Button>
         </form>
         </main>
       </div>

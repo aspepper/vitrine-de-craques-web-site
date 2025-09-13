@@ -71,30 +71,30 @@ model VerificationToken {
 }
 
 model Profile {
-  id               String   @id @default(cuid())
-  displayName      String?
-  avatarUrl        String?
-  bio              String?
-  role             Role
-  data             Json?
-  cpf              String?
-  rg               String?
-  cep              String?
-  nascimento       String?
-  telefone         String?
-  posicao          String?
-  perna            String?
-  altura           String?
-  peso             String?
-  pais             String?
-  uf               String?
-  clube            String?
-  emailClube       String?
-  cidade           String?
-  representanteCpf String?
-  whatsapp    String?
-  licenca     String?
-  registroFifa String?
+  id                    String   @id @default(cuid())
+  displayName           String?
+  avatarUrl             String?
+  bio                   String?
+  role                  Role
+  data                  Json?
+  cpf                   String?
+  rg                    String?
+  cep                   String?
+  nascimento            String?
+  telefone              String?
+  posicao               String?
+  perna                 String?
+  altura                String?
+  peso                  String?
+  pais                  String?
+  uf                    String?
+  clube                 String?
+  emailClube            String?
+  cidade                String?
+  representanteCpf      String?
+  whatsapp              String?
+  licenca               String?
+  registroFifa          String?
   responsavelNascimento String?
   responsavelGenero     String?
   responsavelInstagram  String?
@@ -165,4 +165,18 @@ model Game {
   awayClubId String
   scoreHome  Int?
   scoreAway  Int?
+}
+
+model Times {
+  id         String @id @default(cuid())
+  divisao    String
+  clube      String
+  slug       String @unique
+  sigla      String
+  apelido    String
+  mascote    String
+  fundacao   Int?
+  maiorIdolo String
+  cidade     String
+  estado     String
 }

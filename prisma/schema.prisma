@@ -81,6 +81,7 @@ model Profile {
   rg                    String?
   cep                   String?
   nascimento            String?
+  genero                String?
   telefone              String?
   ddd                   String?
   site                  String?
@@ -121,6 +122,8 @@ model Profile {
   notifEventos          Boolean? @default(false)
   notifAtletas          Boolean? @default(false)
   termos                Boolean? @default(false)
+  lgpdWhatsappNoticias  Boolean? @default(false)
+  lgpdWhatsappConvites  Boolean? @default(false)
   user                  User     @relation(fields: [userId], references: [id])
   userId                String   @unique
   createdAt             DateTime @default(now())

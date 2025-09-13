@@ -35,11 +35,6 @@ const PROFILE_CONFIG: Record<string, { role: string; schema: any; fields: { name
     schema: z.object({ nome: z.string().min(1, { message: 'Nome do clube obrigatório' }) }),
     fields: [{ name: 'nome', label: 'Nome do clube' }]
   },
-  'de-agentes-licenciados': {
-    role: 'AGENTE',
-    schema: z.object({ licenca: z.string().min(1, { message: 'Licença obrigatória' }) }),
-    fields: [{ name: 'licenca', label: 'Número da licença' }]
-  },
   'de-documentos-necessarios-para-pais-e-responsaveis': {
     role: 'RESPONSAVEL',
     schema: z.object({ documento: z.string().min(1, { message: 'Documento obrigatório' }) }),

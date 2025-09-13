@@ -67,7 +67,7 @@ export default function LoginPage() {
           </form>
           <div className="mt-4 text-center text-sm">
             Não tem uma conta?{" "}
-            <Link href="/cadastro" className="underline">
+            <Link href="/registrar-escolha-perfil" className="underline">
               Cadastre-se
             </Link>
           </div>

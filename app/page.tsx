@@ -66,7 +66,7 @@ export default async function HomePage() {
                     asChild
                     className="h-14 rounded-full px-8 text-[16px] font-semibold shadow-sm"
                   >
-                    <Link href="/cadastro">Registrar</Link>
+                    <Link href="/registrar-escolha-perfil">Registrar</Link>
                   </Button>
 
                   <Button

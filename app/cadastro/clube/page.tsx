@@ -15,8 +15,11 @@ const formSchema = z.object({
   nomeClube: z.string().min(1, { message: 'Nome obrigatório' }),
   cnpj: z.string().min(1, { message: 'CNPJ obrigatório' }),
   telefone: z.string().min(1, { message: 'Telefone obrigatório' }),
+  emailClube: z.string().email({ message: 'Email inválido' }),
   estado: z.string().min(1, { message: 'Estado obrigatório' }),
+  cidade: z.string().min(1, { message: 'Cidade obrigatória' }),
   representanteNome: z.string().min(1, { message: 'Nome obrigatório' }),
+  representanteCpf: z.string().min(1, { message: 'CPF obrigatório' }),
   representanteEmail: z.string().email({ message: 'Email inválido' }),
   representanteTelefone: z.string().min(1, { message: 'Telefone obrigatório' }),
 })
@@ -35,6 +38,7 @@ export default function CadastroClubePage() {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <main className="container mx-auto flex-grow py-12">
+        <h1 className="mb-8 text-center text-3xl font-bold">Cadastro Clube/Entidade Desportiva</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />
         </div>
@@ -66,10 +70,24 @@ export default function CadastroClubePage() {
                 )}
               </div>
               <div className="grid gap-2">
+                <Label htmlFor="emailClube">E-mail do clube</Label>
+                <Input id="emailClube" type="email" {...form.register('emailClube')} />
+                {form.formState.errors.emailClube && (
+                  <p className="text-sm text-destructive">{form.formState.errors.emailClube.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
                 <Label htmlFor="estado">Estado</Label>
                 <Input id="estado" {...form.register('estado')} />
                 {form.formState.errors.estado && (
                   <p className="text-sm text-destructive">{form.formState.errors.estado.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="cidade">Cidade</Label>
+                <Input id="cidade" {...form.register('cidade')} />
+                {form.formState.errors.cidade && (
+                  <p className="text-sm text-destructive">{form.formState.errors.cidade.message}</p>
                 )}
               </div>
             </CardContent>
@@ -85,6 +103,13 @@ export default function CadastroClubePage() {
                 <Input id="representanteNome" {...form.register('representanteNome')} />
                 {form.formState.errors.representanteNome && (
                   <p className="text-sm text-destructive">{form.formState.errors.representanteNome.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="representanteCpf">CPF</Label>
+                <Input id="representanteCpf" {...form.register('representanteCpf')} />
+                {form.formState.errors.representanteCpf && (
+                  <p className="text-sm text-destructive">{form.formState.errors.representanteCpf.message}</p>
                 )}
               </div>
               <div className="grid gap-2">

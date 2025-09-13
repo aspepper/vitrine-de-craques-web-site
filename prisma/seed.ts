@@ -17,7 +17,7 @@ async function main() {
 
   const hashedPassword = await bcrypt.hash('password', 10)
 
-  const confed = await prisma.confederation.create({
+  const confed1 = await prisma.confederation.create({
     data: {
       name: 'Confederação Brasileira',
       slug: slugify('Confederação Brasileira'),
@@ -25,6 +25,20 @@ async function main() {
         create: [
           { name: 'Clube A', slug: slugify('Clube A') },
           { name: 'Clube B', slug: slugify('Clube B') },
+        ],
+      },
+    },
+    include: { clubs: true },
+  })
+
+  const confed2 = await prisma.confederation.create({
+    data: {
+      name: 'Confederação Paulista',
+      slug: slugify('Confederação Paulista'),
+      clubs: {
+        create: [
+          { name: 'Clube C', slug: slugify('Clube C') },
+          { name: 'Clube D', slug: slugify('Clube D') },
         ],
       },
     },
@@ -103,6 +117,12 @@ async function main() {
         content: 'Conteúdo da segunda notícia',
         authorId: agent2.id,
       },
+      {
+        title: 'Terceira Notícia',
+        slug: 'terceira-noticia',
+        content: 'Conteúdo da terceira notícia',
+        authorId: agent1.id,
+      },
     ],
   })
 
@@ -121,15 +141,25 @@ async function main() {
     ],
   })
 
-  await prisma.game.create({
-    data: {
-      date: new Date(),
-      slug: `${confed.clubs[0].slug}-vs-${confed.clubs[1].slug}`,
-      homeClubId: confed.clubs[0].id,
-      awayClubId: confed.clubs[1].id,
-      scoreHome: 0,
-      scoreAway: 0,
-    },
+  await prisma.game.createMany({
+    data: [
+      {
+        date: new Date(),
+        slug: `${confed1.clubs[0].slug}-vs-${confed1.clubs[1].slug}`,
+        homeClubId: confed1.clubs[0].id,
+        awayClubId: confed1.clubs[1].id,
+        scoreHome: 0,
+        scoreAway: 0,
+      },
+      {
+        date: new Date(),
+        slug: `${confed2.clubs[0].slug}-vs-${confed2.clubs[1].slug}`,
+        homeClubId: confed2.clubs[0].id,
+        awayClubId: confed2.clubs[1].id,
+        scoreHome: 1,
+        scoreAway: 1,
+      },
+    ],
   })
 
   console.log('Seeding finished.')

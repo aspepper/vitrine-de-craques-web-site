@@ -95,9 +95,14 @@ model Profile {
   pais                  String?
   uf                    String?
   clube                 String?
+  nomeFantasia          String?
   emailClube            String?
   cidade                String?
+  cnpj                  String?
+  inscricaoEstadual     String?
+  representanteNome     String?
   representanteCpf      String?
+  representanteEmail    String?
   whatsapp              String?
   licenca               String?
   registroFifa          String?

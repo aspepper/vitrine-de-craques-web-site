@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button'
 const formSchema = z.object({
   nome: z.string().min(1, { message: 'Nome obrigatório' }),
   cpf: z.string().min(1, { message: 'CPF obrigatório' }),
+  rg: z.string().min(1, { message: 'RG obrigatório' }),
   email: z.string().email({ message: 'Email inválido' }),
   telefone: z.string().min(1, { message: 'Telefone obrigatório' }),
   portfolio: z.string().url({ message: 'URL inválida' }).optional(),
@@ -33,6 +34,7 @@ export default function CadastroImprensaPage() {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <main className="container mx-auto flex-grow py-12">
+        <h1 className="mb-8 text-center text-3xl font-bold">Cadastro Jornalista/Blogueiro</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />
         </div>
@@ -54,6 +56,13 @@ export default function CadastroImprensaPage() {
                 <Input id="cpf" {...form.register('cpf')} />
                 {form.formState.errors.cpf && (
                   <p className="text-sm text-destructive">{form.formState.errors.cpf.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="rg">RG</Label>
+                <Input id="rg" {...form.register('rg')} />
+                {form.formState.errors.rg && (
+                  <p className="text-sm text-destructive">{form.formState.errors.rg.message}</p>
                 )}
               </div>
               <div className="grid gap-2">

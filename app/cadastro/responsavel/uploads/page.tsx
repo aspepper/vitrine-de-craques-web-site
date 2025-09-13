@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button'
 const formSchema = z.object({
   docResponsavel: z.any().optional(),
   docMenor: z.any().optional(),
+  certidao: z.any().optional(),
   comprovante: z.any().optional(),
   consentimento1: z.boolean().refine(val => val, { message: 'Obrigatório' }),
   consentimento2: z.boolean().refine(val => val, { message: 'Obrigatório' }),
@@ -34,6 +35,7 @@ export default function UploadsResponsavelPage() {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <main className="container mx-auto flex-grow py-12">
+        <h1 className="mb-8 text-center text-3xl font-bold">Uploads do responsável</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />
         </div>
@@ -50,6 +52,10 @@ export default function UploadsResponsavelPage() {
               <div className="grid gap-2">
                 <Label htmlFor="docMenor">Documentos do menor</Label>
                 <Input id="docMenor" type="file" {...form.register('docMenor')} />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="certidao">Certidão de nascimento do menor</Label>
+                <Input id="certidao" type="file" {...form.register('certidao')} />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="comprovante">Comprovante de guarda/proteção</Label>

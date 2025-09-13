@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -20,7 +18,6 @@ export default async function GamesPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
-      <Header />
       <main className="container mx-auto flex-grow p-4">
         <h1>Games</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -54,7 +51,6 @@ export default async function GamesPage({ searchParams }: PageProps) {
           )}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

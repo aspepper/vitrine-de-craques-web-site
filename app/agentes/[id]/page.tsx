@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -23,7 +21,6 @@ export default async function AgenteDetalhePage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
-      <Header />
       <main className="container mx-auto flex-grow p-4">
         <div className="mx-auto max-w-3xl">
           {profile.avatarUrl && (
@@ -49,7 +46,6 @@ export default async function AgenteDetalhePage({ params }: PageProps) {
           )}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

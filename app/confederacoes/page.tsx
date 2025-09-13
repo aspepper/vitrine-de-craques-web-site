@@ -20,16 +20,16 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
   const page = Number(searchParams.page) || 1;
   const { items, totalPages } = await getConfeds(page);
   const heroImage = ensureImage(
-    "placeholders/hero-placeholder.webp",
+    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
     "confederacoes",
-    "hero-placeholder"
+    "stadium@1920"
   );
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
-        <h1 className="mb-6 text-2xl font-bold font-heading">Confederações</h1>
+        <h1>Confederações</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((confed: any) => (
             <Link key={confed.slug} href={`/confederacoes/${confed.slug}`}>
@@ -45,9 +45,9 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
                     />
                   </div>
                 </CardHeader>
-                <CardContent className="p-4">
-                  <CardTitle className="text-lg">{confed.name}</CardTitle>
-                </CardContent>
+                  <CardContent className="p-4">
+                    <CardTitle>{confed.name}</CardTitle>
+                  </CardContent>
               </Card>
             </Link>
           ))}

@@ -39,7 +39,7 @@ export default function CadastroPage() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Cadastro</CardTitle>
+          <CardTitle>Cadastro</CardTitle>
           <CardDescription>
             Crie sua conta para começar a compartilhar seus vídeos
           </CardDescription>

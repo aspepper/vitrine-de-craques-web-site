@@ -27,7 +27,7 @@ export function VideoCard({ video }: VideoCardProps) {
             />
           </div>
           <div className="p-4">
-            <h3 className="font-bold text-lg truncate">{video.title}</h3>
+            <h3 className="truncate">{video.title}</h3>
             <p className="text-sm text-muted-foreground">{video.author}</p>
           </div>
         </CardContent>

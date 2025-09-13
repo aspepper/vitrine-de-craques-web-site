@@ -18,7 +18,7 @@ export default function RegistrarEscolhaPerfilPage() {
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
-        <h1 className="mb-6 text-2xl font-bold font-heading">Escolha seu Perfil</h1>
+        <h1>Escolha seu Perfil</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {perfis.map((perfil) => (
             <Link key={perfil.slug} href={`/cadastro/${perfil.slug}`}>

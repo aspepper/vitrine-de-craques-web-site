@@ -36,16 +36,14 @@ export default async function AgenteDetalhePage({ params }: PageProps) {
               />
             </div>
           )}
-          <h1 className="mb-4 text-3xl font-bold font-heading">
-            {profile.displayName}
-          </h1>
+          <h1>{profile.displayName}</h1>
           {profile.bio && (
-            <p className="text-lg leading-relaxed text-muted-foreground mb-4">
+            <p className="text-muted-foreground">
               {profile.bio}
             </p>
           )}
           {profile.data && (
-            <pre className="bg-slate-100 p-4 rounded">
+            <pre className="bg-slate-100 p-4 rounded-md">
               {JSON.stringify(profile.data, null, 2)}
             </pre>
           )}

@@ -43,7 +43,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle>Login</CardTitle>
           <CardDescription>
             Entre com seu email e senha para acessar sua conta
           </CardDescription>

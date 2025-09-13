@@ -1,0 +1,2642 @@
+[
+  {
+    "slug": "agente-perfil",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/agentes/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/agentes/[id]"
+    ]
+  },
+  {
+    "slug": "agente-perfil",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/agentes/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/agentes/[id]"
+    ]
+  },
+  {
+    "slug": "agente-perfil",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/agentes/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/agentes/[id]"
+    ]
+  },
+  {
+    "slug": "agente-perfil",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/agentes/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/agentes/[id]"
+    ]
+  },
+  {
+    "slug": "agente-perfil",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/agentes/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/agentes/[id]"
+    ]
+  },
+  {
+    "slug": "agente-perfil",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/agentes/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/agentes/[id]"
+    ]
+  },
+  {
+    "slug": "agente-perfil",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/agentes/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/agentes/[id]"
+    ]
+  },
+  {
+    "slug": "agentes-grid",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/agentes/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/agentes"
+    ]
+  },
+  {
+    "slug": "agentes-grid",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/agentes/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/agentes"
+    ]
+  },
+  {
+    "slug": "agentes-grid",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/agentes/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/agentes"
+    ]
+  },
+  {
+    "slug": "agentes-grid",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/agentes/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/agentes"
+    ]
+  },
+  {
+    "slug": "agentes-grid",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/agentes/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/agentes"
+    ]
+  },
+  {
+    "slug": "agentes-grid",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/agentes/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/agentes"
+    ]
+  },
+  {
+    "slug": "agentes-grid",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/agentes/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/agentes"
+    ]
+  },
+  {
+    "slug": "atleta-perfil",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/atletas/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/atletas/[id]"
+    ]
+  },
+  {
+    "slug": "atleta-perfil",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/atletas/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/atletas/[id]"
+    ]
+  },
+  {
+    "slug": "atleta-perfil",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/atletas/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/atletas/[id]"
+    ]
+  },
+  {
+    "slug": "atleta-perfil",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/atletas/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/atletas/[id]"
+    ]
+  },
+  {
+    "slug": "atleta-perfil",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/atletas/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/atletas/[id]"
+    ]
+  },
+  {
+    "slug": "atleta-perfil",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/atletas/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/atletas/[id]"
+    ]
+  },
+  {
+    "slug": "atleta-perfil",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/atletas/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/atletas/[id]"
+    ]
+  },
+  {
+    "slug": "atletas",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/atletas/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/atletas"
+    ]
+  },
+  {
+    "slug": "atletas",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/atletas/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/atletas"
+    ]
+  },
+  {
+    "slug": "atletas",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/atletas/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/atletas"
+    ]
+  },
+  {
+    "slug": "atletas",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/atletas/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/atletas"
+    ]
+  },
+  {
+    "slug": "atletas",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/atletas/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/atletas"
+    ]
+  },
+  {
+    "slug": "atletas",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/atletas/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/atletas"
+    ]
+  },
+  {
+    "slug": "atletas",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/atletas/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/atletas"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/cadastro/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/cadastro/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/cadastro/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/cadastro/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/cadastro/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/cadastro/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "icon-apple",
+    "suggestedPath": "public/cadastro/icon-apple.webp",
+    "sizeHint": {
+      "width": 17,
+      "height": 20
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-atleta-18",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/cadastro/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/cadastro/atleta-18"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/cadastro/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/cadastro/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/cadastro/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/cadastro/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/cadastro/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/cadastro/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "apple 1",
+    "suggestedPath": "public/cadastro/apple-1.webp",
+    "sizeHint": {
+      "width": 17,
+      "height": 20
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-clube",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/cadastro/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/cadastro/clube"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/cadastro/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/cadastro/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/cadastro/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/cadastro/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/cadastro/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/cadastro/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "apple 1",
+    "suggestedPath": "public/cadastro/apple-1.webp",
+    "sizeHint": {
+      "width": 17,
+      "height": 20
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-agentes-licenciados",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/cadastro/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/cadastro/de-agentes-licenciados"
+    ]
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/cadastro/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis"
+    ]
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/cadastro/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis"
+    ]
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/cadastro/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis"
+    ]
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/cadastro/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis"
+    ]
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/cadastro/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis"
+    ]
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/cadastro/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis"
+    ]
+  },
+  {
+    "slug": "cadastro-de-documentos-necessarios-para-pais-e-responsaveis",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/cadastro/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/cadastro/de-documentos-necessarios-para-pais-e-responsaveis"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/cadastro/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/cadastro/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/cadastro/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/cadastro/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/cadastro/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/cadastro/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "icon-apple",
+    "suggestedPath": "public/cadastro/icon-apple.webp",
+    "sizeHint": {
+      "width": 17,
+      "height": 20
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-imprensa-jornalistablogueiro",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/cadastro/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/cadastro/imprensa-jornalistablogueiro"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/cadastro/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/cadastro/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/cadastro/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/cadastro/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/cadastro/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/cadastro/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "icon-apple",
+    "suggestedPath": "public/cadastro/icon-apple.webp",
+    "sizeHint": {
+      "width": 17,
+      "height": 20
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-responsavel",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/cadastro/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/cadastro/responsavel"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/cadastro/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/cadastro/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/cadastro/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/cadastro/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/cadastro/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/cadastro/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "apple 1",
+    "suggestedPath": "public/cadastro/apple-1.webp",
+    "sizeHint": {
+      "width": 17,
+      "height": 20
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "cadastro-torcedor",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/cadastro/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/cadastro/torcedor"
+    ]
+  },
+  {
+    "slug": "clube-detalhe",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/clubes/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/clubes/[id]"
+    ]
+  },
+  {
+    "slug": "clube-detalhe",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/clubes/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/clubes/[id]"
+    ]
+  },
+  {
+    "slug": "clube-detalhe",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/clubes/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/clubes/[id]"
+    ]
+  },
+  {
+    "slug": "clube-detalhe",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/clubes/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/clubes/[id]"
+    ]
+  },
+  {
+    "slug": "clube-detalhe",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/clubes/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/clubes/[id]"
+    ]
+  },
+  {
+    "slug": "clube-detalhe",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/clubes/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/clubes/[id]"
+    ]
+  },
+  {
+    "slug": "clube-detalhe",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/clubes/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/clubes/[id]"
+    ]
+  },
+  {
+    "slug": "clubes-grid",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/clubes/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/clubes"
+    ]
+  },
+  {
+    "slug": "clubes-grid",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/clubes/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/clubes"
+    ]
+  },
+  {
+    "slug": "clubes-grid",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/clubes/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/clubes"
+    ]
+  },
+  {
+    "slug": "clubes-grid",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/clubes/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/clubes"
+    ]
+  },
+  {
+    "slug": "clubes-grid",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/clubes/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/clubes"
+    ]
+  },
+  {
+    "slug": "clubes-grid",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/clubes/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/clubes"
+    ]
+  },
+  {
+    "slug": "clubes-grid",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/clubes/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/clubes"
+    ]
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/confederacoes/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/confederacoes/[id]"
+    ]
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/confederacoes/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/confederacoes/[id]"
+    ]
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/confederacoes/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/confederacoes/[id]"
+    ]
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/confederacoes/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/confederacoes/[id]"
+    ]
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/confederacoes/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/confederacoes/[id]"
+    ]
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/confederacoes/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/confederacoes/[id]"
+    ]
+  },
+  {
+    "slug": "confederacao-detalhe",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/confederacoes/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/confederacoes/[id]"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/confederacoes/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/confederacoes/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/confederacoes/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/confederacoes/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/confederacoes/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/confederacoes/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "image 3",
+    "suggestedPath": "public/confederacoes/image-3.webp",
+    "sizeHint": {
+      "width": 93,
+      "height": 80
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "image 2",
+    "suggestedPath": "public/confederacoes/image-2.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 80
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "image 1",
+    "suggestedPath": "public/confederacoes/image-1.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 80
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "confederacoes",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/confederacoes/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/confederacoes"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "compartilhar",
+    "suggestedPath": "public/feed/compartilhar.webp",
+    "sizeHint": {
+      "width": 28,
+      "height": 25
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "bookmark",
+    "suggestedPath": "public/feed/bookmark.webp",
+    "sizeHint": {
+      "width": 21,
+      "height": 28
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "comentario",
+    "suggestedPath": "public/feed/comentario.webp",
+    "sizeHint": {
+      "width": 28,
+      "height": 33
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "icon-curtir",
+    "suggestedPath": "public/feed/icon-curtir.webp",
+    "sizeHint": {
+      "width": 28,
+      "height": 24
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/feed/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/feed/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/feed/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/feed/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/feed/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/feed/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "curtir",
+    "suggestedPath": "public/feed/curtir.webp",
+    "sizeHint": {
+      "width": 28,
+      "height": 24
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "feeds",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/feed/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/feed"
+    ]
+  },
+  {
+    "slug": "game-detalhe",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/games/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/games/[id]"
+    ]
+  },
+  {
+    "slug": "game-detalhe",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/games/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/games/[id]"
+    ]
+  },
+  {
+    "slug": "game-detalhe",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/games/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/games/[id]"
+    ]
+  },
+  {
+    "slug": "game-detalhe",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/games/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/games/[id]"
+    ]
+  },
+  {
+    "slug": "game-detalhe",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/games/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/games/[id]"
+    ]
+  },
+  {
+    "slug": "game-detalhe",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/games/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/games/[id]"
+    ]
+  },
+  {
+    "slug": "game-detalhe",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/games/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/games/[id]"
+    ]
+  },
+  {
+    "slug": "games-lista",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/games/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/games"
+    ]
+  },
+  {
+    "slug": "games-lista",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/games/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/games"
+    ]
+  },
+  {
+    "slug": "games-lista",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/games/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/games"
+    ]
+  },
+  {
+    "slug": "games-lista",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/games/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/games"
+    ]
+  },
+  {
+    "slug": "games-lista",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/games/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/games"
+    ]
+  },
+  {
+    "slug": "games-lista",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/games/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/games"
+    ]
+  },
+  {
+    "slug": "games-lista",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/games/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/games"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "Staduim - Fundo",
+    "suggestedPath": "public/home/staduim-fundo.webp",
+    "sizeHint": {
+      "width": 1440,
+      "height": 2000
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/home/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/home/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/home/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/home/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/home/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/home/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home-logado",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/home/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "Staduim - Fundo",
+    "suggestedPath": "public/home/staduim-fundo.webp",
+    "sizeHint": {
+      "width": 1440,
+      "height": 2000
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/home/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/home/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/home/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/home/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/home/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/home/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "home",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/home/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/login/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/login/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/login/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/login/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/login/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/login/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "icon-apple",
+    "suggestedPath": "public/login/icon-apple.webp",
+    "sizeHint": {
+      "width": 17,
+      "height": 20
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "login",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/login/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/login"
+    ]
+  },
+  {
+    "slug": "noticia-detalhe",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/noticias/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/noticias/[id]"
+    ]
+  },
+  {
+    "slug": "noticia-detalhe",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/noticias/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/noticias/[id]"
+    ]
+  },
+  {
+    "slug": "noticia-detalhe",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/noticias/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/noticias/[id]"
+    ]
+  },
+  {
+    "slug": "noticia-detalhe",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/noticias/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/noticias/[id]"
+    ]
+  },
+  {
+    "slug": "noticia-detalhe",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/noticias/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/noticias/[id]"
+    ]
+  },
+  {
+    "slug": "noticia-detalhe",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/noticias/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/noticias/[id]"
+    ]
+  },
+  {
+    "slug": "noticia-detalhe",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/noticias/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/noticias/[id]"
+    ]
+  },
+  {
+    "slug": "noticias",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/noticias/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/noticias"
+    ]
+  },
+  {
+    "slug": "noticias",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/noticias/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/noticias"
+    ]
+  },
+  {
+    "slug": "noticias",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/noticias/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/noticias"
+    ]
+  },
+  {
+    "slug": "noticias",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/noticias/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/noticias"
+    ]
+  },
+  {
+    "slug": "noticias",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/noticias/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/noticias"
+    ]
+  },
+  {
+    "slug": "noticias",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/noticias/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/noticias"
+    ]
+  },
+  {
+    "slug": "noticias",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/noticias/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/noticias"
+    ]
+  },
+  {
+    "slug": "perfil",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/perfil/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/perfil"
+    ]
+  },
+  {
+    "slug": "perfil",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/perfil/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/perfil"
+    ]
+  },
+  {
+    "slug": "perfil",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/perfil/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/perfil"
+    ]
+  },
+  {
+    "slug": "perfil",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/perfil/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/perfil"
+    ]
+  },
+  {
+    "slug": "perfil",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/perfil/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/perfil"
+    ]
+  },
+  {
+    "slug": "perfil",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/perfil/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/perfil"
+    ]
+  },
+  {
+    "slug": "perfil",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/perfil/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/perfil"
+    ]
+  },
+  {
+    "slug": "privacidade",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/privacidade/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/privacidade"
+    ]
+  },
+  {
+    "slug": "privacidade",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/privacidade/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/privacidade"
+    ]
+  },
+  {
+    "slug": "privacidade",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/privacidade/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/privacidade"
+    ]
+  },
+  {
+    "slug": "privacidade",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/privacidade/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/privacidade"
+    ]
+  },
+  {
+    "slug": "privacidade",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/privacidade/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/privacidade"
+    ]
+  },
+  {
+    "slug": "privacidade",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/privacidade/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/privacidade"
+    ]
+  },
+  {
+    "slug": "privacidade",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/privacidade/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/privacidade"
+    ]
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/registrar-escolha-perfil/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/registrar-escolha-perfil"
+    ]
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/registrar-escolha-perfil/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/registrar-escolha-perfil"
+    ]
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/registrar-escolha-perfil/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/registrar-escolha-perfil"
+    ]
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/registrar-escolha-perfil/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/registrar-escolha-perfil"
+    ]
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/registrar-escolha-perfil/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/registrar-escolha-perfil"
+    ]
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/registrar-escolha-perfil/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/registrar-escolha-perfil"
+    ]
+  },
+  {
+    "slug": "registrar-escolha-perfil",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/registrar-escolha-perfil/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/registrar-escolha-perfil"
+    ]
+  },
+  {
+    "slug": "sobre",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/sobre/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/sobre"
+    ]
+  },
+  {
+    "slug": "sobre",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/sobre/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/sobre"
+    ]
+  },
+  {
+    "slug": "sobre",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/sobre/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/sobre"
+    ]
+  },
+  {
+    "slug": "sobre",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/sobre/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/sobre"
+    ]
+  },
+  {
+    "slug": "sobre",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/sobre/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/sobre"
+    ]
+  },
+  {
+    "slug": "sobre",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/sobre/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/sobre"
+    ]
+  },
+  {
+    "slug": "sobre",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/sobre/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/sobre"
+    ]
+  },
+  {
+    "slug": "torcida-grid",
+    "nodeName": "Brand-Logo",
+    "suggestedPath": "public/torcida/brand-logo.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/torcida"
+    ]
+  },
+  {
+    "slug": "torcida-grid",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/torcida/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/torcida"
+    ]
+  },
+  {
+    "slug": "torcida-grid",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/torcida/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/torcida"
+    ]
+  },
+  {
+    "slug": "torcida-grid",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/torcida/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/torcida"
+    ]
+  },
+  {
+    "slug": "torcida-grid",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/torcida/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/torcida"
+    ]
+  },
+  {
+    "slug": "torcida-grid",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/torcida/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/torcida"
+    ]
+  },
+  {
+    "slug": "torcida-grid",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/torcida/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/torcida"
+    ]
+  },
+  {
+    "slug": "upload-de-videos",
+    "nodeName": "Rectangle",
+    "suggestedPath": "public/upload/rectangle.webp",
+    "sizeHint": {
+      "width": 64,
+      "height": 64
+    },
+    "usedOn": [
+      "/upload"
+    ]
+  },
+  {
+    "slug": "upload-de-videos",
+    "nodeName": "icon-linkedin",
+    "suggestedPath": "public/upload/icon-linkedin.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/upload"
+    ]
+  },
+  {
+    "slug": "upload-de-videos",
+    "nodeName": "icon-x",
+    "suggestedPath": "public/upload/icon-x.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/upload"
+    ]
+  },
+  {
+    "slug": "upload-de-videos",
+    "nodeName": "icon-youtube",
+    "suggestedPath": "public/upload/icon-youtube.webp",
+    "sizeHint": {
+      "width": 25,
+      "height": 25
+    },
+    "usedOn": [
+      "/upload"
+    ]
+  },
+  {
+    "slug": "upload-de-videos",
+    "nodeName": "icon-tiktok",
+    "suggestedPath": "public/upload/icon-tiktok.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/upload"
+    ]
+  },
+  {
+    "slug": "upload-de-videos",
+    "nodeName": "icon-instagram",
+    "suggestedPath": "public/upload/icon-instagram.webp",
+    "sizeHint": {
+      "width": 18,
+      "height": 18
+    },
+    "usedOn": [
+      "/upload"
+    ]
+  },
+  {
+    "slug": "upload-de-videos",
+    "nodeName": "Logo-Rodapé",
+    "suggestedPath": "public/upload/logo-rodape.webp",
+    "sizeHint": {
+      "width": 56,
+      "height": 56
+    },
+    "usedOn": [
+      "/upload"
+    ]
+  }
+]

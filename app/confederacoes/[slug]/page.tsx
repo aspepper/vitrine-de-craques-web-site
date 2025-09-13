@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
-import { HERO_PLACEHOLDER } from "@/lib/heroImage";
+import { ensureImage } from "@/lib/ensureImage";
 
 interface PageProps {
   params: { slug: string };
@@ -19,6 +19,11 @@ async function getConfed(slug: string) {
 
 export default async function ConfederacaoDetalhePage({ params }: PageProps) {
   const confed = await getConfed(params.slug);
+  const heroImage = ensureImage(
+    "placeholders/hero-placeholder.webp",
+    "confederacao-detalhe",
+    "hero-placeholder"
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
@@ -27,7 +32,7 @@ export default async function ConfederacaoDetalhePage({ params }: PageProps) {
         <div className="mx-auto max-w-3xl">
           <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
             <Image
-              src={HERO_PLACEHOLDER}
+              src={heroImage}
               alt={confed.name}
               fill
               className="object-cover"

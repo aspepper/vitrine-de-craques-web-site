@@ -19,7 +19,6 @@ playwright-report/
 *.tsbuildinfo
 *.log
 
-
 # Prisma
 prisma/*.db
 /prisma/migrations/*

@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,7 +25,6 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
-      <Header />
       <main className="container mx-auto flex-grow p-4">
         <h1>Confederações</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -65,7 +62,6 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
           )}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -11,23 +11,26 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
-const formSchema = z.object({
-  nome: z.string().min(1, { message: 'Nome obrigatório' }),
-  cpf: z.string().min(1, { message: 'CPF obrigatório' }),
-  rg: z.string().min(1, { message: 'RG obrigatório' }),
-  cep: z.string().min(1, { message: 'CEP obrigatório' }),
-  nascimento: z.string().min(1, { message: 'Data de nascimento obrigatória' }),
-  email: z.string().email({ message: 'Email inválido' }),
-  telefone: z.string().min(1, { message: 'Telefone obrigatório' }),
-  posicao: z.string().min(1, { message: 'Posição obrigatória' }),
-  clube: z.string().min(1, { message: 'Clube obrigatório' }),
-  senha: z.string().min(6, { message: 'Mínimo 6 caracteres' }),
-  confirmarSenha: z.string().min(6),
-  termos: z.boolean().refine(v => v, { message: 'Obrigatório' }),
-}).refine((data) => data.senha === data.confirmarSenha, {
-  message: 'As senhas não conferem',
-  path: ['confirmarSenha'],
-})
+const formSchema = z
+  .object({
+    nome: z.string().min(1, { message: 'Nome obrigatório' }),
+    cpf: z.string().min(1, { message: 'CPF obrigatório' }),
+    pais: z.string().min(1, { message: 'País obrigatório' }),
+    uf: z.string().min(1, { message: 'UF obrigatório' }),
+    altura: z.string().optional(),
+    peso: z.string().optional(),
+    posicao: z.string().min(1, { message: 'Posição obrigatória' }),
+    perna: z.string().min(1, { message: 'Perna obrigatória' }),
+    cidade: z.string().min(1, { message: 'Cidade obrigatória' }),
+    email: z.string().email({ message: 'Email inválido' }),
+    senha: z.string().min(6, { message: 'Mínimo 6 caracteres' }),
+    confirmarSenha: z.string().min(6),
+    termos: z.boolean().refine(v => v, { message: 'Obrigatório' }),
+  })
+  .refine(data => data.senha === data.confirmarSenha, {
+    message: 'As senhas não conferem',
+    path: ['confirmarSenha'],
+  })
 
 type FormValues = z.infer<typeof formSchema>
 
@@ -43,7 +46,7 @@ export default function CadastroAtleta18Page() {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <main className="container mx-auto flex-grow py-12">
-        <h1 className="mb-8 text-center text-3xl font-bold">Cadastro Atleta 18+</h1>
+        <h1 className="mb-8 text-3xl font-bold">Cadastro Atleta 18+</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />
         </div>
@@ -52,8 +55,8 @@ export default function CadastroAtleta18Page() {
             <CardHeader>
               <CardTitle>Dados do atleta</CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-4 sm:grid-cols-2">
-              <div className="grid gap-2">
+            <CardContent className="grid gap-4 lg:grid-cols-5">
+              <div className="grid gap-2 lg:col-span-2">
                 <Label htmlFor="nome">Nome completo</Label>
                 <Input id="nome" {...form.register('nome')} />
                 {form.formState.errors.nome && (
@@ -68,38 +71,31 @@ export default function CadastroAtleta18Page() {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="rg">RG</Label>
-                <Input id="rg" {...form.register('rg')} />
-                {form.formState.errors.rg && (
-                  <p className="text-sm text-destructive">{form.formState.errors.rg.message}</p>
+                <Label htmlFor="pais">País</Label>
+                <Input id="pais" {...form.register('pais')} />
+                {form.formState.errors.pais && (
+                  <p className="text-sm text-destructive">{form.formState.errors.pais.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="cep">CEP</Label>
-                <Input id="cep" {...form.register('cep')} />
-                {form.formState.errors.cep && (
-                  <p className="text-sm text-destructive">{form.formState.errors.cep.message}</p>
+                <Label htmlFor="uf">UF</Label>
+                <Input id="uf" {...form.register('uf')} />
+                {form.formState.errors.uf && (
+                  <p className="text-sm text-destructive">{form.formState.errors.uf.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="nascimento">Data de nascimento</Label>
-                <Input id="nascimento" placeholder="DD/MM/AAAA" {...form.register('nascimento')} />
-                {form.formState.errors.nascimento && (
-                  <p className="text-sm text-destructive">{form.formState.errors.nascimento.message}</p>
+                <Label htmlFor="altura">Altura (opcional)</Label>
+                <Input id="altura" {...form.register('altura')} />
+                {form.formState.errors.altura && (
+                  <p className="text-sm text-destructive">{form.formState.errors.altura.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="email">E-mail</Label>
-                <Input id="email" type="email" {...form.register('email')} />
-                {form.formState.errors.email && (
-                  <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
-                )}
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="telefone">Telefone/WhatsApp</Label>
-                <Input id="telefone" {...form.register('telefone')} />
-                {form.formState.errors.telefone && (
-                  <p className="text-sm text-destructive">{form.formState.errors.telefone.message}</p>
+                <Label htmlFor="peso">Peso (opcional)</Label>
+                <Input id="peso" {...form.register('peso')} />
+                {form.formState.errors.peso && (
+                  <p className="text-sm text-destructive">{form.formState.errors.peso.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
@@ -110,10 +106,24 @@ export default function CadastroAtleta18Page() {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="clube">Clube</Label>
-                <Input id="clube" {...form.register('clube')} />
-                {form.formState.errors.clube && (
-                  <p className="text-sm text-destructive">{form.formState.errors.clube.message}</p>
+                <Label htmlFor="perna">Perna</Label>
+                <Input id="perna" {...form.register('perna')} />
+                {form.formState.errors.perna && (
+                  <p className="text-sm text-destructive">{form.formState.errors.perna.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="cidade">Cidade</Label>
+                <Input id="cidade" {...form.register('cidade')} />
+                {form.formState.errors.cidade && (
+                  <p className="text-sm text-destructive">{form.formState.errors.cidade.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2 lg:col-span-2">
+                <Label htmlFor="email">E-mail</Label>
+                <Input id="email" type="email" {...form.register('email')} />
+                {form.formState.errors.email && (
+                  <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
                 )}
               </div>
               <div className="grid gap-2">

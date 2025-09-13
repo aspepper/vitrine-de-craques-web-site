@@ -103,6 +103,53 @@ async function main() {
     }),
   ])
 
+  await prisma.user.create({
+    data: {
+      email: 'press1@example.com',
+      name: 'Jornalista Um',
+      passwordHash: hashedPassword,
+      profile: {
+        create: {
+          displayName: 'Jornalista Um',
+          role: Role.IMPRENSA,
+          cpf: '11122233344',
+          ddd: '11',
+          telefone: '912345678',
+          uf: 'SP',
+          cidade: 'São Paulo',
+          site: 'https://meublog.com',
+          endereco: 'Rua Exemplo, 123 - São Paulo/SP',
+          redesSociais: 'https://twitter.com/jornalistaum',
+          areaAtuacao: 'Esportes',
+          portfolio: 'https://portfolio.example.com/jornalistaum',
+        },
+      },
+      accounts: {
+        create: {
+          type: 'oauth',
+          provider: 'google',
+          providerAccountId: 'press1-google',
+          access_token: 'token',
+          token_type: 'bearer',
+        },
+      },
+      sessions: {
+        create: {
+          sessionToken: 'press1-session',
+          expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+        },
+      },
+    },
+  })
+
+  await prisma.verificationToken.create({
+    data: {
+      identifier: 'press1@example.com',
+      token: 'press1-token',
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+    },
+  })
+
   await prisma.news.createMany({
     data: [
       {
@@ -137,6 +184,35 @@ async function main() {
         title: 'Lance do Atleta Dois',
         videoUrl: 'https://example.com/video2.mp4',
         userId: athlete2.id,
+      },
+    ],
+  })
+
+  await prisma.times.createMany({
+    data: [
+      {
+        divisao: 'A',
+        clube: 'Time Exemplo A',
+        slug: slugify('Time Exemplo A'),
+        sigla: 'TEA',
+        apelido: 'ExA',
+        mascote: 'Mascote A',
+        fundacao: 1990,
+        maiorIdolo: 'Ídolo A',
+        cidade: 'Cidade A',
+        estado: 'ST',
+      },
+      {
+        divisao: 'B',
+        clube: 'Time Exemplo B',
+        slug: slugify('Time Exemplo B'),
+        sigla: 'TEB',
+        apelido: 'ExB',
+        mascote: 'Mascote B',
+        fundacao: 1985,
+        maiorIdolo: 'Ídolo B',
+        cidade: 'Cidade B',
+        estado: 'ST',
       },
     ],
   })

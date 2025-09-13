@@ -82,6 +82,12 @@ model Profile {
   cep                   String?
   nascimento            String?
   telefone              String?
+  ddd                   String?
+  site                  String?
+  endereco              String?
+  redesSociais          String?
+  areaAtuacao           String?
+  portfolio             String?
   posicao               String?
   perna                 String?
   altura                String?

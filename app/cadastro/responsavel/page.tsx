@@ -19,6 +19,9 @@ const formSchema = z.object({
   atletaNome: z.string().min(1, { message: 'Nome obrigatório' }),
   atletaCpf: z.string().min(1, { message: 'CPF obrigatório' }),
   atletaNascimento: z.string().min(1, { message: 'Data de nascimento obrigatória' }),
+  verificacaoRg: z.boolean().optional(),
+  verificacaoDocMenor: z.boolean().optional(),
+  verificacaoComprovante: z.boolean().optional(),
 })
 
 type FormValues = z.infer<typeof formSchema>
@@ -35,6 +38,7 @@ export default function CadastroResponsavelPage() {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <main className="container mx-auto flex-grow py-12">
+        <h1 className="mb-8 text-center text-3xl font-bold">Conta Familiar — Responsável + Atleta (menor de 18)</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />
         </div>
@@ -101,6 +105,26 @@ export default function CadastroResponsavelPage() {
                   <p className="text-sm text-destructive">{form.formState.errors.atletaNascimento.message}</p>
                 )}
               </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Verificações (upload posterior)</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <Label className="flex items-center gap-2">
+                <input type="checkbox" {...form.register('verificacaoRg')} className="h-4 w-4" />
+                <span>RG do responsável (frente e verso)</span>
+              </Label>
+              <Label className="flex items-center gap-2">
+                <input type="checkbox" {...form.register('verificacaoDocMenor')} className="h-4 w-4" />
+                <span>Documento do menor (frente e verso)</span>
+              </Label>
+              <Label className="flex items-center gap-2">
+                <input type="checkbox" {...form.register('verificacaoComprovante')} className="h-4 w-4" />
+                <span>Comprovante de guarda/tutela</span>
+              </Label>
             </CardContent>
           </Card>
 

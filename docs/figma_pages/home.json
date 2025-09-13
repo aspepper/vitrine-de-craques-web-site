@@ -44,7 +44,7 @@
       "exportSettings": [
         {
           "suffix": "",
-          "format": "SVG",
+          "format": "JPG",
           "constraint": {
             "type": "SCALE",
             "value": 1.0
@@ -7916,6 +7916,16 @@
         "vertical": "SCALE",
         "horizontal": "SCALE"
       },
+      "exportSettings": [
+        {
+          "suffix": "",
+          "format": "PNG",
+          "constraint": {
+            "type": "SCALE",
+            "value": 1.0
+          }
+        }
+      ],
       "effects": [
         {
           "type": "DROP_SHADOW",
@@ -9437,7 +9447,7 @@
         },
         {
           "id": "56:566",
-          "name": "Rectangle",
+          "name": "Brand-Logo",
           "type": "RECTANGLE",
           "scrollBehavior": "SCROLLS",
           "blendMode": "PASS_THROUGH",
@@ -9465,7 +9475,7 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": -13471.0,
+            "x": -13455.0,
             "y": -4119.0,
             "width": 64.0,
             "height": 64.0
@@ -9477,72 +9487,13 @@
           "exportSettings": [
             {
               "suffix": "",
-              "format": "SVG",
+              "format": "JPG",
               "constraint": {
                 "type": "SCALE",
                 "value": 1.0
               }
             }
           ],
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "56:567",
-          "name": "Vitrine de Craques",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.04313725605607033,
-                "g": 0.05882352963089943,
-                "b": 0.062745101749897,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -13410.0,
-            "y": -4101.0,
-            "width": 220.0,
-            "height": 29.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Vitrine de Craques",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": "Inter-BoldItalic",
-            "fontStyle": "Bold Italic",
-            "italic": true,
-            "fontWeight": 700,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 24.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 29.045454025268555,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
           "effects": [],
           "interactions": []
         }
@@ -9573,7 +9524,7 @@
       "exportSettings": [
         {
           "suffix": "",
-          "format": "SVG",
+          "format": "JPG",
           "constraint": {
             "type": "SCALE",
             "value": 1.0
@@ -9652,7 +9603,7 @@
   "exportSettings": [
     {
       "suffix": "",
-      "format": "SVG",
+      "format": "JPG",
       "constraint": {
         "type": "SCALE",
         "value": 1.0

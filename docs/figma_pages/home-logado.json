@@ -94,7 +94,14 @@
       "type": "INSTANCE",
       "scrollBehavior": "SCROLLS",
       "componentId": "88:6910",
-      "overrides": [],
+      "overrides": [
+        {
+          "id": "263:5238",
+          "overriddenFields": [
+            "exportSettings"
+          ]
+        }
+      ],
       "children": [
         {
           "id": "I263:5238;253:4731",
@@ -2622,6 +2629,16 @@
         "vertical": "SCALE",
         "horizontal": "SCALE"
       },
+      "exportSettings": [
+        {
+          "suffix": "",
+          "format": "PNG",
+          "constraint": {
+            "type": "SCALE",
+            "value": 1.0
+          }
+        }
+      ],
       "effects": [],
       "interactions": []
     },
@@ -7832,7 +7849,14 @@
       "type": "INSTANCE",
       "scrollBehavior": "SCROLLS",
       "componentId": "112:1576",
-      "overrides": [],
+      "overrides": [
+        {
+          "id": "263:5239",
+          "overriddenFields": [
+            "exportSettings"
+          ]
+        }
+      ],
       "children": [
         {
           "id": "I263:5239;112:1542",
@@ -9528,6 +9552,16 @@
         "vertical": "TOP",
         "horizontal": "LEFT"
       },
+      "exportSettings": [
+        {
+          "suffix": "",
+          "format": "PNG",
+          "constraint": {
+            "type": "SCALE",
+            "value": 1.0
+          }
+        }
+      ],
       "effects": [],
       "interactions": []
     }
@@ -9579,6 +9613,16 @@
     "vertical": "TOP",
     "horizontal": "LEFT"
   },
+  "exportSettings": [
+    {
+      "suffix": "",
+      "format": "PNG",
+      "constraint": {
+        "type": "SCALE",
+        "value": 1.0
+      }
+    }
+  ],
   "effects": [],
   "interactions": []
 }

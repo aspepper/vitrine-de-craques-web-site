@@ -36,3 +36,9 @@ Consulte o arquivo `out/INSTRUCOES.md` para um guia detalhado de como instalar, 
 ## Atualizações
 
 - Alinhamento de tokens com UI kit e uso de imagem hero externa otimizada.
+
+## Obter json do Figma
+
+curl -sS -H 'X-Figma-Token: figd_wazQO-ahAC38LhoXwJcBYwYuvTT0Jz6NhSPVK8Oz' 'https://api.figma.com/v1/files/6XEeSvXW0gl4gvxkovsiuz' > docs/figma.json
+python3 split_figma_pages.py docs/figma.json docs/figma_pages
+

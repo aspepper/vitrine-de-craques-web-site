@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header"
-import { Footer } from "@/components/Footer"
 import Link from "next/link"
 import {
   Card,
@@ -83,7 +81,6 @@ const profiles: Profile[] = [
 export default function RegistrarEscolhaPerfilPage() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
-      <Header />
       <main className="container mx-auto flex-grow py-12">
         <section className="mb-12 text-center">
           <h1 className="mb-2 text-3xl font-heading font-bold">
@@ -118,7 +115,6 @@ export default function RegistrarEscolhaPerfilPage() {
           ))}
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

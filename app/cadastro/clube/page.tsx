@@ -5,8 +5,6 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
 import SocialAuth from '@/components/SocialAuth'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -34,10 +32,9 @@ export default function CadastroClubePage() {
     router.push('/')
   }
 
-  return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
-      <Header />
-      <main className="container mx-auto flex-grow py-12">
+    return (
+      <div className="flex min-h-screen flex-col bg-slate-50">
+        <main className="container mx-auto flex-grow py-12">
         <div className="mb-8 flex justify-center">
           <SocialAuth />
         </div>
@@ -111,9 +108,8 @@ export default function CadastroClubePage() {
             <Button type="submit">Criar conta</Button>
           </div>
         </form>
-      </main>
-      <Footer />
-    </div>
-  )
-}
+        </main>
+      </div>
+    )
+  }
 

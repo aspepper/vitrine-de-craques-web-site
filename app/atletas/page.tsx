@@ -3,11 +3,24 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import prisma from "@/lib/db";
 import { ensureImage } from "@/lib/ensureImage";
 
-export default async function AtletasPage() {
-  const athletes = await prisma.profile.findMany({ where: { role: "ATLETA" } });
+interface PageProps {
+  searchParams: { page?: string };
+}
+
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
+async function getAthletes(page: number) {
+  const res = await fetch(`${baseUrl}/api/atletas?page=${page}`, {
+    cache: "no-store",
+  });
+  return res.json();
+}
+
+export default async function AtletasPage({ searchParams }: PageProps) {
+  const page = Number(searchParams.page) || 1;
+  const { items, totalPages } = await getAthletes(page);
   const heroImage = ensureImage(
     "placeholders/hero-placeholder.webp",
     "atletas",
@@ -19,7 +32,7 @@ export default async function AtletasPage() {
       <main className="container mx-auto flex-grow p-4">
         <h1 className="mb-6 text-2xl font-bold font-heading">Atletas</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {athletes.map((athlete) => (
+          {items.map((athlete: any) => (
             <Link key={athlete.id} href={`/atletas/${athlete.id}`}>
               <Card className="overflow-hidden hover:shadow-lg">
                 <CardHeader className="p-0">
@@ -41,6 +54,18 @@ export default async function AtletasPage() {
               </Card>
             </Link>
           ))}
+        </div>
+        <div className="mt-6 flex justify-between">
+          {page > 1 ? (
+            <Link href={`/atletas?page=${page - 1}`}>Anterior</Link>
+          ) : (
+            <span />
+          )}
+          {page < totalPages ? (
+            <Link href={`/atletas?page=${page + 1}`}>Próxima</Link>
+          ) : (
+            <span />
+          )}
         </div>
       </main>
       <Footer />

@@ -13,7 +13,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
                     </div>
                 </div>
                 <div className="max-w-4xl mx-auto mt-4">
-                    <h1 className="text-3xl font-bold">Título do Vídeo</h1>
+                    <h1>Título do Vídeo</h1>
                     <p className="text-muted-foreground mt-2">Descrição do vídeo aqui...</p>
                 </div>
             </main>

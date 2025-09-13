@@ -17,7 +17,7 @@ export function Header() {
   return (
     <header className="shadow-sm">
       <nav className="container mx-auto flex items-center justify-between p-4">
-        <Link href="/" className="text-2xl font-bold font-heading">
+        <Link href="/" className="text-h2 font-bold font-heading">
           Vitrine de Craques
         </Link>
         <div className="hidden md:flex items-center space-x-4">

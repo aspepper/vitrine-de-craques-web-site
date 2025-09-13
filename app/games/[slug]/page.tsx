@@ -20,9 +20,9 @@ async function getGame(slug: string) {
 export default async function GameDetalhePage({ params }: PageProps) {
   const game = await getGame(params.slug);
   const heroImage = ensureImage(
-    "placeholders/hero-placeholder.webp",
+    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
     "game-detalhe",
-    "hero-placeholder"
+    "stadium@1920"
   );
 
   return (
@@ -39,13 +39,13 @@ export default async function GameDetalhePage({ params }: PageProps) {
               loading="lazy"
             />
           </div>
-          <h1 className="mb-4 text-3xl font-bold font-heading">
-            {game.homeClub.name} vs {game.awayClub.name}
-          </h1>
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            Placar: {game.scoreHome} - {game.scoreAway}
-          </p>
-        </div>
+            <h1>
+              {game.homeClub.name} vs {game.awayClub.name}
+            </h1>
+            <p className="text-muted-foreground">
+              Placar: {game.scoreHome} - {game.scoreAway}
+            </p>
+          </div>
       </main>
       <Footer />
     </div>

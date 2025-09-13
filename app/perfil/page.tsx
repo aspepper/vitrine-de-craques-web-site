@@ -19,9 +19,9 @@ export default async function PerfilPage() {
       <main className='container mx-auto flex-grow p-4'>
         {profile ? (
           <div>
-            <h1 className='text-2xl font-bold mb-4'>Perfil</h1>
-            <p className='mb-2'>Role: {profile.role}</p>
-            <pre className='bg-slate-100 p-4 rounded'>{JSON.stringify(profile.data, null, 2)}</pre>
+            <h1>Perfil</h1>
+            <p>Role: {profile.role}</p>
+            <pre className='bg-slate-100 p-4 rounded-md'>{JSON.stringify(profile.data, null, 2)}</pre>
           </div>
         ) : (
           <p>Nenhum perfil cadastrado.</p>

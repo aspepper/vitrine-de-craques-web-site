@@ -126,7 +126,7 @@ export function Header() {
                 className="h-10 rounded-full px-5 bg-secondary text-white hover:bg-secondary/90"
                 title="Registrar"
               >
-                <Link href="/cadastro">Registrar</Link>
+                <Link href="/registrar-escolha-perfil">Registrar</Link>
               </Button>
             </>
           )}

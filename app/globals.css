@@ -9,6 +9,22 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans text-body leading-relaxed;
+  }
+  h1 {
+    @apply text-h1 font-heading font-bold mb-[var(--gap-h1)];
+  }
+  h2 {
+    @apply text-h2 font-heading font-semibold mb-[var(--gap-h2)];
+  }
+  h3 {
+    @apply text-h3 font-heading font-semibold mb-[var(--gap-h3)];
+  }
+  p {
+    @apply text-body mb-[var(--gap-body)];
+  }
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-primary;
   }
 }

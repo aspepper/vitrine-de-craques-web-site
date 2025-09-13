@@ -32,3 +32,7 @@ Consulte o arquivo `out/INSTRUCOES.md` para um guia detalhado de como instalar, 
 -   `public/`: Arquivos estáticos.
 -   `tests/`: Testes unitários e de ponta-a-ponta.
 
+
+## Atualizações
+
+- Alinhamento de tokens com UI kit e uso de imagem hero externa otimizada.

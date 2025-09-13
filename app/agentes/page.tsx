@@ -21,16 +21,16 @@ async function getAgents(page: number) {
 export default async function AgentesPage({ searchParams }: PageProps) {
   const page = Number(searchParams.page) || 1;
   const { items, totalPages } = await getAgents(page);
-  const heroImage = ensureImage(
-    "placeholders/hero-placeholder.webp",
-    "agentes-grid",
-    "hero-placeholder"
-  );
+    const heroImage = ensureImage(
+      "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
+      "agentes-grid",
+      "stadium@1920"
+    );
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       <main className="container mx-auto flex-grow p-4">
-        <h1 className="mb-6 text-2xl font-bold font-heading">Agentes</h1>
+          <h1>Agentes</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((agent: any) => (
             <Link key={agent.id} href={`/agentes/${agent.id}`}>
@@ -47,7 +47,7 @@ export default async function AgentesPage({ searchParams }: PageProps) {
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CardTitle className="text-lg">
+                  <CardTitle>
                     {agent.displayName || "Agente"}
                   </CardTitle>
                 </CardContent>

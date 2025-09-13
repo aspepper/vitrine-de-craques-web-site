@@ -18,7 +18,7 @@ export default async function UploadPage() {
       <main className="flex-grow container mx-auto p-4">
         <Card className="max-w-4xl mx-auto mt-8">
           <CardHeader>
-            <CardTitle className="text-3xl font-heading">Upload de Vídeo</CardTitle>
+            <CardTitle>Upload de Vídeo</CardTitle>
             <CardDescription>Compartilhe seu talento com o mundo.</CardDescription>
           </CardHeader>
           <CardContent>

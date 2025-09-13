@@ -1770,2280 +1770,6 @@
       "interactions": []
     },
     {
-      "id": "164:22412",
-      "name": "Resumo Notícia",
-      "type": "GROUP",
-      "scrollBehavior": "SCROLLS",
-      "children": [
-        {
-          "id": "266:2659",
-          "name": "Fundo do resumo notícia #FFFFFF",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -2012.0,
-            "y": -7939.0,
-            "width": 1315.0,
-            "height": 100.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [
-            {
-              "type": "DROP_SHADOW",
-              "visible": true,
-              "color": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.25
-              },
-              "blendMode": "NORMAL",
-              "offset": {
-                "x": 0.0,
-                "y": 8.0
-              },
-              "radius": 32.0,
-              "showShadowBehindNode": true
-            }
-          ],
-          "interactions": []
-        },
-        {
-          "id": "266:2660",
-          "name": "Foto Pequena da Notícia",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.06666667014360428,
-                "g": 0.0941176488995552,
-                "b": 0.15294118225574493,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1996.0,
-            "y": -7924.0,
-            "width": 96.0,
-            "height": 68.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2661",
-          "name": "Categoria da notícia",
-          "type": "GROUP",
-          "scrollBehavior": "SCROLLS",
-          "children": [
-            {
-              "id": "266:2662",
-              "name": "Fundo da categoria #06B6D4",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.0235294122248888,
-                    "g": 0.7137255072593689,
-                    "b": 0.8313725590705872,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1884.0,
-                "y": -7923.0,
-                "width": 80.0,
-                "height": 24.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "266:2663",
-              "name": "Categoria",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1873.0,
-                "y": -7919.0,
-                "width": 58.0,
-                "height": 15.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Categoria",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 12.0,
-                "textAlignHorizontal": "CENTER",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 14.522727012634277,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            }
-          ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7923.0,
-            "width": 80.0,
-            "height": 24.0
-          },
-          "constraints": {
-            "vertical": "TOP",
-            "horizontal": "LEFT"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2664",
-          "name": "Título da notícia 6",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.04313725605607033,
-                "g": 0.05882352963089943,
-                "b": 0.062745101749897,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7887.0,
-            "width": 140.0,
-            "height": 19.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Título da notícia 6",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": "Inter-BoldItalic",
-            "fontStyle": "Bold Italic",
-            "italic": true,
-            "fontWeight": 700,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 16.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 19.363636016845703,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2665",
-          "name": "Resumo rápido — 03/08/2025 · Autor",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.41960784792900085,
-                "g": 0.4470588266849518,
-                "b": 0.501960813999176,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7859.0,
-            "width": 213.0,
-            "height": 15.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Resumo rápido — 03/08/2025 · Autor",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": null,
-            "fontStyle": "Regular",
-            "fontWeight": 400,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 12.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 14.522727012634277,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        }
-      ],
-      "blendMode": "PASS_THROUGH",
-      "clipsContent": false,
-      "background": [],
-      "fills": [],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "backgroundColor": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-      },
-      "absoluteBoundingBox": {
-        "x": -2012.0,
-        "y": -7939.0,
-        "width": 1315.0,
-        "height": 100.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "effects": [],
-      "transitionNodeID": "164:22103",
-      "transitionDuration": 300.0,
-      "transitionEasing": "EASE_OUT",
-      "interactions": [
-        {
-          "trigger": {
-            "type": "ON_CLICK"
-          },
-          "actions": [
-            {
-              "type": "NODE",
-              "destinationId": "164:22103",
-              "navigation": "NAVIGATE",
-              "transition": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "164:22421",
-      "name": "Resumo Notícia",
-      "type": "GROUP",
-      "scrollBehavior": "SCROLLS",
-      "children": [
-        {
-          "id": "266:2651",
-          "name": "Fundo do resumo notícia #FFFFFF",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -2012.0,
-            "y": -7819.0,
-            "width": 1315.0,
-            "height": 100.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [
-            {
-              "type": "DROP_SHADOW",
-              "visible": true,
-              "color": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.25
-              },
-              "blendMode": "NORMAL",
-              "offset": {
-                "x": 0.0,
-                "y": 8.0
-              },
-              "radius": 32.0,
-              "showShadowBehindNode": true
-            }
-          ],
-          "interactions": []
-        },
-        {
-          "id": "266:2652",
-          "name": "Foto Pequena da Notícia",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.06666667014360428,
-                "g": 0.0941176488995552,
-                "b": 0.15294118225574493,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1996.0,
-            "y": -7804.0,
-            "width": 96.0,
-            "height": 68.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2653",
-          "name": "Categoria da notícia",
-          "type": "GROUP",
-          "scrollBehavior": "SCROLLS",
-          "children": [
-            {
-              "id": "266:2654",
-              "name": "Fundo da categoria #06B6D4",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.0235294122248888,
-                    "g": 0.7137255072593689,
-                    "b": 0.8313725590705872,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1884.0,
-                "y": -7803.0,
-                "width": 80.0,
-                "height": 24.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "266:2655",
-              "name": "Categoria",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1873.0,
-                "y": -7799.0,
-                "width": 58.0,
-                "height": 15.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Categoria",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 12.0,
-                "textAlignHorizontal": "CENTER",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 14.522727012634277,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            }
-          ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7803.0,
-            "width": 80.0,
-            "height": 24.0
-          },
-          "constraints": {
-            "vertical": "TOP",
-            "horizontal": "LEFT"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2656",
-          "name": "Título da notícia 6",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.04313725605607033,
-                "g": 0.05882352963089943,
-                "b": 0.062745101749897,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7767.0,
-            "width": 140.0,
-            "height": 19.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Título da notícia 6",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": "Inter-BoldItalic",
-            "fontStyle": "Bold Italic",
-            "italic": true,
-            "fontWeight": 700,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 16.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 19.363636016845703,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2657",
-          "name": "Resumo rápido — 03/08/2025 · Autor",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.41960784792900085,
-                "g": 0.4470588266849518,
-                "b": 0.501960813999176,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7739.0,
-            "width": 213.0,
-            "height": 15.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Resumo rápido — 03/08/2025 · Autor",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": null,
-            "fontStyle": "Regular",
-            "fontWeight": 400,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 12.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 14.522727012634277,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        }
-      ],
-      "blendMode": "PASS_THROUGH",
-      "clipsContent": false,
-      "background": [],
-      "fills": [],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "backgroundColor": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-      },
-      "absoluteBoundingBox": {
-        "x": -2012.0,
-        "y": -7819.0,
-        "width": 1315.0,
-        "height": 100.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "effects": [],
-      "transitionNodeID": "164:22103",
-      "transitionDuration": 300.0,
-      "transitionEasing": "EASE_OUT",
-      "interactions": [
-        {
-          "trigger": {
-            "type": "ON_CLICK"
-          },
-          "actions": [
-            {
-              "type": "NODE",
-              "destinationId": "164:22103",
-              "navigation": "NAVIGATE",
-              "transition": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "164:22430",
-      "name": "Resumo Notícia",
-      "type": "GROUP",
-      "scrollBehavior": "SCROLLS",
-      "children": [
-        {
-          "id": "266:2643",
-          "name": "Fundo do resumo notícia #FFFFFF",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -2012.0,
-            "y": -7699.0,
-            "width": 1315.0,
-            "height": 100.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [
-            {
-              "type": "DROP_SHADOW",
-              "visible": true,
-              "color": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.25
-              },
-              "blendMode": "NORMAL",
-              "offset": {
-                "x": 0.0,
-                "y": 8.0
-              },
-              "radius": 32.0,
-              "showShadowBehindNode": true
-            }
-          ],
-          "interactions": []
-        },
-        {
-          "id": "266:2644",
-          "name": "Foto Pequena da Notícia",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.06666667014360428,
-                "g": 0.0941176488995552,
-                "b": 0.15294118225574493,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1996.0,
-            "y": -7684.0,
-            "width": 96.0,
-            "height": 68.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2645",
-          "name": "Categoria da notícia",
-          "type": "GROUP",
-          "scrollBehavior": "SCROLLS",
-          "children": [
-            {
-              "id": "266:2646",
-              "name": "Fundo da categoria #06B6D4",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.0235294122248888,
-                    "g": 0.7137255072593689,
-                    "b": 0.8313725590705872,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1884.0,
-                "y": -7683.0,
-                "width": 80.0,
-                "height": 24.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "266:2647",
-              "name": "Categoria",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1873.0,
-                "y": -7679.0,
-                "width": 58.0,
-                "height": 15.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Categoria",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 12.0,
-                "textAlignHorizontal": "CENTER",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 14.522727012634277,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            }
-          ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7683.0,
-            "width": 80.0,
-            "height": 24.0
-          },
-          "constraints": {
-            "vertical": "TOP",
-            "horizontal": "LEFT"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2648",
-          "name": "Título da notícia 6",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.04313725605607033,
-                "g": 0.05882352963089943,
-                "b": 0.062745101749897,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7647.0,
-            "width": 140.0,
-            "height": 19.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Título da notícia 6",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": "Inter-BoldItalic",
-            "fontStyle": "Bold Italic",
-            "italic": true,
-            "fontWeight": 700,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 16.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 19.363636016845703,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2649",
-          "name": "Resumo rápido — 03/08/2025 · Autor",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.41960784792900085,
-                "g": 0.4470588266849518,
-                "b": 0.501960813999176,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7619.0,
-            "width": 213.0,
-            "height": 15.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Resumo rápido — 03/08/2025 · Autor",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": null,
-            "fontStyle": "Regular",
-            "fontWeight": 400,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 12.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 14.522727012634277,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        }
-      ],
-      "blendMode": "PASS_THROUGH",
-      "clipsContent": false,
-      "background": [],
-      "fills": [],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "backgroundColor": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-      },
-      "absoluteBoundingBox": {
-        "x": -2012.0,
-        "y": -7699.0,
-        "width": 1315.0,
-        "height": 100.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "effects": [],
-      "transitionNodeID": "164:22103",
-      "transitionDuration": 300.0,
-      "transitionEasing": "EASE_OUT",
-      "interactions": [
-        {
-          "trigger": {
-            "type": "ON_CLICK"
-          },
-          "actions": [
-            {
-              "type": "NODE",
-              "destinationId": "164:22103",
-              "navigation": "NAVIGATE",
-              "transition": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "164:22439",
-      "name": "Resumo Notícia",
-      "type": "GROUP",
-      "scrollBehavior": "SCROLLS",
-      "children": [
-        {
-          "id": "266:2635",
-          "name": "Fundo do resumo notícia #FFFFFF",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -2012.0,
-            "y": -7579.0,
-            "width": 1315.0,
-            "height": 100.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [
-            {
-              "type": "DROP_SHADOW",
-              "visible": true,
-              "color": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.25
-              },
-              "blendMode": "NORMAL",
-              "offset": {
-                "x": 0.0,
-                "y": 8.0
-              },
-              "radius": 32.0,
-              "showShadowBehindNode": true
-            }
-          ],
-          "interactions": []
-        },
-        {
-          "id": "266:2636",
-          "name": "Foto Pequena da Notícia",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.06666667014360428,
-                "g": 0.0941176488995552,
-                "b": 0.15294118225574493,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1996.0,
-            "y": -7564.0,
-            "width": 96.0,
-            "height": 68.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2637",
-          "name": "Categoria da notícia",
-          "type": "GROUP",
-          "scrollBehavior": "SCROLLS",
-          "children": [
-            {
-              "id": "266:2638",
-              "name": "Fundo da categoria #06B6D4",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.0235294122248888,
-                    "g": 0.7137255072593689,
-                    "b": 0.8313725590705872,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1884.0,
-                "y": -7563.0,
-                "width": 80.0,
-                "height": 24.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "266:2639",
-              "name": "Categoria",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1873.0,
-                "y": -7559.0,
-                "width": 58.0,
-                "height": 15.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Categoria",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 12.0,
-                "textAlignHorizontal": "CENTER",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 14.522727012634277,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            }
-          ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7563.0,
-            "width": 80.0,
-            "height": 24.0
-          },
-          "constraints": {
-            "vertical": "TOP",
-            "horizontal": "LEFT"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2640",
-          "name": "Título da notícia 6",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.04313725605607033,
-                "g": 0.05882352963089943,
-                "b": 0.062745101749897,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7527.0,
-            "width": 140.0,
-            "height": 19.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Título da notícia 6",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": "Inter-BoldItalic",
-            "fontStyle": "Bold Italic",
-            "italic": true,
-            "fontWeight": 700,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 16.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 19.363636016845703,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2641",
-          "name": "Resumo rápido — 03/08/2025 · Autor",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.41960784792900085,
-                "g": 0.4470588266849518,
-                "b": 0.501960813999176,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7499.0,
-            "width": 213.0,
-            "height": 15.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Resumo rápido — 03/08/2025 · Autor",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": null,
-            "fontStyle": "Regular",
-            "fontWeight": 400,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 12.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 14.522727012634277,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        }
-      ],
-      "blendMode": "PASS_THROUGH",
-      "clipsContent": false,
-      "background": [],
-      "fills": [],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "backgroundColor": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-      },
-      "absoluteBoundingBox": {
-        "x": -2012.0,
-        "y": -7579.0,
-        "width": 1315.0,
-        "height": 100.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "effects": [],
-      "transitionNodeID": "164:22103",
-      "transitionDuration": 300.0,
-      "transitionEasing": "EASE_OUT",
-      "interactions": [
-        {
-          "trigger": {
-            "type": "ON_CLICK"
-          },
-          "actions": [
-            {
-              "type": "NODE",
-              "destinationId": "164:22103",
-              "navigation": "NAVIGATE",
-              "transition": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "164:22448",
-      "name": "Resumo Notícia",
-      "type": "GROUP",
-      "scrollBehavior": "SCROLLS",
-      "children": [
-        {
-          "id": "266:2627",
-          "name": "Fundo do resumo notícia #FFFFFF",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -2012.0,
-            "y": -7459.0,
-            "width": 1315.0,
-            "height": 100.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [
-            {
-              "type": "DROP_SHADOW",
-              "visible": true,
-              "color": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.25
-              },
-              "blendMode": "NORMAL",
-              "offset": {
-                "x": 0.0,
-                "y": 8.0
-              },
-              "radius": 32.0,
-              "showShadowBehindNode": true
-            }
-          ],
-          "interactions": []
-        },
-        {
-          "id": "266:2628",
-          "name": "Foto Pequena da Notícia",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.06666667014360428,
-                "g": 0.0941176488995552,
-                "b": 0.15294118225574493,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1996.0,
-            "y": -7444.0,
-            "width": 96.0,
-            "height": 68.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2629",
-          "name": "Categoria da notícia",
-          "type": "GROUP",
-          "scrollBehavior": "SCROLLS",
-          "children": [
-            {
-              "id": "266:2630",
-              "name": "Fundo da categoria #06B6D4",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.0235294122248888,
-                    "g": 0.7137255072593689,
-                    "b": 0.8313725590705872,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1884.0,
-                "y": -7443.0,
-                "width": 80.0,
-                "height": 24.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "266:2631",
-              "name": "Categoria",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1873.0,
-                "y": -7439.0,
-                "width": 58.0,
-                "height": 15.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Categoria",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 12.0,
-                "textAlignHorizontal": "CENTER",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 14.522727012634277,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            }
-          ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7443.0,
-            "width": 80.0,
-            "height": 24.0
-          },
-          "constraints": {
-            "vertical": "TOP",
-            "horizontal": "LEFT"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2632",
-          "name": "Título da notícia 6",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.04313725605607033,
-                "g": 0.05882352963089943,
-                "b": 0.062745101749897,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7407.0,
-            "width": 140.0,
-            "height": 19.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Título da notícia 6",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": "Inter-BoldItalic",
-            "fontStyle": "Bold Italic",
-            "italic": true,
-            "fontWeight": 700,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 16.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 19.363636016845703,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2633",
-          "name": "Resumo rápido — 03/08/2025 · Autor",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.41960784792900085,
-                "g": 0.4470588266849518,
-                "b": 0.501960813999176,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7379.0,
-            "width": 213.0,
-            "height": 15.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Resumo rápido — 03/08/2025 · Autor",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": null,
-            "fontStyle": "Regular",
-            "fontWeight": 400,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 12.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 14.522727012634277,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        }
-      ],
-      "blendMode": "PASS_THROUGH",
-      "clipsContent": false,
-      "background": [],
-      "fills": [],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "backgroundColor": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-      },
-      "absoluteBoundingBox": {
-        "x": -2012.0,
-        "y": -7459.0,
-        "width": 1315.0,
-        "height": 100.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "effects": [],
-      "transitionNodeID": "164:22103",
-      "transitionDuration": 300.0,
-      "transitionEasing": "EASE_OUT",
-      "interactions": [
-        {
-          "trigger": {
-            "type": "ON_CLICK"
-          },
-          "actions": [
-            {
-              "type": "NODE",
-              "destinationId": "164:22103",
-              "navigation": "NAVIGATE",
-              "transition": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "164:22457",
-      "name": "Resumo Notícia",
-      "type": "GROUP",
-      "scrollBehavior": "SCROLLS",
-      "children": [
-        {
-          "id": "164:22458",
-          "name": "Fundo do resumo notícia #FFFFFF",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -2012.0,
-            "y": -7339.0,
-            "width": 1315.0,
-            "height": 100.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [
-            {
-              "type": "DROP_SHADOW",
-              "visible": true,
-              "color": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.25
-              },
-              "blendMode": "NORMAL",
-              "offset": {
-                "x": 0.0,
-                "y": 8.0
-              },
-              "radius": 32.0,
-              "showShadowBehindNode": true
-            }
-          ],
-          "interactions": []
-        },
-        {
-          "id": "164:22507",
-          "name": "Foto Pequena da Notícia",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.06666667014360428,
-                "g": 0.0941176488995552,
-                "b": 0.15294118225574493,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1996.0,
-            "y": -7324.0,
-            "width": 96.0,
-            "height": 68.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "266:2626",
-          "name": "Categoria da notícia",
-          "type": "GROUP",
-          "scrollBehavior": "SCROLLS",
-          "children": [
-            {
-              "id": "164:22509",
-              "name": "Fundo da categoria #06B6D4",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.0235294122248888,
-                    "g": 0.7137255072593689,
-                    "b": 0.8313725590705872,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1884.0,
-                "y": -7323.0,
-                "width": 80.0,
-                "height": 24.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "164:22510",
-              "name": "Categoria",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1873.0,
-                "y": -7319.0,
-                "width": 58.0,
-                "height": 15.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Categoria",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 12.0,
-                "textAlignHorizontal": "CENTER",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 14.522727012634277,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            }
-          ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7323.0,
-            "width": 80.0,
-            "height": 24.0
-          },
-          "constraints": {
-            "vertical": "TOP",
-            "horizontal": "LEFT"
-          },
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "164:22511",
-          "name": "Título da notícia 6",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.04313725605607033,
-                "g": 0.05882352963089943,
-                "b": 0.062745101749897,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7287.0,
-            "width": 140.0,
-            "height": 19.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Título da notícia 6",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": "Inter-BoldItalic",
-            "fontStyle": "Bold Italic",
-            "italic": true,
-            "fontWeight": 700,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 16.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 19.363636016845703,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "164:22512",
-          "name": "Resumo rápido — 03/08/2025 · Autor",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.41960784792900085,
-                "g": 0.4470588266849518,
-                "b": 0.501960813999176,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": -1884.0,
-            "y": -7259.0,
-            "width": 213.0,
-            "height": 15.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Resumo rápido — 03/08/2025 · Autor",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": null,
-            "fontStyle": "Regular",
-            "fontWeight": 400,
-            "textAutoResize": "WIDTH_AND_HEIGHT",
-            "fontSize": 12.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 14.522727012634277,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        }
-      ],
-      "blendMode": "PASS_THROUGH",
-      "clipsContent": false,
-      "background": [],
-      "fills": [],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "backgroundColor": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-      },
-      "absoluteBoundingBox": {
-        "x": -2012.0,
-        "y": -7339.0,
-        "width": 1315.0,
-        "height": 100.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "effects": [],
-      "transitionNodeID": "164:22103",
-      "transitionDuration": 300.0,
-      "transitionEasing": "EASE_OUT",
-      "interactions": [
-        {
-          "trigger": {
-            "type": "ON_CLICK"
-          },
-          "actions": [
-            {
-              "type": "NODE",
-              "destinationId": "164:22103",
-              "navigation": "NAVIGATE",
-              "transition": null
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "164:22545",
       "name": "Notícias",
       "type": "TEXT",
@@ -6638,6 +4364,3348 @@
       },
       "effects": [],
       "interactions": []
+    },
+    {
+      "id": "301:3165",
+      "name": "Resumo Notícia",
+      "type": "GROUP",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "301:3166",
+          "name": "Fundo",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": -1089.0,
+            "y": -7948.0,
+            "width": 433.0,
+            "height": 290.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "301:3167",
+          "name": "Foto Pequena da Notícia",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1069.0,
+            "y": -7933.0,
+            "width": 96.0,
+            "height": 68.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3168",
+          "name": "Categoria da notícia",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3169",
+              "name": "Fundo da categoria #06B6D4",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0235294122248888,
+                    "g": 0.7137255072593689,
+                    "b": 0.8313725590705872,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -957.0,
+                "y": -7889.0,
+                "width": 80.0,
+                "height": 24.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3170",
+              "name": "Categoria",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -946.0,
+                "y": -7885.0,
+                "width": 58.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Categoria",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -957.0,
+            "y": -7889.0,
+            "width": 80.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3171",
+          "name": "Título da notícia",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -957.0,
+            "y": -7933.0,
+            "width": 126.0,
+            "height": 19.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Título da notícia",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 16.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 19.363636016845703,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3172",
+          "name": "Resumo rápido — 03/08/2025 · Autor",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.41960784792900085,
+                "g": 0.4470588266849518,
+                "b": 0.501960813999176,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -957.0,
+            "y": -7914.0,
+            "width": 213.0,
+            "height": 15.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Resumo rápido — 03/08/2025 · Autor",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": null,
+            "fontStyle": "Regular",
+            "fontWeight": 400,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3173",
+          "name": "Botão Ver Completo",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3174",
+              "name": "Rectangle 1",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "cornerRadius": 25.0,
+              "cornerSmoothing": 0.0,
+              "absoluteBoundingBox": {
+                "x": -803.0,
+                "y": -7704.0,
+                "width": 133.0,
+                "height": 35.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3175",
+              "name": "Ver Completo",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "OUTSIDE",
+              "absoluteBoundingBox": {
+                "x": -788.0,
+                "y": -7693.0,
+                "width": 104.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "characters": "Ver Completo",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -803.0,
+            "y": -7704.0,
+            "width": 133.0,
+            "height": 35.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3176",
+          "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "OUTSIDE",
+          "absoluteBoundingBox": {
+            "x": -1068.0,
+            "y": -7845.0,
+            "width": 404.0,
+            "height": 144.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "characters": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-Light",
+            "fontStyle": "Light",
+            "fontWeight": 300,
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": false,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "rectangleCornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cornerSmoothing": 0.0,
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "absoluteBoundingBox": {
+        "x": -1089.0,
+        "y": -7948.0,
+        "width": 433.0,
+        "height": 290.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "301:3133",
+      "name": "Resumo Notícia",
+      "type": "GROUP",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "301:3125",
+          "name": "Fundo",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": -2010.0,
+            "y": -7948.0,
+            "width": 433.0,
+            "height": 290.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "301:3126",
+          "name": "Foto Pequena da Notícia",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1990.0,
+            "y": -7933.0,
+            "width": 96.0,
+            "height": 68.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3127",
+          "name": "Categoria da notícia",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3128",
+              "name": "Fundo da categoria #06B6D4",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0235294122248888,
+                    "g": 0.7137255072593689,
+                    "b": 0.8313725590705872,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1878.0,
+                "y": -7889.0,
+                "width": 80.0,
+                "height": 24.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3129",
+              "name": "Categoria",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1867.0,
+                "y": -7885.0,
+                "width": 58.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Categoria",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1878.0,
+            "y": -7889.0,
+            "width": 80.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3130",
+          "name": "Título da notícia",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1878.0,
+            "y": -7933.0,
+            "width": 126.0,
+            "height": 19.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Título da notícia",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 16.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 19.363636016845703,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3131",
+          "name": "Resumo rápido — 03/08/2025 · Autor",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.41960784792900085,
+                "g": 0.4470588266849518,
+                "b": 0.501960813999176,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1878.0,
+            "y": -7914.0,
+            "width": 213.0,
+            "height": 15.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Resumo rápido — 03/08/2025 · Autor",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": null,
+            "fontStyle": "Regular",
+            "fontWeight": 400,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3138",
+          "name": "Botão Ver Completo",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3136",
+              "name": "Rectangle 1",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "cornerRadius": 25.0,
+              "cornerSmoothing": 0.0,
+              "absoluteBoundingBox": {
+                "x": -1724.0,
+                "y": -7704.0,
+                "width": 133.0,
+                "height": 35.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3137",
+              "name": "Ver Completo",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "OUTSIDE",
+              "absoluteBoundingBox": {
+                "x": -1709.0,
+                "y": -7693.0,
+                "width": 104.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "characters": "Ver Completo",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1724.0,
+            "y": -7704.0,
+            "width": 133.0,
+            "height": 35.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3135",
+          "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "OUTSIDE",
+          "absoluteBoundingBox": {
+            "x": -1989.0,
+            "y": -7845.0,
+            "width": 404.0,
+            "height": 144.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "characters": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-Light",
+            "fontStyle": "Light",
+            "fontWeight": 300,
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": false,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "rectangleCornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cornerSmoothing": 0.0,
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "absoluteBoundingBox": {
+        "x": -2010.0,
+        "y": -7948.0,
+        "width": 433.0,
+        "height": 290.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "301:3139",
+      "name": "Resumo Notícia",
+      "type": "GROUP",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "301:3140",
+          "name": "Fundo",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": -1549.0,
+            "y": -7948.0,
+            "width": 433.0,
+            "height": 290.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "301:3141",
+          "name": "Foto Pequena da Notícia",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1529.0,
+            "y": -7933.0,
+            "width": 96.0,
+            "height": 68.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3142",
+          "name": "Categoria da notícia",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3143",
+              "name": "Fundo da categoria #06B6D4",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0235294122248888,
+                    "g": 0.7137255072593689,
+                    "b": 0.8313725590705872,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1417.0,
+                "y": -7889.0,
+                "width": 80.0,
+                "height": 24.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3144",
+              "name": "Categoria",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1406.0,
+                "y": -7885.0,
+                "width": 58.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Categoria",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1417.0,
+            "y": -7889.0,
+            "width": 80.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3145",
+          "name": "Título da notícia",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1417.0,
+            "y": -7933.0,
+            "width": 126.0,
+            "height": 19.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Título da notícia ",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 16.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 19.363636016845703,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3146",
+          "name": "Resumo rápido — 03/08/2025 · Autor",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.41960784792900085,
+                "g": 0.4470588266849518,
+                "b": 0.501960813999176,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1417.0,
+            "y": -7914.0,
+            "width": 213.0,
+            "height": 15.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Resumo rápido — 03/08/2025 · Autor",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": null,
+            "fontStyle": "Regular",
+            "fontWeight": 400,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3147",
+          "name": "Botão Ver Completo",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3148",
+              "name": "Rectangle 1",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "cornerRadius": 25.0,
+              "cornerSmoothing": 0.0,
+              "absoluteBoundingBox": {
+                "x": -1263.0,
+                "y": -7704.0,
+                "width": 133.0,
+                "height": 35.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3149",
+              "name": "Ver Completo",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "OUTSIDE",
+              "absoluteBoundingBox": {
+                "x": -1248.0,
+                "y": -7693.0,
+                "width": 104.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "characters": "Ver Completo",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1263.0,
+            "y": -7704.0,
+            "width": 133.0,
+            "height": 35.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3150",
+          "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "OUTSIDE",
+          "absoluteBoundingBox": {
+            "x": -1528.0,
+            "y": -7845.0,
+            "width": 404.0,
+            "height": 144.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "characters": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-Light",
+            "fontStyle": "Light",
+            "fontWeight": 300,
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": false,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "rectangleCornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cornerSmoothing": 0.0,
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "absoluteBoundingBox": {
+        "x": -1549.0,
+        "y": -7948.0,
+        "width": 433.0,
+        "height": 290.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "301:3178",
+      "name": "Resumo Notícia",
+      "type": "GROUP",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "301:3179",
+          "name": "Fundo",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": -1089.0,
+            "y": -7626.0,
+            "width": 433.0,
+            "height": 290.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "301:3180",
+          "name": "Foto Pequena da Notícia",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1069.0,
+            "y": -7611.0,
+            "width": 96.0,
+            "height": 68.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3181",
+          "name": "Categoria da notícia",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3182",
+              "name": "Fundo da categoria #06B6D4",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0235294122248888,
+                    "g": 0.7137255072593689,
+                    "b": 0.8313725590705872,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -957.0,
+                "y": -7567.0,
+                "width": 80.0,
+                "height": 24.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3183",
+              "name": "Categoria",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -946.0,
+                "y": -7563.0,
+                "width": 58.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Categoria",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -957.0,
+            "y": -7567.0,
+            "width": 80.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3184",
+          "name": "Título da notícia",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -957.0,
+            "y": -7611.0,
+            "width": 126.0,
+            "height": 19.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Título da notícia",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 16.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 19.363636016845703,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3185",
+          "name": "Resumo rápido — 03/08/2025 · Autor",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.41960784792900085,
+                "g": 0.4470588266849518,
+                "b": 0.501960813999176,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -957.0,
+            "y": -7592.0,
+            "width": 213.0,
+            "height": 15.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Resumo rápido — 03/08/2025 · Autor",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": null,
+            "fontStyle": "Regular",
+            "fontWeight": 400,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3186",
+          "name": "Botão Ver Completo",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3187",
+              "name": "Rectangle 1",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "cornerRadius": 25.0,
+              "cornerSmoothing": 0.0,
+              "absoluteBoundingBox": {
+                "x": -803.0,
+                "y": -7382.0,
+                "width": 133.0,
+                "height": 35.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3188",
+              "name": "Ver Completo",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "OUTSIDE",
+              "absoluteBoundingBox": {
+                "x": -788.0,
+                "y": -7371.0,
+                "width": 104.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "characters": "Ver Completo",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -803.0,
+            "y": -7382.0,
+            "width": 133.0,
+            "height": 35.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3189",
+          "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "OUTSIDE",
+          "absoluteBoundingBox": {
+            "x": -1068.0,
+            "y": -7523.0,
+            "width": 404.0,
+            "height": 144.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "characters": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-Light",
+            "fontStyle": "Light",
+            "fontWeight": 300,
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": false,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "rectangleCornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cornerSmoothing": 0.0,
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "absoluteBoundingBox": {
+        "x": -1089.0,
+        "y": -7626.0,
+        "width": 433.0,
+        "height": 290.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "301:3190",
+      "name": "Resumo Notícia",
+      "type": "GROUP",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "301:3191",
+          "name": "Fundo",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": -2010.0,
+            "y": -7626.0,
+            "width": 433.0,
+            "height": 290.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "301:3192",
+          "name": "Foto Pequena da Notícia",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1990.0,
+            "y": -7611.0,
+            "width": 96.0,
+            "height": 68.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3193",
+          "name": "Categoria da notícia",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3194",
+              "name": "Fundo da categoria #06B6D4",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0235294122248888,
+                    "g": 0.7137255072593689,
+                    "b": 0.8313725590705872,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1878.0,
+                "y": -7567.0,
+                "width": 80.0,
+                "height": 24.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3195",
+              "name": "Categoria",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1867.0,
+                "y": -7563.0,
+                "width": 58.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Categoria",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1878.0,
+            "y": -7567.0,
+            "width": 80.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3196",
+          "name": "Título da notícia",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1878.0,
+            "y": -7611.0,
+            "width": 126.0,
+            "height": 19.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Título da notícia",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 16.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 19.363636016845703,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3197",
+          "name": "Resumo rápido — 03/08/2025 · Autor",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.41960784792900085,
+                "g": 0.4470588266849518,
+                "b": 0.501960813999176,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1878.0,
+            "y": -7592.0,
+            "width": 213.0,
+            "height": 15.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Resumo rápido — 03/08/2025 · Autor",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": null,
+            "fontStyle": "Regular",
+            "fontWeight": 400,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3198",
+          "name": "Botão Ver Completo",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3199",
+              "name": "Rectangle 1",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "cornerRadius": 25.0,
+              "cornerSmoothing": 0.0,
+              "absoluteBoundingBox": {
+                "x": -1724.0,
+                "y": -7382.0,
+                "width": 133.0,
+                "height": 35.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3200",
+              "name": "Ver Completo",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "OUTSIDE",
+              "absoluteBoundingBox": {
+                "x": -1709.0,
+                "y": -7371.0,
+                "width": 104.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "characters": "Ver Completo",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1724.0,
+            "y": -7382.0,
+            "width": 133.0,
+            "height": 35.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3201",
+          "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "OUTSIDE",
+          "absoluteBoundingBox": {
+            "x": -1989.0,
+            "y": -7523.0,
+            "width": 404.0,
+            "height": 144.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "characters": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-Light",
+            "fontStyle": "Light",
+            "fontWeight": 300,
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": false,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "rectangleCornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cornerSmoothing": 0.0,
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "absoluteBoundingBox": {
+        "x": -2010.0,
+        "y": -7626.0,
+        "width": 433.0,
+        "height": 290.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "301:3202",
+      "name": "Resumo Notícia",
+      "type": "GROUP",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "301:3203",
+          "name": "Fundo",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": -1549.0,
+            "y": -7626.0,
+            "width": 433.0,
+            "height": 290.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "301:3204",
+          "name": "Foto Pequena da Notícia",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1529.0,
+            "y": -7611.0,
+            "width": 96.0,
+            "height": 68.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3205",
+          "name": "Categoria da notícia",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3206",
+              "name": "Fundo da categoria #06B6D4",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0235294122248888,
+                    "g": 0.7137255072593689,
+                    "b": 0.8313725590705872,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1417.0,
+                "y": -7567.0,
+                "width": 80.0,
+                "height": 24.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3207",
+              "name": "Categoria",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": -1406.0,
+                "y": -7563.0,
+                "width": 58.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Categoria",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1417.0,
+            "y": -7567.0,
+            "width": 80.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3208",
+          "name": "Título da notícia",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1417.0,
+            "y": -7611.0,
+            "width": 126.0,
+            "height": 19.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Título da notícia",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 16.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 19.363636016845703,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3209",
+          "name": "Resumo rápido — 03/08/2025 · Autor",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.41960784792900085,
+                "g": 0.4470588266849518,
+                "b": 0.501960813999176,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1417.0,
+            "y": -7592.0,
+            "width": 213.0,
+            "height": 15.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Resumo rápido — 03/08/2025 · Autor",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": null,
+            "fontStyle": "Regular",
+            "fontWeight": 400,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3210",
+          "name": "Botão Ver Completo",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "301:3211",
+              "name": "Rectangle 1",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "cornerRadius": 25.0,
+              "cornerSmoothing": 0.0,
+              "absoluteBoundingBox": {
+                "x": -1263.0,
+                "y": -7382.0,
+                "width": 133.0,
+                "height": 35.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "301:3212",
+              "name": "Ver Completo",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "OUTSIDE",
+              "absoluteBoundingBox": {
+                "x": -1248.0,
+                "y": -7371.0,
+                "width": 104.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "characters": "Ver Completo",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": -1263.0,
+            "y": -7382.0,
+            "width": 133.0,
+            "height": 35.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "301:3213",
+          "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "OUTSIDE",
+          "absoluteBoundingBox": {
+            "x": -1528.0,
+            "y": -7523.0,
+            "width": 404.0,
+            "height": 144.0
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "characters": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-Light",
+            "fontStyle": "Light",
+            "fontWeight": 300,
+            "fontSize": 12.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 14.522727012634277,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": false,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "rectangleCornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cornerSmoothing": 0.0,
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "absoluteBoundingBox": {
+        "x": -1549.0,
+        "y": -7626.0,
+        "width": 433.0,
+        "height": 290.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "interactions": []
     }
   ],
   "blendMode": "PASS_THROUGH",
@@ -6687,6 +7755,16 @@
     "vertical": "TOP",
     "horizontal": "LEFT"
   },
+  "exportSettings": [
+    {
+      "suffix": "",
+      "format": "JPG",
+      "constraint": {
+        "type": "SCALE",
+        "value": 1.0
+      }
+    }
+  ],
   "effects": [],
   "interactions": []
 }

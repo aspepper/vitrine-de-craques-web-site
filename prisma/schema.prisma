@@ -83,6 +83,11 @@ model Profile {
   nascimento       String?
   telefone         String?
   posicao          String?
+  perna            String?
+  altura           String?
+  peso             String?
+  pais             String?
+  uf               String?
   clube            String?
   emailClube       String?
   cidade           String?

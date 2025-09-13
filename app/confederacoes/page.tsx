@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { HERO_PLACEHOLDER } from "@/lib/heroImage";
+import { ensureImage } from "@/lib/ensureImage";
 
 interface PageProps {
   searchParams: { page?: string };
@@ -19,6 +19,11 @@ async function getConfeds(page: number) {
 export default async function ConfederacoesPage({ searchParams }: PageProps) {
   const page = Number(searchParams.page) || 1;
   const { items, totalPages } = await getConfeds(page);
+  const heroImage = ensureImage(
+    "placeholders/hero-placeholder.webp",
+    "confederacoes",
+    "hero-placeholder"
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
@@ -32,7 +37,7 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
                 <CardHeader className="p-0">
                   <div className="relative h-40 w-full">
                     <Image
-                      src={HERO_PLACEHOLDER}
+                      src={heroImage}
                       alt={confed.name}
                       fill
                       className="object-cover"

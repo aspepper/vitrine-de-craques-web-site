@@ -5,18 +5,10 @@ import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { redirect } from 'next/navigation'
 
-interface PageProps {
-  searchParams: { id?: string }
-}
-
-export default async function PerfilPage({ searchParams }: PageProps) {
+export default async function PerfilPage() {
   const session = await getServerSession(authOptions)
   if (!session?.user?.id) {
     redirect('/login')
-  }
-
-  if (searchParams?.id && searchParams.id !== session.user.id) {
-    redirect('/perfil')
   }
 
   const profile = await prisma.profile.findUnique({ where: { userId: session.user.id } })

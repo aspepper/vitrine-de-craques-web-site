@@ -1,23 +1,22 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { FeedVideoCard } from "@/components/FeedVideoCard";
 import prisma from "@/lib/db";
+import { FeedClient } from "./FeedClient";
 
 export default async function FeedPage() {
-  const videos = await prisma.video.findMany({
+  const initialVideos = await prisma.video.findMany({
+    take: 6,
     orderBy: { createdAt: "desc" },
+    include: { user: true },
   });
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
+    <div className="flex min-h-screen flex-col bg-slate-50">
       <Header />
-      <main className="flex-grow container mx-auto p-4 flex flex-col items-center gap-8">
-        {videos.map((video) => (
-          <FeedVideoCard key={video.id} video={video} />
-        ))}
+      <main className="container mx-auto flex-grow p-4">
+        <FeedClient initialVideos={initialVideos} />
       </main>
       <Footer />
     </div>
   );
 }
-

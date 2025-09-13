@@ -71,9 +71,12 @@ function paddingClasses(node: FigmaNode) {
 export function figmaToReact(
   node: FigmaNode,
   overrides: Record<string, string> = {},
+  renderNode?: (node: FigmaNode) => ReactNode,
 ): ReactNode {
   const override = overrides[node.name] || ''
-  const children = node.children?.map((child) => figmaToReact(child, overrides))
+  const children = node.children?.map((child) =>
+    renderNode ? renderNode(child) : figmaToReact(child, overrides, renderNode),
+  )
 
   if (node.fills && node.fills[0]?.type === 'IMAGE') {
     const { width = 0, height = 0 } = node.absoluteBoundingBox || {}

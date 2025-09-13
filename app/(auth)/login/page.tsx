@@ -8,8 +8,6 @@ import * as z from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { Header } from "@/components/Header"
-import { Footer } from "@/components/Footer"
 import SocialAuth from "@/components/SocialAuth"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -45,7 +43,6 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
-      <Header />
       <main className="container mx-auto flex flex-grow flex-col items-center justify-center gap-8 py-12">
         <SocialAuth />
         <Card className="w-full max-w-sm">
@@ -79,7 +76,6 @@ export default function LoginPage() {
           </CardContent>
         </Card>
       </main>
-      <Footer />
     </div>
   )
 }

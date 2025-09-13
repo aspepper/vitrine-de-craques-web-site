@@ -8,6 +8,9 @@ interface Video {
   title: string;
   videoUrl: string;
   thumbnailUrl?: string | null;
+  user: {
+    name?: string | null;
+  };
 }
 
 interface Props {
@@ -62,8 +65,13 @@ export function FeedVideoCard({ video }: Props) {
       <div className="absolute right-2 bottom-10 flex flex-col gap-3">
         <ActionButton src="/icons/icon-like.svg" alt="Curtir" />
         <ActionButton src="/icons/icon-comment.svg" alt="Comentar" />
+        <ActionButton src="/icons/icon-save.svg" alt="Salvar" />
         <ActionButton src="/icons/icon-share.svg" alt="Compartilhar" />
         <ActionButton src="/icons/icon-report.svg" alt="Denunciar" />
+      </div>
+      <div className="absolute left-2 bottom-2 text-white drop-shadow">
+        <p className="font-semibold leading-tight">{video.user?.name}</p>
+        <p className="text-sm leading-tight">{video.title}</p>
       </div>
     </div>
   );

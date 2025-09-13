@@ -5,9 +5,15 @@ import prisma from "@/lib/db";
 import { promises as fs } from "fs";
 import path from "path";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const skip = parseInt(searchParams.get("skip") ?? "0", 10);
+  const take = parseInt(searchParams.get("take") ?? "6", 10);
   const videos = await prisma.video.findMany({
+    skip,
+    take,
     orderBy: { createdAt: "desc" },
+    include: { user: true },
   });
   return NextResponse.json(videos);
 }

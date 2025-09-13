@@ -90,6 +90,16 @@ model Profile {
   whatsapp    String?
   licenca     String?
   registroFifa String?
+  responsavelNascimento String?
+  responsavelGenero     String?
+  responsavelInstagram  String?
+  atletaNome            String?
+  atletaCpf             String?
+  atletaNascimento      String?
+  atletaGenero          String?
+  atletaEsporte         String?
+  atletaModalidade      String?
+  atletaObservacoes     String?
   notifNovidades Boolean? @default(false)
   notifJogos     Boolean? @default(false)
   notifEventos   Boolean? @default(false)

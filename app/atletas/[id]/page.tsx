@@ -1,16 +1,23 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
-import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
+
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
+async function getAthlete(id: string) {
+  const res = await fetch(`${baseUrl}/api/atletas/${id}`, { cache: "no-store" });
+  if (!res.ok) return null;
+  return res.json();
+}
 
 interface PageProps {
   params: { id: string };
 }
 
 export default async function AtletaDetalhePage({ params }: PageProps) {
-  const profile = await prisma.profile.findUnique({ where: { id: params.id } });
-  if (!profile || profile.role !== "ATLETA") {
+  const profile = await getAthlete(params.id);
+  if (!profile) {
     notFound();
   }
 

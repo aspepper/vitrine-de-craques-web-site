@@ -71,12 +71,12 @@ const profiles: Profile[] = [
     available: true,
   },
   {
-    slug: "",
-    title: "Fan (em breve)",
-    description: "Para torcedores. Recurso em desenvolvimento...",
-    cta: "Avise-me",
+    slug: "torcedor",
+    title: "Torcedor",
+    description: "Para torcedores e fã clubes.",
+    cta: "Continuar",
     icon: Users,
-    available: false,
+    available: true,
   },
 ]
 

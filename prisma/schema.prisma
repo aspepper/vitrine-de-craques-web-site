@@ -104,7 +104,7 @@ model Profile {
   representanteCpf      String?
   representanteEmail    String?
   whatsapp              String?
-  licenca               String?
+  registroCbf          String?
   registroFifa          String?
   responsavelNascimento String?
   responsavelGenero     String?

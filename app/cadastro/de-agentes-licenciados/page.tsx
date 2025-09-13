@@ -13,11 +13,17 @@ import { Button } from '@/components/ui/button'
 
 const formSchema = z.object({
   nome: z.string().min(1, { message: 'Nome obrigatório' }),
-  cpf: z.string().min(1, { message: 'CPF obrigatório' }),
+  cpf: z
+    .string()
+    .regex(/^\d{11}$/, { message: 'CPF deve ter 11 dígitos' }),
   email: z.string().email({ message: 'Email inválido' }),
+  registroCbf: z
+    .string()
+    .min(1, { message: 'Registro CBF/BFM obrigatório' }),
   telefone: z.string().min(1, { message: 'Telefone obrigatório' }),
-  licenca: z.string().min(1, { message: 'Licença obrigatória' }),
-  registroFifa: z.string().optional(),
+  registroFifa: z
+    .string()
+    .min(1, { message: 'Registro FIFA obrigatório' }),
   possuiLicenca: z.boolean().refine(v => v, { message: 'Obrigatório' }),
   aceitaRemuneracao: z.boolean().refine(v => v, { message: 'Obrigatório' }),
   termos: z.boolean().refine(v => v, { message: 'Obrigatório' }),
@@ -25,7 +31,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-export default function CadastroAgentePage() {
+export default function CadastroAgenteLicenciadoPage() {
   const router = useRouter()
   const form = useForm<FormValues>({ resolver: zodResolver(formSchema) })
 
@@ -37,8 +43,8 @@ export default function CadastroAgentePage() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow py-12">
-        <h1 className="mb-8 text-center text-3xl font-bold">Cadastro de Agente/Empresário</h1>
-        <div className="mb-8 flex justify-center">
+        <h1 className="mb-8 text-3xl font-bold">Cadastro de Agente/Empresário</h1>
+        <div className="mb-8">
           <SocialAuth />
         </div>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -55,36 +61,57 @@ export default function CadastroAgentePage() {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="cpf">CPF (ou passaporte)</Label>
-                <Input id="cpf" {...form.register('cpf')} />
+                <Label htmlFor="cpf">CPF (com 11 dígitos)</Label>
+                <Input
+                  id="cpf"
+                  placeholder="00000000000"
+                  {...form.register('cpf')}
+                />
                 {form.formState.errors.cpf && (
                   <p className="text-sm text-destructive">{form.formState.errors.cpf.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">E-mail</Label>
-                <Input id="email" type="email" {...form.register('email')} />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="voce@gmail.com"
+                  {...form.register('email')}
+                />
                 {form.formState.errors.email && (
                   <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="telefone">Telefone/WhatsApp</Label>
-                <Input id="telefone" {...form.register('telefone')} />
+                <Label htmlFor="registroCbf">N° de registro CBF/BFM</Label>
+                <Input
+                  id="registroCbf"
+                  placeholder="N° de registro CBF/BFM"
+                  {...form.register('registroCbf')}
+                />
+                {form.formState.errors.registroCbf && (
+                  <p className="text-sm text-destructive">{form.formState.errors.registroCbf.message}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="telefone">Telefone</Label>
+                <Input
+                  id="telefone"
+                  placeholder="ex: (11) 99999-9999"
+                  {...form.register('telefone')}
+                />
                 {form.formState.errors.telefone && (
                   <p className="text-sm text-destructive">{form.formState.errors.telefone.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="licenca">Número da licença CBF</Label>
-                <Input id="licenca" {...form.register('licenca')} />
-                {form.formState.errors.licenca && (
-                  <p className="text-sm text-destructive">{form.formState.errors.licenca.message}</p>
-                )}
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="registroFifa">Registro FIFA (opcional)</Label>
-                <Input id="registroFifa" {...form.register('registroFifa')} />
+                <Label htmlFor="registroFifa">N° FIFA</Label>
+                <Input
+                  id="registroFifa"
+                  placeholder="N° FIFA"
+                  {...form.register('registroFifa')}
+                />
                 {form.formState.errors.registroFifa && (
                   <p className="text-sm text-destructive">{form.formState.errors.registroFifa.message}</p>
                 )}
@@ -112,7 +139,7 @@ export default function CadastroAgentePage() {
             </CardContent>
           </Card>
 
-          <div className="flex justify-end">
+          <div>
             <Button type="submit">Criar conta</Button>
           </div>
         </form>

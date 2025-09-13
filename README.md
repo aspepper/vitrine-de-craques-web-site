@@ -46,6 +46,11 @@ python3 split_figma_pages.py docs/figma.json docs/figma_pages
 
 npx prisma format
 npx prisma generate
+
+npx prisma migrate deploy
+npx prisma db seed
+
+npx prisma migrate reset
 npm run db:push
 npm run db:seed
 

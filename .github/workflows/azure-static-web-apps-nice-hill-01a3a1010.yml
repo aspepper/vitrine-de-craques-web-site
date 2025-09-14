@@ -16,14 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Prisma precisa do Node para gerar client e aplicar migrations
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
 
-      - name: Install deps for Prisma step
+      - name: Install deps
         run: npm ci
 
       - name: Prisma generate
@@ -34,14 +33,12 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npx prisma migrate deploy
 
-      # Deixe o build por conta do Action do SWA (Oryx detecta Next.js)
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_HILL_01A3A1010 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # para comentários em PRs
-          action: "upload"
-          app_location: "/"     # raiz do seu app Next.js
-          api_location: ""      # deixe vazio; Next.js App Router cria as rotas serverless
-          # NÃO definir output_location para SSR
-          # skip_app_build: false (padrão) -> Oryx faz o build
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: "/"         # raiz do Next
+          api_location: ""          # vazio para APIs do App Router
+          # NÃO defina output_location (mantém SSR ligado)

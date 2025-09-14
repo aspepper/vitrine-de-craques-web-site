@@ -6,7 +6,7 @@ export default function ApiError() {
   const [erro, setErro] = useState<any>(null)
 
   useEffect(() => {
-    fetch('/api/pg-check')
+    fetch('/api/db-check')
       .then(async (resp) => {
         if (!resp.ok) {
           try {

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
+import ApiError from '@/components/ApiError'
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions)
@@ -200,6 +201,7 @@ export default async function HomePage() {
           </div>
         </section>
       </main>
+      <ApiError />
     </div>
   )
 }

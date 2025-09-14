@@ -31,3 +31,6 @@ prisma/*.db
 *.zip
 out
 dist
+
+# MacOS specific
+.DS_Store

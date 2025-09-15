@@ -1,7 +1,16 @@
+const prismaClientIncludes = [
+  './node_modules/.prisma/client/**/*',
+  './node_modules/@prisma/client/**/*',
+  './node_modules/@prisma/engines/**/*',
+]
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
+    outputFileTracingIncludes: {
+      '/': prismaClientIncludes,
+    },
   },
   reactStrictMode: true,
   images: {

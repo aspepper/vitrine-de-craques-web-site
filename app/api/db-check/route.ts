@@ -3,7 +3,9 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export async function GET() {
+import { logApiError } from '@/lib/error'
+
+export async function GET(req: Request) {
   try {
     const { PrismaClient } = await import('@prisma/client')
     const prisma = new PrismaClient()
@@ -11,6 +13,7 @@ export async function GET() {
     await prisma.$disconnect()
     return Response.json({ ok: true, r })
   } catch (e: any) {
+    await logApiError(req, e, 'AO VERIFICAR DB')
     return new Response(
       JSON.stringify({
         ok: false,

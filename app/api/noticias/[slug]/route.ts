@@ -1,16 +1,21 @@
-import { NextResponse } from "next/server";
-import prisma from "@/lib/db";
+import { NextResponse } from 'next/server'
+import prisma from '@/lib/db'
+import { errorResponse } from '@/lib/error'
 
 interface Params {
-  params: { slug: string };
+  params: { slug: string }
 }
 
-export async function GET(_req: Request, { params }: Params) {
-  const news = await prisma.news.findUnique({
-    where: { slug: params.slug },
-  });
-  if (!news) {
-    return NextResponse.json({ message: "Not found" }, { status: 404 });
+export async function GET(req: Request, { params }: Params) {
+  try {
+    const news = await prisma.news.findUnique({
+      where: { slug: params.slug },
+    })
+    if (!news) {
+      return NextResponse.json({ message: 'Not found' }, { status: 404 })
+    }
+    return NextResponse.json(news)
+  } catch (error) {
+    return errorResponse(req, error, 'AO BUSCAR NOTÍCIA')
   }
-  return NextResponse.json(news);
 }

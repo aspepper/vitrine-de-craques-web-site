@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { telemetryClient } from './app-insights'
 
+
 export async function logApiError(
   request: Request,
   error: unknown,

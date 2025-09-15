@@ -20,16 +20,25 @@ export async function GET(req: Request) {
     const r = await client.query('select 1 as ok')
     await client.end()
     return Response.json({ ok: true, rows: r.rows })
-  } catch (e: any) {
-    await logApiError(req, e, 'AO VERIFICAR PG')
-    return new Response(
-      JSON.stringify({
-        ok: false,
-        name: e?.name ?? null,
-        code: e?.code ?? null,
-        message: String(e?.message ?? e),
-      }),
-      { status: 500, headers: { 'content-type': 'application/json' } },
-    )
+  } catch (error) {
+    const { errorId } = await logApiError(req, error, 'AO VERIFICAR PG')
+    const err = error as { [key: string]: unknown }
+
+    const responseBody: Record<string, unknown> = {
+      ok: false,
+      errorId,
+      name: typeof err.name === 'string' ? err.name : null,
+      code: typeof err.code === 'string' ? err.code : null,
+      message: typeof err.message === 'string' ? err.message : String(error),
+    }
+
+    if (process.env.NODE_ENV !== 'production' && typeof err.stack === 'string') {
+      responseBody.stack = err.stack
+    }
+
+    return new Response(JSON.stringify(responseBody), {
+      status: 500,
+      headers: { 'content-type': 'application/json' },
+    })
   }
 }

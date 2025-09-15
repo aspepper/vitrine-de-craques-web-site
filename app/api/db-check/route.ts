@@ -19,19 +19,28 @@ export async function GET(req: Request) {
     const r = await prisma.$queryRaw`SELECT 1 AS ok`
     await prisma.$disconnect()
     return Response.json({ ok: true, r })
-  } catch (e: any) {
-    await logApiError(req, e, 'AO VERIFICAR DB')
-    return new Response(
-      JSON.stringify({
-        ok: false,
-        name: e?.name ?? null,
-        message: String(e?.message ?? e),
-        // se quiser debugar plataforma:
-        platform: process.platform,
-        arch: process.arch,
-        openssl: process.versions?.openssl,
-      }),
-      { status: 500, headers: { 'content-type': 'application/json' } },
-    )
+  } catch (error) {
+    const { errorId } = await logApiError(req, error, 'AO VERIFICAR DB')
+    const err = error as { [key: string]: unknown }
+
+    const responseBody: Record<string, unknown> = {
+      ok: false,
+      errorId,
+      name: typeof err?.name === 'string' ? err.name : null,
+      message: typeof err?.message === 'string' ? err.message : String(error),
+      code: typeof err?.code === 'string' ? err.code : null,
+      platform: process.platform,
+      arch: process.arch,
+      openssl: process.versions?.openssl,
+    }
+
+    if (process.env.NODE_ENV !== 'production' && typeof err?.stack === 'string') {
+      responseBody.stack = err.stack
+    }
+
+    return new Response(JSON.stringify(responseBody), {
+      status: 500,
+      headers: { 'content-type': 'application/json' },
+    })
   }
 }

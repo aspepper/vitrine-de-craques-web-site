@@ -7,6 +7,13 @@ import { logApiError } from '@/lib/error'
 
 export async function GET(req: Request) {
   try {
+    if (!process.env.DATABASE_URL) {
+      return Response.json({
+        ok: false,
+        message: 'Variável de ambiente DATABASE_URL não configurada.',
+      })
+    }
+
     const { PrismaClient } = await import('@prisma/client')
     const prisma = new PrismaClient()
     const r = await prisma.$queryRaw`SELECT 1 AS ok`

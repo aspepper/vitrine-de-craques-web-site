@@ -1,10 +1,11 @@
 import { Client } from 'pg'
+import { logApiError } from '@/lib/error'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
     if (!process.env.DATABASE_URL) {
       return Response.json({ ok: false, error: 'NO_DATABASE_URL' })
@@ -20,6 +21,7 @@ export async function GET() {
     await client.end()
     return Response.json({ ok: true, rows: r.rows })
   } catch (e: any) {
+    await logApiError(req, e, 'AO VERIFICAR PG')
     return new Response(
       JSON.stringify({
         ok: false,

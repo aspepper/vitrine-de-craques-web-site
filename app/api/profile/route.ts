@@ -35,8 +35,11 @@ export async function POST(req: Request) {
     return NextResponse.json(profile)
   } catch (error) {
     if (error instanceof z.ZodError) {
-      await logApiError(req, error, 'AO CRIAR PERFIL')
-      return NextResponse.json({ error: error.flatten() }, { status: 400 })
+      const { errorId } = await logApiError(req, error, 'AO CRIAR PERFIL')
+      return NextResponse.json(
+        { error: error.flatten(), errorId },
+        { status: 400 },
+      )
     }
     return errorResponse(req, error, 'AO CRIAR PERFIL')
   }
@@ -61,8 +64,11 @@ export async function PATCH(req: Request) {
     return NextResponse.json(profile)
   } catch (error) {
     if (error instanceof z.ZodError) {
-      await logApiError(req, error, 'AO ATUALIZAR PERFIL')
-      return NextResponse.json({ error: error.flatten() }, { status: 400 })
+      const { errorId } = await logApiError(req, error, 'AO ATUALIZAR PERFIL')
+      return NextResponse.json(
+        { error: error.flatten(), errorId },
+        { status: 400 },
+      )
     }
     return errorResponse(req, error, 'AO ATUALIZAR PERFIL')
   }

@@ -39,8 +39,11 @@ export async function POST(req: Request) {
     )
   } catch (error) {
     if (error instanceof z.ZodError) {
-      await logApiError(req, error, 'AO REGISTRAR USUÁRIO')
-      return NextResponse.json({ error: error.flatten() }, { status: 400 })
+      const { errorId } = await logApiError(req, error, 'AO REGISTRAR USUÁRIO')
+      return NextResponse.json(
+        { error: error.flatten(), errorId },
+        { status: 400 },
+      )
     }
     return errorResponse(req, error, 'AO REGISTRAR USUÁRIO')
   }

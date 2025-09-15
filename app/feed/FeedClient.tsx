@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FeedVideoCard } from "@/components/FeedVideoCard";
 import { Button } from "@/components/ui/button";
 
-interface Video {
+export interface FeedVideo {
   id: string;
   title: string;
   videoUrl: string;
@@ -16,7 +16,7 @@ interface Video {
 
 const PAGE_SIZE = 6;
 
-export function FeedClient({ initialVideos }: { initialVideos: Video[] }) {
+export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
   const [videos, setVideos] = useState(initialVideos);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialVideos.length === PAGE_SIZE);
@@ -25,7 +25,7 @@ export function FeedClient({ initialVideos }: { initialVideos: Video[] }) {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 300));
     const res = await fetch(`/api/videos?skip=${videos.length}&take=${PAGE_SIZE}`);
-    const more: Video[] = await res.json();
+    const more: FeedVideo[] = await res.json();
     setVideos((v) => [...v, ...more]);
     setHasMore(more.length === PAGE_SIZE);
     setLoading(false);

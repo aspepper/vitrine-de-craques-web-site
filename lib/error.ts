@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server'
+import { telemetryClient } from './app-insights'
+
 
 export async function logApiError(
   request: Request,
@@ -16,6 +18,12 @@ export async function logApiError(
   )
   console.error('Erro completo:', error)
   console.error('===================================')
+  if (telemetryClient) {
+    telemetryClient.trackException({
+      exception: error instanceof Error ? error : new Error(String(error)),
+      properties: { context },
+    })
+  }
 }
 
 export async function errorResponse(

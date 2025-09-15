@@ -11,6 +11,11 @@ export default async function HomePage() {
   try {
     const session = await getServerSession(authOptions)
 
+    console.log('===== SESSÃO DO USUÁRIO =====')
+    console.log('Timestamp:', new Date().toISOString())
+    console.log('Sessão:', session)
+    console.log('==============================')
+
     return (
       <div className="relative min-h-screen">
         {/* BACKGROUND otimizado */}

@@ -1,4 +1,5 @@
 import ApiError from "@/components/ApiError";
+import { logError } from "@/lib/error";
 import { FeedClient, type FeedVideo } from "./FeedClient";
 
 export default async function FeedPage() {
@@ -14,7 +15,10 @@ export default async function FeedPage() {
         include: { user: true },
       });
     } catch (error) {
-      console.error("[feed] Falha ao carregar vídeos iniciais", error);
+      await logError(error, "AO CARREGAR FEED INICIAL", {
+        scope: "FeedPage",
+        databaseUrlConfigured: Boolean(process.env.DATABASE_URL),
+      });
       loadError = true;
     }
   } else {

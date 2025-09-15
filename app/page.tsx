@@ -3,20 +3,10 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
 import ApiError from '@/components/ApiError'
 
-export default async function HomePage() {
-  try {
-    const session = await getServerSession(authOptions)
-
-    console.log('===== SESSÃO DO USUÁRIO =====')
-    console.log('Timestamp:', new Date().toISOString())
-    console.log('Sessão:', session)
-    console.log('==============================')
-
-    return (
+export default function HomePage() {
+  return (
       <div className="relative min-h-screen">
         {/* BACKGROUND otimizado */}
         <div className="pointer-events-none absolute inset-0 -z-10 md:fixed">
@@ -24,7 +14,8 @@ export default async function HomePage() {
             src="/stadium.jpg" // ou stadium@1920.webp
             alt=""
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="100vw"
             className="object-cover object-center"
           />
@@ -212,11 +203,4 @@ export default async function HomePage() {
         <ApiError />
       </div>
     )
-  } catch (error) {
-    console.error('===== ERRO AO OBTER SESSÃO =====')
-    console.error('Timestamp:', new Date().toISOString())
-    console.error('Erro completo:', error)
-    console.error('===================================')
-    return <ApiError />
-  }
 }

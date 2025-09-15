@@ -8,13 +8,14 @@ export default function ApiError() {
   useEffect(() => {
     fetch('/api/db-check')
       .then(async (resp) => {
-        if (!resp.ok) {
-          try {
-            const err = await resp.json()
-            setErro(err)
-          } catch (e) {
-            setErro({ message: 'Erro desconhecido', stack: e instanceof Error ? e.stack : String(e) })
+        try {
+          const payload = await resp.json()
+
+          if (!resp.ok || payload?.ok === false) {
+            setErro(payload)
           }
+        } catch (e) {
+          setErro({ message: 'Erro desconhecido', stack: e instanceof Error ? e.stack : String(e) })
         }
       })
       .catch((err) => {

@@ -3,8 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  // a linha baixo resolve o problema de deploy no azure.
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  binaryTargets = ["native", "darwin", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
 }
 
 datasource db {

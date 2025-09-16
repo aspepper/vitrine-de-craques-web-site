@@ -39,6 +39,14 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npx prisma migrate deploy
 
+      - name: Build web app (includes Prisma client)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          AUTH_TRUST_HOST: 'true'
+        run: npm run build
+
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics
         run: |
@@ -56,16 +64,11 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "" # Built app content directory - optional
+          skip_app_build: true
+          output_location: ".next" # diretório gerado pelo Next.js após npm run build
           ###### End of Repository/Build Configurations ######
           is_static_export: false
-        env:
-          ORYX_NODE_VERSION: 18.20.8
-          # (opcional) se algo tocar env no build:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-          AUTH_TRUST_HOST: 'true'
+        # (variáveis expostas ao tempo de execução já devem estar configuradas diretamente no Azure)
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

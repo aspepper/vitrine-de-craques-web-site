@@ -10,7 +10,7 @@
     "dev": "npm run generate && next dev",
     "build": "next build",
     "prestart": "npx prisma generate && next build",
-    "start": "next start",
+    "start": "npx prisma generate && next start",
     "lint": "next lint",
     "format": "prettier --write .",
     "test": "vitest",

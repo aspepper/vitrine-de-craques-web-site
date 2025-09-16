@@ -59,6 +59,13 @@ jobs:
           output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
           is_static_export: false
+        env:
+          ORYX_NODE_VERSION: 18.20.8
+          # (opcional) se algo tocar env no build:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          AUTH_TRUST_HOST: 'true'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

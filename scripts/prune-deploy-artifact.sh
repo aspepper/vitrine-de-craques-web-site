@@ -31,6 +31,7 @@ PRISMA_ENGINES="$TARGET_DIR/node_modules/@prisma/engines"
 if [ -d "$PRISMA_ENGINES" ]; then
   echo "Removing Prisma schema engines not required at runtime..."
   find "$PRISMA_ENGINES" -maxdepth 1 -type d -name 'schema-engine-*' -print -exec rm -rf {} +
+  find "$PRISMA_ENGINES" -maxdepth 1 -type f -name 'schema-engine-*' -print -delete
 fi
 
 PRISMA_CLIENT_BINARIES="$TARGET_DIR/node_modules/.prisma/client"

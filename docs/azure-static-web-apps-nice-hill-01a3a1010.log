@@ -1,1041 +1,1023 @@
-2025-09-17T16:35:50.1009474Z Current runner version: '2.328.0'
-2025-09-17T16:35:50.1044632Z ##[group]Runner Image Provisioner
-2025-09-17T16:35:50.1068143Z Hosted Compute Agent
-2025-09-17T16:35:50.1069356Z Version: 20250829.383
-2025-09-17T16:35:50.1070629Z Commit: 27cb235aab5b0e52e153a26cd86b4742e89dac5d
-2025-09-17T16:35:50.1071891Z Build Date: 2025-08-29T13:48:48Z
-2025-09-17T16:35:50.1072957Z ##[endgroup]
-2025-09-17T16:35:50.1073878Z ##[group]Operating System
-2025-09-17T16:35:50.1074933Z Ubuntu
-2025-09-17T16:35:50.1075767Z 24.04.3
-2025-09-17T16:35:50.1076575Z LTS
-2025-09-17T16:35:50.1077476Z ##[endgroup]
-2025-09-17T16:35:50.1078358Z ##[group]Runner Image
-2025-09-17T16:35:50.1079322Z Image: ubuntu-24.04
-2025-09-17T16:35:50.1080599Z Version: 20250907.24.1
-2025-09-17T16:35:50.1082428Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250907.24/images/ubuntu/Ubuntu2404-Readme.md
-2025-09-17T16:35:50.1085285Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250907.24
-2025-09-17T16:35:50.1087093Z ##[endgroup]
-2025-09-17T16:35:50.1089457Z ##[group]GITHUB_TOKEN Permissions
-2025-09-17T16:35:50.1092505Z Contents: read
-2025-09-17T16:35:50.1093602Z Metadata: read
-2025-09-17T16:35:50.1094575Z Packages: read
-2025-09-17T16:35:50.1095478Z ##[endgroup]
-2025-09-17T16:35:50.1123055Z Secret source: Actions
-2025-09-17T16:35:50.1124334Z Prepare workflow directory
-2025-09-17T16:35:50.1671319Z Prepare all required actions
-2025-09-17T16:35:50.1726499Z Getting action download info
-2025-09-17T16:35:50.5089067Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
-2025-09-17T16:35:50.6806769Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
-2025-09-17T16:35:50.7796239Z Download action repository 'Azure/static-web-apps-deploy@v1' (SHA:4d27395796ac319302594769cfe812bd207490b1)
-2025-09-17T16:35:51.2073402Z Complete job name: Build and Deploy Job
-2025-09-17T16:35:51.2544467Z ##[group]Build container for action use: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile'.
-2025-09-17T16:35:51.2600148Z ##[command]/usr/bin/docker build -t a9896e:9ac1933f9dd342419a85c16feb560bb9 -f "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile" "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1"
-2025-09-17T16:35:51.8357829Z #0 building with "default" instance using docker driver
-2025-09-17T16:35:51.8360046Z 
-2025-09-17T16:35:51.8361798Z #1 [internal] load build definition from Dockerfile
-2025-09-17T16:35:51.8364022Z #1 transferring dockerfile: 160B done
-2025-09-17T16:35:51.8365971Z #1 DONE 0.0s
-2025-09-17T16:35:51.8367044Z 
-2025-09-17T16:35:51.8368455Z #2 [internal] load metadata for mcr.microsoft.com/appsvc/staticappsclient:stable
-2025-09-17T16:35:51.8370667Z #2 DONE 0.1s
-2025-09-17T16:35:51.9540442Z 
-2025-09-17T16:35:51.9557521Z #3 [internal] load .dockerignore
-2025-09-17T16:35:51.9559260Z #3 transferring context: 2B done
-2025-09-17T16:35:51.9563960Z #3 DONE 0.0s
-2025-09-17T16:35:51.9564681Z 
-2025-09-17T16:35:51.9565331Z #4 [internal] load build context
-2025-09-17T16:35:51.9570122Z #4 transferring context: 107B done
-2025-09-17T16:35:51.9581947Z #4 DONE 0.0s
-2025-09-17T16:35:51.9582641Z 
-2025-09-17T16:35:51.9585818Z #5 [1/2] FROM mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:41473a2ebc45daa6e63c82a7f32a5680b0fe34dac49ab85dd6369c764b191308
-2025-09-17T16:35:51.9592590Z #5 resolve mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:41473a2ebc45daa6e63c82a7f32a5680b0fe34dac49ab85dd6369c764b191308 done
-2025-09-17T16:35:51.9613362Z #5 sha256:41473a2ebc45daa6e63c82a7f32a5680b0fe34dac49ab85dd6369c764b191308 2.71kB / 2.71kB done
-2025-09-17T16:35:51.9620168Z #5 sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 15.73MB / 55.09MB 0.1s
-2025-09-17T16:35:51.9635217Z #5 sha256:c4961ea170d16177c6dec81c5b9e721a02636907f90fc43917ad54d55ab89087 13.35kB / 13.35kB done
-2025-09-17T16:35:51.9642661Z #5 sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 9.08MB / 15.76MB 0.1s
-2025-09-17T16:35:51.9647993Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 6.53MB / 54.59MB 0.1s
-2025-09-17T16:35:52.0898977Z #5 sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 39.96MB / 55.09MB 0.2s
-2025-09-17T16:35:52.0947459Z #5 sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 15.76MB / 15.76MB 0.1s done
-2025-09-17T16:35:52.0958309Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 24.12MB / 54.59MB 0.2s
-2025-09-17T16:35:52.0967418Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 4.19MB / 196.99MB 0.2s
-2025-09-17T16:35:52.2671485Z #5 sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 55.09MB / 55.09MB 0.3s
-2025-09-17T16:35:52.2703047Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 40.89MB / 54.59MB 0.3s
-2025-09-17T16:35:52.2709332Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 20.97MB / 196.99MB 0.3s
-2025-09-17T16:35:52.3573422Z #5 sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 55.09MB / 55.09MB 0.3s done
-2025-09-17T16:35:52.3580800Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 54.59MB / 54.59MB 0.5s
-2025-09-17T16:35:52.3587032Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 47.19MB / 196.99MB 0.5s
-2025-09-17T16:35:52.3599860Z #5 extracting sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc
-2025-09-17T16:35:52.3612072Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 18.07MB / 80.86MB 0.5s
-2025-09-17T16:35:52.3619825Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.4s done
-2025-09-17T16:35:52.4991707Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 54.59MB / 54.59MB 0.5s done
-2025-09-17T16:35:52.5010107Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 59.77MB / 196.99MB 0.6s
-2025-09-17T16:35:52.5017831Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 31.46MB / 80.86MB 0.6s
-2025-09-17T16:35:52.5023332Z #5 sha256:7c32381cbc15887afa5092d985e48bd3ce82af22ca1c343be2fcb39d4caa2143 1.56MB / 1.56MB 0.6s done
-2025-09-17T16:35:52.6232906Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 73.33MB / 196.99MB 0.7s
-2025-09-17T16:35:52.6258044Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 48.36MB / 80.86MB 0.7s
-2025-09-17T16:35:52.6263025Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 6.38MB / 72.28MB 0.7s
-2025-09-17T16:35:52.7442628Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 89.53MB / 196.99MB 0.8s
-2025-09-17T16:35:52.7463472Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 63.96MB / 80.86MB 0.8s
-2025-09-17T16:35:52.7483578Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 18.87MB / 72.28MB 0.8s
-2025-09-17T16:35:52.8549228Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 111.15MB / 196.99MB 1.0s
-2025-09-17T16:35:52.8566238Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 80.86MB / 80.86MB 1.0s
-2025-09-17T16:35:52.8573631Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 53.31MB / 72.28MB 1.0s
-2025-09-17T16:35:52.9556813Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 128.97MB / 196.99MB 1.1s
-2025-09-17T16:35:52.9561671Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 80.86MB / 80.86MB 1.0s done
-2025-09-17T16:35:52.9566402Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 72.28MB / 72.28MB 1.1s
-2025-09-17T16:35:52.9591811Z #5 sha256:218a528d080a1bebdabe150b46ac3853b986c047c42f1f5b42c3544b7fdfe841 0B / 1.16MB 1.1s
-2025-09-17T16:35:52.9596476Z #5 sha256:095fb23ecbf649df312cb6981dd528233a1af3d4a040165bcc0c37590c9e62a4 115.53kB / 115.53kB 1.1s done
-2025-09-17T16:35:53.0554489Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 157.29MB / 196.99MB 1.2s
-2025-09-17T16:35:53.0586424Z #5 sha256:218a528d080a1bebdabe150b46ac3853b986c047c42f1f5b42c3544b7fdfe841 1.16MB / 1.16MB 1.2s
-2025-09-17T16:35:53.2215312Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 180.36MB / 196.99MB 1.3s
-2025-09-17T16:35:53.3563846Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 196.99MB / 196.99MB 1.5s
-2025-09-17T16:35:53.3568911Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 72.28MB / 72.28MB 1.4s done
-2025-09-17T16:35:53.3574024Z #5 sha256:218a528d080a1bebdabe150b46ac3853b986c047c42f1f5b42c3544b7fdfe841 1.16MB / 1.16MB 1.4s done
-2025-09-17T16:35:53.3578711Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 3.40MB / 34.82MB 1.5s
-2025-09-17T16:35:53.4589013Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 19.92MB / 34.82MB 1.6s
-2025-09-17T16:35:53.6136336Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 34.82MB / 34.82MB 1.7s
-2025-09-17T16:35:53.9539832Z #5 sha256:e8e496d4f914a3099ff9504db622ffe27eddc493f797c4705b0bddc6683bb9f8 0B / 643.40kB 2.1s
-2025-09-17T16:35:54.3539460Z #5 sha256:e8e496d4f914a3099ff9504db622ffe27eddc493f797c4705b0bddc6683bb9f8 643.40kB / 643.40kB 2.5s
-2025-09-17T16:35:54.5174485Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 196.99MB / 196.99MB 2.5s done
-2025-09-17T16:35:54.5176878Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 34.82MB / 34.82MB 2.5s done
-2025-09-17T16:35:54.5178358Z #5 sha256:e8e496d4f914a3099ff9504db622ffe27eddc493f797c4705b0bddc6683bb9f8 643.40kB / 643.40kB 2.5s done
-2025-09-17T16:35:54.5179797Z #5 sha256:4c6a44587e13e5c37d3f6d6f61aad47cb49baa4e5b6b11aa02e8c83a6b5b4d3d 168B / 168B 2.6s done
-2025-09-17T16:35:54.5186528Z #5 sha256:fc089199951098f589969385263430a7644c55e648f3691c2522efbcd5ff36d9 169B / 169B 2.6s done
-2025-09-17T16:35:55.4566803Z #5 extracting sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 3.2s done
-2025-09-17T16:35:55.5889062Z #5 extracting sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 0.1s
-2025-09-17T16:35:55.8968582Z #5 extracting sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 0.4s done
-2025-09-17T16:35:56.5792753Z #5 extracting sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048
-2025-09-17T16:35:58.7592604Z #5 extracting sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 2.0s done
-2025-09-17T16:35:59.2607321Z #5 extracting sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e
-2025-09-17T16:36:04.3959602Z #5 extracting sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 5.1s
-2025-09-17T16:36:04.5289584Z #5 extracting sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 5.3s done
-2025-09-17T16:36:07.0368339Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
-2025-09-17T16:36:07.1789781Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
-2025-09-17T16:36:07.1791113Z #5 extracting sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 0.1s
-2025-09-17T16:36:09.8667305Z #5 extracting sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 2.6s done
-2025-09-17T16:36:10.5868427Z #5 extracting sha256:7c32381cbc15887afa5092d985e48bd3ce82af22ca1c343be2fcb39d4caa2143
-2025-09-17T16:36:10.8470176Z #5 extracting sha256:7c32381cbc15887afa5092d985e48bd3ce82af22ca1c343be2fcb39d4caa2143 0.1s done
-2025-09-17T16:36:10.8475365Z #5 extracting sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 0.1s
-2025-09-17T16:36:11.9977650Z #5 extracting sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 1.1s done
-2025-09-17T16:36:12.5462506Z #5 extracting sha256:095fb23ecbf649df312cb6981dd528233a1af3d4a040165bcc0c37590c9e62a4
-2025-09-17T16:36:12.6555377Z #5 extracting sha256:095fb23ecbf649df312cb6981dd528233a1af3d4a040165bcc0c37590c9e62a4 done
-2025-09-17T16:36:12.6556524Z #5 extracting sha256:218a528d080a1bebdabe150b46ac3853b986c047c42f1f5b42c3544b7fdfe841 0.1s done
-2025-09-17T16:36:12.6557681Z #5 extracting sha256:e8e496d4f914a3099ff9504db622ffe27eddc493f797c4705b0bddc6683bb9f8
-2025-09-17T16:36:12.8211857Z #5 extracting sha256:e8e496d4f914a3099ff9504db622ffe27eddc493f797c4705b0bddc6683bb9f8 0.0s done
-2025-09-17T16:36:12.8221335Z #5 extracting sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 0.1s
-2025-09-17T16:36:13.3966982Z #5 extracting sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 0.5s done
-2025-09-17T16:36:13.4022524Z #5 extracting sha256:4c6a44587e13e5c37d3f6d6f61aad47cb49baa4e5b6b11aa02e8c83a6b5b4d3d
-2025-09-17T16:36:13.5051899Z #5 extracting sha256:4c6a44587e13e5c37d3f6d6f61aad47cb49baa4e5b6b11aa02e8c83a6b5b4d3d done
-2025-09-17T16:36:13.5067803Z #5 extracting sha256:fc089199951098f589969385263430a7644c55e648f3691c2522efbcd5ff36d9 done
-2025-09-17T16:36:13.5069281Z #5 DONE 21.6s
-2025-09-17T16:36:13.5069854Z 
-2025-09-17T16:36:13.5070229Z #6 [2/2] COPY entrypoint.sh /entrypoint.sh
-2025-09-17T16:36:13.5072978Z #6 DONE 0.0s
-2025-09-17T16:36:13.6595472Z 
-2025-09-17T16:36:13.6597187Z #7 exporting to image
-2025-09-17T16:36:13.6598650Z #7 exporting layers
-2025-09-17T16:36:14.8108924Z #7 exporting layers 1.3s done
-2025-09-17T16:36:14.8111426Z #7 writing image sha256:98499cbe2d185e350a5b6eb75d3d594238dc66bc417a73f249e86bc056858adf
-2025-09-17T16:36:14.8289038Z #7 writing image sha256:98499cbe2d185e350a5b6eb75d3d594238dc66bc417a73f249e86bc056858adf done
-2025-09-17T16:36:14.8292849Z #7 naming to docker.io/library/a9896e:9ac1933f9dd342419a85c16feb560bb9 done
-2025-09-17T16:36:14.8294432Z #7 DONE 1.3s
-2025-09-17T16:36:14.8359397Z ##[endgroup]
-2025-09-17T16:36:14.8630757Z ##[group]Run actions/checkout@v3
-2025-09-17T16:36:14.8631386Z with:
-2025-09-17T16:36:14.8631587Z   submodules: true
-2025-09-17T16:36:14.8631802Z   lfs: false
-2025-09-17T16:36:14.8632038Z   repository: aspepper/vitrine-de-craques-web-site
-2025-09-17T16:36:14.8632547Z   token: ***
-2025-09-17T16:36:14.8632733Z   ssh-strict: true
-2025-09-17T16:36:14.8632940Z   persist-credentials: true
-2025-09-17T16:36:14.8633155Z   clean: true
-2025-09-17T16:36:14.8633353Z   sparse-checkout-cone-mode: true
-2025-09-17T16:36:14.8633594Z   fetch-depth: 1
-2025-09-17T16:36:14.8633783Z   fetch-tags: false
-2025-09-17T16:36:14.8633991Z   set-safe-directory: true
-2025-09-17T16:36:14.8634528Z ##[endgroup]
-2025-09-17T16:36:14.9804273Z Syncing repository: aspepper/vitrine-de-craques-web-site
-2025-09-17T16:36:14.9806198Z ##[group]Getting Git version info
-2025-09-17T16:36:14.9807063Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
-2025-09-17T16:36:14.9808313Z [command]/usr/bin/git version
-2025-09-17T16:36:14.9849940Z git version 2.51.0
-2025-09-17T16:36:14.9899653Z ##[endgroup]
-2025-09-17T16:36:14.9928457Z Temporarily overriding HOME='/home/runner/work/_temp/3e52eb9d-805b-4267-84f3-c721f0c5951a' before making global git config changes
-2025-09-17T16:36:14.9935677Z Adding repository directory to the temporary git global config as a safe directory
-2025-09-17T16:36:14.9951587Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
-2025-09-17T16:36:14.9982678Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
-2025-09-17T16:36:14.9989385Z ##[group]Initializing the repository
-2025-09-17T16:36:14.9996669Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
-2025-09-17T16:36:15.0114595Z hint: Using 'master' as the name for the initial branch. This default branch name
-2025-09-17T16:36:15.0116094Z hint: is subject to change. To configure the initial branch name to use in all
-2025-09-17T16:36:15.0121181Z hint: of your new repositories, which will suppress this warning, call:
-2025-09-17T16:36:15.0122410Z hint:
-2025-09-17T16:36:15.0123222Z hint: 	git config --global init.defaultBranch <name>
-2025-09-17T16:36:15.0137200Z hint:
-2025-09-17T16:36:15.0153085Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2025-09-17T16:36:15.0154013Z hint: 'development'. The just-created branch can be renamed via this command:
-2025-09-17T16:36:15.0154749Z hint:
-2025-09-17T16:36:15.0155106Z hint: 	git branch -m <name>
-2025-09-17T16:36:15.0155481Z hint:
-2025-09-17T16:36:15.0155980Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2025-09-17T16:36:15.0157109Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
-2025-09-17T16:36:15.0159057Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
-2025-09-17T16:36:15.0202191Z ##[endgroup]
-2025-09-17T16:36:15.0204208Z ##[group]Disabling automatic garbage collection
-2025-09-17T16:36:15.0205006Z [command]/usr/bin/git config --local gc.auto 0
-2025-09-17T16:36:15.0238637Z ##[endgroup]
-2025-09-17T16:36:15.0239584Z ##[group]Setting up auth
-2025-09-17T16:36:15.0243077Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2025-09-17T16:36:15.0292422Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2025-09-17T16:36:15.0692916Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2025-09-17T16:36:15.0743262Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2025-09-17T16:36:15.1032399Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2025-09-17T16:36:15.1102355Z ##[endgroup]
-2025-09-17T16:36:15.1105747Z ##[group]Fetching the repository
-2025-09-17T16:36:15.1112441Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +75bbdcfa298645f891767c3a55a4d041c2754303:refs/remotes/origin/main
-2025-09-17T16:36:15.5073659Z remote: Enumerating objects: 255, done.        
-2025-09-17T16:36:15.5097532Z remote: Counting objects:   0% (1/255)        
-2025-09-17T16:36:15.5099615Z remote: Counting objects:   1% (3/255)        
-2025-09-17T16:36:15.5120916Z remote: Counting objects:   2% (6/255)        
-2025-09-17T16:36:15.5121795Z remote: Counting objects:   3% (8/255)        
-2025-09-17T16:36:15.5122557Z remote: Counting objects:   4% (11/255)        
-2025-09-17T16:36:15.5123072Z remote: Counting objects:   5% (13/255)        
-2025-09-17T16:36:15.5123595Z remote: Counting objects:   6% (16/255)        
-2025-09-17T16:36:15.5124077Z remote: Counting objects:   7% (18/255)        
-2025-09-17T16:36:15.5124557Z remote: Counting objects:   8% (21/255)        
-2025-09-17T16:36:15.5125044Z remote: Counting objects:   9% (23/255)        
-2025-09-17T16:36:15.5125520Z remote: Counting objects:  10% (26/255)        
-2025-09-17T16:36:15.5126004Z remote: Counting objects:  11% (29/255)        
-2025-09-17T16:36:15.5126493Z remote: Counting objects:  12% (31/255)        
-2025-09-17T16:36:15.5127039Z remote: Counting objects:  13% (34/255)        
-2025-09-17T16:36:15.5127552Z remote: Counting objects:  14% (36/255)        
-2025-09-17T16:36:15.5128082Z remote: Counting objects:  15% (39/255)        
-2025-09-17T16:36:15.5128613Z remote: Counting objects:  16% (41/255)        
-2025-09-17T16:36:15.5129164Z remote: Counting objects:  17% (44/255)        
-2025-09-17T16:36:15.5129713Z remote: Counting objects:  18% (46/255)        
-2025-09-17T16:36:15.5130448Z remote: Counting objects:  19% (49/255)        
-2025-09-17T16:36:15.5151411Z remote: Counting objects:  20% (51/255)        
-2025-09-17T16:36:15.5151988Z remote: Counting objects:  21% (54/255)        
-2025-09-17T16:36:15.5152863Z remote: Counting objects:  22% (57/255)        
-2025-09-17T16:36:15.5153413Z remote: Counting objects:  23% (59/255)        
-2025-09-17T16:36:15.5153959Z remote: Counting objects:  24% (62/255)        
-2025-09-17T16:36:15.5154509Z remote: Counting objects:  25% (64/255)        
-2025-09-17T16:36:15.5155053Z remote: Counting objects:  26% (67/255)        
-2025-09-17T16:36:15.5155593Z remote: Counting objects:  27% (69/255)        
-2025-09-17T16:36:15.5156211Z remote: Counting objects:  28% (72/255)        
-2025-09-17T16:36:15.5156765Z remote: Counting objects:  29% (74/255)        
-2025-09-17T16:36:15.5157308Z remote: Counting objects:  30% (77/255)        
-2025-09-17T16:36:15.5157856Z remote: Counting objects:  31% (80/255)        
-2025-09-17T16:36:15.5158404Z remote: Counting objects:  32% (82/255)        
-2025-09-17T16:36:15.5158956Z remote: Counting objects:  33% (85/255)        
-2025-09-17T16:36:15.5159495Z remote: Counting objects:  34% (87/255)        
-2025-09-17T16:36:15.5160042Z remote: Counting objects:  35% (90/255)        
-2025-09-17T16:36:15.5201107Z remote: Counting objects:  36% (92/255)        
-2025-09-17T16:36:15.5201685Z remote: Counting objects:  37% (95/255)        
-2025-09-17T16:36:15.5202310Z remote: Counting objects:  38% (97/255)        
-2025-09-17T16:36:15.5202863Z remote: Counting objects:  39% (100/255)        
-2025-09-17T16:36:15.5203419Z remote: Counting objects:  40% (102/255)        
-2025-09-17T16:36:15.5203955Z remote: Counting objects:  41% (105/255)        
-2025-09-17T16:36:15.5204488Z remote: Counting objects:  42% (108/255)        
-2025-09-17T16:36:15.5205030Z remote: Counting objects:  43% (110/255)        
-2025-09-17T16:36:15.5205590Z remote: Counting objects:  44% (113/255)        
-2025-09-17T16:36:15.5206137Z remote: Counting objects:  45% (115/255)        
-2025-09-17T16:36:15.5206973Z remote: Counting objects:  46% (118/255)        
-2025-09-17T16:36:15.5207541Z remote: Counting objects:  47% (120/255)        
-2025-09-17T16:36:15.5208077Z remote: Counting objects:  48% (123/255)        
-2025-09-17T16:36:15.5208625Z remote: Counting objects:  49% (125/255)        
-2025-09-17T16:36:15.5209157Z remote: Counting objects:  50% (128/255)        
-2025-09-17T16:36:15.5209691Z remote: Counting objects:  51% (131/255)        
-2025-09-17T16:36:15.5210221Z remote: Counting objects:  52% (133/255)        
-2025-09-17T16:36:15.5210987Z remote: Counting objects:  53% (136/255)        
-2025-09-17T16:36:15.5211522Z remote: Counting objects:  54% (138/255)        
-2025-09-17T16:36:15.5212075Z remote: Counting objects:  55% (141/255)        
-2025-09-17T16:36:15.5212625Z remote: Counting objects:  56% (143/255)        
-2025-09-17T16:36:15.5213157Z remote: Counting objects:  57% (146/255)        
-2025-09-17T16:36:15.5213708Z remote: Counting objects:  58% (148/255)        
-2025-09-17T16:36:15.5214274Z remote: Counting objects:  59% (151/255)        
-2025-09-17T16:36:15.5214820Z remote: Counting objects:  60% (153/255)        
-2025-09-17T16:36:15.5215361Z remote: Counting objects:  61% (156/255)        
-2025-09-17T16:36:15.5215920Z remote: Counting objects:  62% (159/255)        
-2025-09-17T16:36:15.5216466Z remote: Counting objects:  63% (161/255)        
-2025-09-17T16:36:15.5217028Z remote: Counting objects:  64% (164/255)        
-2025-09-17T16:36:15.5217570Z remote: Counting objects:  65% (166/255)        
-2025-09-17T16:36:15.5218118Z remote: Counting objects:  66% (169/255)        
-2025-09-17T16:36:15.5218650Z remote: Counting objects:  67% (171/255)        
-2025-09-17T16:36:15.5310721Z remote: Counting objects:  68% (174/255)        
-2025-09-17T16:36:15.5311393Z remote: Counting objects:  69% (176/255)        
-2025-09-17T16:36:15.5311913Z remote: Counting objects:  70% (179/255)        
-2025-09-17T16:36:15.5312416Z remote: Counting objects:  71% (182/255)        
-2025-09-17T16:36:15.5312928Z remote: Counting objects:  72% (184/255)        
-2025-09-17T16:36:15.5313416Z remote: Counting objects:  73% (187/255)        
-2025-09-17T16:36:15.5313908Z remote: Counting objects:  74% (189/255)        
-2025-09-17T16:36:15.5314742Z remote: Counting objects:  75% (192/255)        
-2025-09-17T16:36:15.5315238Z remote: Counting objects:  76% (194/255)        
-2025-09-17T16:36:15.5315755Z remote: Counting objects:  77% (197/255)        
-2025-09-17T16:36:15.5316250Z remote: Counting objects:  78% (199/255)        
-2025-09-17T16:36:15.5316736Z remote: Counting objects:  79% (202/255)        
-2025-09-17T16:36:15.5317224Z remote: Counting objects:  80% (204/255)        
-2025-09-17T16:36:15.5317717Z remote: Counting objects:  81% (207/255)        
-2025-09-17T16:36:15.5318209Z remote: Counting objects:  82% (210/255)        
-2025-09-17T16:36:15.5318691Z remote: Counting objects:  83% (212/255)        
-2025-09-17T16:36:15.5319177Z remote: Counting objects:  84% (215/255)        
-2025-09-17T16:36:15.5319669Z remote: Counting objects:  85% (217/255)        
-2025-09-17T16:36:15.5320217Z remote: Counting objects:  86% (220/255)        
-2025-09-17T16:36:15.5320868Z remote: Counting objects:  87% (222/255)        
-2025-09-17T16:36:15.5321370Z remote: Counting objects:  88% (225/255)        
-2025-09-17T16:36:15.5321863Z remote: Counting objects:  89% (227/255)        
-2025-09-17T16:36:15.5322355Z remote: Counting objects:  90% (230/255)        
-2025-09-17T16:36:15.5322845Z remote: Counting objects:  91% (233/255)        
-2025-09-17T16:36:15.5323325Z remote: Counting objects:  92% (235/255)        
-2025-09-17T16:36:15.5323811Z remote: Counting objects:  93% (238/255)        
-2025-09-17T16:36:15.5324302Z remote: Counting objects:  94% (240/255)        
-2025-09-17T16:36:15.5324790Z remote: Counting objects:  95% (243/255)        
-2025-09-17T16:36:15.5325273Z remote: Counting objects:  96% (245/255)        
-2025-09-17T16:36:15.5325765Z remote: Counting objects:  97% (248/255)        
-2025-09-17T16:36:15.5326257Z remote: Counting objects:  98% (250/255)        
-2025-09-17T16:36:15.5326922Z remote: Counting objects:  99% (253/255)        
-2025-09-17T16:36:15.5327433Z remote: Counting objects: 100% (255/255)        
-2025-09-17T16:36:15.5327963Z remote: Counting objects: 100% (255/255), done.        
-2025-09-17T16:36:15.5328503Z remote: Compressing objects:   0% (1/178)        
-2025-09-17T16:36:15.5329026Z remote: Compressing objects:   1% (2/178)        
-2025-09-17T16:36:15.5329533Z remote: Compressing objects:   2% (4/178)        
-2025-09-17T16:36:15.5330037Z remote: Compressing objects:   3% (6/178)        
-2025-09-17T16:36:15.5330760Z remote: Compressing objects:   4% (8/178)        
-2025-09-17T16:36:15.5331271Z remote: Compressing objects:   5% (9/178)        
-2025-09-17T16:36:15.5331775Z remote: Compressing objects:   6% (11/178)        
-2025-09-17T16:36:15.5332287Z remote: Compressing objects:   7% (13/178)        
-2025-09-17T16:36:15.5332800Z remote: Compressing objects:   8% (15/178)        
-2025-09-17T16:36:15.5333316Z remote: Compressing objects:   9% (17/178)        
-2025-09-17T16:36:15.5333834Z remote: Compressing objects:  10% (18/178)        
-2025-09-17T16:36:15.5334337Z remote: Compressing objects:  11% (20/178)        
-2025-09-17T16:36:15.5334991Z remote: Compressing objects:  12% (22/178)        
-2025-09-17T16:36:15.5335498Z remote: Compressing objects:  13% (24/178)        
-2025-09-17T16:36:15.5336000Z remote: Compressing objects:  14% (25/178)        
-2025-09-17T16:36:15.5336506Z remote: Compressing objects:  15% (27/178)        
-2025-09-17T16:36:15.5337009Z remote: Compressing objects:  16% (29/178)        
-2025-09-17T16:36:15.5337519Z remote: Compressing objects:  17% (31/178)        
-2025-09-17T16:36:15.5338022Z remote: Compressing objects:  18% (33/178)        
-2025-09-17T16:36:15.5338533Z remote: Compressing objects:  19% (34/178)        
-2025-09-17T16:36:15.5339046Z remote: Compressing objects:  20% (36/178)        
-2025-09-17T16:36:15.5339558Z remote: Compressing objects:  21% (38/178)        
-2025-09-17T16:36:15.5340071Z remote: Compressing objects:  22% (40/178)        
-2025-09-17T16:36:15.5341513Z remote: Compressing objects:  23% (41/178)        
-2025-09-17T16:36:15.5342038Z remote: Compressing objects:  24% (43/178)        
-2025-09-17T16:36:15.5342740Z remote: Compressing objects:  25% (45/178)        
-2025-09-17T16:36:15.5343257Z remote: Compressing objects:  26% (47/178)        
-2025-09-17T16:36:15.5343763Z remote: Compressing objects:  27% (49/178)        
-2025-09-17T16:36:15.5344270Z remote: Compressing objects:  28% (50/178)        
-2025-09-17T16:36:15.5344785Z remote: Compressing objects:  29% (52/178)        
-2025-09-17T16:36:15.5345292Z remote: Compressing objects:  30% (54/178)        
-2025-09-17T16:36:15.5346289Z remote: Compressing objects:  31% (56/178)        
-2025-09-17T16:36:15.5346805Z remote: Compressing objects:  32% (57/178)        
-2025-09-17T16:36:15.5347302Z remote: Compressing objects:  33% (59/178)        
-2025-09-17T16:36:15.5347807Z remote: Compressing objects:  34% (61/178)        
-2025-09-17T16:36:15.5348315Z remote: Compressing objects:  35% (63/178)        
-2025-09-17T16:36:15.5348820Z remote: Compressing objects:  36% (65/178)        
-2025-09-17T16:36:15.5349332Z remote: Compressing objects:  37% (66/178)        
-2025-09-17T16:36:15.5349843Z remote: Compressing objects:  38% (68/178)        
-2025-09-17T16:36:15.5350518Z remote: Compressing objects:  39% (70/178)        
-2025-09-17T16:36:15.5351036Z remote: Compressing objects:  40% (72/178)        
-2025-09-17T16:36:15.5351546Z remote: Compressing objects:  41% (73/178)        
-2025-09-17T16:36:15.5352047Z remote: Compressing objects:  42% (75/178)        
-2025-09-17T16:36:15.5356483Z remote: Compressing objects:  43% (77/178)        
-2025-09-17T16:36:15.5426123Z remote: Compressing objects:  44% (79/178)        
-2025-09-17T16:36:15.5458092Z remote: Compressing objects:  45% (81/178)        
-2025-09-17T16:36:15.5495889Z remote: Compressing objects:  46% (82/178)        
-2025-09-17T16:36:15.5581343Z remote: Compressing objects:  47% (84/178)        
-2025-09-17T16:36:15.5702484Z remote: Compressing objects:  48% (86/178)        
-2025-09-17T16:36:15.5729472Z remote: Compressing objects:  49% (88/178)        
-2025-09-17T16:36:15.5885885Z remote: Compressing objects:  50% (89/178)        
-2025-09-17T16:36:15.6103446Z remote: Compressing objects:  51% (91/178)        
-2025-09-17T16:36:15.6160637Z remote: Compressing objects:  52% (93/178)        
-2025-09-17T16:36:15.6233003Z remote: Compressing objects:  53% (95/178)        
-2025-09-17T16:36:15.6269585Z remote: Compressing objects:  54% (97/178)        
-2025-09-17T16:36:15.6343552Z remote: Compressing objects:  55% (98/178)        
-2025-09-17T16:36:15.6419114Z remote: Compressing objects:  56% (100/178)        
-2025-09-17T16:36:15.6419716Z remote: Compressing objects:  57% (102/178)        
-2025-09-17T16:36:15.8292949Z remote: Compressing objects:  58% (104/178)        
-2025-09-17T16:36:15.8296449Z remote: Compressing objects:  59% (106/178)        
-2025-09-17T16:36:15.8297316Z remote: Compressing objects:  60% (107/178)        
-2025-09-17T16:36:15.8298092Z remote: Compressing objects:  61% (109/178)        
-2025-09-17T16:36:15.8298686Z remote: Compressing objects:  62% (111/178)        
-2025-09-17T16:36:15.8299268Z remote: Compressing objects:  63% (113/178)        
-2025-09-17T16:36:15.8299788Z remote: Compressing objects:  64% (114/178)        
-2025-09-17T16:36:15.8300151Z remote: Compressing objects:  65% (116/178)        
-2025-09-17T16:36:15.8300793Z remote: Compressing objects:  66% (118/178)        
-2025-09-17T16:36:15.8301164Z remote: Compressing objects:  67% (120/178)        
-2025-09-17T16:36:15.8301490Z remote: Compressing objects:  68% (122/178)        
-2025-09-17T16:36:15.8301809Z remote: Compressing objects:  69% (123/178)        
-2025-09-17T16:36:15.8302121Z remote: Compressing objects:  70% (125/178)        
-2025-09-17T16:36:15.8302437Z remote: Compressing objects:  71% (127/178)        
-2025-09-17T16:36:15.8302752Z remote: Compressing objects:  72% (129/178)        
-2025-09-17T16:36:15.8303076Z remote: Compressing objects:  73% (130/178)        
-2025-09-17T16:36:15.8303405Z remote: Compressing objects:  74% (132/178)        
-2025-09-17T16:36:15.8465618Z remote: Compressing objects:  75% (134/178)        
-2025-09-17T16:36:15.8472254Z remote: Compressing objects:  76% (136/178)        
-2025-09-17T16:36:15.8476675Z remote: Compressing objects:  77% (138/178)        
-2025-09-17T16:36:15.8477401Z remote: Compressing objects:  78% (139/178)        
-2025-09-17T16:36:15.8477851Z remote: Compressing objects:  79% (141/178)        
-2025-09-17T16:36:15.8478304Z remote: Compressing objects:  80% (143/178)        
-2025-09-17T16:36:15.8478822Z remote: Compressing objects:  81% (145/178)        
-2025-09-17T16:36:15.8479337Z remote: Compressing objects:  82% (146/178)        
-2025-09-17T16:36:15.8480161Z remote: Compressing objects:  83% (148/178)        
-2025-09-17T16:36:15.8487588Z remote: Compressing objects:  84% (150/178)        
-2025-09-17T16:36:15.8490140Z remote: Compressing objects:  85% (152/178)        
-2025-09-17T16:36:15.8490920Z remote: Compressing objects:  86% (154/178)        
-2025-09-17T16:36:15.8491465Z remote: Compressing objects:  87% (155/178)        
-2025-09-17T16:36:15.8492014Z remote: Compressing objects:  88% (157/178)        
-2025-09-17T16:36:15.8492505Z remote: Compressing objects:  89% (159/178)        
-2025-09-17T16:36:15.8492977Z remote: Compressing objects:  90% (161/178)        
-2025-09-17T16:36:15.8493500Z remote: Compressing objects:  91% (162/178)        
-2025-09-17T16:36:15.8494010Z remote: Compressing objects:  92% (164/178)        
-2025-09-17T16:36:15.8494537Z remote: Compressing objects:  93% (166/178)        
-2025-09-17T16:36:15.8495068Z remote: Compressing objects:  94% (168/178)        
-2025-09-17T16:36:15.8495584Z remote: Compressing objects:  95% (170/178)        
-2025-09-17T16:36:15.8496109Z remote: Compressing objects:  96% (171/178)        
-2025-09-17T16:36:15.8496626Z remote: Compressing objects:  97% (173/178)        
-2025-09-17T16:36:15.8497381Z remote: Compressing objects:  98% (175/178)        
-2025-09-17T16:36:15.8497963Z remote: Compressing objects:  99% (177/178)        
-2025-09-17T16:36:15.8498502Z remote: Compressing objects: 100% (178/178)        
-2025-09-17T16:36:15.8499105Z remote: Compressing objects: 100% (178/178), done.        
-2025-09-17T16:36:15.8744839Z Receiving objects:   0% (1/255)
-2025-09-17T16:36:15.8745328Z Receiving objects:   1% (3/255)
-2025-09-17T16:36:15.8745764Z Receiving objects:   2% (6/255)
-2025-09-17T16:36:15.8746193Z Receiving objects:   3% (8/255)
-2025-09-17T16:36:15.8746615Z Receiving objects:   4% (11/255)
-2025-09-17T16:36:15.8747046Z Receiving objects:   5% (13/255)
-2025-09-17T16:36:15.8747461Z Receiving objects:   6% (16/255)
-2025-09-17T16:36:15.8747892Z Receiving objects:   7% (18/255)
-2025-09-17T16:36:15.8748328Z Receiving objects:   8% (21/255)
-2025-09-17T16:36:15.8748758Z Receiving objects:   9% (23/255)
-2025-09-17T16:36:15.8749167Z Receiving objects:  10% (26/255)
-2025-09-17T16:36:15.8749577Z Receiving objects:  11% (29/255)
-2025-09-17T16:36:15.8750015Z Receiving objects:  12% (31/255)
-2025-09-17T16:36:15.8750662Z Receiving objects:  13% (34/255)
-2025-09-17T16:36:15.8751085Z Receiving objects:  14% (36/255)
-2025-09-17T16:36:15.8751516Z Receiving objects:  15% (39/255)
-2025-09-17T16:36:15.8751940Z Receiving objects:  16% (41/255)
-2025-09-17T16:36:15.8752352Z Receiving objects:  17% (44/255)
-2025-09-17T16:36:15.8752774Z Receiving objects:  18% (46/255)
-2025-09-17T16:36:15.8753203Z Receiving objects:  19% (49/255)
-2025-09-17T16:36:15.8753615Z Receiving objects:  20% (51/255)
-2025-09-17T16:36:15.8754046Z Receiving objects:  21% (54/255)
-2025-09-17T16:36:15.8754478Z Receiving objects:  22% (57/255)
-2025-09-17T16:36:15.8754895Z Receiving objects:  23% (59/255)
-2025-09-17T16:36:15.8755342Z Receiving objects:  24% (62/255)
-2025-09-17T16:36:15.8755790Z Receiving objects:  25% (64/255)
-2025-09-17T16:36:15.8756239Z Receiving objects:  26% (67/255)
-2025-09-17T16:36:15.8756686Z Receiving objects:  27% (69/255)
-2025-09-17T16:36:15.8757144Z Receiving objects:  28% (72/255)
-2025-09-17T16:36:15.8757583Z Receiving objects:  29% (74/255)
-2025-09-17T16:36:15.8763253Z Receiving objects:  30% (77/255)
-2025-09-17T16:36:15.8763920Z Receiving objects:  31% (80/255)
-2025-09-17T16:36:15.8764703Z Receiving objects:  32% (82/255)
-2025-09-17T16:36:15.8765185Z Receiving objects:  33% (85/255)
-2025-09-17T16:36:15.8771497Z Receiving objects:  34% (87/255)
-2025-09-17T16:36:15.8774332Z Receiving objects:  35% (90/255)
-2025-09-17T16:36:15.8774802Z Receiving objects:  36% (92/255)
-2025-09-17T16:36:15.8775253Z Receiving objects:  37% (95/255)
-2025-09-17T16:36:15.8775670Z Receiving objects:  38% (97/255)
-2025-09-17T16:36:15.8776069Z Receiving objects:  39% (100/255)
-2025-09-17T16:36:15.8776506Z Receiving objects:  40% (102/255)
-2025-09-17T16:36:15.8804693Z Receiving objects:  41% (105/255)
-2025-09-17T16:36:15.8810608Z Receiving objects:  42% (108/255)
-2025-09-17T16:36:15.8816441Z Receiving objects:  43% (110/255)
-2025-09-17T16:36:15.8837987Z Receiving objects:  44% (113/255)
-2025-09-17T16:36:15.8838468Z Receiving objects:  45% (115/255)
-2025-09-17T16:36:15.8838907Z Receiving objects:  46% (118/255)
-2025-09-17T16:36:15.8839348Z Receiving objects:  47% (120/255)
-2025-09-17T16:36:15.8839800Z Receiving objects:  48% (123/255)
-2025-09-17T16:36:15.8840235Z Receiving objects:  49% (125/255)
-2025-09-17T16:36:15.8841128Z Receiving objects:  50% (128/255)
-2025-09-17T16:36:15.8842992Z Receiving objects:  51% (131/255)
-2025-09-17T16:36:15.8843778Z Receiving objects:  52% (133/255)
-2025-09-17T16:36:15.8847044Z Receiving objects:  53% (136/255)
-2025-09-17T16:36:15.8847500Z Receiving objects:  54% (138/255)
-2025-09-17T16:36:15.8847941Z Receiving objects:  55% (141/255)
-2025-09-17T16:36:15.8848378Z Receiving objects:  56% (143/255)
-2025-09-17T16:36:15.8990183Z Receiving objects:  57% (146/255)
-2025-09-17T16:36:15.9487244Z Receiving objects:  58% (148/255)
-2025-09-17T16:36:15.9531940Z Receiving objects:  59% (151/255)
-2025-09-17T16:36:15.9542773Z Receiving objects:  60% (153/255)
-2025-09-17T16:36:15.9552972Z Receiving objects:  61% (156/255)
-2025-09-17T16:36:15.9565196Z Receiving objects:  62% (159/255)
-2025-09-17T16:36:15.9586403Z Receiving objects:  63% (161/255)
-2025-09-17T16:36:15.9599920Z Receiving objects:  64% (164/255)
-2025-09-17T16:36:15.9601937Z Receiving objects:  65% (166/255)
-2025-09-17T16:36:15.9632880Z Receiving objects:  66% (169/255)
-2025-09-17T16:36:15.9633689Z Receiving objects:  67% (171/255)
-2025-09-17T16:36:15.9634826Z Receiving objects:  68% (174/255)
-2025-09-17T16:36:15.9646386Z Receiving objects:  69% (176/255)
-2025-09-17T16:36:15.9655120Z Receiving objects:  70% (179/255)
-2025-09-17T16:36:15.9659784Z Receiving objects:  71% (182/255)
-2025-09-17T16:36:15.9702828Z Receiving objects:  72% (184/255)
-2025-09-17T16:36:15.9703841Z Receiving objects:  73% (187/255)
-2025-09-17T16:36:16.1019002Z Receiving objects:  74% (189/255)
-2025-09-17T16:36:16.1021714Z Receiving objects:  75% (192/255)
-2025-09-17T16:36:16.1032792Z Receiving objects:  76% (194/255)
-2025-09-17T16:36:16.1033823Z Receiving objects:  77% (197/255)
-2025-09-17T16:36:16.1035192Z Receiving objects:  78% (199/255)
-2025-09-17T16:36:16.1035637Z Receiving objects:  79% (202/255)
-2025-09-17T16:36:16.1036059Z Receiving objects:  80% (204/255)
-2025-09-17T16:36:16.1036464Z Receiving objects:  81% (207/255)
-2025-09-17T16:36:16.1082980Z Receiving objects:  82% (210/255)
-2025-09-17T16:36:16.1109934Z Receiving objects:  83% (212/255)
-2025-09-17T16:36:16.1110627Z Receiving objects:  84% (215/255)
-2025-09-17T16:36:16.1111053Z Receiving objects:  85% (217/255)
-2025-09-17T16:36:16.1111455Z Receiving objects:  86% (220/255)
-2025-09-17T16:36:16.1111849Z Receiving objects:  87% (222/255)
-2025-09-17T16:36:16.1112252Z Receiving objects:  88% (225/255)
-2025-09-17T16:36:16.1112664Z Receiving objects:  89% (227/255)
-2025-09-17T16:36:16.1113063Z Receiving objects:  90% (230/255)
-2025-09-17T16:36:16.1113463Z Receiving objects:  91% (233/255)
-2025-09-17T16:36:16.1113857Z Receiving objects:  92% (235/255)
-2025-09-17T16:36:16.1485974Z Receiving objects:  93% (238/255)
-2025-09-17T16:36:16.1489104Z remote: Total 255 (delta 60), reused 181 (delta 32), pack-reused 0 (from 0)        
-2025-09-17T16:36:16.1494144Z Receiving objects:  94% (240/255)
-2025-09-17T16:36:16.1498204Z Receiving objects:  95% (243/255)
-2025-09-17T16:36:16.1498652Z Receiving objects:  96% (245/255)
-2025-09-17T16:36:16.1499069Z Receiving objects:  97% (248/255)
-2025-09-17T16:36:16.1499477Z Receiving objects:  98% (250/255)
-2025-09-17T16:36:16.1499871Z Receiving objects:  99% (253/255)
-2025-09-17T16:36:16.1500504Z Receiving objects: 100% (255/255)
-2025-09-17T16:36:16.1501062Z Receiving objects: 100% (255/255), 3.50 MiB | 11.72 MiB/s, done.
-2025-09-17T16:36:16.1508542Z Resolving deltas:   0% (0/60)
-2025-09-17T16:36:16.1513460Z Resolving deltas:   1% (1/60)
-2025-09-17T16:36:16.1542075Z Resolving deltas:   3% (2/60)
-2025-09-17T16:36:16.1542782Z Resolving deltas:   5% (3/60)
-2025-09-17T16:36:16.1543490Z Resolving deltas:   6% (4/60)
-2025-09-17T16:36:16.1544191Z Resolving deltas:   8% (5/60)
-2025-09-17T16:36:16.1544816Z Resolving deltas:  10% (6/60)
-2025-09-17T16:36:16.1545396Z Resolving deltas:  11% (7/60)
-2025-09-17T16:36:16.1545981Z Resolving deltas:  13% (8/60)
-2025-09-17T16:36:16.1546601Z Resolving deltas:  15% (9/60)
-2025-09-17T16:36:16.1547184Z Resolving deltas:  16% (10/60)
-2025-09-17T16:36:16.1547772Z Resolving deltas:  18% (11/60)
-2025-09-17T16:36:16.1548344Z Resolving deltas:  20% (12/60)
-2025-09-17T16:36:16.1548922Z Resolving deltas:  21% (13/60)
-2025-09-17T16:36:16.1549498Z Resolving deltas:  23% (14/60)
-2025-09-17T16:36:16.1550083Z Resolving deltas:  25% (15/60)
-2025-09-17T16:36:16.1551067Z Resolving deltas:  26% (16/60)
-2025-09-17T16:36:16.1551740Z Resolving deltas:  28% (17/60)
-2025-09-17T16:36:16.1552336Z Resolving deltas:  30% (18/60)
-2025-09-17T16:36:16.1553016Z Resolving deltas:  31% (19/60)
-2025-09-17T16:36:16.1553562Z Resolving deltas:  33% (20/60)
-2025-09-17T16:36:16.1554081Z Resolving deltas:  35% (21/60)
-2025-09-17T16:36:16.1554618Z Resolving deltas:  36% (22/60)
-2025-09-17T16:36:16.1555471Z Resolving deltas:  38% (23/60)
-2025-09-17T16:36:16.1556151Z Resolving deltas:  40% (24/60)
-2025-09-17T16:36:16.1556712Z Resolving deltas:  41% (25/60)
-2025-09-17T16:36:16.1557238Z Resolving deltas:  43% (26/60)
-2025-09-17T16:36:16.1557731Z Resolving deltas:  45% (27/60)
-2025-09-17T16:36:16.1558234Z Resolving deltas:  46% (28/60)
-2025-09-17T16:36:16.1558839Z Resolving deltas:  48% (29/60)
-2025-09-17T16:36:16.1562239Z Resolving deltas:  50% (30/60)
-2025-09-17T16:36:16.1581360Z Resolving deltas:  51% (31/60)
-2025-09-17T16:36:16.1602901Z Resolving deltas:  53% (32/60)
-2025-09-17T16:36:16.1633145Z Resolving deltas:  55% (33/60)
-2025-09-17T16:36:16.1643931Z Resolving deltas:  56% (34/60)
-2025-09-17T16:36:16.1652817Z Resolving deltas:  58% (35/60)
-2025-09-17T16:36:16.1666013Z Resolving deltas:  60% (36/60)
-2025-09-17T16:36:16.1677312Z Resolving deltas:  61% (37/60)
-2025-09-17T16:36:16.1696585Z Resolving deltas:  63% (38/60)
-2025-09-17T16:36:16.1708425Z Resolving deltas:  65% (39/60)
-2025-09-17T16:36:16.1728535Z Resolving deltas:  66% (40/60)
-2025-09-17T16:36:16.1736420Z Resolving deltas:  68% (41/60)
-2025-09-17T16:36:16.1745746Z Resolving deltas:  70% (42/60)
-2025-09-17T16:36:16.1756090Z Resolving deltas:  71% (43/60)
-2025-09-17T16:36:16.1763648Z Resolving deltas:  73% (44/60)
-2025-09-17T16:36:16.1772623Z Resolving deltas:  75% (45/60)
-2025-09-17T16:36:16.1779502Z Resolving deltas:  76% (46/60)
-2025-09-17T16:36:16.1790032Z Resolving deltas:  78% (47/60)
-2025-09-17T16:36:16.1796080Z Resolving deltas:  80% (48/60)
-2025-09-17T16:36:16.1806835Z Resolving deltas:  81% (49/60)
-2025-09-17T16:36:16.1815982Z Resolving deltas:  83% (50/60)
-2025-09-17T16:36:16.1824639Z Resolving deltas:  85% (51/60)
-2025-09-17T16:36:16.1833532Z Resolving deltas:  86% (52/60)
-2025-09-17T16:36:16.1841654Z Resolving deltas:  88% (53/60)
-2025-09-17T16:36:16.1850142Z Resolving deltas:  90% (54/60)
-2025-09-17T16:36:16.1858789Z Resolving deltas:  91% (55/60)
-2025-09-17T16:36:16.1868398Z Resolving deltas:  93% (56/60)
-2025-09-17T16:36:16.1876643Z Resolving deltas:  95% (57/60)
-2025-09-17T16:36:16.1885940Z Resolving deltas:  96% (58/60)
-2025-09-17T16:36:16.1894873Z Resolving deltas:  98% (59/60)
-2025-09-17T16:36:16.1897699Z Resolving deltas: 100% (60/60)
-2025-09-17T16:36:16.1898556Z Resolving deltas: 100% (60/60), done.
-2025-09-17T16:36:16.1985542Z From https://github.com/aspepper/vitrine-de-craques-web-site
-2025-09-17T16:36:16.1988457Z  * [new ref]         75bbdcfa298645f891767c3a55a4d041c2754303 -> origin/main
-2025-09-17T16:36:16.2024577Z ##[endgroup]
-2025-09-17T16:36:16.2025494Z ##[group]Determining the checkout info
-2025-09-17T16:36:16.2026868Z ##[endgroup]
-2025-09-17T16:36:16.2028946Z ##[group]Checking out the ref
-2025-09-17T16:36:16.2034101Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-2025-09-17T16:36:16.2805621Z Switched to a new branch 'main'
-2025-09-17T16:36:16.2812003Z branch 'main' set up to track 'origin/main'.
-2025-09-17T16:36:16.2823630Z ##[endgroup]
-2025-09-17T16:36:16.2824465Z ##[group]Setting up auth for fetching submodules
-2025-09-17T16:36:16.2829296Z [command]/usr/bin/git config --global http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2025-09-17T16:36:16.2869645Z [command]/usr/bin/git config --global --unset-all url.https://github.com/.insteadOf
-2025-09-17T16:36:16.2902716Z [command]/usr/bin/git config --global --add url.https://github.com/.insteadOf git@github.com:
-2025-09-17T16:36:16.2938798Z [command]/usr/bin/git config --global --add url.https://github.com/.insteadOf org-202530@github.com:
-2025-09-17T16:36:16.2975532Z ##[endgroup]
-2025-09-17T16:36:16.2976331Z ##[group]Fetching submodules
-2025-09-17T16:36:16.2977508Z [command]/usr/bin/git submodule sync
-2025-09-17T16:36:16.3211029Z [command]/usr/bin/git -c protocol.version=2 submodule update --init --force --depth=1
-2025-09-17T16:36:16.3448684Z [command]/usr/bin/git submodule foreach git config --local gc.auto 0
-2025-09-17T16:36:16.3682410Z ##[endgroup]
-2025-09-17T16:36:16.3683088Z ##[group]Persisting credentials for submodules
-2025-09-17T16:36:16.3688914Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'url\.https\:\/\/github\.com\/\.insteadOf' && git config --local --unset-all 'url.https://github.com/.insteadOf' || :"
-2025-09-17T16:36:16.3924805Z [command]/usr/bin/git submodule foreach sh -c "git config --local 'http.https://github.com/.extraheader' 'AUTHORIZATION: basic ***' && git config --local --show-origin --name-only --get-regexp remote.origin.url"
-2025-09-17T16:36:16.4159330Z [command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'git@github.com:'
-2025-09-17T16:36:16.4426124Z [command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'org-202530@github.com:'
-2025-09-17T16:36:16.4648521Z ##[endgroup]
-2025-09-17T16:36:16.4684297Z [command]/usr/bin/git log -1 --format='%H'
-2025-09-17T16:36:16.4719976Z '75bbdcfa298645f891767c3a55a4d041c2754303'
-2025-09-17T16:36:16.4932396Z ##[group]Run actions/setup-node@v4
-2025-09-17T16:36:16.4932835Z with:
-2025-09-17T16:36:16.4933120Z   node-version: 20
-2025-09-17T16:36:16.4933431Z   cache: npm
-2025-09-17T16:36:16.4933722Z   always-auth: false
-2025-09-17T16:36:16.4934084Z   check-latest: false
-2025-09-17T16:36:16.4934569Z   token: ***
-2025-09-17T16:36:16.4934869Z ##[endgroup]
-2025-09-17T16:36:16.6763810Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
-2025-09-17T16:36:16.6765259Z ##[group]Environment details
-2025-09-17T16:36:17.1558252Z node: v20.19.5
-2025-09-17T16:36:17.1562855Z npm: 10.8.2
-2025-09-17T16:36:17.1567068Z yarn: 1.22.22
-2025-09-17T16:36:17.1572856Z ##[endgroup]
-2025-09-17T16:36:17.1589646Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
-2025-09-17T16:36:17.2773052Z /home/runner/.npm
-2025-09-17T16:36:17.4715367Z Cache hit for: node-cache-Linux-x64-npm-a480f018b95e26accb5c034d99ae11f49bcfb5d030eeee9e1f94f59f2f59415f
-2025-09-17T16:36:18.6527018Z Received 67108864 of 226285692 (29.7%), 64.0 MBs/sec
-2025-09-17T16:36:19.6531705Z Received 155189248 of 226285692 (68.6%), 74.0 MBs/sec
-2025-09-17T16:36:20.2371426Z Received 226285692 of 226285692 (100.0%), 83.7 MBs/sec
-2025-09-17T16:36:20.2372158Z Cache Size: ~216 MB (226285692 B)
-2025-09-17T16:36:20.2510796Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a9f067b3-484b-4b92-9f3a-acbf5078ccbb/cache.tzst -P -C /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site --use-compress-program unzstd
-2025-09-17T16:36:20.7333451Z Cache restored successfully
-2025-09-17T16:36:20.7759712Z Cache restored from key: node-cache-Linux-x64-npm-a480f018b95e26accb5c034d99ae11f49bcfb5d030eeee9e1f94f59f2f59415f
-2025-09-17T16:36:20.7943979Z ##[group]Run npm ci
-2025-09-17T16:36:20.7944296Z [36;1mnpm ci[0m
-2025-09-17T16:36:20.8002677Z shell: /usr/bin/bash -e {0}
-2025-09-17T16:36:20.8002954Z ##[endgroup]
-2025-09-17T16:36:29.0651552Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-2025-09-17T16:36:29.2323387Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
-2025-09-17T16:36:29.2444817Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-2025-09-17T16:36:29.3629701Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
-2025-09-17T16:36:29.3655022Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-2025-09-17T16:36:31.9651593Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-2025-09-17T16:36:42.4094282Z 
-2025-09-17T16:36:42.4096404Z > vitrine-de-craques-web-site@0.1.0 postinstall
-2025-09-17T16:36:42.4097058Z > npx prisma generate
-2025-09-17T16:36:42.4097304Z 
-2025-09-17T16:36:43.9314371Z Prisma schema loaded from prisma/schema.prisma
-2025-09-17T16:36:44.5802940Z 
-2025-09-17T16:36:44.5808128Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 251ms
-2025-09-17T16:36:44.5811011Z 
-2025-09-17T16:36:44.5813470Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-09-17T16:36:44.5821655Z 
-2025-09-17T16:36:44.5822459Z Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
-2025-09-17T16:36:44.5823086Z 
-2025-09-17T16:36:44.6088798Z 
-2025-09-17T16:36:44.6089883Z > vitrine-de-craques-web-site@0.1.0 prepare
-2025-09-17T16:36:44.6090617Z > husky install
-2025-09-17T16:36:44.6090833Z 
-2025-09-17T16:36:44.6644662Z husky - Git hooks installed
-2025-09-17T16:36:44.6836761Z 
-2025-09-17T16:36:44.6837663Z added 717 packages, and audited 718 packages in 24s
-2025-09-17T16:36:44.6838412Z 
-2025-09-17T16:36:44.6842467Z 190 packages are looking for funding
-2025-09-17T16:36:44.6843322Z   run `npm fund` for details
-2025-09-17T16:36:44.6844144Z 
-2025-09-17T16:36:44.6844828Z found 0 vulnerabilities
-2025-09-17T16:36:44.7732701Z ##[group]Run npx prisma migrate deploy
-2025-09-17T16:36:44.7733067Z [36;1mnpx prisma migrate deploy[0m
-2025-09-17T16:36:44.7782447Z shell: /usr/bin/bash -e {0}
-2025-09-17T16:36:44.7782710Z env:
-2025-09-17T16:36:44.7783719Z   DATABASE_URL: ***
-2025-09-17T16:36:44.7783954Z ##[endgroup]
-2025-09-17T16:36:46.3579740Z Prisma schema loaded from prisma/schema.prisma
-2025-09-17T16:36:46.3678892Z Datasource "db": PostgreSQL database "neondb", schema "public" at "ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech"
-2025-09-17T16:36:47.8104297Z 
-2025-09-17T16:36:47.8106394Z No migration found in prisma/migrations
-2025-09-17T16:36:47.8107063Z 
-2025-09-17T16:36:48.5967504Z 
-2025-09-17T16:36:48.5973861Z No pending migrations to apply.
-2025-09-17T16:36:48.6626262Z ##[group]Run npm run build
-2025-09-17T16:36:48.6626748Z [36;1mnpm run build[0m
-2025-09-17T16:36:48.6670028Z shell: /usr/bin/bash -e {0}
-2025-09-17T16:36:48.6670714Z env:
-2025-09-17T16:36:48.6672089Z   DATABASE_URL: ***
-2025-09-17T16:36:48.6672705Z   NEXTAUTH_URL: ***
-2025-09-17T16:36:48.6673291Z   NEXTAUTH_SECRET: ***
-2025-09-17T16:36:48.6673680Z   AUTH_TRUST_HOST: true
-2025-09-17T16:36:48.6674048Z ##[endgroup]
-2025-09-17T16:36:48.7925192Z 
-2025-09-17T16:36:48.7927920Z > vitrine-de-craques-web-site@0.1.0 build
-2025-09-17T16:36:48.7931999Z > npx prisma generate && next build
-2025-09-17T16:36:48.7932339Z 
-2025-09-17T16:36:50.3198884Z Prisma schema loaded from prisma/schema.prisma
-2025-09-17T16:36:50.9913465Z 
-2025-09-17T16:36:50.9914793Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 259ms
-2025-09-17T16:36:50.9915372Z 
-2025-09-17T16:36:50.9916000Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-09-17T16:36:50.9916509Z 
-2025-09-17T16:36:50.9917034Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
-2025-09-17T16:36:50.9917457Z 
-2025-09-17T16:36:51.5412397Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
-2025-09-17T16:36:51.5543843Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
-2025-09-17T16:36:51.5546319Z This information is used to shape Next.js' roadmap and prioritize features.
-2025-09-17T16:36:51.5548863Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-2025-09-17T16:36:51.5549952Z https://nextjs.org/telemetry
-2025-09-17T16:36:51.5550445Z 
-2025-09-17T16:36:51.6151178Z   ▲ Next.js 14.2.32
-2025-09-17T16:36:51.6170760Z 
-2025-09-17T16:36:51.6740930Z    Creating an optimized production build ...
-2025-09-17T16:37:09.1308100Z request to https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap failed, reason: 
-2025-09-17T16:37:09.1309431Z 
-2025-09-17T16:37:09.1309904Z Retrying 1/3...
-2025-09-17T16:37:09.1331542Z request to https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap failed, reason: 
-2025-09-17T16:37:09.1332930Z 
-2025-09-17T16:37:09.1333285Z Retrying 1/3...
-2025-09-17T16:37:09.7241207Z request to https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap failed, reason: 
-2025-09-17T16:37:09.7242368Z 
-2025-09-17T16:37:09.7242678Z Retrying 2/3...
-2025-09-17T16:37:09.7261056Z request to https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap failed, reason: 
-2025-09-17T16:37:09.7261742Z 
-2025-09-17T16:37:09.7264191Z Retrying 2/3...
-2025-09-17T16:37:14.5789212Z  ✓ Compiled successfully
-2025-09-17T16:37:14.5798299Z    Linting and checking validity of types ...
-2025-09-17T16:37:25.3265383Z    Collecting page data ...
-2025-09-17T16:37:27.5148770Z    Generating static pages (0/35) ...
-2025-09-17T16:37:28.0646244Z    Generating static pages (8/35) 
-2025-09-17T16:37:28.3891174Z    Generating static pages (17/35) 
-2025-09-17T16:37:29.0610445Z    Generating static pages (26/35) 
-2025-09-17T16:37:29.4865509Z  ✓ Generating static pages (35/35)
-2025-09-17T16:37:29.9589410Z    Finalizing page optimization ...
-2025-09-17T16:37:29.9590512Z    Collecting build traces ...
-2025-09-17T16:37:43.1645361Z 
-2025-09-17T16:37:43.1740484Z Route (app)                                 Size     First Load JS
-2025-09-17T16:37:43.1742218Z ┌ ƒ /                                       1.33 kB         102 kB
-2025-09-17T16:37:43.1743558Z ├ ƒ /_not-found                             873 B          88.1 kB
-2025-09-17T16:37:43.1745956Z ├ ƒ /agentes                                190 B           101 kB
-2025-09-17T16:37:43.1746926Z ├ ƒ /agentes/[id]                           189 B          92.5 kB
-2025-09-17T16:37:43.1747895Z ├ ƒ /api/agentes                            0 B                0 B
-2025-09-17T16:37:43.1750070Z ├ ƒ /api/agentes/[id]                       0 B                0 B
-2025-09-17T16:37:43.1751464Z ├ ƒ /api/atletas                            0 B                0 B
-2025-09-17T16:37:43.1752373Z ├ ƒ /api/atletas/[id]                       0 B                0 B
-2025-09-17T16:37:43.1754612Z ├ ƒ /api/auth/[...nextauth]                 0 B                0 B
-2025-09-17T16:37:43.1755596Z ├ ƒ /api/clubes                             0 B                0 B
-2025-09-17T16:37:43.1756485Z ├ ƒ /api/clubes/[slug]                      0 B                0 B
-2025-09-17T16:37:43.1757676Z ├ ƒ /api/confederacoes                      0 B                0 B
-2025-09-17T16:37:43.1758624Z ├ ƒ /api/confederacoes/[slug]               0 B                0 B
-2025-09-17T16:37:43.1759480Z ├ ƒ /api/db-check                           0 B                0 B
-2025-09-17T16:37:43.1760534Z ├ ƒ /api/env                                0 B                0 B
-2025-09-17T16:37:43.1761447Z ├ ƒ /api/games                              0 B                0 B
-2025-09-17T16:37:43.1762375Z ├ ƒ /api/games/[slug]                       0 B                0 B
-2025-09-17T16:37:43.1763302Z ├ ƒ /api/health                             0 B                0 B
-2025-09-17T16:37:43.1764202Z ├ ƒ /api/noticias                           0 B                0 B
-2025-09-17T16:37:43.1765155Z ├ ƒ /api/noticias/[slug]                    0 B                0 B
-2025-09-17T16:37:43.1766084Z ├ ƒ /api/pg-check                           0 B                0 B
-2025-09-17T16:37:43.1766970Z ├ ƒ /api/profile                            0 B                0 B
-2025-09-17T16:37:43.1767822Z ├ ƒ /api/register                           0 B                0 B
-2025-09-17T16:37:43.1768667Z ├ ƒ /api/videos                             0 B                0 B
-2025-09-17T16:37:43.1769473Z ├ ƒ /atletas                                190 B           101 kB
-2025-09-17T16:37:43.1774580Z ├ ƒ /atletas/[id]                           189 B          92.5 kB
-2025-09-17T16:37:43.1775545Z ├ ƒ /cadastro                               2.17 kB         128 kB
-2025-09-17T16:37:43.1776431Z ├ ƒ /cadastro/[slug]                        2.2 kB          119 kB
-2025-09-17T16:37:43.1777338Z ├ ƒ /cadastro/atleta-18                     2.82 kB         135 kB
-2025-09-17T16:37:43.1778213Z ├ ƒ /cadastro/clube                         2.78 kB         135 kB
-2025-09-17T16:37:43.1779152Z ├ ƒ /cadastro/de-agentes-licenciados        2.74 kB         135 kB
-2025-09-17T16:37:43.1780111Z ├ ƒ /cadastro/imprensa-jornalistablogueiro  2.94 kB         135 kB
-2025-09-17T16:37:43.1781308Z ├ ƒ /cadastro/responsavel                   3 kB            135 kB
-2025-09-17T16:37:43.1782234Z ├ ƒ /cadastro/responsavel/uploads           2.54 kB         134 kB
-2025-09-17T16:37:43.1783210Z ├ ƒ /cadastro/torcedor                      3.33 kB         144 kB
-2025-09-17T16:37:43.1784168Z ├ ƒ /clubes                                 303 B          96.2 kB
-2025-09-17T16:37:43.1785077Z ├ ƒ /clubes/[slug]                          189 B          92.5 kB
-2025-09-17T16:37:43.1786014Z ├ ƒ /confederacoes                          190 B           101 kB
-2025-09-17T16:37:43.1786958Z ├ ƒ /confederacoes/[slug]                   189 B          92.5 kB
-2025-09-17T16:37:43.1787762Z ├ ƒ /feed                                   3.03 kB         103 kB
-2025-09-17T16:37:43.1788535Z ├ ƒ /games                                  303 B          96.2 kB
-2025-09-17T16:37:43.1789289Z ├ ƒ /games/[slug]                           189 B          92.5 kB
-2025-09-17T16:37:43.1790131Z ├ ƒ /login                                  2.45 kB         143 kB
-2025-09-17T16:37:43.1791161Z ├ ƒ /noticias                               303 B          96.2 kB
-2025-09-17T16:37:43.1791944Z ├ ƒ /noticias/[slug]                        189 B          92.5 kB
-2025-09-17T16:37:43.1792712Z ├ ƒ /perfil                                 155 B          87.3 kB
-2025-09-17T16:37:43.1793397Z ├ ƒ /player/[id]                            155 B          87.3 kB
-2025-09-17T16:37:43.1794140Z ├ ƒ /privacidade                            155 B          87.3 kB
-2025-09-17T16:37:43.1795162Z ├ ƒ /registrar-escolha-perfil               303 B          96.2 kB
-2025-09-17T16:37:43.1796001Z ├ ƒ /sobre                                  155 B          87.3 kB
-2025-09-17T16:37:43.1796663Z ├ ƒ /torcida                                155 B          87.3 kB
-2025-09-17T16:37:43.1797404Z └ ƒ /upload                                 2.39 kB        97.3 kB
-2025-09-17T16:37:43.1797998Z + First Load JS shared by all               87.2 kB
-2025-09-17T16:37:43.1798609Z   ├ chunks/117-9e44d76a5ba26865.js          31.6 kB
-2025-09-17T16:37:43.1799433Z   ├ chunks/fd9d1056-8855781134d79d70.js     53.6 kB
-2025-09-17T16:37:43.1800083Z   └ other shared chunks (total)             1.95 kB
-2025-09-17T16:37:43.1800620Z 
-2025-09-17T16:37:43.1800629Z 
-2025-09-17T16:37:43.1800965Z ƒ Middleware                                48.1 kB
-2025-09-17T16:37:43.1801253Z 
-2025-09-17T16:37:43.1801536Z ƒ  (Dynamic)  server-rendered on demand
-2025-09-17T16:37:43.1801850Z 
-2025-09-17T16:37:43.2076249Z ##[group]Run rm -rf deploy
-2025-09-17T16:37:43.2076754Z [36;1mrm -rf deploy[0m
-2025-09-17T16:37:43.2077161Z [36;1mmkdir -p deploy[0m
-2025-09-17T16:37:43.2077592Z [36;1mcp -R .next/standalone/. deploy/[0m
-2025-09-17T16:37:43.2078078Z [36;1mmkdir -p deploy/.next/static[0m
-2025-09-17T16:37:43.2078594Z [36;1mcp -R .next/static/. deploy/.next/static[0m
-2025-09-17T16:37:43.2079142Z [36;1mcp package.json deploy/package.json[0m
-2025-09-17T16:37:43.2079664Z [36;1mcp -R prisma deploy/prisma[0m
-2025-09-17T16:37:43.2080143Z [36;1mif [ -d public ]; then[0m
-2025-09-17T16:37:43.2080970Z [36;1m  cp -R public deploy/public[0m
-2025-09-17T16:37:43.2081414Z [36;1mfi[0m
-2025-09-17T16:37:43.2081840Z [36;1m./scripts/prune-deploy-artifact.sh deploy[0m
-2025-09-17T16:37:43.2125569Z shell: /usr/bin/bash -e {0}
-2025-09-17T16:37:43.2126012Z ##[endgroup]
-2025-09-17T16:37:43.4970955Z Pruning unused Prisma runtime binaries...
-2025-09-17T16:37:43.4998608Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.wasm-base64.js
-2025-09-17T16:37:43.5004215Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.wasm-base64.mjs
-2025-09-17T16:37:43.5005324Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.js
-2025-09-17T16:37:43.5006310Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.mjs
-2025-09-17T16:37:43.5029817Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.wasm-base64.js
-2025-09-17T16:37:43.5031828Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.js
-2025-09-17T16:37:43.5032758Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.mjs
-2025-09-17T16:37:43.5033751Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.wasm-base64.mjs
-2025-09-17T16:37:43.5061036Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.wasm-base64.js
-2025-09-17T16:37:43.5062110Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.js
-2025-09-17T16:37:43.5063110Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.mjs
-2025-09-17T16:37:43.5064180Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.wasm-base64.mjs
-2025-09-17T16:37:43.5088819Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.js
-2025-09-17T16:37:43.5093577Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.wasm-base64.mjs
-2025-09-17T16:37:43.5094697Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.mjs
-2025-09-17T16:37:43.5095889Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.wasm-base64.js
-2025-09-17T16:37:43.5115050Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.wasm-base64.mjs
-2025-09-17T16:37:43.5116835Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.mjs
-2025-09-17T16:37:43.5118977Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.js
-2025-09-17T16:37:43.5120144Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.wasm-base64.js
-2025-09-17T16:37:43.5143509Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.wasm-base64.mjs
-2025-09-17T16:37:43.5144847Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.mjs
-2025-09-17T16:37:43.5146843Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.js
-2025-09-17T16:37:43.5147892Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.wasm-base64.js
-2025-09-17T16:37:43.5170194Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.wasm-base64.mjs
-2025-09-17T16:37:43.5172563Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.js
-2025-09-17T16:37:43.5173653Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.wasm-base64.js
-2025-09-17T16:37:43.5174757Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.mjs
-2025-09-17T16:37:43.5198252Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.mjs
-2025-09-17T16:37:43.5200631Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.wasm-base64.mjs
-2025-09-17T16:37:43.5201768Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.wasm-base64.js
-2025-09-17T16:37:43.5202753Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.js
-2025-09-17T16:37:43.5209298Z Removing Prisma schema engines not required at runtime...
-2025-09-17T16:37:43.5222694Z Cleaning up optional sharp binaries...
-2025-09-17T16:37:43.5278321Z Deleting dependency source maps...
-2025-09-17T16:37:43.5533642Z Pruning finished.
-2025-09-17T16:37:43.5573095Z ##[group]Run node -v
-2025-09-17T16:37:43.5573527Z [36;1mnode -v[0m
-2025-09-17T16:37:43.5573887Z [36;1mnpx prisma -v[0m
-2025-09-17T16:37:43.5616493Z shell: /usr/bin/bash -e {0}
-2025-09-17T16:37:43.5616923Z ##[endgroup]
-2025-09-17T16:37:43.5728430Z v20.19.5
-2025-09-17T16:37:45.5264268Z Prisma schema loaded from prisma/schema.prisma
-2025-09-17T16:37:45.5311123Z prisma                  : 6.16.2
-2025-09-17T16:37:45.5312616Z @prisma/client          : 6.16.2
-2025-09-17T16:37:45.5313555Z Computed binaryTarget   : debian-openssl-3.0.x
-2025-09-17T16:37:45.5315282Z Operating System        : linux
-2025-09-17T16:37:45.5315917Z Architecture            : x64
-2025-09-17T16:37:45.5316698Z Node.js                 : v20.19.5
-2025-09-17T16:37:45.5317499Z TypeScript              : 5.9.2
-2025-09-17T16:37:45.5318969Z Query Engine (Node-API) : libquery-engine 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/libquery_engine-debian-openssl-3.0.x.so.node)
-2025-09-17T16:37:45.5320842Z PSL                     : @prisma/prisma-schema-wasm 6.16.0-7.1c57fdcd7e44b29b9313256c76699e91c3ac3c43
-2025-09-17T16:37:45.5322489Z Schema Engine           : schema-engine-cli 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/schema-engine-debian-openssl-3.0.x)
-2025-09-17T16:37:45.5323865Z Default Engines Hash    : 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
-2025-09-17T16:37:45.5324514Z Studio                  : 0.511.0
-2025-09-17T16:37:45.5705420Z ##[warning]Unexpected input(s) 'PRE_BUILD_COMMAND', valid inputs are ['entryPoint', 'args', 'action', 'app_location', 'azure_static_web_apps_api_token', 'api_build_command', 'api_location', 'app_artifact_location', 'output_location', 'app_build_command', 'repo_token', 'routes_location', 'skip_app_build', 'config_file_location', 'skip_api_build', 'production_branch', 'deployment_environment', 'is_static_export', 'data_api_location', 'github_id_token']
-2025-09-17T16:37:45.5722166Z ##[group]Run Azure/static-web-apps-deploy@v1
-2025-09-17T16:37:45.5722477Z with:
-2025-09-17T16:37:45.5723177Z   azure_static_web_apps_api_token: ***
-2025-09-17T16:37:45.5723569Z   repo_token: ***
-2025-09-17T16:37:45.5723777Z   action: upload
-2025-09-17T16:37:45.5723974Z   app_location: /
-2025-09-17T16:37:45.5724170Z   skip_app_build: true
-2025-09-17T16:37:45.5724386Z   output_location: deploy
-2025-09-17T16:37:45.5724610Z   is_static_export: false
-2025-09-17T16:37:45.5724873Z   PRE_BUILD_COMMAND: npx prisma generate
-2025-09-17T16:37:45.5725143Z ##[endgroup]
-2025-09-17T16:37:45.5817147Z ##[command]/usr/bin/docker run --name a9896e9ac1933f9dd342419a85c16feb560bb9_7d5374 --label a9896e --workdir /github/workspace --rm -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_PRE_BUILD_COMMAND" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_SKIP_API_BUILD" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site":"/github/workspace" a9896e:9ac1933f9dd342419a85c16feb560bb9
-2025-09-17T16:37:46.6724934Z DeploymentId: 6229357d-b605-4190-8ec7-5cb1e062a389
-2025-09-17T16:37:46.6725703Z 
-2025-09-17T16:37:46.7917544Z [37mTry to validate location at: '/github/workspace'.[0m
-2025-09-17T16:37:46.7931044Z [37mApp Directory Location: '/' was found.[0m
-2025-09-17T16:37:46.7932014Z [37mTry to validate location at: '/github/workspace/swa-db-connections'.[0m
-2025-09-17T16:37:46.7937261Z [37mLooking for event info[0m
-2025-09-17T16:37:47.1598867Z [37mSkipping step to build /github/workspace with Oryx[0m
-2025-09-17T16:37:47.2537609Z [37mDetected the following framework: Next.js[0m
-2025-09-17T16:37:47.2542526Z [37mTry to validate location at: '/github/workspace/deploy'.[0m
-2025-09-17T16:37:47.2924259Z [33m[WARNING] Nodejs runtime version info is not provided for the Next.js app. Defaulting to version: 18. To change it, please use the apiRuntime property to set the custom node version as detailed at https://aka.ms/swa-nextjs-apiruntime. Supported Nodejs versions are 12, 14, 16, 18, 20.[0m
-2025-09-17T16:37:48.8063668Z [37mRepackaged Next.js app to deploy on the backend.[0m
-2025-09-17T16:37:48.8091301Z [37mStarting to build function app with Oryx[0m
-2025-09-17T16:37:48.8096289Z [37m---Oryx build logs---[0m
-2025-09-17T16:37:48.8096798Z [37m[0m
-2025-09-17T16:37:48.8097166Z [37m[0m
-2025-09-17T16:37:49.1801506Z [37mOperation performed by Microsoft Oryx, https://github.com/Microsoft/Oryx[0m
-2025-09-17T16:37:49.1805085Z [37mYou can report issues at https://github.com/Microsoft/Oryx/issues[0m
-2025-09-17T16:37:49.1805856Z [37m[0m
-2025-09-17T16:37:49.1807107Z [37mOryx Version: 0.2.20241003.1, Commit: d5352431d933306ccee1be9b5d822c73bf723e9e, ReleaseTagName: 20241003.1[0m
-2025-09-17T16:37:49.1808098Z [37m[0m
-2025-09-17T16:37:49.1808735Z [37mBuild Operation ID: b1c3b66a717eef43[0m
-2025-09-17T16:37:49.1809451Z [37mOS Type           : bullseye[0m
-2025-09-17T16:37:49.1810125Z [37mImage Type        : githubactions[0m
-2025-09-17T16:37:49.1810852Z [37m[0m
-2025-09-17T16:37:49.1955313Z [37mDetecting platforms...[0m
-2025-09-17T16:37:50.0896831Z [37mDetected following platforms:[0m
-2025-09-17T16:37:50.0897661Z [37m  nodejs: 18.20.8[0m
-2025-09-17T16:37:50.0905404Z [37m  python: 3.8.20[0m
-2025-09-17T16:37:50.0943379Z [37mVersion '18.20.8' of platform 'nodejs' is not installed. Generating script to install it...[0m
-2025-09-17T16:37:50.0966434Z [37mVersion '3.8.20' of platform 'python' is not installed. Generating script to install it...[0m
-2025-09-17T16:37:50.1446687Z [37mDetected the following frameworks: Next.js[0m
-2025-09-17T16:37:50.2431428Z [37m[0m
-2025-09-17T16:37:50.2535231Z [37m[0m
-2025-09-17T16:37:50.2537052Z [37mSource directory     : /github/workspace[0m
-2025-09-17T16:37:50.2538276Z [37mDestination directory: /bin/staticsites/6229357d-b605-4190-8ec7-5cb1e062a389-swa-oryx/api[0m
-2025-09-17T16:37:50.2539105Z [37m[0m
-2025-09-17T16:37:50.2554760Z [37m[0m
-2025-09-17T16:37:50.2558901Z [37mDownloading and extracting 'nodejs' version '18.20.8' to '/tmp/oryx/platforms/nodejs/18.20.8'...[0m
-2025-09-17T16:37:50.2598498Z [37mDetected image debian flavor: bullseye.[0m
-2025-09-17T16:37:52.3128240Z [37mDownloaded in 2 sec(s).[0m
-2025-09-17T16:37:52.3129084Z [37mVerifying checksum...[0m
-2025-09-17T16:37:52.3219575Z [37mExtracting contents...[0m
-2025-09-17T16:37:53.4872835Z [37mperforming sha512 checksum for: nodejs...[0m
-2025-09-17T16:37:53.6201661Z [37mDone in 3 sec(s).[0m
-2025-09-17T16:37:53.6202332Z [37m[0m
-2025-09-17T16:37:53.6234301Z [37m[0m
-2025-09-17T16:37:53.6245225Z [37mDownloading and extracting 'python' version '3.8.20' to '/tmp/oryx/platforms/python/3.8.20'...[0m
-2025-09-17T16:37:53.6278520Z [37mDetected image debian flavor: bullseye.[0m
-2025-09-17T16:37:54.5202383Z [37mDownloaded in 1 sec(s).[0m
-2025-09-17T16:37:54.5204245Z [37mVerifying checksum...[0m
-2025-09-17T16:37:54.5316961Z [37mExtracting contents...[0m
-2025-09-17T16:37:56.2626389Z [37mperforming sha512 checksum for: python...[0m
-2025-09-17T16:37:56.4833728Z [37mDone in 3 sec(s).[0m
-2025-09-17T16:37:56.4848083Z [37m[0m
-2025-09-17T16:37:56.4977039Z [37mimage detector file exists, platform is python..[0m
-2025-09-17T16:37:56.4989854Z [37mOS detector file exists, OS is bullseye..[0m
-2025-09-17T16:37:56.5666187Z [37mRemoving existing manifest file[0m
-2025-09-17T16:37:56.5680064Z [37mCreating directory for command manifest file if it does not exist[0m
-2025-09-17T16:37:56.5718388Z [37mCreating a manifest file...[0m
-2025-09-17T16:37:56.5727024Z [37mNode Build Command Manifest file created.[0m
-2025-09-17T16:37:56.5728106Z [37m[0m
-2025-09-17T16:37:56.5728979Z [37mUsing Node version:[0m
-2025-09-17T16:37:56.5778522Z [37mv18.20.8[0m
-2025-09-17T16:37:56.5793808Z [37m[0m
-2025-09-17T16:37:56.5794738Z [37mUsing Npm version:[0m
-2025-09-17T16:37:56.7030011Z [37m10.8.2[0m
-2025-09-17T16:37:56.7105116Z [37m[0m
-2025-09-17T16:37:56.7107560Z [37mInstalling production dependencies in '/github/workspace/.oryx_prod_node_modules'...[0m
-2025-09-17T16:37:56.7108346Z [37m[0m
-2025-09-17T16:37:56.7108874Z [37mRunning 'npm install --production'...[0m
-2025-09-17T16:37:56.7109360Z [37m[0m
-2025-09-17T16:37:56.8294814Z [31mnpm warn config production Use `--omit=dev` instead.[0m
-2025-09-17T16:37:57.5264335Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:37:57.5265644Z [31mnpm warn EBADENGINE   package: '@azure/core-auth@1.10.1',[0m
-2025-09-17T16:37:57.5266871Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:37:57.5276176Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:37:57.5284305Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:37:57.5288316Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:37:57.5289372Z [31mnpm warn EBADENGINE   package: '@azure/core-util@1.13.1',[0m
-2025-09-17T16:37:57.5296309Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:37:57.5297429Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:37:57.5298190Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:37:57.5298863Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:37:57.5301826Z [31mnpm warn EBADENGINE   package: '@azure/core-tracing@1.3.1',[0m
-2025-09-17T16:37:57.5305551Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:37:57.5306662Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:37:57.5307827Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:37:57.5308517Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:37:57.5309351Z [31mnpm warn EBADENGINE   package: '@azure/logger@1.3.0',[0m
-2025-09-17T16:37:57.5310418Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:37:57.5314028Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:37:57.5314938Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:37:57.5327997Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:37:57.5341720Z [31mnpm warn EBADENGINE   package: '@typespec/ts-http-runtime@0.3.1',[0m
-2025-09-17T16:37:57.5346231Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:37:57.5350977Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:37:57.5356677Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:38:16.6945325Z [37m[0m
-2025-09-17T16:38:16.6959840Z [37madded 367 packages, and audited 368 packages in 20s[0m
-2025-09-17T16:38:16.6960951Z [37m[0m
-2025-09-17T16:38:16.6961641Z [37m55 packages are looking for funding[0m
-2025-09-17T16:38:16.6962449Z [37m  run `npm fund` for details[0m
-2025-09-17T16:38:16.6963145Z [37m[0m
-2025-09-17T16:38:16.6963764Z [37mfound 0 vulnerabilities[0m
-2025-09-17T16:38:16.7357847Z [37m[0m
-2025-09-17T16:38:16.7372837Z [37mCopying production dependencies from '/github/workspace/.oryx_prod_node_modules' to '/github/workspace/node_modules'...[0m
-2025-09-17T16:38:21.2911558Z [37mDone in 5 sec(s).[0m
-2025-09-17T16:38:21.8151819Z [37m[0m
-2025-09-17T16:38:21.8152381Z [37mRunning 'npm install'...[0m
-2025-09-17T16:38:21.8152863Z [37m[0m
-2025-09-17T16:38:22.5326697Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:38:22.5328230Z [31mnpm warn EBADENGINE   package: '@azure/core-auth@1.10.1',[0m
-2025-09-17T16:38:22.5330464Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:38:22.5331569Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:38:22.5332392Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:38:22.5333095Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:38:22.5337997Z [31mnpm warn EBADENGINE   package: '@azure/core-util@1.13.1',[0m
-2025-09-17T16:38:22.5341167Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:38:22.5342454Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:38:22.5343358Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:38:22.5344108Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:38:22.5345134Z [31mnpm warn EBADENGINE   package: '@azure/core-tracing@1.3.1',[0m
-2025-09-17T16:38:22.5346175Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:38:22.5362672Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:38:22.5363520Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:38:22.5364256Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:38:22.5365211Z [31mnpm warn EBADENGINE   package: '@azure/logger@1.3.0',[0m
-2025-09-17T16:38:22.5366212Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:38:22.5367273Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:38:22.5368127Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:38:22.5368893Z [31mnpm warn EBADENGINE Unsupported engine {[0m
-2025-09-17T16:38:22.5369938Z [31mnpm warn EBADENGINE   package: '@typespec/ts-http-runtime@0.3.1',[0m
-2025-09-17T16:38:22.5374290Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
-2025-09-17T16:38:22.5375388Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
-2025-09-17T16:38:22.5376223Z [31mnpm warn EBADENGINE }[0m
-2025-09-17T16:38:23.2471916Z [37m[0m
-2025-09-17T16:38:23.2472890Z [37mup to date, audited 368 packages in 1s[0m
-2025-09-17T16:38:23.2473568Z [37m[0m
-2025-09-17T16:38:23.2479039Z [37m55 packages are looking for funding[0m
-2025-09-17T16:38:23.2500415Z [37m  run `npm fund` for details[0m
-2025-09-17T16:38:23.2502105Z [37m[0m
-2025-09-17T16:38:23.2502633Z [37mfound 0 vulnerabilities[0m
-2025-09-17T16:38:23.2603868Z [37m[0m
-2025-09-17T16:38:23.2605392Z [37mRunning 'npm run build'...[0m
-2025-09-17T16:38:23.2608629Z [37m[0m
-2025-09-17T16:38:23.3994653Z [37m[0m
-2025-09-17T16:38:23.3998379Z [37m> function-handler-build@0.1.0 build[0m
-2025-09-17T16:38:23.3999690Z [37m> echo 'restoring the framework'[0m
-2025-09-17T16:38:23.4000559Z [37m[0m
-2025-09-17T16:38:23.4082427Z [37mrestoring the framework[0m
-2025-09-17T16:38:23.4187888Z [37mPreparing output...[0m
-2025-09-17T16:38:23.4188597Z [37m[0m
-2025-09-17T16:38:23.4189824Z [37mCopying files to destination directory '/bin/staticsites/6229357d-b605-4190-8ec7-5cb1e062a389-swa-oryx/api'...[0m
-2025-09-17T16:38:31.5351744Z [37mDone in 8 sec(s).[0m
-2025-09-17T16:38:31.5378933Z [37m[0m
-2025-09-17T16:38:31.5382959Z [37mRemoving existing manifest file[0m
-2025-09-17T16:38:31.5402004Z [37mCreating a manifest file...[0m
-2025-09-17T16:38:31.5421192Z [37mManifest file created.[0m
-2025-09-17T16:38:31.5425476Z [37mCopying .ostype to manifest output directory.[0m
-2025-09-17T16:38:31.5469665Z [37m[0m
-2025-09-17T16:38:31.5473226Z [37mDone in 41 sec(s).[0m
-2025-09-17T16:38:31.6163814Z [37m[0m
-2025-09-17T16:38:31.6165105Z [37m[0m
-2025-09-17T16:38:31.6166352Z [37m---End of Oryx build logs---[0m
-2025-09-17T16:38:31.6191758Z [33mWeb App Runtime Information. OS: linux, node version: 18[0m
-2025-09-17T16:38:31.6192769Z [37mFinished building function app with Oryx[0m
-2025-09-17T16:38:35.8153322Z [37mZipping Api Artifacts[0m
-2025-09-17T16:39:30.5931566Z [37mDone Zipping Api Artifacts[0m
-2025-09-17T16:39:30.9810641Z [31mThe content server has rejected the request with: BadRequest[0m
-2025-09-17T16:39:30.9812703Z [31mReason: The size of the function content was too large. The limit for this Static Web App is 262144000 bytes.[0m
-2025-09-17T16:39:30.9956303Z [37m[0m
-2025-09-17T16:39:30.9957790Z [33mFor further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/[0m
-2025-09-17T16:39:30.9961094Z [33mIf you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/[0m
-2025-09-17T16:39:30.9962969Z [33mExiting[0m
-2025-09-17T16:39:33.0955238Z Post job cleanup.
-2025-09-17T16:39:33.1798365Z Cleaning up orphan processes
+2025-09-17T17:03:48.3064651Z Current runner version: '2.328.0'
+2025-09-17T17:03:48.3091056Z ##[group]Runner Image Provisioner
+2025-09-17T17:03:48.3092615Z Hosted Compute Agent
+2025-09-17T17:03:48.3093650Z Version: 20250829.383
+2025-09-17T17:03:48.3094716Z Commit: 27cb235aab5b0e52e153a26cd86b4742e89dac5d
+2025-09-17T17:03:48.3095884Z Build Date: 2025-08-29T13:48:48Z
+2025-09-17T17:03:48.3097472Z ##[endgroup]
+2025-09-17T17:03:48.3098393Z ##[group]Operating System
+2025-09-17T17:03:48.3099382Z Ubuntu
+2025-09-17T17:03:48.3100333Z 24.04.3
+2025-09-17T17:03:48.3101146Z LTS
+2025-09-17T17:03:48.3101897Z ##[endgroup]
+2025-09-17T17:03:48.3102920Z ##[group]Runner Image
+2025-09-17T17:03:48.3103854Z Image: ubuntu-24.04
+2025-09-17T17:03:48.3104788Z Version: 20250907.24.1
+2025-09-17T17:03:48.3106890Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250907.24/images/ubuntu/Ubuntu2404-Readme.md
+2025-09-17T17:03:48.3109590Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250907.24
+2025-09-17T17:03:48.3111693Z ##[endgroup]
+2025-09-17T17:03:48.3114188Z ##[group]GITHUB_TOKEN Permissions
+2025-09-17T17:03:48.3117470Z Contents: read
+2025-09-17T17:03:48.3118350Z Metadata: read
+2025-09-17T17:03:48.3119412Z Packages: read
+2025-09-17T17:03:48.3120219Z ##[endgroup]
+2025-09-17T17:03:48.3123285Z Secret source: Actions
+2025-09-17T17:03:48.3124612Z Prepare workflow directory
+2025-09-17T17:03:48.3751888Z Prepare all required actions
+2025-09-17T17:03:48.3810178Z Getting action download info
+2025-09-17T17:03:48.8861703Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
+2025-09-17T17:03:49.0629501Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2025-09-17T17:03:49.1592488Z Download action repository 'Azure/static-web-apps-deploy@v1' (SHA:4d27395796ac319302594769cfe812bd207490b1)
+2025-09-17T17:03:49.6725207Z Complete job name: Build and Deploy Job
+2025-09-17T17:03:49.7176568Z ##[group]Build container for action use: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile'.
+2025-09-17T17:03:49.7228919Z ##[command]/usr/bin/docker build -t 3d19da:402869b2d9d444228ba49174ff513ed7 -f "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile" "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1"
+2025-09-17T17:03:50.3609238Z #0 building with "default" instance using docker driver
+2025-09-17T17:03:50.3611304Z 
+2025-09-17T17:03:50.3611951Z #1 [internal] load build definition from Dockerfile
+2025-09-17T17:03:50.3613518Z #1 transferring dockerfile: 160B done
+2025-09-17T17:03:50.3614796Z #1 DONE 0.0s
+2025-09-17T17:03:50.3615367Z 
+2025-09-17T17:03:50.3616594Z #2 [internal] load metadata for mcr.microsoft.com/appsvc/staticappsclient:stable
+2025-09-17T17:03:50.5660639Z #2 DONE 0.2s
+2025-09-17T17:03:50.5661711Z 
+2025-09-17T17:03:50.5662403Z #3 [internal] load .dockerignore
+2025-09-17T17:03:50.5664138Z #3 transferring context: 2B done
+2025-09-17T17:03:50.5681461Z #3 DONE 0.0s
+2025-09-17T17:03:50.5685669Z 
+2025-09-17T17:03:50.5692755Z #4 [internal] load build context
+2025-09-17T17:03:50.5694270Z #4 transferring context: 107B done
+2025-09-17T17:03:50.5695694Z #4 DONE 0.0s
+2025-09-17T17:03:50.5723691Z 
+2025-09-17T17:03:50.5731936Z #5 [1/2] FROM mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:41473a2ebc45daa6e63c82a7f32a5680b0fe34dac49ab85dd6369c764b191308
+2025-09-17T17:03:50.5747423Z #5 resolve mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:41473a2ebc45daa6e63c82a7f32a5680b0fe34dac49ab85dd6369c764b191308 done
+2025-09-17T17:03:50.5753362Z #5 sha256:41473a2ebc45daa6e63c82a7f32a5680b0fe34dac49ab85dd6369c764b191308 2.71kB / 2.71kB done
+2025-09-17T17:03:50.5759852Z #5 sha256:c4961ea170d16177c6dec81c5b9e721a02636907f90fc43917ad54d55ab89087 13.35kB / 13.35kB done
+2025-09-17T17:03:50.5765832Z #5 sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 18.87MB / 55.09MB 0.1s
+2025-09-17T17:03:50.5784674Z #5 sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 2.10MB / 15.76MB 0.1s
+2025-09-17T17:03:50.5809131Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 4.27MB / 54.59MB 0.1s
+2025-09-17T17:03:50.7324518Z #5 sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 55.09MB / 55.09MB 0.3s done
+2025-09-17T17:03:50.7330912Z #5 sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 15.76MB / 15.76MB 0.2s done
+2025-09-17T17:03:50.7336277Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 39.17MB / 54.59MB 0.3s
+2025-09-17T17:03:50.7341221Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0B / 32B 0.3s
+2025-09-17T17:03:50.7360060Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 7.82MB / 196.99MB 0.3s
+2025-09-17T17:03:50.9103831Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 54.53MB / 54.59MB 0.4s
+2025-09-17T17:03:50.9122425Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.3s done
+2025-09-17T17:03:50.9127628Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 20.15MB / 196.99MB 0.4s
+2025-09-17T17:03:50.9132597Z #5 extracting sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 0.2s
+2025-09-17T17:03:50.9145393Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 6.34MB / 80.86MB 0.4s
+2025-09-17T17:03:51.0311345Z #5 sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 54.59MB / 54.59MB 0.5s done
+2025-09-17T17:03:51.0324588Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 56.62MB / 196.99MB 0.6s
+2025-09-17T17:03:51.0332239Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 49.28MB / 80.86MB 0.6s
+2025-09-17T17:03:51.0341389Z #5 sha256:7c32381cbc15887afa5092d985e48bd3ce82af22ca1c343be2fcb39d4caa2143 1.56MB / 1.56MB 0.6s
+2025-09-17T17:03:51.2291336Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 73.92MB / 196.99MB 0.8s
+2025-09-17T17:03:51.2329672Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 74.49MB / 80.86MB 0.8s
+2025-09-17T17:03:51.2334672Z #5 sha256:7c32381cbc15887afa5092d985e48bd3ce82af22ca1c343be2fcb39d4caa2143 1.56MB / 1.56MB 0.6s done
+2025-09-17T17:03:51.2352506Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 14.47MB / 72.28MB 0.8s
+2025-09-17T17:03:51.4210400Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 80.86MB / 80.86MB 0.9s
+2025-09-17T17:03:51.4221131Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 22.41MB / 72.28MB 0.9s
+2025-09-17T17:03:51.5243097Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 106.95MB / 196.99MB 1.1s
+2025-09-17T17:03:51.5247645Z #5 sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 80.86MB / 80.86MB 0.9s done
+2025-09-17T17:03:51.5252628Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 46.14MB / 72.28MB 1.1s
+2025-09-17T17:03:51.5254024Z #5 sha256:095fb23ecbf649df312cb6981dd528233a1af3d4a040165bcc0c37590c9e62a4 115.53kB / 115.53kB 1.0s done
+2025-09-17T17:03:51.5255443Z #5 sha256:218a528d080a1bebdabe150b46ac3853b986c047c42f1f5b42c3544b7fdfe841 1.16MB / 1.16MB 1.0s done
+2025-09-17T17:03:51.5256890Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 0B / 34.82MB 1.1s
+2025-09-17T17:03:51.5258159Z #5 sha256:e8e496d4f914a3099ff9504db622ffe27eddc493f797c4705b0bddc6683bb9f8 643.40kB / 643.40kB 1.1s done
+2025-09-17T17:03:51.7244476Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 120.36MB / 196.99MB 1.3s
+2025-09-17T17:03:51.7250176Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 60.31MB / 72.28MB 1.3s
+2025-09-17T17:03:51.7251959Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 14.13MB / 34.82MB 1.3s
+2025-09-17T17:03:51.8279565Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 68.36MB / 72.28MB 1.4s
+2025-09-17T17:03:51.8288536Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 22.02MB / 34.82MB 1.4s
+2025-09-17T17:03:52.0237363Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 146.80MB / 196.99MB 1.6s
+2025-09-17T17:03:52.0241393Z #5 sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 72.28MB / 72.28MB 1.4s done
+2025-09-17T17:03:52.0244992Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 34.82MB / 34.82MB 1.6s
+2025-09-17T17:03:52.0246344Z #5 sha256:4c6a44587e13e5c37d3f6d6f61aad47cb49baa4e5b6b11aa02e8c83a6b5b4d3d 168B / 168B 1.5s done
+2025-09-17T17:03:52.0247419Z #5 sha256:fc089199951098f589969385263430a7644c55e648f3691c2522efbcd5ff36d9 169B / 169B 1.6s
+2025-09-17T17:03:52.1861342Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 164.09MB / 196.99MB 1.7s
+2025-09-17T17:03:52.1864821Z #5 sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 34.82MB / 34.82MB 1.6s done
+2025-09-17T17:03:52.1879740Z #5 sha256:fc089199951098f589969385263430a7644c55e648f3691c2522efbcd5ff36d9 169B / 169B 1.6s done
+2025-09-17T17:03:52.2883236Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 190.84MB / 196.99MB 1.8s
+2025-09-17T17:03:53.1773539Z #5 sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 196.99MB / 196.99MB 2.6s done
+2025-09-17T17:03:54.1755032Z #5 extracting sha256:ac323bdaa10f869bd9e7adecd8f5326e44acc4c59168868108b1cdf3891089cc 3.4s done
+2025-09-17T17:03:54.3088069Z #5 extracting sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 0.1s
+2025-09-17T17:03:54.8012732Z #5 extracting sha256:84811b2a563b9003abbd1c06f6e45a857315b931855030bdd0443d13d950a996 0.4s done
+2025-09-17T17:03:56.4407824Z #5 extracting sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048
+2025-09-17T17:03:58.8376372Z #5 extracting sha256:b3ff24b88ad3798f817849ad391d809ece121dc9b7f82f24bb68eed84561f048 2.2s done
+2025-09-17T17:03:59.3270552Z #5 extracting sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e
+2025-09-17T17:04:04.4413320Z #5 extracting sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 5.1s
+2025-09-17T17:04:05.0874904Z #5 extracting sha256:c6f58f24df78e3aabf785017c3197c2a09fd606e7f19a830a1cfde41f681f39e 5.8s done
+2025-09-17T17:04:07.2202393Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
+2025-09-17T17:04:07.3611562Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+2025-09-17T17:04:07.3612466Z #5 extracting sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 0.1s
+2025-09-17T17:04:10.2878591Z #5 extracting sha256:9f9b29a4bb02782e9ef637948482cf6186b2cfea4bfecee192ad953107a7b130 2.9s done
+2025-09-17T17:04:11.0098118Z #5 extracting sha256:7c32381cbc15887afa5092d985e48bd3ce82af22ca1c343be2fcb39d4caa2143
+2025-09-17T17:04:11.2776220Z #5 extracting sha256:7c32381cbc15887afa5092d985e48bd3ce82af22ca1c343be2fcb39d4caa2143 0.1s done
+2025-09-17T17:04:11.2798230Z #5 extracting sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 0.1s
+2025-09-17T17:04:12.5589997Z #5 extracting sha256:5715d6ba5c0ffccc0bcdf9d1d2dd8ce68b580cd2f45d982886db8fe278df83b9 1.2s done
+2025-09-17T17:04:13.1087916Z #5 extracting sha256:095fb23ecbf649df312cb6981dd528233a1af3d4a040165bcc0c37590c9e62a4
+2025-09-17T17:04:13.2382461Z #5 extracting sha256:095fb23ecbf649df312cb6981dd528233a1af3d4a040165bcc0c37590c9e62a4 done
+2025-09-17T17:04:13.2383764Z #5 extracting sha256:218a528d080a1bebdabe150b46ac3853b986c047c42f1f5b42c3544b7fdfe841 0.1s done
+2025-09-17T17:04:13.2397348Z #5 extracting sha256:e8e496d4f914a3099ff9504db622ffe27eddc493f797c4705b0bddc6683bb9f8 0.0s done
+2025-09-17T17:04:13.3620194Z #5 extracting sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 0.1s
+2025-09-17T17:04:13.9610381Z #5 extracting sha256:2b22defda84c5a2fffe4ed153f8a3323fc7215a67b9bd62a7d66a7c56f5e8b9a 0.5s done
+2025-09-17T17:04:13.9614115Z #5 extracting sha256:4c6a44587e13e5c37d3f6d6f61aad47cb49baa4e5b6b11aa02e8c83a6b5b4d3d done
+2025-09-17T17:04:13.9615508Z #5 extracting sha256:fc089199951098f589969385263430a7644c55e648f3691c2522efbcd5ff36d9
+2025-09-17T17:04:14.1906918Z #5 extracting sha256:fc089199951098f589969385263430a7644c55e648f3691c2522efbcd5ff36d9 done
+2025-09-17T17:04:14.1907851Z #5 DONE 23.6s
+2025-09-17T17:04:14.1908047Z 
+2025-09-17T17:04:14.1908228Z #6 [2/2] COPY entrypoint.sh /entrypoint.sh
+2025-09-17T17:04:14.1908684Z #6 DONE 0.0s
+2025-09-17T17:04:14.1908871Z 
+2025-09-17T17:04:14.1909012Z #7 exporting to image
+2025-09-17T17:04:14.1909358Z #7 exporting layers
+2025-09-17T17:04:15.3545010Z #7 exporting layers 1.3s done
+2025-09-17T17:04:15.3734332Z #7 writing image sha256:8c431f3232e36cefc8d0f3b496e48ab44ac3a1a4e98263a74edcda2f27af0275 done
+2025-09-17T17:04:15.3736325Z #7 naming to docker.io/library/3d19da:402869b2d9d444228ba49174ff513ed7 done
+2025-09-17T17:04:15.3737248Z #7 DONE 1.3s
+2025-09-17T17:04:15.3797206Z ##[endgroup]
+2025-09-17T17:04:15.4054621Z ##[group]Run actions/checkout@v3
+2025-09-17T17:04:15.4055181Z with:
+2025-09-17T17:04:15.4055381Z   submodules: true
+2025-09-17T17:04:15.4055590Z   lfs: false
+2025-09-17T17:04:15.4055824Z   repository: aspepper/vitrine-de-craques-web-site
+2025-09-17T17:04:15.4056440Z   token: ***
+2025-09-17T17:04:15.4056633Z   ssh-strict: true
+2025-09-17T17:04:15.4056841Z   persist-credentials: true
+2025-09-17T17:04:15.4057064Z   clean: true
+2025-09-17T17:04:15.4057263Z   sparse-checkout-cone-mode: true
+2025-09-17T17:04:15.4057499Z   fetch-depth: 1
+2025-09-17T17:04:15.4057680Z   fetch-tags: false
+2025-09-17T17:04:15.4057878Z   set-safe-directory: true
+2025-09-17T17:04:15.4058317Z ##[endgroup]
+2025-09-17T17:04:15.4978348Z Syncing repository: aspepper/vitrine-de-craques-web-site
+2025-09-17T17:04:15.4979656Z ##[group]Getting Git version info
+2025-09-17T17:04:15.4980174Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-09-17T17:04:15.4980910Z [command]/usr/bin/git version
+2025-09-17T17:04:15.5026788Z git version 2.51.0
+2025-09-17T17:04:15.5043473Z ##[endgroup]
+2025-09-17T17:04:15.5067411Z Temporarily overriding HOME='/home/runner/work/_temp/0fce71d6-f3c7-4911-a0bc-06f4cb983c00' before making global git config changes
+2025-09-17T17:04:15.5071565Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-17T17:04:15.5079345Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-09-17T17:04:15.5120855Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-09-17T17:04:15.5125298Z ##[group]Initializing the repository
+2025-09-17T17:04:15.5129681Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-09-17T17:04:15.5221518Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-17T17:04:15.5223539Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-17T17:04:15.5224551Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-17T17:04:15.5225234Z hint:
+2025-09-17T17:04:15.5225723Z hint: 	git config --global init.defaultBranch <name>
+2025-09-17T17:04:15.5226603Z hint:
+2025-09-17T17:04:15.5227131Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-17T17:04:15.5227960Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-17T17:04:15.5228581Z hint:
+2025-09-17T17:04:15.5228906Z hint: 	git branch -m <name>
+2025-09-17T17:04:15.5229270Z hint:
+2025-09-17T17:04:15.5229807Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-17T17:04:15.5233407Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-09-17T17:04:15.5247172Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
+2025-09-17T17:04:15.5290458Z ##[endgroup]
+2025-09-17T17:04:15.5293972Z ##[group]Disabling automatic garbage collection
+2025-09-17T17:04:15.5294553Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-17T17:04:15.5321872Z ##[endgroup]
+2025-09-17T17:04:15.5325504Z ##[group]Setting up auth
+2025-09-17T17:04:15.5326464Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-17T17:04:15.5354940Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-17T17:04:15.5699850Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-17T17:04:15.5738308Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-17T17:04:15.5969174Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-17T17:04:15.6008603Z ##[endgroup]
+2025-09-17T17:04:15.6009058Z ##[group]Fetching the repository
+2025-09-17T17:04:15.6023966Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +cc41847642e03d7218c770fe59935105ae137a6a:refs/remotes/origin/main
+2025-09-17T17:04:16.2561058Z remote: Enumerating objects: 255, done.        
+2025-09-17T17:04:16.2561855Z remote: Counting objects:   0% (1/255)        
+2025-09-17T17:04:16.2562478Z remote: Counting objects:   1% (3/255)        
+2025-09-17T17:04:16.2563071Z remote: Counting objects:   2% (6/255)        
+2025-09-17T17:04:16.2563658Z remote: Counting objects:   3% (8/255)        
+2025-09-17T17:04:16.2564254Z remote: Counting objects:   4% (11/255)        
+2025-09-17T17:04:16.2564842Z remote: Counting objects:   5% (13/255)        
+2025-09-17T17:04:16.2565452Z remote: Counting objects:   6% (16/255)        
+2025-09-17T17:04:16.2566203Z remote: Counting objects:   7% (18/255)        
+2025-09-17T17:04:16.2566816Z remote: Counting objects:   8% (21/255)        
+2025-09-17T17:04:16.2567394Z remote: Counting objects:   9% (23/255)        
+2025-09-17T17:04:16.2567988Z remote: Counting objects:  10% (26/255)        
+2025-09-17T17:04:16.2568567Z remote: Counting objects:  11% (29/255)        
+2025-09-17T17:04:16.2569184Z remote: Counting objects:  12% (31/255)        
+2025-09-17T17:04:16.2569762Z remote: Counting objects:  13% (34/255)        
+2025-09-17T17:04:16.2570312Z remote: Counting objects:  14% (36/255)        
+2025-09-17T17:04:16.2570860Z remote: Counting objects:  15% (39/255)        
+2025-09-17T17:04:16.2571405Z remote: Counting objects:  16% (41/255)        
+2025-09-17T17:04:16.2571952Z remote: Counting objects:  17% (44/255)        
+2025-09-17T17:04:16.2572494Z remote: Counting objects:  18% (46/255)        
+2025-09-17T17:04:16.2573035Z remote: Counting objects:  19% (49/255)        
+2025-09-17T17:04:16.2573703Z remote: Counting objects:  20% (51/255)        
+2025-09-17T17:04:16.2574164Z remote: Counting objects:  21% (54/255)        
+2025-09-17T17:04:16.2575762Z remote: Counting objects:  22% (57/255)        
+2025-09-17T17:04:16.2577667Z remote: Counting objects:  23% (59/255)        
+2025-09-17T17:04:16.2578184Z remote: Counting objects:  24% (62/255)        
+2025-09-17T17:04:16.2578700Z remote: Counting objects:  25% (64/255)        
+2025-09-17T17:04:16.2579213Z remote: Counting objects:  26% (67/255)        
+2025-09-17T17:04:16.2579731Z remote: Counting objects:  27% (69/255)        
+2025-09-17T17:04:16.2580322Z remote: Counting objects:  28% (72/255)        
+2025-09-17T17:04:16.2580819Z remote: Counting objects:  29% (74/255)        
+2025-09-17T17:04:16.2581299Z remote: Counting objects:  30% (77/255)        
+2025-09-17T17:04:16.2581777Z remote: Counting objects:  31% (80/255)        
+2025-09-17T17:04:16.2582244Z remote: Counting objects:  32% (82/255)        
+2025-09-17T17:04:16.2582725Z remote: Counting objects:  33% (85/255)        
+2025-09-17T17:04:16.2583508Z remote: Counting objects:  34% (87/255)        
+2025-09-17T17:04:16.2584010Z remote: Counting objects:  35% (90/255)        
+2025-09-17T17:04:16.2584465Z remote: Counting objects:  36% (92/255)        
+2025-09-17T17:04:16.2584971Z remote: Counting objects:  37% (95/255)        
+2025-09-17T17:04:16.2585485Z remote: Counting objects:  38% (97/255)        
+2025-09-17T17:04:16.2586003Z remote: Counting objects:  39% (100/255)        
+2025-09-17T17:04:16.2586779Z remote: Counting objects:  40% (102/255)        
+2025-09-17T17:04:16.2587299Z remote: Counting objects:  41% (105/255)        
+2025-09-17T17:04:16.2587802Z remote: Counting objects:  42% (108/255)        
+2025-09-17T17:04:16.2588317Z remote: Counting objects:  43% (110/255)        
+2025-09-17T17:04:16.2588840Z remote: Counting objects:  44% (113/255)        
+2025-09-17T17:04:16.2589340Z remote: Counting objects:  45% (115/255)        
+2025-09-17T17:04:16.2590105Z remote: Counting objects:  46% (118/255)        
+2025-09-17T17:04:16.2590749Z remote: Counting objects:  47% (120/255)        
+2025-09-17T17:04:16.2591294Z remote: Counting objects:  48% (123/255)        
+2025-09-17T17:04:16.2591836Z remote: Counting objects:  49% (125/255)        
+2025-09-17T17:04:16.2592372Z remote: Counting objects:  50% (128/255)        
+2025-09-17T17:04:16.2592888Z remote: Counting objects:  51% (131/255)        
+2025-09-17T17:04:16.2593401Z remote: Counting objects:  52% (133/255)        
+2025-09-17T17:04:16.2593927Z remote: Counting objects:  53% (136/255)        
+2025-09-17T17:04:16.2594429Z remote: Counting objects:  54% (138/255)        
+2025-09-17T17:04:16.2594958Z remote: Counting objects:  55% (141/255)        
+2025-09-17T17:04:16.2595469Z remote: Counting objects:  56% (143/255)        
+2025-09-17T17:04:16.2595995Z remote: Counting objects:  57% (146/255)        
+2025-09-17T17:04:16.2596904Z remote: Counting objects:  58% (148/255)        
+2025-09-17T17:04:16.2597459Z remote: Counting objects:  59% (151/255)        
+2025-09-17T17:04:16.2597998Z remote: Counting objects:  60% (153/255)        
+2025-09-17T17:04:16.2598536Z remote: Counting objects:  61% (156/255)        
+2025-09-17T17:04:16.2599068Z remote: Counting objects:  62% (159/255)        
+2025-09-17T17:04:16.2599592Z remote: Counting objects:  63% (161/255)        
+2025-09-17T17:04:16.2600143Z remote: Counting objects:  64% (164/255)        
+2025-09-17T17:04:16.2600685Z remote: Counting objects:  65% (166/255)        
+2025-09-17T17:04:16.2601206Z remote: Counting objects:  66% (169/255)        
+2025-09-17T17:04:16.2601741Z remote: Counting objects:  67% (171/255)        
+2025-09-17T17:04:16.2602241Z remote: Counting objects:  68% (174/255)        
+2025-09-17T17:04:16.2602741Z remote: Counting objects:  69% (176/255)        
+2025-09-17T17:04:16.2603240Z remote: Counting objects:  70% (179/255)        
+2025-09-17T17:04:16.2603757Z remote: Counting objects:  71% (182/255)        
+2025-09-17T17:04:16.2604297Z remote: Counting objects:  72% (184/255)        
+2025-09-17T17:04:16.2604820Z remote: Counting objects:  73% (187/255)        
+2025-09-17T17:04:16.2672141Z remote: Counting objects:  74% (189/255)        
+2025-09-17T17:04:16.2672738Z remote: Counting objects:  75% (192/255)        
+2025-09-17T17:04:16.2673285Z remote: Counting objects:  76% (194/255)        
+2025-09-17T17:04:16.2673865Z remote: Counting objects:  77% (197/255)        
+2025-09-17T17:04:16.2674414Z remote: Counting objects:  78% (199/255)        
+2025-09-17T17:04:16.2674944Z remote: Counting objects:  79% (202/255)        
+2025-09-17T17:04:16.2675470Z remote: Counting objects:  80% (204/255)        
+2025-09-17T17:04:16.2675991Z remote: Counting objects:  81% (207/255)        
+2025-09-17T17:04:16.2676709Z remote: Counting objects:  82% (210/255)        
+2025-09-17T17:04:16.2677206Z remote: Counting objects:  83% (212/255)        
+2025-09-17T17:04:16.2677707Z remote: Counting objects:  84% (215/255)        
+2025-09-17T17:04:16.2678239Z remote: Counting objects:  85% (217/255)        
+2025-09-17T17:04:16.2679110Z remote: Counting objects:  86% (220/255)        
+2025-09-17T17:04:16.2679664Z remote: Counting objects:  87% (222/255)        
+2025-09-17T17:04:16.2680191Z remote: Counting objects:  88% (225/255)        
+2025-09-17T17:04:16.2680717Z remote: Counting objects:  89% (227/255)        
+2025-09-17T17:04:16.2681264Z remote: Counting objects:  90% (230/255)        
+2025-09-17T17:04:16.2681812Z remote: Counting objects:  91% (233/255)        
+2025-09-17T17:04:16.2682347Z remote: Counting objects:  92% (235/255)        
+2025-09-17T17:04:16.2682886Z remote: Counting objects:  93% (238/255)        
+2025-09-17T17:04:16.2683439Z remote: Counting objects:  94% (240/255)        
+2025-09-17T17:04:16.2683976Z remote: Counting objects:  95% (243/255)        
+2025-09-17T17:04:16.2684518Z remote: Counting objects:  96% (245/255)        
+2025-09-17T17:04:16.2685063Z remote: Counting objects:  97% (248/255)        
+2025-09-17T17:04:16.2685580Z remote: Counting objects:  98% (250/255)        
+2025-09-17T17:04:16.2686542Z remote: Counting objects:  99% (253/255)        
+2025-09-17T17:04:16.2687128Z remote: Counting objects: 100% (255/255)        
+2025-09-17T17:04:16.2687702Z remote: Counting objects: 100% (255/255), done.        
+2025-09-17T17:04:16.2688271Z remote: Compressing objects:   0% (1/178)        
+2025-09-17T17:04:16.2688811Z remote: Compressing objects:   1% (2/178)        
+2025-09-17T17:04:16.2689345Z remote: Compressing objects:   2% (4/178)        
+2025-09-17T17:04:16.2689886Z remote: Compressing objects:   3% (6/178)        
+2025-09-17T17:04:16.2690422Z remote: Compressing objects:   4% (8/178)        
+2025-09-17T17:04:16.2691434Z remote: Compressing objects:   5% (9/178)        
+2025-09-17T17:04:16.2712387Z remote: Compressing objects:   6% (11/178)        
+2025-09-17T17:04:16.2712974Z remote: Compressing objects:   7% (13/178)        
+2025-09-17T17:04:16.2713544Z remote: Compressing objects:   8% (15/178)        
+2025-09-17T17:04:16.2714078Z remote: Compressing objects:   9% (17/178)        
+2025-09-17T17:04:16.2714606Z remote: Compressing objects:  10% (18/178)        
+2025-09-17T17:04:16.2714945Z remote: Compressing objects:  11% (20/178)        
+2025-09-17T17:04:16.2715264Z remote: Compressing objects:  12% (22/178)        
+2025-09-17T17:04:16.2715570Z remote: Compressing objects:  13% (24/178)        
+2025-09-17T17:04:16.2715872Z remote: Compressing objects:  14% (25/178)        
+2025-09-17T17:04:16.2716444Z remote: Compressing objects:  15% (27/178)        
+2025-09-17T17:04:16.2716737Z remote: Compressing objects:  16% (29/178)        
+2025-09-17T17:04:16.2717021Z remote: Compressing objects:  17% (31/178)        
+2025-09-17T17:04:16.2717307Z remote: Compressing objects:  18% (33/178)        
+2025-09-17T17:04:16.2717588Z remote: Compressing objects:  19% (34/178)        
+2025-09-17T17:04:16.2717867Z remote: Compressing objects:  20% (36/178)        
+2025-09-17T17:04:16.2718158Z remote: Compressing objects:  21% (38/178)        
+2025-09-17T17:04:16.2718452Z remote: Compressing objects:  22% (40/178)        
+2025-09-17T17:04:16.2718740Z remote: Compressing objects:  23% (41/178)        
+2025-09-17T17:04:16.2719040Z remote: Compressing objects:  24% (43/178)        
+2025-09-17T17:04:16.2719335Z remote: Compressing objects:  25% (45/178)        
+2025-09-17T17:04:16.3328401Z remote: Compressing objects:  26% (47/178)        
+2025-09-17T17:04:16.3329067Z remote: Compressing objects:  27% (49/178)        
+2025-09-17T17:04:16.3329683Z remote: Compressing objects:  28% (50/178)        
+2025-09-17T17:04:16.3330258Z remote: Compressing objects:  29% (52/178)        
+2025-09-17T17:04:16.3330829Z remote: Compressing objects:  30% (54/178)        
+2025-09-17T17:04:16.3331412Z remote: Compressing objects:  31% (56/178)        
+2025-09-17T17:04:16.3331980Z remote: Compressing objects:  32% (57/178)        
+2025-09-17T17:04:16.3332540Z remote: Compressing objects:  33% (59/178)        
+2025-09-17T17:04:16.3333094Z remote: Compressing objects:  34% (61/178)        
+2025-09-17T17:04:16.3333670Z remote: Compressing objects:  35% (63/178)        
+2025-09-17T17:04:16.3334507Z remote: Compressing objects:  36% (65/178)        
+2025-09-17T17:04:16.3335075Z remote: Compressing objects:  37% (66/178)        
+2025-09-17T17:04:16.3335623Z remote: Compressing objects:  38% (68/178)        
+2025-09-17T17:04:16.3336316Z remote: Compressing objects:  39% (70/178)        
+2025-09-17T17:04:16.3336846Z remote: Compressing objects:  40% (72/178)        
+2025-09-17T17:04:16.3337375Z remote: Compressing objects:  41% (73/178)        
+2025-09-17T17:04:16.3337898Z remote: Compressing objects:  42% (75/178)        
+2025-09-17T17:04:16.3338422Z remote: Compressing objects:  43% (77/178)        
+2025-09-17T17:04:16.3338961Z remote: Compressing objects:  44% (79/178)        
+2025-09-17T17:04:16.3339498Z remote: Compressing objects:  45% (81/178)        
+2025-09-17T17:04:16.3340016Z remote: Compressing objects:  46% (82/178)        
+2025-09-17T17:04:16.3340546Z remote: Compressing objects:  47% (84/178)        
+2025-09-17T17:04:16.4441958Z remote: Compressing objects:  48% (86/178)        
+2025-09-17T17:04:16.4442737Z remote: Compressing objects:  49% (88/178)        
+2025-09-17T17:04:16.4443318Z remote: Compressing objects:  50% (89/178)        
+2025-09-17T17:04:16.4443806Z remote: Compressing objects:  51% (91/178)        
+2025-09-17T17:04:16.4444287Z remote: Compressing objects:  52% (93/178)        
+2025-09-17T17:04:16.4444841Z remote: Compressing objects:  53% (95/178)        
+2025-09-17T17:04:16.4445418Z remote: Compressing objects:  54% (97/178)        
+2025-09-17T17:04:16.4445898Z remote: Compressing objects:  55% (98/178)        
+2025-09-17T17:04:16.4446697Z remote: Compressing objects:  56% (100/178)        
+2025-09-17T17:04:16.4447255Z remote: Compressing objects:  57% (102/178)        
+2025-09-17T17:04:16.6820238Z remote: Compressing objects:  58% (104/178)        
+2025-09-17T17:04:16.6823071Z remote: Compressing objects:  59% (106/178)        
+2025-09-17T17:04:16.6823645Z remote: Compressing objects:  60% (107/178)        
+2025-09-17T17:04:16.6824274Z remote: Compressing objects:  61% (109/178)        
+2025-09-17T17:04:16.6824823Z remote: Compressing objects:  62% (111/178)        
+2025-09-17T17:04:16.6825343Z remote: Compressing objects:  63% (113/178)        
+2025-09-17T17:04:16.6825863Z remote: Compressing objects:  64% (114/178)        
+2025-09-17T17:04:16.6826629Z remote: Compressing objects:  65% (116/178)        
+2025-09-17T17:04:16.6827225Z remote: Compressing objects:  66% (118/178)        
+2025-09-17T17:04:16.6827731Z remote: Compressing objects:  67% (120/178)        
+2025-09-17T17:04:16.6828253Z remote: Compressing objects:  68% (122/178)        
+2025-09-17T17:04:16.6828767Z remote: Compressing objects:  69% (123/178)        
+2025-09-17T17:04:16.6829294Z remote: Compressing objects:  70% (125/178)        
+2025-09-17T17:04:16.6829830Z remote: Compressing objects:  71% (127/178)        
+2025-09-17T17:04:16.6830311Z remote: Compressing objects:  72% (129/178)        
+2025-09-17T17:04:16.6830826Z remote: Compressing objects:  73% (130/178)        
+2025-09-17T17:04:16.6831339Z remote: Compressing objects:  74% (132/178)        
+2025-09-17T17:04:16.6831799Z remote: Compressing objects:  75% (134/178)        
+2025-09-17T17:04:16.6832283Z remote: Compressing objects:  76% (136/178)        
+2025-09-17T17:04:16.6832786Z remote: Compressing objects:  77% (138/178)        
+2025-09-17T17:04:16.6833267Z remote: Compressing objects:  78% (139/178)        
+2025-09-17T17:04:16.6833777Z remote: Compressing objects:  79% (141/178)        
+2025-09-17T17:04:16.6834285Z remote: Compressing objects:  80% (143/178)        
+2025-09-17T17:04:16.6834781Z remote: Compressing objects:  81% (145/178)        
+2025-09-17T17:04:16.6835293Z remote: Compressing objects:  82% (146/178)        
+2025-09-17T17:04:16.6835791Z remote: Compressing objects:  83% (148/178)        
+2025-09-17T17:04:16.6839370Z remote: Compressing objects:  84% (150/178)        
+2025-09-17T17:04:16.6839725Z remote: Compressing objects:  85% (152/178)        
+2025-09-17T17:04:16.6840058Z remote: Compressing objects:  86% (154/178)        
+2025-09-17T17:04:16.6840686Z remote: Compressing objects:  87% (155/178)        
+2025-09-17T17:04:16.6840995Z remote: Compressing objects:  88% (157/178)        
+2025-09-17T17:04:16.6841291Z remote: Compressing objects:  89% (159/178)        
+2025-09-17T17:04:16.6841782Z remote: Compressing objects:  90% (161/178)        
+2025-09-17T17:04:16.6842321Z remote: Compressing objects:  91% (162/178)        
+2025-09-17T17:04:16.6842822Z remote: Compressing objects:  92% (164/178)        
+2025-09-17T17:04:16.6843314Z remote: Compressing objects:  93% (166/178)        
+2025-09-17T17:04:16.6843847Z remote: Compressing objects:  94% (168/178)        
+2025-09-17T17:04:16.6844186Z remote: Compressing objects:  95% (170/178)        
+2025-09-17T17:04:16.6844472Z remote: Compressing objects:  96% (171/178)        
+2025-09-17T17:04:16.6844753Z remote: Compressing objects:  97% (173/178)        
+2025-09-17T17:04:16.6845200Z remote: Compressing objects:  98% (175/178)        
+2025-09-17T17:04:16.6845506Z remote: Compressing objects:  99% (177/178)        
+2025-09-17T17:04:16.6845793Z remote: Compressing objects: 100% (178/178)        
+2025-09-17T17:04:16.6846411Z remote: Compressing objects: 100% (178/178), done.        
+2025-09-17T17:04:16.7332614Z Receiving objects:   0% (1/255)
+2025-09-17T17:04:16.7334853Z Receiving objects:   1% (3/255)
+2025-09-17T17:04:16.7348588Z Receiving objects:   2% (6/255)
+2025-09-17T17:04:16.7349010Z Receiving objects:   3% (8/255)
+2025-09-17T17:04:16.7349397Z Receiving objects:   4% (11/255)
+2025-09-17T17:04:16.7349773Z Receiving objects:   5% (13/255)
+2025-09-17T17:04:16.7350160Z Receiving objects:   6% (16/255)
+2025-09-17T17:04:16.7350516Z Receiving objects:   7% (18/255)
+2025-09-17T17:04:16.7350872Z Receiving objects:   8% (21/255)
+2025-09-17T17:04:16.7351231Z Receiving objects:   9% (23/255)
+2025-09-17T17:04:16.7351627Z Receiving objects:  10% (26/255)
+2025-09-17T17:04:16.7352050Z Receiving objects:  11% (29/255)
+2025-09-17T17:04:16.7352524Z Receiving objects:  12% (31/255)
+2025-09-17T17:04:16.7352968Z Receiving objects:  13% (34/255)
+2025-09-17T17:04:16.7353371Z Receiving objects:  14% (36/255)
+2025-09-17T17:04:16.7353787Z Receiving objects:  15% (39/255)
+2025-09-17T17:04:16.7354220Z Receiving objects:  16% (41/255)
+2025-09-17T17:04:16.7354587Z Receiving objects:  17% (44/255)
+2025-09-17T17:04:16.7354959Z Receiving objects:  18% (46/255)
+2025-09-17T17:04:16.7355381Z Receiving objects:  19% (49/255)
+2025-09-17T17:04:16.7355800Z Receiving objects:  20% (51/255)
+2025-09-17T17:04:16.7356523Z Receiving objects:  21% (54/255)
+2025-09-17T17:04:16.7356959Z Receiving objects:  22% (57/255)
+2025-09-17T17:04:16.7357376Z Receiving objects:  23% (59/255)
+2025-09-17T17:04:16.7357774Z Receiving objects:  24% (62/255)
+2025-09-17T17:04:16.7358189Z Receiving objects:  25% (64/255)
+2025-09-17T17:04:16.7358590Z Receiving objects:  26% (67/255)
+2025-09-17T17:04:16.7358982Z Receiving objects:  27% (69/255)
+2025-09-17T17:04:16.7359391Z Receiving objects:  28% (72/255)
+2025-09-17T17:04:16.7359802Z Receiving objects:  29% (74/255)
+2025-09-17T17:04:16.7360195Z Receiving objects:  30% (77/255)
+2025-09-17T17:04:16.7360813Z Receiving objects:  31% (80/255)
+2025-09-17T17:04:16.7361318Z Receiving objects:  32% (82/255)
+2025-09-17T17:04:16.7361838Z Receiving objects:  33% (85/255)
+2025-09-17T17:04:16.7362381Z Receiving objects:  34% (87/255)
+2025-09-17T17:04:16.7362918Z Receiving objects:  35% (90/255)
+2025-09-17T17:04:16.7363581Z Receiving objects:  36% (92/255)
+2025-09-17T17:04:16.7364033Z Receiving objects:  37% (95/255)
+2025-09-17T17:04:16.7364461Z Receiving objects:  38% (97/255)
+2025-09-17T17:04:16.7364872Z Receiving objects:  39% (100/255)
+2025-09-17T17:04:16.7365294Z Receiving objects:  40% (102/255)
+2025-09-17T17:04:16.7365706Z Receiving objects:  41% (105/255)
+2025-09-17T17:04:16.7367630Z Receiving objects:  42% (108/255)
+2025-09-17T17:04:16.7368212Z Receiving objects:  43% (110/255)
+2025-09-17T17:04:16.7368775Z Receiving objects:  44% (113/255)
+2025-09-17T17:04:16.7369242Z Receiving objects:  45% (115/255)
+2025-09-17T17:04:16.7376479Z Receiving objects:  46% (118/255)
+2025-09-17T17:04:16.7381083Z Receiving objects:  47% (120/255)
+2025-09-17T17:04:16.7381531Z Receiving objects:  48% (123/255)
+2025-09-17T17:04:16.7381945Z Receiving objects:  49% (125/255)
+2025-09-17T17:04:16.7382343Z Receiving objects:  50% (128/255)
+2025-09-17T17:04:16.7382733Z Receiving objects:  51% (131/255)
+2025-09-17T17:04:16.7383127Z Receiving objects:  52% (133/255)
+2025-09-17T17:04:16.7383519Z Receiving objects:  53% (136/255)
+2025-09-17T17:04:16.7383907Z Receiving objects:  54% (138/255)
+2025-09-17T17:04:16.7384303Z Receiving objects:  55% (141/255)
+2025-09-17T17:04:16.7384693Z Receiving objects:  56% (143/255)
+2025-09-17T17:04:16.7587716Z Receiving objects:  57% (146/255)
+2025-09-17T17:04:16.8013392Z Receiving objects:  58% (148/255)
+2025-09-17T17:04:16.8018620Z Receiving objects:  59% (151/255)
+2025-09-17T17:04:16.8019048Z Receiving objects:  60% (153/255)
+2025-09-17T17:04:16.8107807Z Receiving objects:  61% (156/255)
+2025-09-17T17:04:16.8111512Z Receiving objects:  62% (159/255)
+2025-09-17T17:04:16.8132949Z Receiving objects:  63% (161/255)
+2025-09-17T17:04:16.8134632Z Receiving objects:  64% (164/255)
+2025-09-17T17:04:16.8138423Z Receiving objects:  65% (166/255)
+2025-09-17T17:04:16.8139060Z Receiving objects:  66% (169/255)
+2025-09-17T17:04:16.8140756Z Receiving objects:  67% (171/255)
+2025-09-17T17:04:16.8141393Z Receiving objects:  68% (174/255)
+2025-09-17T17:04:16.8144471Z Receiving objects:  69% (176/255)
+2025-09-17T17:04:16.8146691Z Receiving objects:  70% (179/255)
+2025-09-17T17:04:16.8148443Z Receiving objects:  71% (182/255)
+2025-09-17T17:04:16.8150466Z Receiving objects:  72% (184/255)
+2025-09-17T17:04:16.8151357Z Receiving objects:  73% (187/255)
+2025-09-17T17:04:16.8870779Z Receiving objects:  74% (189/255)
+2025-09-17T17:04:16.8872348Z Receiving objects:  75% (192/255)
+2025-09-17T17:04:16.8872802Z Receiving objects:  76% (194/255)
+2025-09-17T17:04:16.8873269Z Receiving objects:  77% (197/255)
+2025-09-17T17:04:16.8875935Z Receiving objects:  78% (199/255)
+2025-09-17T17:04:16.8876604Z Receiving objects:  79% (202/255)
+2025-09-17T17:04:16.8877040Z Receiving objects:  80% (204/255)
+2025-09-17T17:04:16.8877452Z Receiving objects:  81% (207/255)
+2025-09-17T17:04:16.8905683Z Receiving objects:  82% (210/255)
+2025-09-17T17:04:16.8908534Z Receiving objects:  83% (212/255)
+2025-09-17T17:04:16.8909010Z Receiving objects:  84% (215/255)
+2025-09-17T17:04:16.8911252Z Receiving objects:  85% (217/255)
+2025-09-17T17:04:16.8919867Z Receiving objects:  86% (220/255)
+2025-09-17T17:04:16.8921771Z Receiving objects:  87% (222/255)
+2025-09-17T17:04:16.8923680Z Receiving objects:  88% (225/255)
+2025-09-17T17:04:16.8924131Z Receiving objects:  89% (227/255)
+2025-09-17T17:04:16.8924562Z Receiving objects:  90% (230/255)
+2025-09-17T17:04:16.8924969Z Receiving objects:  91% (233/255)
+2025-09-17T17:04:16.8927102Z Receiving objects:  92% (235/255)
+2025-09-17T17:04:16.9304952Z Receiving objects:  93% (238/255)
+2025-09-17T17:04:16.9306883Z remote: Total 255 (delta 60), reused 181 (delta 32), pack-reused 0 (from 0)        
+2025-09-17T17:04:16.9307533Z Receiving objects:  94% (240/255)
+2025-09-17T17:04:16.9307939Z Receiving objects:  95% (243/255)
+2025-09-17T17:04:16.9308310Z Receiving objects:  96% (245/255)
+2025-09-17T17:04:16.9308674Z Receiving objects:  97% (248/255)
+2025-09-17T17:04:16.9309031Z Receiving objects:  98% (250/255)
+2025-09-17T17:04:16.9309405Z Receiving objects:  99% (253/255)
+2025-09-17T17:04:16.9309814Z Receiving objects: 100% (255/255)
+2025-09-17T17:04:16.9310358Z Receiving objects: 100% (255/255), 3.50 MiB | 14.29 MiB/s, done.
+2025-09-17T17:04:16.9341521Z Resolving deltas:   0% (0/60)
+2025-09-17T17:04:16.9342808Z Resolving deltas:   1% (1/60)
+2025-09-17T17:04:16.9343219Z Resolving deltas:   3% (2/60)
+2025-09-17T17:04:16.9343613Z Resolving deltas:   5% (3/60)
+2025-09-17T17:04:16.9344000Z Resolving deltas:   6% (4/60)
+2025-09-17T17:04:16.9344383Z Resolving deltas:   8% (5/60)
+2025-09-17T17:04:16.9344779Z Resolving deltas:  10% (6/60)
+2025-09-17T17:04:16.9345428Z Resolving deltas:  11% (7/60)
+2025-09-17T17:04:16.9345823Z Resolving deltas:  13% (8/60)
+2025-09-17T17:04:16.9346570Z Resolving deltas:  15% (9/60)
+2025-09-17T17:04:16.9346964Z Resolving deltas:  16% (10/60)
+2025-09-17T17:04:16.9347365Z Resolving deltas:  18% (11/60)
+2025-09-17T17:04:16.9347750Z Resolving deltas:  20% (12/60)
+2025-09-17T17:04:16.9348134Z Resolving deltas:  21% (13/60)
+2025-09-17T17:04:16.9348524Z Resolving deltas:  23% (14/60)
+2025-09-17T17:04:16.9348907Z Resolving deltas:  25% (15/60)
+2025-09-17T17:04:16.9349277Z Resolving deltas:  26% (16/60)
+2025-09-17T17:04:16.9349636Z Resolving deltas:  28% (17/60)
+2025-09-17T17:04:16.9349992Z Resolving deltas:  30% (18/60)
+2025-09-17T17:04:16.9350352Z Resolving deltas:  31% (19/60)
+2025-09-17T17:04:16.9350760Z Resolving deltas:  33% (20/60)
+2025-09-17T17:04:16.9351111Z Resolving deltas:  35% (21/60)
+2025-09-17T17:04:16.9351487Z Resolving deltas:  36% (22/60)
+2025-09-17T17:04:16.9352050Z Resolving deltas:  38% (23/60)
+2025-09-17T17:04:16.9352424Z Resolving deltas:  40% (24/60)
+2025-09-17T17:04:16.9352783Z Resolving deltas:  41% (25/60)
+2025-09-17T17:04:16.9353141Z Resolving deltas:  43% (26/60)
+2025-09-17T17:04:16.9353506Z Resolving deltas:  45% (27/60)
+2025-09-17T17:04:16.9353868Z Resolving deltas:  46% (28/60)
+2025-09-17T17:04:16.9354255Z Resolving deltas:  48% (29/60)
+2025-09-17T17:04:16.9354630Z Resolving deltas:  50% (30/60)
+2025-09-17T17:04:16.9355016Z Resolving deltas:  51% (31/60)
+2025-09-17T17:04:16.9355395Z Resolving deltas:  53% (32/60)
+2025-09-17T17:04:16.9377539Z Resolving deltas:  55% (33/60)
+2025-09-17T17:04:16.9386770Z Resolving deltas:  56% (34/60)
+2025-09-17T17:04:16.9394144Z Resolving deltas:  58% (35/60)
+2025-09-17T17:04:16.9404451Z Resolving deltas:  60% (36/60)
+2025-09-17T17:04:16.9415111Z Resolving deltas:  61% (37/60)
+2025-09-17T17:04:16.9431005Z Resolving deltas:  63% (38/60)
+2025-09-17T17:04:16.9441704Z Resolving deltas:  65% (39/60)
+2025-09-17T17:04:16.9461887Z Resolving deltas:  66% (40/60)
+2025-09-17T17:04:16.9470574Z Resolving deltas:  68% (41/60)
+2025-09-17T17:04:16.9480251Z Resolving deltas:  70% (42/60)
+2025-09-17T17:04:16.9489916Z Resolving deltas:  71% (43/60)
+2025-09-17T17:04:16.9497319Z Resolving deltas:  73% (44/60)
+2025-09-17T17:04:16.9506268Z Resolving deltas:  75% (45/60)
+2025-09-17T17:04:16.9512953Z Resolving deltas:  76% (46/60)
+2025-09-17T17:04:16.9519746Z Resolving deltas:  78% (47/60)
+2025-09-17T17:04:16.9526761Z Resolving deltas:  80% (48/60)
+2025-09-17T17:04:16.9538121Z Resolving deltas:  81% (49/60)
+2025-09-17T17:04:16.9547098Z Resolving deltas:  83% (50/60)
+2025-09-17T17:04:16.9555640Z Resolving deltas:  85% (51/60)
+2025-09-17T17:04:16.9563704Z Resolving deltas:  86% (52/60)
+2025-09-17T17:04:16.9572048Z Resolving deltas:  88% (53/60)
+2025-09-17T17:04:16.9580987Z Resolving deltas:  90% (54/60)
+2025-09-17T17:04:16.9589445Z Resolving deltas:  91% (55/60)
+2025-09-17T17:04:16.9599068Z Resolving deltas:  93% (56/60)
+2025-09-17T17:04:16.9607284Z Resolving deltas:  95% (57/60)
+2025-09-17T17:04:16.9616554Z Resolving deltas:  96% (58/60)
+2025-09-17T17:04:16.9625319Z Resolving deltas:  98% (59/60)
+2025-09-17T17:04:16.9625989Z Resolving deltas: 100% (60/60)
+2025-09-17T17:04:16.9627470Z Resolving deltas: 100% (60/60), done.
+2025-09-17T17:04:16.9713079Z From https://github.com/aspepper/vitrine-de-craques-web-site
+2025-09-17T17:04:16.9714350Z  * [new ref]         cc41847642e03d7218c770fe59935105ae137a6a -> origin/main
+2025-09-17T17:04:16.9744859Z ##[endgroup]
+2025-09-17T17:04:16.9745844Z ##[group]Determining the checkout info
+2025-09-17T17:04:16.9748295Z ##[endgroup]
+2025-09-17T17:04:16.9750308Z ##[group]Checking out the ref
+2025-09-17T17:04:16.9763017Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-09-17T17:04:17.0495910Z Switched to a new branch 'main'
+2025-09-17T17:04:17.0498501Z branch 'main' set up to track 'origin/main'.
+2025-09-17T17:04:17.0510338Z ##[endgroup]
+2025-09-17T17:04:17.0510944Z ##[group]Setting up auth for fetching submodules
+2025-09-17T17:04:17.0517393Z [command]/usr/bin/git config --global http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-17T17:04:17.0565738Z [command]/usr/bin/git config --global --unset-all url.https://github.com/.insteadOf
+2025-09-17T17:04:17.0598478Z [command]/usr/bin/git config --global --add url.https://github.com/.insteadOf git@github.com:
+2025-09-17T17:04:17.0637650Z [command]/usr/bin/git config --global --add url.https://github.com/.insteadOf org-202530@github.com:
+2025-09-17T17:04:17.0658261Z ##[endgroup]
+2025-09-17T17:04:17.0658877Z ##[group]Fetching submodules
+2025-09-17T17:04:17.0662405Z [command]/usr/bin/git submodule sync
+2025-09-17T17:04:17.0898497Z [command]/usr/bin/git -c protocol.version=2 submodule update --init --force --depth=1
+2025-09-17T17:04:17.1128231Z [command]/usr/bin/git submodule foreach git config --local gc.auto 0
+2025-09-17T17:04:17.1352292Z ##[endgroup]
+2025-09-17T17:04:17.1353097Z ##[group]Persisting credentials for submodules
+2025-09-17T17:04:17.1358556Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'url\.https\:\/\/github\.com\/\.insteadOf' && git config --local --unset-all 'url.https://github.com/.insteadOf' || :"
+2025-09-17T17:04:17.1629441Z [command]/usr/bin/git submodule foreach sh -c "git config --local 'http.https://github.com/.extraheader' 'AUTHORIZATION: basic ***' && git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2025-09-17T17:04:17.1873689Z [command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'git@github.com:'
+2025-09-17T17:04:17.2101139Z [command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'org-202530@github.com:'
+2025-09-17T17:04:17.2329182Z ##[endgroup]
+2025-09-17T17:04:17.2368569Z [command]/usr/bin/git log -1 --format='%H'
+2025-09-17T17:04:17.2396881Z 'cc41847642e03d7218c770fe59935105ae137a6a'
+2025-09-17T17:04:17.2595579Z ##[group]Run actions/setup-node@v4
+2025-09-17T17:04:17.2595878Z with:
+2025-09-17T17:04:17.2596247Z   node-version: 20
+2025-09-17T17:04:17.2596450Z   cache: npm
+2025-09-17T17:04:17.2596633Z   always-auth: false
+2025-09-17T17:04:17.2596834Z   check-latest: false
+2025-09-17T17:04:17.2597152Z   token: ***
+2025-09-17T17:04:17.2597340Z ##[endgroup]
+2025-09-17T17:04:17.4401917Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-09-17T17:04:17.4410467Z ##[group]Environment details
+2025-09-17T17:04:17.8972299Z node: v20.19.5
+2025-09-17T17:04:17.8974039Z npm: 10.8.2
+2025-09-17T17:04:17.8975553Z yarn: 1.22.22
+2025-09-17T17:04:17.8977837Z ##[endgroup]
+2025-09-17T17:04:17.8999572Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
+2025-09-17T17:04:18.0230916Z /home/runner/.npm
+2025-09-17T17:04:18.2871953Z Cache hit for: node-cache-Linux-x64-npm-0c72468469f774b0a191b8a1135960573e648d988a184c6aabf21a2b5c40cc9e
+2025-09-17T17:04:19.6079018Z Received 8388608 of 226281932 (3.7%), 8.0 MBs/sec
+2025-09-17T17:04:20.6074698Z Received 125829120 of 226281932 (55.6%), 60.0 MBs/sec
+2025-09-17T17:04:21.6084506Z Received 205520896 of 226281932 (90.8%), 65.3 MBs/sec
+2025-09-17T17:04:21.7537663Z Received 226281932 of 226281932 (100.0%), 68.6 MBs/sec
+2025-09-17T17:04:21.7540769Z Cache Size: ~216 MB (226281932 B)
+2025-09-17T17:04:21.7649394Z [command]/usr/bin/tar -xf /home/runner/work/_temp/11ac552b-51d6-44ae-aafb-e2def2b6de28/cache.tzst -P -C /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site --use-compress-program unzstd
+2025-09-17T17:04:22.2550711Z Cache restored successfully
+2025-09-17T17:04:22.2987455Z Cache restored from key: node-cache-Linux-x64-npm-0c72468469f774b0a191b8a1135960573e648d988a184c6aabf21a2b5c40cc9e
+2025-09-17T17:04:22.3147021Z ##[group]Run npm ci
+2025-09-17T17:04:22.3147315Z [36;1mnpm ci[0m
+2025-09-17T17:04:22.3205243Z shell: /usr/bin/bash -e {0}
+2025-09-17T17:04:22.3205517Z ##[endgroup]
+2025-09-17T17:04:30.5778516Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-09-17T17:04:30.7599668Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2025-09-17T17:04:30.7699000Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-09-17T17:04:30.8943298Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2025-09-17T17:04:30.8968738Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-09-17T17:04:33.6335329Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2025-09-17T17:04:45.4618595Z 
+2025-09-17T17:04:45.4620631Z > vitrine-de-craques-web-site@0.1.0 postinstall
+2025-09-17T17:04:45.4621725Z > npx prisma generate
+2025-09-17T17:04:45.4622453Z 
+2025-09-17T17:04:47.0803392Z Prisma schema loaded from prisma/schema.prisma
+2025-09-17T17:04:47.7030033Z 
+2025-09-17T17:04:47.7035122Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 257ms
+2025-09-17T17:04:47.7039865Z 
+2025-09-17T17:04:47.7040465Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-09-17T17:04:47.7041013Z 
+2025-09-17T17:04:47.7041496Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+2025-09-17T17:04:47.7041957Z 
+2025-09-17T17:04:47.7306728Z 
+2025-09-17T17:04:47.7308073Z > vitrine-de-craques-web-site@0.1.0 prepare
+2025-09-17T17:04:47.7308641Z > husky install
+2025-09-17T17:04:47.7308860Z 
+2025-09-17T17:04:47.7868388Z husky - Git hooks installed
+2025-09-17T17:04:47.8095635Z 
+2025-09-17T17:04:47.8096465Z added 717 packages, and audited 718 packages in 25s
+2025-09-17T17:04:47.8096950Z 
+2025-09-17T17:04:47.8115253Z 190 packages are looking for funding
+2025-09-17T17:04:47.8115815Z   run `npm fund` for details
+2025-09-17T17:04:47.8138154Z 
+2025-09-17T17:04:47.8141373Z found 0 vulnerabilities
+2025-09-17T17:04:47.9054346Z ##[group]Run npx prisma migrate deploy
+2025-09-17T17:04:47.9054708Z [36;1mnpx prisma migrate deploy[0m
+2025-09-17T17:04:47.9104678Z shell: /usr/bin/bash -e {0}
+2025-09-17T17:04:47.9105068Z env:
+2025-09-17T17:04:47.9106314Z   DATABASE_URL: ***
+2025-09-17T17:04:47.9106619Z ##[endgroup]
+2025-09-17T17:04:49.5241063Z Prisma schema loaded from prisma/schema.prisma
+2025-09-17T17:04:49.5296941Z Datasource "db": PostgreSQL database "neondb", schema "public" at "ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech"
+2025-09-17T17:04:50.7446936Z 
+2025-09-17T17:04:50.7449710Z No migration found in prisma/migrations
+2025-09-17T17:04:50.7450118Z 
+2025-09-17T17:04:51.6471192Z 
+2025-09-17T17:04:51.6476552Z No pending migrations to apply.
+2025-09-17T17:04:51.7225883Z ##[group]Run npm run build
+2025-09-17T17:04:51.7226471Z [36;1mnpm run build[0m
+2025-09-17T17:04:51.7256793Z shell: /usr/bin/bash -e {0}
+2025-09-17T17:04:51.7257033Z env:
+2025-09-17T17:04:51.7257877Z   DATABASE_URL: ***
+2025-09-17T17:04:51.7258235Z   NEXTAUTH_URL: ***
+2025-09-17T17:04:51.7258567Z   NEXTAUTH_SECRET: ***
+2025-09-17T17:04:51.7258789Z   AUTH_TRUST_HOST: true
+2025-09-17T17:04:51.7258997Z ##[endgroup]
+2025-09-17T17:04:51.8424543Z 
+2025-09-17T17:04:51.8425675Z > vitrine-de-craques-web-site@0.1.0 build
+2025-09-17T17:04:51.8427641Z > npx prisma generate && next build
+2025-09-17T17:04:51.8428002Z 
+2025-09-17T17:04:53.3864057Z Prisma schema loaded from prisma/schema.prisma
+2025-09-17T17:04:54.0386866Z 
+2025-09-17T17:04:54.0389590Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 240ms
+2025-09-17T17:04:54.0393292Z 
+2025-09-17T17:04:54.0397206Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-09-17T17:04:54.0400053Z 
+2025-09-17T17:04:54.0402502Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+2025-09-17T17:04:54.0404892Z 
+2025-09-17T17:04:54.5890100Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-09-17T17:04:54.6023058Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-09-17T17:04:54.6038240Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-09-17T17:04:54.6039974Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-09-17T17:04:54.6041051Z https://nextjs.org/telemetry
+2025-09-17T17:04:54.6041364Z 
+2025-09-17T17:04:54.6667590Z   ▲ Next.js 14.2.32
+2025-09-17T17:04:54.6668423Z 
+2025-09-17T17:04:54.7259502Z    Creating an optimized production build ...
+2025-09-17T17:05:17.5302849Z  ✓ Compiled successfully
+2025-09-17T17:05:17.5311825Z    Linting and checking validity of types ...
+2025-09-17T17:05:28.2280901Z    Collecting page data ...
+2025-09-17T17:05:30.4055252Z    Generating static pages (0/35) ...
+2025-09-17T17:05:30.9388980Z    Generating static pages (8/35) 
+2025-09-17T17:05:31.3376229Z    Generating static pages (17/35) 
+2025-09-17T17:05:31.9795056Z    Generating static pages (26/35) 
+2025-09-17T17:05:32.4207831Z  ✓ Generating static pages (35/35)
+2025-09-17T17:05:32.8880798Z    Finalizing page optimization ...
+2025-09-17T17:05:32.8885318Z    Collecting build traces ...
+2025-09-17T17:05:46.2052320Z 
+2025-09-17T17:05:46.2150293Z Route (app)                                 Size     First Load JS
+2025-09-17T17:05:46.2153526Z ┌ ƒ /                                       1.33 kB         102 kB
+2025-09-17T17:05:46.2156892Z ├ ƒ /_not-found                             873 B          88.1 kB
+2025-09-17T17:05:46.2159373Z ├ ƒ /agentes                                190 B           101 kB
+2025-09-17T17:05:46.2168988Z ├ ƒ /agentes/[id]                           189 B          92.5 kB
+2025-09-17T17:05:46.2169960Z ├ ƒ /api/agentes                            0 B                0 B
+2025-09-17T17:05:46.2170821Z ├ ƒ /api/agentes/[id]                       0 B                0 B
+2025-09-17T17:05:46.2171491Z ├ ƒ /api/atletas                            0 B                0 B
+2025-09-17T17:05:46.2172012Z ├ ƒ /api/atletas/[id]                       0 B                0 B
+2025-09-17T17:05:46.2172489Z ├ ƒ /api/auth/[...nextauth]                 0 B                0 B
+2025-09-17T17:05:46.2172947Z ├ ƒ /api/clubes                             0 B                0 B
+2025-09-17T17:05:46.2173410Z ├ ƒ /api/clubes/[slug]                      0 B                0 B
+2025-09-17T17:05:46.2173885Z ├ ƒ /api/confederacoes                      0 B                0 B
+2025-09-17T17:05:46.2174364Z ├ ƒ /api/confederacoes/[slug]               0 B                0 B
+2025-09-17T17:05:46.2174830Z ├ ƒ /api/db-check                           0 B                0 B
+2025-09-17T17:05:46.2175496Z ├ ƒ /api/env                                0 B                0 B
+2025-09-17T17:05:46.2175978Z ├ ƒ /api/games                              0 B                0 B
+2025-09-17T17:05:46.2176939Z ├ ƒ /api/games/[slug]                       0 B                0 B
+2025-09-17T17:05:46.2177424Z ├ ƒ /api/health                             0 B                0 B
+2025-09-17T17:05:46.2177895Z ├ ƒ /api/noticias                           0 B                0 B
+2025-09-17T17:05:46.2178367Z ├ ƒ /api/noticias/[slug]                    0 B                0 B
+2025-09-17T17:05:46.2178828Z ├ ƒ /api/pg-check                           0 B                0 B
+2025-09-17T17:05:46.2179274Z ├ ƒ /api/profile                            0 B                0 B
+2025-09-17T17:05:46.2179715Z ├ ƒ /api/register                           0 B                0 B
+2025-09-17T17:05:46.2180153Z ├ ƒ /api/videos                             0 B                0 B
+2025-09-17T17:05:46.2180595Z ├ ƒ /atletas                                190 B           101 kB
+2025-09-17T17:05:46.2181057Z ├ ƒ /atletas/[id]                           189 B          92.5 kB
+2025-09-17T17:05:46.2181517Z ├ ƒ /cadastro                               2.17 kB         128 kB
+2025-09-17T17:05:46.2181968Z ├ ƒ /cadastro/[slug]                        2.2 kB          119 kB
+2025-09-17T17:05:46.2182657Z ├ ƒ /cadastro/atleta-18                     2.82 kB         135 kB
+2025-09-17T17:05:46.2183124Z ├ ƒ /cadastro/clube                         2.78 kB         135 kB
+2025-09-17T17:05:46.2183604Z ├ ƒ /cadastro/de-agentes-licenciados        2.74 kB         135 kB
+2025-09-17T17:05:46.2184113Z ├ ƒ /cadastro/imprensa-jornalistablogueiro  2.94 kB         135 kB
+2025-09-17T17:05:46.2184617Z ├ ƒ /cadastro/responsavel                   3 kB            135 kB
+2025-09-17T17:05:46.2185112Z ├ ƒ /cadastro/responsavel/uploads           2.54 kB         134 kB
+2025-09-17T17:05:46.2185600Z ├ ƒ /cadastro/torcedor                      3.33 kB         144 kB
+2025-09-17T17:05:46.2215999Z ├ ƒ /clubes                                 303 B          96.2 kB
+2025-09-17T17:05:46.2217140Z ├ ƒ /clubes/[slug]                          189 B          92.5 kB
+2025-09-17T17:05:46.2218003Z ├ ƒ /confederacoes                          190 B           101 kB
+2025-09-17T17:05:46.2218844Z ├ ƒ /confederacoes/[slug]                   189 B          92.5 kB
+2025-09-17T17:05:46.2219711Z ├ ƒ /feed                                   3.03 kB         103 kB
+2025-09-17T17:05:46.2220421Z ├ ƒ /games                                  303 B          96.2 kB
+2025-09-17T17:05:46.2221147Z ├ ƒ /games/[slug]                           189 B          92.5 kB
+2025-09-17T17:05:46.2221874Z ├ ƒ /login                                  2.45 kB         143 kB
+2025-09-17T17:05:46.2222608Z ├ ƒ /noticias                               303 B          96.2 kB
+2025-09-17T17:05:46.2223374Z ├ ƒ /noticias/[slug]                        189 B          92.5 kB
+2025-09-17T17:05:46.2224131Z ├ ƒ /perfil                                 155 B          87.3 kB
+2025-09-17T17:05:46.2224872Z ├ ƒ /player/[id]                            155 B          87.3 kB
+2025-09-17T17:05:46.2225622Z ├ ƒ /privacidade                            155 B          87.3 kB
+2025-09-17T17:05:46.2226758Z ├ ƒ /registrar-escolha-perfil               303 B          96.2 kB
+2025-09-17T17:05:46.2227676Z ├ ƒ /sobre                                  155 B          87.3 kB
+2025-09-17T17:05:46.2228528Z ├ ƒ /torcida                                155 B          87.3 kB
+2025-09-17T17:05:46.2229406Z └ ƒ /upload                                 2.39 kB        97.3 kB
+2025-09-17T17:05:46.2230124Z + First Load JS shared by all               87.2 kB
+2025-09-17T17:05:46.2230883Z   ├ chunks/117-9e44d76a5ba26865.js          31.6 kB
+2025-09-17T17:05:46.2231607Z   ├ chunks/fd9d1056-8855781134d79d70.js     53.6 kB
+2025-09-17T17:05:46.2232329Z   └ other shared chunks (total)             1.95 kB
+2025-09-17T17:05:46.2232704Z 
+2025-09-17T17:05:46.2232715Z 
+2025-09-17T17:05:46.2233119Z ƒ Middleware                                48.1 kB
+2025-09-17T17:05:46.2233462Z 
+2025-09-17T17:05:46.2234018Z ƒ  (Dynamic)  server-rendered on demand
+2025-09-17T17:05:46.2234338Z 
+2025-09-17T17:05:46.2498989Z ##[group]Run rm -rf deploy
+2025-09-17T17:05:46.2499515Z [36;1mrm -rf deploy[0m
+2025-09-17T17:05:46.2499936Z [36;1mmkdir -p deploy[0m
+2025-09-17T17:05:46.2500402Z [36;1mcp -R .next/standalone/. deploy/[0m
+2025-09-17T17:05:46.2500894Z [36;1mmkdir -p deploy/.next/static[0m
+2025-09-17T17:05:46.2501489Z [36;1mcp -R .next/static/. deploy/.next/static[0m
+2025-09-17T17:05:46.2502083Z [36;1mcp package.json deploy/package.json[0m
+2025-09-17T17:05:46.2502598Z [36;1mcp -R prisma deploy/prisma[0m
+2025-09-17T17:05:46.2503042Z [36;1mif [ -d public ]; then[0m
+2025-09-17T17:05:46.2503492Z [36;1m  cp -R public deploy/public[0m
+2025-09-17T17:05:46.2503933Z [36;1mfi[0m
+2025-09-17T17:05:46.2504341Z [36;1m./scripts/prune-deploy-artifact.sh deploy[0m
+2025-09-17T17:05:46.2548543Z shell: /usr/bin/bash -e {0}
+2025-09-17T17:05:46.2548966Z ##[endgroup]
+2025-09-17T17:05:46.5497440Z Pruning unused Prisma runtime binaries...
+2025-09-17T17:05:46.5525285Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.wasm-base64.js
+2025-09-17T17:05:46.5526720Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.wasm-base64.mjs
+2025-09-17T17:05:46.5528175Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.js
+2025-09-17T17:05:46.5529221Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.mjs
+2025-09-17T17:05:46.5563879Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.wasm-base64.js
+2025-09-17T17:05:46.5564963Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.js
+2025-09-17T17:05:46.5565912Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.mjs
+2025-09-17T17:05:46.5574007Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.wasm-base64.mjs
+2025-09-17T17:05:46.5600718Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.wasm-base64.js
+2025-09-17T17:05:46.5601790Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.js
+2025-09-17T17:05:46.5602855Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.mjs
+2025-09-17T17:05:46.5603939Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.wasm-base64.mjs
+2025-09-17T17:05:46.5639111Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.js
+2025-09-17T17:05:46.5640255Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.wasm-base64.mjs
+2025-09-17T17:05:46.5641363Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.mjs
+2025-09-17T17:05:46.5642448Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.wasm-base64.js
+2025-09-17T17:05:46.5675341Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.wasm-base64.mjs
+2025-09-17T17:05:46.5686796Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.mjs
+2025-09-17T17:05:46.5687907Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.js
+2025-09-17T17:05:46.5689095Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.wasm-base64.js
+2025-09-17T17:05:46.5708513Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.wasm-base64.mjs
+2025-09-17T17:05:46.5709616Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.mjs
+2025-09-17T17:05:46.5710594Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.js
+2025-09-17T17:05:46.5711665Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.wasm-base64.js
+2025-09-17T17:05:46.5742455Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.wasm-base64.mjs
+2025-09-17T17:05:46.5743572Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.js
+2025-09-17T17:05:46.5744669Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.wasm-base64.js
+2025-09-17T17:05:46.5745731Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.mjs
+2025-09-17T17:05:46.5775893Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.mjs
+2025-09-17T17:05:46.5777707Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.wasm-base64.mjs
+2025-09-17T17:05:46.5778967Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.wasm-base64.js
+2025-09-17T17:05:46.5780084Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.js
+2025-09-17T17:05:46.5781561Z Removing Prisma schema engines not required at runtime...
+2025-09-17T17:05:46.5797900Z Cleaning up optional sharp binaries...
+2025-09-17T17:05:46.5868516Z Deleting dependency source maps...
+2025-09-17T17:05:46.6225399Z Pruning finished.
+2025-09-17T17:05:46.6266910Z ##[group]Run node -v
+2025-09-17T17:05:46.6267357Z [36;1mnode -v[0m
+2025-09-17T17:05:46.6267718Z [36;1mnpx prisma -v[0m
+2025-09-17T17:05:46.6310807Z shell: /usr/bin/bash -e {0}
+2025-09-17T17:05:46.6311248Z ##[endgroup]
+2025-09-17T17:05:46.6427989Z v20.19.5
+2025-09-17T17:05:48.6004747Z Prisma schema loaded from prisma/schema.prisma
+2025-09-17T17:05:48.6051742Z prisma                  : 6.16.2
+2025-09-17T17:05:48.6052565Z @prisma/client          : 6.16.2
+2025-09-17T17:05:48.6053430Z Computed binaryTarget   : debian-openssl-3.0.x
+2025-09-17T17:05:48.6054216Z Operating System        : linux
+2025-09-17T17:05:48.6055482Z Architecture            : x64
+2025-09-17T17:05:48.6056371Z Node.js                 : v20.19.5
+2025-09-17T17:05:48.6057174Z TypeScript              : 5.9.2
+2025-09-17T17:05:48.6058952Z Query Engine (Node-API) : libquery-engine 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/libquery_engine-debian-openssl-3.0.x.so.node)
+2025-09-17T17:05:48.6060719Z PSL                     : @prisma/prisma-schema-wasm 6.16.0-7.1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+2025-09-17T17:05:48.6062377Z Schema Engine           : schema-engine-cli 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/schema-engine-debian-openssl-3.0.x)
+2025-09-17T17:05:48.6063773Z Default Engines Hash    : 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+2025-09-17T17:05:48.6064444Z Studio                  : 0.511.0
+2025-09-17T17:05:48.6429827Z ##[warning]Unexpected input(s) 'PRE_BUILD_COMMAND', valid inputs are ['entryPoint', 'args', 'action', 'app_location', 'azure_static_web_apps_api_token', 'api_build_command', 'api_location', 'app_artifact_location', 'output_location', 'app_build_command', 'repo_token', 'routes_location', 'skip_app_build', 'config_file_location', 'skip_api_build', 'production_branch', 'deployment_environment', 'is_static_export', 'data_api_location', 'github_id_token']
+2025-09-17T17:05:48.6445173Z ##[group]Run Azure/static-web-apps-deploy@v1
+2025-09-17T17:05:48.6445458Z with:
+2025-09-17T17:05:48.6446549Z   azure_static_web_apps_api_token: ***
+2025-09-17T17:05:48.6446943Z   repo_token: ***
+2025-09-17T17:05:48.6447149Z   action: upload
+2025-09-17T17:05:48.6447343Z   app_location: /
+2025-09-17T17:05:48.6447538Z   skip_app_build: true
+2025-09-17T17:05:48.6447748Z   output_location: deploy
+2025-09-17T17:05:48.6447971Z   is_static_export: false
+2025-09-17T17:05:48.6448238Z   PRE_BUILD_COMMAND: npx prisma generate
+2025-09-17T17:05:48.6448501Z ##[endgroup]
+2025-09-17T17:05:48.6540266Z ##[command]/usr/bin/docker run --name d19da402869b2d9d444228ba49174ff513ed7_94aaf7 --label 3d19da --workdir /github/workspace --rm -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_PRE_BUILD_COMMAND" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_SKIP_API_BUILD" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site":"/github/workspace" 3d19da:402869b2d9d444228ba49174ff513ed7
+2025-09-17T17:05:49.7018831Z DeploymentId: ebe094cd-2946-4152-bc5d-5bc1d0fd0000
+2025-09-17T17:05:49.7019748Z 
+2025-09-17T17:05:49.8139576Z [37mTry to validate location at: '/github/workspace'.[0m
+2025-09-17T17:05:49.8154769Z [37mApp Directory Location: '/' was found.[0m
+2025-09-17T17:05:49.8157177Z [37mTry to validate location at: '/github/workspace/swa-db-connections'.[0m
+2025-09-17T17:05:49.8159176Z [37mLooking for event info[0m
+2025-09-17T17:05:50.8208456Z [37mSkipping step to build /github/workspace with Oryx[0m
+2025-09-17T17:05:50.9171961Z [37mDetected the following framework: Next.js[0m
+2025-09-17T17:05:50.9172985Z [37mTry to validate location at: '/github/workspace/deploy'.[0m
+2025-09-17T17:05:50.9557424Z [33m[WARNING] Nodejs runtime version info is not provided for the Next.js app. Defaulting to version: 18. To change it, please use the apiRuntime property to set the custom node version as detailed at https://aka.ms/swa-nextjs-apiruntime. Supported Nodejs versions are 12, 14, 16, 18, 20.[0m
+2025-09-17T17:05:52.5722611Z [37mRepackaged Next.js app to deploy on the backend.[0m
+2025-09-17T17:05:52.5752642Z [37mStarting to build function app with Oryx[0m
+2025-09-17T17:05:52.5755121Z [37m---Oryx build logs---[0m
+2025-09-17T17:05:52.5757990Z [37m[0m
+2025-09-17T17:05:52.5758361Z [37m[0m
+2025-09-17T17:05:52.9509225Z [37mOperation performed by Microsoft Oryx, https://github.com/Microsoft/Oryx[0m
+2025-09-17T17:05:52.9512812Z [37mYou can report issues at https://github.com/Microsoft/Oryx/issues[0m
+2025-09-17T17:05:52.9514946Z [37m[0m
+2025-09-17T17:05:52.9519540Z [37mOryx Version: 0.2.20241003.1, Commit: d5352431d933306ccee1be9b5d822c73bf723e9e, ReleaseTagName: 20241003.1[0m
+2025-09-17T17:05:52.9520575Z [37m[0m
+2025-09-17T17:05:52.9521197Z [37mBuild Operation ID: be610d7b79ede011[0m
+2025-09-17T17:05:52.9521939Z [37mOS Type           : bullseye[0m
+2025-09-17T17:05:52.9522636Z [37mImage Type        : githubactions[0m
+2025-09-17T17:05:52.9523181Z [37m[0m
+2025-09-17T17:05:52.9666527Z [37mDetecting platforms...[0m
+2025-09-17T17:05:54.2499024Z [37mDetected following platforms:[0m
+2025-09-17T17:05:54.2503731Z [37m  nodejs: 18.20.8[0m
+2025-09-17T17:05:54.2504292Z [37m  python: 3.8.20[0m
+2025-09-17T17:05:54.2535862Z [37mVersion '18.20.8' of platform 'nodejs' is not installed. Generating script to install it...[0m
+2025-09-17T17:05:54.2548881Z [37mVersion '3.8.20' of platform 'python' is not installed. Generating script to install it...[0m
+2025-09-17T17:05:54.3039597Z [37mDetected the following frameworks: Next.js[0m
+2025-09-17T17:05:54.4010752Z [37m[0m
+2025-09-17T17:05:54.4090685Z [37m[0m
+2025-09-17T17:05:54.4091573Z [37mSource directory     : /github/workspace[0m
+2025-09-17T17:05:54.4096744Z [37mDestination directory: /bin/staticsites/ebe094cd-2946-4152-bc5d-5bc1d0fd0000-swa-oryx/api[0m
+2025-09-17T17:05:54.4099288Z [37m[0m
+2025-09-17T17:05:54.4111836Z [37m[0m
+2025-09-17T17:05:54.4113287Z [37mDownloading and extracting 'nodejs' version '18.20.8' to '/tmp/oryx/platforms/nodejs/18.20.8'...[0m
+2025-09-17T17:05:54.4150086Z [37mDetected image debian flavor: bullseye.[0m
+2025-09-17T17:05:54.7521689Z [37mDownloaded in 0 sec(s).[0m
+2025-09-17T17:05:54.7528480Z [37mVerifying checksum...[0m
+2025-09-17T17:05:54.7598922Z [37mExtracting contents...[0m
+2025-09-17T17:05:56.2399224Z [37mperforming sha512 checksum for: nodejs...[0m
+2025-09-17T17:05:56.3709455Z [37mDone in 2 sec(s).[0m
+2025-09-17T17:05:56.3712655Z [37m[0m
+2025-09-17T17:05:56.3754789Z [37m[0m
+2025-09-17T17:05:56.3760070Z [37mDownloading and extracting 'python' version '3.8.20' to '/tmp/oryx/platforms/python/3.8.20'...[0m
+2025-09-17T17:05:56.3798823Z [37mDetected image debian flavor: bullseye.[0m
+2025-09-17T17:05:58.0717975Z [37mDownloaded in 2 sec(s).[0m
+2025-09-17T17:05:58.0719104Z [37mVerifying checksum...[0m
+2025-09-17T17:05:58.0783979Z [37mExtracting contents...[0m
+2025-09-17T17:05:59.8018554Z [37mperforming sha512 checksum for: python...[0m
+2025-09-17T17:06:00.0241447Z [37mDone in 4 sec(s).[0m
+2025-09-17T17:06:00.0242400Z [37m[0m
+2025-09-17T17:06:00.0310361Z [37mimage detector file exists, platform is python..[0m
+2025-09-17T17:06:00.0313383Z [37mOS detector file exists, OS is bullseye..[0m
+2025-09-17T17:06:00.0965210Z [37mRemoving existing manifest file[0m
+2025-09-17T17:06:00.0989406Z [37mCreating directory for command manifest file if it does not exist[0m
+2025-09-17T17:06:00.1021609Z [37mCreating a manifest file...[0m
+2025-09-17T17:06:00.1023892Z [37mNode Build Command Manifest file created.[0m
+2025-09-17T17:06:00.1024487Z [37m[0m
+2025-09-17T17:06:00.1027957Z [37mUsing Node version:[0m
+2025-09-17T17:06:00.1093772Z [37mv18.20.8[0m
+2025-09-17T17:06:00.1119058Z [37m[0m
+2025-09-17T17:06:00.1120303Z [37mUsing Npm version:[0m
+2025-09-17T17:06:00.2378349Z [37m10.8.2[0m
+2025-09-17T17:06:00.2490298Z [37m[0m
+2025-09-17T17:06:00.2492446Z [37mInstalling production dependencies in '/github/workspace/.oryx_prod_node_modules'...[0m
+2025-09-17T17:06:00.2494422Z [37m[0m
+2025-09-17T17:06:00.2495169Z [37mRunning 'npm install --production'...[0m
+2025-09-17T17:06:00.2495892Z [37m[0m
+2025-09-17T17:06:00.3767398Z [31mnpm warn config production Use `--omit=dev` instead.[0m
+2025-09-17T17:06:01.0177711Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:01.0178762Z [31mnpm warn EBADENGINE   package: '@azure/core-auth@1.10.1',[0m
+2025-09-17T17:06:01.0179800Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:01.0180874Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:01.0181713Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:01.0182398Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:01.0183204Z [31mnpm warn EBADENGINE   package: '@azure/core-util@1.13.1',[0m
+2025-09-17T17:06:01.0184056Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:01.0184943Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:01.0185679Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:01.0191614Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:01.0192628Z [31mnpm warn EBADENGINE   package: '@azure/core-tracing@1.3.1',[0m
+2025-09-17T17:06:01.0193602Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:01.0194606Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:01.0195368Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:01.0214140Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:01.0232765Z [31mnpm warn EBADENGINE   package: '@azure/logger@1.3.0',[0m
+2025-09-17T17:06:01.0233761Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:01.0234749Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:01.0235510Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:01.0241066Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:01.0247339Z [31mnpm warn EBADENGINE   package: '@typespec/ts-http-runtime@0.3.1',[0m
+2025-09-17T17:06:01.0248699Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:01.0267357Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:01.0268195Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:20.0677353Z [37m[0m
+2025-09-17T17:06:20.0681362Z [37madded 367 packages, and audited 368 packages in 20s[0m
+2025-09-17T17:06:20.0688266Z [37m[0m
+2025-09-17T17:06:20.0688838Z [37m55 packages are looking for funding[0m
+2025-09-17T17:06:20.0693242Z [37m  run `npm fund` for details[0m
+2025-09-17T17:06:20.0709847Z [37m[0m
+2025-09-17T17:06:20.0711255Z [37mfound 0 vulnerabilities[0m
+2025-09-17T17:06:20.1065794Z [37m[0m
+2025-09-17T17:06:20.1069910Z [37mCopying production dependencies from '/github/workspace/.oryx_prod_node_modules' to '/github/workspace/node_modules'...[0m
+2025-09-17T17:06:24.9532662Z [37mDone in 4 sec(s).[0m
+2025-09-17T17:06:25.4369409Z [37m[0m
+2025-09-17T17:06:25.4370901Z [37mRunning 'npm install'...[0m
+2025-09-17T17:06:25.4371387Z [37m[0m
+2025-09-17T17:06:26.1645642Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:26.1659467Z [31mnpm warn EBADENGINE   package: '@azure/core-auth@1.10.1',[0m
+2025-09-17T17:06:26.1660519Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:26.1661634Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:26.1662492Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:26.1663262Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:26.1664243Z [31mnpm warn EBADENGINE   package: '@azure/core-util@1.13.1',[0m
+2025-09-17T17:06:26.1665237Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:26.1670490Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:26.1674057Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:26.1674810Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:26.1675824Z [31mnpm warn EBADENGINE   package: '@azure/core-tracing@1.3.1',[0m
+2025-09-17T17:06:26.1682324Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:26.1683356Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:26.1684143Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:26.1688023Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:26.1689003Z [31mnpm warn EBADENGINE   package: '@azure/logger@1.3.0',[0m
+2025-09-17T17:06:26.1690003Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:26.1691087Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:26.1691930Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:26.1692684Z [31mnpm warn EBADENGINE Unsupported engine {[0m
+2025-09-17T17:06:26.1693714Z [31mnpm warn EBADENGINE   package: '@typespec/ts-http-runtime@0.3.1',[0m
+2025-09-17T17:06:26.1694771Z [31mnpm warn EBADENGINE   required: { node: '>=20.0.0' },[0m
+2025-09-17T17:06:26.1695833Z [31mnpm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }[0m
+2025-09-17T17:06:26.1697228Z [31mnpm warn EBADENGINE }[0m
+2025-09-17T17:06:26.8210843Z [37m[0m
+2025-09-17T17:06:26.8213356Z [37mup to date, audited 368 packages in 1s[0m
+2025-09-17T17:06:26.8213877Z [37m[0m
+2025-09-17T17:06:26.8214387Z [37m55 packages are looking for funding[0m
+2025-09-17T17:06:26.8214969Z [37m  run `npm fund` for details[0m
+2025-09-17T17:06:26.8221789Z [37m[0m
+2025-09-17T17:06:26.8226739Z [37mfound 0 vulnerabilities[0m
+2025-09-17T17:06:26.8348506Z [37m[0m
+2025-09-17T17:06:26.8353213Z [37mRunning 'npm run build'...[0m
+2025-09-17T17:06:26.8356859Z [37m[0m
+2025-09-17T17:06:26.9694722Z [37m[0m
+2025-09-17T17:06:26.9704203Z [37m> function-handler-build@0.1.0 build[0m
+2025-09-17T17:06:26.9721971Z [37m> echo 'restoring the framework'[0m
+2025-09-17T17:06:26.9727123Z [37m[0m
+2025-09-17T17:06:26.9758505Z [37mrestoring the framework[0m
+2025-09-17T17:06:26.9878571Z [37mPreparing output...[0m
+2025-09-17T17:06:26.9882916Z [37m[0m
+2025-09-17T17:06:26.9887982Z [37mCopying files to destination directory '/bin/staticsites/ebe094cd-2946-4152-bc5d-5bc1d0fd0000-swa-oryx/api'...[0m
+2025-09-17T17:06:34.6703657Z [37mDone in 8 sec(s).[0m
+2025-09-17T17:06:34.6739744Z [37m[0m
+2025-09-17T17:06:34.6743059Z [37mRemoving existing manifest file[0m
+2025-09-17T17:06:34.6760484Z [37mCreating a manifest file...[0m
+2025-09-17T17:06:34.6779826Z [37mManifest file created.[0m
+2025-09-17T17:06:34.6787676Z [37mCopying .ostype to manifest output directory.[0m
+2025-09-17T17:06:34.6833720Z [37m[0m
+2025-09-17T17:06:34.6842742Z [37mDone in 40 sec(s).[0m
+2025-09-17T17:06:34.8067106Z [37m[0m
+2025-09-17T17:06:34.8068162Z [37m[0m
+2025-09-17T17:06:34.8074169Z [37m---End of Oryx build logs---[0m
+2025-09-17T17:06:34.8096201Z [33mWeb App Runtime Information. OS: linux, node version: 18[0m
+2025-09-17T17:06:34.8102635Z [37mFinished building function app with Oryx[0m
+2025-09-17T17:06:39.0718093Z [37mZipping Api Artifacts[0m
+2025-09-17T17:07:33.7163243Z [37mDone Zipping Api Artifacts[0m
+2025-09-17T17:07:34.2810396Z [31mThe content server has rejected the request with: BadRequest[0m
+2025-09-17T17:07:34.2813804Z [31mReason: The size of the function content was too large. The limit for this Static Web App is 262144000 bytes.[0m
+2025-09-17T17:07:34.3130679Z [37m[0m
+2025-09-17T17:07:34.3132497Z [33mFor further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/[0m
+2025-09-17T17:07:34.3139109Z [33mIf you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/[0m
+2025-09-17T17:07:34.3140092Z [33mExiting[0m
+2025-09-17T17:07:36.7353145Z Post job cleanup.
+2025-09-17T17:07:36.8149473Z Cleaning up orphan processes

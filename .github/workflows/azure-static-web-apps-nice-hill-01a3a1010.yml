@@ -47,6 +47,19 @@ jobs:
           AUTH_TRUST_HOST: 'true'
         run: npm run build
 
+      - name: Prepare standalone artifact for deployment
+        run: |
+          rm -rf deploy
+          mkdir -p deploy
+          cp -R .next/standalone/. deploy/
+          mkdir -p deploy/.next/static
+          cp -R .next/static/. deploy/.next/static
+          cp package.json deploy/package.json
+          cp -R prisma deploy/prisma
+          if [ -d public ]; then
+            cp -R public deploy/public
+          fi
+
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics
         run: |
@@ -65,7 +78,7 @@ jobs:
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           skip_app_build: true
-          output_location: ".next" # diretório gerado pelo Next.js após npm run build
+          output_location: "deploy" # artefato standalone preparado manualmente
           ###### End of Repository/Build Configurations ######
           is_static_export: false
           # (variáveis expostas ao tempo de execução já devem estar configuradas diretamente no Azure)

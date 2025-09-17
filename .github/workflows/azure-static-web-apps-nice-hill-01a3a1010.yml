@@ -68,7 +68,8 @@ jobs:
           output_location: ".next" # diretório gerado pelo Next.js após npm run build
           ###### End of Repository/Build Configurations ######
           is_static_export: false
-        # (variáveis expostas ao tempo de execução já devem estar configuradas diretamente no Azure)
+          # (variáveis expostas ao tempo de execução já devem estar configuradas diretamente no Azure)
+          PRE_BUILD_COMMAND: "npx prisma generate"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

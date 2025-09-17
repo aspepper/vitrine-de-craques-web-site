@@ -33,6 +33,13 @@ if [ -d "$PRISMA_ENGINES" ]; then
   find "$PRISMA_ENGINES" -maxdepth 1 -type d -name 'schema-engine-*' -print -exec rm -rf {} +
 fi
 
+PRISMA_CLIENT_BINARIES="$TARGET_DIR/node_modules/.prisma/client"
+if [ -d "$PRISMA_CLIENT_BINARIES" ]; then
+  echo "Removing unused Prisma client engines..."
+  find "$PRISMA_CLIENT_BINARIES" -maxdepth 1 -type f -name 'libquery_engine*' \
+    ! -name 'libquery_engine-debian-openssl-3.0.x.so.node' -print -delete
+fi
+
 IMG_DIR="$TARGET_DIR/node_modules/@img"
 if [ -d "$IMG_DIR" ]; then
   echo "Cleaning up optional sharp binaries..."

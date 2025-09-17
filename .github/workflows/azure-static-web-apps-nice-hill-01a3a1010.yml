@@ -59,6 +59,7 @@ jobs:
           if [ -d public ]; then
             cp -R public deploy/public
           fi
+          ./scripts/prune-deploy-artifact.sh deploy
 
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics

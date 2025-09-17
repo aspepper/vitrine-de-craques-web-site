@@ -17,7 +17,6 @@ pnpm-debug.log*
 playwright-report/
 /coverage
 *.tsbuildinfo
-*.log
 
 # Prisma
 prisma/*.db

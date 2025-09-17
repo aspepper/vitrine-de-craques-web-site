@@ -1,8 +1,4 @@
-const prismaClientIncludes = [
-  './node_modules/.prisma/client/**/*',
-  './node_modules/@prisma/client/**/*',
-  './node_modules/@prisma/engines/**/*',
-]
+const prismaEnginePath = './node_modules/@prisma/engines/libquery_engine-debian-openssl-3.0.x.so.node';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -11,9 +7,10 @@ const nextConfig = {
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
     outputFileTracingIncludes: {
       '/': [
-        './node_modules/.prisma/**',
-        './node_modules/@prisma/**',
-        './prisma/**'
+        './node_modules/.prisma/client/**',
+        './node_modules/@prisma/client/**',
+        prismaEnginePath,
+        './prisma/**',
       ],
     },
   },

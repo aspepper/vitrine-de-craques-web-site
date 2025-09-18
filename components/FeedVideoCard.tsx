@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 
+import { cn } from "@/lib/utils";
+
 interface Video {
   id: string;
   title: string;
@@ -15,9 +17,15 @@ interface Video {
 
 interface Props {
   video: Video;
+  className?: string;
+  showOverlayActions?: boolean;
 }
 
-export function FeedVideoCard({ video }: Props) {
+export function FeedVideoCard({
+  video,
+  className,
+  showOverlayActions = true,
+}: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -52,24 +60,31 @@ export function FeedVideoCard({ video }: Props) {
   );
 
   return (
-    <div className="relative w-full max-w-sm aspect-[9/16]">
+    <div
+      className={cn(
+        "relative aspect-[9/16] w-full max-w-sm overflow-hidden rounded-[32px] bg-slate-900 shadow-[0_24px_64px_-32px_rgba(15,23,42,0.65)] ring-1 ring-black/10",
+        className
+      )}
+    >
       <video
         ref={ref}
         src={video.videoUrl}
         poster={video.thumbnailUrl || undefined}
-        className="w-full h-full object-cover rounded-lg"
+        className="h-full w-full object-cover"
         loop
         muted
         playsInline
       />
-      <div className="absolute right-2 bottom-10 flex flex-col gap-3">
-        <ActionButton src="/icons/icon-like.svg" alt="Curtir" />
-        <ActionButton src="/icons/icon-comment.svg" alt="Comentar" />
-        <ActionButton src="/icons/icon-save.svg" alt="Salvar" />
-        <ActionButton src="/icons/icon-share.svg" alt="Compartilhar" />
-        <ActionButton src="/icons/icon-report.svg" alt="Denunciar" />
-      </div>
-      <div className="absolute left-2 bottom-2 text-white drop-shadow">
+      {showOverlayActions && (
+        <div className="absolute bottom-10 right-2 flex flex-col gap-3">
+          <ActionButton src="/icons/icon-like.svg" alt="Curtir" />
+          <ActionButton src="/icons/icon-comment.svg" alt="Comentar" />
+          <ActionButton src="/icons/icon-save.svg" alt="Salvar" />
+          <ActionButton src="/icons/icon-share.svg" alt="Compartilhar" />
+          <ActionButton src="/icons/icon-report.svg" alt="Denunciar" />
+        </div>
+      )}
+      <div className="absolute left-3 bottom-3 text-white drop-shadow">
         <p className="font-semibold leading-tight">{video.user?.name}</p>
         <p className="text-sm leading-tight">{video.title}</p>
       </div>

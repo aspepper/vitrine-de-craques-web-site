@@ -45,7 +45,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow py-12">
-        <div className="flex w-full flex-col gap-10">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-10">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">Acessar sua conta</h1>
             <p className="text-sm text-muted-foreground">
@@ -54,11 +54,11 @@ export default function LoginPage() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <div className="mx-auto w-full max-w-3xl">
+            <div className="w-full">
               <SocialAuth />
             </div>
 
-            <Card className="mx-auto w-full max-w-3xl border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
+            <Card className="w-full border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
               <CardContent className="flex flex-col gap-6 px-6 py-8 sm:px-10">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-base font-semibold text-slate-900">

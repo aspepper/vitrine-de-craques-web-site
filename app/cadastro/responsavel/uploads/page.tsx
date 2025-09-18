@@ -32,9 +32,9 @@ export default function UploadsResponsavelPage() {
     router.push('/')
   }
 
-    return (
-      <div className="flex min-h-screen flex-col bg-slate-50">
-        <main className="container mx-auto flex-grow py-12">
+  return (
+    <div className="flex min-h-screen flex-col bg-slate-50">
+      <main className="container mx-auto flex-grow py-8 md:py-10">
         <h1 className="mb-8 text-center text-3xl font-bold">Uploads do responsável</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />

@@ -42,7 +42,7 @@ export default function CadastroAgenteLicenciadoPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
-      <main className="container mx-auto flex-grow py-12">
+      <main className="container mx-auto flex-grow py-8 md:py-10">
         <h1 className="mb-8 text-3xl font-bold">Cadastro de Agente/Empresário</h1>
         <div className="mb-8">
           <SocialAuth />

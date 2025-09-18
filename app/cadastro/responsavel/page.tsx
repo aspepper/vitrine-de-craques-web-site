@@ -44,9 +44,9 @@ export default function CadastroResponsavelPage() {
     router.push('/cadastro/responsavel/uploads')
   }
 
-    return (
-      <div className="flex min-h-screen flex-col bg-slate-50">
-        <main className="container mx-auto flex-grow py-12">
+  return (
+    <div className="flex min-h-screen flex-col bg-slate-50">
+      <main className="container mx-auto flex-grow py-8 md:py-10">
         <h1 className="mb-8 text-left text-3xl font-bold">Conta Familiar — Responsável + Atleta (menor de 18)</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />

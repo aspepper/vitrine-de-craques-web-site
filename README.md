@@ -60,3 +60,8 @@ npm install
 npm run lint
 npm run build
 
+## Congelando uma release com tag
+
+git tag -a v1.2.0 -m "Release ..."
+git push origin v1.2.0
+

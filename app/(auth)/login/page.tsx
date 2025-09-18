@@ -118,7 +118,7 @@ export default function LoginPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full shadow-[0_25px_70px_-35px_rgba(59,130,246,0.85)]"
+                    className="w-full h-14 rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 text-base font-semibold shadow-[0_30px_70px_-35px_rgba(34,197,94,0.65)] transition hover:brightness-110 focus-visible:ring-emerald-500/60"
                   >
                     Entrar
                   </Button>

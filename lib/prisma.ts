@@ -1,6 +1,10 @@
 // src/lib/prisma.ts
 import { PrismaClient } from '@prisma/client'
 
+import { ensurePrismaEnginePath } from './prisma-engine'
+
+ensurePrismaEnginePath()
+
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefined }
 
 export const prisma =

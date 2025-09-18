@@ -92,7 +92,10 @@ export default function RegistrarEscolhaPerfilPage() {
         </section>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {profiles.map(({ slug, title, description, cta, icon: Icon, available }) => (
-            <Card key={title} className="flex h-full flex-col">
+            <Card
+              key={title}
+              className="flex h-full flex-col border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]"
+            >
               <CardHeader className="flex flex-row items-center gap-4 pb-4">
                 <Icon className="h-12 w-12 flex-shrink-0 text-primary" />
                 <CardTitle className="text-xl">{title}</CardTitle>

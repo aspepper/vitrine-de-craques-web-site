@@ -49,14 +49,14 @@ export function Header() {
         'shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
       )}
     >
-      <nav className="container mx-auto flex h-16 md:h-20 items-center gap-4">
+      <nav className="container mx-auto flex h-14 md:h-16 items-center gap-4">
         {/* Logo + Marca */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/brand/logo.png"
             alt="Vitrine de Craques"
-            width={64}
-            height={64}
+            width={56}
+            height={56}
             priority
           />
 

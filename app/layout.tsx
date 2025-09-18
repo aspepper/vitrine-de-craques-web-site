@@ -36,7 +36,7 @@ export default function RootLayout({
       <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable, fontHeading.variable)}>
         <Providers>
           <Header />
-          <main className="pt-16 md:pt-20">{children}</main>
+          <main className="pt-14 md:pt-16">{children}</main>
           <Footer />
         </Providers>
       </body>

@@ -1,7 +1,15 @@
-const prismaEnginePaths = [
+import { existsSync } from 'node:fs';
+
+const prismaEngineCandidates = [
   './node_modules/.prisma/client/libquery_engine-debian-openssl-3.0.x.so.node',
   './node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node',
+  './node_modules/.prisma/client/libquery_engine-darwin.dylib.node',
+  './node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node',
 ];
+
+const prismaEnginePaths = prismaEngineCandidates.filter((enginePath) =>
+  existsSync(enginePath),
+);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

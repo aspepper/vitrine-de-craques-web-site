@@ -45,7 +45,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow py-12">
-        <div className="mx-auto flex w-full max-w-4xl flex-col gap-10">
+        <div className="flex w-full flex-col gap-10">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">Acessar sua conta</h1>
             <p className="text-sm text-muted-foreground">

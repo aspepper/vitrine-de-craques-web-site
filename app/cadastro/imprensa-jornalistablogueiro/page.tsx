@@ -51,7 +51,7 @@ export default function CadastroImprensaPage() {
           <SocialAuth />
         </div>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <Card>
+          <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
             <CardHeader>
               <CardTitle>Dados e portfólio</CardTitle>
             </CardHeader>

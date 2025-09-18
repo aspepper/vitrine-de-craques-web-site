@@ -66,7 +66,7 @@ export default function CadastroPerfilPage({ params }: PageProps) {
 
   return (
     <div className='flex items-center justify-center min-h-screen bg-gray-100'>
-      <Card className='mx-auto max-w-md w-full'>
+      <Card className='mx-auto w-full max-w-md border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]'>
         <CardHeader>
           <CardTitle>Cadastro - {params.slug}</CardTitle>
         </CardHeader>

@@ -43,7 +43,7 @@ export default function CadastroImprensaPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
-      <main className="container mx-auto flex-grow py-12">
+      <main className="container mx-auto flex-grow py-8 md:py-10">
         <h1 className="mb-8 text-left text-3xl font-bold">
           Cadastro Jornalista/Blogueiro
         </h1>

@@ -6,25 +6,45 @@ const projectRoot = process.cwd()
 const pathsToCopy = [
   {
     source: join(projectRoot, 'node_modules', '.prisma', 'client'),
-    target: join(
-      projectRoot,
-      '.next',
-      'standalone',
-      'node_modules',
-      '.prisma',
-      'client',
-    ),
+    targets: [
+      join(
+        projectRoot,
+        '.next',
+        'standalone',
+        'node_modules',
+        '.prisma',
+        'client',
+      ),
+      join(
+        projectRoot,
+        '.next',
+        'server',
+        'chunks',
+        '.prisma',
+        'client',
+      ),
+    ],
   },
   {
     source: join(projectRoot, 'node_modules', '@prisma', 'client'),
-    target: join(
-      projectRoot,
-      '.next',
-      'standalone',
-      'node_modules',
-      '@prisma',
-      'client',
-    ),
+    targets: [
+      join(
+        projectRoot,
+        '.next',
+        'standalone',
+        'node_modules',
+        '@prisma',
+        'client',
+      ),
+      join(
+        projectRoot,
+        '.next',
+        'server',
+        'chunks',
+        '@prisma',
+        'client',
+      ),
+    ],
   },
 ]
 
@@ -38,21 +58,23 @@ function ensureDirectory(path) {
 function copyPrismaAssets() {
   let copiedSomething = false
 
-  for (const { source, target } of pathsToCopy) {
+  for (const { source, targets } of pathsToCopy) {
     if (!existsSync(source)) {
       console.warn(`[copy-prisma-artifacts] Source path not found: ${source}`)
       continue
     }
 
-    if (existsSync(target)) {
-      rmSync(target, { recursive: true, force: true })
+    for (const target of targets) {
+      if (existsSync(target)) {
+        rmSync(target, { recursive: true, force: true })
+      }
+
+      ensureDirectory(target)
+
+      cpSync(source, target, { recursive: true })
+      copiedSomething = true
+      console.log(`[copy-prisma-artifacts] Copied Prisma artifacts to ${target}`)
     }
-
-    ensureDirectory(target)
-
-    cpSync(source, target, { recursive: true })
-    copiedSomething = true
-    console.log(`[copy-prisma-artifacts] Copied Prisma artifacts to ${target}`)
   }
 
   if (!copiedSomething) {

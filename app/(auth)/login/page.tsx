@@ -53,13 +53,13 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
-            <CardContent className="flex flex-col gap-8 px-6 py-8 sm:px-10">
+          <div className="flex flex-col gap-6">
+            <div className="mx-auto w-full max-w-3xl">
               <SocialAuth />
+            </div>
 
-              <div className="h-px w-full bg-slate-100" />
-
-              <div className="flex flex-col gap-6">
+            <Card className="mx-auto w-full max-w-3xl border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
+              <CardContent className="flex flex-col gap-6 px-6 py-8 sm:px-10">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-base font-semibold text-slate-900">
                     Ou entre com e-mail e senha
@@ -121,9 +121,9 @@ export default function LoginPage() {
                     Entrar
                   </Button>
                 </form>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </main>
     </div>

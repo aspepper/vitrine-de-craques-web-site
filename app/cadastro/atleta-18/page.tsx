@@ -43,9 +43,9 @@ export default function CadastroAtleta18Page() {
     router.push('/')
   }
 
-    return (
-      <div className="flex min-h-screen flex-col bg-slate-50">
-        <main className="container mx-auto flex-grow py-12">
+  return (
+    <div className="flex min-h-screen flex-col bg-slate-50">
+      <main className="container mx-auto flex-grow py-8 md:py-10">
         <h1 className="mb-8 text-3xl font-bold">Cadastro Atleta 18+</h1>
         <div className="mb-8 flex justify-center">
           <SocialAuth />

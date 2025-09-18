@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 import SocialAuth from "@/components/SocialAuth"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
@@ -43,14 +44,17 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
-      <main className="container mx-auto flex flex-grow flex-col justify-center py-16">
-        <div className="mx-auto w-full max-w-5xl space-y-8">
-          <h1 className="text-3xl font-semibold text-slate-900 md:text-4xl">
-            Acessar sua conta
-          </h1>
+      <main className="container mx-auto flex-grow py-12">
+        <div className="mx-auto flex w-full max-w-4xl flex-col gap-10">
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">Acessar sua conta</h1>
+            <p className="text-sm text-muted-foreground">
+              Utilize uma rede social ou preencha seus dados de acesso para entrar.
+            </p>
+          </div>
 
-          <div className="rounded-[32px] border border-slate-200 bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
-            <div className="flex flex-col gap-8 px-6 py-8 sm:px-10 lg:px-16">
+          <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
+            <CardContent className="flex flex-col gap-8 px-6 py-8 sm:px-10">
               <SocialAuth />
 
               <div className="h-px w-full bg-slate-100" />
@@ -73,13 +77,13 @@ export default function LoginPage() {
                     <Label htmlFor="email" className="text-sm font-semibold text-slate-700">
                       E-mail
                     </Label>
-                    <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3 shadow-sm transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
-                      <Mail className="h-5 w-5 text-slate-400" />
+                    <div className="relative">
+                      <Mail className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
                       <Input
                         id="email"
                         type="email"
                         placeholder="voce@email.com"
-                        className="h-auto border-0 bg-transparent p-0 text-base text-slate-900 placeholder:text-slate-400 focus-visible:ring-0 focus-visible:ring-offset-0"
+                        className="pl-12"
                         {...register("email")}
                       />
                     </div>
@@ -90,13 +94,13 @@ export default function LoginPage() {
                     <Label htmlFor="password" className="text-sm font-semibold text-slate-700">
                       Senha
                     </Label>
-                    <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3 shadow-sm transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
-                      <Lock className="h-5 w-5 text-slate-400" />
+                    <div className="relative">
+                      <Lock className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
                       <Input
                         id="password"
                         type="password"
                         placeholder="********"
-                        className="h-auto border-0 bg-transparent p-0 text-base text-slate-900 placeholder:text-slate-400 focus-visible:ring-0 focus-visible:ring-offset-0"
+                        className="pl-12"
                         {...register("password")}
                       />
                     </div>
@@ -118,8 +122,8 @@ export default function LoginPage() {
                   </Button>
                 </form>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </main>
     </div>

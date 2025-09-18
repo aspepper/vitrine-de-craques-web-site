@@ -117,7 +117,8 @@ export default function LoginPage() {
 
                   <Button
                     type="submit"
-                    className="h-14 w-full justify-center rounded-full text-base font-semibold shadow-[0_25px_70px_-35px_rgba(59,130,246,0.85)]"
+                    size="lg"
+                    className="w-full shadow-[0_25px_70px_-35px_rgba(59,130,246,0.85)]"
                   >
                     Entrar
                   </Button>

@@ -32,16 +32,31 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {videos.map((video) => (
-          <FeedVideoCard key={video.id} video={video} />
-        ))}
+    <div className="flex h-full flex-col">
+      <div className="flex-1 overflow-hidden">
+        <div className="h-full overflow-y-auto pb-6 pt-8">
+          <div className="flex flex-col items-center gap-6 px-6">
+            {videos.map((video) => (
+              <FeedVideoCard
+                key={video.id}
+                video={video}
+                showOverlayActions={false}
+                className="max-w-full"
+              />
+            ))}
+          </div>
+        </div>
       </div>
       {hasMore && (
-        <Button onClick={loadMore} disabled={loading} className="mt-6">
-          {loading ? "Carregando..." : "Carregar mais"}
-        </Button>
+        <div className="px-6 pb-8">
+          <Button
+            onClick={loadMore}
+            disabled={loading}
+            className="h-12 w-full rounded-full bg-emerald-500 text-base font-semibold text-white transition-colors hover:bg-emerald-500/90"
+          >
+            {loading ? "Carregando..." : "Carregar mais"}
+          </Button>
+        </div>
       )}
     </div>
   );

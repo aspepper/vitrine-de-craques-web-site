@@ -2,8 +2,10 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-  binaryTargets = ["native", "darwin", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
+  provider      = "prisma-client-js"
+  // Explicitly include the static Linux binary so the application can run on
+  // environments where the OpenSSL shared libraries are not available.
+  binaryTargets = ["native", "darwin", "debian-openssl-1.1.x", "debian-openssl-3.0.x", "linux-static-x64"]
 }
 
 datasource db {

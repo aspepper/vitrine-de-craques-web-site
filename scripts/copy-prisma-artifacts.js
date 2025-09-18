@@ -15,6 +15,7 @@ const pathsToCopy = [
         '.prisma',
         'client',
       ),
+      join(projectRoot, '.next', 'server', '.prisma', 'client'),
       join(
         projectRoot,
         '.next',
@@ -36,6 +37,7 @@ const pathsToCopy = [
         '@prisma',
         'client',
       ),
+      join(projectRoot, '.next', 'server', '@prisma', 'client'),
       join(
         projectRoot,
         '.next',

@@ -1,6 +1,6 @@
 [
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Upload de Vídeos",
     "id": "69:3031",
@@ -9,16 +9,7 @@
     "file": "docs/figma_pages/upload-de-videos.json"
   },
   {
-    "canvas_name": "Home",
-    "canvas_id": "0:1",
-    "name": "Atletas",
-    "id": "5:90",
-    "type": "FRAME",
-    "slug": "atletas",
-    "file": "docs/figma_pages/atletas.json"
-  },
-  {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Perfil",
     "id": "5:459",
@@ -27,7 +18,7 @@
     "file": "docs/figma_pages/perfil.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Privacidade",
     "id": "5:599",
@@ -36,7 +27,7 @@
     "file": "docs/figma_pages/privacidade.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Sobre",
     "id": "65:2771",
@@ -45,7 +36,7 @@
     "file": "docs/figma_pages/sobre.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Confederacao Detalhe",
     "id": "5:578",
@@ -54,7 +45,7 @@
     "file": "docs/figma_pages/confederacao-detalhe.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Clube Detalhe",
     "id": "5:664",
@@ -63,7 +54,7 @@
     "file": "docs/figma_pages/clube-detalhe.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Clubes Grid",
     "id": "5:498",
@@ -72,7 +63,7 @@
     "file": "docs/figma_pages/clubes-grid.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Torcida Grid",
     "id": "5:974",
@@ -81,7 +72,7 @@
     "file": "docs/figma_pages/torcida-grid.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Atleta Perfil",
     "id": "5:1053",
@@ -90,7 +81,16 @@
     "file": "docs/figma_pages/atleta-perfil.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
+    "canvas_id": "0:1",
+    "name": "Atletas",
+    "id": "5:90",
+    "type": "FRAME",
+    "slug": "atletas",
+    "file": "docs/figma_pages/atletas.json"
+  },
+  {
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Agente Perfil",
     "id": "5:1086",
@@ -99,7 +99,7 @@
     "file": "docs/figma_pages/agente-perfil.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Agentes Grid",
     "id": "5:1114",
@@ -108,7 +108,7 @@
     "file": "docs/figma_pages/agentes-grid.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Confederacoes",
     "id": "188:23251",
@@ -117,7 +117,7 @@
     "file": "docs/figma_pages/confederacoes.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Noticia Detalhe",
     "id": "164:22103",
@@ -126,7 +126,7 @@
     "file": "docs/figma_pages/noticia-detalhe.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Noticias",
     "id": "164:22341",
@@ -135,7 +135,7 @@
     "file": "docs/figma_pages/noticias.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Game Detalhe",
     "id": "167:22954",
@@ -144,7 +144,7 @@
     "file": "docs/figma_pages/game-detalhe.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Games Lista",
     "id": "164:22619",
@@ -153,7 +153,7 @@
     "file": "docs/figma_pages/games-lista.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Feeds",
     "id": "158:20692",
@@ -162,7 +162,7 @@
     "file": "docs/figma_pages/feeds.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Home - Logado",
     "id": "74:4421",
@@ -171,7 +171,7 @@
     "file": "docs/figma_pages/home-logado.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Login",
     "id": "73:4273",
@@ -180,7 +180,7 @@
     "file": "docs/figma_pages/login.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Cadastro Torcedor",
     "id": "59:1886",
@@ -189,7 +189,7 @@
     "file": "docs/figma_pages/cadastro-torcedor.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Cadastro de Agentes Licenciados",
     "id": "58:1628",
@@ -198,7 +198,7 @@
     "file": "docs/figma_pages/cadastro-de-agentes-licenciados.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Cadastro Clube",
     "id": "88:5681",
@@ -207,7 +207,7 @@
     "file": "docs/figma_pages/cadastro-clube.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Cadastro Imprensa (Jornalista/Blogueiro)",
     "id": "58:1191",
@@ -216,7 +216,7 @@
     "file": "docs/figma_pages/cadastro-imprensa-jornalistablogueiro.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Cadastro atleta 18+",
     "id": "58:1296",
@@ -225,7 +225,7 @@
     "file": "docs/figma_pages/cadastro-atleta-18.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Cadastro de Documentos necessários para pais e responsáveis",
     "id": "58:1524",
@@ -234,7 +234,7 @@
     "file": "docs/figma_pages/cadastro-de-documentos-necessarios-para-pais-e-responsaveis.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Cadastro Responsável",
     "id": "71:3977",
@@ -243,7 +243,7 @@
     "file": "docs/figma_pages/cadastro-responsavel.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Registrar - Escolha Perfil",
     "id": "58:959",
@@ -252,7 +252,7 @@
     "file": "docs/figma_pages/registrar-escolha-perfil.json"
   },
   {
-    "canvas_name": "Home",
+    "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
     "name": "Home",
     "id": "19:370",

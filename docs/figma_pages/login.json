@@ -6393,7 +6393,7 @@
   "exportSettings": [
     {
       "suffix": "",
-      "format": "PNG",
+      "format": "JPG",
       "constraint": {
         "type": "SCALE",
         "value": 1.0

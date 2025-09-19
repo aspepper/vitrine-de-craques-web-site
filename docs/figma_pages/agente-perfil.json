@@ -2726,6 +2726,176 @@
           "interactions": []
         },
         {
+          "id": "336:2623",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 3997.0,
+            "y": -807.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2625",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 4213.0,
+            "y": -807.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2627",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 4429.0,
+            "y": -807.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2629",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 4645.0,
+            "y": -807.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2621",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 3781.0,
+            "y": -807.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
           "id": "213:25483",
           "name": "Nome do Agente",
           "type": "TEXT",
@@ -2839,268 +3009,6 @@
             "lineHeightUnit": "INTRINSIC_%"
           },
           "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        },
-        {
-          "id": "213:25485",
-          "name": "Group",
-          "type": "GROUP",
-          "scrollBehavior": "SCROLLS",
-          "children": [
-            {
-              "id": "213:25486",
-              "name": "Atletas de interesse",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 3700.0,
-                "y": -1095.0,
-                "width": 177.0,
-                "height": 22.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Atletas de interesse",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 18.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 21.784090042114258,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "213:25487",
-              "name": "Vector",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.06666667014360428,
-                    "g": 0.0941176488995552,
-                    "b": 0.15294118225574493,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 3700.0,
-                "y": -1061.0,
-                "width": 200.0,
-                "height": 200.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "213:25488",
-              "name": "Vector",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.06666667014360428,
-                    "g": 0.0941176488995552,
-                    "b": 0.15294118225574493,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 3916.0,
-                "y": -1061.0,
-                "width": 200.0,
-                "height": 200.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "213:25489",
-              "name": "Vector",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.06666667014360428,
-                    "g": 0.0941176488995552,
-                    "b": 0.15294118225574493,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 4132.0,
-                "y": -1061.0,
-                "width": 200.0,
-                "height": 200.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "213:25490",
-              "name": "Vector",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.06666667014360428,
-                    "g": 0.0941176488995552,
-                    "b": 0.15294118225574493,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 4348.0,
-                "y": -1061.0,
-                "width": 200.0,
-                "height": 200.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "213:25491",
-              "name": "Vector",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.06666667014360428,
-                    "g": 0.0941176488995552,
-                    "b": 0.15294118225574493,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 4564.0,
-                "y": -1061.0,
-                "width": 200.0,
-                "height": 200.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            }
-          ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
-          "absoluteBoundingBox": {
-            "x": 3700.0,
-            "y": -1095.0,
-            "width": 1064.0,
-            "height": 234.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
           "effects": [],
           "interactions": []
         },
@@ -3566,6 +3474,235 @@
             "y": -1200.0,
             "width": 80.0,
             "height": 80.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2631",
+          "name": "Atletas de interesse",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 3700.0,
+            "y": -1093.0,
+            "width": 177.0,
+            "height": 22.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Atletas de interesse",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 18.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 21.784090042114258,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2632",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 3781.0,
+            "y": -1030.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2633",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 3997.0,
+            "y": -1030.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2634",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 4213.0,
+            "y": -1030.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2635",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 4429.0,
+            "y": -1030.0,
+            "width": 200.0,
+            "height": 200.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "336:2636",
+          "name": "Vector",
+          "type": "VECTOR",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.06666667014360428,
+                "g": 0.0941176488995552,
+                "b": 0.15294118225574493,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 4645.0,
+            "y": -1030.0,
+            "width": 200.0,
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
@@ -5354,6 +5491,16 @@
     "vertical": "TOP",
     "horizontal": "LEFT"
   },
+  "exportSettings": [
+    {
+      "suffix": "",
+      "format": "JPG",
+      "constraint": {
+        "type": "SCALE",
+        "value": 1.0
+      }
+    }
+  ],
   "effects": [],
   "interactions": []
 }

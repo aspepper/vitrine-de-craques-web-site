@@ -115,12 +115,15 @@ export default function LoginPage() {
 
                   {errorMessage && <p className="text-sm text-destructive">{errorMessage}</p>}
 
-                  <Button
-                    type="submit"
-                    className="w-full"
-                  >
-                    Entrar
-                  </Button>
+                  <div className="flex justify-end">
+                    <Button
+                      type="submit"
+                      size="md"
+                      className="h-11 w-[200px] text-sm font-semibold italic"
+                    >
+                      Entrar
+                    </Button>
+                  </div>
                 </form>
               </CardContent>
             </Card>

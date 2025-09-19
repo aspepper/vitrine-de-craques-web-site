@@ -1,11 +1,11 @@
 {
-  "id": "5:90",
-  "name": "Atletas",
+  "id": "5:974",
+  "name": "Torcida Grid",
   "type": "FRAME",
   "scrollBehavior": "SCROLLS",
   "children": [
     {
-      "id": "5:91",
+      "id": "5:975",
       "name": "Vector",
       "type": "VECTOR",
       "scrollBehavior": "SCROLLS",
@@ -27,9 +27,9 @@
       "strokeAlign": "INSIDE",
       "absoluteBoundingBox": {
         "x": 6198.0,
-        "y": -1432.0,
+        "y": -6198.0,
         "width": 1440.0,
-        "height": 1416.0
+        "height": 1400.0
       },
       "constraints": {
         "vertical": "SCALE",
@@ -39,19 +39,19 @@
       "interactions": []
     },
     {
-      "id": "108:10638",
-      "name": "Grid Atletas",
+      "id": "199:24193",
+      "name": "Group",
       "type": "GROUP",
       "scrollBehavior": "SCROLLS",
       "children": [
         {
-          "id": "108:10639",
-          "name": "athlete-1",
+          "id": "199:24194",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10640",
+              "id": "199:24195",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -73,9 +73,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6222.0,
-                "y": -1140.0,
+                "y": -5894.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -103,7 +103,7 @@
               "interactions": []
             },
             {
-              "id": "108:10641",
+              "id": "199:24196",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -124,10 +124,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -1140.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6238.0,
+                "y": -5870.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -137,8 +137,8 @@
               "interactions": []
             },
             {
-              "id": "108:10642",
-              "name": "Atleta 1",
+              "id": "199:24197",
+              "name": "Torcedor 1",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -158,16 +158,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -996.0,
-                "width": 59.0,
+                "x": 6318.0,
+                "y": -5862.0,
+                "width": 83.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 1",
+              "characters": "Torcedor 1",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -196,8 +196,8 @@
               "interactions": []
             },
             {
-              "id": "108:10643",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24198",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -217,16 +217,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -968.0,
-                "width": 130.0,
+                "x": 6318.0,
+                "y": -5834.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -269,42 +269,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6222.0,
-            "y": -1140.0,
+            "y": -5894.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10644",
-          "name": "athlete-2",
+          "id": "199:24199",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10645",
+              "id": "199:24200",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -326,9 +309,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6576.0,
-                "y": -1140.0,
+                "y": -5894.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -356,7 +339,7 @@
               "interactions": []
             },
             {
-              "id": "108:10646",
+              "id": "199:24201",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -377,10 +360,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -1140.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6592.0,
+                "y": -5870.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -390,8 +373,8 @@
               "interactions": []
             },
             {
-              "id": "108:10647",
-              "name": "Atleta 2",
+              "id": "199:24202",
+              "name": "Torcedor 2",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -411,16 +394,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -996.0,
-                "width": 62.0,
+                "x": 6672.0,
+                "y": -5862.0,
+                "width": 85.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 2",
+              "characters": "Torcedor 2",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -449,8 +432,8 @@
               "interactions": []
             },
             {
-              "id": "108:10648",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24203",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -470,16 +453,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -968.0,
-                "width": 130.0,
+                "x": 6672.0,
+                "y": -5834.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -522,42 +505,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6576.0,
-            "y": -1140.0,
+            "y": -5894.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10649",
-          "name": "athlete-3",
+          "id": "199:24204",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10650",
+              "id": "199:24205",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -579,9 +545,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6930.0,
-                "y": -1140.0,
+                "y": -5894.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -609,7 +575,7 @@
               "interactions": []
             },
             {
-              "id": "108:10651",
+              "id": "199:24206",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -630,10 +596,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6930.0,
-                "y": -1140.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6946.0,
+                "y": -5870.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -643,8 +609,8 @@
               "interactions": []
             },
             {
-              "id": "108:10652",
-              "name": "Atleta 3",
+              "id": "199:24207",
+              "name": "Torcedor 3",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -664,16 +630,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -996.0,
-                "width": 62.0,
+                "x": 7026.0,
+                "y": -5862.0,
+                "width": 86.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 3",
+              "characters": "Torcedor 3",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -702,8 +668,8 @@
               "interactions": []
             },
             {
-              "id": "108:10653",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24208",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -723,16 +689,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -968.0,
-                "width": 130.0,
+                "x": 7026.0,
+                "y": -5834.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -775,42 +741,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6930.0,
-            "y": -1140.0,
+            "y": -5894.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10654",
-          "name": "athlete-4",
+          "id": "199:24209",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10655",
+              "id": "199:24210",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -832,9 +781,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 7284.0,
-                "y": -1140.0,
+                "y": -5894.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -862,7 +811,7 @@
               "interactions": []
             },
             {
-              "id": "108:10656",
+              "id": "199:24211",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -883,10 +832,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7284.0,
-                "y": -1140.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 7300.0,
+                "y": -5870.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -896,8 +845,8 @@
               "interactions": []
             },
             {
-              "id": "108:10657",
-              "name": "Atleta 4",
+              "id": "199:24212",
+              "name": "Torcedor 4",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -917,16 +866,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -996.0,
-                "width": 62.0,
+                "x": 7380.0,
+                "y": -5862.0,
+                "width": 86.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 4",
+              "characters": "Torcedor 4",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -955,8 +904,8 @@
               "interactions": []
             },
             {
-              "id": "108:10658",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24213",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -976,16 +925,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -968.0,
-                "width": 130.0,
+                "x": 7380.0,
+                "y": -5834.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1028,42 +977,25 @@
           },
           "absoluteBoundingBox": {
             "x": 7284.0,
-            "y": -1140.0,
+            "y": -5894.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10659",
-          "name": "athlete-5",
+          "id": "199:24214",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10660",
+              "id": "199:24215",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1085,9 +1017,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6222.0,
-                "y": -896.0,
+                "y": -5670.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1115,7 +1047,7 @@
               "interactions": []
             },
             {
-              "id": "108:10661",
+              "id": "199:24216",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1136,10 +1068,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -896.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6238.0,
+                "y": -5646.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1149,8 +1081,8 @@
               "interactions": []
             },
             {
-              "id": "108:10662",
-              "name": "Atleta 5",
+              "id": "199:24217",
+              "name": "Torcedor 5",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1170,16 +1102,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -752.0,
-                "width": 62.0,
+                "x": 6318.0,
+                "y": -5638.0,
+                "width": 85.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 5",
+              "characters": "Torcedor 5",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1208,8 +1140,8 @@
               "interactions": []
             },
             {
-              "id": "108:10663",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24218",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1229,16 +1161,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -724.0,
-                "width": 130.0,
+                "x": 6318.0,
+                "y": -5610.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1281,42 +1213,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6222.0,
-            "y": -896.0,
+            "y": -5670.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10664",
-          "name": "athlete-6",
+          "id": "199:24219",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10665",
+              "id": "199:24220",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1338,9 +1253,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6576.0,
-                "y": -896.0,
+                "y": -5670.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1368,7 +1283,7 @@
               "interactions": []
             },
             {
-              "id": "108:10666",
+              "id": "199:24221",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1389,10 +1304,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -896.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6592.0,
+                "y": -5646.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1402,8 +1317,8 @@
               "interactions": []
             },
             {
-              "id": "108:10667",
-              "name": "Atleta 6",
+              "id": "199:24222",
+              "name": "Torcedor 6",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1423,16 +1338,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -752.0,
-                "width": 62.0,
+                "x": 6672.0,
+                "y": -5638.0,
+                "width": 86.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 6",
+              "characters": "Torcedor 6",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1461,8 +1376,8 @@
               "interactions": []
             },
             {
-              "id": "108:10668",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24223",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1482,16 +1397,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -724.0,
-                "width": 130.0,
+                "x": 6672.0,
+                "y": -5610.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1534,42 +1449,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6576.0,
-            "y": -896.0,
+            "y": -5670.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10669",
-          "name": "athlete-7",
+          "id": "199:24224",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10670",
+              "id": "199:24225",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1591,9 +1489,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6930.0,
-                "y": -896.0,
+                "y": -5670.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1621,7 +1519,7 @@
               "interactions": []
             },
             {
-              "id": "108:10671",
+              "id": "199:24226",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1642,10 +1540,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6930.0,
-                "y": -896.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6946.0,
+                "y": -5646.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1655,8 +1553,8 @@
               "interactions": []
             },
             {
-              "id": "108:10672",
-              "name": "Atleta 7",
+              "id": "199:24227",
+              "name": "Torcedor 7",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1676,16 +1574,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -752.0,
-                "width": 61.0,
+                "x": 7026.0,
+                "y": -5638.0,
+                "width": 85.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 7",
+              "characters": "Torcedor 7",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1714,8 +1612,8 @@
               "interactions": []
             },
             {
-              "id": "108:10673",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24228",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1735,16 +1633,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -724.0,
-                "width": 130.0,
+                "x": 7026.0,
+                "y": -5610.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1787,42 +1685,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6930.0,
-            "y": -896.0,
+            "y": -5670.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10674",
-          "name": "athlete-8",
+          "id": "199:24229",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10675",
+              "id": "199:24230",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1844,9 +1725,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 7284.0,
-                "y": -896.0,
+                "y": -5670.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1874,7 +1755,7 @@
               "interactions": []
             },
             {
-              "id": "108:10676",
+              "id": "199:24231",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1895,10 +1776,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7284.0,
-                "y": -896.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 7300.0,
+                "y": -5646.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1908,8 +1789,8 @@
               "interactions": []
             },
             {
-              "id": "108:10677",
-              "name": "Atleta 8",
+              "id": "199:24232",
+              "name": "Torcedor 8",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1929,16 +1810,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -752.0,
-                "width": 62.0,
+                "x": 7380.0,
+                "y": -5638.0,
+                "width": 86.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 8",
+              "characters": "Torcedor 8",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1967,8 +1848,8 @@
               "interactions": []
             },
             {
-              "id": "108:10678",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24233",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1988,16 +1869,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -724.0,
-                "width": 130.0,
+                "x": 7380.0,
+                "y": -5610.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2040,42 +1921,25 @@
           },
           "absoluteBoundingBox": {
             "x": 7284.0,
-            "y": -896.0,
+            "y": -5670.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10679",
-          "name": "athlete-9",
+          "id": "199:24234",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10680",
+              "id": "199:24235",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2097,9 +1961,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6222.0,
-                "y": -652.0,
+                "y": -5446.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2127,7 +1991,7 @@
               "interactions": []
             },
             {
-              "id": "108:10681",
+              "id": "199:24236",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2148,10 +2012,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -652.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6238.0,
+                "y": -5422.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2161,8 +2025,8 @@
               "interactions": []
             },
             {
-              "id": "108:10682",
-              "name": "Atleta 9",
+              "id": "199:24237",
+              "name": "Torcedor 9",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2182,16 +2046,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -508.0,
-                "width": 62.0,
+                "x": 6318.0,
+                "y": -5414.0,
+                "width": 86.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 9",
+              "characters": "Torcedor 9",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2220,8 +2084,8 @@
               "interactions": []
             },
             {
-              "id": "108:10683",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24238",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2241,16 +2105,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -480.0,
-                "width": 130.0,
+                "x": 6318.0,
+                "y": -5386.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2293,42 +2157,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6222.0,
-            "y": -652.0,
+            "y": -5446.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10684",
-          "name": "athlete-10",
+          "id": "199:24239",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10685",
+              "id": "199:24240",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2350,9 +2197,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6576.0,
-                "y": -652.0,
+                "y": -5446.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2380,7 +2227,7 @@
               "interactions": []
             },
             {
-              "id": "108:10686",
+              "id": "199:24241",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2401,10 +2248,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -652.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6592.0,
+                "y": -5422.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2414,8 +2261,8 @@
               "interactions": []
             },
             {
-              "id": "108:10687",
-              "name": "Atleta 10",
+              "id": "199:24242",
+              "name": "Torcedor 10",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2435,16 +2282,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -508.0,
-                "width": 70.0,
+                "x": 6672.0,
+                "y": -5414.0,
+                "width": 94.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 10",
+              "characters": "Torcedor 10",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2473,8 +2320,8 @@
               "interactions": []
             },
             {
-              "id": "108:10688",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24243",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2494,16 +2341,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -480.0,
-                "width": 130.0,
+                "x": 6672.0,
+                "y": -5386.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2546,42 +2393,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6576.0,
-            "y": -652.0,
+            "y": -5446.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10689",
-          "name": "athlete-11",
+          "id": "199:24244",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10690",
+              "id": "199:24245",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2603,9 +2433,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6930.0,
-                "y": -652.0,
+                "y": -5446.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2633,7 +2463,7 @@
               "interactions": []
             },
             {
-              "id": "108:10691",
+              "id": "199:24246",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2654,10 +2484,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6930.0,
-                "y": -652.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 6946.0,
+                "y": -5422.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2667,8 +2497,8 @@
               "interactions": []
             },
             {
-              "id": "108:10692",
-              "name": "Atleta 11",
+              "id": "199:24247",
+              "name": "Torcedor 11",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2688,16 +2518,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -508.0,
-                "width": 67.0,
+                "x": 7026.0,
+                "y": -5414.0,
+                "width": 91.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 11",
+              "characters": "Torcedor 11",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2726,8 +2556,8 @@
               "interactions": []
             },
             {
-              "id": "108:10693",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24248",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2747,16 +2577,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -480.0,
-                "width": 130.0,
+                "x": 7026.0,
+                "y": -5386.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2799,42 +2629,25 @@
           },
           "absoluteBoundingBox": {
             "x": 6930.0,
-            "y": -652.0,
+            "y": -5446.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         },
         {
-          "id": "108:10694",
-          "name": "athlete-12",
+          "id": "199:24249",
+          "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10695",
+              "id": "199:24250",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2856,9 +2669,9 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 7284.0,
-                "y": -652.0,
+                "y": -5446.0,
                 "width": 330.0,
-                "height": 220.0
+                "height": 200.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2886,7 +2699,7 @@
               "interactions": []
             },
             {
-              "id": "108:10696",
+              "id": "199:24251",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2907,10 +2720,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7284.0,
-                "y": -652.0,
-                "width": 330.0,
-                "height": 130.0
+                "x": 7300.0,
+                "y": -5422.0,
+                "width": 64.0,
+                "height": 64.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2920,8 +2733,8 @@
               "interactions": []
             },
             {
-              "id": "108:10697",
-              "name": "Atleta 12",
+              "id": "199:24252",
+              "name": "Torcedor 12",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2941,16 +2754,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -508.0,
-                "width": 69.0,
+                "x": 7380.0,
+                "y": -5414.0,
+                "width": 93.0,
                 "height": 19.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Atleta 12",
+              "characters": "Torcedor 12",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2979,8 +2792,8 @@
               "interactions": []
             },
             {
-              "id": "108:10698",
-              "name": "16 anos · São Paulo/SP",
+              "id": "199:24253",
+              "name": "Time · Cidade",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -3000,16 +2813,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -480.0,
-                "width": 130.0,
+                "x": 7380.0,
+                "y": -5386.0,
+                "width": 79.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "16 anos · São Paulo/SP",
+              "characters": "Time · Cidade",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -3052,33 +2865,16 @@
           },
           "absoluteBoundingBox": {
             "x": 7284.0,
-            "y": -652.0,
+            "y": -5446.0,
             "width": 330.0,
-            "height": 220.0
+            "height": 200.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "transitionNodeID": "5:1053",
-          "transitionDuration": 300.0,
-          "transitionEasing": "EASE_OUT",
-          "interactions": [
-            {
-              "trigger": {
-                "type": "ON_CLICK"
-              },
-              "actions": [
-                {
-                  "type": "NODE",
-                  "destinationId": "5:1053",
-                  "navigation": "NAVIGATE",
-                  "transition": null
-                }
-              ]
-            }
-          ]
+          "interactions": []
         }
       ],
       "blendMode": "PASS_THROUGH",
@@ -3096,9 +2892,9 @@
       },
       "absoluteBoundingBox": {
         "x": 6222.0,
-        "y": -1140.0,
+        "y": -5894.0,
         "width": 1392.0,
-        "height": 708.0
+        "height": 648.0
       },
       "constraints": {
         "vertical": "SCALE",
@@ -3108,13 +2904,83 @@
       "interactions": []
     },
     {
-      "id": "108:10699",
-      "name": "Header",
-      "type": "GROUP",
+      "id": "199:24254",
+      "name": "Torcida",
+      "type": "TEXT",
       "scrollBehavior": "SCROLLS",
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0.04313725605607033,
+            "g": 0.05882352963089943,
+            "b": 0.062745101749897,
+            "a": 1.0
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 6229.0,
+        "y": -6065.0,
+        "width": 103.0,
+        "height": 34.0
+      },
+      "constraints": {
+        "vertical": "SCALE",
+        "horizontal": "SCALE"
+      },
+      "characters": "Torcida",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Inter",
+        "fontPostScriptName": "Inter-BoldItalic",
+        "fontStyle": "Bold Italic",
+        "italic": true,
+        "fontWeight": 700,
+        "textAutoResize": "WIDTH_AND_HEIGHT",
+        "fontSize": 28.0,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0.0,
+        "lineHeightPx": 33.8863639831543,
+        "lineHeightPercent": 100.0,
+        "lineHeightUnit": "INTRINSIC_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "199:24255",
+      "name": "Header Padrão Logado",
+      "type": "INSTANCE",
+      "scrollBehavior": "SCROLLS",
+      "componentId": "112:1576",
+      "overrides": [
+        {
+          "id": "I199:24255;112:1555",
+          "overriddenFields": [
+            "transitionDuration",
+            "transitionEasing",
+            "transitionNodeID"
+          ]
+        }
+      ],
       "children": [
         {
-          "id": "108:10700",
+          "id": "I199:24255;112:1542",
           "name": "Vector",
           "type": "VECTOR",
           "scrollBehavior": "SCROLLS",
@@ -3136,7 +3002,7 @@
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
             "x": 6198.0,
-            "y": -1432.0,
+            "y": -6198.0,
             "width": 1440.0,
             "height": 96.0
           },
@@ -3166,13 +3032,13 @@
           "interactions": []
         },
         {
-          "id": "108:10701",
-          "name": "Group 41",
+          "id": "I199:24255;253:3661",
+          "name": "TextBox-Busca",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "108:10702",
+              "id": "I199:24255;253:3662",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3189,43 +3055,36 @@
                   }
                 }
               ],
-              "strokes": [],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.8980392217636108,
+                    "g": 0.9058823585510254,
+                    "b": 0.9215686321258545,
+                    "a": 1.0
+                  }
+                }
+              ],
               "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
+              "strokeAlign": "CENTER",
               "absoluteBoundingBox": {
-                "x": 6198.0,
-                "y": -1432.0,
-                "width": 1440.0,
-                "height": 96.0
+                "x": 7166.0,
+                "y": -6171.0,
+                "width": 228.0,
+                "height": 40.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "effects": [
-                {
-                  "type": "DROP_SHADOW",
-                  "visible": true,
-                  "color": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0,
-                    "a": 0.25
-                  },
-                  "blendMode": "NORMAL",
-                  "offset": {
-                    "x": 0.0,
-                    "y": 8.0
-                  },
-                  "radius": 32.0,
-                  "showShadowBehindNode": true
-                }
-              ],
+              "effects": [],
               "interactions": []
             },
             {
-              "id": "108:10703",
-              "name": "Notícias",
+              "id": "I199:24255;253:3663",
+              "name": "Buscar...",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -3234,9 +3093,9 @@
                   "blendMode": "NORMAL",
                   "type": "SOLID",
                   "color": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0,
+                    "r": 0.41960784792900085,
+                    "g": 0.4470588266849518,
+                    "b": 0.501960813999176,
                     "a": 1.0
                   }
                 }
@@ -3245,16 +3104,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6891.0,
-                "y": -1392.0,
-                "width": 54.0,
+                "x": 7182.0,
+                "y": -6159.0,
+                "width": 57.0,
                 "height": 17.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Notícias",
+              "characters": "Buscar...",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -3280,11 +3139,44 @@
               "layoutVersion": 4,
               "effects": [],
               "interactions": []
-            },
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 7166.0,
+            "y": -6171.0,
+            "width": 228.0,
+            "height": 40.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;112:1564",
+          "name": "Botão-Link-Perfil",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
             {
-              "id": "108:10704",
-              "name": "Games",
-              "type": "TEXT",
+              "id": "I199:24255;112:1565",
+              "name": "Vector",
+              "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
               "fills": [
@@ -3292,9 +3184,9 @@
                   "blendMode": "NORMAL",
                   "type": "SOLID",
                   "color": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0,
+                    "r": 0.886274516582489,
+                    "g": 0.9098039269447327,
+                    "b": 0.9411764740943909,
                     "a": 1.0
                   }
                 }
@@ -3303,44 +3195,349 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6961.0,
-                "y": -1393.0,
-                "width": 46.0,
-                "height": 17.0
+                "x": 7474.0,
+                "y": -6170.0,
+                "width": 36.0,
+                "height": 36.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Games",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": null,
-                "fontStyle": "Regular",
-                "fontWeight": 400,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 14.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 16.94318199157715,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
               "effects": [],
               "interactions": []
             },
             {
-              "id": "108:10705",
+              "id": "I199:24255;112:1566",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.7960784435272217,
+                    "g": 0.8352941274642944,
+                    "b": 0.8823529481887817,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 7486.0,
+                "y": -6162.0,
+                "width": 12.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "I199:24255;112:1567",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.7960784435272217,
+                    "g": 0.8352941274642944,
+                    "b": 0.8823529481887817,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 7478.0,
+                "y": -6146.0,
+                "width": 28.0,
+                "height": 6.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 7474.0,
+            "y": -6170.0,
+            "width": 36.0,
+            "height": 36.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;112:1568",
+          "name": "Botão-Logout",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I199:24255;112:1569",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.9960784316062927,
+                    "g": 0.9490196108818054,
+                    "b": 0.9490196108818054,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.8823529481887817,
+                    "g": 0.11372549086809158,
+                    "b": 0.2823529541492462,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokeWeight": 1.0,
+              "strokeAlign": "CENTER",
+              "absoluteBoundingBox": {
+                "x": 7530.0,
+                "y": -6168.0,
+                "width": 40.0,
+                "height": 32.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "I199:24255;112:1570",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.8823529481887817,
+                    "g": 0.11372549086809158,
+                    "b": 0.2823529541492462,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokeWeight": 2.0,
+              "strokeAlign": "CENTER",
+              "strokeJoin": "ROUND",
+              "strokeCap": "ROUND",
+              "absoluteBoundingBox": {
+                "x": 7540.0,
+                "y": -6158.0,
+                "width": 16.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 7530.0,
+            "y": -6168.0,
+            "width": 40.0,
+            "height": 32.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;112:1561",
+          "name": "Botão-Link-Upload",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I199:24255;112:1562",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.9411764740943909,
+                    "g": 0.9921568632125854,
+                    "b": 0.95686274766922,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokeWeight": 1.0,
+              "strokeAlign": "CENTER",
+              "absoluteBoundingBox": {
+                "x": 7418.0,
+                "y": -6168.0,
+                "width": 40.0,
+                "height": 32.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "I199:24255;112:1563",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokeWeight": 2.0,
+              "strokeAlign": "CENTER",
+              "strokeJoin": "ROUND",
+              "strokeCap": "ROUND",
+              "absoluteBoundingBox": {
+                "x": 7432.0,
+                "y": -6158.0,
+                "width": 12.0,
+                "height": 12.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 7418.0,
+            "y": -6168.0,
+            "width": 40.0,
+            "height": 32.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;254:2792",
+          "name": "Link-Confederacoes",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I199:24255;254:2793",
               "name": "Confederações",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3362,7 +3559,7 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 7022.0,
-                "y": -1393.0,
+                "y": -6158.0,
                 "width": 102.0,
                 "height": 17.0
               },
@@ -3395,10 +3592,297 @@
               },
               "layoutVersion": 4,
               "effects": [],
-              "interactions": []
-            },
+              "transitionNodeID": "188:23251",
+              "transitionDuration": 300.0,
+              "transitionEasing": "EASE_OUT",
+              "interactions": [
+                {
+                  "trigger": {
+                    "type": "ON_CLICK"
+                  },
+                  "actions": [
+                    {
+                      "type": "NODE",
+                      "destinationId": "188:23251",
+                      "navigation": "NAVIGATE",
+                      "transition": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 7022.0,
+            "y": -6158.0,
+            "width": 102.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;254:2794",
+          "name": "Link-Games",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
             {
-              "id": "108:10706",
+              "id": "I199:24255;254:2795",
+              "name": "Games",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 6961.0,
+                "y": -6158.0,
+                "width": 46.0,
+                "height": 17.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Games",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 14.0,
+                "textAlignHorizontal": "LEFT",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 16.94318199157715,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "transitionNodeID": "164:22619",
+              "transitionDuration": 300.0,
+              "transitionEasing": "EASE_OUT",
+              "interactions": [
+                {
+                  "trigger": {
+                    "type": "ON_CLICK"
+                  },
+                  "actions": [
+                    {
+                      "type": "NODE",
+                      "destinationId": "164:22619",
+                      "navigation": "NAVIGATE",
+                      "transition": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 6961.0,
+            "y": -6158.0,
+            "width": 46.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;254:2796",
+          "name": "Link-Noticias",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I199:24255;254:2797",
+              "name": "Notícias",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 6891.0,
+                "y": -6158.0,
+                "width": 54.0,
+                "height": 17.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Notícias",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 14.0,
+                "textAlignHorizontal": "LEFT",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 16.94318199157715,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "transitionNodeID": "164:22341",
+              "transitionDuration": 300.0,
+              "transitionEasing": "EASE_OUT",
+              "interactions": [
+                {
+                  "trigger": {
+                    "type": "ON_CLICK"
+                  },
+                  "actions": [
+                    {
+                      "type": "NODE",
+                      "destinationId": "164:22341",
+                      "navigation": "NAVIGATE",
+                      "transition": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 6891.0,
+            "y": -6158.0,
+            "width": 54.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;254:2798",
+          "name": "Link-Clubes",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I199:24255;254:2799",
               "name": "Clubes",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3420,7 +3904,7 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6829.0,
-                "y": -1392.0,
+                "y": -6158.0,
                 "width": 46.0,
                 "height": 17.0
               },
@@ -3453,10 +3937,67 @@
               },
               "layoutVersion": 4,
               "effects": [],
-              "interactions": []
-            },
+              "transitionNodeID": "5:498",
+              "transitionDuration": 300.0,
+              "transitionEasing": "EASE_OUT",
+              "interactions": [
+                {
+                  "trigger": {
+                    "type": "ON_CLICK"
+                  },
+                  "actions": [
+                    {
+                      "type": "NODE",
+                      "destinationId": "5:498",
+                      "navigation": "NAVIGATE",
+                      "transition": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 6829.0,
+            "y": -6158.0,
+            "width": 46.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;254:2800",
+          "name": "Link-Agentes",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
             {
-              "id": "108:10707",
+              "id": "I199:24255;254:2801",
               "name": "Agentes",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3478,7 +4019,7 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6758.0,
-                "y": -1392.0,
+                "y": -6158.0,
                 "width": 55.0,
                 "height": 17.0
               },
@@ -3511,10 +4052,67 @@
               },
               "layoutVersion": 4,
               "effects": [],
-              "interactions": []
-            },
+              "transitionNodeID": "5:1114",
+              "transitionDuration": 300.0,
+              "transitionEasing": "EASE_OUT",
+              "interactions": [
+                {
+                  "trigger": {
+                    "type": "ON_CLICK"
+                  },
+                  "actions": [
+                    {
+                      "type": "NODE",
+                      "destinationId": "5:1114",
+                      "navigation": "NAVIGATE",
+                      "transition": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 6758.0,
+            "y": -6158.0,
+            "width": 55.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;254:2802",
+          "name": "Link-Torcida",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
             {
-              "id": "108:10708",
+              "id": "I199:24255;254:2803",
               "name": "Torcida",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3536,7 +4134,7 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 6693.0,
-                "y": -1392.0,
+                "y": -6159.0,
                 "width": 49.0,
                 "height": 17.0
               },
@@ -3569,343 +4167,7 @@
               },
               "layoutVersion": 4,
               "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "108:10709",
-              "name": "Group",
-              "type": "GROUP",
-              "scrollBehavior": "SCROLLS",
-              "children": [
-                {
-                  "id": "108:10710",
-                  "name": "Atletas",
-                  "type": "TEXT",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.0,
-                        "g": 0.0,
-                        "b": 0.0,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "INSIDE",
-                  "absoluteBoundingBox": {
-                    "x": 6627.0,
-                    "y": -1393.0,
-                    "width": 46.0,
-                    "height": 17.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "characters": "Atletas",
-                  "characterStyleOverrides": [],
-                  "styleOverrideTable": {},
-                  "lineTypes": [
-                    "NONE"
-                  ],
-                  "lineIndentations": [
-                    0
-                  ],
-                  "style": {
-                    "fontFamily": "Inter",
-                    "fontPostScriptName": null,
-                    "fontStyle": "Regular",
-                    "fontWeight": 400,
-                    "textAutoResize": "WIDTH_AND_HEIGHT",
-                    "fontSize": 14.0,
-                    "textAlignHorizontal": "LEFT",
-                    "textAlignVertical": "TOP",
-                    "letterSpacing": 0.0,
-                    "lineHeightPx": 16.94318199157715,
-                    "lineHeightPercent": 100.0,
-                    "lineHeightUnit": "INTRINSIC_%"
-                  },
-                  "layoutVersion": 4,
-                  "effects": [],
-                  "interactions": []
-                }
-              ],
-              "blendMode": "PASS_THROUGH",
-              "clipsContent": false,
-              "background": [],
-              "fills": [],
-              "strokes": [],
-              "rectangleCornerRadii": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "cornerSmoothing": 0.0,
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "backgroundColor": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.0
-              },
-              "absoluteBoundingBox": {
-                "x": 6627.0,
-                "y": -1393.0,
-                "width": 46.0,
-                "height": 17.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "108:10711",
-              "name": "Group",
-              "type": "GROUP",
-              "scrollBehavior": "SCROLLS",
-              "children": [
-                {
-                  "id": "108:10712",
-                  "name": "Feed",
-                  "type": "TEXT",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.0,
-                        "g": 0.0,
-                        "b": 0.0,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "INSIDE",
-                  "absoluteBoundingBox": {
-                    "x": 6576.0,
-                    "y": -1393.0,
-                    "width": 33.0,
-                    "height": 17.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "characters": "Feed",
-                  "characterStyleOverrides": [],
-                  "styleOverrideTable": {},
-                  "lineTypes": [
-                    "NONE"
-                  ],
-                  "lineIndentations": [
-                    0
-                  ],
-                  "style": {
-                    "fontFamily": "Inter",
-                    "fontPostScriptName": null,
-                    "fontStyle": "Regular",
-                    "fontWeight": 400,
-                    "textAutoResize": "WIDTH_AND_HEIGHT",
-                    "fontSize": 14.0,
-                    "textAlignHorizontal": "LEFT",
-                    "textAlignVertical": "TOP",
-                    "letterSpacing": 0.0,
-                    "lineHeightPx": 16.94318199157715,
-                    "lineHeightPercent": 100.0,
-                    "lineHeightUnit": "INTRINSIC_%"
-                  },
-                  "layoutVersion": 4,
-                  "effects": [],
-                  "interactions": []
-                }
-              ],
-              "blendMode": "PASS_THROUGH",
-              "clipsContent": false,
-              "background": [],
-              "fills": [],
-              "strokes": [],
-              "rectangleCornerRadii": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "cornerSmoothing": 0.0,
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "backgroundColor": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.0
-              },
-              "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -1393.0,
-                "width": 33.0,
-                "height": 17.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "108:10713",
-              "name": "Group",
-              "type": "GROUP",
-              "scrollBehavior": "SCROLLS",
-              "children": [
-                {
-                  "id": "108:10714",
-                  "name": "Home",
-                  "type": "TEXT",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.0,
-                        "g": 0.0,
-                        "b": 0.0,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "INSIDE",
-                  "absoluteBoundingBox": {
-                    "x": 6520.0,
-                    "y": -1393.0,
-                    "width": 40.0,
-                    "height": 17.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "characters": "Home",
-                  "characterStyleOverrides": [],
-                  "styleOverrideTable": {},
-                  "lineTypes": [
-                    "NONE"
-                  ],
-                  "lineIndentations": [
-                    0
-                  ],
-                  "style": {
-                    "fontFamily": "Inter",
-                    "fontPostScriptName": null,
-                    "fontStyle": "Regular",
-                    "fontWeight": 400,
-                    "textAutoResize": "WIDTH_AND_HEIGHT",
-                    "fontSize": 14.0,
-                    "textAlignHorizontal": "LEFT",
-                    "textAlignVertical": "TOP",
-                    "letterSpacing": 0.0,
-                    "lineHeightPx": 16.94318199157715,
-                    "lineHeightPercent": 100.0,
-                    "lineHeightUnit": "INTRINSIC_%"
-                  },
-                  "layoutVersion": 4,
-                  "effects": [],
-                  "interactions": []
-                }
-              ],
-              "blendMode": "PASS_THROUGH",
-              "clipsContent": false,
-              "background": [],
-              "fills": [],
-              "strokes": [],
-              "rectangleCornerRadii": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "cornerSmoothing": 0.0,
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "backgroundColor": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.0
-              },
-              "absoluteBoundingBox": {
-                "x": 6520.0,
-                "y": -1393.0,
-                "width": 40.0,
-                "height": 17.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "108:10715",
-              "name": "Rectangle",
-              "type": "RECTANGLE",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "IMAGE",
-                  "scaleMode": "STRETCH",
-                  "imageRef": "91c94a7d622eacc5bc5d930c064c29536d6a9804",
-                  "imageTransform": [
-                    [
-                      1.0,
-                      0.0,
-                      0.0
-                    ],
-                    [
-                      0.0,
-                      1.0,
-                      0.0
-                    ]
-                  ]
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -1416.0,
-                "width": 64.0,
-                "height": 64.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "transitionNodeID": "74:4421",
+              "transitionNodeID": "5:974",
               "transitionDuration": 300.0,
               "transitionEasing": "EASE_OUT",
               "interactions": [
@@ -3916,17 +4178,57 @@
                   "actions": [
                     {
                       "type": "NODE",
-                      "destinationId": "74:4421",
+                      "destinationId": "5:974",
                       "navigation": "NAVIGATE",
                       "transition": null
                     }
                   ]
                 }
               ]
-            },
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 6693.0,
+            "y": -6159.0,
+            "width": 49.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I199:24255;254:2804",
+          "name": "Link-Atletas",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
             {
-              "id": "108:10716",
-              "name": "Vitrine de Craques",
+              "id": "I199:24255;254:2805",
+              "name": "Atletas",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -3935,9 +4237,9 @@
                   "blendMode": "NORMAL",
                   "type": "SOLID",
                   "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
                     "a": 1.0
                   }
                 }
@@ -3946,16 +4248,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6283.0,
-                "y": -1398.0,
-                "width": 220.0,
-                "height": 29.0
+                "x": 6627.0,
+                "y": -6159.0,
+                "width": 46.0,
+                "height": 17.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Vitrine de Craques",
+              "characters": "Atletas",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -3966,16 +4268,15 @@
               ],
               "style": {
                 "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 24.0,
+                "fontSize": 14.0,
                 "textAlignHorizontal": "LEFT",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
-                "lineHeightPx": 29.045454025268555,
+                "lineHeightPx": 16.94318199157715,
                 "lineHeightPercent": 100.0,
                 "lineHeightUnit": "INTRINSIC_%"
               },
@@ -3989,6 +4290,13 @@
           "background": [],
           "fills": [],
           "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "backgroundColor": {
@@ -3998,10 +4306,240 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6198.0,
-            "y": -1432.0,
-            "width": 1440.0,
-            "height": 96.0
+            "x": 6627.0,
+            "y": -6159.0,
+            "width": 46.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "transitionNodeID": "5:90",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:90",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I199:24255;254:2806",
+          "name": "Link-Feed",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I199:24255;254:2807",
+              "name": "Feed",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 6576.0,
+                "y": -6159.0,
+                "width": 33.0,
+                "height": 17.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Feed",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 14.0,
+                "textAlignHorizontal": "LEFT",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 16.94318199157715,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 6576.0,
+            "y": -6159.0,
+            "width": 33.0,
+            "height": 17.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "transitionNodeID": "158:20692",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "158:20692",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I199:24255;254:2808",
+          "name": "Link-Home",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I199:24255;254:2809",
+              "name": "Home",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 6520.0,
+                "y": -6159.0,
+                "width": 40.0,
+                "height": 17.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Home",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 14.0,
+                "textAlignHorizontal": "LEFT",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 16.94318199157715,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 6520.0,
+            "y": -6159.0,
+            "width": 40.0,
+            "height": 17.0
           },
           "constraints": {
             "vertical": "SCALE",
@@ -4011,584 +4549,120 @@
           "interactions": []
         },
         {
-          "id": "112:1509",
-          "name": "Group 48",
-          "type": "GROUP",
+          "id": "I199:24255;112:1555",
+          "name": "Brand-Logo",
+          "type": "RECTANGLE",
           "scrollBehavior": "SCROLLS",
-          "children": [
+          "blendMode": "PASS_THROUGH",
+          "fills": [
             {
-              "id": "112:1510",
-              "name": "Search",
-              "type": "GROUP",
-              "scrollBehavior": "SCROLLS",
-              "children": [
-                {
-                  "id": "112:1511",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 1.0,
-                        "g": 1.0,
-                        "b": 1.0,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.8980392217636108,
-                        "g": 0.9058823585510254,
-                        "b": 0.9215686321258545,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "CENTER",
-                  "absoluteBoundingBox": {
-                    "x": 7165.0,
-                    "y": -1404.0,
-                    "width": 233.0,
-                    "height": 41.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                },
-                {
-                  "id": "112:1512",
-                  "name": "Buscar...",
-                  "type": "TEXT",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.41960784792900085,
-                        "g": 0.4470588266849518,
-                        "b": 0.501960813999176,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "INSIDE",
-                  "absoluteBoundingBox": {
-                    "x": 7180.0,
-                    "y": -1392.0,
-                    "width": 58.76548385620117,
-                    "height": 17.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "characters": "Buscar...",
-                  "characterStyleOverrides": [],
-                  "styleOverrideTable": {},
-                  "lineTypes": [
-                    "NONE"
-                  ],
-                  "lineIndentations": [
-                    0
-                  ],
-                  "style": {
-                    "fontFamily": "Inter",
-                    "fontPostScriptName": null,
-                    "fontStyle": "Regular",
-                    "fontWeight": 400,
-                    "fontSize": 14.0,
-                    "textAlignHorizontal": "LEFT",
-                    "textAlignVertical": "TOP",
-                    "letterSpacing": 0.0,
-                    "lineHeightPx": 16.94318199157715,
-                    "lineHeightPercent": 100.0,
-                    "lineHeightUnit": "INTRINSIC_%"
-                  },
-                  "layoutVersion": 4,
-                  "effects": [],
-                  "interactions": []
-                }
-              ],
-              "blendMode": "PASS_THROUGH",
-              "clipsContent": false,
-              "background": [],
-              "fills": [],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "backgroundColor": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.0
-              },
-              "absoluteBoundingBox": {
-                "x": 7165.0,
-                "y": -1404.0,
-                "width": 233.0,
-                "height": 41.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "112:1513",
-              "name": "Upload",
-              "type": "GROUP",
-              "scrollBehavior": "SCROLLS",
-              "children": [
-                {
-                  "id": "112:1514",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.9411764740943909,
-                        "g": 0.9921568632125854,
-                        "b": 0.95686274766922,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.08627451211214066,
-                        "g": 0.6392157077789307,
-                        "b": 0.29019609093666077,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "CENTER",
-                  "absoluteBoundingBox": {
-                    "x": 7418.0,
-                    "y": -1402.0,
-                    "width": 40.0,
-                    "height": 32.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                },
-                {
-                  "id": "112:1515",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [],
-                  "strokes": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.08627451211214066,
-                        "g": 0.6392157077789307,
-                        "b": 0.29019609093666077,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokeWeight": 2.0,
-                  "strokeAlign": "CENTER",
-                  "strokeJoin": "ROUND",
-                  "strokeCap": "ROUND",
-                  "absoluteBoundingBox": {
-                    "x": 7432.0,
-                    "y": -1392.0,
-                    "width": 12.0,
-                    "height": 12.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                }
-              ],
-              "blendMode": "PASS_THROUGH",
-              "clipsContent": false,
-              "background": [],
-              "fills": [],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "backgroundColor": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.0
-              },
-              "absoluteBoundingBox": {
-                "x": 7418.0,
-                "y": -1402.0,
-                "width": 40.0,
-                "height": 32.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "transitionNodeID": "69:3031",
-              "transitionDuration": 300.0,
-              "transitionEasing": "EASE_OUT",
-              "interactions": [
-                {
-                  "trigger": {
-                    "type": "ON_CLICK"
-                  },
-                  "actions": [
-                    {
-                      "type": "NODE",
-                      "destinationId": "69:3031",
-                      "navigation": "NAVIGATE",
-                      "transition": null
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "112:1516",
-              "name": "Perfil",
-              "type": "GROUP",
-              "scrollBehavior": "SCROLLS",
-              "children": [
-                {
-                  "id": "112:1517",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.886274516582489,
-                        "g": 0.9098039269447327,
-                        "b": 0.9411764740943909,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "INSIDE",
-                  "absoluteBoundingBox": {
-                    "x": 7474.0,
-                    "y": -1404.0,
-                    "width": 36.0,
-                    "height": 36.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                },
-                {
-                  "id": "112:1518",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.7960784435272217,
-                        "g": 0.8352941274642944,
-                        "b": 0.8823529481887817,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "INSIDE",
-                  "absoluteBoundingBox": {
-                    "x": 7486.0,
-                    "y": -1396.0,
-                    "width": 12.0,
-                    "height": 12.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                },
-                {
-                  "id": "112:1519",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.7960784435272217,
-                        "g": 0.8352941274642944,
-                        "b": 0.8823529481887817,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "INSIDE",
-                  "absoluteBoundingBox": {
-                    "x": 7478.0,
-                    "y": -1380.0,
-                    "width": 28.0,
-                    "height": 6.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                }
-              ],
-              "blendMode": "PASS_THROUGH",
-              "clipsContent": false,
-              "background": [],
-              "fills": [],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "backgroundColor": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.0
-              },
-              "absoluteBoundingBox": {
-                "x": 7474.0,
-                "y": -1404.0,
-                "width": 36.0,
-                "height": 36.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "transitionNodeID": "5:459",
-              "transitionDuration": 300.0,
-              "transitionEasing": "EASE_OUT",
-              "interactions": [
-                {
-                  "trigger": {
-                    "type": "ON_CLICK"
-                  },
-                  "actions": [
-                    {
-                      "type": "NODE",
-                      "destinationId": "5:459",
-                      "navigation": "NAVIGATE",
-                      "transition": null
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "112:1520",
-              "name": "Logout",
-              "type": "GROUP",
-              "scrollBehavior": "SCROLLS",
-              "children": [
-                {
-                  "id": "112:1521",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.9960784316062927,
-                        "g": 0.9490196108818054,
-                        "b": 0.9490196108818054,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokes": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.8823529481887817,
-                        "g": 0.11372549086809158,
-                        "b": 0.2823529541492462,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokeWeight": 1.0,
-                  "strokeAlign": "CENTER",
-                  "absoluteBoundingBox": {
-                    "x": 7530.0,
-                    "y": -1402.0,
-                    "width": 40.0,
-                    "height": 32.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                },
-                {
-                  "id": "112:1522",
-                  "name": "Vector",
-                  "type": "VECTOR",
-                  "scrollBehavior": "SCROLLS",
-                  "blendMode": "PASS_THROUGH",
-                  "fills": [],
-                  "strokes": [
-                    {
-                      "blendMode": "NORMAL",
-                      "type": "SOLID",
-                      "color": {
-                        "r": 0.8823529481887817,
-                        "g": 0.11372549086809158,
-                        "b": 0.2823529541492462,
-                        "a": 1.0
-                      }
-                    }
-                  ],
-                  "strokeWeight": 2.0,
-                  "strokeAlign": "CENTER",
-                  "strokeJoin": "ROUND",
-                  "strokeCap": "ROUND",
-                  "absoluteBoundingBox": {
-                    "x": 7540.0,
-                    "y": -1392.0,
-                    "width": 16.0,
-                    "height": 12.0
-                  },
-                  "constraints": {
-                    "vertical": "SCALE",
-                    "horizontal": "SCALE"
-                  },
-                  "effects": [],
-                  "interactions": []
-                }
-              ],
-              "blendMode": "PASS_THROUGH",
-              "clipsContent": false,
-              "background": [],
-              "fills": [],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "backgroundColor": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.0
-              },
-              "absoluteBoundingBox": {
-                "x": 7530.0,
-                "y": -1402.0,
-                "width": 40.0,
-                "height": 32.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "transitionNodeID": "19:370",
-              "transitionDuration": 300.0,
-              "transitionEasing": "EASE_OUT",
-              "interactions": [
-                {
-                  "trigger": {
-                    "type": "ON_CLICK"
-                  },
-                  "actions": [
-                    {
-                      "type": "NODE",
-                      "destinationId": "19:370",
-                      "navigation": "NAVIGATE",
-                      "transition": null
-                    }
-                  ]
-                }
+              "blendMode": "NORMAL",
+              "type": "IMAGE",
+              "scaleMode": "STRETCH",
+              "imageRef": "91c94a7d622eacc5bc5d930c064c29536d6a9804",
+              "imageTransform": [
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ]
               ]
             }
           ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
           "strokes": [],
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
           "absoluteBoundingBox": {
-            "x": 7165.0,
-            "y": -1404.0,
-            "width": 405.0,
-            "height": 41.0
+            "x": 6222.0,
+            "y": -6182.0,
+            "width": 64.0,
+            "height": 64.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
+          "effects": [],
+          "transitionNodeID": "74:4421",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "74:4421",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I199:24255;112:1556",
+          "name": "Vitrine de Craques",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 6283.0,
+            "y": -6164.0,
+            "width": 220.0,
+            "height": 29.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Vitrine de Craques",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 24.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 29.045454025268555,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
           "effects": [],
           "interactions": []
         }
@@ -4608,7 +4682,7 @@
       },
       "absoluteBoundingBox": {
         "x": 6198.0,
-        "y": -1432.0,
+        "y": -6198.0,
         "width": 1440.0,
         "height": 96.0
       },
@@ -4620,66 +4694,7 @@
       "interactions": []
     },
     {
-      "id": "108:10731",
-      "name": "Atletas",
-      "type": "TEXT",
-      "scrollBehavior": "SCROLLS",
-      "blendMode": "PASS_THROUGH",
-      "fills": [
-        {
-          "blendMode": "NORMAL",
-          "type": "SOLID",
-          "color": {
-            "r": 0.04313725605607033,
-            "g": 0.05882352963089943,
-            "b": 0.062745101749897,
-            "a": 1.0
-          }
-        }
-      ],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "absoluteBoundingBox": {
-        "x": 6222.0,
-        "y": -1299.0,
-        "width": 207.0,
-        "height": 29.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "characters": "Atletas",
-      "characterStyleOverrides": [],
-      "styleOverrideTable": {},
-      "lineTypes": [
-        "NONE"
-      ],
-      "lineIndentations": [
-        0
-      ],
-      "style": {
-        "fontFamily": "Inter",
-        "fontPostScriptName": "Inter-BoldItalic",
-        "fontStyle": "Bold Italic",
-        "italic": true,
-        "fontWeight": 700,
-        "textAutoResize": "HEIGHT",
-        "fontSize": 24.0,
-        "textAlignHorizontal": "LEFT",
-        "textAlignVertical": "TOP",
-        "letterSpacing": 0.0,
-        "lineHeightPx": 29.045454025268555,
-        "lineHeightPercent": 100.0,
-        "lineHeightUnit": "INTRINSIC_%"
-      },
-      "layoutVersion": 4,
-      "effects": [],
-      "interactions": []
-    },
-    {
-      "id": "108:10732",
+      "id": "199:24286",
       "name": "Footer Padrão",
       "type": "INSTANCE",
       "scrollBehavior": "SCROLLS",
@@ -4687,7 +4702,7 @@
       "overrides": [],
       "children": [
         {
-          "id": "I108:10732;253:4731",
+          "id": "I199:24286;253:4731",
           "name": "Fundo-Azul-Escuro",
           "type": "VECTOR",
           "scrollBehavior": "SCROLLS",
@@ -4709,7 +4724,7 @@
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
             "x": 6198.0,
-            "y": -364.0,
+            "y": -5146.0,
             "width": 1440.0,
             "height": 348.0
           },
@@ -4721,7 +4736,7 @@
           "interactions": []
         },
         {
-          "id": "I108:10732;253:4732",
+          "id": "I199:24286;253:4732",
           "name": "© Vitrine de Craques 2025. Todos os direitos reservados.",
           "type": "TEXT",
           "scrollBehavior": "SCROLLS",
@@ -4743,7 +4758,7 @@
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
             "x": 6222.0,
-            "y": -76.0,
+            "y": -4858.0,
             "width": 326.0,
             "height": 15.0
           },
@@ -4779,7 +4794,7 @@
           "interactions": []
         },
         {
-          "id": "I108:10732;253:4733",
+          "id": "I199:24286;253:4733",
           "name": "Separador",
           "type": "VECTOR",
           "scrollBehavior": "SCROLLS",
@@ -4801,7 +4816,7 @@
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
             "x": 6222.0,
-            "y": -92.0,
+            "y": -4874.0,
             "width": 1392.0,
             "height": 1.0
           },
@@ -4813,19 +4828,19 @@
           "interactions": []
         },
         {
-          "id": "I108:10732;253:4734",
+          "id": "I199:24286;253:4734",
           "name": "Redes Sociais",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I108:10732;253:4735",
+              "id": "I199:24286;253:4735",
               "name": "LinkedIn",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4736",
+                  "id": "I199:24286;253:4736",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -4848,7 +4863,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7469.0,
-                    "y": -316.0,
+                    "y": -5098.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -4860,7 +4875,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4737",
+                  "id": "I199:24286;253:4737",
                   "name": "icon-linkedin",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -4878,7 +4893,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7477.0,
-                    "y": -309.0,
+                    "y": -5091.0,
                     "width": 25.0,
                     "height": 25.0
                   },
@@ -4910,7 +4925,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 7469.0,
-                "y": -316.0,
+                "y": -5098.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -4922,13 +4937,13 @@
               "interactions": []
             },
             {
-              "id": "I108:10732;253:4738",
+              "id": "I199:24286;253:4738",
               "name": "Facebook",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4739",
+                  "id": "I199:24286;253:4739",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -4951,7 +4966,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7421.0,
-                    "y": -316.0,
+                    "y": -5098.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -4963,13 +4978,13 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4740",
+                  "id": "I199:24286;253:4740",
                   "name": "fb",
                   "type": "GROUP",
                   "scrollBehavior": "SCROLLS",
                   "children": [
                     {
-                      "id": "I108:10732;253:4741",
+                      "id": "I199:24286;253:4741",
                       "name": "icon-facebook",
                       "type": "VECTOR",
                       "scrollBehavior": "SCROLLS",
@@ -4991,7 +5006,7 @@
                       "strokeAlign": "INSIDE",
                       "absoluteBoundingBox": {
                         "x": 7432.0,
-                        "y": -308.0,
+                        "y": -5090.0,
                         "width": 12.0,
                         "height": 24.0
                       },
@@ -5018,7 +5033,7 @@
                   },
                   "absoluteBoundingBox": {
                     "x": 7432.0,
-                    "y": -308.0,
+                    "y": -5090.0,
                     "width": 12.0,
                     "height": 24.0
                   },
@@ -5045,7 +5060,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 7421.0,
-                "y": -316.0,
+                "y": -5098.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5057,13 +5072,13 @@
               "interactions": []
             },
             {
-              "id": "I108:10732;253:4742",
+              "id": "I199:24286;253:4742",
               "name": "X-Twitter",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4743",
+                  "id": "I199:24286;253:4743",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5086,7 +5101,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7373.0,
-                    "y": -316.0,
+                    "y": -5098.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5098,7 +5113,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4744",
+                  "id": "I199:24286;253:4744",
                   "name": "icon-x",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5116,7 +5131,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7381.0,
-                    "y": -308.0,
+                    "y": -5090.0,
                     "width": 25.0,
                     "height": 25.0
                   },
@@ -5148,7 +5163,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 7373.0,
-                "y": -316.0,
+                "y": -5098.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5160,13 +5175,13 @@
               "interactions": []
             },
             {
-              "id": "I108:10732;253:4745",
+              "id": "I199:24286;253:4745",
               "name": "Youtube",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4746",
+                  "id": "I199:24286;253:4746",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5189,7 +5204,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7325.0,
-                    "y": -316.0,
+                    "y": -5098.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5201,7 +5216,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4747",
+                  "id": "I199:24286;253:4747",
                   "name": "icon-youtube",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5219,7 +5234,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7333.0,
-                    "y": -309.0,
+                    "y": -5091.0,
                     "width": 25.0,
                     "height": 25.0
                   },
@@ -5251,7 +5266,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 7325.0,
-                "y": -316.0,
+                "y": -5098.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5263,13 +5278,13 @@
               "interactions": []
             },
             {
-              "id": "I108:10732;253:4748",
+              "id": "I199:24286;253:4748",
               "name": "Tiktok",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4749",
+                  "id": "I199:24286;253:4749",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5292,7 +5307,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7277.0,
-                    "y": -316.0,
+                    "y": -5098.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5304,7 +5319,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4750",
+                  "id": "I199:24286;253:4750",
                   "name": "icon-tiktok",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5322,7 +5337,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7288.0,
-                    "y": -306.0,
+                    "y": -5088.0,
                     "width": 18.0,
                     "height": 18.0
                   },
@@ -5354,7 +5369,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 7277.0,
-                "y": -316.0,
+                "y": -5098.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5366,13 +5381,13 @@
               "interactions": []
             },
             {
-              "id": "I108:10732;253:4751",
+              "id": "I199:24286;253:4751",
               "name": "Instagran",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4752",
+                  "id": "I199:24286;253:4752",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5395,7 +5410,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7229.0,
-                    "y": -316.0,
+                    "y": -5098.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5407,7 +5422,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4753",
+                  "id": "I199:24286;253:4753",
                   "name": "icon-instagram",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5425,7 +5440,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 7240.0,
-                    "y": -306.0,
+                    "y": -5088.0,
                     "width": 18.0,
                     "height": 18.0
                   },
@@ -5457,7 +5472,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 7229.0,
-                "y": -316.0,
+                "y": -5098.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5469,7 +5484,7 @@
               "interactions": []
             },
             {
-              "id": "I108:10732;253:4754",
+              "id": "I199:24286;253:4754",
               "name": "Nossas redes",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -5491,7 +5506,7 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 7229.0,
-                "y": -348.0,
+                "y": -5130.0,
                 "width": 106.0,
                 "height": 19.0
               },
@@ -5543,7 +5558,7 @@
           },
           "absoluteBoundingBox": {
             "x": 7229.0,
-            "y": -348.0,
+            "y": -5130.0,
             "width": 280.0,
             "height": 72.0
           },
@@ -5555,19 +5570,19 @@
           "interactions": []
         },
         {
-          "id": "I108:10732;253:4755",
+          "id": "I199:24286;253:4755",
           "name": "Links e Detalhes",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I108:10732;253:4756",
+              "id": "I199:24286;253:4756",
               "name": "Col-Links",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4757",
+                  "id": "I199:24286;253:4757",
                   "name": "Links rápidos",
                   "type": "TEXT",
                   "scrollBehavior": "SCROLLS",
@@ -5589,7 +5604,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 6602.0,
-                    "y": -348.0,
+                    "y": -5130.0,
                     "width": 105.0,
                     "height": 19.0
                   },
@@ -5626,19 +5641,19 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4758",
+                  "id": "I199:24286;253:4758",
                   "name": "Links-Footer",
                   "type": "GROUP",
                   "scrollBehavior": "SCROLLS",
                   "children": [
                     {
-                      "id": "I108:10732;253:4759",
+                      "id": "I199:24286;253:4759",
                       "name": "Link-Home",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4760",
+                          "id": "I199:24286;253:4760",
                           "name": "Home",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5660,7 +5675,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6602.0,
-                            "y": -304.0,
+                            "y": -5086.0,
                             "width": 40.0,
                             "height": 17.0
                           },
@@ -5718,7 +5733,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6602.0,
-                        "y": -304.0,
+                        "y": -5086.0,
                         "width": 40.0,
                         "height": 17.0
                       },
@@ -5730,13 +5745,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4761",
+                      "id": "I199:24286;253:4761",
                       "name": "Link-Feeds",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4762",
+                          "id": "I199:24286;253:4762",
                           "name": "Feeds",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5758,7 +5773,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6602.0,
-                            "y": -278.0,
+                            "y": -5060.0,
                             "width": 40.0,
                             "height": 17.0
                           },
@@ -5816,7 +5831,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6602.0,
-                        "y": -278.0,
+                        "y": -5060.0,
                         "width": 40.0,
                         "height": 17.0
                       },
@@ -5828,13 +5843,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4763",
+                      "id": "I199:24286;253:4763",
                       "name": "Link-Atletas",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4764",
+                          "id": "I199:24286;253:4764",
                           "name": "Atletas",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5856,7 +5871,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6602.0,
-                            "y": -252.0,
+                            "y": -5034.0,
                             "width": 46.0,
                             "height": 17.0
                           },
@@ -5914,7 +5929,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6602.0,
-                        "y": -252.0,
+                        "y": -5034.0,
                         "width": 46.0,
                         "height": 17.0
                       },
@@ -5926,13 +5941,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4765",
+                      "id": "I199:24286;253:4765",
                       "name": "Link-Torcida",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4766",
+                          "id": "I199:24286;253:4766",
                           "name": "Torcida",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5954,7 +5969,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6602.0,
-                            "y": -226.0,
+                            "y": -5008.0,
                             "width": 49.0,
                             "height": 17.0
                           },
@@ -6012,7 +6027,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6602.0,
-                        "y": -226.0,
+                        "y": -5008.0,
                         "width": 49.0,
                         "height": 17.0
                       },
@@ -6024,13 +6039,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4767",
+                      "id": "I199:24286;253:4767",
                       "name": "Link-Agentes",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4768",
+                          "id": "I199:24286;253:4768",
                           "name": "Agentes",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6052,7 +6067,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6602.0,
-                            "y": -200.0,
+                            "y": -4982.0,
                             "width": 55.0,
                             "height": 17.0
                           },
@@ -6110,7 +6125,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6602.0,
-                        "y": -200.0,
+                        "y": -4982.0,
                         "width": 55.0,
                         "height": 17.0
                       },
@@ -6122,13 +6137,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4769",
+                      "id": "I199:24286;253:4769",
                       "name": "Link-Clubes",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4770",
+                          "id": "I199:24286;253:4770",
                           "name": "Clubes",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6150,7 +6165,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6687.0,
-                            "y": -304.0,
+                            "y": -5086.0,
                             "width": 46.0,
                             "height": 17.0
                           },
@@ -6208,7 +6223,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6687.0,
-                        "y": -304.0,
+                        "y": -5086.0,
                         "width": 46.0,
                         "height": 17.0
                       },
@@ -6220,13 +6235,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4771",
+                      "id": "I199:24286;253:4771",
                       "name": "Link-Noticias",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4772",
+                          "id": "I199:24286;253:4772",
                           "name": "Notícias",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6248,7 +6263,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6687.0,
-                            "y": -278.0,
+                            "y": -5060.0,
                             "width": 54.0,
                             "height": 17.0
                           },
@@ -6306,7 +6321,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6687.0,
-                        "y": -278.0,
+                        "y": -5060.0,
                         "width": 54.0,
                         "height": 17.0
                       },
@@ -6318,13 +6333,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4773",
+                      "id": "I199:24286;253:4773",
                       "name": "Link-Games",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4774",
+                          "id": "I199:24286;253:4774",
                           "name": "Games",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6346,7 +6361,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6687.0,
-                            "y": -252.0,
+                            "y": -5034.0,
                             "width": 46.0,
                             "height": 17.0
                           },
@@ -6404,7 +6419,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6687.0,
-                        "y": -252.0,
+                        "y": -5034.0,
                         "width": 46.0,
                         "height": 17.0
                       },
@@ -6416,13 +6431,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4775",
+                      "id": "I199:24286;253:4775",
                       "name": "Link-Confederacoes",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4776",
+                          "id": "I199:24286;253:4776",
                           "name": "Confederações",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6444,7 +6459,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6687.0,
-                            "y": -226.0,
+                            "y": -5008.0,
                             "width": 102.0,
                             "height": 17.0
                           },
@@ -6502,7 +6517,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6687.0,
-                        "y": -226.0,
+                        "y": -5008.0,
                         "width": 102.0,
                         "height": 17.0
                       },
@@ -6514,13 +6529,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4777",
+                      "id": "I199:24286;253:4777",
                       "name": "Link-Sobre",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4778",
+                          "id": "I199:24286;253:4778",
                           "name": "Sobre",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6542,7 +6557,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6687.0,
-                            "y": -200.0,
+                            "y": -4982.0,
                             "width": 40.0,
                             "height": 17.0
                           },
@@ -6600,7 +6615,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6687.0,
-                        "y": -200.0,
+                        "y": -4982.0,
                         "width": 40.0,
                         "height": 17.0
                       },
@@ -6612,13 +6627,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I108:10732;253:4779",
+                      "id": "I199:24286;253:4779",
                       "name": "Link-Privacidade",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4780",
+                          "id": "I199:24286;253:4780",
                           "name": "Privacidade",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6640,7 +6655,7 @@
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
                             "x": 6687.0,
-                            "y": -172.0,
+                            "y": -4954.0,
                             "width": 78.0,
                             "height": 17.0
                           },
@@ -6698,7 +6713,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6687.0,
-                        "y": -172.0,
+                        "y": -4954.0,
                         "width": 78.0,
                         "height": 17.0
                       },
@@ -6732,7 +6747,7 @@
                   },
                   "absoluteBoundingBox": {
                     "x": 6602.0,
-                    "y": -304.0,
+                    "y": -5086.0,
                     "width": 187.0,
                     "height": 149.0
                   },
@@ -6766,7 +6781,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 6602.0,
-                "y": -348.0,
+                "y": -5130.0,
                 "width": 187.0,
                 "height": 193.0
               },
@@ -6778,13 +6793,13 @@
               "interactions": []
             },
             {
-              "id": "I108:10732;253:4781",
+              "id": "I199:24286;253:4781",
               "name": "Col-About",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I108:10732;253:4782",
+                  "id": "I199:24286;253:4782",
                   "name": "Logo-Rodapé",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -6814,7 +6829,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 6222.0,
-                    "y": -332.0,
+                    "y": -5114.0,
                     "width": 56.0,
                     "height": 56.0
                   },
@@ -6826,7 +6841,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4783",
+                  "id": "I199:24286;253:4783",
                   "name": "Vitrine de Craques",
                   "type": "TEXT",
                   "scrollBehavior": "SCROLLS",
@@ -6848,7 +6863,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 6222.0,
-                    "y": -266.0,
+                    "y": -5048.0,
                     "width": 165.0,
                     "height": 22.0
                   },
@@ -6885,7 +6900,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4784",
+                  "id": "I199:24286;253:4784",
                   "name": "Descubra talentos do futebol • 14–22 anos",
                   "type": "TEXT",
                   "scrollBehavior": "SCROLLS",
@@ -6907,7 +6922,7 @@
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
                     "x": 6222.0,
-                    "y": -236.0,
+                    "y": -5018.0,
                     "width": 284.0,
                     "height": 17.0
                   },
@@ -6943,25 +6958,25 @@
                   "interactions": []
                 },
                 {
-                  "id": "I108:10732;253:4785",
+                  "id": "I199:24286;253:4785",
                   "name": "Botão-Falar-no-Whatsapp",
                   "type": "GROUP",
                   "scrollBehavior": "SCROLLS",
                   "children": [
                     {
-                      "id": "I108:10732;253:4786",
+                      "id": "I199:24286;253:4786",
                       "name": "Group",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I108:10732;253:4787",
+                          "id": "I199:24286;253:4787",
                           "name": "WhatsApp-CTA",
                           "type": "GROUP",
                           "scrollBehavior": "SCROLLS",
                           "children": [
                             {
-                              "id": "I108:10732;253:4788",
+                              "id": "I199:24286;253:4788",
                               "name": "Fundo-verde-botão",
                               "type": "VECTOR",
                               "scrollBehavior": "SCROLLS",
@@ -6983,7 +6998,7 @@
                               "strokeAlign": "INSIDE",
                               "absoluteBoundingBox": {
                                 "x": 6222.0,
-                                "y": -192.0,
+                                "y": -4974.0,
                                 "width": 280.0,
                                 "height": 44.0
                               },
@@ -6995,7 +7010,7 @@
                               "interactions": []
                             },
                             {
-                              "id": "I108:10732;253:4789",
+                              "id": "I199:24286;253:4789",
                               "name": "Falar no WhatsApp",
                               "type": "TEXT",
                               "scrollBehavior": "SCROLLS",
@@ -7017,7 +7032,7 @@
                               "strokeAlign": "INSIDE",
                               "absoluteBoundingBox": {
                                 "x": 6296.5,
-                                "y": -178.0,
+                                "y": -4960.0,
                                 "width": 131.0,
                                 "height": 17.0
                               },
@@ -7069,7 +7084,7 @@
                           },
                           "absoluteBoundingBox": {
                             "x": 6222.0,
-                            "y": -192.0,
+                            "y": -4974.0,
                             "width": 280.0,
                             "height": 44.0
                           },
@@ -7096,7 +7111,7 @@
                       },
                       "absoluteBoundingBox": {
                         "x": 6222.0,
-                        "y": -192.0,
+                        "y": -4974.0,
                         "width": 280.0,
                         "height": 44.0
                       },
@@ -7123,7 +7138,7 @@
                   },
                   "absoluteBoundingBox": {
                     "x": 6222.0,
-                    "y": -192.0,
+                    "y": -4974.0,
                     "width": 280.0,
                     "height": 44.0
                   },
@@ -7150,7 +7165,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 6222.0,
-                "y": -332.0,
+                "y": -5114.0,
                 "width": 284.0,
                 "height": 184.0
               },
@@ -7177,7 +7192,7 @@
           },
           "absoluteBoundingBox": {
             "x": 6222.0,
-            "y": -348.0,
+            "y": -5130.0,
             "width": 567.0,
             "height": 200.0
           },
@@ -7204,7 +7219,7 @@
       },
       "absoluteBoundingBox": {
         "x": 6198.0,
-        "y": -364.0,
+        "y": -5146.0,
         "width": 1440.0,
         "height": 348.0
       },
@@ -7216,15 +7231,13 @@
       "interactions": []
     },
     {
-      "id": "340:2649",
+      "id": "340:2648",
       "name": "Filters",
-      "type": "INSTANCE",
+      "type": "COMPONENT",
       "scrollBehavior": "SCROLLS",
-      "componentId": "340:2648",
-      "overrides": [],
       "children": [
         {
-          "id": "I340:2649;339:2639",
+          "id": "339:2639",
           "name": "Filter",
           "type": "RECTANGLE",
           "scrollBehavior": "SCROLLS",
@@ -7248,7 +7261,7 @@
           "cornerSmoothing": 0.0,
           "absoluteBoundingBox": {
             "x": 6222.0,
-            "y": -1238.0,
+            "y": -6004.0,
             "width": 1392.0,
             "height": 81.0
           },
@@ -7278,15 +7291,30 @@
           "interactions": []
         },
         {
-          "id": "I340:2649;339:2640",
+          "id": "339:2640",
           "name": "search",
           "type": "INSTANCE",
           "scrollBehavior": "SCROLLS",
           "componentId": "328:2610",
-          "overrides": [],
+          "overrides": [
+            {
+              "id": "339:2640",
+              "overriddenFields": [
+                "individualStrokeWeights",
+                "strokeWeight",
+                "strokes"
+              ]
+            },
+            {
+              "id": "I339:2640;54616:25440",
+              "overriddenFields": [
+                "inheritFillStyleId"
+              ]
+            }
+          ],
           "children": [
             {
-              "id": "I340:2649;339:2640;54616:25440",
+              "id": "I339:2640;54616:25440",
               "name": "icon",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -7329,7 +7357,7 @@
               },
               "absoluteBoundingBox": {
                 "x": 6271.0,
-                "y": -1209.0,
+                "y": -5975.0,
                 "width": 18.0,
                 "height": 18.0
               },
@@ -7356,7 +7384,7 @@
           },
           "absoluteBoundingBox": {
             "x": 6268.0,
-            "y": -1212.0,
+            "y": -5978.0,
             "width": 24.0,
             "height": 24.0
           },
@@ -7368,7 +7396,7 @@
           "interactions": []
         },
         {
-          "id": "I340:2649;339:2641",
+          "id": "339:2641",
           "name": "TextBox",
           "type": "RECTANGLE",
           "scrollBehavior": "SCROLLS",
@@ -7392,7 +7420,7 @@
           "cornerSmoothing": 0.0,
           "absoluteBoundingBox": {
             "x": 6249.0,
-            "y": -1224.0,
+            "y": -5990.0,
             "width": 1209.0,
             "height": 52.0
           },
@@ -7404,7 +7432,7 @@
           "interactions": []
         },
         {
-          "id": "I340:2649;339:2642",
+          "id": "339:2642",
           "name": "Filtros: Nome, Idade, Cidade, Estado",
           "type": "TEXT",
           "scrollBehavior": "SCROLLS",
@@ -7426,7 +7454,7 @@
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
             "x": 6297.0,
-            "y": -1209.0,
+            "y": -5975.0,
             "width": 276.0,
             "height": 19.0
           },
@@ -7462,13 +7490,13 @@
           "interactions": []
         },
         {
-          "id": "I340:2649;339:2643",
+          "id": "339:2643",
           "name": "Botão Filtrar",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I340:2649;339:2644",
+              "id": "339:2644",
               "name": "fundo-botao-16A34A",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -7490,7 +7518,7 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 7492.0,
-                "y": -1218.0,
+                "y": -5984.0,
                 "width": 88.0,
                 "height": 40.0
               },
@@ -7502,7 +7530,7 @@
               "interactions": []
             },
             {
-              "id": "I340:2649;339:2645",
+              "id": "339:2645",
               "name": "Filtrar",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -7524,7 +7552,7 @@
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
                 "x": 7516.0,
-                "y": -1206.0,
+                "y": -5972.0,
                 "width": 41.0,
                 "height": 17.0
               },
@@ -7593,7 +7621,7 @@
           },
           "absoluteBoundingBox": {
             "x": 7492.0,
-            "y": -1218.0,
+            "y": -5984.0,
             "width": 88.0,
             "height": 40.0
           },
@@ -7620,7 +7648,7 @@
       },
       "absoluteBoundingBox": {
         "x": 6222.0,
-        "y": -1238.0,
+        "y": -6004.0,
         "width": 1392.0,
         "height": 81.0
       },
@@ -7633,7 +7661,7 @@
     }
   ],
   "blendMode": "PASS_THROUGH",
-  "clipsContent": false,
+  "clipsContent": true,
   "background": [
     {
       "blendMode": "NORMAL",
@@ -7671,9 +7699,9 @@
   },
   "absoluteBoundingBox": {
     "x": 6198.0,
-    "y": -1432.0,
+    "y": -6198.0,
     "width": 1440.0,
-    "height": 1416.0
+    "height": 1400.0
   },
   "constraints": {
     "vertical": "TOP",

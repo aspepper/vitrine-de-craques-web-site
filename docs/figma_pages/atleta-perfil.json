@@ -2894,7 +2894,14 @@
       "type": "INSTANCE",
       "scrollBehavior": "SCROLLS",
       "componentId": "88:6910",
-      "overrides": [],
+      "overrides": [
+        {
+          "id": "I112:1365;253:4782",
+          "overriddenFields": [
+            "exportSettings"
+          ]
+        }
+      ],
       "children": [
         {
           "id": "I112:1365;253:4731",
@@ -5032,6 +5039,16 @@
                     "vertical": "SCALE",
                     "horizontal": "SCALE"
                   },
+                  "exportSettings": [
+                    {
+                      "suffix": "",
+                      "format": "JPG",
+                      "constraint": {
+                        "type": "SCALE",
+                        "value": 1.0
+                      }
+                    }
+                  ],
                   "effects": [],
                   "interactions": []
                 },
@@ -5473,6 +5490,16 @@
     "vertical": "TOP",
     "horizontal": "LEFT"
   },
+  "exportSettings": [
+    {
+      "suffix": "",
+      "format": "JPG",
+      "constraint": {
+        "type": "SCALE",
+        "value": 1.0
+      }
+    }
+  ],
   "effects": [],
   "interactions": []
 }

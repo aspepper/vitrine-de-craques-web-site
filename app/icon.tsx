@@ -1,5 +1,10 @@
 import { ImageResponse } from 'next/og';
 
+type ImageResponseConstructor =
+  typeof import('next/dist/server/og/image-response').ImageResponse;
+
+const OgImageResponse = ImageResponse as unknown as ImageResponseConstructor;
+
 export const size = {
   width: 32,
   height: 32,
@@ -8,7 +13,7 @@ export const size = {
 export const contentType = 'image/png';
 
 export default function Icon() {
-  return new ImageResponse(
+  return new OgImageResponse(
     <div
       style={{
         width: '100%',

@@ -39,149 +39,6 @@
       "interactions": []
     },
     {
-      "id": "197:23608",
-      "name": "Group",
-      "type": "GROUP",
-      "scrollBehavior": "SCROLLS",
-      "children": [
-        {
-          "id": "197:23609",
-          "name": "Vector",
-          "type": "VECTOR",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 1.0,
-                "g": 1.0,
-                "b": 1.0,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": 1173.0,
-            "y": -3773.0,
-            "width": 1389.0,
-            "height": 80.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "effects": [
-            {
-              "type": "DROP_SHADOW",
-              "visible": true,
-              "color": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 0.25
-              },
-              "blendMode": "NORMAL",
-              "offset": {
-                "x": 0.0,
-                "y": 8.0
-              },
-              "radius": 32.0,
-              "showShadowBehindNode": true
-            }
-          ],
-          "interactions": []
-        },
-        {
-          "id": "197:23610",
-          "name": "Filtros: Estado (SP por padrão), País",
-          "type": "TEXT",
-          "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
-            {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.41960784792900085,
-                "g": 0.4470588266849518,
-                "b": 0.501960813999176,
-                "a": 1.0
-              }
-            }
-          ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "absoluteBoundingBox": {
-            "x": 1196.9482421875,
-            "y": -3739.0,
-            "width": 271.4137878417969,
-            "height": 38.0
-          },
-          "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
-          },
-          "characters": "Filtros: Estado (SP por padrão), País",
-          "characterStyleOverrides": [],
-          "styleOverrideTable": {},
-          "lineTypes": [
-            "NONE"
-          ],
-          "lineIndentations": [
-            0
-          ],
-          "style": {
-            "fontFamily": "Inter",
-            "fontPostScriptName": null,
-            "fontStyle": "Regular",
-            "fontWeight": 400,
-            "textAutoResize": "HEIGHT",
-            "fontSize": 16.0,
-            "textAlignHorizontal": "LEFT",
-            "textAlignVertical": "TOP",
-            "letterSpacing": 0.0,
-            "lineHeightPx": 19.363636016845703,
-            "lineHeightPercent": 100.0,
-            "lineHeightUnit": "INTRINSIC_%"
-          },
-          "layoutVersion": 4,
-          "effects": [],
-          "interactions": []
-        }
-      ],
-      "blendMode": "PASS_THROUGH",
-      "clipsContent": false,
-      "background": [],
-      "fills": [],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "backgroundColor": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-      },
-      "absoluteBoundingBox": {
-        "x": 1173.0,
-        "y": -3773.0,
-        "width": 1389.0,
-        "height": 80.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "effects": [],
-      "interactions": []
-    },
-    {
       "id": "197:23611",
       "name": "Group",
       "type": "GROUP",
@@ -7443,6 +7300,422 @@
         "y": -3015.0,
         "width": 1440.0,
         "height": 348.0
+      },
+      "constraints": {
+        "vertical": "SCALE",
+        "horizontal": "SCALE"
+      },
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "340:2659",
+      "name": "Filters",
+      "type": "INSTANCE",
+      "scrollBehavior": "SCROLLS",
+      "componentId": "340:2648",
+      "overrides": [],
+      "children": [
+        {
+          "id": "I340:2659;339:2639",
+          "name": "Filter",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 25.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": 1172.0,
+            "y": -3779.0,
+            "width": 1392.0,
+            "height": 81.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "I340:2659;339:2640",
+          "name": "search",
+          "type": "INSTANCE",
+          "scrollBehavior": "SCROLLS",
+          "componentId": "328:2610",
+          "overrides": [],
+          "children": [
+            {
+              "id": "I340:2659;339:2640;54616:25440",
+              "name": "icon",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "boundVariables": {
+                "fills": [
+                  {
+                    "type": "VARIABLE_ALIAS",
+                    "id": "VariableID:fe6df42091f941865aeced3d5f5fd1477728bbcc/57300:0"
+                  }
+                ]
+              },
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.4745098054409027,
+                    "g": 0.45490196347236633,
+                    "b": 0.4941176474094391,
+                    "a": 1.0
+                  },
+                  "boundVariables": {
+                    "color": {
+                      "type": "VARIABLE_ALIAS",
+                      "id": "VariableID:fe6df42091f941865aeced3d5f5fd1477728bbcc/57300:0"
+                    }
+                  }
+                }
+              ],
+              "fillOverrideTable": {
+                "2": null,
+                "1": null
+              },
+              "strokes": [],
+              "strokeWeight": 0.02500000037252903,
+              "strokeAlign": "INSIDE",
+              "styles": {
+                "fill": "328:2616"
+              },
+              "absoluteBoundingBox": {
+                "x": 1221.0,
+                "y": -3750.0,
+                "width": 18.0,
+                "height": 18.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": true,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 1218.0,
+            "y": -3753.0,
+            "width": 24.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I340:2659;339:2641",
+          "name": "TextBox",
+          "type": "RECTANGLE",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [],
+          "strokes": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.8980392217636108,
+                "g": 0.9058823585510254,
+                "b": 0.9215686321258545,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "cornerRadius": 20.0,
+          "cornerSmoothing": 0.0,
+          "absoluteBoundingBox": {
+            "x": 1199.0,
+            "y": -3765.0,
+            "width": 1209.0,
+            "height": 52.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I340:2659;339:2642",
+          "name": "Filtros: Nome, Idade, Cidade, Estado",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.41960784792900085,
+                "g": 0.4470588266849518,
+                "b": 0.501960813999176,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": 1247.0,
+            "y": -3750.0,
+            "width": 276.0,
+            "height": 19.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Filtros: Nome, Idade, Cidade, Estado",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": null,
+            "fontStyle": "Regular",
+            "fontWeight": 400,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 16.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 19.363636016845703,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
+        },
+        {
+          "id": "I340:2659;339:2643",
+          "name": "Botão Filtrar",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "I340:2659;339:2644",
+              "name": "fundo-botao-16A34A",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.08627451211214066,
+                    "g": 0.6392157077789307,
+                    "b": 0.29019609093666077,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2442.0,
+                "y": -3759.0,
+                "width": 88.0,
+                "height": 40.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "I340:2659;339:2645",
+              "name": "Filtrar",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2466.0,
+                "y": -3747.0,
+                "width": 41.0,
+                "height": 17.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Filtrar",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": "Inter-BoldItalic",
+                "fontStyle": "Bold Italic",
+                "italic": true,
+                "fontWeight": 700,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 14.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 16.94318199157715,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "transitionNodeID": "73:4273",
+              "transitionDuration": 300.0,
+              "transitionEasing": "EASE_OUT",
+              "interactions": [
+                {
+                  "trigger": {
+                    "type": "ON_CLICK"
+                  },
+                  "actions": [
+                    {
+                      "type": "NODE",
+                      "destinationId": "73:4273",
+                      "navigation": "NAVIGATE",
+                      "transition": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 2442.0,
+            "y": -3759.0,
+            "width": 88.0,
+            "height": 40.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": false,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "absoluteBoundingBox": {
+        "x": 1172.0,
+        "y": -3779.0,
+        "width": 1392.0,
+        "height": 81.0
       },
       "constraints": {
         "vertical": "SCALE",

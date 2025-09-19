@@ -14,6 +14,13 @@ export async function GET(req: NextRequest) {
         skip,
         take: limit,
         orderBy: { displayName: 'asc' },
+        include: {
+          user: {
+            select: {
+              email: true,
+            },
+          },
+        },
       }),
       prisma.profile.count({ where: { role: 'AGENTE' } }),
     ])

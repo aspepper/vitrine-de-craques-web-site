@@ -383,13 +383,21 @@ export default async function HomePage() {
 
           {/* DESTAQUES */}
           <section className="container space-y-6">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-h2 section-title">Destaques</h2>
-              {highlightsError ? (
-                <p className="text-sm font-medium text-white/80">
-                  Não foi possível carregar os vídeos em destaque agora.
-                </p>
-              ) : null}
+              <div className="flex items-center gap-4">
+                {highlightsError ? (
+                  <p className="text-sm font-medium text-white/80">
+                    Não foi possível carregar os vídeos em destaque agora.
+                  </p>
+                ) : null}
+                <Link
+                  href="/atletas"
+                  className="text-sm font-semibold text-white underline-offset-4 transition hover:underline"
+                >
+                  Ver mais...
+                </Link>
+              </div>
             </div>
             {highlights.length > 0 ? (
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
@@ -449,13 +457,21 @@ export default async function HomePage() {
 
           {/* PRINCIPAIS NOTÍCIAS */}
           <section className="container space-y-6">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-h2 section-title">Principais notícias</h2>
-              {newsError ? (
-                <p className="text-sm font-medium text-white/80">
-                  Exibindo curadoria editorial enquanto as notícias são carregadas.
-                </p>
-              ) : null}
+              <div className="flex items-center gap-4">
+                {newsError ? (
+                  <p className="text-sm font-medium text-white/80">
+                    Exibindo curadoria editorial enquanto as notícias são carregadas.
+                  </p>
+                ) : null}
+                <Link
+                  href="/noticias"
+                  className="text-sm font-semibold text-white underline-offset-4 transition hover:underline"
+                >
+                  Ver mais...
+                </Link>
+              </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {latestNews.map((news) => {
@@ -508,13 +524,21 @@ export default async function HomePage() {
 
           {/* GAMES */}
           <section className="container space-y-6 pb-16">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-h2 section-title">Games</h2>
-              {gamesError ? (
-                <p className="text-sm font-medium text-white/80">
-                  Seleção editorial exibida enquanto sincronizamos os últimos resultados.
-                </p>
-              ) : null}
+              <div className="flex items-center gap-4">
+                {gamesError ? (
+                  <p className="text-sm font-medium text-white/80">
+                    Seleção editorial exibida enquanto sincronizamos os últimos resultados.
+                  </p>
+                ) : null}
+                <Link
+                  href="/games"
+                  className="text-sm font-semibold text-white underline-offset-4 transition hover:underline"
+                >
+                  Ver mais...
+                </Link>
+              </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
               {latestGames.map((game) => {
@@ -528,7 +552,7 @@ export default async function HomePage() {
                     href={`/games/${game.slug}`}
                     className="group"
                   >
-                    <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/15 bg-slate-900/90 text-slate-100 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.8)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_80px_-36px_rgba(15,23,42,0.95)]">
+                    <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/20 bg-white text-slate-900 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.35)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_80px_-36px_rgba(15,23,42,0.45)]">
                       <div className="relative h-32 w-full">
                         <Image
                           src={cover}
@@ -537,8 +561,8 @@ export default async function HomePage() {
                           sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 100vw"
                           className="object-cover"
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent p-3">
-                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200/90">
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
+                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white">
                             {formatDate(game.date, {
                               day: '2-digit',
                               month: 'short',
@@ -548,19 +572,19 @@ export default async function HomePage() {
                         </div>
                       </div>
                       <CardContent className="flex flex-1 flex-col gap-3 p-4">
-                        <h3 className="text-base font-semibold text-white line-clamp-2">
+                        <h3 className="text-base font-semibold text-slate-900 line-clamp-2">
                           {game.title ?? 'Jogo sem título'}
                         </h3>
-                        <p className="text-sm text-slate-300 line-clamp-3">
+                        <p className="text-sm text-slate-600 line-clamp-3">
                           {game.excerpt ?? 'Análise completa do confronto disponível no hub de games.'}
                         </p>
                         <div className="mt-auto space-y-1 text-xs">
                           {game.category ? (
-                            <p className="font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                            <p className="font-semibold uppercase tracking-[0.16em] text-emerald-700">
                               {game.category}
                             </p>
                           ) : null}
-                          <p className="text-slate-400">
+                          <p className="text-slate-500">
                             Por {game.authorName ?? 'Equipe Vitrine'}
                           </p>
                         </div>

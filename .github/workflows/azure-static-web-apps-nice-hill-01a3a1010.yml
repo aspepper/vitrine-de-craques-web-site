@@ -34,11 +34,6 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Prisma migrate deploy (prod DB)
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: npx prisma migrate deploy
-
       - name: Build web app (includes Prisma client)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}

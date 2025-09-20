@@ -45,11 +45,12 @@ python3 split_figma_pages.py docs/figma.json docs/figma_pages
 ## Atualização da Base de Dados
 
 npx prisma format
-npx prisma generate
+npx prisma format
 
 npx prisma migrate deploy
 npx prisma db seed
 
+npx prisma migrate diff --from-schema-datamodel=prisma/schema.prisma --to-database="postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" --script > migration.sql
 npx prisma migrate reset
 npm run db:push
 npm run db:seed

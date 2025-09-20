@@ -33,163 +33,184 @@ const journalist: SampleGameAuthor = {
   },
 }
 
-const clubeA: SampleGameClub = { name: "Clube A", slug: "clube-a" }
-const clubeB: SampleGameClub = { name: "Clube B", slug: "clube-b" }
-const clubeC: SampleGameClub = { name: "Clube C", slug: "clube-c" }
-const clubeD: SampleGameClub = { name: "Clube D", slug: "clube-d" }
+const flamengo: SampleGameClub = {
+  name: "Clube de Regatas do Flamengo",
+  slug: "clube-de-regatas-do-flamengo",
+}
+const palmeiras: SampleGameClub = {
+  name: "Sociedade Esportiva Palmeiras",
+  slug: "sociedade-esportiva-palmeiras",
+}
+const realMadrid: SampleGameClub = {
+  name: "Real Madrid Club de Fútbol",
+  slug: "real-madrid-club-de-futbol",
+}
+const manchesterCity: SampleGameClub = {
+  name: "Manchester City Football Club",
+  slug: "manchester-city-football-club",
+}
 
 export const sampleGames: SampleGameItem[] = [
   {
-    id: "como-zerar-o-minecraft",
-    title: "Como zerar o Minecraft?",
-    slug: "como-zerar-o-minecraft",
-    category: "Dica",
-    excerpt: "Aqui vamos mostrar o segredo para chegar ao fim da jornada sem deixar nenhum bloco para trás.",
+    id: "flamengo-vence-palmeiras-maracana-2024",
+    title: "Flamengo controla Palmeiras e vence no Maracanã",
+    slug: "flamengo-vence-palmeiras-maracana-2024",
+    category: "Campeonato Brasileiro",
+    excerpt:
+      "Com atuação dominante, o Flamengo pressionou desde o início, abriu vantagem na primeira etapa e segurou a reação alviverde para somar três pontos importantes.",
     content:
-      "Dominar o modo sobrevivência exige planejamento e paciência. Comece definindo uma base segura, priorize a coleta de recursos essenciais e não subestime a importância de poções e encantamentos.\n\nDepois de localizar as fortificações, organize o inventário e garanta suprimentos extras antes de atravessar o portal. Na dimensão final, mantenha a calma, destrua os cristais e confie na precisão dos seus movimentos para derrubar o dragão.",
+      "A equipe rubro-negra começou a partida acelerada, empurrada por mais de 60 mil torcedores no Maracanã. Gerson abriu o placar logo aos 12 minutos após boa troca de passes pelo lado esquerdo, e Pedro ampliou de cabeça ainda antes do intervalo.\n\nNo segundo tempo, o Palmeiras ajustou a marcação e diminuiu com Raphael Veiga em cobrança de falta, mas parou nas defesas de Rossi e no posicionamento seguro da linha defensiva. O resultado recoloca o Flamengo na briga direta pela liderança do Brasileirão.",
     coverImage:
-      "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-12T22:00:00.000Z",
+      "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-04-21T19:00:00.000Z",
     scoreHome: 2,
     scoreAway: 1,
-    homeClub: clubeA,
-    awayClub: clubeB,
+    homeClub: flamengo,
+    awayClub: palmeiras,
     author: journalist,
   },
   {
-    id: "estrategias-para-campeonatos-fps",
-    title: "Estratégias avançadas para campeonatos FPS",
-    slug: "estrategias-para-campeonatos-fps",
-    category: "Análise",
-    excerpt: "Estudamos as decisões táticas que diferenciam equipes campeãs em finais presenciais de tiro em primeira pessoa.",
+    id: "real-madrid-manchester-city-champions-2024",
+    title: "Real Madrid e Manchester City empatam em jogaço pela Champions",
+    slug: "real-madrid-manchester-city-champions-2024",
+    category: "UEFA Champions League",
+    excerpt:
+      "No Bernabéu, merengues e citizens travaram duelo elétrico com golaços de fora da área e muita intensidade nas transições ofensivas.",
     content:
-      "As partidas eliminatórias exigem sincronia perfeita entre comunicação e execução. Times vencedores treinam situações de clutch diariamente, revisitam gravações para entender padrões rivais e mantêm protocolos claros para retomar zonas dominadas.\n\nDurante as finais, o gerenciamento emocional é tão importante quanto a mira. Pausas estratégicas e feedback construtivo ajudam a manter a equipe focada mesmo sob pressão intensa.",
+      "Logo aos dois minutos, Bernardo Silva surpreendeu Lunin em cobrança de falta rasteira e abriu o placar para o City. O Real Madrid reagiu com personalidade e virou ainda na primeira etapa graças a um chute desviado de Eduardo Camavinga e a um contra-ataque letal finalizado por Rodrygo.\n\nNo segundo tempo, a equipe inglesa retomou o controle territorial e voltou a liderar o marcador com gols de Phil Foden e Joško Gvardiol em finalizações longas. Mas Federico Valverde, em voleio certeiro, decretou o 3 a 3 e levou a decisão das quartas de final para Manchester em aberto.",
     coverImage:
-      "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-18T19:30:00.000Z",
-    scoreHome: 16,
-    scoreAway: 14,
-    homeClub: clubeC,
-    awayClub: clubeD,
-    author: journalist,
-  },
-  {
-    id: "bastidores-da-preparacao-tatica",
-    title: "Bastidores da preparação tática",
-    slug: "bastidores-da-preparacao-tatica",
-    category: "Bastidores",
-    excerpt: "Conversamos com analistas que transformam dados em estratégias vencedoras antes de cada série decisiva.",
-    content:
-      "O trabalho começa dias antes da partida com mapeamentos detalhados de tendências. Utilizando ferramentas de análise, os especialistas identificam fragilidades de cada adversário e constroem playlists específicas para treinos práticos.\n\nNo dia do jogo, os relatórios se transformam em chamadas objetivas que guiam a tomada de decisão em tempo real, garantindo que as leituras se convertam em vantagem competitiva.",
-    coverImage:
-      "https://images.unsplash.com/photo-1509475826633-fed577a2c71b?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-05T17:00:00.000Z",
+      "https://images.unsplash.com/photo-1521566652839-697aa473761a?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-04-09T19:00:00.000Z",
     scoreHome: 3,
-    scoreAway: 0,
-    homeClub: clubeB,
-    awayClub: clubeA,
-    author: journalist,
-  },
-  {
-    id: "rotinas-de-treino-para-mapas-complexos",
-    title: "Rotinas de treino para mapas complexos",
-    slug: "rotinas-de-treino-para-mapas-complexos",
-    category: "Treinamento",
-    excerpt: "Veja como staff técnico adapta rotinas de treinos para mapas com múltiplos objetivos simultâneos.",
-    content:
-      "A construção de repertório começa com sessões individuais para domínio de habilidades e termina com simulações completas da equipe. Cada mapa recebe um plano de contingência que define prioridades, pontos de rotação e chamadas de emergência.\n\nOs treinos também incluem revisão mental guiada para acelerar a memorização de setups e criar confiança em execuções rápidas.",
-    coverImage:
-      "https://images.unsplash.com/photo-1506634064465-7dabd83d6585?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-22T15:00:00.000Z",
-    scoreHome: 13,
-    scoreAway: 11,
-    homeClub: clubeC,
-    awayClub: clubeA,
-    author: journalist,
-  },
-  {
-    id: "equilibrio-mental-em-finais",
-    title: "Equilíbrio mental em finais presenciais",
-    slug: "equilibrio-mental-em-finais",
-    category: "Performance",
-    excerpt: "Como psicólogos esportivos atuam para manter atletas concentrados diante de milhares de torcedores.",
-    content:
-      "Sessões pré-jogo incluem exercícios de respiração, visualização de cenários críticos e reforço positivo personalizado. A proximidade do público exige preparação adicional para bloquear estímulos externos sem perder a conexão com a torcida.\n\nApós cada mapa, a equipe psicológica conduz check-ins rápidos para ajustar níveis de energia e reforçar a comunicação assertiva dentro do grupo.",
-    coverImage:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-10T16:45:00.000Z",
-    scoreHome: 2,
-    scoreAway: 2,
-    homeClub: clubeD,
-    awayClub: clubeB,
-    author: journalist,
-  },
-  {
-    id: "tecnologia-nos-campeonatos",
-    title: "Tecnologia que transforma campeonatos",
-    slug: "tecnologia-nos-campeonatos",
-    category: "Inovação",
-    excerpt: "Ferramentas de análise em nuvem elevam a preparação com dashboards em tempo real para comissão técnica.",
-    content:
-      "Equipamentos portáteis monitoram movimentos, tempo de reação e padrões de mira em cada treino. Essas métricas abastecem modelos preditivos que ajudam a planejar substituições e definir o ritmo ideal de jogo.\n\nCom dados integrados, as comissões conseguem ajustar estratégias durante as partidas, antecipando tendências dos adversários antes mesmo que apareçam nos placares.",
-    coverImage:
-      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-02T13:20:00.000Z",
-    scoreHome: 1,
-    scoreAway: 0,
-    homeClub: clubeA,
-    awayClub: clubeD,
-    author: journalist,
-  },
-  {
-    id: "analise-de-meta-competitivo",
-    title: "Análise de meta competitivo",
-    slug: "analise-de-meta-competitivo",
-    category: "Estudo",
-    excerpt: "Resumo completo das atualizações que alteraram o equilíbrio entre classes na última temporada.",
-    content:
-      "Mudanças recentes favoreceram estilos de jogo agressivos, valorizando personagens com alta mobilidade. As equipes que anteciparam essa tendência trouxeram composições híbridas capazes de pressionar desde os minutos iniciais.\n\nPara se manter no topo do meta, especialistas recomendam ciclos semanais de revisão e um banco amplo de estratégias para responder a patches repentinos.",
-    coverImage:
-      "https://images.unsplash.com/photo-1515719100330-4b3f39cb0d94?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-28T21:15:00.000Z",
-    scoreHome: 3,
-    scoreAway: 2,
-    homeClub: clubeB,
-    awayClub: clubeC,
-    author: journalist,
-  },
-  {
-    id: "como-liderar-equipes-remotas",
-    title: "Como liderar equipes remotas",
-    slug: "como-liderar-equipes-remotas",
-    category: "Gestão",
-    excerpt: "Treinadores revelam rotinas que mantêm sinergia mesmo com treinos em fusos horários diferentes.",
-    content:
-      "Calendários compartilhados, sessões diárias de alinhamento e relatórios objetivos são pilares para manter a disciplina. Além disso, a rotação de lideranças auxilia na distribuição das responsabilidades e fortalece a confiança coletiva.\n\nNos playoffs, a equipe já está acostumada a lidar com ajustes repentinos, pois simula mudanças logísticas durante toda a temporada regular.",
-    coverImage:
-      "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-09-03T18:00:00.000Z",
-    scoreHome: 2,
     scoreAway: 3,
-    homeClub: clubeD,
-    awayClub: clubeA,
+    homeClub: realMadrid,
+    awayClub: manchesterCity,
     author: journalist,
   },
   {
-    id: "o-futuro-dos-fan-fests",
-    title: "O futuro dos fan fests",
-    slug: "o-futuro-dos-fan-fests",
-    category: "Comunidade",
-    excerpt: "Eventos híbridos combinam experiências presenciais e digitais para aproximar torcida e elenco.",
+    id: "palmeiras-flamengo-supercopa-2023",
+    title: "Palmeiras supera Flamengo na Supercopa do Brasil",
+    slug: "palmeiras-flamengo-supercopa-2023",
+    category: "Supercopa do Brasil",
+    excerpt:
+      "Verdão levou a melhor no duelo de campeões nacionais ao aproveitar espaço nos contra-ataques e contar com brilho de Raphael Veiga.",
     content:
-      "Organizadores apostam em hubs regionais conectados por realidade aumentada, permitindo que torcedores interajam em tempo real com jogadores. Patrocinadores acompanham métricas de engajamento minuto a minuto para personalizar ativações.\n\nO sucesso depende da curadoria de conteúdos exclusivos e de uma equipe de produção capaz de integrar transmissões, ativações e suporte técnico sem falhas.",
+      "Em partida disputada em Brasília, Abel Ferreira escalou um Palmeiras agressivo nas transições. Raphael Veiga converteu duas cobranças de pênalti e Dudu completou a vitória por 4 a 3 em confronto frenético, com alternância no placar durante os 90 minutos.\n\nDo lado rubro-negro, Gabigol marcou duas vezes, mas a equipe carioca esbarrou em falhas defensivas na bola parada. O título reforça a hegemonia recente do Palmeiras nas competições nacionais e aumenta a confiança para a temporada.",
+    coverImage:
+      "https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2023-01-28T19:30:00.000Z",
+    scoreHome: 4,
+    scoreAway: 3,
+    homeClub: palmeiras,
+    awayClub: flamengo,
+    author: journalist,
+  },
+  {
+    id: "manchester-city-real-madrid-etuad-2024",
+    title: "City domina Real Madrid e avança à semifinal",
+    slug: "manchester-city-real-madrid-etuad-2024",
+    category: "UEFA Champions League",
+    excerpt:
+      "Com pressão alta implacável, o Manchester City não deu chances aos espanhóis e carimbou vaga entre os quatro melhores da Europa.",
+    content:
+      "Pep Guardiola manteve a equipe inglesa em bloco adiantado, sufocando a saída de bola merengue. Erling Haaland abriu o placar de cabeça após cruzamento de Kevin De Bruyne, e Bernardo Silva ampliou aproveitando rebote dentro da área.\n\nApesar da tentativa de reação do Real Madrid com Vinícius Júnior, o City continuou controlando a posse e fechou a contagem com um chute colocado de Julián Álvarez nos minutos finais, consolidando o 3 a 0 e a classificação no Etihad Stadium.",
+    coverImage:
+      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-04-17T19:00:00.000Z",
+    scoreHome: 3,
+    scoreAway: 0,
+    homeClub: manchesterCity,
+    awayClub: realMadrid,
+    author: journalist,
+  },
+  {
+    id: "palmeiras-goleia-flamengo-allianz-2022",
+    title: "Palmeiras goleia Flamengo com show coletivo",
+    slug: "palmeiras-goleia-flamengo-allianz-2022",
+    category: "Campeonato Brasileiro",
+    excerpt:
+      "Verdão apresentou intensidade desde o apito inicial, marcou duas vezes em jogadas trabalhadas e construiu goleada no Allianz Parque.",
+    content:
+      "Mesmo com desfalques, o Palmeiras impôs ritmo forte diante de sua torcida. Rony inaugurou o placar ao completar cruzamento de Mayke, e Scarpa ampliou em chute de fora da área. Na etapa final, Dudu fechou a vitória por 3 a 0 aproveitando contra-ataque puxado por Danilo.\n\nO Flamengo buscou diminuir com Arrascaeta, mas encontrou dificuldade para furar o bloqueio defensivo palmeirense. A vitória manteve o time paulista no topo da tabela e reforçou a confiança para a sequência da temporada.",
+    coverImage:
+      "https://images.unsplash.com/photo-1529421302014-762ad1a18cb0?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2022-08-21T19:00:00.000Z",
+    scoreHome: 3,
+    scoreAway: 0,
+    homeClub: palmeiras,
+    awayClub: flamengo,
+    author: journalist,
+  },
+  {
+    id: "flamengo-virada-real-madrid-mundial-2018",
+    title: "Flamengo busca virada histórica contra o Real Madrid",
+    slug: "flamengo-virada-real-madrid-mundial-2018",
+    category: "Copa Intercontinental",
+    excerpt:
+      "Rubro-negros reagiram no segundo tempo com gols de jovens da base e construíram triunfo inesquecível diante dos espanhóis.",
+    content:
+      "Em amistoso festivo que celebrou campeões mundiais, o Real Madrid abriu vantagem de 2 a 0 com Benzema e Modrić. A torcida flamenguista, porém, empurrou o time para uma reação fulminante na etapa final: Vinícius Júnior diminuiu em jogada individual, Arrascaeta empatou em cobrança de falta e Gabriel Barbosa virou nos acréscimos com finalização no ângulo.\n\nEmbora seja um confronto comemorativo, a partida mostrou a força das categorias de base rubro-negras e a conexão entre gerações vencedoras do clube carioca.",
+    coverImage:
+      "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2018-12-15T21:00:00.000Z",
+    scoreHome: 3,
+    scoreAway: 2,
+    homeClub: flamengo,
+    awayClub: realMadrid,
+    author: journalist,
+  },
+  {
+    id: "real-madrid-virada-manchester-city-2022",
+    title: "Real Madrid vira sobre o Manchester City e vai à final",
+    slug: "real-madrid-virada-manchester-city-2022",
+    category: "UEFA Champions League",
+    excerpt:
+      "Com dois gols de Rodrygo nos acréscimos e pênalti convertido por Benzema na prorrogação, o Real Madrid escreveu mais um capítulo épico em sua história europeia.",
+    content:
+      "Precisando reverter a vantagem inglesa, os merengues mantiveram a paciência mesmo após Riyad Mahrez abrir o placar para o Manchester City no segundo tempo. A entrada de Rodrygo mudou o roteiro: o brasileiro empatou aos 90 minutos e virou no lance seguinte ao aproveitar cruzamento de Carvajal.\n\nNa prorrogação, Rubén Dias cometeu falta em Benzema dentro da área e o francês marcou o gol da classificação. O Santiago Bernabéu explodiu em festa com a vitória por 3 a 1, garantindo vaga em mais uma final de Champions League.",
+    coverImage:
+      "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2022-05-04T19:00:00.000Z",
+    scoreHome: 3,
+    scoreAway: 1,
+    homeClub: realMadrid,
+    awayClub: manchesterCity,
+    author: journalist,
+  },
+  {
+    id: "flamengo-palmeiras-final-libertadores-2021",
+    title: "Palmeiras bate Flamengo na prorrogação e fatura a América",
+    slug: "flamengo-palmeiras-final-libertadores-2021",
+    category: "Copa Libertadores",
+    excerpt:
+      "Deyverson saiu do banco, aproveitou vacilo da defesa rubro-negra e marcou o gol do bicampeonato consecutivo do Palmeiras.",
+    content:
+      "A final em Montevidéu foi marcada por equilíbrio e tensão até o fim. Raphael Veiga abriu o placar logo cedo ao completar assistência de Mayke, enquanto Gabigol empatou para o Flamengo no segundo tempo com finalização precisa na entrada da área.\n\nNa prorrogação, Andreas Pereira perdeu a bola na intermediária, Deyverson arrancou livre e tocou na saída de Diego Alves para decretar o 2 a 1. O título consolidou o domínio palmeirense na Libertadores e aumentou a rivalidade recente entre os clubes brasileiros.",
+    coverImage:
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2021-11-27T20:00:00.000Z",
+    scoreHome: 1,
+    scoreAway: 2,
+    homeClub: flamengo,
+    awayClub: palmeiras,
+    author: journalist,
+  },
+  {
+    id: "manchester-city-flamengo-amistoso-2020",
+    title: "Manchester City aproveita amistoso e supera Flamengo",
+    slug: "manchester-city-flamengo-amistoso-2020",
+    category: "Amistoso Internacional",
+    excerpt:
+      "Com escalação mista, o City venceu graças ao controle de posse e aos gols de Sterling e Mahrez na etapa final.",
+    content:
+      "O confronto preparatório disputado em Miami reuniu dois estilos distintos. O Flamengo, comandado por Jorge Jesus, tentou manter a intensidade característica, enquanto o Manchester City rodou o elenco e priorizou as triangulações curtas.\n\nApós primeiro tempo equilibrado, os ingleses abriram o placar com Raheem Sterling aproveitando passe de Phil Foden. Pouco depois, Riyad Mahrez acertou chute colocado de fora da área. Pedro ainda descontou para os cariocas, mas os citizens administraram a vantagem até o apito final.",
     coverImage:
       "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-09-08T20:10:00.000Z",
-    scoreHome: 4,
-    scoreAway: 4,
-    homeClub: clubeC,
-    awayClub: clubeB,
+    date: "2020-07-18T23:00:00.000Z",
+    scoreHome: 2,
+    scoreAway: 1,
+    homeClub: manchesterCity,
+    awayClub: flamengo,
     author: journalist,
   },
 ]

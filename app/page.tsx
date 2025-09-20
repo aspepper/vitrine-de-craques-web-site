@@ -31,7 +31,7 @@ interface NewsCardData {
 
 interface GameCardData {
   id: string
-  title: string
+  title: string | null
   slug: string
   excerpt: string | null
   coverImage: string | null
@@ -532,7 +532,7 @@ export default async function HomePage() {
                       <div className="relative h-32 w-full">
                         <Image
                           src={cover}
-                          alt={game.title}
+                          alt={game.title ?? 'Imagem do jogo'}
                           fill
                           sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 100vw"
                           className="object-cover"
@@ -549,7 +549,7 @@ export default async function HomePage() {
                       </div>
                       <CardContent className="flex flex-1 flex-col gap-3 p-4">
                         <h3 className="text-base font-semibold text-white line-clamp-2">
-                          {game.title}
+                          {game.title ?? 'Jogo sem título'}
                         </h3>
                         <p className="text-sm text-slate-300 line-clamp-3">
                           {game.excerpt ?? 'Análise completa do confronto disponível no hub de games.'}

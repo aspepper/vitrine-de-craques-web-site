@@ -7,15 +7,28 @@ export async function GET(req: NextRequest) {
     const page = parseInt(req.nextUrl.searchParams.get('page') || '1')
     const limit = parseInt(req.nextUrl.searchParams.get('limit') || '10')
     const skip = (page - 1) * limit
+    const search = req.nextUrl.searchParams.get('search')?.trim() || ''
+
+    const where =
+      search
+        ? {
+            OR: [
+              { name: { contains: search, mode: 'insensitive' as const } },
+              { slug: { contains: search, mode: 'insensitive' as const } },
+              { confederation: { name: { contains: search, mode: 'insensitive' as const } } },
+            ],
+          }
+        : undefined
 
     const [items, total] = await prisma.$transaction([
       prisma.club.findMany({
+        where,
         skip,
         take: limit,
         orderBy: { name: 'asc' },
         include: { confederation: true },
       }),
-      prisma.club.count(),
+      prisma.club.count({ where }),
     ])
 
     return NextResponse.json({

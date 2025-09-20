@@ -19,8 +19,8 @@ export interface SampleGameItem {
   content: string
   coverImage: string
   date: string
-  scoreHome: number
-  scoreAway: number
+  scoreHome: number | null
+  scoreAway: number | null
   homeClub: SampleGameClub
   awayClub: SampleGameClub
   author: SampleGameAuthor
@@ -52,164 +52,110 @@ const manchesterCity: SampleGameClub = {
 
 export const sampleGames: SampleGameItem[] = [
   {
-    id: "flamengo-vence-palmeiras-maracana-2024",
-    title: "Flamengo controla Palmeiras e vence no Maracanã",
-    slug: "flamengo-vence-palmeiras-maracana-2024",
-    category: "Campeonato Brasileiro",
+    id: "flamengo-esports-analisa-hades-ii-acesso-antecipado",
+    title: "Flamengo eSports analisa Hades II após estreia em acesso antecipado",
+    slug: "flamengo-esports-analisa-hades-ii-acesso-antecipado",
+    category: "Lançamentos",
     excerpt:
-      "Com atuação dominante, o Flamengo pressionou desde o início, abriu vantagem na primeira etapa e segurou a reação alviverde para somar três pontos importantes.",
+      "Equipe rubro-negra promoveu live especial para destacar as novidades de Hades II, que chegou ao acesso antecipado no PC com Melinoë como protagonista e planos de atualização constantes.",
     content:
-      "A equipe rubro-negra começou a partida acelerada, empurrada por mais de 60 mil torcedores no Maracanã. Gerson abriu o placar logo aos 12 minutos após boa troca de passes pelo lado esquerdo, e Pedro ampliou de cabeça ainda antes do intervalo.\n\nNo segundo tempo, o Palmeiras ajustou a marcação e diminuiu com Raphael Veiga em cobrança de falta, mas parou nas defesas de Rossi e no posicionamento seguro da linha defensiva. O resultado recoloca o Flamengo na briga direta pela liderança do Brasileirão.",
+      "O núcleo de criação de conteúdo do Flamengo eSports aproveitou o lançamento de Hades II em 6 de maio para apresentar ao público as mudanças da sequência da Supergiant Games. Durante a transmissão, analistas convidados do Palmeiras Gaming apontaram a nova árvore de habilidades ligada à bruxaria e o ritmo mais cadenciado das expedições ao Submundo.\n\nAlém de mostrar as builds favoritas para Melinoë, a equipe reforçou que o estúdio pretende acrescentar biomas, encontros narrativos e sistemas de progressão ao longo do acesso antecipado em Steam e Epic Games Store. A live contou com perguntas dos torcedores e sorteios de gift cards para incentivar a base de fãs a testar o roguelike.",
     coverImage:
-      "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2024-04-21T19:00:00.000Z",
-    scoreHome: 2,
-    scoreAway: 1,
+      "https://images.unsplash.com/photo-1527608973515-92770e70d1f5?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-05-07T14:00:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
     homeClub: flamengo,
     awayClub: palmeiras,
     author: journalist,
   },
   {
-    id: "real-madrid-manchester-city-champions-2024",
-    title: "Real Madrid e Manchester City empatam em jogaço pela Champions",
-    slug: "real-madrid-manchester-city-champions-2024",
-    category: "UEFA Champions League",
+    id: "palmeiras-gaming-destaques-xbox-showcase-2024",
+    title: "Palmeiras Gaming debate destaques do Xbox Games Showcase 2024",
+    slug: "palmeiras-gaming-destaques-xbox-showcase-2024",
+    category: "Eventos",
     excerpt:
-      "No Bernabéu, merengues e citizens travaram duelo elétrico com golaços de fora da área e muita intensidade nas transições ofensivas.",
+      "Departamento de eSports palestrou sobre Gears of War: E-Day, DOOM: The Dark Ages e Call of Duty: Black Ops 6 logo após a apresentação da Microsoft em Los Angeles.",
     content:
-      "Logo aos dois minutos, Bernardo Silva surpreendeu Lunin em cobrança de falta rasteira e abriu o placar para o City. O Real Madrid reagiu com personalidade e virou ainda na primeira etapa graças a um chute desviado de Eduardo Camavinga e a um contra-ataque letal finalizado por Rodrygo.\n\nNo segundo tempo, a equipe inglesa retomou o controle territorial e voltou a liderar o marcador com gols de Phil Foden e Joško Gvardiol em finalizações longas. Mas Federico Valverde, em voleio certeiro, decretou o 3 a 3 e levou a decisão das quartas de final para Manchester em aberto.",
+      "Minutos depois do Xbox Games Showcase de 9 de junho, o Palmeiras reuniu sócios na arena digital do clube para comentar os anúncios que movimentaram o evento. Representantes da organização analisaram o retorno de Marcus Fenix em Gears of War: E-Day, apontando como a ambientação emergencial pode inspirar narrativas transmídia para a torcida.\n\nA conversa também destacou o trailer cinemático de DOOM: The Dark Ages, previsto para 2025, e o compromisso da Microsoft em lançar Call of Duty: Black Ops 6 em 25 de outubro diretamente no Game Pass. Parceiros do Manchester City eSports participaram remotamente para explicar como o ecossistema Xbox pretende integrar crossplay e progressão compartilhada entre console e PC.",
     coverImage:
-      "https://images.unsplash.com/photo-1521566652839-697aa473761a?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2024-04-09T19:00:00.000Z",
-    scoreHome: 3,
-    scoreAway: 3,
-    homeClub: realMadrid,
+      "https://images.unsplash.com/photo-1526481280695-3c46992875a0?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-09T23:30:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: palmeiras,
     awayClub: manchesterCity,
     author: journalist,
   },
   {
-    id: "palmeiras-flamengo-supercopa-2023",
-    title: "Palmeiras supera Flamengo na Supercopa do Brasil",
-    slug: "palmeiras-flamengo-supercopa-2023",
-    category: "Supercopa do Brasil",
+    id: "real-madrid-esports-zelda-echoes-of-wisdom",
+    title: "Real Madrid eSports promove maratona sobre Zelda: Echoes of Wisdom",
+    slug: "real-madrid-esports-zelda-echoes-of-wisdom",
+    category: "Nintendo",
     excerpt:
-      "Verdão levou a melhor no duelo de campeões nacionais ao aproveitar espaço nos contra-ataques e contar com brilho de Raphael Veiga.",
+      "Comunidade merengue celebrou o anúncio do novo The Legend of Zelda, que coloca a princesa como protagonista e chega ao Nintendo Switch em setembro.",
     content:
-      "Em partida disputada em Brasília, Abel Ferreira escalou um Palmeiras agressivo nas transições. Raphael Veiga converteu duas cobranças de pênalti e Dudu completou a vitória por 4 a 3 em confronto frenético, com alternância no placar durante os 90 minutos.\n\nDo lado rubro-negro, Gabigol marcou duas vezes, mas a equipe carioca esbarrou em falhas defensivas na bola parada. O título reforça a hegemonia recente do Palmeiras nas competições nacionais e aumenta a confiança para a temporada.",
+      "Após o Nintendo Direct de 18 de junho, o Real Madrid eSports organizou uma maratona de lives para explicar as mecânicas de The Legend of Zelda: Echoes of Wisdom. Os apresentadores destrincharam a habilidade de copiar objetos e criaturas para resolver puzzles, destacando como o recurso amplia possibilidades de speedrun para a comunidade.\n\nO clube também comentou a data de lançamento mundial de 26 de setembro de 2024 e preparou desafios temáticos em parceria com o Flamengo, que emprestou sua equipe de design para produzir overlays inspirados em Hyrule. A programação incluiu oficinas para pais e filhos interessados em explorar o catálogo do Switch durante as férias europeias.",
     coverImage:
-      "https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2023-01-28T19:30:00.000Z",
-    scoreHome: 4,
-    scoreAway: 3,
-    homeClub: palmeiras,
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-20T18:15:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: realMadrid,
     awayClub: flamengo,
     author: journalist,
   },
   {
-    id: "manchester-city-real-madrid-etuad-2024",
-    title: "City domina Real Madrid e avança à semifinal",
-    slug: "manchester-city-real-madrid-etuad-2024",
-    category: "UEFA Champions League",
+    id: "manchester-city-esports-fortnite-festival-metallica",
+    title: "Manchester City eSports celebra temporada Metallica no Fortnite Festival",
+    slug: "manchester-city-esports-fortnite-festival-metallica",
+    category: "Atualizações",
     excerpt:
-      "Com pressão alta implacável, o Manchester City não deu chances aos espanhóis e carimbou vaga entre os quatro melhores da Europa.",
+      "Clube inglês montou hub interativo para aproveitar os shows e desafios lançados junto à banda Metallica na quarta temporada do modo musical de Fortnite.",
     content:
-      "Pep Guardiola manteve a equipe inglesa em bloco adiantado, sufocando a saída de bola merengue. Erling Haaland abriu o placar de cabeça após cruzamento de Kevin De Bruyne, e Bernardo Silva ampliou aproveitando rebote dentro da área.\n\nApesar da tentativa de reação do Real Madrid com Vinícius Júnior, o City continuou controlando a posse e fechou a contagem com um chute colocado de Julián Álvarez nos minutos finais, consolidando o 3 a 0 e a classificação no Etihad Stadium.",
+      "A Epic Games lançou em 13 de junho a quarta temporada do Fortnite Festival com Metallica como atração principal, incluindo palco temático, instrumentos inéditos e uma experiência rítmica dedicada ao álbum M72. O Manchester City eSports reabriu seu centro de visitas para transmitir as apresentações virtuais e orientar a torcida sobre como desbloquear recompensas exclusivas.\n\nNo evento, especialistas do Real Madrid eSports demonstraram as novas faixas no modo Jam Stage e comentaram o inédito modo PvP onde dois grupos duelam ao som de clássicos como \"Enter Sandman\". O clube aproveitou para divulgar seletivas de criadores que produzirão clipes highlight da temporada no Creative 2.0.",
     coverImage:
-      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2024-04-17T19:00:00.000Z",
-    scoreHome: 3,
-    scoreAway: 0,
+      "https://images.unsplash.com/photo-1510723180108-346f3779edc6?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-14T12:45:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
     homeClub: manchesterCity,
     awayClub: realMadrid,
     author: journalist,
   },
   {
-    id: "palmeiras-goleia-flamengo-allianz-2022",
-    title: "Palmeiras goleia Flamengo com show coletivo",
-    slug: "palmeiras-goleia-flamengo-allianz-2022",
-    category: "Campeonato Brasileiro",
+    id: "flamengo-real-madrid-state-of-play-2024",
+    title: "Flamengo e Real Madrid analisam novidades do State of Play",
+    slug: "flamengo-real-madrid-state-of-play-2024",
+    category: "PlayStation",
     excerpt:
-      "Verdão apresentou intensidade desde o apito inicial, marcou duas vezes em jogadas trabalhadas e construiu goleada no Allianz Parque.",
+      "Clubes promoveram mesa redonda sobre Astro Bot e Concord, principais anúncios do State of Play de maio, discutindo estratégias de conteúdo para agosto e setembro.",
     content:
-      "Mesmo com desfalques, o Palmeiras impôs ritmo forte diante de sua torcida. Rony inaugurou o placar ao completar cruzamento de Mayke, e Scarpa ampliou em chute de fora da área. Na etapa final, Dudu fechou a vitória por 3 a 0 aproveitando contra-ataque puxado por Danilo.\n\nO Flamengo buscou diminuir com Arrascaeta, mas encontrou dificuldade para furar o bloqueio defensivo palmeirense. A vitória manteve o time paulista no topo da tabela e reforçou a confiança para a sequência da temporada.",
+      "Durante o State of Play de 30 de maio, a Sony confirmou Astro Bot para 6 de setembro e apresentou gameplay cooperativo de Concord, o hero shooter da Firewalk Studios agendado para 23 de agosto no PS5 e PC. Flamengo e Real Madrid reuniram suas equipes de mídia para planejar séries de vídeos que expliquem as habilidades das personagens e as possibilidades competitivas do título.\n\nOs grupos compartilharam insights sobre como adaptar o humor característico de Astro Bot às redes sociais e combinar os trailers de Concord com workshops de tiro em primeira pessoa. Também houve debate sobre o beta multijogador que ocorrerá em julho, com inscrições abertas para membros premium das duas comunidades.",
     coverImage:
-      "https://images.unsplash.com/photo-1529421302014-762ad1a18cb0?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2022-08-21T19:00:00.000Z",
-    scoreHome: 3,
-    scoreAway: 0,
-    homeClub: palmeiras,
-    awayClub: flamengo,
-    author: journalist,
-  },
-  {
-    id: "flamengo-virada-real-madrid-mundial-2018",
-    title: "Flamengo busca virada histórica contra o Real Madrid",
-    slug: "flamengo-virada-real-madrid-mundial-2018",
-    category: "Copa Intercontinental",
-    excerpt:
-      "Rubro-negros reagiram no segundo tempo com gols de jovens da base e construíram triunfo inesquecível diante dos espanhóis.",
-    content:
-      "Em amistoso festivo que celebrou campeões mundiais, o Real Madrid abriu vantagem de 2 a 0 com Benzema e Modrić. A torcida flamenguista, porém, empurrou o time para uma reação fulminante na etapa final: Vinícius Júnior diminuiu em jogada individual, Arrascaeta empatou em cobrança de falta e Gabriel Barbosa virou nos acréscimos com finalização no ângulo.\n\nEmbora seja um confronto comemorativo, a partida mostrou a força das categorias de base rubro-negras e a conexão entre gerações vencedoras do clube carioca.",
-    coverImage:
-      "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2018-12-15T21:00:00.000Z",
-    scoreHome: 3,
-    scoreAway: 2,
+      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-05-31T10:00:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
     homeClub: flamengo,
     awayClub: realMadrid,
     author: journalist,
   },
   {
-    id: "real-madrid-virada-manchester-city-2022",
-    title: "Real Madrid vira sobre o Manchester City e vai à final",
-    slug: "real-madrid-virada-manchester-city-2022",
-    category: "UEFA Champions League",
+    id: "palmeiras-flamengo-preparam-black-ops-6",
+    title: "Palmeiras e Flamengo montam camp de Call of Duty: Black Ops 6",
+    slug: "palmeiras-flamengo-preparam-black-ops-6",
+    category: "FPS",
     excerpt:
-      "Com dois gols de Rodrygo nos acréscimos e pênalti convertido por Benzema na prorrogação, o Real Madrid escreveu mais um capítulo épico em sua história europeia.",
+      "Organizações brasileiras criaram agenda conjunta para estudar o novo sistema de movimento omnidirecional revelado pela Treyarch e pela Raven Software.",
     content:
-      "Precisando reverter a vantagem inglesa, os merengues mantiveram a paciência mesmo após Riyad Mahrez abrir o placar para o Manchester City no segundo tempo. A entrada de Rodrygo mudou o roteiro: o brasileiro empatou aos 90 minutos e virou no lance seguinte ao aproveitar cruzamento de Carvajal.\n\nNa prorrogação, Rubén Dias cometeu falta em Benzema dentro da área e o francês marcou o gol da classificação. O Santiago Bernabéu explodiu em festa com a vitória por 3 a 1, garantindo vaga em mais uma final de Champions League.",
+      "Depois da apresentação detalhada de Call of Duty: Black Ops 6 no Xbox Showcase Extended, Palmeiras e Flamengo agendaram sessões semanais de laboratório para experimentar o esquema de movimentação 360° que chega ao multiplayer. Técnicos das duas casas destacaram que o modo campanha ambientado na Guerra Fria dos anos 90 e o retorno do Zombies em formato baseado em rodadas abrem oportunidades para narrativas transmídia.\n\nOs staffs de performance também mapearam o calendário competitivo previsto para o lançamento de 25 de outubro de 2024, alinhando treinos táticos com parceiros internacionais e reforçando a produção de conteúdo educativo para iniciantes. O objetivo é chegar ao Day One com compêndio de loadouts e guias de mapas pronto para a comunidade.",
     coverImage:
-      "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2022-05-04T19:00:00.000Z",
-    scoreHome: 3,
-    scoreAway: 1,
-    homeClub: realMadrid,
-    awayClub: manchesterCity,
-    author: journalist,
-  },
-  {
-    id: "flamengo-palmeiras-final-libertadores-2021",
-    title: "Palmeiras bate Flamengo na prorrogação e fatura a América",
-    slug: "flamengo-palmeiras-final-libertadores-2021",
-    category: "Copa Libertadores",
-    excerpt:
-      "Deyverson saiu do banco, aproveitou vacilo da defesa rubro-negra e marcou o gol do bicampeonato consecutivo do Palmeiras.",
-    content:
-      "A final em Montevidéu foi marcada por equilíbrio e tensão até o fim. Raphael Veiga abriu o placar logo cedo ao completar assistência de Mayke, enquanto Gabigol empatou para o Flamengo no segundo tempo com finalização precisa na entrada da área.\n\nNa prorrogação, Andreas Pereira perdeu a bola na intermediária, Deyverson arrancou livre e tocou na saída de Diego Alves para decretar o 2 a 1. O título consolidou o domínio palmeirense na Libertadores e aumentou a rivalidade recente entre os clubes brasileiros.",
-    coverImage:
-      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2021-11-27T20:00:00.000Z",
-    scoreHome: 1,
-    scoreAway: 2,
-    homeClub: flamengo,
-    awayClub: palmeiras,
-    author: journalist,
-  },
-  {
-    id: "manchester-city-flamengo-amistoso-2020",
-    title: "Manchester City aproveita amistoso e supera Flamengo",
-    slug: "manchester-city-flamengo-amistoso-2020",
-    category: "Amistoso Internacional",
-    excerpt:
-      "Com escalação mista, o City venceu graças ao controle de posse e aos gols de Sterling e Mahrez na etapa final.",
-    content:
-      "O confronto preparatório disputado em Miami reuniu dois estilos distintos. O Flamengo, comandado por Jorge Jesus, tentou manter a intensidade característica, enquanto o Manchester City rodou o elenco e priorizou as triangulações curtas.\n\nApós primeiro tempo equilibrado, os ingleses abriram o placar com Raheem Sterling aproveitando passe de Phil Foden. Pouco depois, Riyad Mahrez acertou chute colocado de fora da área. Pedro ainda descontou para os cariocas, mas os citizens administraram a vantagem até o apito final.",
-    coverImage:
-      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2020-07-18T23:00:00.000Z",
-    scoreHome: 2,
-    scoreAway: 1,
-    homeClub: manchesterCity,
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-12T21:10:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: palmeiras,
     awayClub: flamengo,
     author: journalist,
   },

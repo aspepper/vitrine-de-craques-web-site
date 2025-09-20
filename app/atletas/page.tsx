@@ -1,13 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Profile } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
-import { ensureImage } from "@/lib/ensureImage";
-
-interface PageProps {
-  searchParams: { page?: string };
-}
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import { Filters } from "@/components/Filters";
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 const PAGE_SIZE = 12;
@@ -19,14 +19,20 @@ type AthletesResponse = {
   totalPages: number;
 };
 
-async function getAthletes(page: number): Promise<AthletesResponse> {
+async function getAthletes(page: number, search: string): Promise<AthletesResponse> {
   try {
-    const res = await fetch(
-      `${baseUrl}/api/atletas?page=${page}&limit=${PAGE_SIZE}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const params = new URLSearchParams({
+      page: String(page),
+      limit: String(PAGE_SIZE),
+    });
+
+    if (search) {
+      params.set("search", search);
+    }
+
+    const res = await fetch(`${baseUrl}/api/atletas?${params.toString()}`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       throw new Error("Resposta inválida ao carregar atletas");
@@ -89,57 +95,41 @@ function calculateAge(birthDate?: string | null) {
   return age >= 0 && age < 130 ? age : null;
 }
 
+function buildPaginationQuery(page: number, search: string) {
+  const params = new URLSearchParams();
+  params.set("page", String(page));
+
+  if (search) {
+    params.set("q", search);
+  }
+
+  return params.toString();
+}
+
+interface PageProps {
+  searchParams: { page?: string; q?: string };
+}
+
 export default async function AtletasPage({ searchParams }: PageProps) {
   const page = Number(searchParams.page) || 1;
-  const { items: athletes, totalPages } = await getAthletes(page);
-  const heroImage = ensureImage(
-    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
-    "atletas",
-    "stadium@1920"
-  );
+  const search = (searchParams.q || "").trim();
+  const { items: athletes, totalPages } = await getAthletes(page, search);
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       <main className="container flex flex-col gap-12 pb-24 pt-16">
-        <header className="flex flex-col gap-6">
-          <h1 className="font-heading text-[44px] font-semibold leading-tight text-slate-900 md:text-[56px]">
-            Atletas
-          </h1>
+        <header className="flex flex-col gap-8">
+          <div className="space-y-2">
+            <h1 className="font-heading text-[44px] font-semibold leading-tight text-slate-900 md:text-[56px]">
+              Atletas
+            </h1>
+            <p className="text-base text-slate-500">
+              Explore atletas cadastrados e encontre talentos por nome, idade ou localização.
+            </p>
+          </div>
 
-          <div className="rounded-[32px] bg-white p-6 shadow-[0_8px_32px_rgba(15,23,42,0.12)]">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-              <div className="relative flex-1">
-                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-6 text-slate-400">
-                  <svg
-                    aria-hidden
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M21 21l-4.35-4.35m1.35-3.65a6 6 0 11-12 0 6 6 0 0112 0z"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <input
-                  className="h-16 w-full rounded-full border border-slate-200/80 bg-white px-16 text-base text-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] outline-none transition"
-                  placeholder="Filtros: Nome, Idade, Cidade, Estado"
-                  type="search"
-                  disabled
-                />
-              </div>
-
-              <Button
-                className="h-16 w-full rounded-full bg-[#22C55E] px-10 text-base font-semibold tracking-wide text-white shadow-[0_18px_32px_-18px_rgba(34,197,94,0.8)] transition hover:-translate-y-0.5 hover:bg-[#1EB153] focus-visible:ring-[#22C55E]/60 lg:w-auto"
-                type="button"
-              >
-                Filtrar
-              </Button>
-            </div>
+          <div className="rounded-[32px] border border-white/60 bg-white/95 px-6 py-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
+            <Filters defaultValue={search} method="get" placeholder="Filtros: Nome, Idade, Cidade, Estado" />
           </div>
         </header>
 
@@ -157,32 +147,56 @@ export default async function AtletasPage({ searchParams }: PageProps) {
             if (locationLabel) subtitleSegments.push(locationLabel);
 
             const subtitle = subtitleSegments.join(" • ");
+            const displayName = athlete.displayName?.trim() || "Atleta";
+            const initials = displayName
+              .split(/\s+/)
+              .filter(Boolean)
+              .map((segment) => segment[0]!.toUpperCase())
+              .slice(0, 2)
+              .join("");
+            const infoLines: string[] = [];
+            if (athlete.posicao?.trim()) {
+              infoLines.push(`Posição: ${athlete.posicao.trim()}`);
+            }
+            if (athlete.clube?.trim()) {
+              infoLines.push(`Clube: ${athlete.clube.trim()}`);
+            }
 
             return (
               <Link
                 key={athlete.id}
-                className="group flex h-full flex-col overflow-hidden rounded-[32px] bg-white text-left shadow-[0_8px_32px_rgba(15,23,42,0.12)] transition hover:-translate-y-1 hover:shadow-[0_24px_56px_-24px_rgba(15,23,42,0.25)]"
+                className="group"
                 href={`/atletas/${athlete.id}`}
+                prefetch={false}
               >
-                <div className="relative h-40 w-full bg-[#0F172A]">
-                  <Image
-                    alt={athlete.displayName || "Atleta"}
-                    className="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-105"
-                    fill
-                    loading="lazy"
-                    sizes="(min-width: 1280px) 250px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    src={athlete.avatarUrl || heroImage}
-                  />
-                </div>
+                <article className="flex h-full flex-col gap-6 rounded-[32px] border border-white/60 bg-white/95 p-6 text-left shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]">
+                  <div className="flex items-center gap-4">
+                    <Avatar className="h-16 w-16 shrink-0 border border-white/60 bg-slate-900 text-lg font-semibold text-white shadow-[0_18px_32px_-18px_rgba(15,23,42,0.6)]">
+                      {athlete.avatarUrl ? (
+                        <AvatarImage alt={displayName} src={athlete.avatarUrl} />
+                      ) : null}
+                      <AvatarFallback className="bg-slate-900 text-lg font-semibold text-white">
+                        {initials || "AT"}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="space-y-1">
+                      <h2 className="font-heading text-lg font-semibold italic text-slate-900">
+                        {displayName}
+                      </h2>
+                      <p className="text-sm text-slate-500">
+                        {subtitle || "Informações não disponíveis"}
+                      </p>
+                    </div>
+                  </div>
 
-                <div className="flex flex-1 flex-col gap-2 px-6 pb-6 pt-5">
-                  <h2 className="font-heading text-lg font-semibold italic text-slate-900">
-                    {athlete.displayName || "Atleta"}
-                  </h2>
-                  <p className="text-sm text-slate-500">
-                    {subtitle || "Informações não disponíveis"}
-                  </p>
-                </div>
+                  {infoLines.length > 0 && (
+                    <div className="space-y-2 text-sm text-slate-600">
+                      {infoLines.map((info) => (
+                        <p key={info}>{info}</p>
+                      ))}
+                    </div>
+                  )}
+                </article>
               </Link>
             );
           })}
@@ -202,7 +216,10 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                 variant="ghost"
                 className="bg-white/70 px-8 text-slate-600 hover:bg-white"
               >
-                <Link href={`/atletas?page=${page - 1}`} prefetch={false}>
+                <Link
+                  href={`/atletas?${buildPaginationQuery(page - 1, search)}`}
+                  prefetch={false}
+                >
                   Anterior
                 </Link>
               </Button>
@@ -226,7 +243,10 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                 variant="ghost"
                 className="bg-white/70 px-8 text-slate-600 hover:bg-white"
               >
-                <Link href={`/atletas?page=${page + 1}`} prefetch={false}>
+                <Link
+                  href={`/atletas?${buildPaginationQuery(page + 1, search)}`}
+                  prefetch={false}
+                >
                   Próxima
                 </Link>
               </Button>

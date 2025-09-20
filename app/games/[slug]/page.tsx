@@ -1,49 +1,173 @@
-import Image from "next/image";
-import { ensureImage } from "@/lib/ensureImage";
+import Image from "next/image"
+import { notFound } from "next/navigation"
+
+import { Button } from "@/components/ui/button"
+import { ensureImage } from "@/lib/ensureImage"
+import { sampleGames } from "@/lib/sample-games"
 
 interface PageProps {
-  params: { slug: string };
+  params: { slug: string }
 }
 
-const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+interface GameAuthor {
+  name: string | null
+  profile: { displayName: string | null } | null
+}
 
-async function getGame(slug: string) {
-  const res = await fetch(`${baseUrl}/api/games/${slug}`, { cache: "no-store" });
+interface GameClub {
+  id: string
+  name: string
+  slug: string
+}
+
+interface Game {
+  id: string
+  title: string
+  slug: string
+  category: string | null
+  excerpt: string | null
+  content: string | null
+  coverImage: string | null
+  date: string
+  scoreHome: number | null
+  scoreAway: number | null
+  homeClub: GameClub
+  awayClub: GameClub
+  author: GameAuthor | null
+}
+
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000"
+
+async function getGame(slug: string): Promise<Game> {
+  const res = await fetch(`${baseUrl}/api/games/${slug}`, { cache: "no-store" })
   if (!res.ok) {
-    throw new Error("Game não encontrado");
+    throw new Error("Game não encontrado")
   }
-  return res.json();
+  return (await res.json()) as Game
 }
+
+function formatDateTime(date: string) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(date))
+}
+
+function getAuthorName(author: GameAuthor | null) {
+  return author?.profile?.displayName ?? author?.name ?? "Equipe Vitrine"
+}
+
+const fallbackGames = new Map(
+  sampleGames.map((game) => [game.slug, {
+    id: game.id,
+    title: game.title,
+    slug: game.slug,
+    category: game.category,
+    excerpt: game.excerpt,
+    content: game.content,
+    coverImage: game.coverImage,
+    date: game.date,
+    scoreHome: game.scoreHome,
+    scoreAway: game.scoreAway,
+    homeClub: { id: game.homeClub.slug, name: game.homeClub.name, slug: game.homeClub.slug },
+    awayClub: { id: game.awayClub.slug, name: game.awayClub.name, slug: game.awayClub.slug },
+    author: {
+      name: game.author.name,
+      profile: { displayName: game.author.profile.displayName },
+    },
+  } satisfies Game])
+)
 
 export default async function GameDetalhePage({ params }: PageProps) {
-  const game = await getGame(params.slug);
+  let game: Game | null = null
+
+  if (process.env.DATABASE_URL) {
+    try {
+      game = await getGame(params.slug)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  if (!game) {
+    game = fallbackGames.get(params.slug) ?? null
+  }
+
+  if (!game) {
+    notFound()
+  }
+
   const heroImage = ensureImage(
-    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
-    "game-detalhe",
-    "stadium@1920"
-  );
+    game.coverImage ??
+      "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    game.slug,
+    "cover-image"
+  )
+
+  const contentParagraphs = (game.content ?? "")
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+
+  const scoreboard =
+    game.scoreHome !== null && game.scoreAway !== null
+      ? `${game.homeClub.name} ${game.scoreHome} x ${game.scoreAway} ${game.awayClub.name}`
+      : `${game.homeClub.name} x ${game.awayClub.name}`
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
-      <main className="container mx-auto flex-grow p-4">
-        <div className="mx-auto max-w-3xl">
-          <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
+    <div className="flex min-h-screen flex-col bg-slate-50">
+      <main className="container mx-auto flex-grow px-4 pb-20 pt-10">
+        <header className="mb-10 space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">Seleção editorial</p>
+          <h1 className="text-3xl font-semibold text-slate-900">Games</h1>
+        </header>
+
+        <article className="mx-auto max-w-5xl space-y-10">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-900 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.85)]">
             <Image
               src={heroImage}
-              alt={game.slug}
-              fill
-              className="object-cover"
-              loading="lazy"
+              alt={game.title}
+              width={1600}
+              height={900}
+              className="h-72 w-full object-cover md:h-[420px]"
+              priority
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
           </div>
-            <h1>
-              {game.homeClub.name} vs {game.awayClub.name}
-            </h1>
-            <p className="text-muted-foreground">
-              Placar: {game.scoreHome} - {game.scoreAway}
-            </p>
-          </div>
+
+          <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-soft">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+                {game.category ?? "Game"}
+              </span>
+              <span className="text-sm font-medium text-slate-500">{formatDateTime(game.date)}</span>
+            </div>
+            <h2 className="mt-6 text-3xl font-semibold text-slate-900 md:text-4xl">{game.title}</h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">{game.excerpt}</p>
+            <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-500">
+              <span className="font-medium text-slate-700">{scoreboard}</span>
+              <span>Por {getAuthorName(game.author)}</span>
+            </div>
+            <Button
+              asChild
+              className="mt-8 bg-emerald-400 text-slate-900 hover:bg-emerald-300"
+            >
+              <a href="#conteudo">Ler mais</a>
+            </Button>
+          </section>
+
+          {contentParagraphs.length > 0 ? (
+            <section id="conteudo" className="space-y-6 text-base leading-relaxed text-slate-600">
+              {contentParagraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </section>
+          ) : null}
+        </article>
       </main>
     </div>
-  );
+  )
 }

@@ -5,7 +5,7 @@ import { errorResponse } from '@/lib/error'
 export async function GET(req: NextRequest) {
   try {
     const page = parseInt(req.nextUrl.searchParams.get('page') || '1')
-    const limit = parseInt(req.nextUrl.searchParams.get('limit') || '10')
+    const limit = parseInt(req.nextUrl.searchParams.get('limit') || '9')
     const skip = (page - 1) * limit
 
     const [items, total] = await prisma.$transaction([
@@ -13,7 +13,11 @@ export async function GET(req: NextRequest) {
         skip,
         take: limit,
         orderBy: { date: 'desc' },
-        include: { homeClub: true, awayClub: true },
+        include: {
+          homeClub: true,
+          awayClub: true,
+          author: { include: { profile: true } },
+        },
       }),
       prisma.game.count(),
     ])

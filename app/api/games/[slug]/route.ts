@@ -10,7 +10,11 @@ export async function GET(req: Request, { params }: Params) {
   try {
     const game = await prisma.game.findUnique({
       where: { slug: params.slug },
-      include: { homeClub: true, awayClub: true },
+      include: {
+        homeClub: true,
+        awayClub: true,
+        author: { include: { profile: true } },
+      },
     })
     if (!game) {
       return NextResponse.json({ message: 'Not found' }, { status: 404 })

@@ -35,8 +35,10 @@ interface NewsResponse {
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
+const PAGE_SIZE = 21;
+
 async function getNews(page: number): Promise<NewsResponse> {
-  const res = await fetch(`${baseUrl}/api/noticias?page=${page}`, {
+  const res = await fetch(`${baseUrl}/api/noticias?page=${page}&limit=${PAGE_SIZE}`, {
     cache: "no-store",
   });
 
@@ -97,8 +99,10 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
   }));
 
   const hasFetchedNews = items.length > 0;
-  const displayedNews = hasFetchedNews ? items : loadError ? fallbackItems : [];
+  const isFallbackActive = !hasFetchedNews && loadError;
+  const displayedNews = hasFetchedNews ? items : isFallbackActive ? fallbackItems : [];
   const showEmptyState = !hasFetchedNews && !loadError;
+  const showLoadErrorMessage = isFallbackActive;
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
@@ -112,7 +116,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
             Acompanhe as histórias mais recentes sobre atletas, bastidores e decisões estratégicas que
             movimentam a comunidade Vitrine de Craques.
           </p>
-          {loadError ? (
+          {showLoadErrorMessage ? (
             <p className="text-sm font-medium text-amber-600">
               Não foi possível carregar as notícias em tempo real. Exibindo os dados disponíveis no momento.
             </p>

@@ -10,6 +10,13 @@ export async function GET(req: Request, { params }: Params) {
   try {
     const news = await prisma.news.findUnique({
       where: { slug: params.slug },
+      include: {
+        author: {
+          include: {
+            profile: true,
+          },
+        },
+      },
     })
     if (!news) {
       return NextResponse.json({ message: 'Not found' }, { status: 404 })

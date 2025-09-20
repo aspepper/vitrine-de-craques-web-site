@@ -182,24 +182,26 @@ export default function CadastroAtleta18Page() {
                   <p className="text-sm text-destructive">{form.formState.errors.confirmarSenha.message}</p>
                 )}
               </div>
+              <div className="lg:col-span-5 space-y-2">
+                <div className="flex items-start gap-2">
+                  <input
+                    id="termos"
+                    type="checkbox"
+                    className="h-4 w-4"
+                    {...form.register('termos')}
+                  />
+                  <Label htmlFor="termos" className="text-sm">
+                    Li e aceito os Termos de Uso e a Política de Privacidade
+                  </Label>
+                </div>
+                {form.formState.errors.termos && (
+                  <p className="text-sm text-destructive">
+                    {form.formState.errors.termos.message}
+                  </p>
+                )}
+              </div>
             </CardContent>
           </Card>
-          <div className="flex items-center gap-2">
-            <input
-              id="termos"
-              type="checkbox"
-              className="h-4 w-4"
-              {...form.register('termos')}
-            />
-            <Label htmlFor="termos" className="text-sm">
-              Li e aceito os Termos de Uso e a Política de Privacidade
-            </Label>
-            {form.formState.errors.termos && (
-              <p className="text-sm text-destructive">
-                {form.formState.errors.termos.message}
-              </p>
-            )}
-          </div>
           <div className="flex justify-end">
             <Button type="submit" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting ? 'Enviando...' : 'Criar conta'}

@@ -14,8 +14,6 @@ export async function GET(req: NextRequest) {
         take: limit,
         orderBy: { date: 'desc' },
         include: {
-          homeClub: true,
-          awayClub: true,
           author: { include: { profile: true } },
         },
       }),

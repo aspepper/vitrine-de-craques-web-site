@@ -179,7 +179,7 @@ model News {
 model Game {
   id         String   @id @default(cuid())
   slug       String   @unique
-  title      String
+  title      String?
   category   String?
   excerpt    String?  @db.Text
   content    String?  @db.Text

@@ -16,7 +16,7 @@ interface GameAuthor {
 
 interface Game {
   id: string
-  title: string
+  title: string | null
   slug: string
   category: string | null
   excerpt: string | null
@@ -51,20 +51,23 @@ function getAuthorName(author: GameAuthor | null) {
 }
 
 const fallbackGames = new Map(
-  sampleGames.map((game) => [game.slug, {
-    id: game.id,
-    title: game.title,
-    slug: game.slug,
-    category: game.category,
-    excerpt: game.excerpt,
-    content: game.content,
-    coverImage: game.coverImage,
-    date: game.date,
-    author: {
-      name: game.author.name,
-      profile: { displayName: game.author.profile.displayName },
-    },
-  } satisfies Game])
+  sampleGames.map((game) => [
+    game.slug,
+    {
+      id: game.id,
+      title: game.title,
+      slug: game.slug,
+      category: game.category,
+      excerpt: game.excerpt,
+      content: game.content,
+      coverImage: game.coverImage,
+      date: game.date,
+      author: {
+        name: game.author.name,
+        profile: { displayName: game.author.profile.displayName },
+      },
+    } satisfies Game,
+  ])
 )
 
 export default async function GameDetalhePage({ params }: PageProps) {
@@ -110,7 +113,7 @@ export default async function GameDetalhePage({ params }: PageProps) {
           <div className="relative overflow-hidden rounded-3xl bg-slate-900 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.85)]">
             <Image
               src={heroImage}
-              alt={game.title}
+              alt={game.title ?? "Imagem do jogo"}
               width={1600}
               height={900}
               className="h-72 w-full object-cover md:h-[420px]"
@@ -126,7 +129,7 @@ export default async function GameDetalhePage({ params }: PageProps) {
               </span>
               <span className="text-sm font-medium text-slate-500">{formatDateTime(game.date)}</span>
             </div>
-            <h2 className="mt-6 text-3xl font-semibold text-slate-900 md:text-4xl">{game.title}</h2>
+            <h2 className="mt-6 text-3xl font-semibold text-slate-900 md:text-4xl">{game.title ?? "Jogo sem título"}</h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600">{game.excerpt}</p>
           <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-500">
               <span>Por {getAuthorName(game.author)}</span>

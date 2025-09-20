@@ -15,7 +15,7 @@ interface GameAuthor {
 
 interface GameItem {
   id: string
-  title: string
+  title: string | null
   slug: string
   category: string | null
   excerpt: string | null
@@ -136,7 +136,7 @@ export default async function GamesPage({ searchParams }: PageProps) {
                 </div>
 
                 <h2 className="mt-6 text-2xl font-semibold text-slate-50 transition-colors duration-200 group-hover:text-white">
-                  {game.title}
+                  {game.title ?? "Jogo sem título"}
                 </h2>
 
                 <p className="mt-4 text-sm leading-relaxed text-slate-400">

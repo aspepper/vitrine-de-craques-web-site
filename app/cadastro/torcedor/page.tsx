@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -43,11 +44,35 @@ type FormValues = z.infer<typeof formSchema>
 
 export default function CadastroTorcedorPage() {
   const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const form = useForm<FormValues>({ resolver: zodResolver(formSchema) })
 
-  function onSubmit(data: FormValues) {
-    console.log(data)
-    router.push('/')
+  async function onSubmit(data: FormValues) {
+    setErrorMessage(null)
+
+    try {
+      const response = await fetch('/api/register/torcedor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null)
+        const message = typeof payload?.error === 'string'
+          ? payload.error
+          : 'Não foi possível concluir o cadastro. Tente novamente.'
+        setErrorMessage(message)
+        return
+      }
+
+      router.push('/login')
+    } catch (error) {
+      console.error(error)
+      setErrorMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.')
+    }
   }
 
   return (
@@ -69,6 +94,11 @@ export default function CadastroTorcedorPage() {
           </Link>
         </div>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {errorMessage && (
+            <p className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+              {errorMessage}
+            </p>
+          )}
           <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
             <CardHeader>
               <CardTitle>Dados pessoais</CardTitle>
@@ -271,7 +301,9 @@ export default function CadastroTorcedorPage() {
           </Card>
 
           <div className="flex justify-end">
-            <Button type="submit">Criar conta</Button>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? 'Enviando...' : 'Criar conta'}
+            </Button>
           </div>
         </form>
       </main>

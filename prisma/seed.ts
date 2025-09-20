@@ -1,6 +1,8 @@
 import { PrismaClient, Role } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
+import { sampleGames } from '../lib/sample-games'
+
 const prisma = new PrismaClient()
 
 function slugify(text: string): string {
@@ -232,6 +234,36 @@ async function main() {
       },
     ],
   })
+
+  const clubMap = new Map<string, string>(
+    [...confed1.clubs, ...confed2.clubs].map((club) => [club.slug, club.id])
+  )
+
+  const gameData = sampleGames.map((game) => {
+    const homeClubId = clubMap.get(game.homeClub.slug)
+    const awayClubId = clubMap.get(game.awayClub.slug)
+
+    if (!homeClubId || !awayClubId) {
+      throw new Error(`Clube não encontrado para o jogo ${game.slug}`)
+    }
+
+    return {
+      title: game.title,
+      slug: game.slug,
+      category: game.category,
+      excerpt: game.excerpt,
+      content: game.content,
+      coverImage: game.coverImage,
+      date: new Date(game.date),
+      scoreHome: game.scoreHome,
+      scoreAway: game.scoreAway,
+      homeClubId,
+      awayClubId,
+      authorId: journalist.id,
+    }
+  })
+
+  await prisma.game.createMany({ data: gameData })
 
   await prisma.video.createMany({
     data: [

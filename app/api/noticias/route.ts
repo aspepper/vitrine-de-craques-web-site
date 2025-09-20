@@ -13,6 +13,13 @@ export async function GET(req: NextRequest) {
         skip,
         take: limit,
         orderBy: { publishedAt: 'desc' },
+        include: {
+          author: {
+            include: {
+              profile: true,
+            },
+          },
+        },
       }),
       prisma.news.count(),
     ])

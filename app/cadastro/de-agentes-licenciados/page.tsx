@@ -170,65 +170,68 @@ export default function CadastroAgenteLicenciadoPage() {
 
           <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
             <CardHeader>
-              <CardTitle>Termos & compliance</CardTitle>
-            </CardHeader>
-            <CardContent className="grid gap-4">
-              <Label className="flex items-center gap-2">
-                <input type="checkbox" {...form.register('possuiLicenca')} className="h-4 w-4" />
-                <span>Declaro possuir licença válida para atuar como agente/intermediário</span>
-                {form.formState.errors.possuiLicenca && (
-                  <p className="text-sm text-destructive">
-                    {form.formState.errors.possuiLicenca.message}
-                  </p>
-                )}
-              </Label>
-              <Label className="flex items-center gap-2">
-                <input type="checkbox" {...form.register('aceitaRemuneracao')} className="h-4 w-4" />
-                <span>Aceito os Termos de Remuneração e Taxas do Serviço</span>
-                {form.formState.errors.aceitaRemuneracao && (
-                  <p className="text-sm text-destructive">
-                    {form.formState.errors.aceitaRemuneracao.message}
-                  </p>
-                )}
-              </Label>
-              <Label className="flex items-center gap-2">
-                <input type="checkbox" {...form.register('termos')} className="h-4 w-4" />
-                <span>Li e aceito os Termos de Uso e a Política de Privacidade</span>
-                {form.formState.errors.termos && (
-                  <p className="text-sm text-destructive">
-                    {form.formState.errors.termos.message}
-                  </p>
-                )}
-              </Label>
-            </CardContent>
-          </Card>
-
-          <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
-            <CardHeader>
               <CardTitle>Dados de acesso</CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-4 sm:grid-cols-2">
-              <div className="grid gap-2">
-                <Label htmlFor="senha">Senha</Label>
-                <Input id="senha" type="password" {...form.register('senha')} />
-                {form.formState.errors.senha && (
-                  <p className="text-sm text-destructive">
-                    {form.formState.errors.senha.message}
-                  </p>
-                )}
+            <CardContent className="grid gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-2">
+                  <Label htmlFor="senha">Senha</Label>
+                  <Input id="senha" type="password" {...form.register('senha')} />
+                  {form.formState.errors.senha && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.senha.message}
+                    </p>
+                  )}
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="confirmarSenha">Confirmar senha</Label>
+                  <Input
+                    id="confirmarSenha"
+                    type="password"
+                    {...form.register('confirmarSenha')}
+                  />
+                  {form.formState.errors.confirmarSenha && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.confirmarSenha.message}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="confirmarSenha">Confirmar senha</Label>
-                <Input
-                  id="confirmarSenha"
-                  type="password"
-                  {...form.register('confirmarSenha')}
-                />
-                {form.formState.errors.confirmarSenha && (
-                  <p className="text-sm text-destructive">
-                    {form.formState.errors.confirmarSenha.message}
-                  </p>
-                )}
+              <div className="space-y-3">
+                <p className="text-sm font-semibold uppercase text-slate-500">Termos &amp; compliance</p>
+                <div className="space-y-2">
+                  <Label className="flex items-start gap-2">
+                    <input type="checkbox" {...form.register('possuiLicenca')} className="h-4 w-4" />
+                    <span>Declaro possuir licença válida para atuar como agente/intermediário</span>
+                  </Label>
+                  {form.formState.errors.possuiLicenca && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.possuiLicenca.message}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label className="flex items-start gap-2">
+                    <input type="checkbox" {...form.register('aceitaRemuneracao')} className="h-4 w-4" />
+                    <span>Aceito os Termos de Remuneração e Taxas do Serviço</span>
+                  </Label>
+                  {form.formState.errors.aceitaRemuneracao && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.aceitaRemuneracao.message}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label className="flex items-start gap-2">
+                    <input type="checkbox" {...form.register('termos')} className="h-4 w-4" />
+                    <span>Li e aceito os Termos de Uso e a Política de Privacidade</span>
+                  </Label>
+                  {form.formState.errors.termos && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.termos.message}
+                    </p>
+                  )}
+                </div>
               </div>
             </CardContent>
           </Card>

@@ -127,25 +127,25 @@ export default async function GamesPage({ searchParams }: PageProps) {
         <section className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {displayedGames.map((game) => (
             <Link key={game.slug} href={`/games/${game.slug}`} className="group">
-              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-800/60 bg-slate-900 px-7 py-8 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.7)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_80px_-36px_rgba(15,23,42,0.85)]">
+              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white px-7 py-8 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.25)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_80px_-36px_rgba(15,23,42,0.35)]">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">
+                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
                     {game.category ?? "Game"}
                   </span>
-                  <span className="text-xs font-medium text-slate-500/80">{formatDate(game.date)}</span>
+                  <span className="text-xs font-medium text-slate-500">{formatDate(game.date)}</span>
                 </div>
 
-                <h2 className="mt-6 text-2xl font-semibold text-slate-50 transition-colors duration-200 group-hover:text-white">
+                <h2 className="mt-6 text-2xl font-semibold text-slate-900 transition-colors duration-200 group-hover:text-emerald-700">
                   {game.title ?? "Jogo sem título"}
                 </h2>
 
-                <p className="mt-4 text-sm leading-relaxed text-slate-400">
+                <p className="mt-4 text-sm leading-relaxed text-slate-600">
                   {game.excerpt ?? "História em desenvolvimento. Confira os detalhes completos em breve."}
                 </p>
 
-                <div className="mt-auto flex items-center justify-between pt-8 text-sm text-slate-500/80">
+                <div className="mt-auto flex items-center justify-between pt-8 text-sm text-slate-500">
                   <span>Por {getAuthorName(game.author)}</span>
-                  <span className="flex items-center gap-2 font-medium text-emerald-200 transition duration-200 group-hover:gap-3 group-hover:text-emerald-100">
+                  <span className="flex items-center gap-2 font-medium text-emerald-600 transition duration-200 group-hover:gap-3 group-hover:text-emerald-700">
                     Ler mais
                     <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </span>

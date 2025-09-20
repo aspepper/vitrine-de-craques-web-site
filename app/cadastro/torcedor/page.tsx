@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -68,7 +69,20 @@ export default function CadastroTorcedorPage() {
         return
       }
 
-      router.push('/login')
+      const signInResult = await signIn('credentials', {
+        email: data.email,
+        password: data.senha,
+        redirect: false,
+      })
+
+      if (signInResult?.error) {
+        setErrorMessage(
+          'Conta criada, mas não foi possível iniciar sua sessão. Tente fazer login manualmente.',
+        )
+        return
+      }
+
+      router.push('/cadastro/sucesso')
     } catch (error) {
       console.error(error)
       setErrorMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.')

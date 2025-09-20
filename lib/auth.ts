@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import AppleProvider from "next-auth/providers/apple";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import prisma from "@/lib/db";
 
 const providers: NextAuthOptions["providers"] = [

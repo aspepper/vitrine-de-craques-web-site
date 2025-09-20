@@ -11,8 +11,6 @@ export async function GET(req: Request, { params }: Params) {
     const game = await prisma.game.findUnique({
       where: { slug: params.slug },
       include: {
-        homeClub: true,
-        awayClub: true,
         author: { include: { profile: true } },
       },
     })

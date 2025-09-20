@@ -36,10 +36,8 @@ interface GameCardData {
   excerpt: string | null
   coverImage: string | null
   date: string
-  homeClubName: string
-  awayClubName: string
-  scoreHome: number | null
-  scoreAway: number | null
+  category: string | null
+  authorName: string | null
 }
 
 function formatDate(date: string, options?: Intl.DateTimeFormatOptions) {
@@ -68,10 +66,8 @@ const fallbackGames: GameCardData[] = sampleGames.slice(0, 4).map((game) => ({
   excerpt: game.excerpt,
   coverImage: game.coverImage,
   date: game.date,
-  homeClubName: game.homeClub.name,
-  awayClubName: game.awayClub.name,
-  scoreHome: game.scoreHome,
-  scoreAway: game.scoreAway,
+  category: game.category,
+  authorName: game.author.profile.displayName ?? game.author.name,
 }))
 
 async function loadHighlights(): Promise<HighlightCardData[]> {
@@ -173,8 +169,12 @@ async function loadLatestGames(): Promise<GameCardData[]> {
     take: 4,
     orderBy: { date: 'desc' },
     include: {
-      homeClub: { select: { name: true } },
-      awayClub: { select: { name: true } },
+      author: {
+        select: {
+          name: true,
+          profile: { select: { displayName: true } },
+        },
+      },
     },
   })
 
@@ -185,10 +185,8 @@ async function loadLatestGames(): Promise<GameCardData[]> {
     excerpt: game.excerpt,
     coverImage: game.coverImage,
     date: game.date.toISOString(),
-    homeClubName: game.homeClub.name,
-    awayClubName: game.awayClub.name,
-    scoreHome: game.scoreHome,
-    scoreAway: game.scoreAway,
+    category: game.category ?? null,
+    authorName: game.author?.profile?.displayName ?? game.author?.name ?? null,
   }))
 }
 
@@ -556,15 +554,15 @@ export default async function HomePage() {
                         <p className="text-sm text-slate-300 line-clamp-3">
                           {game.excerpt ?? 'Análise completa do confronto disponível no hub de games.'}
                         </p>
-                        <div className="mt-auto space-y-1 text-xs uppercase tracking-[0.16em] text-slate-400">
-                          <p>
-                            {game.homeClubName} x {game.awayClubName}
-                          </p>
-                          {game.scoreHome !== null && game.scoreAway !== null ? (
-                            <p className="text-sm font-semibold text-emerald-200">
-                              {game.scoreHome} x {game.scoreAway}
+                        <div className="mt-auto space-y-1 text-xs">
+                          {game.category ? (
+                            <p className="font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                              {game.category}
                             </p>
                           ) : null}
+                          <p className="text-slate-400">
+                            Por {game.authorName ?? 'Equipe Vitrine'}
+                          </p>
                         </div>
                       </CardContent>
                     </Card>

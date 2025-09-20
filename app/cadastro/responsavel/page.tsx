@@ -1,6 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,36 +14,78 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 
-const formSchema = z.object({
-  responsavelNome: z.string().min(1, { message: 'Nome obrigatório' }),
-  responsavelCpf: z.string().min(1, { message: 'CPF obrigatório' }),
-  responsavelNascimento: z.string().min(1, {
-    message: 'Data de nascimento obrigatória',
-  }),
-  responsavelGenero: z.string().min(1, { message: 'Gênero obrigatório' }),
-  responsavelWhatsapp: z.string().min(1, { message: 'Contato obrigatório' }),
-  responsavelEmail: z.string().email({ message: 'Email inválido' }),
-  responsavelInstagram: z.string().optional(),
-  atletaNome: z.string().min(1, { message: 'Nome obrigatório' }),
-  atletaCpf: z.string().min(1, { message: 'CPF obrigatório' }),
-  atletaNascimento: z.string().min(1, {
-    message: 'Data de nascimento obrigatória',
-  }),
-  atletaGenero: z.string().min(1, { message: 'Gênero obrigatório' }),
-  atletaEsporte: z.string().min(1, { message: 'Esporte obrigatório' }),
-  atletaModalidade: z.string().min(1, { message: 'Modalidade obrigatória' }),
-  atletaObservacoes: z.string().optional(),
-})
+const formSchema = z
+  .object({
+    responsavelNome: z.string().min(1, { message: 'Nome obrigatório' }),
+    responsavelCpf: z.string().min(1, { message: 'CPF obrigatório' }),
+    responsavelNascimento: z.string().min(1, {
+      message: 'Data de nascimento obrigatória',
+    }),
+    responsavelGenero: z.string().min(1, { message: 'Gênero obrigatório' }),
+    responsavelWhatsapp: z.string().min(1, { message: 'Contato obrigatório' }),
+    responsavelEmail: z.string().email({ message: 'Email inválido' }),
+    responsavelInstagram: z.string().optional(),
+    atletaNome: z.string().min(1, { message: 'Nome obrigatório' }),
+    atletaCpf: z.string().min(1, { message: 'CPF obrigatório' }),
+    atletaNascimento: z.string().min(1, {
+      message: 'Data de nascimento obrigatória',
+    }),
+    atletaGenero: z.string().min(1, { message: 'Gênero obrigatório' }),
+    atletaEsporte: z.string().min(1, { message: 'Esporte obrigatório' }),
+    atletaModalidade: z.string().min(1, { message: 'Modalidade obrigatória' }),
+    atletaObservacoes: z.string().optional(),
+    senha: z.string().min(6, { message: 'Mínimo 6 caracteres' }),
+    confirmarSenha: z.string().min(6, { message: 'Confirme a senha' }),
+  })
+  .refine((data) => data.senha === data.confirmarSenha, {
+    path: ['confirmarSenha'],
+    message: 'As senhas não coincidem',
+  })
 
 type FormValues = z.infer<typeof formSchema>
 
 export default function CadastroResponsavelPage() {
   const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const form = useForm<FormValues>({ resolver: zodResolver(formSchema) })
 
-  function onSubmit(data: FormValues) {
-    console.log(data)
-    router.push('/cadastro/responsavel/uploads')
+  async function onSubmit(data: FormValues) {
+    setErrorMessage(null)
+
+    try {
+      const response = await fetch('/api/register/responsavel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null)
+        const message = typeof payload?.error === 'string'
+          ? payload.error
+          : 'Não foi possível concluir o cadastro. Tente novamente.'
+        setErrorMessage(message)
+        return
+      }
+
+      const signInResult = await signIn('credentials', {
+        email: data.responsavelEmail,
+        password: data.senha,
+        redirect: false,
+      })
+
+      if (signInResult?.error) {
+        setErrorMessage(
+          'Conta criada, mas não foi possível iniciar sua sessão. Tente fazer login manualmente.',
+        )
+        return
+      }
+
+      router.push('/cadastro/responsavel/uploads')
+    } catch (error) {
+      console.error(error)
+      setErrorMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.')
+    }
   }
 
   return (
@@ -52,6 +96,11 @@ export default function CadastroResponsavelPage() {
           <SocialAuth />
         </div>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {errorMessage && (
+            <p className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+              {errorMessage}
+            </p>
+          )}
           <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
             <CardHeader>
               <CardTitle>Dados do Responsável</CardTitle>
@@ -205,8 +254,40 @@ export default function CadastroResponsavelPage() {
             </CardContent>
           </Card>
 
+          <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
+            <CardHeader>
+              <CardTitle>Dados de acesso</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="senha">Senha</Label>
+                <Input id="senha" type="password" {...form.register('senha')} />
+                {form.formState.errors.senha && (
+                  <p className="text-sm text-destructive">
+                    {form.formState.errors.senha.message}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="confirmarSenha">Confirmar senha</Label>
+                <Input
+                  id="confirmarSenha"
+                  type="password"
+                  {...form.register('confirmarSenha')}
+                />
+                {form.formState.errors.confirmarSenha && (
+                  <p className="text-sm text-destructive">
+                    {form.formState.errors.confirmarSenha.message}
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="flex justify-start">
-            <Button type="submit">Enviar Documentos</Button>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? 'Enviando...' : 'Enviar Documentos'}
+            </Button>
           </div>
         </form>
         </main>

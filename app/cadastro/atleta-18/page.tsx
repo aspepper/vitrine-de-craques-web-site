@@ -1,6 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -36,11 +38,46 @@ type FormValues = z.infer<typeof formSchema>
 
 export default function CadastroAtleta18Page() {
   const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const form = useForm<FormValues>({ resolver: zodResolver(formSchema) })
 
-  function onSubmit(data: FormValues) {
-    console.log(data)
-    router.push('/')
+  async function onSubmit(data: FormValues) {
+    setErrorMessage(null)
+
+    try {
+      const response = await fetch('/api/register/atleta-18', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null)
+        const message = typeof payload?.error === 'string'
+          ? payload.error
+          : 'Não foi possível concluir o cadastro. Tente novamente.'
+        setErrorMessage(message)
+        return
+      }
+
+      const signInResult = await signIn('credentials', {
+        email: data.email,
+        password: data.senha,
+        redirect: false,
+      })
+
+      if (signInResult?.error) {
+        setErrorMessage(
+          'Conta criada, mas não foi possível iniciar sua sessão. Tente fazer login manualmente.',
+        )
+        return
+      }
+
+      router.push('/cadastro/sucesso')
+    } catch (error) {
+      console.error(error)
+      setErrorMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.')
+    }
   }
 
   return (
@@ -51,6 +88,11 @@ export default function CadastroAtleta18Page() {
           <SocialAuth />
         </div>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {errorMessage && (
+            <p className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+              {errorMessage}
+            </p>
+          )}
           <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
             <CardHeader>
               <CardTitle>Dados do atleta</CardTitle>
@@ -143,13 +185,25 @@ export default function CadastroAtleta18Page() {
             </CardContent>
           </Card>
           <div className="flex items-center gap-2">
-            <input id="termos" type="checkbox" className="h-4 w-4" {...form.register('termos')} />
+            <input
+              id="termos"
+              type="checkbox"
+              className="h-4 w-4"
+              {...form.register('termos')}
+            />
             <Label htmlFor="termos" className="text-sm">
               Li e aceito os Termos de Uso e a Política de Privacidade
             </Label>
+            {form.formState.errors.termos && (
+              <p className="text-sm text-destructive">
+                {form.formState.errors.termos.message}
+              </p>
+            )}
           </div>
           <div className="flex justify-end">
-            <Button type="submit">Criar conta</Button>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? 'Enviando...' : 'Criar conta'}
+            </Button>
           </div>
         </form>
         </main>

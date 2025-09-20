@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   // Azure Static Web Apps runners provide OpenSSL so we only ship the dynamic
   // binaries to avoid 404 errors when downloading the deprecated static target.
   binaryTargets = ["native", "darwin", "darwin-arm64", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
@@ -108,7 +108,7 @@ model Profile {
   representanteCpf      String?
   representanteEmail    String?
   whatsapp              String?
-  registroCbf          String?
+  registroCbf           String?
   registroFifa          String?
   responsavelNascimento String?
   responsavelGenero     String?

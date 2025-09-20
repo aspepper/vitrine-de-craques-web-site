@@ -21,12 +21,12 @@ async function main() {
 
   const confed1 = await prisma.confederation.create({
     data: {
-      name: 'Confederação Brasileira',
-      slug: slugify('Confederação Brasileira'),
+      name: 'Confederação Brasileira de Futebol',
+      slug: slugify('Confederação Brasileira de Futebol'),
       clubs: {
         create: [
-          { name: 'Clube A', slug: slugify('Clube A') },
-          { name: 'Clube B', slug: slugify('Clube B') },
+          { name: 'Clube de Regatas do Flamengo', slug: slugify('Clube de Regatas do Flamengo') },
+          { name: 'Sociedade Esportiva Palmeiras', slug: slugify('Sociedade Esportiva Palmeiras') },
         ],
       },
     },
@@ -35,12 +35,12 @@ async function main() {
 
   const confed2 = await prisma.confederation.create({
     data: {
-      name: 'Confederação Paulista',
-      slug: slugify('Confederação Paulista'),
+      name: 'União das Associações Europeias de Futebol',
+      slug: slugify('União das Associações Europeias de Futebol'),
       clubs: {
         create: [
-          { name: 'Clube C', slug: slugify('Clube C') },
-          { name: 'Clube D', slug: slugify('Clube D') },
+          { name: 'Real Madrid Club de Fútbol', slug: slugify('Real Madrid Club de Futbol') },
+          { name: 'Manchester City Football Club', slug: slugify('Manchester City Football Club') },
         ],
       },
     },

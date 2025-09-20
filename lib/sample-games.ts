@@ -19,8 +19,8 @@ export interface SampleGameItem {
   content: string
   coverImage: string
   date: string
-  scoreHome: number
-  scoreAway: number
+  scoreHome: number | null
+  scoreAway: number | null
   homeClub: SampleGameClub
   awayClub: SampleGameClub
   author: SampleGameAuthor
@@ -33,163 +33,130 @@ const journalist: SampleGameAuthor = {
   },
 }
 
-const clubeA: SampleGameClub = { name: "Clube A", slug: "clube-a" }
-const clubeB: SampleGameClub = { name: "Clube B", slug: "clube-b" }
-const clubeC: SampleGameClub = { name: "Clube C", slug: "clube-c" }
-const clubeD: SampleGameClub = { name: "Clube D", slug: "clube-d" }
+const flamengo: SampleGameClub = {
+  name: "Clube de Regatas do Flamengo",
+  slug: "clube-de-regatas-do-flamengo",
+}
+const palmeiras: SampleGameClub = {
+  name: "Sociedade Esportiva Palmeiras",
+  slug: "sociedade-esportiva-palmeiras",
+}
+const realMadrid: SampleGameClub = {
+  name: "Real Madrid Club de Fútbol",
+  slug: "real-madrid-club-de-futbol",
+}
+const manchesterCity: SampleGameClub = {
+  name: "Manchester City Football Club",
+  slug: "manchester-city-football-club",
+}
 
 export const sampleGames: SampleGameItem[] = [
   {
-    id: "como-zerar-o-minecraft",
-    title: "Como zerar o Minecraft?",
-    slug: "como-zerar-o-minecraft",
-    category: "Dica",
-    excerpt: "Aqui vamos mostrar o segredo para chegar ao fim da jornada sem deixar nenhum bloco para trás.",
+    id: "flamengo-esports-analisa-hades-ii-acesso-antecipado",
+    title: "Flamengo eSports analisa Hades II após estreia em acesso antecipado",
+    slug: "flamengo-esports-analisa-hades-ii-acesso-antecipado",
+    category: "Lançamentos",
+    excerpt:
+      "Equipe rubro-negra promoveu live especial para destacar as novidades de Hades II, que chegou ao acesso antecipado no PC com Melinoë como protagonista e planos de atualização constantes.",
     content:
-      "Dominar o modo sobrevivência exige planejamento e paciência. Comece definindo uma base segura, priorize a coleta de recursos essenciais e não subestime a importância de poções e encantamentos.\n\nDepois de localizar as fortificações, organize o inventário e garanta suprimentos extras antes de atravessar o portal. Na dimensão final, mantenha a calma, destrua os cristais e confie na precisão dos seus movimentos para derrubar o dragão.",
+      "O núcleo de criação de conteúdo do Flamengo eSports aproveitou o lançamento de Hades II em 6 de maio para apresentar ao público as mudanças da sequência da Supergiant Games. Durante a transmissão, analistas convidados do Palmeiras Gaming apontaram a nova árvore de habilidades ligada à bruxaria e o ritmo mais cadenciado das expedições ao Submundo.\n\nAlém de mostrar as builds favoritas para Melinoë, a equipe reforçou que o estúdio pretende acrescentar biomas, encontros narrativos e sistemas de progressão ao longo do acesso antecipado em Steam e Epic Games Store. A live contou com perguntas dos torcedores e sorteios de gift cards para incentivar a base de fãs a testar o roguelike.",
     coverImage:
-      "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-12T22:00:00.000Z",
-    scoreHome: 2,
-    scoreAway: 1,
-    homeClub: clubeA,
-    awayClub: clubeB,
+      "https://images.unsplash.com/photo-1527608973515-92770e70d1f5?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-05-07T14:00:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: flamengo,
+    awayClub: palmeiras,
     author: journalist,
   },
   {
-    id: "estrategias-para-campeonatos-fps",
-    title: "Estratégias avançadas para campeonatos FPS",
-    slug: "estrategias-para-campeonatos-fps",
-    category: "Análise",
-    excerpt: "Estudamos as decisões táticas que diferenciam equipes campeãs em finais presenciais de tiro em primeira pessoa.",
+    id: "palmeiras-gaming-destaques-xbox-showcase-2024",
+    title: "Palmeiras Gaming debate destaques do Xbox Games Showcase 2024",
+    slug: "palmeiras-gaming-destaques-xbox-showcase-2024",
+    category: "Eventos",
+    excerpt:
+      "Departamento de eSports palestrou sobre Gears of War: E-Day, DOOM: The Dark Ages e Call of Duty: Black Ops 6 logo após a apresentação da Microsoft em Los Angeles.",
     content:
-      "As partidas eliminatórias exigem sincronia perfeita entre comunicação e execução. Times vencedores treinam situações de clutch diariamente, revisitam gravações para entender padrões rivais e mantêm protocolos claros para retomar zonas dominadas.\n\nDurante as finais, o gerenciamento emocional é tão importante quanto a mira. Pausas estratégicas e feedback construtivo ajudam a manter a equipe focada mesmo sob pressão intensa.",
+      "Minutos depois do Xbox Games Showcase de 9 de junho, o Palmeiras reuniu sócios na arena digital do clube para comentar os anúncios que movimentaram o evento. Representantes da organização analisaram o retorno de Marcus Fenix em Gears of War: E-Day, apontando como a ambientação emergencial pode inspirar narrativas transmídia para a torcida.\n\nA conversa também destacou o trailer cinemático de DOOM: The Dark Ages, previsto para 2025, e o compromisso da Microsoft em lançar Call of Duty: Black Ops 6 em 25 de outubro diretamente no Game Pass. Parceiros do Manchester City eSports participaram remotamente para explicar como o ecossistema Xbox pretende integrar crossplay e progressão compartilhada entre console e PC.",
     coverImage:
-      "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-18T19:30:00.000Z",
-    scoreHome: 16,
-    scoreAway: 14,
-    homeClub: clubeC,
-    awayClub: clubeD,
+      "https://images.unsplash.com/photo-1526481280695-3c46992875a0?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-09T23:30:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: palmeiras,
+    awayClub: manchesterCity,
     author: journalist,
   },
   {
-    id: "bastidores-da-preparacao-tatica",
-    title: "Bastidores da preparação tática",
-    slug: "bastidores-da-preparacao-tatica",
-    category: "Bastidores",
-    excerpt: "Conversamos com analistas que transformam dados em estratégias vencedoras antes de cada série decisiva.",
+    id: "real-madrid-esports-zelda-echoes-of-wisdom",
+    title: "Real Madrid eSports promove maratona sobre Zelda: Echoes of Wisdom",
+    slug: "real-madrid-esports-zelda-echoes-of-wisdom",
+    category: "Nintendo",
+    excerpt:
+      "Comunidade merengue celebrou o anúncio do novo The Legend of Zelda, que coloca a princesa como protagonista e chega ao Nintendo Switch em setembro.",
     content:
-      "O trabalho começa dias antes da partida com mapeamentos detalhados de tendências. Utilizando ferramentas de análise, os especialistas identificam fragilidades de cada adversário e constroem playlists específicas para treinos práticos.\n\nNo dia do jogo, os relatórios se transformam em chamadas objetivas que guiam a tomada de decisão em tempo real, garantindo que as leituras se convertam em vantagem competitiva.",
+      "Após o Nintendo Direct de 18 de junho, o Real Madrid eSports organizou uma maratona de lives para explicar as mecânicas de The Legend of Zelda: Echoes of Wisdom. Os apresentadores destrincharam a habilidade de copiar objetos e criaturas para resolver puzzles, destacando como o recurso amplia possibilidades de speedrun para a comunidade.\n\nO clube também comentou a data de lançamento mundial de 26 de setembro de 2024 e preparou desafios temáticos em parceria com o Flamengo, que emprestou sua equipe de design para produzir overlays inspirados em Hyrule. A programação incluiu oficinas para pais e filhos interessados em explorar o catálogo do Switch durante as férias europeias.",
     coverImage:
-      "https://images.unsplash.com/photo-1509475826633-fed577a2c71b?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-05T17:00:00.000Z",
-    scoreHome: 3,
-    scoreAway: 0,
-    homeClub: clubeB,
-    awayClub: clubeA,
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-20T18:15:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: realMadrid,
+    awayClub: flamengo,
     author: journalist,
   },
   {
-    id: "rotinas-de-treino-para-mapas-complexos",
-    title: "Rotinas de treino para mapas complexos",
-    slug: "rotinas-de-treino-para-mapas-complexos",
-    category: "Treinamento",
-    excerpt: "Veja como staff técnico adapta rotinas de treinos para mapas com múltiplos objetivos simultâneos.",
+    id: "manchester-city-esports-fortnite-festival-metallica",
+    title: "Manchester City eSports celebra temporada Metallica no Fortnite Festival",
+    slug: "manchester-city-esports-fortnite-festival-metallica",
+    category: "Atualizações",
+    excerpt:
+      "Clube inglês montou hub interativo para aproveitar os shows e desafios lançados junto à banda Metallica na quarta temporada do modo musical de Fortnite.",
     content:
-      "A construção de repertório começa com sessões individuais para domínio de habilidades e termina com simulações completas da equipe. Cada mapa recebe um plano de contingência que define prioridades, pontos de rotação e chamadas de emergência.\n\nOs treinos também incluem revisão mental guiada para acelerar a memorização de setups e criar confiança em execuções rápidas.",
+      "A Epic Games lançou em 13 de junho a quarta temporada do Fortnite Festival com Metallica como atração principal, incluindo palco temático, instrumentos inéditos e uma experiência rítmica dedicada ao álbum M72. O Manchester City eSports reabriu seu centro de visitas para transmitir as apresentações virtuais e orientar a torcida sobre como desbloquear recompensas exclusivas.\n\nNo evento, especialistas do Real Madrid eSports demonstraram as novas faixas no modo Jam Stage e comentaram o inédito modo PvP onde dois grupos duelam ao som de clássicos como \"Enter Sandman\". O clube aproveitou para divulgar seletivas de criadores que produzirão clipes highlight da temporada no Creative 2.0.",
     coverImage:
-      "https://images.unsplash.com/photo-1506634064465-7dabd83d6585?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-22T15:00:00.000Z",
-    scoreHome: 13,
-    scoreAway: 11,
-    homeClub: clubeC,
-    awayClub: clubeA,
+      "https://images.unsplash.com/photo-1510723180108-346f3779edc6?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-14T12:45:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: manchesterCity,
+    awayClub: realMadrid,
     author: journalist,
   },
   {
-    id: "equilibrio-mental-em-finais",
-    title: "Equilíbrio mental em finais presenciais",
-    slug: "equilibrio-mental-em-finais",
-    category: "Performance",
-    excerpt: "Como psicólogos esportivos atuam para manter atletas concentrados diante de milhares de torcedores.",
+    id: "flamengo-real-madrid-state-of-play-2024",
+    title: "Flamengo e Real Madrid analisam novidades do State of Play",
+    slug: "flamengo-real-madrid-state-of-play-2024",
+    category: "PlayStation",
+    excerpt:
+      "Clubes promoveram mesa redonda sobre Astro Bot e Concord, principais anúncios do State of Play de maio, discutindo estratégias de conteúdo para agosto e setembro.",
     content:
-      "Sessões pré-jogo incluem exercícios de respiração, visualização de cenários críticos e reforço positivo personalizado. A proximidade do público exige preparação adicional para bloquear estímulos externos sem perder a conexão com a torcida.\n\nApós cada mapa, a equipe psicológica conduz check-ins rápidos para ajustar níveis de energia e reforçar a comunicação assertiva dentro do grupo.",
+      "Durante o State of Play de 30 de maio, a Sony confirmou Astro Bot para 6 de setembro e apresentou gameplay cooperativo de Concord, o hero shooter da Firewalk Studios agendado para 23 de agosto no PS5 e PC. Flamengo e Real Madrid reuniram suas equipes de mídia para planejar séries de vídeos que expliquem as habilidades das personagens e as possibilidades competitivas do título.\n\nOs grupos compartilharam insights sobre como adaptar o humor característico de Astro Bot às redes sociais e combinar os trailers de Concord com workshops de tiro em primeira pessoa. Também houve debate sobre o beta multijogador que ocorrerá em julho, com inscrições abertas para membros premium das duas comunidades.",
     coverImage:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-10T16:45:00.000Z",
-    scoreHome: 2,
-    scoreAway: 2,
-    homeClub: clubeD,
-    awayClub: clubeB,
+      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-05-31T10:00:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: flamengo,
+    awayClub: realMadrid,
     author: journalist,
   },
   {
-    id: "tecnologia-nos-campeonatos",
-    title: "Tecnologia que transforma campeonatos",
-    slug: "tecnologia-nos-campeonatos",
-    category: "Inovação",
-    excerpt: "Ferramentas de análise em nuvem elevam a preparação com dashboards em tempo real para comissão técnica.",
+    id: "palmeiras-flamengo-preparam-black-ops-6",
+    title: "Palmeiras e Flamengo montam camp de Call of Duty: Black Ops 6",
+    slug: "palmeiras-flamengo-preparam-black-ops-6",
+    category: "FPS",
+    excerpt:
+      "Organizações brasileiras criaram agenda conjunta para estudar o novo sistema de movimento omnidirecional revelado pela Treyarch e pela Raven Software.",
     content:
-      "Equipamentos portáteis monitoram movimentos, tempo de reação e padrões de mira em cada treino. Essas métricas abastecem modelos preditivos que ajudam a planejar substituições e definir o ritmo ideal de jogo.\n\nCom dados integrados, as comissões conseguem ajustar estratégias durante as partidas, antecipando tendências dos adversários antes mesmo que apareçam nos placares.",
+      "Depois da apresentação detalhada de Call of Duty: Black Ops 6 no Xbox Showcase Extended, Palmeiras e Flamengo agendaram sessões semanais de laboratório para experimentar o esquema de movimentação 360° que chega ao multiplayer. Técnicos das duas casas destacaram que o modo campanha ambientado na Guerra Fria dos anos 90 e o retorno do Zombies em formato baseado em rodadas abrem oportunidades para narrativas transmídia.\n\nOs staffs de performance também mapearam o calendário competitivo previsto para o lançamento de 25 de outubro de 2024, alinhando treinos táticos com parceiros internacionais e reforçando a produção de conteúdo educativo para iniciantes. O objetivo é chegar ao Day One com compêndio de loadouts e guias de mapas pronto para a comunidade.",
     coverImage:
-      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-02T13:20:00.000Z",
-    scoreHome: 1,
-    scoreAway: 0,
-    homeClub: clubeA,
-    awayClub: clubeD,
-    author: journalist,
-  },
-  {
-    id: "analise-de-meta-competitivo",
-    title: "Análise de meta competitivo",
-    slug: "analise-de-meta-competitivo",
-    category: "Estudo",
-    excerpt: "Resumo completo das atualizações que alteraram o equilíbrio entre classes na última temporada.",
-    content:
-      "Mudanças recentes favoreceram estilos de jogo agressivos, valorizando personagens com alta mobilidade. As equipes que anteciparam essa tendência trouxeram composições híbridas capazes de pressionar desde os minutos iniciais.\n\nPara se manter no topo do meta, especialistas recomendam ciclos semanais de revisão e um banco amplo de estratégias para responder a patches repentinos.",
-    coverImage:
-      "https://images.unsplash.com/photo-1515719100330-4b3f39cb0d94?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-08-28T21:15:00.000Z",
-    scoreHome: 3,
-    scoreAway: 2,
-    homeClub: clubeB,
-    awayClub: clubeC,
-    author: journalist,
-  },
-  {
-    id: "como-liderar-equipes-remotas",
-    title: "Como liderar equipes remotas",
-    slug: "como-liderar-equipes-remotas",
-    category: "Gestão",
-    excerpt: "Treinadores revelam rotinas que mantêm sinergia mesmo com treinos em fusos horários diferentes.",
-    content:
-      "Calendários compartilhados, sessões diárias de alinhamento e relatórios objetivos são pilares para manter a disciplina. Além disso, a rotação de lideranças auxilia na distribuição das responsabilidades e fortalece a confiança coletiva.\n\nNos playoffs, a equipe já está acostumada a lidar com ajustes repentinos, pois simula mudanças logísticas durante toda a temporada regular.",
-    coverImage:
-      "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-09-03T18:00:00.000Z",
-    scoreHome: 2,
-    scoreAway: 3,
-    homeClub: clubeD,
-    awayClub: clubeA,
-    author: journalist,
-  },
-  {
-    id: "o-futuro-dos-fan-fests",
-    title: "O futuro dos fan fests",
-    slug: "o-futuro-dos-fan-fests",
-    category: "Comunidade",
-    excerpt: "Eventos híbridos combinam experiências presenciais e digitais para aproximar torcida e elenco.",
-    content:
-      "Organizadores apostam em hubs regionais conectados por realidade aumentada, permitindo que torcedores interajam em tempo real com jogadores. Patrocinadores acompanham métricas de engajamento minuto a minuto para personalizar ativações.\n\nO sucesso depende da curadoria de conteúdos exclusivos e de uma equipe de produção capaz de integrar transmissões, ativações e suporte técnico sem falhas.",
-    coverImage:
-      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80&fm=webp",
-    date: "2025-09-08T20:10:00.000Z",
-    scoreHome: 4,
-    scoreAway: 4,
-    homeClub: clubeC,
-    awayClub: clubeB,
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80&fm=webp",
+    date: "2024-06-12T21:10:00.000Z",
+    scoreHome: null,
+    scoreAway: null,
+    homeClub: palmeiras,
+    awayClub: flamengo,
     author: journalist,
   },
 ]

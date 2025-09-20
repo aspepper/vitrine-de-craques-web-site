@@ -14,12 +14,6 @@ interface GameAuthor {
   profile: { displayName: string | null } | null
 }
 
-interface GameClub {
-  id: string
-  name: string
-  slug: string
-}
-
 interface Game {
   id: string
   title: string
@@ -29,10 +23,6 @@ interface Game {
   content: string | null
   coverImage: string | null
   date: string
-  scoreHome: number | null
-  scoreAway: number | null
-  homeClub: GameClub
-  awayClub: GameClub
   author: GameAuthor | null
 }
 
@@ -70,10 +60,6 @@ const fallbackGames = new Map(
     content: game.content,
     coverImage: game.coverImage,
     date: game.date,
-    scoreHome: game.scoreHome,
-    scoreAway: game.scoreAway,
-    homeClub: { id: game.homeClub.slug, name: game.homeClub.name, slug: game.homeClub.slug },
-    awayClub: { id: game.awayClub.slug, name: game.awayClub.name, slug: game.awayClub.slug },
     author: {
       name: game.author.name,
       profile: { displayName: game.author.profile.displayName },
@@ -112,11 +98,6 @@ export default async function GameDetalhePage({ params }: PageProps) {
     .map((paragraph) => paragraph.trim())
     .filter(Boolean)
 
-  const scoreboard =
-    game.scoreHome !== null && game.scoreAway !== null
-      ? `${game.homeClub.name} ${game.scoreHome} x ${game.scoreAway} ${game.awayClub.name}`
-      : `${game.homeClub.name} x ${game.awayClub.name}`
-
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow px-4 pb-20 pt-10">
@@ -147,10 +128,9 @@ export default async function GameDetalhePage({ params }: PageProps) {
             </div>
             <h2 className="mt-6 text-3xl font-semibold text-slate-900 md:text-4xl">{game.title}</h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600">{game.excerpt}</p>
-            <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-500">
-              <span className="font-medium text-slate-700">{scoreboard}</span>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-500">
               <span>Por {getAuthorName(game.author)}</span>
-            </div>
+          </div>
             <Button
               asChild
               className="mt-8 bg-emerald-400 text-slate-900 hover:bg-emerald-300"

@@ -13,12 +13,6 @@ interface GameAuthor {
   profile: { displayName: string | null } | null
 }
 
-interface GameClub {
-  id: string
-  name: string
-  slug: string
-}
-
 interface GameItem {
   id: string
   title: string
@@ -28,10 +22,6 @@ interface GameItem {
   content?: string | null
   coverImage: string | null
   date: string
-  scoreHome: number | null
-  scoreAway: number | null
-  homeClub: GameClub
-  awayClub: GameClub
   author: GameAuthor | null
 }
 
@@ -78,10 +68,6 @@ const fallbackGames: GameItem[] = sampleGames.map((game) => ({
   content: game.content,
   coverImage: game.coverImage,
   date: game.date,
-  scoreHome: game.scoreHome,
-  scoreAway: game.scoreAway,
-  homeClub: { id: game.homeClub.slug, name: game.homeClub.name, slug: game.homeClub.slug },
-  awayClub: { id: game.awayClub.slug, name: game.awayClub.name, slug: game.awayClub.slug },
   author: {
     name: game.author.name,
     profile: { displayName: game.author.profile.displayName },

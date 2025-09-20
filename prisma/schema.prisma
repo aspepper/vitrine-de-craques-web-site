@@ -63,6 +63,7 @@ model User {
   profile       Profile?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  Game          Game[]
 }
 
 model VerificationToken {
@@ -158,8 +159,6 @@ model Club {
   slug            String         @unique
   confederation   Confederation? @relation(fields: [confederationId], references: [id])
   confederationId String?
-  homeGames       Game[]         @relation("HomeClub")
-  awayGames       Game[]         @relation("AwayClub")
 }
 
 model News {
@@ -188,12 +187,6 @@ model Game {
   author     User?    @relation(fields: [authorId], references: [id])
   authorId   String?
   date       DateTime
-  homeClub   Club     @relation("HomeClub", fields: [homeClubId], references: [id])
-  homeClubId String
-  awayClub   Club     @relation("AwayClub", fields: [awayClubId], references: [id])
-  awayClubId String
-  scoreHome  Int?
-  scoreAway  Int?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }

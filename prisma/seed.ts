@@ -29,10 +29,6 @@ async function main() {
       coverImage:
         'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80&fm=webp',
       date: '2024-07-10T15:30:00.000Z',
-      scoreHome: null,
-      scoreAway: null,
-      homeClubSlug: 'clube-de-regatas-do-flamengo',
-      awayClubSlug: 'sociedade-esportiva-palmeiras',
     },
     {
       title: 'Diário do Game Pass comenta os bastidores de Sea of Stars',
@@ -45,10 +41,6 @@ async function main() {
       coverImage:
         'https://images.unsplash.com/photo-1526481280695-3c46992875a0?auto=format&fit=crop&w=1600&q=80&fm=webp',
       date: '2024-07-05T18:00:00.000Z',
-      scoreHome: null,
-      scoreAway: null,
-      homeClubSlug: 'sociedade-esportiva-palmeiras',
-      awayClubSlug: 'manchester-city-football-club',
     },
     {
       title: 'Blog Save Point lista itens perdidos mais curiosos de Final Fantasy XIV',
@@ -57,14 +49,10 @@ async function main() {
       excerpt:
         'Colecionadores contam histórias inusitadas de glamours raros, mascotes escondidos e quests sazonais que desapareceram de Eorzea.',
       content:
-        'O Blog Save Point reuniu relatos de jogadores veteranos de Final Fantasy XIV para mapear itens que sumiram com o passar das expansões. Há menções ao Cascavel de Safira, uma montaria vista apenas durante o beta fechado de A Realm Reborn, e às roupas temáticas do evento Lightning Strikes.\n\nAlém disso, o blogueiro entrevistou membros do Real Madrid eSports sobre como criam guias para caçadores de relíquias e ofereceu um passo a passo para transformar screenshots em cartões colecionáveis impressos com realidade aumentada.',
+        'O Blog Save Point reuniu relatos de jogadores veteranos de Final Fantasy XIV para mapear itens que sumiram com o passar das expansões. Há menções ao Cascavel de Safira, uma montaria vista apenas durante o beta fechado de A Realm Reborn, e às roupas temáticas do evento Lightning Strikes.\n\nAlém disso, o blogueiro ouviu moderadores de comunidades independentes que documentam relíquias digitais e ofereceu um passo a passo para transformar screenshots em cartões colecionáveis impressos com realidade aumentada.',
       coverImage:
         'https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=1600&q=80&fm=webp',
       date: '2024-07-02T21:10:00.000Z',
-      scoreHome: null,
-      scoreAway: null,
-      homeClubSlug: 'real-madrid-club-de-futbol',
-      awayClubSlug: 'clube-de-regatas-do-flamengo',
     },
     {
       title: 'Checkpoint Indie revela protótipos secretos de Hollow Knight: Silksong',
@@ -77,26 +65,18 @@ async function main() {
       coverImage:
         'https://images.unsplash.com/photo-1510723180108-346f3779edc6?auto=format&fit=crop&w=1600&q=80&fm=webp',
       date: '2024-06-28T12:45:00.000Z',
-      scoreHome: null,
-      scoreAway: null,
-      homeClubSlug: 'manchester-city-football-club',
-      awayClubSlug: 'real-madrid-club-de-futbol',
     },
     {
       title: 'Guia do Arcade comenta a restauração de fliperamas raros',
       slug: 'guia-do-arcade-restauracao-fliperamas-raros',
       category: 'História',
       excerpt:
-        'Colecionador flamenguista mostra bastidores da reforma de máquinas clássicas e ensina como preservar placas e componentes antigos.',
+        'Colecionador brasileiro mostra bastidores da reforma de máquinas clássicas e ensina como preservar placas e componentes antigos.',
       content:
-        'O Guia do Arcade visitou o laboratório de um restaurador no Rio de Janeiro que comprou gabinetes de Metal Slug X e de Out Run em um leilão europeu. O processo inclui o envio das placas para um técnico parceiro do Palmeiras e o uso de impressoras 3D para reconstruir peças quebradas.\n\nO post traz uma checklist para quem deseja iniciar coleções domésticas, além de um glossário com termos técnicos e links para comunidades que ajudam a encontrar ROMs legais e kits de iluminação LED.',
+        'O Guia do Arcade visitou o laboratório de um restaurador no Rio de Janeiro que comprou gabinetes de Metal Slug X e de Out Run em um leilão europeu. O processo inclui o envio das placas para especialistas em eletrônica e o uso de impressoras 3D para reconstruir peças quebradas.\n\nO post traz uma checklist para quem deseja iniciar coleções domésticas, além de um glossário com termos técnicos e links para comunidades que ajudam a encontrar ROMs legais e kits de iluminação LED.',
       coverImage:
         'https://images.unsplash.com/photo-1527608973515-92770e70d1f5?auto=format&fit=crop&w=1600&q=80&fm=webp',
       date: '2024-06-22T10:00:00.000Z',
-      scoreHome: null,
-      scoreAway: null,
-      homeClubSlug: 'clube-de-regatas-do-flamengo',
-      awayClubSlug: 'real-madrid-club-de-futbol',
     },
     {
       title: 'Blog XP Speed testa o modo foto secreto de Forza Horizon 5',
@@ -105,14 +85,10 @@ async function main() {
       excerpt:
         'Modo experimental permite capturar replays com câmera drone em tempestades e compartilha filtros usados pela Playground Games para trailers.',
       content:
-        'O Blog XP Speed participou de um ensaio técnico em parceria com a Playground Games e pôde experimentar um modo foto ainda em desenvolvimento. Entre os recursos estão o ajuste fino de partículas de poeira e a possibilidade de sincronizar o nascer do sol com a trilha sonora dinâmica.\n\nA matéria também traz comentários do departamento de dados do Manchester City sobre como a comunidade pode usar os replays para treinar inteligência artificial que reconhece estilos de pilotagem. Há ainda um tutorial para exportar as capturas em formato RAW e editá-las no celular.',
+        'O Blog XP Speed participou de um ensaio técnico em parceria com a Playground Games e pôde experimentar um modo foto ainda em desenvolvimento. Entre os recursos estão o ajuste fino de partículas de poeira e a possibilidade de sincronizar o nascer do sol com a trilha sonora dinâmica.\n\nA matéria também traz comentários de fotógrafos virtuais sobre como a comunidade pode usar os replays para treinar inteligência artificial que reconhece estilos de pilotagem. Há ainda um tutorial para exportar as capturas em formato RAW e editá-las no celular.',
       coverImage:
         'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80&fm=webp',
       date: '2024-06-18T23:30:00.000Z',
-      scoreHome: null,
-      scoreAway: null,
-      homeClubSlug: 'sociedade-esportiva-palmeiras',
-      awayClubSlug: 'clube-de-regatas-do-flamengo',
     },
   ]
 
@@ -352,33 +328,16 @@ async function main() {
     ],
   })
 
-  const clubMap = new Map<string, string>(
-    [...confed1.clubs, ...confed2.clubs].map((club) => [club.slug, club.id])
-  )
-
-  const gameData = seedGames.map((game) => {
-    const homeClubId = clubMap.get(game.homeClubSlug)
-    const awayClubId = clubMap.get(game.awayClubSlug)
-
-    if (!homeClubId || !awayClubId) {
-      throw new Error(`Clube não encontrado para o jogo ${game.slug}`)
-    }
-
-    return {
-      title: game.title,
-      slug: game.slug,
-      category: game.category,
-      excerpt: game.excerpt,
-      content: game.content,
-      coverImage: game.coverImage,
-      date: new Date(game.date),
-      scoreHome: game.scoreHome,
-      scoreAway: game.scoreAway,
-      homeClubId,
-      awayClubId,
-      authorId: blogger.id,
-    }
-  })
+  const gameData = seedGames.map((game) => ({
+    title: game.title,
+    slug: game.slug,
+    category: game.category,
+    excerpt: game.excerpt,
+    content: game.content,
+    coverImage: game.coverImage,
+    date: new Date(game.date),
+    authorId: blogger.id,
+  }))
 
   await prisma.game.createMany({ data: gameData })
 
@@ -1119,27 +1078,6 @@ async function main() {
         cidade: 'Erechim',
         estado: 'RS',
       }
-    ],
-  })
-
-  await prisma.game.createMany({
-    data: [
-      {
-        date: new Date(),
-        slug: `${confed1.clubs[0].slug}-vs-${confed1.clubs[1].slug}`,
-        homeClubId: confed1.clubs[0].id,
-        awayClubId: confed1.clubs[1].id,
-        scoreHome: 0,
-        scoreAway: 0,
-      },
-      {
-        date: new Date(),
-        slug: `${confed2.clubs[0].slug}-vs-${confed2.clubs[1].slug}`,
-        homeClubId: confed2.clubs[0].id,
-        awayClubId: confed2.clubs[1].id,
-        scoreHome: 1,
-        scoreAway: 1,
-      },
     ],
   })
 

@@ -1,6 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -11,34 +13,76 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
-const formSchema = z.object({
-  nomeSocial: z.string().optional(),
-  nome: z.string().min(1, { message: 'Nome completo obrigatório' }),
-  cpf: z.string().min(1, { message: 'CPF obrigatório' }),
-  ddd: z.string().min(1, { message: 'DDD obrigatório' }),
-  telefone: z.string().min(1, { message: 'Telefone obrigatório' }),
-  uf: z.string().min(1, { message: 'UF obrigatória' }),
-  cidade: z.string().min(1, { message: 'Cidade obrigatória' }),
-  email: z.string().email({ message: 'E-mail inválido' }),
-  site: z.string().url({ message: 'URL inválida' }).optional(),
-  endereco: z.string().min(1, { message: 'Endereço obrigatório' }),
-  redesSociais: z.string().optional(),
-  areaAtuacao: z.string().min(1, { message: 'Área de atuação obrigatória' }),
-  portfolio: z.string().url({ message: 'URL inválida' }).optional(),
-  termos: z.literal(true, {
-    errorMap: () => ({ message: 'É necessário aceitar os termos' }),
-  }),
-})
+const formSchema = z
+  .object({
+    nomeSocial: z.string().optional(),
+    nome: z.string().min(1, { message: 'Nome completo obrigatório' }),
+    cpf: z.string().min(1, { message: 'CPF obrigatório' }),
+    ddd: z.string().min(1, { message: 'DDD obrigatório' }),
+    telefone: z.string().min(1, { message: 'Telefone obrigatório' }),
+    uf: z.string().min(1, { message: 'UF obrigatória' }),
+    cidade: z.string().min(1, { message: 'Cidade obrigatória' }),
+    email: z.string().email({ message: 'E-mail inválido' }),
+    site: z.string().url({ message: 'URL inválida' }).optional(),
+    endereco: z.string().min(1, { message: 'Endereço obrigatório' }),
+    redesSociais: z.string().optional(),
+    areaAtuacao: z.string().min(1, { message: 'Área de atuação obrigatória' }),
+    portfolio: z.string().url({ message: 'URL inválida' }).optional(),
+    termos: z.literal(true, {
+      errorMap: () => ({ message: 'É necessário aceitar os termos' }),
+    }),
+    senha: z.string().min(6, { message: 'Mínimo 6 caracteres' }),
+    confirmarSenha: z.string().min(6, { message: 'Confirme a senha' }),
+  })
+  .refine((data) => data.senha === data.confirmarSenha, {
+    path: ['confirmarSenha'],
+    message: 'As senhas não coincidem',
+  })
 
 type FormValues = z.infer<typeof formSchema>
 
 export default function CadastroImprensaPage() {
   const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const form = useForm<FormValues>({ resolver: zodResolver(formSchema) })
 
-  function onSubmit(data: FormValues) {
-    console.log(data)
-    router.push('/')
+  async function onSubmit(data: FormValues) {
+    setErrorMessage(null)
+
+    try {
+      const response = await fetch('/api/register/imprensa-jornalistablogueiro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null)
+        const message = typeof payload?.error === 'string'
+          ? payload.error
+          : 'Não foi possível concluir o cadastro. Tente novamente.'
+        setErrorMessage(message)
+        return
+      }
+
+      const signInResult = await signIn('credentials', {
+        email: data.email,
+        password: data.senha,
+        redirect: false,
+      })
+
+      if (signInResult?.error) {
+        setErrorMessage(
+          'Conta criada, mas não foi possível iniciar sua sessão. Tente fazer login manualmente.',
+        )
+        return
+      }
+
+      router.push('/cadastro/sucesso')
+    } catch (error) {
+      console.error(error)
+      setErrorMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.')
+    }
   }
 
   return (
@@ -51,6 +95,11 @@ export default function CadastroImprensaPage() {
           <SocialAuth />
         </div>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {errorMessage && (
+            <p className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+              {errorMessage}
+            </p>
+          )}
           <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
             <CardHeader>
               <CardTitle>Dados e portfólio</CardTitle>
@@ -197,8 +246,39 @@ export default function CadastroImprensaPage() {
               </div>
             </CardContent>
           </Card>
+          <Card className="border-none bg-white shadow-[0_30px_90px_-45px_rgba(15,23,42,0.6)]">
+            <CardHeader>
+              <CardTitle>Dados de acesso</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="senha">Senha</Label>
+                <Input id="senha" type="password" {...form.register('senha')} />
+                {form.formState.errors.senha && (
+                  <p className="text-sm text-destructive">
+                    {form.formState.errors.senha.message}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="confirmarSenha">Confirmar senha</Label>
+                <Input
+                  id="confirmarSenha"
+                  type="password"
+                  {...form.register('confirmarSenha')}
+                />
+                {form.formState.errors.confirmarSenha && (
+                  <p className="text-sm text-destructive">
+                    {form.formState.errors.confirmarSenha.message}
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
           <div className="flex justify-end">
-            <Button type="submit">Criar conta</Button>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? 'Enviando...' : 'Criar conta'}
+            </Button>
           </div>
         </form>
       </main>

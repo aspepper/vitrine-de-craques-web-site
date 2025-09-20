@@ -103,7 +103,7 @@ async function main() {
     }),
   ])
 
-  await prisma.user.create({
+  const journalist = await prisma.user.create({
     data: {
       email: 'press1@example.com',
       name: 'Jornalista Um',
@@ -153,22 +153,82 @@ async function main() {
   await prisma.news.createMany({
     data: [
       {
-        title: 'Primeira Notícia',
-        slug: 'primeira-noticia',
-        content: 'Conteúdo da primeira notícia',
-        authorId: agent1.id,
+        title: 'Estrela em ascensão brilha em clássico decisivo',
+        slug: slugify('Estrela em ascensão brilha em clássico decisivo'),
+        excerpt:
+          'Com atuação inspirada, a jovem promessa decidiu o confronto regional aos 42 minutos do segundo tempo e colocou o clube na liderança do campeonato estadual.',
+        content:
+          'A tarde ensolarada no estádio municipal recebeu mais de 35 mil torcedores para assistir ao confronto direto pela liderança do campeonato. Aos 42 minutos da etapa final, a joia da base recebeu pela esquerda, cortou para o meio e finalizou com precisão no canto superior.\n\nO gol não apenas garantiu os três pontos, mas também consolidou o nome do atleta entre os principais destaques do torneio. O treinador elogiou a maturidade do jovem camisa 11 e ressaltou o trabalho do departamento de análise de desempenho na preparação do elenco.',
+        category: 'Campeonatos',
+        coverImage:
+          'https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1600&q=80&fm=webp',
+        publishedAt: new Date('2025-08-03T18:30:00Z'),
+        authorId: journalist.id,
       },
       {
-        title: 'Segunda Notícia',
-        slug: 'segunda-noticia',
-        content: 'Conteúdo da segunda notícia',
-        authorId: agent2.id,
+        title: 'Comissão técnica investe em tecnologia para treinos',
+        slug: slugify('Comissão técnica investe em tecnologia para treinos'),
+        excerpt:
+          'Departamento de futebol implementa novas metodologias com apoio de análise de dados para potencializar desempenho físico e tático do elenco profissional.',
+        content:
+          'Os profissionais do clube iniciaram a semana apresentando um novo pacote de soluções tecnológicas que inclui monitoramento de carga em tempo real e simulações táticas em realidade virtual. A iniciativa é fruto de parceria com uma startup especializada em ciência do esporte.\n\nSegundo a equipe de preparação física, os recursos permitem personalizar sessões de treinamento de acordo com o histórico de cada atleta, reduzindo o risco de lesões e acelerando processos de recuperação. O clube pretende expandir o uso das ferramentas para as categorias de base até o final da temporada.',
+        category: 'Bastidores',
+        coverImage:
+          'https://images.unsplash.com/photo-1526234255934-99a3be5496ef?auto=format&fit=crop&w=1600&q=80&fm=webp',
+        publishedAt: new Date('2025-08-01T14:00:00Z'),
+        authorId: journalist.id,
       },
       {
-        title: 'Terceira Notícia',
-        slug: 'terceira-noticia',
-        content: 'Conteúdo da terceira notícia',
-        authorId: agent1.id,
+        title: 'Base conquista título invicto em torneio internacional',
+        slug: slugify('Base conquista título invicto em torneio internacional'),
+        excerpt:
+          'Equipe sub-17 vence quatro partidas seguidas, marca onze gols e volta para casa com troféu inédito após campanha sólida em Montevidéu.',
+        content:
+          'Os jovens atletas mostraram maturidade ao longo do torneio disputado no Uruguai e derrotaram adversários de diferentes estilos de jogo. Na final, a equipe brasileira superou o tradicional Nacional por 2 a 1, com gols de um zagueiro artilheiro e do meia criativo.\n\nA comissão técnica destacou a disciplina tática do grupo e o protagonismo da linha defensiva, que sofreu apenas dois gols em toda a competição. A conquista reforça o investimento contínuo da diretoria em categorias de formação.',
+        category: 'Categorias de base',
+        coverImage:
+          'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80&fm=webp',
+        publishedAt: new Date('2025-07-27T10:15:00Z'),
+        authorId: journalist.id,
+      },
+      {
+        title: 'Departamento médico apresenta novo protocolo de prevenção',
+        slug: slugify('Departamento médico apresenta novo protocolo de prevenção'),
+        excerpt:
+          'Clube amplia equipe multidisciplinar e lança programa integrado de fisiologia, nutrição e psicologia para atletas do elenco principal.',
+        content:
+          'A reformulação do departamento médico foi tema de coletiva no centro de treinamento nesta manhã. Os profissionais apresentaram um protocolo baseado em três pilares: avaliação periódica, acompanhamento nutricional individualizado e suporte psicológico contínuo.\n\nA expectativa é reduzir o tempo de afastamento por contusões musculares em 25% até o fim do ano, além de fortalecer o vínculo entre jogadores e staff técnico.',
+        category: 'Saúde e performance',
+        coverImage:
+          'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=80&fm=webp',
+        publishedAt: new Date('2025-07-22T09:00:00Z'),
+        authorId: journalist.id,
+      },
+      {
+        title: 'Torcida prepara mosaico especial para decisão continental',
+        slug: slugify('Torcida prepara mosaico especial para decisão continental'),
+        excerpt:
+          'Organizadas se unem em ação solidária que arrecada alimentos enquanto prepara espetáculo de luzes e cores para o jogo mais aguardado do ano.',
+        content:
+          'Integrantes das principais torcidas organizadas anunciaram parceria para montar um mosaico 3D que ocupará os quatro setores do estádio. O material foi financiado por campanha coletiva que arrecadou cinco toneladas de alimentos para instituições locais.\n\nAlém do show nas arquibancadas, os torcedores planejam recepção calorosa ao elenco, com concentração nas imediações do CT na véspera da partida.',
+        category: 'Torcida',
+        coverImage:
+          'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1600&q=80&fm=webp',
+        publishedAt: new Date('2025-07-18T20:45:00Z'),
+        authorId: journalist.id,
+      },
+      {
+        title: 'Executivo detalha planejamento para a próxima janela',
+        slug: slugify('Executivo detalha planejamento para a próxima janela'),
+        excerpt:
+          'Diretoria confirma mapa de prioridades para reforços e foca em jogadores com versatilidade para atuar em mais de uma função.',
+        content:
+          'Em entrevista exclusiva, o diretor executivo explicou que a estratégia do clube passa por contratações pontuais, alinhadas às demandas de comissão técnica e análise de desempenho. O clube monitora atletas sul-americanos com possibilidade de adaptação rápida ao futebol nacional.\n\nO dirigente também destacou o cuidado com a saúde financeira, reforçando que qualquer investimento será acompanhado de mecanismos de performance e metas esportivas claras.',
+        category: 'Mercado da bola',
+        coverImage:
+          'https://images.unsplash.com/photo-1527718641255-324f8e2d0423?auto=format&fit=crop&w=1600&q=80&fm=webp',
+        publishedAt: new Date('2025-07-15T16:20:00Z'),
+        authorId: journalist.id,
       },
     ],
   })

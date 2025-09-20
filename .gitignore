@@ -20,9 +20,8 @@ playwright-report/
 
 # Prisma
 prisma/*.db
-/prisma/migrations/*
-!/prisma/migrations/schema.prisma # Keep schema.prisma in migrations
-!/prisma/migrations/index.ts # If using custom migration scripts
+!/prisma/migrations/
+!/prisma/migrations/**
 !/prisma/schema.prisma # Keep the main schema.prisma file
 /prisma/dev.db # If using SQLite for development
 

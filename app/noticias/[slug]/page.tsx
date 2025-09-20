@@ -101,7 +101,7 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
-        <article className="mx-auto w-full max-w-4xl space-y-8 rounded-[40px] border border-slate-200/70 bg-white/90 p-8 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.35)] backdrop-blur">
+        <article className="mx-auto w-full max-w-6xl space-y-8 rounded-[40px] border border-slate-200/70 bg-white/90 p-8 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.35)] backdrop-blur">
           <header className="space-y-6">
             <span className="inline-flex rounded-full bg-cyan-300/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-slate-800">
               {article.category ?? "Atualizações"}

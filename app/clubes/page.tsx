@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Filters } from "@/components/Filters";
 import { Button } from "@/components/ui/button";
 
 interface Club {
@@ -21,20 +22,27 @@ interface ClubsResponse {
 interface PageProps {
   searchParams: {
     page?: string;
+    q?: string;
   };
 }
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 const PAGE_SIZE = 16;
 
-async function getClubs(page: number): Promise<ClubsResponse> {
+async function getClubs(page: number, search: string): Promise<ClubsResponse> {
   try {
-    const res = await fetch(
-      `${baseUrl}/api/clubes?page=${page}&limit=${PAGE_SIZE}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const params = new URLSearchParams({
+      page: String(page),
+      limit: String(PAGE_SIZE),
+    });
+
+    if (search) {
+      params.set("search", search);
+    }
+
+    const res = await fetch(`${baseUrl}/api/clubes?${params.toString()}`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       throw new Error("Resposta inválida ao carregar clubes");
@@ -52,52 +60,41 @@ async function getClubs(page: number): Promise<ClubsResponse> {
   }
 }
 
+function buildPaginationQuery(page: number, search: string) {
+  const params = new URLSearchParams();
+  params.set("page", String(page));
+
+  if (search) {
+    params.set("q", search);
+  }
+
+  return params.toString();
+}
+
 export default async function ClubesPage({ searchParams }: PageProps) {
   const page = Number(searchParams.page) || 1;
-  const { items: clubs, totalPages } = await getClubs(page);
+  const search = (searchParams.q || "").trim();
+  const { items: clubs, totalPages } = await getClubs(page, search);
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       <main className="container flex flex-col gap-12 pb-24 pt-16">
-        <header className="flex flex-col gap-6">
-          <h1 className="font-heading text-[44px] font-semibold leading-tight text-slate-900 md:text-[56px]">
-            Clubes
-          </h1>
+        <header className="flex flex-col gap-8">
+          <div className="space-y-2">
+            <h1 className="font-heading text-[44px] font-semibold leading-tight text-slate-900 md:text-[56px]">
+              Clubes
+            </h1>
+            <p className="text-base text-slate-500">
+              Conheça clubes cadastrados e busque por nome, confederação ou estado.
+            </p>
+          </div>
 
-          <div className="rounded-[32px] bg-white p-6 shadow-[0_8px_32px_rgba(15,23,42,0.12)]">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-              <div className="relative flex-1">
-                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-6 text-slate-400">
-                  <svg
-                    aria-hidden
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M21 21l-4.35-4.35m1.35-3.65a6 6 0 11-12 0 6 6 0 0112 0z"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-                <input
-                  className="h-16 w-full rounded-full border border-slate-200/80 bg-white px-16 text-base text-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] outline-none transition"
-                  placeholder="Filtros: Nome, Idade, Cidade, Estado"
-                  type="search"
-                  disabled
-                />
-              </div>
-
-              <Button
-                className="h-16 w-full rounded-full bg-[#22C55E] px-10 text-base font-semibold tracking-wide text-white shadow-[0_18px_32px_-18px_rgba(34,197,94,0.8)] transition hover:-translate-y-0.5 hover:bg-[#1EB153] focus-visible:ring-[#22C55E]/60 lg:w-auto"
-                type="button"
-              >
-                Filtrar
-              </Button>
-            </div>
+          <div className="rounded-[32px] border border-white/60 bg-white/95 px-6 py-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
+            <Filters
+              defaultValue={search}
+              method="get"
+              placeholder="Filtros: Nome, Confederação, Estado"
+            />
           </div>
         </header>
 
@@ -146,7 +143,10 @@ export default async function ClubesPage({ searchParams }: PageProps) {
                 variant="ghost"
                 className="bg-white/70 px-8 text-slate-600 hover:bg-white"
               >
-                <Link href={`/clubes?page=${page - 1}`} prefetch={false}>
+                <Link
+                  href={`/clubes?${buildPaginationQuery(page - 1, search)}`}
+                  prefetch={false}
+                >
                   Anterior
                 </Link>
               </Button>
@@ -170,7 +170,10 @@ export default async function ClubesPage({ searchParams }: PageProps) {
                 variant="ghost"
                 className="bg-white/70 px-8 text-slate-600 hover:bg-white"
               >
-                <Link href={`/clubes?page=${page + 1}`} prefetch={false}>
+                <Link
+                  href={`/clubes?${buildPaginationQuery(page + 1, search)}`}
+                  prefetch={false}
+                >
                   Próxima
                 </Link>
               </Button>

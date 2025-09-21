@@ -1,0 +1,70 @@
+"use client"
+
+import { MapPin, Shield, Sparkles, Trophy } from "lucide-react"
+
+export interface FavoriteTeamInfo {
+  id: string
+  clube: string
+  sigla: string
+  apelido: string
+  mascote: string
+  divisao: string
+  cidade: string
+  estado: string
+  fundacao: number | null
+  maiorIdolo: string
+}
+
+interface FavoriteTeamCardProps {
+  team: FavoriteTeamInfo
+}
+
+export function FavoriteTeamCard({ team }: FavoriteTeamCardProps) {
+  return (
+    <article className="flex flex-col gap-6 rounded-[32px] border border-white/70 bg-white/95 p-8 shadow-[0_32px_90px_-48px_rgba(14,116,144,0.55)]">
+      <header className="space-y-3">
+        <div className="inline-flex items-center gap-2 rounded-full bg-sky-100/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-sky-600">
+          <Shield className="h-4 w-4" aria-hidden />
+          Clube do coração
+        </div>
+        <div className="flex flex-wrap items-baseline gap-3">
+          <h3 className="font-heading text-2xl font-semibold text-slate-900">
+            {team.clube}
+          </h3>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium uppercase tracking-[0.28em] text-slate-500">
+            {team.sigla}
+          </span>
+        </div>
+        <p className="text-sm text-slate-500">
+          {team.apelido}
+          {team.mascote ? ` • Mascote: ${team.mascote}` : ""}
+        </p>
+      </header>
+      <dl className="grid gap-4 text-sm text-slate-600 md:grid-cols-2">
+        <div className="rounded-2xl bg-slate-50 p-4 shadow-[0_18px_50px_-40px_rgba(15,23,42,0.6)]">
+          <dt className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-400">
+            <MapPin className="h-4 w-4 text-sky-500" aria-hidden /> Localização
+          </dt>
+          <dd className="mt-2 font-semibold text-slate-800">
+            {team.cidade} - {team.estado}
+          </dd>
+        </div>
+        <div className="rounded-2xl bg-slate-50 p-4 shadow-[0_18px_50px_-40px_rgba(15,23,42,0.6)]">
+          <dt className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-400">
+            <Trophy className="h-4 w-4 text-emerald-500" aria-hidden /> Fundação
+          </dt>
+          <dd className="mt-2 font-semibold text-slate-800">
+            {team.fundacao ? `${team.fundacao}` : "Ano não informado"}
+          </dd>
+        </div>
+        <div className="rounded-2xl bg-slate-50 p-4 shadow-[0_18px_50px_-40px_rgba(15,23,42,0.6)] md:col-span-2">
+          <dt className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-400">
+            <Sparkles className="h-4 w-4 text-amber-500" aria-hidden /> Maior ídolo
+          </dt>
+          <dd className="mt-2 font-semibold text-slate-800">{team.maiorIdolo}</dd>
+          <p className="mt-3 text-xs uppercase tracking-[0.28em] text-slate-400">Divisão atual: {team.divisao}</p>
+        </div>
+      </dl>
+    </article>
+  )
+}

@@ -126,7 +126,10 @@ function buildDetails(profile: AthleteProfile) {
   return [
     profile.perna && { label: "Perna dominante", value: profile.perna },
     profile.peso && { label: "Peso", value: profile.peso },
-    profile.clube && { label: "Clube", value: profile.clube },
+    profile.favoriteClub?.clube && {
+      label: "Clube",
+      value: profile.favoriteClub.clube,
+    },
     profile.pais && { label: "País", value: profile.pais },
   ].filter(Boolean) as { label: string; value: string }[];
 }

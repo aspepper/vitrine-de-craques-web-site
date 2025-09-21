@@ -1,11 +1,11 @@
 {
-  "id": "5:974",
-  "name": "Torcida Grid",
+  "id": "5:498",
+  "name": "Clubes Grid",
   "type": "FRAME",
   "scrollBehavior": "SCROLLS",
   "children": [
     {
-      "id": "5:975",
+      "id": "5:499",
       "name": "Vector",
       "type": "VECTOR",
       "scrollBehavior": "SCROLLS",
@@ -26,10 +26,10 @@
       "strokeWeight": 1.0,
       "strokeAlign": "INSIDE",
       "absoluteBoundingBox": {
-        "x": 6198.0,
-        "y": -6198.0,
+        "x": 1148.0,
+        "y": -3967.0,
         "width": 1440.0,
-        "height": 1400.0
+        "height": 1300.0
       },
       "constraints": {
         "vertical": "SCALE",
@@ -39,19 +39,19 @@
       "interactions": []
     },
     {
-      "id": "199:24193",
+      "id": "197:23611",
       "name": "Group",
       "type": "GROUP",
       "scrollBehavior": "SCROLLS",
       "children": [
         {
-          "id": "199:24194",
+          "id": "197:23612",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24195",
+              "id": "197:23613",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -72,10 +72,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -5894.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1173.0,
+                "y": -3673.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -103,7 +103,7 @@
               "interactions": []
             },
             {
-              "id": "199:24196",
+              "id": "197:23614",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -124,10 +124,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -5870.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1269.5,
+                "y": -3653.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -137,8 +137,8 @@
               "interactions": []
             },
             {
-              "id": "199:24197",
-              "name": "Torcedor 1",
+              "id": "197:23615",
+              "name": "Clube 1",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -158,75 +158,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6318.0,
-                "y": -5862.0,
-                "width": 83.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 1",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24198",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 6318.0,
-                "y": -5834.0,
-                "width": 79.0,
+                "x": 1284.5,
+                "y": -3553.0,
+                "width": 42.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 1",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -242,7 +183,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -268,26 +209,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -5894.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1173.0,
+            "y": -3673.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24199",
+          "id": "197:23616",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24200",
+              "id": "197:23617",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -308,10 +266,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -5894.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1454.0,
+                "y": -3673.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -339,7 +297,7 @@
               "interactions": []
             },
             {
-              "id": "199:24201",
+              "id": "197:23618",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -360,10 +318,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -5870.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1550.5,
+                "y": -3653.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -373,8 +331,8 @@
               "interactions": []
             },
             {
-              "id": "199:24202",
-              "name": "Torcedor 2",
+              "id": "197:23619",
+              "name": "Clube 2",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -394,75 +352,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6672.0,
-                "y": -5862.0,
-                "width": 85.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 2",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24203",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 6672.0,
-                "y": -5834.0,
-                "width": 79.0,
+                "x": 1564.5,
+                "y": -3553.0,
+                "width": 44.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 2",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -478,7 +377,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -504,26 +403,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6576.0,
-            "y": -5894.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1454.0,
+            "y": -3673.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24204",
+          "id": "197:23620",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24205",
+              "id": "197:23621",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -544,10 +460,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6930.0,
-                "y": -5894.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1735.0,
+                "y": -3673.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -575,7 +491,7 @@
               "interactions": []
             },
             {
-              "id": "199:24206",
+              "id": "197:23622",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -596,10 +512,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -5870.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1831.5,
+                "y": -3653.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -609,8 +525,8 @@
               "interactions": []
             },
             {
-              "id": "199:24207",
-              "name": "Torcedor 3",
+              "id": "197:23623",
+              "name": "Clube 3",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -630,75 +546,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7026.0,
-                "y": -5862.0,
-                "width": 86.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 3",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24208",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 7026.0,
-                "y": -5834.0,
-                "width": 79.0,
+                "x": 1845.0,
+                "y": -3553.0,
+                "width": 45.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 3",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -714,7 +571,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -740,26 +597,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6930.0,
-            "y": -5894.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1735.0,
+            "y": -3673.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24209",
+          "id": "197:23624",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24210",
+              "id": "197:23625",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -780,10 +654,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7284.0,
-                "y": -5894.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 2016.0,
+                "y": -3673.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -811,7 +685,7 @@
               "interactions": []
             },
             {
-              "id": "199:24211",
+              "id": "197:23626",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -832,10 +706,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -5870.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 2112.5,
+                "y": -3653.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -845,8 +719,8 @@
               "interactions": []
             },
             {
-              "id": "199:24212",
-              "name": "Torcedor 4",
+              "id": "197:23627",
+              "name": "Clube 4",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -866,75 +740,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7380.0,
-                "y": -5862.0,
-                "width": 86.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 4",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24213",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 7380.0,
-                "y": -5834.0,
-                "width": 79.0,
+                "x": 2126.0,
+                "y": -3553.0,
+                "width": 45.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 4",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -950,7 +765,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -976,26 +791,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7284.0,
-            "y": -5894.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 2016.0,
+            "y": -3673.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24214",
+          "id": "197:23628",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24215",
+              "id": "197:23629",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1016,10 +848,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -5670.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 2297.0,
+                "y": -3673.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1047,7 +879,7 @@
               "interactions": []
             },
             {
-              "id": "199:24216",
+              "id": "197:23630",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1068,10 +900,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -5646.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 2393.5,
+                "y": -3653.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1081,8 +913,8 @@
               "interactions": []
             },
             {
-              "id": "199:24217",
-              "name": "Torcedor 5",
+              "id": "197:23631",
+              "name": "Clube 5",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1102,75 +934,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6318.0,
-                "y": -5638.0,
-                "width": 85.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 5",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24218",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 6318.0,
-                "y": -5610.0,
-                "width": 79.0,
+                "x": 2407.5,
+                "y": -3553.0,
+                "width": 44.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 5",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1186,7 +959,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -1212,26 +985,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -5670.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 2297.0,
+            "y": -3673.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24219",
+          "id": "197:23632",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24220",
+              "id": "197:23633",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1252,10 +1042,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -5670.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1173.0,
+                "y": -3497.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1283,7 +1073,7 @@
               "interactions": []
             },
             {
-              "id": "199:24221",
+              "id": "197:23634",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1304,10 +1094,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -5646.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1269.5,
+                "y": -3477.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1317,8 +1107,8 @@
               "interactions": []
             },
             {
-              "id": "199:24222",
-              "name": "Torcedor 6",
+              "id": "197:23635",
+              "name": "Clube 6",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1338,75 +1128,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6672.0,
-                "y": -5638.0,
-                "width": 86.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 6",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24223",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 6672.0,
-                "y": -5610.0,
-                "width": 79.0,
+                "x": 1283.5,
+                "y": -3377.0,
+                "width": 44.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 6",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1422,7 +1153,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -1448,26 +1179,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6576.0,
-            "y": -5670.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1173.0,
+            "y": -3497.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24224",
+          "id": "197:23636",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24225",
+              "id": "197:23637",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1488,10 +1236,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6930.0,
-                "y": -5670.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1454.0,
+                "y": -3497.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1519,7 +1267,7 @@
               "interactions": []
             },
             {
-              "id": "199:24226",
+              "id": "197:23638",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1540,10 +1288,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -5646.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1550.5,
+                "y": -3477.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1553,8 +1301,8 @@
               "interactions": []
             },
             {
-              "id": "199:24227",
-              "name": "Torcedor 7",
+              "id": "197:23639",
+              "name": "Clube 7",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1574,75 +1322,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7026.0,
-                "y": -5638.0,
-                "width": 85.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 7",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24228",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 7026.0,
-                "y": -5610.0,
-                "width": 79.0,
+                "x": 1564.5,
+                "y": -3377.0,
+                "width": 44.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 7",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1658,7 +1347,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -1684,26 +1373,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6930.0,
-            "y": -5670.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1454.0,
+            "y": -3497.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24229",
+          "id": "197:23640",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24230",
+              "id": "197:23641",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1724,10 +1430,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7284.0,
-                "y": -5670.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1735.0,
+                "y": -3497.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1755,7 +1461,7 @@
               "interactions": []
             },
             {
-              "id": "199:24231",
+              "id": "197:23642",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1776,10 +1482,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -5646.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1831.5,
+                "y": -3477.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1789,8 +1495,8 @@
               "interactions": []
             },
             {
-              "id": "199:24232",
-              "name": "Torcedor 8",
+              "id": "197:23643",
+              "name": "Clube 8",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -1810,75 +1516,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7380.0,
-                "y": -5638.0,
-                "width": 86.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 8",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24233",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 7380.0,
-                "y": -5610.0,
-                "width": 79.0,
+                "x": 1845.5,
+                "y": -3377.0,
+                "width": 44.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 8",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -1894,7 +1541,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -1920,26 +1567,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7284.0,
-            "y": -5670.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1735.0,
+            "y": -3497.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24234",
+          "id": "197:23644",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24235",
+              "id": "197:23645",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -1960,10 +1624,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -5446.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 2016.0,
+                "y": -3497.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -1991,7 +1655,7 @@
               "interactions": []
             },
             {
-              "id": "199:24236",
+              "id": "197:23646",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2012,10 +1676,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6238.0,
-                "y": -5422.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 2112.5,
+                "y": -3477.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2025,8 +1689,8 @@
               "interactions": []
             },
             {
-              "id": "199:24237",
-              "name": "Torcedor 9",
+              "id": "197:23647",
+              "name": "Clube 9",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2046,75 +1710,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6318.0,
-                "y": -5414.0,
-                "width": 86.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 9",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24238",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 6318.0,
-                "y": -5386.0,
-                "width": 79.0,
+                "x": 2126.5,
+                "y": -3377.0,
+                "width": 44.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 9",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2130,7 +1735,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -2156,26 +1761,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -5446.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 2016.0,
+            "y": -3497.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24239",
+          "id": "197:23648",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24240",
+              "id": "197:23649",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2196,10 +1818,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -5446.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 2297.0,
+                "y": -3497.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2227,7 +1849,7 @@
               "interactions": []
             },
             {
-              "id": "199:24241",
+              "id": "197:23650",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2248,10 +1870,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6592.0,
-                "y": -5422.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 2393.5,
+                "y": -3477.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2261,8 +1883,8 @@
               "interactions": []
             },
             {
-              "id": "199:24242",
-              "name": "Torcedor 10",
+              "id": "197:23651",
+              "name": "Clube 10",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2282,75 +1904,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6672.0,
-                "y": -5414.0,
-                "width": 94.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 10",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24243",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 6672.0,
-                "y": -5386.0,
-                "width": 79.0,
+                "x": 2404.5,
+                "y": -3377.0,
+                "width": 50.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 10",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2366,7 +1929,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -2392,26 +1955,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6576.0,
-            "y": -5446.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 2297.0,
+            "y": -3497.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24244",
+          "id": "197:23652",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24245",
+              "id": "197:23653",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2432,10 +2012,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6930.0,
-                "y": -5446.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1173.0,
+                "y": -3321.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2463,7 +2043,7 @@
               "interactions": []
             },
             {
-              "id": "199:24246",
+              "id": "197:23654",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2484,10 +2064,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6946.0,
-                "y": -5422.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1269.5,
+                "y": -3301.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2497,8 +2077,8 @@
               "interactions": []
             },
             {
-              "id": "199:24247",
-              "name": "Torcedor 11",
+              "id": "197:23655",
+              "name": "Clube 11",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2518,75 +2098,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7026.0,
-                "y": -5414.0,
-                "width": 91.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 11",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24248",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 7026.0,
-                "y": -5386.0,
-                "width": 79.0,
+                "x": 1281.5,
+                "y": -3201.0,
+                "width": 48.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 11",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2602,7 +2123,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -2628,26 +2149,43 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6930.0,
-            "y": -5446.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1173.0,
+            "y": -3321.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
           "effects": [],
-          "interactions": []
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "199:24249",
+          "id": "197:23656",
           "name": "Group",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "199:24250",
+              "id": "197:23657",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2668,10 +2206,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7284.0,
-                "y": -5446.0,
-                "width": 330.0,
-                "height": 200.0
+                "x": 1454.0,
+                "y": -3321.0,
+                "width": 265.0,
+                "height": 160.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2699,7 +2237,7 @@
               "interactions": []
             },
             {
-              "id": "199:24251",
+              "id": "197:23658",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -2720,10 +2258,10 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7300.0,
-                "y": -5422.0,
-                "width": 64.0,
-                "height": 64.0
+                "x": 1550.5,
+                "y": -3301.0,
+                "width": 72.0,
+                "height": 72.0
               },
               "constraints": {
                 "vertical": "SCALE",
@@ -2733,8 +2271,8 @@
               "interactions": []
             },
             {
-              "id": "199:24252",
-              "name": "Torcedor 12",
+              "id": "197:23659",
+              "name": "Clube 12",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
               "blendMode": "PASS_THROUGH",
@@ -2754,75 +2292,16 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7380.0,
-                "y": -5414.0,
-                "width": 93.0,
-                "height": 19.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Torcedor 12",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 16.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 19.363636016845703,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "199:24253",
-              "name": "Time · Cidade",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.41960784792900085,
-                    "g": 0.4470588266849518,
-                    "b": 0.501960813999176,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": 7380.0,
-                "y": -5386.0,
-                "width": 79.0,
+                "x": 1561.5,
+                "y": -3201.0,
+                "width": 50.0,
                 "height": 15.0
               },
               "constraints": {
                 "vertical": "SCALE",
                 "horizontal": "SCALE"
               },
-              "characters": "Time · Cidade",
+              "characters": "Clube 12",
               "characterStyleOverrides": [],
               "styleOverrideTable": {},
               "lineTypes": [
@@ -2838,7 +2317,7 @@
                 "fontWeight": 400,
                 "textAutoResize": "WIDTH_AND_HEIGHT",
                 "fontSize": 12.0,
-                "textAlignHorizontal": "LEFT",
+                "textAlignHorizontal": "CENTER",
                 "textAlignVertical": "TOP",
                 "letterSpacing": 0.0,
                 "lineHeightPx": 14.522727012634277,
@@ -2864,10 +2343,609 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7284.0,
-            "y": -5446.0,
-            "width": 330.0,
-            "height": 200.0
+            "x": 1454.0,
+            "y": -3321.0,
+            "width": 265.0,
+            "height": 160.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "197:23660",
+          "name": "Group",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "197:23661",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 1735.0,
+                "y": -3321.0,
+                "width": 265.0,
+                "height": 160.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [
+                {
+                  "type": "DROP_SHADOW",
+                  "visible": true,
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 0.25
+                  },
+                  "blendMode": "NORMAL",
+                  "offset": {
+                    "x": 0.0,
+                    "y": 8.0
+                  },
+                  "radius": 32.0,
+                  "showShadowBehindNode": true
+                }
+              ],
+              "interactions": []
+            },
+            {
+              "id": "197:23662",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.06666667014360428,
+                    "g": 0.0941176488995552,
+                    "b": 0.15294118225574493,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 1831.5,
+                "y": -3301.0,
+                "width": 72.0,
+                "height": 72.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "197:23663",
+              "name": "Clube 13",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 1842.5,
+                "y": -3201.0,
+                "width": 50.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Clube 13",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 1735.0,
+            "y": -3321.0,
+            "width": 265.0,
+            "height": 160.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "197:23664",
+          "name": "Group",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "197:23665",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2016.0,
+                "y": -3321.0,
+                "width": 265.0,
+                "height": 160.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [
+                {
+                  "type": "DROP_SHADOW",
+                  "visible": true,
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 0.25
+                  },
+                  "blendMode": "NORMAL",
+                  "offset": {
+                    "x": 0.0,
+                    "y": 8.0
+                  },
+                  "radius": 32.0,
+                  "showShadowBehindNode": true
+                }
+              ],
+              "interactions": []
+            },
+            {
+              "id": "197:23666",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.06666667014360428,
+                    "g": 0.0941176488995552,
+                    "b": 0.15294118225574493,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2112.5,
+                "y": -3301.0,
+                "width": 72.0,
+                "height": 72.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "197:23667",
+              "name": "Clube 14",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2123.5,
+                "y": -3201.0,
+                "width": 50.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Clube 14",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 2016.0,
+            "y": -3321.0,
+            "width": 265.0,
+            "height": 160.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "effects": [],
+          "transitionNodeID": "5:664",
+          "transitionDuration": 300.0,
+          "transitionEasing": "EASE_OUT",
+          "interactions": [
+            {
+              "trigger": {
+                "type": "ON_CLICK"
+              },
+              "actions": [
+                {
+                  "type": "NODE",
+                  "destinationId": "5:664",
+                  "navigation": "NAVIGATE",
+                  "transition": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "197:23668",
+          "name": "Group",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "197:23669",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2297.0,
+                "y": -3321.0,
+                "width": 265.0,
+                "height": 160.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [
+                {
+                  "type": "DROP_SHADOW",
+                  "visible": true,
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 0.25
+                  },
+                  "blendMode": "NORMAL",
+                  "offset": {
+                    "x": 0.0,
+                    "y": 8.0
+                  },
+                  "radius": 32.0,
+                  "showShadowBehindNode": true
+                }
+              ],
+              "transitionNodeID": "5:664",
+              "transitionDuration": 300.0,
+              "transitionEasing": "EASE_OUT",
+              "interactions": [
+                {
+                  "trigger": {
+                    "type": "ON_CLICK"
+                  },
+                  "actions": [
+                    {
+                      "type": "NODE",
+                      "destinationId": "5:664",
+                      "navigation": "NAVIGATE",
+                      "transition": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "197:23670",
+              "name": "Vector",
+              "type": "VECTOR",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.06666667014360428,
+                    "g": 0.0941176488995552,
+                    "b": 0.15294118225574493,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2393.5,
+                "y": -3301.0,
+                "width": 72.0,
+                "height": 72.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "197:23671",
+              "name": "Clube 15",
+              "type": "TEXT",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.04313725605607033,
+                    "g": 0.05882352963089943,
+                    "b": 0.062745101749897,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 2404.5,
+                "y": -3201.0,
+                "width": 50.0,
+                "height": 15.0
+              },
+              "constraints": {
+                "vertical": "SCALE",
+                "horizontal": "SCALE"
+              },
+              "characters": "Clube 15",
+              "characterStyleOverrides": [],
+              "styleOverrideTable": {},
+              "lineTypes": [
+                "NONE"
+              ],
+              "lineIndentations": [
+                0
+              ],
+              "style": {
+                "fontFamily": "Inter",
+                "fontPostScriptName": null,
+                "fontStyle": "Regular",
+                "fontWeight": 400,
+                "textAutoResize": "WIDTH_AND_HEIGHT",
+                "fontSize": 12.0,
+                "textAlignHorizontal": "CENTER",
+                "textAlignVertical": "TOP",
+                "letterSpacing": 0.0,
+                "lineHeightPx": 14.522727012634277,
+                "lineHeightPercent": 100.0,
+                "lineHeightUnit": "INTRINSIC_%"
+              },
+              "layoutVersion": 4,
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "absoluteBoundingBox": {
+            "x": 2297.0,
+            "y": -3321.0,
+            "width": 265.0,
+            "height": 160.0
           },
           "constraints": {
             "vertical": "SCALE",
@@ -2891,10 +2969,10 @@
         "a": 0.0
       },
       "absoluteBoundingBox": {
-        "x": 6222.0,
-        "y": -5894.0,
-        "width": 1392.0,
-        "height": 648.0
+        "x": 1173.0,
+        "y": -3673.0,
+        "width": 1389.0,
+        "height": 512.0
       },
       "constraints": {
         "vertical": "SCALE",
@@ -2904,73 +2982,14 @@
       "interactions": []
     },
     {
-      "id": "199:24254",
-      "name": "Torcida",
-      "type": "TEXT",
-      "scrollBehavior": "SCROLLS",
-      "blendMode": "PASS_THROUGH",
-      "fills": [
-        {
-          "blendMode": "NORMAL",
-          "type": "SOLID",
-          "color": {
-            "r": 0.04313725605607033,
-            "g": 0.05882352963089943,
-            "b": 0.062745101749897,
-            "a": 1.0
-          }
-        }
-      ],
-      "strokes": [],
-      "strokeWeight": 1.0,
-      "strokeAlign": "INSIDE",
-      "absoluteBoundingBox": {
-        "x": 6229.0,
-        "y": -6065.0,
-        "width": 103.0,
-        "height": 34.0
-      },
-      "constraints": {
-        "vertical": "SCALE",
-        "horizontal": "SCALE"
-      },
-      "characters": "Torcida",
-      "characterStyleOverrides": [],
-      "styleOverrideTable": {},
-      "lineTypes": [
-        "NONE"
-      ],
-      "lineIndentations": [
-        0
-      ],
-      "style": {
-        "fontFamily": "Inter",
-        "fontPostScriptName": "Inter-BoldItalic",
-        "fontStyle": "Bold Italic",
-        "italic": true,
-        "fontWeight": 700,
-        "textAutoResize": "WIDTH_AND_HEIGHT",
-        "fontSize": 28.0,
-        "textAlignHorizontal": "LEFT",
-        "textAlignVertical": "TOP",
-        "letterSpacing": 0.0,
-        "lineHeightPx": 33.8863639831543,
-        "lineHeightPercent": 100.0,
-        "lineHeightUnit": "INTRINSIC_%"
-      },
-      "layoutVersion": 4,
-      "effects": [],
-      "interactions": []
-    },
-    {
-      "id": "199:24255",
+      "id": "197:23701",
       "name": "Header Padrão Logado",
       "type": "INSTANCE",
       "scrollBehavior": "SCROLLS",
       "componentId": "112:1576",
       "overrides": [
         {
-          "id": "I199:24255;112:1555",
+          "id": "I197:23701;112:1555",
           "overriddenFields": [
             "transitionDuration",
             "transitionEasing",
@@ -2980,7 +2999,7 @@
       ],
       "children": [
         {
-          "id": "I199:24255;112:1542",
+          "id": "I197:23701;112:1542",
           "name": "Vector",
           "type": "VECTOR",
           "scrollBehavior": "SCROLLS",
@@ -3001,8 +3020,8 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": 6198.0,
-            "y": -6198.0,
+            "x": 1148.0,
+            "y": -3967.0,
             "width": 1440.0,
             "height": 96.0
           },
@@ -3032,13 +3051,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;253:3661",
+          "id": "I197:23701;253:3661",
           "name": "TextBox-Busca",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;253:3662",
+              "id": "I197:23701;253:3662",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3070,8 +3089,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "CENTER",
               "absoluteBoundingBox": {
-                "x": 7166.0,
-                "y": -6171.0,
+                "x": 2116.0,
+                "y": -3940.0,
                 "width": 228.0,
                 "height": 40.0
               },
@@ -3083,7 +3102,7 @@
               "interactions": []
             },
             {
-              "id": "I199:24255;253:3663",
+              "id": "I197:23701;253:3663",
               "name": "Buscar...",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3104,8 +3123,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7182.0,
-                "y": -6159.0,
+                "x": 2132.0,
+                "y": -3928.0,
                 "width": 57.0,
                 "height": 17.0
               },
@@ -3155,8 +3174,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7166.0,
-            "y": -6171.0,
+            "x": 2116.0,
+            "y": -3940.0,
             "width": 228.0,
             "height": 40.0
           },
@@ -3168,13 +3187,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;112:1564",
+          "id": "I197:23701;112:1564",
           "name": "Botão-Link-Perfil",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;112:1565",
+              "id": "I197:23701;112:1565",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3195,8 +3214,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7474.0,
-                "y": -6170.0,
+                "x": 2424.0,
+                "y": -3939.0,
                 "width": 36.0,
                 "height": 36.0
               },
@@ -3208,7 +3227,7 @@
               "interactions": []
             },
             {
-              "id": "I199:24255;112:1566",
+              "id": "I197:23701;112:1566",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3229,8 +3248,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7486.0,
-                "y": -6162.0,
+                "x": 2436.0,
+                "y": -3931.0,
                 "width": 12.0,
                 "height": 12.0
               },
@@ -3242,7 +3261,7 @@
               "interactions": []
             },
             {
-              "id": "I199:24255;112:1567",
+              "id": "I197:23701;112:1567",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3263,8 +3282,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7478.0,
-                "y": -6146.0,
+                "x": 2428.0,
+                "y": -3915.0,
                 "width": 28.0,
                 "height": 6.0
               },
@@ -3290,8 +3309,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7474.0,
-            "y": -6170.0,
+            "x": 2424.0,
+            "y": -3939.0,
             "width": 36.0,
             "height": 36.0
           },
@@ -3303,13 +3322,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;112:1568",
+          "id": "I197:23701;112:1568",
           "name": "Botão-Logout",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;112:1569",
+              "id": "I197:23701;112:1569",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3341,8 +3360,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "CENTER",
               "absoluteBoundingBox": {
-                "x": 7530.0,
-                "y": -6168.0,
+                "x": 2480.0,
+                "y": -3937.0,
                 "width": 40.0,
                 "height": 32.0
               },
@@ -3354,7 +3373,7 @@
               "interactions": []
             },
             {
-              "id": "I199:24255;112:1570",
+              "id": "I197:23701;112:1570",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3377,8 +3396,8 @@
               "strokeJoin": "ROUND",
               "strokeCap": "ROUND",
               "absoluteBoundingBox": {
-                "x": 7540.0,
-                "y": -6158.0,
+                "x": 2490.0,
+                "y": -3927.0,
                 "width": 16.0,
                 "height": 12.0
               },
@@ -3404,8 +3423,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7530.0,
-            "y": -6168.0,
+            "x": 2480.0,
+            "y": -3937.0,
             "width": 40.0,
             "height": 32.0
           },
@@ -3417,13 +3436,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;112:1561",
+          "id": "I197:23701;112:1561",
           "name": "Botão-Link-Upload",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;112:1562",
+              "id": "I197:23701;112:1562",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3455,8 +3474,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "CENTER",
               "absoluteBoundingBox": {
-                "x": 7418.0,
-                "y": -6168.0,
+                "x": 2368.0,
+                "y": -3937.0,
                 "width": 40.0,
                 "height": 32.0
               },
@@ -3468,7 +3487,7 @@
               "interactions": []
             },
             {
-              "id": "I199:24255;112:1563",
+              "id": "I197:23701;112:1563",
               "name": "Vector",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -3491,8 +3510,8 @@
               "strokeJoin": "ROUND",
               "strokeCap": "ROUND",
               "absoluteBoundingBox": {
-                "x": 7432.0,
-                "y": -6158.0,
+                "x": 2382.0,
+                "y": -3927.0,
                 "width": 12.0,
                 "height": 12.0
               },
@@ -3518,8 +3537,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7418.0,
-            "y": -6168.0,
+            "x": 2368.0,
+            "y": -3937.0,
             "width": 40.0,
             "height": 32.0
           },
@@ -3531,13 +3550,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;254:2792",
+          "id": "I197:23701;254:2792",
           "name": "Link-Confederacoes",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2793",
+              "id": "I197:23701;254:2793",
               "name": "Confederações",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3558,8 +3577,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7022.0,
-                "y": -6158.0,
+                "x": 1972.0,
+                "y": -3927.0,
                 "width": 102.0,
                 "height": 17.0
               },
@@ -3633,8 +3652,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7022.0,
-            "y": -6158.0,
+            "x": 1972.0,
+            "y": -3927.0,
             "width": 102.0,
             "height": 17.0
           },
@@ -3646,13 +3665,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;254:2794",
+          "id": "I197:23701;254:2794",
           "name": "Link-Games",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2795",
+              "id": "I197:23701;254:2795",
               "name": "Games",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3673,8 +3692,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6961.0,
-                "y": -6158.0,
+                "x": 1911.0,
+                "y": -3927.0,
                 "width": 46.0,
                 "height": 17.0
               },
@@ -3748,8 +3767,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6961.0,
-            "y": -6158.0,
+            "x": 1911.0,
+            "y": -3927.0,
             "width": 46.0,
             "height": 17.0
           },
@@ -3761,13 +3780,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;254:2796",
+          "id": "I197:23701;254:2796",
           "name": "Link-Noticias",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2797",
+              "id": "I197:23701;254:2797",
               "name": "Notícias",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3788,8 +3807,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6891.0,
-                "y": -6158.0,
+                "x": 1841.0,
+                "y": -3927.0,
                 "width": 54.0,
                 "height": 17.0
               },
@@ -3863,8 +3882,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6891.0,
-            "y": -6158.0,
+            "x": 1841.0,
+            "y": -3927.0,
             "width": 54.0,
             "height": 17.0
           },
@@ -3876,13 +3895,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;254:2798",
+          "id": "I197:23701;254:2798",
           "name": "Link-Clubes",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2799",
+              "id": "I197:23701;254:2799",
               "name": "Clubes",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -3903,8 +3922,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6829.0,
-                "y": -6158.0,
+                "x": 1779.0,
+                "y": -3927.0,
                 "width": 46.0,
                 "height": 17.0
               },
@@ -3978,8 +3997,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6829.0,
-            "y": -6158.0,
+            "x": 1779.0,
+            "y": -3927.0,
             "width": 46.0,
             "height": 17.0
           },
@@ -3991,13 +4010,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;254:2800",
+          "id": "I197:23701;254:2800",
           "name": "Link-Agentes",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2801",
+              "id": "I197:23701;254:2801",
               "name": "Agentes",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -4018,8 +4037,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6758.0,
-                "y": -6158.0,
+                "x": 1708.0,
+                "y": -3927.0,
                 "width": 55.0,
                 "height": 17.0
               },
@@ -4093,8 +4112,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6758.0,
-            "y": -6158.0,
+            "x": 1708.0,
+            "y": -3927.0,
             "width": 55.0,
             "height": 17.0
           },
@@ -4106,13 +4125,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;254:2802",
+          "id": "I197:23701;254:2802",
           "name": "Link-Torcida",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2803",
+              "id": "I197:23701;254:2803",
               "name": "Torcida",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -4133,8 +4152,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6693.0,
-                "y": -6159.0,
+                "x": 1643.0,
+                "y": -3928.0,
                 "width": 49.0,
                 "height": 17.0
               },
@@ -4208,8 +4227,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6693.0,
-            "y": -6159.0,
+            "x": 1643.0,
+            "y": -3928.0,
             "width": 49.0,
             "height": 17.0
           },
@@ -4221,13 +4240,13 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;254:2804",
+          "id": "I197:23701;254:2804",
           "name": "Link-Atletas",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2805",
+              "id": "I197:23701;254:2805",
               "name": "Atletas",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -4248,8 +4267,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6627.0,
-                "y": -6159.0,
+                "x": 1577.0,
+                "y": -3928.0,
                 "width": 46.0,
                 "height": 17.0
               },
@@ -4306,8 +4325,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6627.0,
-            "y": -6159.0,
+            "x": 1577.0,
+            "y": -3928.0,
             "width": 46.0,
             "height": 17.0
           },
@@ -4336,13 +4355,13 @@
           ]
         },
         {
-          "id": "I199:24255;254:2806",
+          "id": "I197:23701;254:2806",
           "name": "Link-Feed",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2807",
+              "id": "I197:23701;254:2807",
               "name": "Feed",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -4363,8 +4382,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6576.0,
-                "y": -6159.0,
+                "x": 1526.0,
+                "y": -3928.0,
                 "width": 33.0,
                 "height": 17.0
               },
@@ -4421,8 +4440,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6576.0,
-            "y": -6159.0,
+            "x": 1526.0,
+            "y": -3928.0,
             "width": 33.0,
             "height": 17.0
           },
@@ -4451,13 +4470,13 @@
           ]
         },
         {
-          "id": "I199:24255;254:2808",
+          "id": "I197:23701;254:2808",
           "name": "Link-Home",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24255;254:2809",
+              "id": "I197:23701;254:2809",
               "name": "Home",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -4478,8 +4497,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 6520.0,
-                "y": -6159.0,
+                "x": 1470.0,
+                "y": -3928.0,
                 "width": 40.0,
                 "height": 17.0
               },
@@ -4536,8 +4555,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6520.0,
-            "y": -6159.0,
+            "x": 1470.0,
+            "y": -3928.0,
             "width": 40.0,
             "height": 17.0
           },
@@ -4549,7 +4568,7 @@
           "interactions": []
         },
         {
-          "id": "I199:24255;112:1555",
+          "id": "I197:23701;112:1555",
           "name": "Brand-Logo",
           "type": "RECTANGLE",
           "scrollBehavior": "SCROLLS",
@@ -4578,8 +4597,8 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -6182.0,
+            "x": 1172.0,
+            "y": -3951.0,
             "width": 64.0,
             "height": 64.0
           },
@@ -4608,7 +4627,7 @@
           ]
         },
         {
-          "id": "I199:24255;112:1556",
+          "id": "I197:23701;112:1556",
           "name": "Vitrine de Craques",
           "type": "TEXT",
           "scrollBehavior": "SCROLLS",
@@ -4629,8 +4648,8 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": 6283.0,
-            "y": -6164.0,
+            "x": 1233.0,
+            "y": -3933.0,
             "width": 220.0,
             "height": 29.0
           },
@@ -4681,8 +4700,8 @@
         "a": 0.0
       },
       "absoluteBoundingBox": {
-        "x": 6198.0,
-        "y": -6198.0,
+        "x": 1148.0,
+        "y": -3967.0,
         "width": 1440.0,
         "height": 96.0
       },
@@ -4694,7 +4713,66 @@
       "interactions": []
     },
     {
-      "id": "199:24286",
+      "id": "197:23732",
+      "name": "Clubes",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0.04313725605607033,
+            "g": 0.05882352963089943,
+            "b": 0.062745101749897,
+            "a": 1.0
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1.0,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 1204.0,
+        "y": -3839.0,
+        "width": 115.875,
+        "height": 34.0
+      },
+      "constraints": {
+        "vertical": "SCALE",
+        "horizontal": "SCALE"
+      },
+      "characters": "Clubes",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Inter",
+        "fontPostScriptName": "Inter-BoldItalic",
+        "fontStyle": "Bold Italic",
+        "italic": true,
+        "fontWeight": 700,
+        "textAutoResize": "HEIGHT",
+        "fontSize": 28.0,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0.0,
+        "lineHeightPx": 33.8863639831543,
+        "lineHeightPercent": 100.0,
+        "lineHeightUnit": "INTRINSIC_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "197:23734",
       "name": "Footer Padrão",
       "type": "INSTANCE",
       "scrollBehavior": "SCROLLS",
@@ -4702,7 +4780,7 @@
       "overrides": [],
       "children": [
         {
-          "id": "I199:24286;253:4731",
+          "id": "I197:23734;253:4731",
           "name": "Fundo-Azul-Escuro",
           "type": "VECTOR",
           "scrollBehavior": "SCROLLS",
@@ -4723,8 +4801,8 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": 6198.0,
-            "y": -5146.0,
+            "x": 1148.0,
+            "y": -3015.0,
             "width": 1440.0,
             "height": 348.0
           },
@@ -4736,7 +4814,7 @@
           "interactions": []
         },
         {
-          "id": "I199:24286;253:4732",
+          "id": "I197:23734;253:4732",
           "name": "© Vitrine de Craques 2025. Todos os direitos reservados.",
           "type": "TEXT",
           "scrollBehavior": "SCROLLS",
@@ -4757,8 +4835,8 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -4858.0,
+            "x": 1172.0,
+            "y": -2727.0,
             "width": 326.0,
             "height": 15.0
           },
@@ -4794,7 +4872,7 @@
           "interactions": []
         },
         {
-          "id": "I199:24286;253:4733",
+          "id": "I197:23734;253:4733",
           "name": "Separador",
           "type": "VECTOR",
           "scrollBehavior": "SCROLLS",
@@ -4815,8 +4893,8 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -4874.0,
+            "x": 1172.0,
+            "y": -2743.0,
             "width": 1392.0,
             "height": 1.0
           },
@@ -4828,19 +4906,19 @@
           "interactions": []
         },
         {
-          "id": "I199:24286;253:4734",
+          "id": "I197:23734;253:4734",
           "name": "Redes Sociais",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24286;253:4735",
+              "id": "I197:23734;253:4735",
               "name": "LinkedIn",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4736",
+                  "id": "I197:23734;253:4736",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -4862,8 +4940,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7469.0,
-                    "y": -5098.0,
+                    "x": 2419.0,
+                    "y": -2967.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -4875,7 +4953,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4737",
+                  "id": "I197:23734;253:4737",
                   "name": "icon-linkedin",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -4892,8 +4970,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7477.0,
-                    "y": -5091.0,
+                    "x": 2427.0,
+                    "y": -2960.0,
                     "width": 25.0,
                     "height": 25.0
                   },
@@ -4924,8 +5002,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 7469.0,
-                "y": -5098.0,
+                "x": 2419.0,
+                "y": -2967.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -4937,13 +5015,13 @@
               "interactions": []
             },
             {
-              "id": "I199:24286;253:4738",
+              "id": "I197:23734;253:4738",
               "name": "Facebook",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4739",
+                  "id": "I197:23734;253:4739",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -4965,8 +5043,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7421.0,
-                    "y": -5098.0,
+                    "x": 2371.0,
+                    "y": -2967.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -4978,13 +5056,13 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4740",
+                  "id": "I197:23734;253:4740",
                   "name": "fb",
                   "type": "GROUP",
                   "scrollBehavior": "SCROLLS",
                   "children": [
                     {
-                      "id": "I199:24286;253:4741",
+                      "id": "I197:23734;253:4741",
                       "name": "icon-facebook",
                       "type": "VECTOR",
                       "scrollBehavior": "SCROLLS",
@@ -5005,8 +5083,8 @@
                       "strokeWeight": 1.0,
                       "strokeAlign": "INSIDE",
                       "absoluteBoundingBox": {
-                        "x": 7432.0,
-                        "y": -5090.0,
+                        "x": 2382.0,
+                        "y": -2959.0,
                         "width": 12.0,
                         "height": 24.0
                       },
@@ -5032,8 +5110,8 @@
                     "a": 0.0
                   },
                   "absoluteBoundingBox": {
-                    "x": 7432.0,
-                    "y": -5090.0,
+                    "x": 2382.0,
+                    "y": -2959.0,
                     "width": 12.0,
                     "height": 24.0
                   },
@@ -5059,8 +5137,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 7421.0,
-                "y": -5098.0,
+                "x": 2371.0,
+                "y": -2967.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5072,13 +5150,13 @@
               "interactions": []
             },
             {
-              "id": "I199:24286;253:4742",
+              "id": "I197:23734;253:4742",
               "name": "X-Twitter",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4743",
+                  "id": "I197:23734;253:4743",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5100,8 +5178,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7373.0,
-                    "y": -5098.0,
+                    "x": 2323.0,
+                    "y": -2967.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5113,7 +5191,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4744",
+                  "id": "I197:23734;253:4744",
                   "name": "icon-x",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5130,8 +5208,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7381.0,
-                    "y": -5090.0,
+                    "x": 2331.0,
+                    "y": -2959.0,
                     "width": 25.0,
                     "height": 25.0
                   },
@@ -5162,8 +5240,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 7373.0,
-                "y": -5098.0,
+                "x": 2323.0,
+                "y": -2967.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5175,13 +5253,13 @@
               "interactions": []
             },
             {
-              "id": "I199:24286;253:4745",
+              "id": "I197:23734;253:4745",
               "name": "Youtube",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4746",
+                  "id": "I197:23734;253:4746",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5203,8 +5281,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7325.0,
-                    "y": -5098.0,
+                    "x": 2275.0,
+                    "y": -2967.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5216,7 +5294,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4747",
+                  "id": "I197:23734;253:4747",
                   "name": "icon-youtube",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5233,8 +5311,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7333.0,
-                    "y": -5091.0,
+                    "x": 2283.0,
+                    "y": -2960.0,
                     "width": 25.0,
                     "height": 25.0
                   },
@@ -5265,8 +5343,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 7325.0,
-                "y": -5098.0,
+                "x": 2275.0,
+                "y": -2967.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5278,13 +5356,13 @@
               "interactions": []
             },
             {
-              "id": "I199:24286;253:4748",
+              "id": "I197:23734;253:4748",
               "name": "Tiktok",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4749",
+                  "id": "I197:23734;253:4749",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5306,8 +5384,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7277.0,
-                    "y": -5098.0,
+                    "x": 2227.0,
+                    "y": -2967.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5319,7 +5397,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4750",
+                  "id": "I197:23734;253:4750",
                   "name": "icon-tiktok",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5336,8 +5414,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7288.0,
-                    "y": -5088.0,
+                    "x": 2238.0,
+                    "y": -2957.0,
                     "width": 18.0,
                     "height": 18.0
                   },
@@ -5368,8 +5446,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 7277.0,
-                "y": -5098.0,
+                "x": 2227.0,
+                "y": -2967.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5381,13 +5459,13 @@
               "interactions": []
             },
             {
-              "id": "I199:24286;253:4751",
+              "id": "I197:23734;253:4751",
               "name": "Instagran",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4752",
+                  "id": "I197:23734;253:4752",
                   "name": "Vector",
                   "type": "VECTOR",
                   "scrollBehavior": "SCROLLS",
@@ -5409,8 +5487,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7229.0,
-                    "y": -5098.0,
+                    "x": 2179.0,
+                    "y": -2967.0,
                     "width": 40.0,
                     "height": 40.0
                   },
@@ -5422,7 +5500,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4753",
+                  "id": "I197:23734;253:4753",
                   "name": "icon-instagram",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -5439,8 +5517,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 7240.0,
-                    "y": -5088.0,
+                    "x": 2190.0,
+                    "y": -2957.0,
                     "width": 18.0,
                     "height": 18.0
                   },
@@ -5471,8 +5549,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 7229.0,
-                "y": -5098.0,
+                "x": 2179.0,
+                "y": -2967.0,
                 "width": 40.0,
                 "height": 40.0
               },
@@ -5484,7 +5562,7 @@
               "interactions": []
             },
             {
-              "id": "I199:24286;253:4754",
+              "id": "I197:23734;253:4754",
               "name": "Nossas redes",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -5505,8 +5583,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7229.0,
-                "y": -5130.0,
+                "x": 2179.0,
+                "y": -2999.0,
                 "width": 106.0,
                 "height": 19.0
               },
@@ -5557,8 +5635,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7229.0,
-            "y": -5130.0,
+            "x": 2179.0,
+            "y": -2999.0,
             "width": 280.0,
             "height": 72.0
           },
@@ -5570,19 +5648,19 @@
           "interactions": []
         },
         {
-          "id": "I199:24286;253:4755",
+          "id": "I197:23734;253:4755",
           "name": "Links e Detalhes",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "I199:24286;253:4756",
+              "id": "I197:23734;253:4756",
               "name": "Col-Links",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4757",
+                  "id": "I197:23734;253:4757",
                   "name": "Links rápidos",
                   "type": "TEXT",
                   "scrollBehavior": "SCROLLS",
@@ -5603,8 +5681,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 6602.0,
-                    "y": -5130.0,
+                    "x": 1552.0,
+                    "y": -2999.0,
                     "width": 105.0,
                     "height": 19.0
                   },
@@ -5641,19 +5719,19 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4758",
+                  "id": "I197:23734;253:4758",
                   "name": "Links-Footer",
                   "type": "GROUP",
                   "scrollBehavior": "SCROLLS",
                   "children": [
                     {
-                      "id": "I199:24286;253:4759",
+                      "id": "I197:23734;253:4759",
                       "name": "Link-Home",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4760",
+                          "id": "I197:23734;253:4760",
                           "name": "Home",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5674,8 +5752,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6602.0,
-                            "y": -5086.0,
+                            "x": 1552.0,
+                            "y": -2955.0,
                             "width": 40.0,
                             "height": 17.0
                           },
@@ -5732,8 +5810,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6602.0,
-                        "y": -5086.0,
+                        "x": 1552.0,
+                        "y": -2955.0,
                         "width": 40.0,
                         "height": 17.0
                       },
@@ -5745,13 +5823,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4761",
+                      "id": "I197:23734;253:4761",
                       "name": "Link-Feeds",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4762",
+                          "id": "I197:23734;253:4762",
                           "name": "Feeds",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5772,8 +5850,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6602.0,
-                            "y": -5060.0,
+                            "x": 1552.0,
+                            "y": -2929.0,
                             "width": 40.0,
                             "height": 17.0
                           },
@@ -5830,8 +5908,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6602.0,
-                        "y": -5060.0,
+                        "x": 1552.0,
+                        "y": -2929.0,
                         "width": 40.0,
                         "height": 17.0
                       },
@@ -5843,13 +5921,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4763",
+                      "id": "I197:23734;253:4763",
                       "name": "Link-Atletas",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4764",
+                          "id": "I197:23734;253:4764",
                           "name": "Atletas",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5870,8 +5948,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6602.0,
-                            "y": -5034.0,
+                            "x": 1552.0,
+                            "y": -2903.0,
                             "width": 46.0,
                             "height": 17.0
                           },
@@ -5928,8 +6006,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6602.0,
-                        "y": -5034.0,
+                        "x": 1552.0,
+                        "y": -2903.0,
                         "width": 46.0,
                         "height": 17.0
                       },
@@ -5941,13 +6019,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4765",
+                      "id": "I197:23734;253:4765",
                       "name": "Link-Torcida",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4766",
+                          "id": "I197:23734;253:4766",
                           "name": "Torcida",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -5968,8 +6046,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6602.0,
-                            "y": -5008.0,
+                            "x": 1552.0,
+                            "y": -2877.0,
                             "width": 49.0,
                             "height": 17.0
                           },
@@ -6026,8 +6104,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6602.0,
-                        "y": -5008.0,
+                        "x": 1552.0,
+                        "y": -2877.0,
                         "width": 49.0,
                         "height": 17.0
                       },
@@ -6039,13 +6117,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4767",
+                      "id": "I197:23734;253:4767",
                       "name": "Link-Agentes",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4768",
+                          "id": "I197:23734;253:4768",
                           "name": "Agentes",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6066,8 +6144,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6602.0,
-                            "y": -4982.0,
+                            "x": 1552.0,
+                            "y": -2851.0,
                             "width": 55.0,
                             "height": 17.0
                           },
@@ -6124,8 +6202,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6602.0,
-                        "y": -4982.0,
+                        "x": 1552.0,
+                        "y": -2851.0,
                         "width": 55.0,
                         "height": 17.0
                       },
@@ -6137,13 +6215,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4769",
+                      "id": "I197:23734;253:4769",
                       "name": "Link-Clubes",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4770",
+                          "id": "I197:23734;253:4770",
                           "name": "Clubes",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6164,8 +6242,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6687.0,
-                            "y": -5086.0,
+                            "x": 1637.0,
+                            "y": -2955.0,
                             "width": 46.0,
                             "height": 17.0
                           },
@@ -6222,8 +6300,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6687.0,
-                        "y": -5086.0,
+                        "x": 1637.0,
+                        "y": -2955.0,
                         "width": 46.0,
                         "height": 17.0
                       },
@@ -6235,13 +6313,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4771",
+                      "id": "I197:23734;253:4771",
                       "name": "Link-Noticias",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4772",
+                          "id": "I197:23734;253:4772",
                           "name": "Notícias",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6262,8 +6340,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6687.0,
-                            "y": -5060.0,
+                            "x": 1637.0,
+                            "y": -2929.0,
                             "width": 54.0,
                             "height": 17.0
                           },
@@ -6320,8 +6398,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6687.0,
-                        "y": -5060.0,
+                        "x": 1637.0,
+                        "y": -2929.0,
                         "width": 54.0,
                         "height": 17.0
                       },
@@ -6333,13 +6411,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4773",
+                      "id": "I197:23734;253:4773",
                       "name": "Link-Games",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4774",
+                          "id": "I197:23734;253:4774",
                           "name": "Games",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6360,8 +6438,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6687.0,
-                            "y": -5034.0,
+                            "x": 1637.0,
+                            "y": -2903.0,
                             "width": 46.0,
                             "height": 17.0
                           },
@@ -6418,8 +6496,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6687.0,
-                        "y": -5034.0,
+                        "x": 1637.0,
+                        "y": -2903.0,
                         "width": 46.0,
                         "height": 17.0
                       },
@@ -6431,13 +6509,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4775",
+                      "id": "I197:23734;253:4775",
                       "name": "Link-Confederacoes",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4776",
+                          "id": "I197:23734;253:4776",
                           "name": "Confederações",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6458,8 +6536,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6687.0,
-                            "y": -5008.0,
+                            "x": 1637.0,
+                            "y": -2877.0,
                             "width": 102.0,
                             "height": 17.0
                           },
@@ -6516,8 +6594,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6687.0,
-                        "y": -5008.0,
+                        "x": 1637.0,
+                        "y": -2877.0,
                         "width": 102.0,
                         "height": 17.0
                       },
@@ -6529,13 +6607,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4777",
+                      "id": "I197:23734;253:4777",
                       "name": "Link-Sobre",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4778",
+                          "id": "I197:23734;253:4778",
                           "name": "Sobre",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6556,8 +6634,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6687.0,
-                            "y": -4982.0,
+                            "x": 1637.0,
+                            "y": -2851.0,
                             "width": 40.0,
                             "height": 17.0
                           },
@@ -6614,8 +6692,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6687.0,
-                        "y": -4982.0,
+                        "x": 1637.0,
+                        "y": -2851.0,
                         "width": 40.0,
                         "height": 17.0
                       },
@@ -6627,13 +6705,13 @@
                       "interactions": []
                     },
                     {
-                      "id": "I199:24286;253:4779",
+                      "id": "I197:23734;253:4779",
                       "name": "Link-Privacidade",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4780",
+                          "id": "I197:23734;253:4780",
                           "name": "Privacidade",
                           "type": "TEXT",
                           "scrollBehavior": "SCROLLS",
@@ -6654,8 +6732,8 @@
                           "strokeWeight": 1.0,
                           "strokeAlign": "INSIDE",
                           "absoluteBoundingBox": {
-                            "x": 6687.0,
-                            "y": -4954.0,
+                            "x": 1637.0,
+                            "y": -2823.0,
                             "width": 78.0,
                             "height": 17.0
                           },
@@ -6712,8 +6790,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6687.0,
-                        "y": -4954.0,
+                        "x": 1637.0,
+                        "y": -2823.0,
                         "width": 78.0,
                         "height": 17.0
                       },
@@ -6746,8 +6824,8 @@
                     "a": 0.0
                   },
                   "absoluteBoundingBox": {
-                    "x": 6602.0,
-                    "y": -5086.0,
+                    "x": 1552.0,
+                    "y": -2955.0,
                     "width": 187.0,
                     "height": 149.0
                   },
@@ -6780,8 +6858,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 6602.0,
-                "y": -5130.0,
+                "x": 1552.0,
+                "y": -2999.0,
                 "width": 187.0,
                 "height": 193.0
               },
@@ -6793,13 +6871,13 @@
               "interactions": []
             },
             {
-              "id": "I199:24286;253:4781",
+              "id": "I197:23734;253:4781",
               "name": "Col-About",
               "type": "GROUP",
               "scrollBehavior": "SCROLLS",
               "children": [
                 {
-                  "id": "I199:24286;253:4782",
+                  "id": "I197:23734;253:4782",
                   "name": "Logo-Rodapé",
                   "type": "RECTANGLE",
                   "scrollBehavior": "SCROLLS",
@@ -6828,8 +6906,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 6222.0,
-                    "y": -5114.0,
+                    "x": 1172.0,
+                    "y": -2983.0,
                     "width": 56.0,
                     "height": 56.0
                   },
@@ -6841,7 +6919,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4783",
+                  "id": "I197:23734;253:4783",
                   "name": "Vitrine de Craques",
                   "type": "TEXT",
                   "scrollBehavior": "SCROLLS",
@@ -6862,8 +6940,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 6222.0,
-                    "y": -5048.0,
+                    "x": 1172.0,
+                    "y": -2917.0,
                     "width": 165.0,
                     "height": 22.0
                   },
@@ -6900,7 +6978,7 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4784",
+                  "id": "I197:23734;253:4784",
                   "name": "Descubra talentos do futebol • 14–22 anos",
                   "type": "TEXT",
                   "scrollBehavior": "SCROLLS",
@@ -6921,8 +6999,8 @@
                   "strokeWeight": 1.0,
                   "strokeAlign": "INSIDE",
                   "absoluteBoundingBox": {
-                    "x": 6222.0,
-                    "y": -5018.0,
+                    "x": 1172.0,
+                    "y": -2887.0,
                     "width": 284.0,
                     "height": 17.0
                   },
@@ -6958,25 +7036,25 @@
                   "interactions": []
                 },
                 {
-                  "id": "I199:24286;253:4785",
+                  "id": "I197:23734;253:4785",
                   "name": "Botão-Falar-no-Whatsapp",
                   "type": "GROUP",
                   "scrollBehavior": "SCROLLS",
                   "children": [
                     {
-                      "id": "I199:24286;253:4786",
+                      "id": "I197:23734;253:4786",
                       "name": "Group",
                       "type": "GROUP",
                       "scrollBehavior": "SCROLLS",
                       "children": [
                         {
-                          "id": "I199:24286;253:4787",
+                          "id": "I197:23734;253:4787",
                           "name": "WhatsApp-CTA",
                           "type": "GROUP",
                           "scrollBehavior": "SCROLLS",
                           "children": [
                             {
-                              "id": "I199:24286;253:4788",
+                              "id": "I197:23734;253:4788",
                               "name": "Fundo-verde-botão",
                               "type": "VECTOR",
                               "scrollBehavior": "SCROLLS",
@@ -6997,8 +7075,8 @@
                               "strokeWeight": 1.0,
                               "strokeAlign": "INSIDE",
                               "absoluteBoundingBox": {
-                                "x": 6222.0,
-                                "y": -4974.0,
+                                "x": 1172.0,
+                                "y": -2843.0,
                                 "width": 280.0,
                                 "height": 44.0
                               },
@@ -7010,7 +7088,7 @@
                               "interactions": []
                             },
                             {
-                              "id": "I199:24286;253:4789",
+                              "id": "I197:23734;253:4789",
                               "name": "Falar no WhatsApp",
                               "type": "TEXT",
                               "scrollBehavior": "SCROLLS",
@@ -7031,8 +7109,8 @@
                               "strokeWeight": 1.0,
                               "strokeAlign": "INSIDE",
                               "absoluteBoundingBox": {
-                                "x": 6296.5,
-                                "y": -4960.0,
+                                "x": 1246.5,
+                                "y": -2829.0,
                                 "width": 131.0,
                                 "height": 17.0
                               },
@@ -7083,8 +7161,8 @@
                             "a": 0.0
                           },
                           "absoluteBoundingBox": {
-                            "x": 6222.0,
-                            "y": -4974.0,
+                            "x": 1172.0,
+                            "y": -2843.0,
                             "width": 280.0,
                             "height": 44.0
                           },
@@ -7110,8 +7188,8 @@
                         "a": 0.0
                       },
                       "absoluteBoundingBox": {
-                        "x": 6222.0,
-                        "y": -4974.0,
+                        "x": 1172.0,
+                        "y": -2843.0,
                         "width": 280.0,
                         "height": 44.0
                       },
@@ -7137,8 +7215,8 @@
                     "a": 0.0
                   },
                   "absoluteBoundingBox": {
-                    "x": 6222.0,
-                    "y": -4974.0,
+                    "x": 1172.0,
+                    "y": -2843.0,
                     "width": 280.0,
                     "height": 44.0
                   },
@@ -7164,8 +7242,8 @@
                 "a": 0.0
               },
               "absoluteBoundingBox": {
-                "x": 6222.0,
-                "y": -5114.0,
+                "x": 1172.0,
+                "y": -2983.0,
                 "width": 284.0,
                 "height": 184.0
               },
@@ -7191,8 +7269,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -5130.0,
+            "x": 1172.0,
+            "y": -2999.0,
             "width": 567.0,
             "height": 200.0
           },
@@ -7218,8 +7296,8 @@
         "a": 0.0
       },
       "absoluteBoundingBox": {
-        "x": 6198.0,
-        "y": -5146.0,
+        "x": 1148.0,
+        "y": -3015.0,
         "width": 1440.0,
         "height": 348.0
       },
@@ -7231,13 +7309,15 @@
       "interactions": []
     },
     {
-      "id": "340:2648",
+      "id": "340:2659",
       "name": "Filters",
-      "type": "COMPONENT",
+      "type": "INSTANCE",
       "scrollBehavior": "SCROLLS",
+      "componentId": "340:2648",
+      "overrides": [],
       "children": [
         {
-          "id": "339:2639",
+          "id": "I340:2659;339:2639",
           "name": "Filter",
           "type": "RECTANGLE",
           "scrollBehavior": "SCROLLS",
@@ -7260,8 +7340,8 @@
           "cornerRadius": 25.0,
           "cornerSmoothing": 0.0,
           "absoluteBoundingBox": {
-            "x": 6222.0,
-            "y": -6004.0,
+            "x": 1172.0,
+            "y": -3779.0,
             "width": 1392.0,
             "height": 81.0
           },
@@ -7291,30 +7371,15 @@
           "interactions": []
         },
         {
-          "id": "339:2640",
+          "id": "I340:2659;339:2640",
           "name": "search",
           "type": "INSTANCE",
           "scrollBehavior": "SCROLLS",
           "componentId": "328:2610",
-          "overrides": [
-            {
-              "id": "339:2640",
-              "overriddenFields": [
-                "individualStrokeWeights",
-                "strokeWeight",
-                "strokes"
-              ]
-            },
-            {
-              "id": "I339:2640;54616:25440",
-              "overriddenFields": [
-                "inheritFillStyleId"
-              ]
-            }
-          ],
+          "overrides": [],
           "children": [
             {
-              "id": "I339:2640;54616:25440",
+              "id": "I340:2659;339:2640;54616:25440",
               "name": "icon",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -7356,8 +7421,8 @@
                 "fill": "328:2616"
               },
               "absoluteBoundingBox": {
-                "x": 6271.0,
-                "y": -5975.0,
+                "x": 1221.0,
+                "y": -3750.0,
                 "width": 18.0,
                 "height": 18.0
               },
@@ -7383,8 +7448,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 6268.0,
-            "y": -5978.0,
+            "x": 1218.0,
+            "y": -3753.0,
             "width": 24.0,
             "height": 24.0
           },
@@ -7396,7 +7461,7 @@
           "interactions": []
         },
         {
-          "id": "339:2641",
+          "id": "I340:2659;339:2641",
           "name": "TextBox",
           "type": "RECTANGLE",
           "scrollBehavior": "SCROLLS",
@@ -7419,8 +7484,8 @@
           "cornerRadius": 20.0,
           "cornerSmoothing": 0.0,
           "absoluteBoundingBox": {
-            "x": 6249.0,
-            "y": -5990.0,
+            "x": 1199.0,
+            "y": -3765.0,
             "width": 1209.0,
             "height": 52.0
           },
@@ -7432,7 +7497,7 @@
           "interactions": []
         },
         {
-          "id": "339:2642",
+          "id": "I340:2659;339:2642",
           "name": "Filtros: Nome, Idade, Cidade, Estado",
           "type": "TEXT",
           "scrollBehavior": "SCROLLS",
@@ -7453,8 +7518,8 @@
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
           "absoluteBoundingBox": {
-            "x": 6297.0,
-            "y": -5975.0,
+            "x": 1247.0,
+            "y": -3750.0,
             "width": 276.0,
             "height": 19.0
           },
@@ -7490,13 +7555,13 @@
           "interactions": []
         },
         {
-          "id": "339:2643",
+          "id": "I340:2659;339:2643",
           "name": "Botão Filtrar",
           "type": "GROUP",
           "scrollBehavior": "SCROLLS",
           "children": [
             {
-              "id": "339:2644",
+              "id": "I340:2659;339:2644",
               "name": "fundo-botao-16A34A",
               "type": "VECTOR",
               "scrollBehavior": "SCROLLS",
@@ -7517,8 +7582,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7492.0,
-                "y": -5984.0,
+                "x": 2442.0,
+                "y": -3759.0,
                 "width": 88.0,
                 "height": 40.0
               },
@@ -7530,7 +7595,7 @@
               "interactions": []
             },
             {
-              "id": "339:2645",
+              "id": "I340:2659;339:2645",
               "name": "Filtrar",
               "type": "TEXT",
               "scrollBehavior": "SCROLLS",
@@ -7551,8 +7616,8 @@
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
-                "x": 7516.0,
-                "y": -5972.0,
+                "x": 2466.0,
+                "y": -3747.0,
                 "width": 41.0,
                 "height": 17.0
               },
@@ -7620,8 +7685,8 @@
             "a": 0.0
           },
           "absoluteBoundingBox": {
-            "x": 7492.0,
-            "y": -5984.0,
+            "x": 2442.0,
+            "y": -3759.0,
             "width": 88.0,
             "height": 40.0
           },
@@ -7647,8 +7712,8 @@
         "a": 0.0
       },
       "absoluteBoundingBox": {
-        "x": 6222.0,
-        "y": -6004.0,
+        "x": 1172.0,
+        "y": -3779.0,
         "width": 1392.0,
         "height": 81.0
       },
@@ -7656,16 +7721,6 @@
         "vertical": "SCALE",
         "horizontal": "SCALE"
       },
-      "exportSettings": [
-        {
-          "suffix": "",
-          "format": "JPG",
-          "constraint": {
-            "type": "SCALE",
-            "value": 1.0
-          }
-        }
-      ],
       "effects": [],
       "interactions": []
     }
@@ -7708,10 +7763,10 @@
     "a": 0.0
   },
   "absoluteBoundingBox": {
-    "x": 6198.0,
-    "y": -6198.0,
+    "x": 1148.0,
+    "y": -3967.0,
     "width": 1440.0,
-    "height": 1400.0
+    "height": 1300.0
   },
   "constraints": {
     "vertical": "TOP",

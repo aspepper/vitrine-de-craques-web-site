@@ -146,11 +146,11 @@
   {
     "canvas_name": "Vitrine de Craques",
     "canvas_id": "0:1",
-    "name": "Games Lista",
+    "name": "Games",
     "id": "164:22619",
     "type": "FRAME",
-    "slug": "games-lista",
-    "file": "docs/figma_pages/games-lista.json"
+    "slug": "games",
+    "file": "docs/figma_pages/games.json"
   },
   {
     "canvas_name": "Vitrine de Craques",

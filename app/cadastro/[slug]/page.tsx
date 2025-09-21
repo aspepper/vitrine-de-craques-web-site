@@ -8,12 +8,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import { TimesSelect } from '@/components/TimesSelect'
 
-const PROFILE_CONFIG: Record<string, { role: string; schema: any; fields: { name: string; label: string; type?: string }[] }> = {
+const PROFILE_CONFIG: Record<string, { role: string; schema: any; fields: { name: string; label: string; type?: 'select-times'; inputType?: string }[] }> = {
   'torcedor': {
     role: 'TORCEDOR',
-    schema: z.object({ club: z.string().min(1, { message: 'Clube obrigatório' }) }),
-    fields: [{ name: 'club', label: 'Clube do coração' }]
+    schema: z.object({ clubId: z.string().min(1, { message: 'Clube obrigatório' }) }),
+    fields: [{ name: 'clubId', label: 'Clube do coração', type: 'select-times' }]
   },
   'atleta-18': {
     role: 'ATLETA',
@@ -75,7 +76,11 @@ export default function CadastroPerfilPage({ params }: PageProps) {
             {config.fields.map(field => (
               <div key={field.name} className='grid gap-2'>
                 <Label htmlFor={field.name}>{field.label}</Label>
-                <Input id={field.name} type={field.type || 'text'} {...form.register(field.name)} />
+                {field.type === 'select-times' ? (
+                  <TimesSelect id={field.name} placeholder='Selecione um clube' {...form.register(field.name)} />
+                ) : (
+                  <Input id={field.name} type={field.inputType || 'text'} {...form.register(field.name)} />
+                )}
                 {form.formState.errors[field.name] && (
                   <p className='text-sm text-destructive'>
                     {form.formState.errors[field.name]?.message as string}

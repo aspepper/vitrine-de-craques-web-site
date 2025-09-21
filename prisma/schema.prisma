@@ -99,7 +99,7 @@ model Profile {
   peso                  String?
   pais                  String?
   uf                    String?
-  clube                 String?
+  favoriteClubId        String? @map("clube")
   nomeFantasia          String?
   emailClube            String?
   cidade                String?
@@ -128,6 +128,7 @@ model Profile {
   termos                Boolean? @default(false)
   lgpdWhatsappNoticias  Boolean? @default(false)
   lgpdWhatsappConvites  Boolean? @default(false)
+  favoriteClub          Times?   @relation(fields: [favoriteClubId], references: [id])
   user                  User     @relation(fields: [userId], references: [id])
   userId                String   @unique
   createdAt             DateTime @default(now())
@@ -140,6 +141,7 @@ model Video {
   description  String?
   videoUrl     String
   thumbnailUrl String?
+  likesCount   Int      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   user         User     @relation(fields: [userId], references: [id])
@@ -180,6 +182,7 @@ model News {
   publishedAt DateTime @default(now())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  likesCount  Int      @default(0)
   author      User?    @relation(fields: [authorId], references: [id])
   authorId    String?
 }
@@ -211,4 +214,6 @@ model Times {
   maiorIdolo String
   cidade     String
   estado     String
+
+  profiles   Profile[]
 }

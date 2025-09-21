@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Profile } from "@prisma/client";
+import { Profile, Times } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,8 +12,10 @@ import { Filters } from "@/components/Filters";
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 const PAGE_SIZE = 12;
 
+type AthleteProfile = Profile & { favoriteClub?: Pick<Times, "clube"> | null };
+
 type AthletesResponse = {
-  items: Profile[];
+  items: AthleteProfile[];
   page: number;
   total: number;
   totalPages: number;
@@ -158,8 +160,8 @@ export default async function AtletasPage({ searchParams }: PageProps) {
             if (athlete.posicao?.trim()) {
               infoLines.push(`Posição: ${athlete.posicao.trim()}`);
             }
-            if (athlete.clube?.trim()) {
-              infoLines.push(`Clube: ${athlete.clube.trim()}`);
+            if (athlete.favoriteClub?.clube?.trim()) {
+              infoLines.push(`Clube: ${athlete.favoriteClub.clube.trim()}`);
             }
 
             return (

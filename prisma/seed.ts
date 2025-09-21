@@ -600,8 +600,20 @@ async function main() {
     },
   ]
 
-  await prisma.club.deleteMany()
-  await prisma.confederation.deleteMany()
+  // Reset dependent tables so the seed can run multiple times without unique constraint errors.
+  await prisma.$transaction([
+    prisma.verificationToken.deleteMany(),
+    prisma.session.deleteMany(),
+    prisma.account.deleteMany(),
+    prisma.news.deleteMany(),
+    prisma.game.deleteMany(),
+    prisma.video.deleteMany(),
+    prisma.profile.deleteMany(),
+    prisma.user.deleteMany(),
+    prisma.times.deleteMany(),
+    prisma.club.deleteMany(),
+    prisma.confederation.deleteMany(),
+  ])
 
   for (const confed of confederationsSeedData) {
     const data: Prisma.ConfederationCreateInput = {

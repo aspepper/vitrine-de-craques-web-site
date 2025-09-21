@@ -87,17 +87,18 @@ export default async function ConfederacaoDetalhePage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      <main className="container flex flex-col gap-12 pb-24 pt-16 md:pt-20 lg:max-w-5xl">
-        <Link
-          href="/confederacoes"
-          prefetch={false}
-          className="inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
-        >
-          <span aria-hidden>←</span>
-          Voltar para confederações
-        </Link>
+      <main className="container mx-auto px-4 pb-24 pt-16 md:pt-20">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">
+          <Link
+            href="/confederacoes"
+            prefetch={false}
+            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+          >
+            <span aria-hidden>←</span>
+            Voltar para confederações
+          </Link>
 
-        <section className="rounded-[32px] border border-white/70 bg-white/95 px-8 py-10 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
+          <section className="rounded-[32px] border border-white/70 bg-white/95 px-8 py-10 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
           <div className="flex flex-col gap-8 md:flex-row md:items-center">
             <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-[28px] bg-slate-900/5 ring-1 ring-inset ring-slate-200">
               {confed.logoUrl ? (
@@ -173,6 +174,7 @@ export default async function ConfederacaoDetalhePage({ params }: PageProps) {
             </ul>
           </section>
         ) : null}
+        </div>
       </main>
     </div>
   )

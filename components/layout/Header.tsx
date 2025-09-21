@@ -4,12 +4,29 @@ import { useEffect, useState, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
-import { LogOut, Menu, Upload, X } from 'lucide-react'
+import { LogOut, Menu, Upload, UserRound, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
+import type { Role } from '@prisma/client'
+
+type ProfileSummary = {
+  id: string
+  role: Role
+  displayName: string | null
+  avatarUrl: string | null
+  user: {
+    image: string | null
+    name: string | null
+  } | null
+}
+
+interface ProfileApiResponse {
+  profile: ProfileSummary | null
+}
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -51,14 +68,79 @@ function NavLink({
   )
 }
 
+function getProfileHref(profile: ProfileSummary | null): string {
+  if (!profile?.id) return '/perfil'
+
+  if (profile.role === 'AGENTE') {
+    return `/agentes/${profile.id}`
+  }
+
+  if (profile.role === 'ATLETA') {
+    return `/atletas/${profile.id}`
+  }
+
+  return '/perfil'
+}
+
 export function Header() {
   const { data: session } = useSession()
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [profile, setProfile] = useState<ProfileSummary | null>(null)
 
   useEffect(() => {
     setIsMobileMenuOpen(false)
   }, [pathname, session])
+
+  useEffect(() => {
+    if (!session?.user?.id) {
+      setProfile(null)
+      return
+    }
+
+    let isMounted = true
+    const controller = new AbortController()
+
+    async function loadProfile() {
+      try {
+        const response = await fetch('/api/profile', {
+          method: 'GET',
+          signal: controller.signal,
+        })
+
+        if (!response.ok) {
+          throw new Error(`Falha ao buscar perfil: ${response.status}`)
+        }
+
+        const data = (await response.json()) as ProfileApiResponse
+
+        if (!isMounted) return
+        setProfile(data.profile ?? null)
+      } catch (error) {
+        if (controller.signal.aborted) {
+          return
+        }
+
+        console.error('Erro ao carregar perfil do usuário', error)
+        if (isMounted) {
+          setProfile(null)
+        }
+      }
+    }
+
+    void loadProfile()
+
+    return () => {
+      isMounted = false
+      controller.abort()
+    }
+  }, [session?.user?.id])
+
+  const profileHref = getProfileHref(profile)
+  const profileName =
+    profile?.displayName ?? profile?.user?.name ?? session?.user?.name ?? 'Perfil'
+  const profileImage =
+    profile?.avatarUrl ?? profile?.user?.image ?? session?.user?.image ?? undefined
 
   return (
     <header
@@ -127,6 +209,20 @@ export function Header() {
                     <Upload className="h-5 w-5" />
                   </Link>
                 </Button>
+                <Link
+                  href={profileHref}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/80 text-slate-700 shadow-inner transition hover:bg-white"
+                  title="Perfil"
+                  aria-label="Ir para o perfil"
+                >
+                  <Avatar className="h-9 w-9 border border-white/60 bg-white">
+                    <AvatarImage src={profileImage ?? undefined} alt={profileName} />
+                    <AvatarFallback className="bg-slate-100 text-slate-500">
+                      <UserRound aria-hidden className="h-4 w-4" />
+                      <span className="sr-only">{profileName}</span>
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
                 <Button
                   size="icon"
                   variant="destructive"
@@ -186,6 +282,22 @@ export function Header() {
             <div className="h-px bg-black/10" />
             {session ? (
               <div className="flex flex-col gap-3">
+                <Link
+                  href={profileHref}
+                  className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-inner transition hover:bg-white/90"
+                >
+                  <Avatar className="h-11 w-11 border border-white/60 bg-white">
+                    <AvatarImage src={profileImage ?? undefined} alt={profileName} />
+                    <AvatarFallback className="bg-slate-100 text-slate-500">
+                      <UserRound aria-hidden className="h-5 w-5" />
+                      <span className="sr-only">{profileName}</span>
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium text-slate-900">{profileName}</span>
+                    <span className="text-xs text-slate-500">Ver perfil</span>
+                  </div>
+                </Link>
                 <Button asChild className="w-full">
                   <Link href="/upload">Enviar vídeo</Link>
                 </Button>

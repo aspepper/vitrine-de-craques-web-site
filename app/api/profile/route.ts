@@ -1,9 +1,39 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { getServerSession } from 'next-auth'
+
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { logApiError, errorResponse } from '@/lib/error'
+
+export async function GET(req: Request) {
+  try {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const profile = await prisma.profile.findUnique({
+      where: { userId: session.user.id },
+      select: {
+        id: true,
+        role: true,
+        displayName: true,
+        avatarUrl: true,
+        user: {
+          select: {
+            image: true,
+            name: true,
+          },
+        },
+      },
+    })
+
+    return NextResponse.json({ profile })
+  } catch (error) {
+    return errorResponse(req, error, 'AO BUSCAR PERFIL')
+  }
+}
 
 const roleEnum = z.enum([
   'TORCEDOR',

@@ -99,7 +99,7 @@ model Profile {
   peso                  String?
   pais                  String?
   uf                    String?
-  favoriteClubId        String? @map("clube")
+  favoriteClubId        String?  @map("clube")
   nomeFantasia          String?
   emailClube            String?
   cidade                String?
@@ -215,5 +215,5 @@ model Times {
   cidade     String
   estado     String
 
-  profiles   Profile[]
+  profiles Profile[]
 }

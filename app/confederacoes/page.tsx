@@ -1,68 +1,212 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import Link from "next/link";
-import { ensureImage } from "@/lib/ensureImage";
+import Image from "next/image"
+import Link from "next/link"
+
+import { Button } from "@/components/ui/button"
 
 interface PageProps {
-  searchParams: { page?: string };
+  searchParams: { page?: string }
 }
 
-const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+interface Confederation {
+  id: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  foundedAt?: string | null
+  purpose?: string | null
+  currentPresident?: string | null
+  officialStatementDate?: string | null
+}
 
-async function getConfeds(page: number) {
-  const res = await fetch(`${baseUrl}/api/confederacoes?page=${page}`, { cache: "no-store" });
-  return res.json();
+interface ConfederationsResponse {
+  items: Confederation[]
+  totalPages: number
+  page: number
+  total: number
+}
+
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000"
+const PAGE_SIZE = 12
+
+function formatDate(input?: string | null) {
+  if (!input) return "—"
+  const date = new Date(input)
+  if (Number.isNaN(date.getTime())) {
+    return "—"
+  }
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date)
+}
+
+function getAcronym(name: string) {
+  const normalized = name
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part[0] ?? "")
+    .join("")
+
+  return normalized.slice(0, 3).toUpperCase() || "CF"
+}
+
+async function getConfeds(page: number, limit: number): Promise<ConfederationsResponse> {
+  try {
+    const params = new URLSearchParams({
+      page: String(page),
+      limit: String(limit),
+    })
+
+    const res = await fetch(`${baseUrl}/api/confederacoes?${params.toString()}`, {
+      cache: "no-store",
+    })
+
+    if (!res.ok) {
+      throw new Error(`Status ${res.status}`)
+    }
+
+    return res.json()
+  } catch (error) {
+    console.error("Erro ao carregar confederações", error)
+    return {
+      items: [],
+      page,
+      total: 0,
+      totalPages: 1,
+    }
+  }
 }
 
 export default async function ConfederacoesPage({ searchParams }: PageProps) {
-  const page = Number(searchParams.page) || 1;
-  const { items, totalPages } = await getConfeds(page);
-  const heroImage = ensureImage(
-    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
-    "confederacoes",
-    "stadium@1920"
-  );
+  const page = Number(searchParams.page) || 1
+  const { items, totalPages } = await getConfeds(page, PAGE_SIZE)
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
-      <main className="container mx-auto flex-grow p-4">
-        <h1>Confederações</h1>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((confed: any) => (
-            <Link key={confed.slug} href={`/confederacoes/${confed.slug}`}>
-              <Card className="overflow-hidden hover:shadow-lg">
-                <CardHeader className="p-0">
-                  <div className="relative h-40 w-full">
-                    <Image
-                      src={heroImage}
-                      alt={confed.name}
-                      fill
-                      className="object-cover"
-                      loading="lazy"
-                    />
+    <div className="min-h-screen bg-[#F8FAFC]">
+      <main className="container flex flex-col gap-12 pb-24 pt-16 md:pt-20 lg:max-w-6xl">
+        <header className="space-y-6">
+          <div className="space-y-3 text-center md:text-left">
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+              Instituições
+            </span>
+            <h1 className="font-heading text-[44px] font-semibold leading-tight text-slate-900 md:text-[56px]">
+              Confederações
+            </h1>
+            <p className="text-base text-slate-500 md:max-w-2xl">
+              Conheça as entidades que estruturam o futebol brasileiro, acompanhe os dados oficiais e leia os últimos
+              comunicados publicados por cada confederação.
+            </p>
+          </div>
+        </header>
+
+        <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+          {items.map((confed) => {
+            const founded = formatDate(confed.foundedAt)
+            const lastStatement = formatDate(confed.officialStatementDate)
+            const acronym = getAcronym(confed.name)
+
+            return (
+              <Link
+                key={confed.id}
+                href={`/confederacoes/${confed.slug}`}
+                prefetch={false}
+                className="group"
+              >
+                <article className="flex h-full flex-col gap-6 rounded-[32px] border border-white/70 bg-white/95 px-8 py-10 text-center shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]">
+                  <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[24px] bg-slate-900/5 ring-1 ring-inset ring-slate-200">
+                    {confed.logoUrl ? (
+                      <div className="relative h-16 w-16">
+                        <Image
+                          src={confed.logoUrl}
+                          alt={`Logotipo de ${confed.name}`}
+                          fill
+                          sizes="64px"
+                          className="object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <span className="text-lg font-semibold text-slate-700">{acronym}</span>
+                    )}
                   </div>
-                </CardHeader>
-                  <CardContent className="p-4">
-                    <CardTitle>{confed.name}</CardTitle>
-                  </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-6 flex justify-between">
-          {page > 1 ? (
-            <Link href={`/confederacoes?page=${page - 1}`}>Anterior</Link>
-          ) : (
-            <span />
+
+                  <div className="space-y-3">
+                    <h2 className="text-lg font-semibold text-slate-900">{confed.name}</h2>
+                    {confed.purpose && (
+                      <p className="text-sm text-slate-500 [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden">
+                        {confed.purpose}
+                      </p>
+                    )}
+                  </div>
+
+                  <dl className="grid gap-4 text-sm text-slate-600">
+                    <div className="space-y-1">
+                      <dt className="text-xs font-medium uppercase tracking-wide text-slate-400">Fundação</dt>
+                      <dd>{founded}</dd>
+                    </div>
+                    <div className="space-y-1">
+                      <dt className="text-xs font-medium uppercase tracking-wide text-slate-400">Presidente</dt>
+                      <dd>{confed.currentPresident ?? "—"}</dd>
+                    </div>
+                    <div className="space-y-1">
+                      <dt className="text-xs font-medium uppercase tracking-wide text-slate-400">Último comunicado</dt>
+                      <dd>{lastStatement}</dd>
+                    </div>
+                  </dl>
+                </article>
+              </Link>
+            )
+          })}
+
+          {items.length === 0 && (
+            <div className="col-span-full rounded-[32px] border border-dashed border-slate-200 bg-white/95 p-12 text-center text-slate-500 shadow-[0_8px_32px_rgba(15,23,42,0.12)]">
+              Nenhuma confederação encontrada.
+            </div>
           )}
-          {page < totalPages ? (
-            <Link href={`/confederacoes?page=${page + 1}`}>Próxima</Link>
-          ) : (
-            <span />
-          )}
-        </div>
+        </section>
+
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-4">
+            {page > 1 ? (
+              <Button
+                asChild
+                size="md"
+                variant="ghost"
+                className="bg-white/70 px-8 text-slate-600 hover:bg-white"
+              >
+                <Link href={`/confederacoes?page=${page - 1}`} prefetch={false}>
+                  Anterior
+                </Link>
+              </Button>
+            ) : (
+              <Button disabled size="md" variant="ghost" className="bg-white/50 px-8 text-slate-400">
+                Anterior
+              </Button>
+            )}
+
+            <span className="text-sm font-medium text-slate-500">
+              Página {page} de {totalPages}
+            </span>
+
+            {page < totalPages ? (
+              <Button
+                asChild
+                size="md"
+                variant="ghost"
+                className="bg-white/70 px-8 text-slate-600 hover:bg-white"
+              >
+                <Link href={`/confederacoes?page=${page + 1}`} prefetch={false}>
+                  Próxima
+                </Link>
+              </Button>
+            ) : (
+              <Button disabled size="md" variant="ghost" className="bg-white/50 px-8 text-slate-400">
+                Próxima
+              </Button>
+            )}
+          </div>
+        )}
       </main>
     </div>
-  );
+  )
 }
-

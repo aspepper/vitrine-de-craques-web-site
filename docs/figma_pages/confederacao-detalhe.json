@@ -40,7 +40,7 @@
     },
     {
       "id": "197:23438",
-      "name": "Group",
+      "name": "Conteúdo",
       "type": "GROUP",
       "scrollBehavior": "SCROLLS",
       "children": [
@@ -97,35 +97,130 @@
           "interactions": []
         },
         {
-          "id": "197:23440",
-          "name": "Vector",
-          "type": "VECTOR",
+          "id": "359:2672",
+          "name": "Logo",
+          "type": "GROUP",
           "scrollBehavior": "SCROLLS",
-          "blendMode": "PASS_THROUGH",
-          "fills": [
+          "children": [
             {
-              "blendMode": "NORMAL",
-              "type": "SOLID",
-              "color": {
-                "r": 0.06666667014360428,
-                "g": 0.0941176488995552,
-                "b": 0.15294118225574493,
-                "a": 1.0
-              }
+              "id": "359:2671",
+              "name": "Rectangle 3",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.8980392217636108,
+                    "g": 0.9058823585510254,
+                    "b": 0.9215686321258545,
+                    "a": 1.0
+                  }
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "cornerRadius": 15.0,
+              "cornerSmoothing": 0.0,
+              "absoluteBoundingBox": {
+                "x": 6276.0,
+                "y": -7967.0,
+                "width": 102.0,
+                "height": 97.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [
+                {
+                  "type": "DROP_SHADOW",
+                  "visible": true,
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 0.25
+                  },
+                  "blendMode": "NORMAL",
+                  "offset": {
+                    "x": 0.0,
+                    "y": 8.0
+                  },
+                  "radius": 32.0,
+                  "showShadowBehindNode": false
+                }
+              ],
+              "interactions": []
+            },
+            {
+              "id": "359:2669",
+              "name": "Logo FIFA",
+              "type": "RECTANGLE",
+              "scrollBehavior": "SCROLLS",
+              "blendMode": "PASS_THROUGH",
+              "fills": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "IMAGE",
+                  "scaleMode": "FILL",
+                  "imageRef": "adbeecd766918f25faf798297c27f1db8e906757"
+                }
+              ],
+              "strokes": [],
+              "strokeWeight": 1.0,
+              "strokeAlign": "INSIDE",
+              "absoluteBoundingBox": {
+                "x": 6280.0,
+                "y": -7959.0,
+                "width": 93.0,
+                "height": 80.0
+              },
+              "preserveRatio": true,
+              "targetAspectRatio": {
+                "x": 637.0,
+                "y": 550.0
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "SCALE"
+              },
+              "effects": [],
+              "interactions": []
             }
           ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
           "strokes": [],
+          "rectangleCornerRadii": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cornerSmoothing": 0.0,
           "strokeWeight": 1.0,
           "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
           "absoluteBoundingBox": {
-            "x": 6275.65576171875,
+            "x": 6276.0,
             "y": -7967.0,
-            "width": 102.62338256835938,
-            "height": 96.0
+            "width": 102.0,
+            "height": 97.0
           },
           "constraints": {
-            "vertical": "SCALE",
-            "horizontal": "SCALE"
+            "vertical": "TOP",
+            "horizontal": "LEFT"
           },
           "effects": [],
           "interactions": []
@@ -298,6 +393,13 @@
       "background": [],
       "fills": [],
       "strokes": [],
+      "rectangleCornerRadii": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cornerSmoothing": 0.0,
       "strokeWeight": 1.0,
       "strokeAlign": "INSIDE",
       "backgroundColor": {
@@ -327,7 +429,7 @@
       "componentId": "112:1576",
       "overrides": [
         {
-          "id": "I197:23445;112:1553",
+          "id": "I197:23445;112:1555",
           "overriddenFields": [
             "transitionDuration",
             "transitionEasing",
@@ -335,11 +437,21 @@
           ]
         },
         {
-          "id": "I197:23445;112:1555",
+          "id": "I197:23445;112:1565",
           "overriddenFields": [
-            "transitionDuration",
-            "transitionEasing",
-            "transitionNodeID"
+            "strokes"
+          ]
+        },
+        {
+          "id": "I197:23445;112:1566",
+          "overriddenFields": [
+            "strokes"
+          ]
+        },
+        {
+          "id": "I197:23445;112:1567",
+          "overriddenFields": [
+            "strokes"
           ]
         }
       ],
@@ -556,7 +668,18 @@
                   }
                 }
               ],
-              "strokes": [],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                  }
+                }
+              ],
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
@@ -590,7 +713,18 @@
                   }
                 }
               ],
-              "strokes": [],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                  }
+                }
+              ],
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
@@ -624,7 +758,18 @@
                   }
                 }
               ],
-              "strokes": [],
+              "strokes": [
+                {
+                  "blendMode": "NORMAL",
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                  }
+                }
+              ],
               "strokeWeight": 1.0,
               "strokeAlign": "INSIDE",
               "absoluteBoundingBox": {
@@ -4603,6 +4748,132 @@
       },
       "effects": [],
       "interactions": []
+    },
+    {
+      "id": "359:2673",
+      "name": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1.0,
+      "strokeAlign": "OUTSIDE",
+      "absoluteBoundingBox": {
+        "x": 6297.0,
+        "y": -7837.0,
+        "width": 1227.0,
+        "height": 29.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "characters": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Inter",
+        "fontPostScriptName": "Inter-Bold",
+        "fontStyle": "Bold",
+        "fontWeight": 700,
+        "fontSize": 24.0,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0.0,
+        "lineHeightPx": 29.045454025268555,
+        "lineHeightPercent": 100.0,
+        "lineHeightUnit": "INTRINSIC_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    {
+      "id": "359:2675",
+      "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1.0,
+      "strokeAlign": "OUTSIDE",
+      "absoluteBoundingBox": {
+        "x": 6277.0,
+        "y": -7777.0,
+        "width": 1263.0,
+        "height": 502.0
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "characters": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE",
+        "NONE",
+        "NONE",
+        "NONE",
+        "NONE",
+        "NONE",
+        "NONE"
+      ],
+      "lineIndentations": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": {
+        "fontFamily": "Inter",
+        "fontPostScriptName": null,
+        "fontStyle": "Regular",
+        "fontWeight": 400,
+        "fontSize": 20.0,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0.0,
+        "lineHeightPx": 24.204544067382812,
+        "lineHeightPercent": 100.0,
+        "lineHeightUnit": "INTRINSIC_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
     }
   ],
   "blendMode": "PASS_THROUGH",
@@ -4652,6 +4923,16 @@
     "vertical": "TOP",
     "horizontal": "LEFT"
   },
+  "exportSettings": [
+    {
+      "suffix": "",
+      "format": "JPG",
+      "constraint": {
+        "type": "SCALE",
+        "value": 1.0
+      }
+    }
+  ],
   "effects": [],
   "interactions": []
 }

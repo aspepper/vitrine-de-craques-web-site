@@ -1809,129 +1809,37 @@
       "scrollBehavior": "SCROLLS",
       "children": [
         {
-          "id": "131:2357",
-          "name": "Group",
-          "type": "GROUP",
+          "id": "131:2358",
+          "name": "Vector",
+          "type": "VECTOR",
           "scrollBehavior": "SCROLLS",
-          "children": [
+          "blendMode": "PASS_THROUGH",
+          "fills": [
             {
-              "id": "131:2358",
-              "name": "Vector",
-              "type": "VECTOR",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.8980392217636108,
-                    "g": 0.9058823585510254,
-                    "b": 0.9215686321258545,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokeWeight": 1.0,
-              "strokeAlign": "CENTER",
-              "absoluteBoundingBox": {
-                "x": -1985.0,
-                "y": -1084.0,
-                "width": 1296.0,
-                "height": 380.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "effects": [],
-              "interactions": []
-            },
-            {
-              "id": "131:2359",
-              "name": "Missão",
-              "type": "TEXT",
-              "scrollBehavior": "SCROLLS",
-              "blendMode": "PASS_THROUGH",
-              "fills": [
-                {
-                  "blendMode": "NORMAL",
-                  "type": "SOLID",
-                  "color": {
-                    "r": 0.04313725605607033,
-                    "g": 0.05882352963089943,
-                    "b": 0.062745101749897,
-                    "a": 1.0
-                  }
-                }
-              ],
-              "strokes": [],
-              "strokeWeight": 1.0,
-              "strokeAlign": "INSIDE",
-              "absoluteBoundingBox": {
-                "x": -1961.0,
-                "y": -1064.0,
-                "width": 71.0,
-                "height": 24.0
-              },
-              "constraints": {
-                "vertical": "SCALE",
-                "horizontal": "SCALE"
-              },
-              "characters": "Missão",
-              "characterStyleOverrides": [],
-              "styleOverrideTable": {},
-              "lineTypes": [
-                "NONE"
-              ],
-              "lineIndentations": [
-                0
-              ],
-              "style": {
-                "fontFamily": "Inter",
-                "fontPostScriptName": "Inter-BoldItalic",
-                "fontStyle": "Bold Italic",
-                "italic": true,
-                "fontWeight": 700,
-                "textAutoResize": "WIDTH_AND_HEIGHT",
-                "fontSize": 20.0,
-                "textAlignHorizontal": "LEFT",
-                "textAlignVertical": "TOP",
-                "letterSpacing": 0.0,
-                "lineHeightPx": 24.204544067382812,
-                "lineHeightPercent": 100.0,
-                "lineHeightUnit": "INTRINSIC_%"
-              },
-              "layoutVersion": 4,
-              "effects": [],
-              "interactions": []
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              }
             }
           ],
-          "blendMode": "PASS_THROUGH",
-          "clipsContent": false,
-          "background": [],
-          "fills": [],
-          "strokes": [],
+          "strokes": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.8980392217636108,
+                "g": 0.9058823585510254,
+                "b": 0.9215686321258545,
+                "a": 1.0
+              }
+            }
+          ],
           "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
-          "backgroundColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-          },
+          "strokeAlign": "CENTER",
           "absoluteBoundingBox": {
             "x": -1985.0,
             "y": -1084.0,
@@ -1942,7 +1850,25 @@
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
-          "effects": [],
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
           "interactions": []
         },
         {
@@ -2466,6 +2392,65 @@
           "layoutVersion": 4,
           "effects": [],
           "interactions": []
+        },
+        {
+          "id": "131:2359",
+          "name": "Missão",
+          "type": "TEXT",
+          "scrollBehavior": "SCROLLS",
+          "blendMode": "PASS_THROUGH",
+          "fills": [
+            {
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.04313725605607033,
+                "g": 0.05882352963089943,
+                "b": 0.062745101749897,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokes": [],
+          "strokeWeight": 1.0,
+          "strokeAlign": "INSIDE",
+          "absoluteBoundingBox": {
+            "x": -1961.0,
+            "y": -1064.0,
+            "width": 71.0,
+            "height": 24.0
+          },
+          "constraints": {
+            "vertical": "SCALE",
+            "horizontal": "SCALE"
+          },
+          "characters": "Missão",
+          "characterStyleOverrides": [],
+          "styleOverrideTable": {},
+          "lineTypes": [
+            "NONE"
+          ],
+          "lineIndentations": [
+            0
+          ],
+          "style": {
+            "fontFamily": "Inter",
+            "fontPostScriptName": "Inter-BoldItalic",
+            "fontStyle": "Bold Italic",
+            "italic": true,
+            "fontWeight": 700,
+            "textAutoResize": "WIDTH_AND_HEIGHT",
+            "fontSize": 20.0,
+            "textAlignHorizontal": "LEFT",
+            "textAlignVertical": "TOP",
+            "letterSpacing": 0.0,
+            "lineHeightPx": 24.204544067382812,
+            "lineHeightPercent": 100.0,
+            "lineHeightUnit": "INTRINSIC_%"
+          },
+          "layoutVersion": 4,
+          "effects": [],
+          "interactions": []
         }
       ],
       "blendMode": "PASS_THROUGH",
@@ -2542,7 +2527,25 @@
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
-          "effects": [],
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
           "interactions": []
         },
         {
@@ -3317,7 +3320,25 @@
             "vertical": "SCALE",
             "horizontal": "SCALE"
           },
-          "effects": [],
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.25
+              },
+              "blendMode": "NORMAL",
+              "offset": {
+                "x": 0.0,
+                "y": 8.0
+              },
+              "radius": 32.0,
+              "showShadowBehindNode": false
+            }
+          ],
           "interactions": []
         },
         {

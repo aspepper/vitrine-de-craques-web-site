@@ -4898,6 +4898,16 @@
     "vertical": "TOP",
     "horizontal": "LEFT"
   },
+  "exportSettings": [
+    {
+      "suffix": "",
+      "format": "JPG",
+      "constraint": {
+        "type": "SCALE",
+        "value": 1.0
+      }
+    }
+  ],
   "effects": [],
   "interactions": []
 }

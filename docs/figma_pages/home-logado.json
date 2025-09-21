@@ -2666,9 +2666,21 @@
               }
             }
           ],
-          "strokes": [],
-          "strokeWeight": 1.0,
-          "strokeAlign": "INSIDE",
+          "strokes": [
+            {
+              "opacity": 0.5,
+              "blendMode": "NORMAL",
+              "type": "SOLID",
+              "color": {
+                "r": 0.9411764740943909,
+                "g": 0.9411764740943909,
+                "b": 0.9411764740943909,
+                "a": 1.0
+              }
+            }
+          ],
+          "strokeWeight": 2.0,
+          "strokeAlign": "OUTSIDE",
           "absoluteBoundingBox": {
             "x": -2033.0,
             "y": -2711.0,

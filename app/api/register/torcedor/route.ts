@@ -15,7 +15,7 @@ const registerTorcedorSchema = z.object({
   email: z.string().email(),
   senha: z.string().min(6),
   confirmarSenha: z.string().min(6),
-  clube: z.string().min(1),
+  clubeId: z.string().min(1),
   uf: z.string().min(1),
   notifNovidades: z.boolean().optional(),
   notifJogos: z.boolean().optional(),
@@ -56,6 +56,17 @@ export async function POST(req: Request) {
       )
     }
 
+    const favoriteClub = await prisma.times.findUnique({
+      where: { id: payload.clubeId },
+    })
+
+    if (!favoriteClub) {
+      return NextResponse.json(
+        { error: 'Clube do coração inválido.' },
+        { status: 400 },
+      )
+    }
+
     const hashedPassword = await bcrypt.hash(payload.senha, 10)
 
     const user = await prisma.$transaction(async (tx) => {
@@ -76,7 +87,7 @@ export async function POST(req: Request) {
           nascimento: payload.nascimento,
           genero: payload.genero,
           whatsapp: payload.whatsapp,
-          clube: payload.clube,
+          favoriteClubId: payload.clubeId,
           uf: payload.uf,
           notifNovidades: payload.notifNovidades ?? false,
           notifJogos: payload.notifJogos ?? false,

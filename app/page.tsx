@@ -92,7 +92,7 @@ async function loadHighlights(): Promise<HighlightCardData[]> {
         v.title,
         v."videoUrl" AS "videoUrl",
         v."thumbnailUrl" AS "thumbnailUrl",
-        COALESCE(l.likes_count, 0) AS "likesCount",
+        COALESCE(l.likes_count, v."likesCount", 0) AS "likesCount",
         COALESCE(p."displayName", u.name) AS "authorName"
       FROM "Video" v
       LEFT JOIN (
@@ -134,7 +134,7 @@ async function loadHighlights(): Promise<HighlightCardData[]> {
     title: video.title,
     videoUrl: video.videoUrl,
     thumbnailUrl: video.thumbnailUrl ?? null,
-    likesCount: 0,
+    likesCount: video.likesCount,
     authorName: video.user?.profile?.displayName ?? video.user?.name ?? null,
   }))
 }

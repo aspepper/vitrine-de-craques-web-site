@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { TimesSelect } from '@/components/TimesSelect'
 
 const formSchema = z
   .object({
@@ -26,7 +27,7 @@ const formSchema = z
     email: z.string().email({ message: 'Email inválido' }),
     senha: z.string().min(6, { message: 'Senha obrigatória' }),
     confirmarSenha: z.string().min(1, { message: 'Confirme a senha' }),
-    clube: z.string().min(1, { message: 'Clube obrigatório' }),
+    clubeId: z.string().min(1, { message: 'Clube obrigatório' }),
     uf: z.string().min(1, { message: 'UF obrigatória' }),
     notifNovidades: z.boolean().optional(),
     notifJogos: z.boolean().optional(),
@@ -218,10 +219,10 @@ export default function CadastroTorcedorPage() {
             <CardContent className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="clube">Clube do coração</Label>
-                <Input id="clube" {...form.register('clube')} />
-                {form.formState.errors.clube && (
+                <TimesSelect id="clube" {...form.register('clubeId')} />
+                {form.formState.errors.clubeId && (
                   <p className="text-sm text-destructive">
-                    {form.formState.errors.clube.message}
+                    {form.formState.errors.clubeId.message}
                   </p>
                 )}
               </div>

@@ -147,10 +147,18 @@ model Video {
 }
 
 model Confederation {
-  id    String @id @default(cuid())
-  name  String
-  slug  String @unique
-  clubs Club[]
+  id                    String   @id @default(cuid())
+  name                  String
+  slug                  String   @unique
+  logoUrl               String?
+  foundedAt             DateTime?
+  purpose               String?
+  currentPresident      String?
+  officialStatement     String?  @db.Text
+  officialStatementDate DateTime?
+  clubs                 Club[]
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
 
 model Club {

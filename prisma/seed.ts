@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from '@prisma/client'
+import { PrismaClient, Role, Prisma } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
@@ -10,6 +10,39 @@ function slugify(text: string): string {
     .replace(/[^\w\s-]/g, '')
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '')
+}
+
+function placeholderLogo(text: string, color: string) {
+  const safeColor = color.replace('#', '').toUpperCase()
+  const normalizedText = text.trim().replace(/\s+/g, ' ')
+  const safeText = encodeURIComponent(normalizedText).replace(/%20/g, '+')
+  return `https://via.placeholder.com/160x160.png/${safeColor}/FFFFFF?text=${safeText}`
+}
+
+type ConfederationSeed = {
+  name: string
+  abbreviation: string
+  color: string
+  foundedOn: string
+  purpose: string
+  currentPresident: string
+  officialStatementDate: string
+  statementFocus: string
+  statementAction: string
+  statementOrientation: string
+  clubs?: { name: string }[]
+}
+
+function composeStatement(seed: ConfederationSeed) {
+  return [
+    `${seed.name} informa que ${seed.statementFocus}.`,
+    `${seed.currentPresident} reforçou que ${seed.statementAction}.`,
+    `A entidade orienta que ${seed.statementOrientation}.`,
+  ].join('\n\n')
+}
+
+function parseDate(input: string) {
+  return new Date(`${input}T00:00:00.000Z`)
 }
 
 async function main() {
@@ -92,33 +125,507 @@ async function main() {
     },
   ]
 
-  const confed1 = await prisma.confederation.create({
-    data: {
+  const confederationsSeedData: ConfederationSeed[] = [
+    {
+      name: 'Fédération Internationale de Football Association',
+      abbreviation: 'FIFA',
+      color: '002F6C',
+      foundedOn: '1904-05-21',
+      purpose:
+        'Coordena e desenvolve o futebol mundial, definindo regras globais e organizando competições entre seleções e clubes.',
+      currentPresident: 'Gianni Infantino',
+      officialStatementDate: '2024-10-25',
+      statementFocus:
+        'as atualizações finais do regulamento da Copa do Mundo de Clubes 2025 foram publicadas no portal oficial',
+      statementAction:
+        'a cooperação entre confederações é essencial para implementar as medidas de sustentabilidade e governança anunciadas',
+      statementOrientation:
+        'as associações nacionais alinhem seus calendários e reportem ajustes até 30 de novembro',
+    },
+    {
       name: 'Confederação Brasileira de Futebol',
-      slug: slugify('Confederação Brasileira de Futebol'),
-      clubs: {
-        create: [
-          { name: 'Clube de Regatas do Flamengo', slug: slugify('Clube de Regatas do Flamengo') },
-          { name: 'Sociedade Esportiva Palmeiras', slug: slugify('Sociedade Esportiva Palmeiras') },
-        ],
-      },
+      abbreviation: 'CBF',
+      color: '0B3B8C',
+      foundedOn: '1914-06-08',
+      purpose:
+        'Administra o futebol no Brasil, organizando seleções nacionais, campeonatos e programas de desenvolvimento de base.',
+      currentPresident: 'Ednaldo Rodrigues',
+      officialStatementDate: '2024-10-18',
+      statementFocus:
+        'o calendário nacional de competições 2025 foi revisado com ajustes para as datas FIFA e para o Brasileirão feminino',
+      statementAction:
+        'os clubes e federações devem cumprir os novos prazos de registro e infraestrutura definidos',
+      statementOrientation:
+        'as entidades estaduais enviem confirmação das sedes e laudos técnicos até 15 de novembro',
+      clubs: [
+        { name: 'Clube de Regatas do Flamengo' },
+        { name: 'Sociedade Esportiva Palmeiras' },
+      ],
     },
-    include: { clubs: true },
-  })
+    {
+      name: 'Federação Paulista de Futebol',
+      abbreviation: 'FPF-SP',
+      color: 'B91C1C',
+      foundedOn: '1941-04-22',
+      purpose:
+        'Organiza as competições profissionais e amadoras do estado de São Paulo e apoia projetos de formação de atletas.',
+      currentPresident: 'Reinaldo Carneiro Bastos',
+      officialStatementDate: '2024-10-10',
+      statementFocus:
+        'a versão final do regulamento do Paulistão 2025 foi homologada com atualização das vagas da Copa do Brasil',
+      statementAction:
+        'os departamentos jurídicos dos clubes acompanhem a implementação do protocolo disciplinar unificado',
+      statementOrientation:
+        'os clubes confirmem os estádios habilitados até 5 de novembro',
+      clubs: [
+        { name: 'Sport Club Corinthians Paulista' },
+        { name: 'São Paulo Futebol Clube' },
+      ],
+    },
+    {
+      name: 'Federação de Futebol do Estado do Rio de Janeiro',
+      abbreviation: 'FERJ',
+      color: '0EA5E9',
+      foundedOn: '1978-09-29',
+      purpose:
+        'Coordena o futebol profissional e de base no Rio de Janeiro, promovendo competições e cursos de capacitação.',
+      currentPresident: 'Rubens Lopes',
+      officialStatementDate: '2024-10-09',
+      statementFocus:
+        'o conselho arbitral aprovou o formato da Taça Guanabara 2025 e a ampliação do VAR para todas as fases',
+      statementAction:
+        'os clubes mantenham diálogo constante com a equipe de arbitragem para alinhar procedimentos',
+      statementOrientation:
+        'as equipes protocolem seus planejamentos de logística até 4 de novembro',
+    },
+    {
+      name: 'Federação Mineira de Futebol',
+      abbreviation: 'FMF-MG',
+      color: '2563EB',
+      foundedOn: '1915-07-04',
+      purpose:
+        'Administra os campeonatos de Minas Gerais, apoia o desenvolvimento das categorias de base e promove cursos técnicos.',
+      currentPresident: 'Adriano Aro',
+      officialStatementDate: '2024-10-07',
+      statementFocus:
+        'o Módulo I do Campeonato Mineiro 2025 terá calendário alinhado à Libertadores e à Recopa',
+      statementAction:
+        'as equipes apresentem planos de gramado e iluminação exigidos para transmissões',
+      statementOrientation:
+        'os clubes enviem relatórios de adequação estrutural até 12 de novembro',
+    },
+    {
+      name: 'Federação Gaúcha de Futebol',
+      abbreviation: 'FGF-RS',
+      color: '15803D',
+      foundedOn: '1918-05-18',
+      purpose:
+        'Promove o futebol no Rio Grande do Sul, coordenando competições profissionais, de base e projetos de arbitragem.',
+      currentPresident: 'Luciano Hocsman',
+      officialStatementDate: '2024-10-11',
+      statementFocus:
+        'o conselho técnico deliberou sobre ajustes no Campeonato Gaúcho 2025 e nas competições femininas',
+      statementAction:
+        'os departamentos de futebol mantenham comunicação para garantir cumprimento dos protocolos de segurança',
+      statementOrientation:
+        'os clubes validem os laudos de estádios e enviem ao departamento de competições até 6 de novembro',
+    },
+    {
+      name: 'Federação Paranaense de Futebol',
+      abbreviation: 'FPF-PR',
+      color: '1D4ED8',
+      foundedOn: '1937-08-05',
+      purpose:
+        'Administra o futebol no Paraná, incentivando o desenvolvimento técnico, o licenciamento e a formação de atletas.',
+      currentPresident: 'Hélio Cury',
+      officialStatementDate: '2024-09-30',
+      statementFocus:
+        'a nova grade de jogos do Campeonato Paranaense 2025 incorpora janelas exclusivas para as Copas regionais',
+      statementAction:
+        'os clubes intensifiquem projetos de base e mantenham atualizados os cadastros de atletas',
+      statementOrientation:
+        'as agremiações confirmem datas e horários preferenciais até 1º de novembro',
+    },
+    {
+      name: 'Federação Catarinense de Futebol',
+      abbreviation: 'FCF-SC',
+      color: '047857',
+      foundedOn: '1924-04-12',
+      purpose:
+        'Responsável pelas competições de Santa Catarina, fomenta a formação de atletas, arbitragem e futebol feminino.',
+      currentPresident: 'Rubens Angelotti',
+      officialStatementDate: '2024-10-05',
+      statementFocus:
+        'a reunião arbitral aprovou o uso integral da tecnologia de linha de gol no Catarinense 2025',
+      statementAction:
+        'os clubes priorizem treinamentos com a equipe de arbitragem e VAR regional',
+      statementOrientation:
+        'as equipes encaminhem suas demandas de infraestrutura até 8 de novembro',
+    },
+    {
+      name: 'Federação Bahiana de Futebol',
+      abbreviation: 'FBF-BA',
+      color: '9333EA',
+      foundedOn: '1913-09-14',
+      purpose:
+        'Gerencia o futebol na Bahia, promovendo competições estaduais, programas sociais e qualificação profissional.',
+      currentPresident: 'Ricardo Lima',
+      officialStatementDate: '2024-09-28',
+      statementFocus:
+        'o Baianão 2025 terá formato com grupo único e fases regionais voltadas ao interior',
+      statementAction:
+        'as diretorias reforcem o programa de compliance financeiro',
+      statementOrientation:
+        'os filiados atualizem cadastros de categorias de base até 31 de outubro',
+    },
+    {
+      name: 'Federação Pernambucana de Futebol',
+      abbreviation: 'FPF-PE',
+      color: 'EA580C',
+      foundedOn: '1915-06-16',
+      purpose:
+        'Coordena o futebol pernambucano, garantindo competições profissionais, incentivo às bases e arbitragem qualificada.',
+      currentPresident: 'Evandro Carvalho',
+      officialStatementDate: '2024-09-27',
+      statementFocus:
+        'o regulamento do Campeonato Pernambucano 2025 foi ratificado com cota de transmissão redefinida',
+      statementAction:
+        'os clubes respeitem as novas obrigações de licenciamento feminino e sub-20',
+      statementOrientation:
+        'as equipes encaminhem documentação financeira até 30 de outubro',
+    },
+    {
+      name: 'Federação Cearense de Futebol',
+      abbreviation: 'FCF-CE',
+      color: '0891B2',
+      foundedOn: '1920-03-23',
+      purpose:
+        'Supervisiona o futebol cearense, promovendo competições estaduais e ações de capacitação para clubes e árbitros.',
+      currentPresident: 'Mauro Carmélio',
+      officialStatementDate: '2024-09-25',
+      statementFocus:
+        'o Campeonato Cearense 2025 terá fases preliminares integradas ao projeto de interiorização',
+      statementAction:
+        'os clubes consolidem planos de segurança para jogos noturnos',
+      statementOrientation:
+        'as equipes apresentem listas atualizadas de atletas sub-23 até 5 de novembro',
+    },
+    {
+      name: 'Federação Goiana de Futebol',
+      abbreviation: 'FGF-GO',
+      color: '10B981',
+      foundedOn: '1931-11-01',
+      purpose:
+        'Coordena o futebol de Goiás, oferecendo suporte às categorias de base e à profissionalização de clubes.',
+      currentPresident: 'André Pitta',
+      officialStatementDate: '2024-09-26',
+      statementFocus:
+        'o Goianão 2025 adotará formato híbrido com fase de pontos corridos e eliminatórias',
+      statementAction:
+        'os clubes cumpram o cronograma de certificação dos centros de treinamento',
+      statementOrientation:
+        'as associações entreguem relatórios de responsabilidade social até 7 de novembro',
+    },
+    {
+      name: 'Federação Paraense de Futebol',
+      abbreviation: 'FPF-PA',
+      color: 'F97316',
+      foundedOn: '1941-12-02',
+      purpose:
+        'Organiza o Parazão e competições de base no Pará, apoiando projetos de inclusão e formação esportiva.',
+      currentPresident: 'Ricardo Gluck Paul',
+      officialStatementDate: '2024-10-03',
+      statementFocus:
+        'as diretrizes da Copa Verde 2025 e do Parazão foram alinhadas com a CBF',
+      statementAction:
+        'os clubes intensifiquem investimentos em gramados drenantes devido ao período chuvoso',
+      statementOrientation:
+        'as equipes formalizem ajustes de mando de campo até 9 de novembro',
+    },
+    {
+      name: 'Federação Paraibana de Futebol',
+      abbreviation: 'FPF-PB',
+      color: 'DB2777',
+      foundedOn: '1947-04-24',
+      purpose:
+        'Administra as competições da Paraíba, promovendo o futebol feminino, projetos de base e integridade esportiva.',
+      currentPresident: 'Michelle Ramalho',
+      officialStatementDate: '2024-09-24',
+      statementFocus:
+        'a reforma do Campeonato Paraibano 2025 amplia vagas para competições nacionais',
+      statementAction:
+        'os filiados adotem o protocolo de integridade para contratos e patrocínios',
+      statementOrientation:
+        'os clubes finalizem a regularização de estádios até 4 de novembro',
+    },
+    {
+      name: 'Federação Norte-rio-grandense de Futebol',
+      abbreviation: 'FNF-RN',
+      color: '3B82F6',
+      foundedOn: '1918-01-14',
+      purpose:
+        'Promove o futebol do Rio Grande do Norte, integrando competições profissionais, femininas e projetos sociais.',
+      currentPresident: 'José Vanildo',
+      officialStatementDate: '2024-09-23',
+      statementFocus:
+        'o Potiguar 2025 terá calendário antecipado para conciliar participações na Copa do Nordeste',
+      statementAction:
+        'os clubes mantenham diálogo com órgãos de segurança para eventos de maior público',
+      statementOrientation:
+        'as agremiações entreguem planos de contingência climática até 28 de outubro',
+    },
+    {
+      name: 'Federação Sergipana de Futebol',
+      abbreviation: 'FSF-SE',
+      color: 'EF4444',
+      foundedOn: '1920-11-09',
+      purpose:
+        'Coordena o futebol em Sergipe, com foco em calendário estadual, categorias de base e fortalecimento do feminino.',
+      currentPresident: 'Milton Dantas',
+      officialStatementDate: '2024-09-29',
+      statementFocus:
+        'o Sergipano 2025 confirmou expansão do arbitral feminino e reformulação do sub-17',
+      statementAction:
+        'os clubes priorizem programas sociais ligados à base',
+      statementOrientation:
+        'as entidades protocolem demandas de infraestrutura até 3 de novembro',
+    },
+    {
+      name: 'Federação Alagoana de Futebol',
+      abbreviation: 'FAF-AL',
+      color: '0284C7',
+      foundedOn: '1927-09-01',
+      purpose:
+        'Organiza as competições em Alagoas, incentivando a base, o futebol feminino e ações educacionais com clubes.',
+      currentPresident: 'Felipe Feijó',
+      officialStatementDate: '2024-09-21',
+      statementFocus:
+        'o conselho arbitral aprovou adequações no Alagoano 2025 e no calendário de base',
+      statementAction:
+        'os clubes fortaleçam a governança médica e os exames pré-temporada',
+      statementOrientation:
+        'as equipes entreguem cronograma de categorias sub-15 e sub-17 até 25 de outubro',
+    },
+    {
+      name: 'Federação Amazonense de Futebol',
+      abbreviation: 'FAF-AM',
+      color: '047857',
+      foundedOn: '1914-10-23',
+      purpose:
+        'Promove o futebol no Amazonas, ajustando competições ao clima local e apoiando o desenvolvimento de talentos.',
+      currentPresident: 'Aderson Frota',
+      officialStatementDate: '2024-09-20',
+      statementFocus:
+        'o Barezão 2025 terá partidas em horários alternativos para reduzir impactos climáticos',
+      statementAction:
+        'os clubes reforcem planos de hidratação e suporte médico',
+      statementOrientation:
+        'as agremiações compartilhem relatórios ambientais até 27 de outubro',
+    },
+    {
+      name: 'Federação Amapaense de Futebol',
+      abbreviation: 'FAF-AP',
+      color: '1E3A8A',
+      foundedOn: '1945-06-26',
+      purpose:
+        'Coordena o futebol no Amapá, trabalhando pela modernização de estádios e pelo fortalecimento das categorias de base.',
+      currentPresident: 'Josielson Penha',
+      officialStatementDate: '2024-09-18',
+      statementFocus:
+        'o estadual 2025 confirma parceria com a prefeitura para modernizar o Zerão',
+      statementAction:
+        'os clubes acompanhem as obras e ajustem treinos para preservar gramado',
+      statementOrientation:
+        'as equipes mantenham atualizados os cadastros de categorias femininas até 30 de outubro',
+    },
+    {
+      name: 'Federação Acreana de Futebol',
+      abbreviation: 'FAF-AC',
+      color: '166534',
+      foundedOn: '1954-04-29',
+      purpose:
+        'Administra o futebol no Acre, com foco em interiorização, capacitação técnica e apoio às categorias amadoras.',
+      currentPresident: 'Antonio Aquino Lopes',
+      officialStatementDate: '2024-09-19',
+      statementFocus:
+        'o Acreano 2025 terá fases regionais para diminuir deslocamentos',
+      statementAction:
+        'os clubes invistam em logística compartilhada e controle financeiro',
+      statementOrientation:
+        'as agremiações apresentem planos de hospedagem até 1º de novembro',
+    },
+    {
+      name: 'Federação Roraimense de Futebol',
+      abbreviation: 'FRF-RR',
+      color: 'F59E0B',
+      foundedOn: '1948-06-09',
+      purpose:
+        'Gerencia o futebol de Roraima, promovendo o estadual, ações sociais e formação continuada de arbitragem.',
+      currentPresident: 'Zeca Xaud',
+      officialStatementDate: '2024-09-17',
+      statementFocus:
+        'o estadual 2025 confirmou acordo para iluminação LED no Ribeirão',
+      statementAction:
+        'os clubes participem de treinamentos operacionais com a concessionária',
+      statementOrientation:
+        'as equipes protocolem demandas de categorias femininas até 28 de outubro',
+    },
+    {
+      name: 'Federação de Futebol do Estado de Rondônia',
+      abbreviation: 'FFER-RO',
+      color: '1E40AF',
+      foundedOn: '1944-01-30',
+      purpose:
+        'Coordena o futebol rondoniense, apoiando projetos de base, arbitragem e desenvolvimento de clubes profissionais.',
+      currentPresident: 'Heitor Mendonça',
+      officialStatementDate: '2024-09-16',
+      statementFocus:
+        'o Rondoniense 2025 ajustou regulamento de registro de atletas sub-23',
+      statementAction:
+        'os clubes reforcem monitoramento de inscrições para evitar punições',
+      statementOrientation:
+        'as agremiações enviem comprovantes de regularidade fiscal até 24 de outubro',
+    },
+    {
+      name: 'Federação Tocantinense de Futebol',
+      abbreviation: 'FTF-TO',
+      color: 'FACC15',
+      foundedOn: '1990-01-07',
+      purpose:
+        'Administra o futebol do Tocantins, incentivando competições estaduais, formação de base e integração com a CBF.',
+      currentPresident: 'Leomar Quintanilha',
+      officialStatementDate: '2024-09-22',
+      statementFocus:
+        'o Tocantinense 2025 terá calendário integrado às competições nacionais de base',
+      statementAction:
+        'os clubes invistam em centros de treinamento compartilhados',
+      statementOrientation:
+        'as equipes apresentem projetos de iluminação homologada até 5 de novembro',
+    },
+    {
+      name: 'Federação de Futebol do Distrito Federal',
+      abbreviation: 'FFDF',
+      color: '14B8A6',
+      foundedOn: '1959-06-16',
+      purpose:
+        'Coordena o futebol no Distrito Federal, promovendo competições, programas de integridade e qualificação de clubes.',
+      currentPresident: 'Daniel Vasconcelos',
+      officialStatementDate: '2024-09-15',
+      statementFocus:
+        'o Candangão 2025 foi oficializado com semifinais em ida e volta',
+      statementAction:
+        'os clubes mantenham regularidade trabalhista e médica',
+      statementOrientation:
+        'as agremiações atualizem cadastros no BID até 20 de outubro',
+    },
+    {
+      name: 'Federação de Futebol do Estado do Espírito Santo',
+      abbreviation: 'FES-ES',
+      color: '7C3AED',
+      foundedOn: '1917-02-25',
+      purpose:
+        'Organiza o Capixabão e competições de base, investindo em transmissão digital e formação de profissionais.',
+      currentPresident: 'Gustavo Vieira',
+      officialStatementDate: '2024-09-14',
+      statementFocus:
+        'o Capixabão 2025 terá transmissão digital com sinal unificado',
+      statementAction:
+        'os clubes adequem estruturas de cabines e internet',
+      statementOrientation:
+        'as equipes confirmem laudos técnicos até 18 de outubro',
+    },
+    {
+      name: 'Federação Maranhense de Futebol',
+      abbreviation: 'FMF-MA',
+      color: 'EA384D',
+      foundedOn: '1918-06-11',
+      purpose:
+        'Promove o futebol no Maranhão, integrando competições estaduais, femininas e projetos socioeducativos.',
+      currentPresident: 'Antônio Américo',
+      officialStatementDate: '2024-09-13',
+      statementFocus:
+        'o Maranhense 2025 estabeleceu calendário para competições sub-19 e feminina',
+      statementAction:
+        'os clubes reforcem departamentos médicos e de nutrição',
+      statementOrientation:
+        'as agremiações entreguem seus planos de viagens até 21 de outubro',
+    },
+    {
+      name: 'Federação de Futebol do Piauí',
+      abbreviation: 'FFP-PI',
+      color: '22C55E',
+      foundedOn: '1941-11-26',
+      purpose:
+        'Coordena o futebol piauiense, oferecendo suporte a competições estaduais, base e capacitação de gestores.',
+      currentPresident: 'Robert Brown Carcará',
+      officialStatementDate: '2024-09-12',
+      statementFocus:
+        'o Campeonato Piauiense 2025 confirmou ajustes no número de datas e na inscrição de atletas',
+      statementAction:
+        'os clubes atentem para o novo módulo de licenciamento digital',
+      statementOrientation:
+        'as equipes enviem documentação digitalizada até 18 de outubro',
+    },
+    {
+      name: 'Federação Mato-grossense de Futebol',
+      abbreviation: 'FMF-MT',
+      color: '0F766E',
+      foundedOn: '1942-05-20',
+      purpose:
+        'Administra o futebol em Mato Grosso, priorizando infraestrutura, arbitragem e formação de atletas.',
+      currentPresident: 'Carlos Orione',
+      officialStatementDate: '2024-09-11',
+      statementFocus:
+        'o Mato-grossense 2025 terá centralização das operações de arbitragem',
+      statementAction:
+        'os clubes participem dos workshops de tecnologia oferecidos',
+      statementOrientation:
+        'as agremiações apresentem cronograma de adequação de estádios até 17 de outubro',
+    },
+    {
+      name: 'Federação de Futebol de Mato Grosso do Sul',
+      abbreviation: 'FFMS-MS',
+      color: '38BDF8',
+      foundedOn: '1978-12-23',
+      purpose:
+        'Coordena o futebol sul-mato-grossense, estimulando o calendário estadual, a base e projetos de arbitragem.',
+      currentPresident: 'Adriano Kobal',
+      officialStatementDate: '2024-09-10',
+      statementFocus:
+        'o Sul-Mato-Grossense 2025 priorizará jogos aos finais de semana e integração com a base',
+      statementAction:
+        'os clubes reforcem programas de formação de árbitros assistentes locais',
+      statementOrientation:
+        'as equipes validem cadastro de atletas sub-20 até 16 de outubro',
+    },
+  ]
 
-  const confed2 = await prisma.confederation.create({
-    data: {
-      name: 'União das Associações Europeias de Futebol',
-      slug: slugify('União das Associações Europeias de Futebol'),
-      clubs: {
-        create: [
-          { name: 'Real Madrid Club de Fútbol', slug: slugify('Real Madrid Club de Futbol') },
-          { name: 'Manchester City Football Club', slug: slugify('Manchester City Football Club') },
-        ],
-      },
-    },
-    include: { clubs: true },
-  })
+  await prisma.club.deleteMany()
+  await prisma.confederation.deleteMany()
+
+  for (const confed of confederationsSeedData) {
+    const data: Prisma.ConfederationCreateInput = {
+      name: confed.name,
+      slug: slugify(confed.name),
+      logoUrl: placeholderLogo(confed.abbreviation, confed.color),
+      foundedAt: parseDate(confed.foundedOn),
+      purpose: confed.purpose,
+      currentPresident: confed.currentPresident,
+      officialStatementDate: parseDate(confed.officialStatementDate),
+      officialStatement: composeStatement(confed),
+    }
+
+    if (confed.clubs?.length) {
+      data.clubs = {
+        create: confed.clubs.map((club) => ({
+          name: club.name,
+          slug: slugify(club.name),
+        })),
+      }
+    }
+
+    await prisma.confederation.create({ data })
+  }
 
   const [agent1, agent2] = await Promise.all([
     prisma.user.create({

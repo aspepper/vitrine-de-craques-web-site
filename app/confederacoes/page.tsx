@@ -2,6 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import prisma from "@/lib/db"
+import { normalizeConfederationLogoUrl } from "@/lib/confederations"
 
 interface PageProps {
   searchParams: { page?: string }
@@ -11,8 +13,8 @@ interface Confederation {
   id: string
   name: string
   slug: string
-  logoUrl?: string | null
-  foundedAt?: string | null
+  logoUrl: string | null
+  foundedAt: string | null
   purpose?: string | null
   currentPresident?: string | null
   officialStatementDate?: string | null
@@ -25,7 +27,6 @@ interface ConfederationsResponse {
   total: number
 }
 
-const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000"
 const PAGE_SIZE = 12
 
 function formatDate(input?: string | null) {
@@ -52,35 +53,50 @@ function getAcronym(name: string) {
 }
 
 async function getConfeds(page: number, limit: number): Promise<ConfederationsResponse> {
-  try {
-    const params = new URLSearchParams({
-      page: String(page),
-      limit: String(limit),
-    })
+  const safeLimit = Number.isFinite(limit) && limit > 0 ? Math.min(Math.floor(limit), 50) : PAGE_SIZE
+  const total = await prisma.confederation.count()
+  const totalPages = Math.max(1, Math.ceil(total / safeLimit))
+  const safePage = Number.isFinite(page) && page > 0 ? Math.min(Math.floor(page), totalPages) : 1
+  const skip = (safePage - 1) * safeLimit
 
-    const res = await fetch(`${baseUrl}/api/confederacoes?${params.toString()}`, {
-      cache: "no-store",
-    })
+  const confederations = await prisma.confederation.findMany({
+    skip,
+    take: safeLimit,
+    orderBy: { name: "asc" },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      logoUrl: true,
+      foundedAt: true,
+      purpose: true,
+      currentPresident: true,
+      officialStatementDate: true,
+    },
+  })
 
-    if (!res.ok) {
-      throw new Error(`Status ${res.status}`)
-    }
+  const items: Confederation[] = confederations.map((confed) => ({
+    id: confed.id,
+    name: confed.name,
+    slug: confed.slug,
+    logoUrl: normalizeConfederationLogoUrl(confed.logoUrl),
+    foundedAt: confed.foundedAt?.toISOString() ?? null,
+    purpose: confed.purpose,
+    currentPresident: confed.currentPresident,
+    officialStatementDate: confed.officialStatementDate?.toISOString() ?? null,
+  }))
 
-    return res.json()
-  } catch (error) {
-    console.error("Erro ao carregar confederações", error)
-    return {
-      items: [],
-      page,
-      total: 0,
-      totalPages: 1,
-    }
+  return {
+    items,
+    page: safePage,
+    total,
+    totalPages,
   }
 }
 
 export default async function ConfederacoesPage({ searchParams }: PageProps) {
-  const page = Number(searchParams.page) || 1
-  const { items, totalPages } = await getConfeds(page, PAGE_SIZE)
+  const requestedPage = Number(searchParams.page) || 1
+  const { items, totalPages, page } = await getConfeds(requestedPage, PAGE_SIZE)
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">

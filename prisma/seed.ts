@@ -48,7 +48,7 @@ function parseDate(input: string) {
 async function main() {
   console.log('Start seeding ...')
 
-  const hashedPassword = await bcrypt.hash('password', 10)
+  const hashedPassword = await bcrypt.hash('senha@2025', 10)
 
   const seedGames = [
     {

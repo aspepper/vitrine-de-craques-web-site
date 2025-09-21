@@ -1,5 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
+
+import prisma from "@/lib/db"
+import { normalizeConfederationLogoUrl } from "@/lib/confederations"
 
 interface PageProps {
   params: { slug: string }
@@ -9,16 +13,14 @@ interface ConfederationDetail {
   id: string
   name: string
   slug: string
-  logoUrl?: string | null
-  foundedAt?: string | null
+  logoUrl: string | null
+  foundedAt: string | null
   purpose?: string | null
   currentPresident?: string | null
   officialStatement?: string | null
   officialStatementDate?: string | null
   clubs: { id: string; name: string; slug: string }[]
 }
-
-const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000"
 
 function formatDate(input?: string | null) {
   if (!input) return "—"
@@ -44,11 +46,36 @@ function getAcronym(name: string) {
 }
 
 async function getConfed(slug: string): Promise<ConfederationDetail> {
-  const res = await fetch(`${baseUrl}/api/confederacoes/${slug}`, { cache: "no-store" })
-  if (!res.ok) {
-    throw new Error("Confederação não encontrada")
+  const confed = await prisma.confederation.findUnique({
+    where: { slug },
+    include: {
+      clubs: {
+        orderBy: { name: "asc" },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+        },
+      },
+    },
+  })
+
+  if (!confed) {
+    notFound()
   }
-  return res.json()
+
+  return {
+    id: confed.id,
+    name: confed.name,
+    slug: confed.slug,
+    logoUrl: normalizeConfederationLogoUrl(confed.logoUrl),
+    foundedAt: confed.foundedAt?.toISOString() ?? null,
+    purpose: confed.purpose,
+    currentPresident: confed.currentPresident,
+    officialStatement: confed.officialStatement,
+    officialStatementDate: confed.officialStatementDate?.toISOString() ?? null,
+    clubs: confed.clubs,
+  }
 }
 
 export default async function ConfederacaoDetalhePage({ params }: PageProps) {

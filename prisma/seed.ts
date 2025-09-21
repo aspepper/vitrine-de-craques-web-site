@@ -125,6 +125,38 @@ async function main() {
     },
   ]
 
+  const confederationLogoUrls: Record<string, string> = {
+    FIFA: '/logos-confederations/logo-fifa.png',
+    CBF: '/logos-confederations/logo-cbf.png',
+    'FPF-SP': '/logos-confederations/logo-fpf.png',
+    FERJ: '/logos-confederations/logo-ferj.png',
+    'FMF-MG': '/logos-confederations/logo-fmf-mg.png',
+    'FGF-RS': '/logos-confederations/logo-fgf-rs.png',
+    'FPF-PR': '/logos-confederations/logo-fpf-pr.png',
+    'FCF-SC': '/logos-confederations/logo-fcf-sc.png',
+    'FBF-BA': '/logos-confederations/logo-fbf-ba.png',
+    'FPF-PE': '/logos-confederations/logo-fpf-pe.png',
+    'FCF-CE': '/logos-confederations/logo-fcf-ce.png',
+    'FGF-GO': '/logos-confederations/logo-fgf-go.png',
+    'FPF-PA': '/logos-confederations/logo-fpf-pa.png',
+    'FPF-PB': '/logos-confederations/logo-fpf-pb.png',
+    'FNF-RN': '/logos-confederations/logo-fnf-rn.png',
+    'FSF-SE': '/logos-confederations/logo-fsf-se.png',
+    'FAF-AL': '/logos-confederations/logo-faf-al.png',
+    'FAF-AM': '/logos-confederations/logo-faf-am.png',
+    'FAF-AP': '/logos-confederations/logo-faf-ap.png',
+    'FFAC-AC': '/logos-confederations/logo-ffac-ac.png',
+    'FRF-RR': '/logos-confederations/logo-frf-rr.png',
+    'FFER-RO': '/logos-confederations/logo-ffer-ro.png',
+    'FTF-TO': '/logos-confederations/logo-ftf-to.png',
+    FFDF: '/logos-confederations/logo-ffdf.png',
+    'FES-ES': '/logos-confederations/logo-fes-es.png',
+    'FMF-MA': '/logos-confederations/logo-fmf-ma.png',
+    'FFP-PI': '/logos-confederations/logo-ffp-pi.png',
+    'FMF-MT': '/logos-confederations/logo-fmf-mt.png',
+    'FFMS-MS': '/logos-confederations/logo-ffms-ms.png',
+  }
+
   const confederationsSeedData: ConfederationSeed[] = [
     {
       name: 'Fédération Internationale de Football Association',
@@ -619,7 +651,7 @@ async function main() {
     const data: Prisma.ConfederationCreateInput = {
       name: confed.name,
       slug: slugify(confed.name),
-      logoUrl: placeholderLogo(confed.abbreviation, confed.color),
+      logoUrl: confederationLogoUrls[confed.abbreviation] ?? placeholderLogo(confed.abbreviation, confed.color),
       foundedAt: parseDate(confed.foundedOn),
       purpose: confed.purpose,
       currentPresident: confed.currentPresident,

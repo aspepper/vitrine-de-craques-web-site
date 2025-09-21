@@ -439,8 +439,8 @@ async function main() {
         'as equipes mantenham atualizados os cadastros de categorias femininas até 30 de outubro',
     },
     {
-      name: 'Federação Acreana de Futebol',
-      abbreviation: 'FAF-AC',
+      name: 'Federação de Futebol do Acre',
+      abbreviation: 'FFAC-AC',
       color: '166534',
       foundedOn: '1954-04-29',
       purpose:

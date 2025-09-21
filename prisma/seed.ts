@@ -810,6 +810,7 @@ async function main() {
           'https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1600&q=80&fm=webp',
         publishedAt: new Date('2025-08-03T18:30:00Z'),
         authorId: journalist.id,
+        likesCount: 214,
       },
       {
         title: 'Comissão técnica investe em tecnologia para treinos',
@@ -823,6 +824,7 @@ async function main() {
           'https://images.unsplash.com/photo-1526234255934-99a3be5496ef?auto=format&fit=crop&w=1600&q=80&fm=webp',
         publishedAt: new Date('2025-08-01T14:00:00Z'),
         authorId: journalist.id,
+        likesCount: 178,
       },
       {
         title: 'Base conquista título invicto em torneio internacional',
@@ -836,6 +838,7 @@ async function main() {
           'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80&fm=webp',
         publishedAt: new Date('2025-07-27T10:15:00Z'),
         authorId: journalist.id,
+        likesCount: 132,
       },
       {
         title: 'Departamento médico apresenta novo protocolo de prevenção',
@@ -849,6 +852,7 @@ async function main() {
           'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=80&fm=webp',
         publishedAt: new Date('2025-07-22T09:00:00Z'),
         authorId: journalist.id,
+        likesCount: 167,
       },
       {
         title: 'Torcida prepara mosaico especial para decisão continental',
@@ -862,6 +866,7 @@ async function main() {
           'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1600&q=80&fm=webp',
         publishedAt: new Date('2025-07-18T20:45:00Z'),
         authorId: journalist.id,
+        likesCount: 241,
       },
       {
         title: 'Executivo detalha planejamento para a próxima janela',
@@ -875,6 +880,7 @@ async function main() {
           'https://images.unsplash.com/photo-1527718641255-324f8e2d0423?auto=format&fit=crop&w=1600&q=80&fm=webp',
         publishedAt: new Date('2025-07-15T16:20:00Z'),
         authorId: journalist.id,
+        likesCount: 196,
       },
     ],
   })
@@ -898,17 +904,19 @@ async function main() {
         title: 'Lance do Atleta Um',
         videoUrl: 'https://example.com/video1.mp4',
         userId: athlete1.id,
+        likesCount: 128,
       },
       {
         title: 'Lance do Atleta Dois',
         videoUrl: 'https://example.com/video2.mp4',
         userId: athlete2.id,
+        likesCount: 86,
       },
     ],
   })
 
   await prisma.times.createMany({
-        data: [
+    data: [
       {
         divisao: 'A',
         clube: 'Atlético Mineiro',
@@ -1631,6 +1639,43 @@ async function main() {
       }
     ],
   })
+
+  const favoriteClubs = await prisma.times.findMany({
+    where: {
+      slug: {
+        in: [slugify('Atlético Mineiro'), slugify('Cruzeiro')],
+      },
+    },
+    select: { id: true, slug: true },
+  })
+
+  const clubsBySlug = new Map(favoriteClubs.map((club) => [club.slug, club.id]))
+  const atleticoSlug = slugify('Atlético Mineiro')
+  const cruzeiroSlug = slugify('Cruzeiro')
+
+  const profileUpdates: Promise<unknown>[] = []
+
+  if (clubsBySlug.has(atleticoSlug)) {
+    profileUpdates.push(
+      prisma.profile.update({
+        where: { userId: blogger.id },
+        data: { favoriteClubId: clubsBySlug.get(atleticoSlug)! },
+      }),
+    )
+  }
+
+  if (clubsBySlug.has(cruzeiroSlug)) {
+    profileUpdates.push(
+      prisma.profile.update({
+        where: { userId: athlete1.id },
+        data: { favoriteClubId: clubsBySlug.get(cruzeiroSlug)! },
+      }),
+    )
+  }
+
+  if (profileUpdates.length > 0) {
+    await Promise.all(profileUpdates)
+  }
 
   console.log('Seeding finished.')
 }

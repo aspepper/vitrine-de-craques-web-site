@@ -10,6 +10,7 @@ export async function GET(req: Request, { params }: Params) {
   try {
     const profile = await prisma.profile.findUnique({
       where: { id: params.id },
+      include: { favoriteClub: true },
     })
     if (!profile || profile.role !== 'ATLETA') {
       return NextResponse.json({ message: 'Not found' }, { status: 404 })

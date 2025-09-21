@@ -19,7 +19,11 @@ export async function GET(req: NextRequest) {
                   { displayName: { contains: search, mode: 'insensitive' as const } },
                   { cidade: { contains: search, mode: 'insensitive' as const } },
                   { uf: { contains: search, mode: 'insensitive' as const } },
-                  { clube: { contains: search, mode: 'insensitive' as const } },
+                  {
+                    favoriteClub: {
+                      clube: { contains: search, mode: 'insensitive' as const },
+                    },
+                  },
                   { pais: { contains: search, mode: 'insensitive' as const } },
                   { nascimento: { contains: search, mode: 'insensitive' as const } },
                 ],
@@ -35,6 +39,7 @@ export async function GET(req: NextRequest) {
         skip,
         take: limit,
         orderBy: { displayName: 'asc' },
+        include: { favoriteClub: true },
       }),
       prisma.profile.count({ where }),
     ])

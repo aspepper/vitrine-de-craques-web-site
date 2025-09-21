@@ -1,9 +1,15 @@
+import type { ReactNode } from "react";
+
 import { type Role } from "@prisma/client";
-import { Mail, MapPin, Phone, UserRound } from "lucide-react";
+import { MapPin, Phone, UserRound } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FavoriteTeamCard, type FavoriteTeamInfo } from "@/components/perfil/FavoriteTeamCard";
+import { NewsManager, type NewsManagerItem } from "@/components/perfil/NewsManager";
+import { ResponsibleAthleteDetails } from "@/components/perfil/ResponsibleAthleteDetails";
+import { VideoManager, type VideoManagerItem } from "@/components/perfil/VideoManager";
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/db";
 
@@ -90,7 +96,7 @@ export default async function PerfilPage() {
 
   const profile = await prisma.profile.findUnique({
     where: { userId: session.user.id },
-    include: { user: true },
+    include: { user: true, favoriteClub: true },
   });
 
   const interestedAthletes = parseInterestedAthletes(profile?.data ?? null);
@@ -102,6 +108,151 @@ export default async function PerfilPage() {
   const contactSegments = [location, profile?.user?.email ?? profile?.representanteEmail, phone].filter(
     (segment): segment is string => Boolean(segment && segment.length > 0),
   );
+  const hasContactCards = Boolean(location || phone);
+
+  let newsItems: NewsManagerItem[] = [];
+  if (profile?.role === "IMPRENSA") {
+    const news = await prisma.news.findMany({
+      where: { authorId: profile.userId },
+      orderBy: { updatedAt: "desc" },
+    });
+    newsItems = news.map((item) => ({
+      id: item.id,
+      title: item.title,
+      excerpt: item.excerpt ?? null,
+      content: item.content ?? null,
+      category: item.category ?? null,
+      coverImage: item.coverImage ?? null,
+      likesCount: item.likesCount ?? 0,
+      publishedAt: item.publishedAt.toISOString(),
+      updatedAt: item.updatedAt.toISOString(),
+      slug: item.slug,
+    }));
+  }
+
+  let videoItems: VideoManagerItem[] = [];
+  if (profile && (profile.role === "ATLETA" || profile.role === "RESPONSAVEL")) {
+    const videos = await prisma.video.findMany({
+      where: { userId: profile.userId },
+      orderBy: { createdAt: "desc" },
+    });
+    videoItems = videos.map((video) => ({
+      id: video.id,
+      title: video.title,
+      description: video.description ?? null,
+      videoUrl: video.videoUrl,
+      thumbnailUrl: video.thumbnailUrl ?? null,
+      likesCount: video.likesCount ?? 0,
+      createdAt: video.createdAt.toISOString(),
+    }));
+  }
+
+  const favoriteTeam: FavoriteTeamInfo | null = profile?.favoriteClub
+    ? {
+        id: profile.favoriteClub.id,
+        clube: profile.favoriteClub.clube,
+        sigla: profile.favoriteClub.sigla,
+        apelido: profile.favoriteClub.apelido,
+        mascote: profile.favoriteClub.mascote,
+        divisao: profile.favoriteClub.divisao,
+        cidade: profile.favoriteClub.cidade,
+        estado: profile.favoriteClub.estado,
+        fundacao: profile.favoriteClub.fundacao ?? null,
+        maiorIdolo: profile.favoriteClub.maiorIdolo,
+      }
+    : null;
+
+  const responsibleAthlete = profile?.role === "RESPONSAVEL"
+    ? {
+        athleteName: profile.atletaNome,
+        birthDate: profile.atletaNascimento,
+        gender: profile.atletaGenero,
+        sport: profile.atletaEsporte,
+        modality: profile.atletaModalidade,
+        notes: profile.atletaObservacoes,
+      }
+    : null;
+
+  const interestedContent = interestedAthletes.length > 0
+    ? (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {interestedAthletes.map((athlete) => (
+            <article
+              key={athlete.id ?? athlete.name}
+              className="group relative overflow-hidden rounded-[28px] bg-slate-900 p-6 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)] transition-transform duration-300 hover:-translate-y-1"
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white">
+                <UserRound aria-hidden className="h-8 w-8" />
+              </div>
+              <div className="mt-6 flex flex-col gap-2 text-white">
+                <h3 className="font-heading text-xl font-semibold italic leading-tight">{athlete.name}</h3>
+                {athlete.position ? (
+                  <p className="text-sm uppercase tracking-[0.24em] text-white/60">{athlete.position}</p>
+                ) : null}
+                {athlete.club ? <p className="text-sm text-white/70">{athlete.club}</p> : null}
+              </div>
+            </article>
+          ))}
+        </div>
+      )
+    : (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div
+              key={index}
+              className="aspect-[4/5] rounded-[28px] bg-slate-900/90 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)]"
+            />
+          ))}
+        </div>
+      );
+
+  let sectionTitle = "Conteúdos personalizados";
+  let sectionDescription = "Mantenha seu perfil atualizado para desbloquear recursos exclusivos.";
+  let sectionContent: ReactNode = (
+    <div className="rounded-[28px] border border-dashed border-slate-200 bg-white/80 p-8 text-center text-sm text-slate-500 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.2)]">
+      Complete seu perfil para visualizar conteúdos personalizados aqui.
+    </div>
+  );
+
+  if (profile) {
+    switch (profile.role) {
+      case "AGENTE":
+      case "CLUBE":
+        sectionTitle = "Atletas de interesse";
+        sectionDescription =
+          "Acompanhe os talentos monitorados e selecionados para oportunidades especiais dentro da Vitrine.";
+        sectionContent = interestedContent;
+        break;
+      case "IMPRENSA":
+        sectionTitle = "Seus artigos";
+        sectionDescription = "Crie, edite e acompanhe o engajamento das suas publicações.";
+        sectionContent = <NewsManager initialNews={newsItems} />;
+        break;
+      case "ATLETA":
+        sectionTitle = "Seus vídeos";
+        sectionDescription = "Gerencie suas publicações e acompanhe o total de curtidas.";
+        sectionContent = <VideoManager initialVideos={videoItems} />;
+        break;
+      case "RESPONSAVEL":
+        sectionTitle = "Conteúdos do atleta";
+        sectionDescription = "Atualize os vídeos e mantenha os dados do atleta sempre em destaque.";
+        sectionContent = <VideoManager initialVideos={videoItems} />;
+        break;
+      case "TORCEDOR":
+        sectionTitle = "Seu time do coração";
+        sectionDescription = "Informações atualizadas sobre o clube que você acompanha.";
+        sectionContent = favoriteTeam ? (
+          <FavoriteTeamCard team={favoriteTeam} />
+        ) : (
+          <div className="rounded-[28px] border border-dashed border-slate-200 bg-white/80 p-8 text-center text-sm text-slate-500 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.2)]">
+            Escolha um clube do coração para visualizar os detalhes aqui.
+          </div>
+        );
+        break;
+      default:
+        break;
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
@@ -154,43 +305,40 @@ export default async function PerfilPage() {
                     </div>
                   </div>
 
-                  <ul className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2 lg:max-w-sm">
-                    {location ? (
-                      <li className="flex items-center gap-3 rounded-2xl bg-slate-50/80 px-5 py-4 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.6)]">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-emerald-500">
-                          <MapPin aria-hidden className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Localização</p>
-                          <p className="font-medium text-slate-700">{location}</p>
-                        </div>
-                      </li>
-                    ) : null}
+                  {hasContactCards || responsibleAthlete ? (
+                    <div className="flex flex-col gap-4 lg:max-w-sm">
+                      {hasContactCards ? (
+                        <ul className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
+                          {location ? (
+                            <li className="flex items-center gap-3 rounded-2xl bg-slate-50/80 px-5 py-4 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.6)] sm:col-span-2">
+                              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-emerald-500">
+                                <MapPin aria-hidden className="h-5 w-5" />
+                              </span>
+                              <div>
+                                <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Localização</p>
+                                <p className="font-medium text-slate-700">{location}</p>
+                              </div>
+                            </li>
+                          ) : null}
 
-                    {profile?.user?.email || profile?.representanteEmail ? (
-                      <li className="flex items-center gap-3 rounded-2xl bg-slate-50/80 px-5 py-4 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.6)]">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-emerald-500">
-                          <Mail aria-hidden className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.28em] text-slate-400">E-mail</p>
-                          <p className="font-medium text-slate-700">{profile.user?.email ?? profile.representanteEmail}</p>
-                        </div>
-                      </li>
-                    ) : null}
-
-                    {phone ? (
-                      <li className="flex items-center gap-3 rounded-2xl bg-slate-50/80 px-5 py-4 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.6)]">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-emerald-500">
-                          <Phone aria-hidden className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Contato</p>
-                          <p className="font-medium text-slate-700">{phone}</p>
-                        </div>
-                      </li>
-                    ) : null}
-                  </ul>
+                          {phone ? (
+                            <li className="flex items-center gap-3 rounded-2xl bg-slate-50/80 px-5 py-4 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.6)]">
+                              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-emerald-500">
+                                <Phone aria-hidden className="h-5 w-5" />
+                              </span>
+                              <div>
+                                <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Contato</p>
+                                <p className="font-medium text-slate-700">{phone}</p>
+                              </div>
+                            </li>
+                          ) : null}
+                        </ul>
+                      ) : null}
+                      {responsibleAthlete ? (
+                        <ResponsibleAthleteDetails {...responsibleAthlete} />
+                      ) : null}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </section>
@@ -198,43 +346,12 @@ export default async function PerfilPage() {
             <section className="flex flex-col gap-8">
               <header className="flex flex-col gap-3">
                 <h2 className="font-heading text-[32px] font-semibold italic text-slate-900 md:text-[36px]">
-                  Atletas de interesse
+                  {sectionTitle}
                 </h2>
-                <p className="max-w-2xl text-base text-slate-500">
-                  Acompanhe os talentos monitorados e selecionados para oportunidades especiais dentro da Vitrine.
-                </p>
+                <p className="max-w-2xl text-base text-slate-500">{sectionDescription}</p>
               </header>
 
-              {interestedAthletes.length > 0 ? (
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-                  {interestedAthletes.map((athlete) => (
-                    <article
-                      key={athlete.id ?? athlete.name}
-                      className="group relative overflow-hidden rounded-[28px] bg-slate-900 p-6 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)] transition-transform duration-300 hover:-translate-y-1"
-                    >
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white">
-                        <UserRound aria-hidden className="h-8 w-8" />
-                      </div>
-                      <div className="mt-6 flex flex-col gap-2 text-white">
-                        <h3 className="font-heading text-xl font-semibold italic leading-tight">{athlete.name}</h3>
-                        {athlete.position ? (
-                          <p className="text-sm uppercase tracking-[0.24em] text-white/60">{athlete.position}</p>
-                        ) : null}
-                        {athlete.club ? <p className="text-sm text-white/70">{athlete.club}</p> : null}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              ) : (
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-                  {Array.from({ length: 10 }).map((_, index) => (
-                    <div
-                      key={index}
-                      className="aspect-[4/5] rounded-[28px] bg-slate-900/90 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)]"
-                    />
-                  ))}
-                </div>
-              )}
+              {sectionContent}
             </section>
           </>
         ) : (

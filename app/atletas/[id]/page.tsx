@@ -189,6 +189,15 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
         <div className="mx-auto max-w-6xl space-y-12">
+          <Link
+            href="/atletas"
+            prefetch={false}
+            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+          >
+            <span aria-hidden>←</span>
+            Voltar para atletas
+          </Link>
+
           <header className="space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
               Perfil do Atleta

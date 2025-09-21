@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ensureImage } from "@/lib/ensureImage";
 
 interface PageProps {
@@ -25,9 +26,18 @@ export default async function ClubeDetalhePage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
-      <main className="container mx-auto flex-grow p-4">
-        <div className="mx-auto max-w-3xl">
-          <div className="relative mb-6 h-64 w-full overflow-hidden rounded-lg shadow">
+      <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
+        <div className="mx-auto max-w-3xl space-y-6">
+          <Link
+            href="/clubes"
+            prefetch={false}
+            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+          >
+            <span aria-hidden>←</span>
+            Voltar para clubes
+          </Link>
+
+          <div className="relative h-64 w-full overflow-hidden rounded-lg shadow">
             <Image
               src={heroImage}
               alt={club.name}
@@ -36,11 +46,12 @@ export default async function ClubeDetalhePage({ params }: PageProps) {
               loading="lazy"
             />
           </div>
-            <h1>{club.name}</h1>
-            <p className="text-muted-foreground">
-              Confederação: {club.confederation?.name || '—'}
-            </p>
+
+          <div className="space-y-2">
+            <h1 className="text-3xl font-semibold text-slate-900">{club.name}</h1>
+            <p className="text-muted-foreground">Confederação: {club.confederation?.name || "—"}</p>
           </div>
+        </div>
       </main>
     </div>
   );

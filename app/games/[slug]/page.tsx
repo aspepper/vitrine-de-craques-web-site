@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
@@ -104,12 +105,22 @@ export default async function GameDetalhePage({ params }: PageProps) {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="container mx-auto flex-grow px-4 pb-20 pt-10">
-        <header className="mb-10 space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">Seleção editorial</p>
-          <h1 className="text-3xl font-semibold text-slate-900">Games</h1>
-        </header>
+        <div className="mx-auto w-full max-w-5xl space-y-10">
+          <Link
+            href="/games"
+            prefetch={false}
+            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+          >
+            <span aria-hidden>←</span>
+            Voltar para games
+          </Link>
 
-        <article className="mx-auto max-w-5xl space-y-10">
+          <header className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">Seleção editorial</p>
+            <h1 className="text-3xl font-semibold text-slate-900">Games</h1>
+          </header>
+
+          <article className="space-y-10">
           <div className="relative overflow-hidden rounded-3xl bg-slate-900 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.85)]">
             <Image
               src={heroImage}
@@ -149,7 +160,8 @@ export default async function GameDetalhePage({ params }: PageProps) {
               ))}
             </section>
           ) : null}
-        </article>
+          </article>
+        </div>
       </main>
     </div>
   )

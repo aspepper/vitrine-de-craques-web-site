@@ -250,9 +250,10 @@ export default async function HomePage() {
         </div>
 
         {/* Overlays: clareia topo e funde com o footer */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[680px] bg-gradient-to-b from-white via-white/90 to-white/0" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-72 bg-gradient-to-b from-transparent to-[#0B1E3A]/70" />
 
-        <main className="relative z-10 space-y-16">
+        <main className="relative z-10 space-y-16 pb-16">
           {/* HERO / BANNER */}
           <section className="container pt-2 md:pt-4">
             <div
@@ -382,37 +383,38 @@ export default async function HomePage() {
           </section>
 
           {/* DESTAQUES */}
-          <section className="container space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <h2 className="text-h2 section-title">Destaques</h2>
-              <div className="flex items-center gap-4">
-                {highlightsError ? (
-                  <p className="text-sm font-medium text-white/80">
-                    Não foi possível carregar os vídeos em destaque agora.
-                  </p>
-                ) : null}
-                <Link
-                  href="/atletas"
-                  className="text-sm font-semibold text-white underline-offset-4 transition hover:underline"
-                >
-                  Ver mais...
-                </Link>
+          <section className="container">
+            <div className="rounded-[36px] border border-white/70 bg-white/92 p-8 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.65)] backdrop-blur">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h2 className="text-h2 section-title text-slate-900">Destaques</h2>
+                <div className="flex items-center gap-4">
+                  {highlightsError ? (
+                    <p className="text-sm font-medium text-slate-600">
+                      Não foi possível carregar os vídeos em destaque agora.
+                    </p>
+                  ) : null}
+                  <Link
+                    href="/atletas"
+                    className="text-sm font-semibold text-emerald-600 underline-offset-4 transition hover:text-emerald-700 hover:underline"
+                  >
+                    Ver mais...
+                  </Link>
+                </div>
               </div>
-            </div>
-            {highlights.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-                {highlights.map((video) => {
-                  const thumbnail = video.thumbnailUrl
-                    ? ensureImage(video.thumbnailUrl, video.id, 'video-thumbnail')
-                    : '/stadium.jpg'
+              {highlights.length > 0 ? (
+                <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                  {highlights.map((video) => {
+                    const thumbnail = video.thumbnailUrl
+                      ? ensureImage(video.thumbnailUrl, video.id, 'video-thumbnail')
+                      : '/stadium.jpg'
 
-                  return (
-                    <Link
-                      key={video.id}
-                      href={`/player/${video.id}`}
-                      className="group"
-                    >
-                      <Card className="overflow-hidden rounded-2xl border border-white/20 bg-white/80 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.8)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_30px_80px_-36px_rgba(15,23,42,0.85)]">
+                    return (
+                      <Link
+                        key={video.id}
+                        href={`/player/${video.id}`}
+                        className="group"
+                      >
+                      <Card className="overflow-hidden rounded-2xl border border-white/30 bg-white/90 shadow-[0_24px_72px_-44px_rgba(15,23,42,0.75)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_32px_84px_-40px_rgba(15,23,42,0.85)]">
                         <div className="relative h-40 overflow-hidden">
                           <Image
                             src={thumbnail}
@@ -432,7 +434,7 @@ export default async function HomePage() {
                           </div>
                         </div>
                         <CardContent className="flex flex-col gap-2 p-4">
-                          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
+                          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                             Vídeo em destaque
                           </span>
                           <p className="text-sm text-slate-700">
@@ -443,156 +445,161 @@ export default async function HomePage() {
                     </Link>
                   )
                 })}
-              </div>
-            ) : (
-              <div className="rounded-2xl border border-white/20 bg-white/80 p-8 text-center text-slate-700 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.4)]">
-                <p className="font-semibold">
-                  {highlightsError
-                    ? 'Tente novamente em instantes. Estamos preparando os vídeos mais curtidos para você.'
-                    : 'Nenhum vídeo em destaque disponível ainda.'}
-                </p>
-              </div>
-            )}
+                </div>
+              ) : (
+                <div className="mt-8 rounded-2xl border border-dashed border-emerald-200/80 bg-white/70 p-8 text-center text-slate-600 shadow-[0_24px_72px_-48px_rgba(15,23,42,0.4)]">
+                  <p className="font-semibold">
+                    {highlightsError
+                      ? 'Tente novamente em instantes. Estamos preparando os vídeos mais curtidos para você.'
+                      : 'Nenhum vídeo em destaque disponível ainda.'}
+                  </p>
+                </div>
+              )}
+            </div>
           </section>
 
           {/* PRINCIPAIS NOTÍCIAS */}
-          <section className="container space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <h2 className="text-h2 section-title">Principais notícias</h2>
-              <div className="flex items-center gap-4">
-                {newsError ? (
-                  <p className="text-sm font-medium text-white/80">
-                    Exibindo curadoria editorial enquanto as notícias são carregadas.
-                  </p>
-                ) : null}
-                <Link
-                  href="/noticias"
-                  className="text-sm font-semibold text-white underline-offset-4 transition hover:underline"
-                >
-                  Ver mais...
-                </Link>
-              </div>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {latestNews.map((news) => {
-                const cover = news.coverImage
-                  ? ensureImage(news.coverImage, news.slug, 'news-cover')
-                  : '/stadium.jpg'
-
-                return (
+          <section className="container">
+            <div className="rounded-[36px] border border-white/70 bg-white/92 p-8 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.65)] backdrop-blur">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h2 className="text-h2 section-title text-slate-900">Principais notícias</h2>
+                <div className="flex items-center gap-4">
+                  {newsError ? (
+                    <p className="text-sm font-medium text-slate-600">
+                      Exibindo curadoria editorial enquanto as notícias são carregadas.
+                    </p>
+                  ) : null}
                   <Link
-                    key={news.id}
-                    href={`/noticias/${news.slug}`}
-                    className="group"
+                    href="/noticias"
+                    className="text-sm font-semibold text-emerald-600 underline-offset-4 transition hover:text-emerald-700 hover:underline"
                   >
-                    <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/15 bg-white/85 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.75)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_80px_-36px_rgba(15,23,42,0.9)]">
-                      <div className="relative h-32 w-full">
-                        <Image
-                          src={cover}
-                          alt={news.title}
-                          fill
-                          sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 100vw"
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
-                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80">
-                            {formatDate(news.publishedAt, {
-                              day: '2-digit',
-                              month: 'short',
-                              year: 'numeric',
-                            })}
-                          </p>
-                        </div>
-                      </div>
-                      <CardContent className="flex flex-1 flex-col gap-3 p-4">
-                        <h3 className="text-base font-semibold text-slate-900 line-clamp-2">
-                          {news.title}
-                        </h3>
-                        <p className="text-sm text-slate-600 line-clamp-3">
-                          {news.excerpt ?? 'Conteúdo exclusivo da redação da Vitrine de Craques.'}
-                        </p>
-                        <p className="mt-auto text-xs font-medium uppercase tracking-[0.12em] text-slate-500">
-                          {news.authorName ?? 'Equipe Vitrine'}
-                        </p>
-                      </CardContent>
-                    </Card>
+                    Ver mais...
                   </Link>
-                )
-              })}
+                </div>
+              </div>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {latestNews.map((news) => {
+                  const cover = news.coverImage
+                    ? ensureImage(news.coverImage, news.slug, 'news-cover')
+                    : '/stadium.jpg'
+
+                  return (
+                    <Link
+                      key={news.id}
+                      href={`/noticias/${news.slug}`}
+                      className="group"
+                    >
+                      <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/30 bg-white/90 shadow-[0_28px_72px_-44px_rgba(15,23,42,0.75)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_88px_-40px_rgba(15,23,42,0.85)]">
+                        <div className="relative h-32 w-full">
+                          <Image
+                            src={cover}
+                            alt={news.title}
+                            fill
+                            sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 100vw"
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80">
+                              {formatDate(news.publishedAt, {
+                                day: '2-digit',
+                                month: 'short',
+                                year: 'numeric',
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                        <CardContent className="flex flex-1 flex-col gap-3 p-4">
+                          <h3 className="text-base font-semibold text-slate-900 line-clamp-2">
+                            {news.title}
+                          </h3>
+                          <p className="text-sm text-slate-600 line-clamp-3">
+                            {news.excerpt ?? 'Conteúdo exclusivo da redação da Vitrine de Craques.'}
+                          </p>
+                          <p className="mt-auto text-xs font-medium uppercase tracking-[0.12em] text-slate-500">
+                            {news.authorName ?? 'Equipe Vitrine'}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
           </section>
 
           {/* GAMES */}
-          <section className="container space-y-6 pb-16">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <h2 className="text-h2 section-title">Games</h2>
-              <div className="flex items-center gap-4">
-                {gamesError ? (
-                  <p className="text-sm font-medium text-white/80">
-                    Seleção editorial exibida enquanto sincronizamos os últimos resultados.
-                  </p>
-                ) : null}
-                <Link
-                  href="/games"
-                  className="text-sm font-semibold text-white underline-offset-4 transition hover:underline"
-                >
-                  Ver mais...
-                </Link>
-              </div>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-              {latestGames.map((game) => {
-                const cover = game.coverImage
-                  ? ensureImage(game.coverImage, game.slug, 'game-cover')
-                  : '/stadium.jpg'
-
-                return (
+          <section className="container pb-0">
+            <div className="rounded-[36px] border border-white/70 bg-white/92 p-8 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.65)] backdrop-blur">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h2 className="text-h2 section-title text-slate-900">Games</h2>
+                <div className="flex items-center gap-4">
+                  {gamesError ? (
+                    <p className="text-sm font-medium text-slate-600">
+                      Seleção editorial exibida enquanto sincronizamos os últimos resultados.
+                    </p>
+                  ) : null}
                   <Link
-                    key={game.id}
-                    href={`/games/${game.slug}`}
-                    className="group"
+                    href="/games"
+                    className="text-sm font-semibold text-emerald-600 underline-offset-4 transition hover:text-emerald-700 hover:underline"
                   >
-                    <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/20 bg-white text-slate-900 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.35)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_80px_-36px_rgba(15,23,42,0.45)]">
-                      <div className="relative h-32 w-full">
-                        <Image
-                          src={cover}
-                          alt={game.title ?? 'Imagem do jogo'}
-                          fill
-                          sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 100vw"
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
-                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white">
-                            {formatDate(game.date, {
-                              day: '2-digit',
-                              month: 'short',
-                              year: 'numeric',
-                            })}
-                          </p>
-                        </div>
-                      </div>
-                      <CardContent className="flex flex-1 flex-col gap-3 p-4">
-                        <h3 className="text-base font-semibold text-slate-900 line-clamp-2">
-                          {game.title ?? 'Jogo sem título'}
-                        </h3>
-                        <p className="text-sm text-slate-600 line-clamp-3">
-                          {game.excerpt ?? 'Análise completa do confronto disponível no hub de games.'}
-                        </p>
-                        <div className="mt-auto space-y-1 text-xs">
-                          {game.category ? (
-                            <p className="font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                              {game.category}
-                            </p>
-                          ) : null}
-                          <p className="text-slate-500">
-                            Por {game.authorName ?? 'Equipe Vitrine'}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    Ver mais...
                   </Link>
-                )
-              })}
+                </div>
+              </div>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                {latestGames.map((game) => {
+                  const cover = game.coverImage
+                    ? ensureImage(game.coverImage, game.slug, 'game-cover')
+                    : '/stadium.jpg'
+
+                  return (
+                    <Link
+                      key={game.id}
+                      href={`/games/${game.slug}`}
+                      className="group"
+                    >
+                      <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/30 bg-white text-slate-900 shadow-[0_28px_72px_-44px_rgba(15,23,42,0.55)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_88px_-40px_rgba(15,23,42,0.6)]">
+                        <div className="relative h-32 w-full">
+                          <Image
+                            src={cover}
+                            alt={game.title ?? 'Imagem do jogo'}
+                            fill
+                            sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 100vw"
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white">
+                              {formatDate(game.date, {
+                                day: '2-digit',
+                                month: 'short',
+                                year: 'numeric',
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                        <CardContent className="flex flex-1 flex-col gap-3 p-4">
+                          <h3 className="text-base font-semibold text-slate-900 line-clamp-2">
+                            {game.title ?? 'Jogo sem título'}
+                          </h3>
+                          <p className="text-sm text-slate-600 line-clamp-3">
+                            {game.excerpt ?? 'Análise completa do confronto disponível no hub de games.'}
+                          </p>
+                          <div className="mt-auto space-y-1 text-xs">
+                            {game.category ? (
+                              <p className="font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                                {game.category}
+                              </p>
+                            ) : null}
+                            <p className="text-slate-500">
+                              Por {game.authorName ?? 'Equipe Vitrine'}
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
           </section>
         </main>

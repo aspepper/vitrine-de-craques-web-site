@@ -118,19 +118,19 @@ export default async function AtletasPage({ searchParams }: PageProps) {
   const { items: athletes, totalPages } = await getAthletes(page, search);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-background transition-colors">
       <main className="container flex flex-col gap-12 pb-24 pt-16">
         <header className="flex flex-col gap-8">
           <div className="space-y-2">
-            <h1 className="font-heading text-[44px] font-semibold leading-tight text-slate-900 md:text-[56px]">
+            <h1 className="font-heading text-[44px] font-semibold leading-tight text-foreground md:text-[56px]">
               Atletas
             </h1>
-            <p className="text-base text-slate-500">
+            <p className="text-base text-muted-foreground">
               Explore atletas cadastrados e encontre talentos por nome, idade ou localização.
             </p>
           </div>
 
-          <div className="rounded-[32px] border border-white/60 bg-white/95 px-6 py-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
+          <div className="rounded-[32px] border border-border/80 bg-card/80 px-6 py-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
             <Filters defaultValue={search} method="get" placeholder="Filtros: Nome, Idade, Cidade, Estado" />
           </div>
         </header>
@@ -171,28 +171,28 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                 href={`/atletas/${athlete.id}`}
                 prefetch={false}
               >
-                <article className="flex h-full flex-col gap-6 rounded-[32px] border border-white/60 bg-white/95 p-6 text-left shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]">
+                <article className="flex h-full flex-col gap-6 rounded-[32px] border border-border/80 bg-card/90 p-6 text-left shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]">
                   <div className="flex items-center gap-4">
-                    <Avatar className="h-16 w-16 shrink-0 border border-white/60 bg-slate-900 text-lg font-semibold text-white shadow-[0_18px_32px_-18px_rgba(15,23,42,0.6)]">
+                    <Avatar className="h-16 w-16 shrink-0 border border-border/80 bg-foreground text-lg font-semibold text-background shadow-[0_18px_32px_-18px_rgba(15,23,42,0.6)]">
                       {athlete.avatarUrl ? (
                         <AvatarImage alt={displayName} src={athlete.avatarUrl} />
                       ) : null}
-                      <AvatarFallback className="bg-slate-900 text-lg font-semibold text-white">
+                      <AvatarFallback className="bg-primary text-lg font-semibold text-primary-foreground">
                         {initials || "AT"}
                       </AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
-                      <h2 className="font-heading text-lg font-semibold italic text-slate-900">
+                      <h2 className="font-heading text-lg font-semibold italic text-foreground">
                         {displayName}
                       </h2>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm text-muted-foreground">
                         {subtitle || "Informações não disponíveis"}
                       </p>
                     </div>
                   </div>
 
                   {infoLines.length > 0 && (
-                    <div className="space-y-2 text-sm text-slate-600">
+                    <div className="space-y-2 text-sm text-muted-foreground">
                       {infoLines.map((info) => (
                         <p key={info}>{info}</p>
                       ))}
@@ -203,7 +203,7 @@ export default async function AtletasPage({ searchParams }: PageProps) {
             );
           })}
           {athletes.length === 0 && (
-            <div className="col-span-full rounded-[32px] border border-dashed border-slate-200 bg-white/90 p-12 text-center text-slate-500 shadow-[0_8px_32px_rgba(15,23,42,0.12)]">
+            <div className="col-span-full rounded-[32px] border border-dashed border-border/70 bg-card/80 p-12 text-center text-muted-foreground shadow-[0_8px_32px_rgba(15,23,42,0.12)]">
               Nenhum atleta encontrado.
             </div>
           )}
@@ -216,7 +216,7 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                 asChild
                 size="md"
                 variant="ghost"
-                className="bg-white/70 px-8 text-slate-600 hover:bg-white"
+                className="border border-border/70 bg-card/80 px-8 text-foreground hover:bg-card"
               >
                 <Link
                   href={`/atletas?${buildPaginationQuery(page - 1, search)}`}
@@ -230,12 +230,12 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                 disabled
                 size="md"
                 variant="ghost"
-                className="bg-white/50 px-8 text-slate-400"
+                className="border border-border/50 bg-muted px-8 text-muted-foreground"
               >
                 Anterior
               </Button>
             )}
-            <span className="text-sm font-medium text-slate-500">
+            <span className="text-sm font-medium text-muted-foreground">
               Página {page} de {totalPages}
             </span>
             {page < totalPages ? (
@@ -243,7 +243,7 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                 asChild
                 size="md"
                 variant="ghost"
-                className="bg-white/70 px-8 text-slate-600 hover:bg-white"
+                className="border border-border/70 bg-card/80 px-8 text-foreground hover:bg-card"
               >
                 <Link
                   href={`/atletas?${buildPaginationQuery(page + 1, search)}`}
@@ -257,7 +257,7 @@ export default async function AtletasPage({ searchParams }: PageProps) {
                 disabled
                 size="md"
                 variant="ghost"
-                className="bg-white/50 px-8 text-slate-400"
+                className="border border-border/50 bg-muted px-8 text-muted-foreground"
               >
                 Próxima
               </Button>

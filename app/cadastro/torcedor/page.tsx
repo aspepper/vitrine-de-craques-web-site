@@ -15,6 +15,36 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { TimesSelect } from '@/components/TimesSelect'
 
+const estados = [
+  { value: 'AC', label: 'Acre' },
+  { value: 'AL', label: 'Alagoas' },
+  { value: 'AP', label: 'Amapá' },
+  { value: 'AM', label: 'Amazonas' },
+  { value: 'BA', label: 'Bahia' },
+  { value: 'CE', label: 'Ceará' },
+  { value: 'DF', label: 'Distrito Federal' },
+  { value: 'ES', label: 'Espírito Santo' },
+  { value: 'GO', label: 'Goiás' },
+  { value: 'MA', label: 'Maranhão' },
+  { value: 'MT', label: 'Mato Grosso' },
+  { value: 'MS', label: 'Mato Grosso do Sul' },
+  { value: 'MG', label: 'Minas Gerais' },
+  { value: 'PA', label: 'Pará' },
+  { value: 'PB', label: 'Paraíba' },
+  { value: 'PR', label: 'Paraná' },
+  { value: 'PE', label: 'Pernambuco' },
+  { value: 'PI', label: 'Piauí' },
+  { value: 'RJ', label: 'Rio de Janeiro' },
+  { value: 'RN', label: 'Rio Grande do Norte' },
+  { value: 'RS', label: 'Rio Grande do Sul' },
+  { value: 'RO', label: 'Rondônia' },
+  { value: 'RR', label: 'Roraima' },
+  { value: 'SC', label: 'Santa Catarina' },
+  { value: 'SP', label: 'São Paulo' },
+  { value: 'SE', label: 'Sergipe' },
+  { value: 'TO', label: 'Tocantins' },
+]
+
 const formSchema = z
   .object({
     nome: z.string().min(1, { message: 'Nome obrigatório' }),
@@ -228,7 +258,21 @@ export default function CadastroTorcedorPage() {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="uf">Quero receber conteúdo por estado</Label>
-                <Input id="uf" {...form.register('uf')} />
+                <select
+                  id="uf"
+                  className="flex h-14 w-full rounded-full border border-slate-200 bg-slate-50 px-5 py-3 text-base text-slate-900 shadow-sm transition focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+                  defaultValue=""
+                  {...form.register('uf')}
+                >
+                  <option value="" disabled>
+                    Selecione um estado
+                  </option>
+                  {estados.map((estado) => (
+                    <option key={estado.value} value={estado.value}>
+                      {estado.label}
+                    </option>
+                  ))}
+                </select>
                 {form.formState.errors.uf && (
                   <p className="text-sm text-destructive">
                     {form.formState.errors.uf.message}

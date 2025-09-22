@@ -10,7 +10,7 @@ import {
   useTransition,
 } from 'react'
 import { useRouter } from 'next/navigation'
-import Cropper, { type Area } from 'react-easy-crop'
+import Cropper, { type Area, type CropperProps } from 'react-easy-crop'
 import { Upload, UserRound, X } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -23,6 +23,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { useTheme } from '@/components/theme/ThemeProvider'
 
 function dataUrlToImage(dataUrl: string) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -83,6 +84,7 @@ interface ProfileAvatarUploaderProps {
 }
 
 export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: ProfileAvatarUploaderProps) {
+  const { isDarkMode } = useTheme()
   const [avatarUrl, setAvatarUrl] = useState<string | null>(initialAvatarUrl ?? null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [imageSrc, setImageSrc] = useState<string | null>(null)
@@ -110,6 +112,23 @@ export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: Profile
     const bust = Date.now()
     return `${avatarUrl}?v=${bust}`
   }, [avatarUrl])
+
+  const cropperStyles = useMemo<CropperProps['style']>(
+    () => ({
+      containerStyle: {
+        backgroundColor: 'transparent',
+      },
+      cropAreaStyle: {
+        border: `2px solid ${isDarkMode ? 'rgba(226, 232, 240, 0.85)' : 'rgba(51, 65, 85, 0.85)'}`,
+        boxShadow: `0 0 0 9999px ${isDarkMode ? 'rgba(15, 23, 42, 0.65)' : 'rgba(148, 163, 184, 0.45)'}`,
+      },
+      mediaStyle: {
+        borderRadius: '24px',
+        backgroundColor: isDarkMode ? '#0f172a' : '#f8fafc',
+      },
+    }),
+    [isDarkMode],
+  )
 
   useEffect(() => {
     const normalized = initialAvatarUrl ?? null
@@ -260,7 +279,7 @@ export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: Profile
       />
 
       <Dialog open={isDialogOpen} onOpenChange={(open) => (!open ? resetDialog() : setIsDialogOpen(open))}>
-        <DialogContent className="max-w-xl gap-6">
+        <DialogContent className="max-w-xl gap-6 border border-slate-200/60 bg-white text-slate-900 shadow-2xl dark:border-slate-800/60 dark:bg-slate-900 dark:text-slate-100 dark:shadow-[0_48px_96px_-60px_rgba(15,23,42,0.8)]">
           <DialogHeader>
             <DialogTitle>Atualizar foto de perfil</DialogTitle>
             <DialogDescription>
@@ -268,7 +287,7 @@ export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: Profile
             </DialogDescription>
           </DialogHeader>
 
-          <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-slate-100 dark:bg-slate-800">
+          <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-inner dark:border-slate-700/60 dark:bg-slate-900">
             {imageSrc ? (
               <Cropper
                 image={imageSrc}
@@ -282,6 +301,7 @@ export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: Profile
                 maxZoom={4}
                 cropShape="round"
                 showGrid={false}
+                style={cropperStyles}
               />
             ) : null}
           </div>
@@ -298,7 +318,7 @@ export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: Profile
               step={0.01}
               value={zoom}
               onChange={(event) => setZoom(Number(event.target.value))}
-              className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 dark:bg-slate-700"
+              className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 transition-colors accent-emerald-500 dark:bg-slate-700"
             />
           </div>
 

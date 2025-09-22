@@ -49,9 +49,13 @@ function ensureS3Client() {
       throw new Error('Storage (S3) is not properly configured')
     }
 
+    const forcePathStyle =
+      driver === 'r2' || storageEnv.endpoint?.includes('.r2.cloudflarestorage.com')
+
     s3Client = new S3Client({
       region: storageEnv.region,
       endpoint: storageEnv.endpoint,
+      forcePathStyle,
       credentials: {
         accessKeyId: storageEnv.accessKeyId,
         secretAccessKey: storageEnv.secretAccessKey,

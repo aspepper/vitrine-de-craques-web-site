@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
-import { promises as fs } from 'node:fs'
-import path from 'node:path'
 import sharp from 'sharp'
 
 import { getServerSession } from 'next-auth'
@@ -9,6 +7,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
+import { deleteFileByUrl, uploadFile } from '@/lib/storage'
 
 export const runtime = 'nodejs'
 
@@ -59,27 +58,25 @@ export async function POST(req: Request) {
 
     const optimized = await image.webp({ quality: 92 }).toBuffer()
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'avatars')
-    await fs.mkdir(uploadsDir, { recursive: true })
-
     const filename = `${session.user.id}-${randomUUID()}.webp`
-    const filePath = path.join(uploadsDir, filename)
-    await fs.writeFile(filePath, optimized)
+    const key = `uploads/avatars/${filename}`
+    const { url } = await uploadFile({
+      key,
+      data: optimized,
+      contentType: 'image/webp',
+      cacheControl: 'public, max-age=31536000, immutable',
+    })
 
-    if (profile.avatarUrl && profile.avatarUrl.startsWith('/uploads/avatars/')) {
-      const sanitized = profile.avatarUrl.replace(/^\/+/, '')
-      const previousPath = path.join(process.cwd(), 'public', sanitized)
-      fs.unlink(previousPath).catch(() => null)
+    if (profile.avatarUrl) {
+      await deleteFileByUrl(profile.avatarUrl)
     }
-
-    const relativeUrl = `/uploads/avatars/${filename}`
 
     await prisma.profile.update({
       where: { userId: session.user.id },
-      data: { avatarUrl: relativeUrl },
+      data: { avatarUrl: url },
     })
 
-    return NextResponse.json({ avatarUrl: relativeUrl })
+    return NextResponse.json({ avatarUrl: url })
   } catch (error) {
     return errorResponse(req, error, 'AO ATUALIZAR FOTO DO PERFIL')
   }

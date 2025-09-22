@@ -100,43 +100,43 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
   const paragraphs = article.content?.split(/\r?\n\r?\n/).filter(Boolean) ?? [];
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-screen flex-col bg-background transition-colors">
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
         <div className="mx-auto w-full max-w-6xl space-y-8">
           <Link
             href="/noticias"
             prefetch={false}
-            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             <span aria-hidden>←</span>
             Voltar para notícias
           </Link>
 
-          <article className="w-full space-y-8 rounded-[40px] border border-slate-200/70 bg-white/90 p-8 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.35)] backdrop-blur">
-          <header className="space-y-6">
-            <span className="inline-flex rounded-full bg-cyan-300/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-slate-800">
-              {article.category ?? "Atualizações"}
-            </span>
-            <h1 className="text-4xl font-semibold italic text-slate-900">{article.title}</h1>
-            {article.excerpt ? (
-              <p className="text-base italic text-slate-600">{article.excerpt}</p>
-            ) : null}
-            <p className="text-sm font-medium text-slate-500">
-              {`${formatPublishedAt(article.publishedAt)} · ${article.authorName}`}
-            </p>
-          </header>
+          <article className="w-full space-y-8 rounded-[40px] border border-border/70 bg-card/90 p-8 shadow-xl backdrop-blur">
+            <header className="space-y-6">
+              <span className="inline-flex rounded-full bg-secondary/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-secondary-foreground">
+                {article.category ?? "Atualizações"}
+              </span>
+              <h1 className="text-4xl font-semibold italic text-foreground">{article.title}</h1>
+              {article.excerpt ? (
+                <p className="text-base italic text-muted-foreground">{article.excerpt}</p>
+              ) : null}
+              <p className="text-sm font-medium text-muted-foreground">
+                {`${formatPublishedAt(article.publishedAt)} · ${article.authorName}`}
+              </p>
+            </header>
 
-          <div className="relative h-[420px] w-full overflow-hidden rounded-[32px] bg-slate-900/80 shadow-[0_40px_80px_-45px_rgba(15,23,42,0.5)]">
-            <Image src={heroImage} alt={article.title} fill className="object-cover" priority />
-          </div>
+            <div className="relative h-[420px] w-full overflow-hidden rounded-[32px] bg-foreground/80 shadow-lg">
+              <Image src={heroImage} alt={article.title} fill className="object-cover" priority />
+            </div>
 
-          <div className="space-y-6 text-base leading-relaxed text-slate-700">
-            {paragraphs.length > 0 ? (
-              paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
-            ) : (
-              <p>{article.content ?? "Conteúdo indisponível no momento."}</p>
-            )}
-          </div>
+            <div className="space-y-6 text-base leading-relaxed text-foreground">
+              {paragraphs.length > 0 ? (
+                paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
+              ) : (
+                <p>{article.content ?? "Conteúdo indisponível no momento."}</p>
+              )}
+            </div>
           </article>
         </div>
       </main>

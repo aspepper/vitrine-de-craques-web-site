@@ -105,47 +105,47 @@ export default async function GamesPage({ searchParams }: PageProps) {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-screen flex-col bg-background transition-colors">
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
         <header className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">Seleção editorial</p>
-          <h1 className="text-3xl font-semibold text-slate-900">Games</h1>
-          <p className="max-w-3xl text-base text-slate-600">
+          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-muted-foreground">Seleção editorial</p>
+          <h1 className="text-3xl font-semibold text-foreground">Games</h1>
+          <p className="max-w-3xl text-base text-muted-foreground">
             Aqui vamos mostrar o segredo para chegar ao fim das campanhas com repertórios sólidos, análises profundas e histórias
             contadas por especialistas da imprensa.
           </p>
           {showLoadErrorMessage ? (
-            <p className="text-sm font-medium text-amber-600">
+            <p className="text-sm font-medium text-warning">
               Não foi possível carregar os jogos do banco de dados. Exibindo conteúdo editorial para demonstração.
             </p>
           ) : null}
           {showEmptyState ? (
-            <p className="text-sm text-slate-500">Nenhum jogo publicado até o momento.</p>
+            <p className="text-sm text-muted-foreground">Nenhum jogo publicado até o momento.</p>
           ) : null}
         </header>
 
         <section className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {displayedGames.map((game) => (
             <Link key={game.slug} href={`/games/${game.slug}`} className="group">
-              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white px-7 py-8 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.25)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_80px_-36px_rgba(15,23,42,0.35)]">
+              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card px-7 py-8 shadow-lg transition duration-200 ease-out group-hover:-translate-y-1">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                  <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                     {game.category ?? "Game"}
                   </span>
-                  <span className="text-xs font-medium text-slate-500">{formatDate(game.date)}</span>
+                  <span className="text-xs font-medium text-muted-foreground">{formatDate(game.date)}</span>
                 </div>
 
-                <h2 className="mt-6 text-2xl font-semibold text-slate-900 transition-colors duration-200 group-hover:text-emerald-700">
+                <h2 className="mt-6 text-2xl font-semibold text-foreground transition-colors duration-200 group-hover:text-primary">
                   {game.title ?? "Jogo sem título"}
                 </h2>
 
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                   {game.excerpt ?? "História em desenvolvimento. Confira os detalhes completos em breve."}
                 </p>
 
-                <div className="mt-auto flex items-center justify-between pt-8 text-sm text-slate-500">
+                <div className="mt-auto flex items-center justify-between pt-8 text-sm text-muted-foreground">
                   <span>Por {getAuthorName(game.author)}</span>
-                  <span className="flex items-center gap-2 font-medium text-emerald-600 transition duration-200 group-hover:gap-3 group-hover:text-emerald-700">
+                  <span className="flex items-center gap-2 font-medium text-primary transition duration-200 group-hover:gap-3">
                     Ler mais
                     <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </span>
@@ -164,7 +164,7 @@ export default async function GamesPage({ searchParams }: PageProps) {
             ) : (
               <span />
             )}
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               Página {Math.min(page, totalPages)} de {totalPages}
             </p>
             {page < totalPages ? (

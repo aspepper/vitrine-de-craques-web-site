@@ -264,6 +264,10 @@ export default async function HomePage() {
               ring-1 ring-black/10
               backdrop-blur-[2px]
               md:p-8
+              dark:border-white/10
+              dark:bg-[linear-gradient(180deg,rgba(6,12,24,0.94),rgba(8,16,30,0.9))]
+              dark:shadow-[0_28px_88px_-36px_rgba(1,5,15,0.9)]
+              dark:ring-white/10
             "
             >
               {/* Topo do banner: texto à esquerda e vídeo à direita */}
@@ -304,6 +308,9 @@ export default async function HomePage() {
                       px-8 text-[16px]
                       font-semibold text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]
                       hover:bg-white
+                      dark:border-white/20 dark:bg-white/10
+                      dark:text-foreground dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]
+                      dark:hover:bg-white/20
                     "
                     >
                       <Link href="/feed">Explorar vídeos</Link>
@@ -320,6 +327,9 @@ export default async function HomePage() {
                   shadow-[0_8px_32px_rgba(0,0,0,0.18)]
                   ring-1
                   ring-black/10 md:-mt-2
+                  dark:bg-black
+                  dark:shadow-[0_18px_64px_rgba(0,0,0,0.55)]
+                  dark:ring-white/10
                 "
                 >
                   <iframe
@@ -343,6 +353,8 @@ export default async function HomePage() {
                     border border-black/10
                     bg-white/90 px-5 text-foreground/90
                     shadow-[0_1px_0_rgba(0,0,0,0.05)]
+                    dark:border-white/15 dark:bg-white/10
+                    dark:text-foreground dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]
                   "
                   >
                     Upload de até 10s
@@ -353,6 +365,8 @@ export default async function HomePage() {
                     border border-black/10
                     bg-white/90 px-5 text-foreground/90
                     shadow-[0_1px_0_rgba(0,0,0,0.05)]
+                    dark:border-white/15 dark:bg-white/10
+                    dark:text-foreground dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]
                   "
                   >
                     Autoplay por visibilidade
@@ -363,6 +377,8 @@ export default async function HomePage() {
                     border border-black/10
                     bg-white/90 px-5 text-foreground/90
                     shadow-[0_1px_0_rgba(0,0,0,0.05)]
+                    dark:border-white/15 dark:bg-white/10
+                    dark:text-foreground dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]
                   "
                   >
                     Denunciar conteúdo
@@ -373,6 +389,8 @@ export default async function HomePage() {
                     border border-black/10
                     bg-white/90 px-5 text-foreground/90
                     shadow-[0_1px_0_rgba(0,0,0,0.05)]
+                    dark:border-white/15 dark:bg-white/10
+                    dark:text-foreground dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]
                   "
                   >
                     Filtros por clube/estado

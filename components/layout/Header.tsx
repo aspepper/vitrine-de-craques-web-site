@@ -101,6 +101,7 @@ function ThemeToggleButton({ className }: { className?: string }) {
 export function Header() {
   const { data: session } = useSession()
   const pathname = usePathname()
+  const isHome = pathname === '/'
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [profile, setProfile] = useState<ProfileSummary | null>(null)
 
@@ -162,8 +163,12 @@ export function Header() {
     <header
       className={cn(
         'sticky top-0 z-50 border-b backdrop-blur-xl transition-colors',
-        'border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,255,255,0.88))] shadow-[0_18px_48px_-28px_rgba(15,23,42,0.45)]',
-        'dark:border-slate-800/80 dark:bg-[linear-gradient(180deg,rgba(8,15,28,0.92),rgba(8,15,28,0.78))] dark:shadow-[0_18px_48px_-24px_rgba(0,0,0,0.7)]'
+        isHome
+          ? 'border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,255,255,0.88))] shadow-[0_18px_48px_-28px_rgba(15,23,42,0.45)]'
+          : 'border-slate-200/80 bg-white/95 shadow-[0_18px_48px_-28px_rgba(15,23,42,0.25)]',
+        isHome
+          ? 'dark:border-slate-900/80 dark:bg-[linear-gradient(180deg,rgba(3,7,18,0.92),rgba(10,19,40,0.82))] dark:shadow-[0_28px_72px_-28px_rgba(2,6,23,0.85)]'
+          : 'dark:border-slate-900/90 dark:bg-[linear-gradient(180deg,rgba(2,6,23,0.96),rgba(2,6,23,0.92))] dark:shadow-[0_32px_80px_-32px_rgba(0,0,0,0.75)]'
       )}
     >
       <nav className="container mx-auto flex h-14 items-center gap-4 md:h-16">
@@ -174,6 +179,7 @@ export function Header() {
             width={56}
             height={56}
             priority
+            className="h-12 w-auto transition dark:brightness-150 dark:invert"
           />
         </Link>
 

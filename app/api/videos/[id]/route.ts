@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { getServerSession } from "next-auth"
-import { promises as fs } from "fs"
-import path from "path"
-
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/db"
 import { errorResponse, logApiError } from "@/lib/error"
+import { deleteFileByUrl } from "@/lib/storage"
 
 const updateVideoSchema = z
   .object({
@@ -16,23 +14,6 @@ const updateVideoSchema = z
   .refine((value) => Object.values(value).some((field) => field !== undefined), {
     message: "Informe ao menos um campo para atualizar",
   })
-
-function resolveUploadPath(url?: string | null) {
-  if (!url || !url.startsWith("/uploads/")) return null
-  return path.join(process.cwd(), "public", url)
-}
-
-async function removeFileIfExists(filePath: string | null) {
-  if (!filePath) return
-  try {
-    await fs.unlink(filePath)
-  } catch (error) {
-    const err = error as NodeJS.ErrnoException
-    if (err.code !== "ENOENT") {
-      console.error("Erro ao remover arquivo", filePath, error)
-    }
-  }
-}
 
 export async function PATCH(
   req: Request,
@@ -99,8 +80,8 @@ export async function DELETE(
     await prisma.video.delete({ where: { id: params.id } })
 
     await Promise.all([
-      removeFileIfExists(resolveUploadPath(video.videoUrl)),
-      removeFileIfExists(resolveUploadPath(video.thumbnailUrl)),
+      deleteFileByUrl(video.videoUrl),
+      deleteFileByUrl(video.thumbnailUrl),
     ])
 
     return NextResponse.json({ success: true })

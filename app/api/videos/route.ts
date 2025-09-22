@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { randomUUID } from 'node:crypto'
+
 import { getServerSession } from 'next-auth'
+
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/db'
-import { promises as fs } from 'fs'
-import path from 'path'
 import { errorResponse } from '@/lib/error'
+import { uploadFile } from '@/lib/storage'
 
 export async function GET(req: NextRequest) {
   try {
@@ -40,26 +42,35 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Missing fields' }, { status: 400 })
     }
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads')
-    await fs.mkdir(uploadsDir, { recursive: true })
-
     const videoBytes = Buffer.from(await videoFile.arrayBuffer())
-    const videoName = `${crypto.randomUUID()}-${videoFile.name}`
-    await fs.writeFile(path.join(uploadsDir, videoName), videoBytes)
+    const videoName = `${randomUUID()}-${videoFile.name}`
+    const videoKey = `uploads/videos/${videoName}`
+    const { url: videoUrl } = await uploadFile({
+      key: videoKey,
+      data: videoBytes,
+      contentType: videoFile.type,
+      cacheControl: 'public, max-age=31536000, immutable',
+    })
 
     let thumbnailUrl: string | undefined
     if (thumbFile) {
       const thumbBytes = Buffer.from(await thumbFile.arrayBuffer())
-      const thumbName = `${crypto.randomUUID()}-${thumbFile.name}`
-      await fs.writeFile(path.join(uploadsDir, thumbName), thumbBytes)
-      thumbnailUrl = `/uploads/${thumbName}`
+      const thumbName = `${randomUUID()}-${thumbFile.name}`
+      const thumbKey = `uploads/thumbnails/${thumbName}`
+      const { url } = await uploadFile({
+        key: thumbKey,
+        data: thumbBytes,
+        contentType: thumbFile.type,
+        cacheControl: 'public, max-age=31536000, immutable',
+      })
+      thumbnailUrl = url
     }
 
     const video = await prisma.video.create({
       data: {
         title,
         description,
-        videoUrl: `/uploads/${videoName}`,
+        videoUrl,
         thumbnailUrl,
         userId: session.user.id,
       },

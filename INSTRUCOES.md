@@ -38,7 +38,7 @@ Siga os passos abaixo para configurar e rodar o projeto em seu ambiente de desen
     - `DATABASE_URL`: Já vem pré-configurado para o banco de dados Docker.
     - `NEXTAUTH_SECRET`: Gere uma chave secreta. Você pode usar o comando `openssl rand -base64 32`.
     - `NEXTAUTH_URL`: Deve ser `http://localhost:3000`.
-    - Configure as variáveis para o seu serviço de armazenamento compatível com S3 (`S3_UPLOAD_*`).
+    - Configure as variáveis de armazenamento (`STORAGE_*` ou `R2_*`/`AZURE_STORAGE_*`, dependendo do provedor escolhido).
 
 ## 4. Banco de Dados (Prisma)
 

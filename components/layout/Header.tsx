@@ -110,6 +110,26 @@ export function Header() {
   }, [pathname, session])
 
   useEffect(() => {
+    function handleAvatarUpdated(event: Event) {
+      if (!('detail' in event)) return
+      const detail = (event as CustomEvent<string>).detail
+      setProfile((previous) =>
+        previous
+          ? {
+              ...previous,
+              avatarUrl: detail,
+            }
+          : previous,
+      )
+    }
+
+    window.addEventListener('profile-avatar-updated', handleAvatarUpdated)
+    return () => {
+      window.removeEventListener('profile-avatar-updated', handleAvatarUpdated)
+    }
+  }, [])
+
+  useEffect(() => {
     if (!session?.user?.id) {
       setProfile(null)
       return

@@ -15,12 +15,17 @@ const prismaEnginePaths = prismaEngineCandidates.filter((enginePath) =>
 const nextConfig = {
   output: 'standalone',
   experimental: {
-    serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
+    serverComponentsExternalPackages: [
+      '@prisma/client',
+      'prisma',
+      'applicationinsights',
+    ],
     outputFileTracingIncludes: {
       '/': [
         './node_modules/.prisma/client/**',
         './node_modules/@prisma/client/**',
         ...prismaEnginePaths,
+        './node_modules/applicationinsights/**',
         './prisma/**',
       ],
     },

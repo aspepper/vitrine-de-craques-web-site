@@ -4,13 +4,14 @@ import { useEffect, useState, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
-import { LogOut, Menu, Upload, UserRound, X } from 'lucide-react'
+import { LogOut, Menu, Moon, Sun, Upload, UserRound, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
+import { useTheme } from '@/components/theme/ThemeProvider'
 import type { Role } from '@prisma/client'
 
 type ProfileSummary = {
@@ -70,6 +71,31 @@ function NavLink({
 
 function getProfileHref(): string {
   return '/perfil'
+}
+
+function ThemeToggleButton({ className }: { className?: string }) {
+  const { toggleTheme, isDarkMode, isReady } = useTheme()
+
+  const icon = isReady ? (isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />) : <Moon className="h-5 w-5" />
+  const label = isDarkMode ? 'Alterar para tema claro' : 'Alterar para tema escuro'
+
+  return (
+    <button
+      type="button"
+      className={cn(
+        'inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-surface/80 text-foreground transition hover:bg-surface/90 focus:outline-none focus:ring-2 focus:ring-primary',
+        !isReady && 'opacity-70',
+        className
+      )}
+      onClick={toggleTheme}
+      disabled={!isReady}
+      aria-label={label}
+      title={label}
+    >
+      <span className="sr-only">{label}</span>
+      {icon}
+    </button>
+  )
 }
 
 export function Header() {
@@ -136,8 +162,8 @@ export function Header() {
     <header
       className={cn(
         'sticky top-0 z-50',
-        'supports-[backdrop-filter]:bg-white/70 bg-white/95 backdrop-blur-xl',
-        'shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
+        'supports-[backdrop-filter]:bg-background/75 bg-background/95 backdrop-blur-xl',
+        'border-b border-border/40 shadow-[0_8px_32px_rgba(0,0,0,0.25)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]'
       )}
     >
       <nav className="container mx-auto flex h-14 items-center gap-4 md:h-16">
@@ -162,7 +188,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-3">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full p-2 text-foreground transition hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-primary lg:hidden"
+            className="inline-flex items-center justify-center rounded-full p-2 text-foreground transition hover:bg-foreground/10 focus:outline-none focus:ring-2 focus:ring-primary lg:hidden"
             aria-label="Alternar menu de navegação"
             aria-expanded={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen((state) => !state)}
@@ -175,12 +201,14 @@ export function Header() {
             )}
           </button>
 
+          <ThemeToggleButton />
+
           <div className="hidden md:block">
             <Input
               type="search"
               placeholder="Buscar..."
               className={cn(
-                'h-10 w-48 rounded-full border border-black/10 bg-white/70 shadow-inner placeholder:text-muted-foreground',
+                'h-10 w-48 rounded-full border border-border/60 bg-surface/80 shadow-inner placeholder:text-muted-foreground',
                 'md:w-64'
               )}
             />
@@ -201,13 +229,13 @@ export function Header() {
                 </Button>
                 <Link
                   href={profileHref}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/80 text-slate-700 shadow-inner transition hover:bg-white"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-surface text-foreground shadow-inner transition hover:bg-surface/90"
                   title="Perfil"
                   aria-label="Ir para o perfil"
                 >
-                  <Avatar className="h-9 w-9 border border-white/60 bg-white">
+                  <Avatar className="h-9 w-9 border border-border/40 bg-surface">
                     <AvatarImage src={profileImage ?? undefined} alt={profileName} />
-                    <AvatarFallback className="bg-slate-100 text-slate-500">
+                    <AvatarFallback className="bg-muted text-muted-foreground">
                       <UserRound aria-hidden className="h-4 w-4" />
                       <span className="sr-only">{profileName}</span>
                     </AvatarFallback>
@@ -246,13 +274,14 @@ export function Header() {
       </nav>
 
       {isMobileMenuOpen ? (
-        <div className="border-t border-black/10 bg-white shadow-lg lg:hidden">
+        <div className="border-t border-border/50 bg-background shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)] lg:hidden">
           <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
             <Input
               type="search"
               placeholder="Buscar..."
-              className="h-11 rounded-full border border-black/10 bg-white/70 shadow-inner placeholder:text-muted-foreground"
+              className="h-11 rounded-full border border-border/60 bg-surface/80 shadow-inner placeholder:text-muted-foreground"
             />
+            <ThemeToggleButton className="self-start" />
             <nav className="flex flex-col gap-3">
               {navItems.map((item) => (
                 <Link
@@ -269,23 +298,23 @@ export function Header() {
                 </Link>
               ))}
             </nav>
-            <div className="h-px bg-black/10" />
+            <div className="h-px bg-border/50" />
             {session ? (
               <div className="flex flex-col gap-3">
                 <Link
                   href={profileHref}
-                  className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-inner transition hover:bg-white/90"
+                  className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface px-4 py-3 shadow-inner transition hover:bg-surface/90"
                 >
-                  <Avatar className="h-11 w-11 border border-white/60 bg-white">
+                  <Avatar className="h-11 w-11 border border-border/40 bg-surface">
                     <AvatarImage src={profileImage ?? undefined} alt={profileName} />
-                    <AvatarFallback className="bg-slate-100 text-slate-500">
+                    <AvatarFallback className="bg-muted text-muted-foreground">
                       <UserRound aria-hidden className="h-5 w-5" />
                       <span className="sr-only">{profileName}</span>
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-slate-900">{profileName}</span>
-                    <span className="text-xs text-slate-500">Ver perfil</span>
+                    <span className="text-sm font-medium text-foreground">{profileName}</span>
+                    <span className="text-xs text-muted-foreground">Ver perfil</span>
                   </div>
                 </Link>
                 <Button asChild className="w-full">
@@ -293,7 +322,7 @@ export function Header() {
                 </Button>
                 <Button
                   variant="ghost"
-                  className="w-full border border-black/10 bg-white"
+                  className="w-full border border-border/60 bg-surface"
                   onClick={() => signOut()}
                 >
                   Sair

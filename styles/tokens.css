@@ -1,7 +1,7 @@
 :root {
   --background: 0 0% 97%; /* #F8F9FC */
   --foreground: 222.2 84% 4.9%; /* #0B0F10 */
-  
+
   --footer-bg-start: #0B1E3A;
   --footer-bg-end:   #0E2A52;
 
@@ -60,4 +60,49 @@
   --gap-h2: 1.25rem; /* 20px */
   --gap-h3: 1rem; /* 16px */
   --gap-body: 1rem; /* 16px */
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: 222 47% 11%; /* #0F172A */
+  --foreground: 210 40% 96%; /* #E2E8F0 */
+
+  --footer-bg-start: #030712;
+  --footer-bg-end: #0b1120;
+
+  --card: 222 47% 13%;
+  --card-foreground: 210 40% 96%;
+
+  --popover: 222 47% 13%;
+  --popover-foreground: 210 40% 96%;
+
+  --surface: 222 47% 15%;
+  --muted: 217 33% 18%;
+  --muted-foreground: 214 21% 70%;
+
+  --primary: 142 70% 45%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 199 89% 48%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --accent: 38 92% 50%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  --info: 189 94% 43%;
+  --success: 142 71% 45%;
+  --warning: 38 92% 50%;
+  --error: 347 77% 50%;
+
+  --destructive: 357 72% 41%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217 33% 22%;
+  --input: 217 33% 22%;
+  --ring: 210 40% 96%;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.35);
+  --shadow-md: 0 2px 12px rgba(15, 23, 42, 0.45);
+  --shadow-lg: 0 6px 28px rgba(15, 23, 42, 0.5);
 }

@@ -68,17 +68,7 @@ function NavLink({
   )
 }
 
-function getProfileHref(profile: ProfileSummary | null): string {
-  if (!profile?.id) return '/perfil'
-
-  if (profile.role === 'AGENTE') {
-    return `/agentes/${profile.id}`
-  }
-
-  if (profile.role === 'ATLETA') {
-    return `/atletas/${profile.id}`
-  }
-
+function getProfileHref(): string {
   return '/perfil'
 }
 
@@ -136,7 +126,7 @@ export function Header() {
     }
   }, [session?.user?.id])
 
-  const profileHref = getProfileHref(profile)
+  const profileHref = getProfileHref()
   const profileName =
     profile?.displayName ?? profile?.user?.name ?? session?.user?.name ?? 'Perfil'
   const profileImage =

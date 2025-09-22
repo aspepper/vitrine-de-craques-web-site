@@ -105,28 +105,28 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
   const showLoadErrorMessage = isFallbackActive;
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-screen flex-col bg-background transition-colors">
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
         <header className="mb-12 space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">
+          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-muted-foreground">
             Atualizações oficiais
           </p>
-          <h1 className="text-3xl font-semibold text-slate-900">Notícias</h1>
-          <p className="max-w-3xl text-base text-slate-600">
+          <h1 className="text-3xl font-semibold text-foreground">Notícias</h1>
+          <p className="max-w-3xl text-base text-muted-foreground">
             Acompanhe as histórias mais recentes sobre atletas, bastidores e decisões estratégicas que
             movimentam a comunidade Vitrine de Craques.
           </p>
           {showLoadErrorMessage ? (
-            <p className="text-sm font-medium text-amber-600">
+            <p className="text-sm font-medium text-warning">
               Não foi possível carregar as notícias em tempo real. Exibindo os dados disponíveis no momento.
             </p>
           ) : null}
         </header>
 
         {showEmptyState ? (
-          <div className="rounded-3xl border border-dashed border-slate-300/80 bg-white/60 p-12 text-center shadow-[0_30px_80px_-40px_rgba(15,23,42,0.25)]">
-            <p className="text-lg font-semibold italic text-slate-900">Nenhuma notícia encontrada</p>
-            <p className="mt-2 text-sm text-slate-500">
+          <div className="rounded-3xl border border-dashed border-border/80 bg-card/60 p-12 text-center shadow-lg">
+            <p className="text-lg font-semibold italic text-foreground">Nenhuma notícia encontrada</p>
+            <p className="mt-2 text-sm text-muted-foreground">
               Assim que novas histórias forem publicadas pelos nossos jornalistas credenciados, elas aparecerão por aqui.
             </p>
           </div>
@@ -143,11 +143,11 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
               return (
                 <article
                   key={news.id}
-                  className="flex h-full flex-col justify-between rounded-[32px] border border-slate-200/80 bg-white/90 p-6 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.25)] backdrop-blur transition-shadow hover:shadow-[0_30px_80px_-32px_rgba(15,23,42,0.35)]"
+                  className="flex h-full flex-col justify-between rounded-[32px] border border-border/80 bg-card/90 p-6 shadow-lg backdrop-blur transition-shadow hover:shadow-xl"
                 >
                   <div className="space-y-5">
                     <div className="flex items-start gap-4">
-                      <div className="relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-3xl bg-slate-900/90 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.45)]">
+                      <div className="relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-3xl bg-foreground/90 shadow-lg">
                         <Image
                           src={coverImage}
                           alt={news.title}
@@ -158,24 +158,24 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                       </div>
 
                       <div className="flex-1 space-y-2">
-                        <span className="inline-flex rounded-full bg-cyan-300/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-slate-800">
+                        <span className="inline-flex rounded-full bg-secondary/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-secondary-foreground">
                           {news.category ?? "Atualizações"}
                         </span>
-                        <h2 className="text-lg font-semibold italic text-slate-900">{news.title}</h2>
-                        <p className="text-xs font-medium text-slate-500">
+                        <h2 className="text-lg font-semibold italic text-foreground">{news.title}</h2>
+                        <p className="text-xs font-medium text-muted-foreground">
                           {`${formatPublishedAt(news.publishedAt)} · ${getAuthorName(news.author)}`}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-slate-600">{excerpt}</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{excerpt}</p>
                   </div>
 
                   <div className="mt-6 flex justify-end">
                     <Button
                       asChild
                       size="sm"
-                      className="bg-emerald-500 px-6 text-sm font-semibold italic text-white hover:bg-emerald-500/90"
+                      className="bg-primary px-6 text-sm font-semibold italic text-primary-foreground hover:bg-primary/90"
                     >
                       <Link href={`/noticias/${news.slug}`}>Ver completo</Link>
                     </Button>
@@ -187,8 +187,8 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
         )}
 
         {hasFetchedNews && totalPages > 1 ? (
-          <nav className="mt-12 flex flex-col gap-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <span className="font-medium italic text-slate-600">
+          <nav className="mt-12 flex flex-col gap-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <span className="font-medium italic text-muted-foreground">
               Página {page} de {totalPages}
             </span>
             <div className="flex items-center gap-3">
@@ -197,7 +197,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                   asChild
                   variant="ghost"
                   size="sm"
-                  className="border border-slate-200/80 bg-white/80 px-5 text-sm font-semibold text-slate-700 hover:bg-white"
+                  className="border border-border/80 bg-card/80 px-5 text-sm font-semibold text-foreground hover:bg-card"
                 >
                   <Link href={`/noticias?page=${page - 1}`}>Anterior</Link>
                 </Button>
@@ -206,7 +206,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                   variant="ghost"
                   size="sm"
                   disabled
-                  className="cursor-not-allowed border border-slate-200/80 bg-white/60 px-5 text-sm font-semibold text-slate-400"
+                  className="cursor-not-allowed border border-border/80 bg-card/60 px-5 text-sm font-semibold text-muted-foreground"
                 >
                   Anterior
                 </Button>
@@ -217,7 +217,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                   asChild
                   variant="ghost"
                   size="sm"
-                  className="border border-slate-200/80 bg-white/80 px-5 text-sm font-semibold text-slate-700 hover:bg-white"
+                  className="border border-border/80 bg-card/80 px-5 text-sm font-semibold text-foreground hover:bg-card"
                 >
                   <Link href={`/noticias?page=${page + 1}`}>Próxima</Link>
                 </Button>
@@ -226,7 +226,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                   variant="ghost"
                   size="sm"
                   disabled
-                  className="cursor-not-allowed border border-slate-200/80 bg-white/60 px-5 text-sm font-semibold text-slate-400"
+                  className="cursor-not-allowed border border-border/80 bg-card/60 px-5 text-sm font-semibold text-muted-foreground"
                 >
                   Próxima
                 </Button>

@@ -27,6 +27,72 @@
   button:focus-visible {
     @apply outline-none ring-2 ring-offset-2 ring-primary;
   }
+
+  .dark .bg-slate-50,
+  .dark .bg-slate-100 {
+    background-color: hsl(var(--background)) !important;
+  }
+
+  .dark .bg-white {
+    background-color: hsl(var(--card)) !important;
+  }
+
+  .dark .bg-white\/90 {
+    background-color: hsl(var(--card) / 0.9) !important;
+  }
+
+  .dark .bg-white\/80 {
+    background-color: hsl(var(--card) / 0.8) !important;
+  }
+
+  .dark .bg-white\/60 {
+    background-color: hsl(var(--card) / 0.6) !important;
+  }
+
+  .dark .bg-slate-50\/80 {
+    background-color: hsl(var(--background) / 0.8) !important;
+  }
+
+  .dark .bg-slate-900,
+  .dark .bg-slate-900\/90,
+  .dark .bg-slate-900\/80 {
+    background-color: hsl(var(--foreground)) !important;
+  }
+
+  .dark .bg-slate-900\/5 {
+    background-color: hsl(var(--foreground) / 0.05) !important;
+  }
+
+  .dark .bg-slate-300 {
+    background-color: hsl(var(--border)) !important;
+  }
+
+  .dark .text-slate-900,
+  .dark .text-slate-800 {
+    color: hsl(var(--foreground)) !important;
+  }
+
+  .dark .text-slate-600,
+  .dark .text-slate-500,
+  .dark .text-slate-400 {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+
+  .dark .text-slate-200 {
+    color: hsl(var(--foreground)) !important;
+  }
+
+  .dark .border-slate-200 {
+    border-color: hsl(var(--border)) !important;
+  }
+
+  .dark .border-slate-200\/80 {
+    border-color: hsl(var(--border) / 0.8) !important;
+  }
+
+  .dark .ring-slate-200 {
+    --tw-ring-color: hsl(var(--border)) !important;
+  }
 }
 
 .section-title {

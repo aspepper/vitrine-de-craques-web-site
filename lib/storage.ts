@@ -129,7 +129,8 @@ export async function uploadFile({
   if (driver === 'azure') {
     const container = await ensureAzureContainerClient()
     const blob = container.getBlockBlobClient(normalizedKey)
-    await blob.uploadData(data, {
+    const azureData = typeof data === 'string' ? Buffer.from(data) : data
+    await blob.uploadData(azureData, {
       blobHTTPHeaders: {
         blobContentType: contentType,
         blobCacheControl: cacheControl,

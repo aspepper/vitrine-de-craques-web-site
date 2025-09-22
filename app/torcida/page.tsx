@@ -33,19 +33,19 @@ export default function TorcidaPage({ searchParams }: PageProps) {
     : supporters;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-background transition-colors">
       <main className="container flex flex-col gap-12 pb-24 pt-16">
         <header className="flex flex-col gap-8">
           <div className="space-y-2">
-            <h1 className="font-heading text-[44px] font-semibold leading-tight text-slate-900 md:text-[56px]">
+            <h1 className="font-heading text-[44px] font-semibold leading-tight text-foreground md:text-[56px]">
               Torcida
             </h1>
-            <p className="text-base text-slate-500">
+            <p className="text-base text-muted-foreground">
               Explore torcedores cadastrados e filtre por nome, time ou cidade.
             </p>
           </div>
 
-          <div className="rounded-[32px] border border-white/60 bg-white/95 px-6 py-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
+          <div className="rounded-[32px] border border-border/80 bg-card/80 px-6 py-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
             <Filters
               defaultValue={search}
               method="get"
@@ -59,15 +59,15 @@ export default function TorcidaPage({ searchParams }: PageProps) {
             {results.map((supporter) => (
               <article
                 key={supporter.name}
-                className="rounded-[32px] border border-white/60 bg-white/95 p-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]"
+                className="rounded-[32px] border border-border/80 bg-card/90 p-6 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]"
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-lg font-semibold text-white shadow-[0_18px_32px_-18px_rgba(15,23,42,0.6)]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-foreground text-lg font-semibold text-background shadow-[0_18px_32px_-18px_rgba(15,23,42,0.6)]">
                     {supporter.name.charAt(0)}
                   </div>
                   <div className="space-y-1">
-                    <p className="text-base font-semibold text-slate-900">{supporter.name}</p>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-base font-semibold text-foreground">{supporter.name}</p>
+                    <p className="text-sm text-muted-foreground">
                       {supporter.team} • {supporter.city}
                     </p>
                   </div>
@@ -77,7 +77,7 @@ export default function TorcidaPage({ searchParams }: PageProps) {
           </div>
 
           {results.length === 0 && (
-            <div className="rounded-[32px] border border-dashed border-slate-200 bg-white/90 p-12 text-center text-slate-500 shadow-[0_8px_32px_rgba(15,23,42,0.12)]">
+            <div className="rounded-[32px] border border-dashed border-border/70 bg-card/80 p-12 text-center text-muted-foreground shadow-[0_8px_32px_rgba(15,23,42,0.12)]">
               Nenhum torcedor encontrado.
             </div>
           )}

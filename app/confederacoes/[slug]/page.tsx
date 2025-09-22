@@ -86,94 +86,94 @@ export default async function ConfederacaoDetalhePage({ params }: PageProps) {
   const statementParagraphs = confed.officialStatement?.split(/\n{2,}/).filter(Boolean) ?? []
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-background transition-colors">
       <main className="container mx-auto px-4 pb-24 pt-16 md:pt-20">
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">
           <Link
             href="/confederacoes"
             prefetch={false}
-            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             <span aria-hidden>←</span>
             Voltar para confederações
           </Link>
 
-          <section className="rounded-[32px] border border-white/70 bg-white/95 px-8 py-10 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
-          <div className="flex flex-col gap-8 md:flex-row md:items-center">
-            <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-[28px] bg-slate-900/5 ring-1 ring-inset ring-slate-200">
-              {confed.logoUrl ? (
-                <div className="relative h-20 w-20">
-                  <Image src={confed.logoUrl} alt={`Logotipo de ${confed.name}`} fill sizes="80px" className="object-contain" />
-                </div>
-              ) : (
-                <span className="text-xl font-semibold text-slate-700">{acronym}</span>
-              )}
-            </div>
-
-            <div className="flex-1 space-y-6">
-              <div className="space-y-2">
-                <span className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Confederação</span>
-                <h1 className="font-heading text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
-                  {confed.name}
-                </h1>
+          <section className="rounded-[32px] border border-border/80 bg-card/90 px-8 py-10 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur">
+            <div className="flex flex-col gap-8 md:flex-row md:items-center">
+              <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-[28px] bg-muted ring-1 ring-inset ring-border/70">
+                {confed.logoUrl ? (
+                  <div className="relative h-20 w-20">
+                    <Image src={confed.logoUrl} alt={`Logotipo de ${confed.name}`} fill sizes="80px" className="object-contain" />
+                  </div>
+                ) : (
+                  <span className="text-xl font-semibold text-foreground">{acronym}</span>
+                )}
               </div>
 
-              {confed.purpose && <p className="text-base text-slate-600 md:max-w-3xl">{confed.purpose}</p>}
+              <div className="flex-1 space-y-6">
+                <div className="space-y-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">Confederação</span>
+                  <h1 className="font-heading text-3xl font-semibold leading-tight text-foreground md:text-4xl">
+                    {confed.name}
+                  </h1>
+                </div>
 
-              <dl className="grid gap-6 sm:grid-cols-2">
-                <div className="space-y-1">
-                  <dt className="text-xs font-medium uppercase tracking-wide text-slate-400">Fundação</dt>
-                  <dd className="text-base text-slate-600">{founded}</dd>
-                </div>
-                <div className="space-y-1">
-                  <dt className="text-xs font-medium uppercase tracking-wide text-slate-400">Presidente atual</dt>
-                  <dd className="text-base text-slate-600">{confed.currentPresident ?? "—"}</dd>
-                </div>
-                <div className="space-y-1">
-                  <dt className="text-xs font-medium uppercase tracking-wide text-slate-400">Último comunicado</dt>
-                  <dd className="text-base text-slate-600">{statementDate}</dd>
-                </div>
-              </dl>
+                {confed.purpose && <p className="text-base text-muted-foreground md:max-w-3xl">{confed.purpose}</p>}
+
+                <dl className="grid gap-6 sm:grid-cols-2">
+                  <div className="space-y-1">
+                    <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground/80">Fundação</dt>
+                    <dd className="text-base text-muted-foreground">{founded}</dd>
+                  </div>
+                  <div className="space-y-1">
+                    <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground/80">Presidente atual</dt>
+                    <dd className="text-base text-muted-foreground">{confed.currentPresident ?? "—"}</dd>
+                  </div>
+                  <div className="space-y-1">
+                    <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground/80">Último comunicado</dt>
+                    <dd className="text-base text-muted-foreground">{statementDate}</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
-          </div>
-        </section>
-
-        <section className="space-y-6">
-          <div className="space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Comunicado oficial</span>
-            <h2 className="text-2xl font-semibold text-slate-900">Último comunicado na íntegra</h2>
-            <p className="text-sm text-slate-500">
-              Publicado em {statementDate}. Acompanhe abaixo o posicionamento completo divulgado pela entidade.
-            </p>
-          </div>
-
-          <article className="space-y-4 rounded-[32px] border border-white/70 bg-white/95 px-8 py-10 text-base leading-relaxed text-slate-600 shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)]">
-            {statementParagraphs.length > 0 ? (
-              statementParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
-            ) : (
-              <p className="text-slate-400">Esta confederação ainda não publicou comunicado oficial.</p>
-            )}
-          </article>
-        </section>
-
-        {confed.clubs?.length ? (
-          <section className="space-y-4">
-            <h2 className="text-xl font-semibold text-slate-900">Clubes em destaque</h2>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {confed.clubs.map((club) => (
-                <li key={club.id}>
-                  <Link
-                    href={`/clubes/${club.slug}`}
-                    prefetch={false}
-                    className="block rounded-2xl border border-white/70 bg-white/95 px-5 py-3 text-sm font-medium text-slate-600 shadow-[0_12px_32px_-20px_rgba(15,23,42,0.4)] transition hover:-translate-y-0.5 hover:text-slate-900 hover:shadow-[0_18px_40px_-18px_rgba(15,23,42,0.45)]"
-                  >
-                    {club.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </section>
-        ) : null}
+
+          <section className="space-y-6">
+            <div className="space-y-2">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">Comunicado oficial</span>
+              <h2 className="text-2xl font-semibold text-foreground">Último comunicado na íntegra</h2>
+              <p className="text-sm text-muted-foreground">
+                Publicado em {statementDate}. Acompanhe abaixo o posicionamento completo divulgado pela entidade.
+              </p>
+            </div>
+
+            <article className="space-y-4 rounded-[32px] border border-border/80 bg-card/90 px-8 py-10 text-base leading-relaxed text-muted-foreground shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)]">
+              {statementParagraphs.length > 0 ? (
+                statementParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
+              ) : (
+                <p className="text-muted-foreground/80">Esta confederação ainda não publicou comunicado oficial.</p>
+              )}
+            </article>
+          </section>
+
+          {confed.clubs?.length ? (
+            <section className="space-y-4">
+              <h2 className="text-xl font-semibold text-foreground">Clubes em destaque</h2>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {confed.clubs.map((club) => (
+                  <li key={club.id}>
+                    <Link
+                      href={`/clubes/${club.slug}`}
+                      prefetch={false}
+                      className="block rounded-2xl border border-border/80 bg-card/90 px-5 py-3 text-sm font-medium text-muted-foreground shadow-[0_12px_32px_-20px_rgba(15,23,42,0.4)] transition hover:-translate-y-0.5 hover:text-foreground hover:shadow-[0_18px_40px_-18px_rgba(15,23,42,0.45)]"
+                    >
+                      {club.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
         </div>
       </main>
     </div>

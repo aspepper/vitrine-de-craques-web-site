@@ -161,9 +161,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50',
-        'supports-[backdrop-filter]:bg-background/75 bg-background/95 backdrop-blur-xl',
-        'border-b border-border/40 shadow-[0_8px_32px_rgba(0,0,0,0.25)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]'
+        'sticky top-0 z-50 border-b backdrop-blur-xl transition-colors',
+        'border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,255,255,0.88))] shadow-[0_18px_48px_-28px_rgba(15,23,42,0.45)]',
+        'dark:border-slate-800/80 dark:bg-[linear-gradient(180deg,rgba(8,15,28,0.92),rgba(8,15,28,0.78))] dark:shadow-[0_18px_48px_-24px_rgba(0,0,0,0.7)]'
       )}
     >
       <nav className="container mx-auto flex h-14 items-center gap-4 md:h-16">

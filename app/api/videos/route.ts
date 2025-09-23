@@ -8,6 +8,9 @@ import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
 import { uploadFile } from '@/lib/storage'
 
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)

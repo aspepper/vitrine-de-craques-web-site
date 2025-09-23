@@ -10,6 +10,7 @@ import { errorResponse } from '@/lib/error'
 import { deleteFileByUrl, uploadFile } from '@/lib/storage'
 
 export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 const MAX_FILE_SIZE = 6 * 1024 * 1024
 

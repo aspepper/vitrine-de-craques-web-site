@@ -259,12 +259,12 @@ export default async function PerfilPage() {
       <main className="container flex flex-col gap-16 pb-24 pt-20">
         {profile ? (
           <>
-            <section className="relative overflow-hidden rounded-[32px] bg-white px-8 py-12 shadow-[0_32px_80px_-40px_rgba(15,23,42,0.45)] dark:border dark:border-white/5 dark:bg-slate-900/80 dark:shadow-[0_40px_120px_-48px_rgba(2,6,23,0.85)] md:px-12">
+            <section className="relative overflow-hidden rounded-[32px] border border-slate-100/60 bg-white/95 px-8 py-12 shadow-[0_32px_80px_-40px_rgba(15,23,42,0.45)] dark:border-white/5 dark:bg-gradient-to-br dark:from-slate-950/90 dark:via-slate-900/90 dark:to-slate-950/90 dark:shadow-[0_40px_120px_-48px_rgba(2,6,23,0.85)] md:px-12">
               <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-emerald-200/60 blur-3xl dark:bg-emerald-500/10" aria-hidden />
               <div className="pointer-events-none absolute -bottom-24 -right-10 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl dark:bg-cyan-500/10" aria-hidden />
 
               <div className="relative flex flex-col gap-10">
-                <span className="inline-flex w-fit items-center rounded-full bg-emerald-100/80 px-5 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200">
+                <span className="inline-flex w-fit items-center rounded-full bg-emerald-100/80 px-5 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-emerald-700 dark:bg-slate-900/70 dark:text-emerald-200">
                   {getRoleLabel(profile.role)}
                 </span>
 

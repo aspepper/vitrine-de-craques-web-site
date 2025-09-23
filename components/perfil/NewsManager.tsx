@@ -145,7 +145,7 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
       {showCreateForm ? (
         <form
           onSubmit={handleCreate}
-          className="space-y-4 rounded-3xl border border-emerald-100 bg-white/90 p-6 shadow-[0_32px_90px_-48px_rgba(16,185,129,0.55)] dark:border-emerald-500/20 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(15,118,110,0.7)]"
+          className="space-y-4 rounded-3xl border border-emerald-100 bg-white/90 p-6 shadow-[0_32px_90px_-48px_rgba(16,185,129,0.55)] dark:border-emerald-500/20 dark:bg-gradient-to-br dark:from-slate-900/90 dark:via-slate-900/80 dark:to-slate-900/70 dark:shadow-[0_40px_100px_-52px_rgba(15,118,110,0.75)]"
         >
           <div className="grid gap-4 md:grid-cols-2">
             <div className="grid gap-2">
@@ -216,10 +216,10 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
           />
         ))}
         {orderedItems.length === 0 && !showCreateForm ? (
-          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-emerald-200 bg-white/80 p-10 text-center text-slate-500 shadow-[0_16px_60px_-40px_rgba(16,185,129,0.65)] dark:border-emerald-500/25 dark:bg-slate-900/70 dark:text-slate-300 dark:shadow-[0_24px_70px_-40px_rgba(15,118,110,0.75)]">
+          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-emerald-200 bg-slate-50/90 p-10 text-center text-slate-500 shadow-[0_16px_60px_-40px_rgba(16,185,129,0.65)] dark:border-emerald-500/25 dark:bg-gradient-to-br dark:from-slate-900/90 dark:via-slate-900/80 dark:to-slate-900/70 dark:text-slate-200 dark:shadow-[0_32px_96px_-48px_rgba(15,118,110,0.85)]">
             <FileText className="h-8 w-8 text-emerald-400" aria-hidden />
             <p className="text-sm">Nenhum artigo publicado ainda.</p>
-            <p className="text-xs text-slate-400 dark:text-slate-500">
+            <p className="text-xs text-slate-400 dark:text-slate-400">
               Utilize o botão “Novo artigo” para criar sua primeira publicação.
             </p>
           </div>

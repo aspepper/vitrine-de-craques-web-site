@@ -21,6 +21,7 @@ const storageEnv = {
   accessKeyId: process.env.STORAGE_ACCESS_KEY_ID ?? process.env.R2_ACCESS_KEY_ID,
   secretAccessKey:
     process.env.STORAGE_SECRET_ACCESS_KEY ?? process.env.R2_SECRET_ACCESS_KEY,
+  accountId: process.env.R2_ACCOUNT_ID,
   azureConnectionString:
     process.env.AZURE_STORAGE_CONNECTION_STRING ??
     process.env.STORAGE_AZURE_CONNECTION_STRING,
@@ -28,34 +29,46 @@ const storageEnv = {
     process.env.AZURE_STORAGE_CONTAINER ?? process.env.STORAGE_AZURE_CONTAINER,
 }
 
-const normalizedBaseUrl = storageEnv.publicBaseUrl?.replace(/\/+$/, '')
+const normalizedEndpoint = storageEnv.endpoint?.replace(/\/+$/, '')
 
-const driver = (
-  storageEnv.driver ??
-  (storageEnv.bucket && storageEnv.endpoint
-    ? 's3'
-    : storageEnv.azureConnectionString
-      ? 'azure'
-      : 'local')
-)
-  .toLowerCase() as 'local' | 's3' | 'r2' | 'azure'
+function detectDriver(): 'local' | 's3' | 'r2' | 'azure' {
+  if (storageEnv.driver) {
+    return storageEnv.driver.toLowerCase() as 'local' | 's3' | 'r2' | 'azure'
+  }
+
+  if (storageEnv.azureConnectionString && storageEnv.azureContainer) {
+    return 'azure'
+  }
+
+  if (storageEnv.bucket && normalizedEndpoint) {
+    return normalizedEndpoint.includes('.r2.cloudflarestorage.com') || storageEnv.accountId
+      ? 'r2'
+      : 's3'
+  }
+
+  return 'local'
+}
+
+const driver = detectDriver()
+
+const normalizedBaseUrl = storageEnv.publicBaseUrl?.replace(/\/+$/, '')
 
 let s3Client: S3Client | null = null
 let azureContainerClient: ContainerClient | null = null
 
 function ensureS3Client() {
   if (!s3Client) {
-    if (!storageEnv.bucket || !storageEnv.endpoint || !storageEnv.accessKeyId || !storageEnv.secretAccessKey) {
+    if (!storageEnv.bucket || !normalizedEndpoint || !storageEnv.accessKeyId || !storageEnv.secretAccessKey) {
       throw new Error('Storage (S3) is not properly configured')
     }
 
-    const forcePathStyle =
-      driver === 'r2' || storageEnv.endpoint?.includes('.r2.cloudflarestorage.com')
+    const forcePathStyle = driver === 'r2' || normalizedEndpoint.includes('.r2.cloudflarestorage.com')
 
     s3Client = new S3Client({
       region: storageEnv.region,
-      endpoint: storageEnv.endpoint,
+      endpoint: normalizedEndpoint,
       forcePathStyle,
+      disableHostPrefix: true,
       credentials: {
         accessKeyId: storageEnv.accessKeyId,
         secretAccessKey: storageEnv.secretAccessKey,
@@ -98,7 +111,11 @@ function buildFileUrl(key: string) {
     return `/${normalizedKey}`
   }
 
-  throw new Error('STORAGE_PUBLIC_BASE_URL must be configured for non-local storage drivers')
+  throw new Error(
+    driver === 'r2'
+      ? 'Configure a URL pública para o R2 utilizando STORAGE_PUBLIC_BASE_URL ou R2_PUBLIC_BASE_URL'
+      : 'STORAGE_PUBLIC_BASE_URL must be configured for non-local storage drivers',
+  )
 }
 
 function resolveFilePath(key: string) {
@@ -149,13 +166,20 @@ export async function uploadFile({
 
   // Treat 'r2' as 's3'
   const client = ensureS3Client()
+  const bodyBuffer =
+    typeof data === 'string'
+      ? Buffer.from(data)
+      : Buffer.isBuffer(data)
+        ? data
+        : Buffer.from(data)
   await client.send(
     new PutObjectCommand({
       Bucket: storageEnv.bucket!,
       Key: normalizedKey,
-      Body: data,
+      Body: bodyBuffer,
       ContentType: contentType,
       CacheControl: cacheControl,
+      ContentLength: bodyBuffer.byteLength,
     }),
   )
 

@@ -44,45 +44,45 @@ export function ResponsibleAthleteDetails({
   const formattedBirth = formatDate(birthDate)
 
   return (
-    <article className="flex flex-col gap-4 rounded-[28px] border border-white/70 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(99,102,241,0.55)]">
+    <article className="flex flex-col gap-4 rounded-[28px] border border-white/70 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(99,102,241,0.55)] dark:border-white/10 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(49,46,129,0.8)]">
       <header className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
           <UserRound className="h-5 w-5" aria-hidden />
         </div>
         <div>
-          <h3 className="font-heading text-lg font-semibold text-slate-900">Atleta acompanhado</h3>
+          <h3 className="font-heading text-lg font-semibold text-slate-900 dark:text-slate-100">Atleta acompanhado</h3>
           {athleteName ? (
-            <p className="text-sm text-slate-500">{athleteName}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-300">{athleteName}</p>
           ) : null}
         </div>
       </header>
-      <dl className="grid gap-3 text-sm text-slate-600 md:grid-cols-2">
+      <dl className="grid gap-3 text-sm text-slate-600 dark:text-slate-300 md:grid-cols-2">
         {formattedBirth ? (
-          <div className="flex items-center gap-2 rounded-2xl bg-slate-50 p-3">
-            <Calendar className="h-4 w-4 text-indigo-500" aria-hidden />
+          <div className="flex items-center gap-2 rounded-2xl bg-slate-50 p-3 dark:bg-slate-800/60">
+            <Calendar className="h-4 w-4 text-indigo-500 dark:text-indigo-300" aria-hidden />
             <div>
-              <dt className="text-xs uppercase tracking-[0.28em] text-slate-400">Nascimento</dt>
-              <dd className="font-medium text-slate-800">{formattedBirth}</dd>
+              <dt className="text-xs uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">Nascimento</dt>
+              <dd className="font-medium text-slate-800 dark:text-slate-100">{formattedBirth}</dd>
             </div>
           </div>
         ) : null}
         {gender ? (
-          <div className="flex items-center gap-2 rounded-2xl bg-slate-50 p-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-indigo-500 text-xs font-semibold uppercase">
+          <div className="flex items-center gap-2 rounded-2xl bg-slate-50 p-3 dark:bg-slate-800/60">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-indigo-500 text-xs font-semibold uppercase dark:bg-indigo-500/20 dark:text-indigo-200">
               {gender.slice(0, 2)}
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-[0.28em] text-slate-400">Gênero</dt>
-              <dd className="font-medium text-slate-800">{gender}</dd>
+              <dt className="text-xs uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">Gênero</dt>
+              <dd className="font-medium text-slate-800 dark:text-slate-100">{gender}</dd>
             </div>
           </div>
         ) : null}
         {sport ? (
-          <div className="flex items-center gap-2 rounded-2xl bg-slate-50 p-3 md:col-span-2">
-            <FileText className="h-4 w-4 text-indigo-500" aria-hidden />
+          <div className="flex items-center gap-2 rounded-2xl bg-slate-50 p-3 md:col-span-2 dark:bg-slate-800/60">
+            <FileText className="h-4 w-4 text-indigo-500 dark:text-indigo-300" aria-hidden />
             <div>
-              <dt className="text-xs uppercase tracking-[0.28em] text-slate-400">Esporte</dt>
-              <dd className="font-medium text-slate-800">
+              <dt className="text-xs uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">Esporte</dt>
+              <dd className="font-medium text-slate-800 dark:text-slate-100">
                 {sport}
                 {modality ? ` • Modalidade: ${modality}` : ""}
               </dd>
@@ -91,8 +91,8 @@ export function ResponsibleAthleteDetails({
         ) : null}
         {notes ? (
           <div className="md:col-span-2">
-            <dt className="text-xs uppercase tracking-[0.28em] text-slate-400">Observações</dt>
-            <dd className="mt-2 rounded-2xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-600">
+            <dt className="text-xs uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">Observações</dt>
+            <dd className="mt-2 rounded-2xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-600 dark:bg-slate-800/60 dark:text-slate-300">
               {notes}
             </dd>
           </div>

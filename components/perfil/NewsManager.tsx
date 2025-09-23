@@ -127,7 +127,7 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3 text-slate-600">
+        <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
           <FileText className="h-6 w-6 text-emerald-500" aria-hidden />
           <p className="text-sm">Gerencie seus artigos publicados</p>
         </div>
@@ -135,7 +135,7 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
           type="button"
           variant="outline"
           onClick={() => setShowCreateForm((prev) => !prev)}
-          className="inline-flex items-center gap-2 rounded-full border-emerald-200 bg-white px-4 py-2 text-sm font-medium text-emerald-600 shadow-[0_16px_40px_-24px_rgba(16,185,129,0.65)] transition hover:border-emerald-300 hover:bg-emerald-50/60"
+          className="inline-flex items-center gap-2 rounded-full border-emerald-200 bg-white px-4 py-2 text-sm font-medium text-emerald-600 shadow-[0_16px_40px_-24px_rgba(16,185,129,0.65)] transition hover:border-emerald-300 hover:bg-emerald-50/60 dark:border-emerald-500/30 dark:bg-slate-900/70 dark:text-emerald-200 dark:hover:border-emerald-400/40 dark:hover:bg-emerald-500/10"
         >
           <Plus className="h-4 w-4" />
           Novo artigo
@@ -145,7 +145,7 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
       {showCreateForm ? (
         <form
           onSubmit={handleCreate}
-          className="space-y-4 rounded-3xl border border-emerald-100 bg-white/90 p-6 shadow-[0_32px_90px_-48px_rgba(16,185,129,0.55)]"
+          className="space-y-4 rounded-3xl border border-emerald-100 bg-white/90 p-6 shadow-[0_32px_90px_-48px_rgba(16,185,129,0.55)] dark:border-emerald-500/20 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(15,118,110,0.7)]"
         >
           <div className="grid gap-4 md:grid-cols-2">
             <div className="grid gap-2">
@@ -195,7 +195,7 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
                 setShowCreateForm(false)
                 setCreateError(null)
               }}
-              className="text-slate-600 hover:text-slate-900"
+              className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
             >
               Cancelar
             </Button>
@@ -216,10 +216,10 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
           />
         ))}
         {orderedItems.length === 0 && !showCreateForm ? (
-          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-emerald-200 bg-white/80 p-10 text-center text-slate-500 shadow-[0_16px_60px_-40px_rgba(16,185,129,0.65)]">
+          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-emerald-200 bg-white/80 p-10 text-center text-slate-500 shadow-[0_16px_60px_-40px_rgba(16,185,129,0.65)] dark:border-emerald-500/25 dark:bg-slate-900/70 dark:text-slate-300 dark:shadow-[0_24px_70px_-40px_rgba(15,118,110,0.75)]">
             <FileText className="h-8 w-8 text-emerald-400" aria-hidden />
             <p className="text-sm">Nenhum artigo publicado ainda.</p>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-400 dark:text-slate-500">
               Utilize o botão “Novo artigo” para criar sua primeira publicação.
             </p>
           </div>
@@ -322,7 +322,7 @@ function NewsManagerCard({ item, onUpdate, onDelete }: NewsManagerCardProps) {
     return (
       <form
         onSubmit={handleSubmit}
-        className="flex h-full flex-col gap-4 rounded-3xl border border-emerald-100 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(16,185,129,0.55)]"
+        className="flex h-full flex-col gap-4 rounded-3xl border border-emerald-100 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(16,185,129,0.55)] dark:border-emerald-500/25 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(15,118,110,0.7)]"
       >
         <div className="grid gap-4">
           <div className="grid gap-2">
@@ -379,7 +379,7 @@ function NewsManagerCard({ item, onUpdate, onDelete }: NewsManagerCardProps) {
               setIsEditing(false)
               setErrorMessage(null)
             }}
-            className="text-slate-600 hover:text-slate-900"
+            className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
           >
             Cancelar
           </Button>
@@ -392,22 +392,22 @@ function NewsManagerCard({ item, onUpdate, onDelete }: NewsManagerCardProps) {
   }
 
   return (
-    <article className="flex h-full flex-col gap-4 rounded-3xl border border-white/70 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.55)]">
+    <article className="flex h-full flex-col gap-4 rounded-3xl border border-white/70 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.55)] dark:border-white/10 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(2,6,23,0.85)]">
       <header className="space-y-2">
-        <h3 className="font-heading text-xl font-semibold text-slate-900">
+        <h3 className="font-heading text-xl font-semibold text-slate-900 dark:text-slate-100">
           {item.title}
         </h3>
-        <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-emerald-500">
+        <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-emerald-500 dark:text-emerald-300">
           {item.category ? <span>{item.category}</span> : null}
           <span>{`Atualizado em ${formatDate(item.updatedAt)}`}</span>
         </div>
       </header>
       {item.excerpt ? (
-        <p className="text-sm text-slate-600">{item.excerpt}</p>
+        <p className="text-sm text-slate-600 dark:text-slate-300">{item.excerpt}</p>
       ) : null}
-      <div className="mt-auto flex items-center justify-between pt-2 text-sm text-slate-500">
+      <div className="mt-auto flex items-center justify-between pt-2 text-sm text-slate-500 dark:text-slate-400">
         <span className="inline-flex items-center gap-2">
-          <Heart className="h-4 w-4 text-rose-500" aria-hidden />
+          <Heart className="h-4 w-4 text-rose-500 dark:text-rose-300" aria-hidden />
           {new Intl.NumberFormat("pt-BR").format(item.likesCount)} curtidas
         </span>
         <div className="flex gap-2">
@@ -415,7 +415,7 @@ function NewsManagerCard({ item, onUpdate, onDelete }: NewsManagerCardProps) {
             type="button"
             variant="ghost"
             size="icon"
-            className="h-9 w-9 rounded-full text-emerald-600 hover:bg-emerald-50"
+            className="h-9 w-9 rounded-full text-emerald-600 hover:bg-emerald-50 dark:text-emerald-300 dark:hover:bg-emerald-500/10"
             onClick={() => setIsEditing(true)}
           >
             <PenSquare className="h-4 w-4" />
@@ -425,7 +425,7 @@ function NewsManagerCard({ item, onUpdate, onDelete }: NewsManagerCardProps) {
             type="button"
             variant="ghost"
             size="icon"
-            className="h-9 w-9 rounded-full text-rose-500 hover:bg-rose-50"
+            className="h-9 w-9 rounded-full text-rose-500 hover:bg-rose-50 dark:text-rose-300 dark:hover:bg-rose-500/10"
             onClick={handleDelete}
           >
             <Trash2 className="h-4 w-4" />

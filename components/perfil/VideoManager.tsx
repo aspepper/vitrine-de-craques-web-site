@@ -67,7 +67,7 @@ export function VideoManager({ initialVideos }: VideoManagerProps) {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-3 text-slate-600">
+      <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
         <Film className="h-6 w-6 text-sky-500" aria-hidden />
         <p className="text-sm">Edite os títulos dos vídeos e acompanhe o engajamento</p>
       </div>
@@ -81,10 +81,10 @@ export function VideoManager({ initialVideos }: VideoManagerProps) {
           />
         ))}
         {ordered.length === 0 ? (
-          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-sky-200 bg-white/80 p-10 text-center text-slate-500 shadow-[0_18px_60px_-40px_rgba(14,165,233,0.55)]">
+          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-sky-200 bg-white/80 p-10 text-center text-slate-500 shadow-[0_18px_60px_-40px_rgba(14,165,233,0.55)] dark:border-sky-500/20 dark:bg-slate-900/70 dark:text-slate-300 dark:shadow-[0_24px_70px_-42px_rgba(8,47,73,0.75)]">
             <Film className="h-8 w-8 text-sky-400" aria-hidden />
             <p className="text-sm">Nenhum vídeo cadastrado ainda.</p>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-400 dark:text-slate-500">
               Publique vídeos na área de upload para vê-los aqui.
             </p>
           </div>
@@ -180,7 +180,7 @@ function VideoManagerCard({ item, onUpdate, onDelete }: VideoManagerCardProps) {
     return (
       <form
         onSubmit={handleSubmit}
-        className="flex h-full flex-col gap-4 rounded-3xl border border-sky-100 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(14,165,233,0.5)]"
+        className="flex h-full flex-col gap-4 rounded-3xl border border-sky-100 bg-white/95 p-6 shadow-[0_28px_80px_-48px_rgba(14,165,233,0.5)] dark:border-sky-500/20 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(12,74,110,0.75)]"
       >
         <div className="grid gap-4">
           <div className="grid gap-2">
@@ -208,7 +208,7 @@ function VideoManagerCard({ item, onUpdate, onDelete }: VideoManagerCardProps) {
               setIsEditing(false)
               setErrorMessage(null)
             }}
-            className="text-slate-600 hover:text-slate-900"
+            className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
           >
             Cancelar
           </Button>
@@ -221,7 +221,7 @@ function VideoManagerCard({ item, onUpdate, onDelete }: VideoManagerCardProps) {
   }
 
   return (
-    <article className="flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/70 bg-white/95 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.5)]">
+    <article className="flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/70 bg-white/95 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.5)] dark:border-white/10 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(2,6,23,0.85)]">
       <div className="relative aspect-video w-full overflow-hidden bg-slate-900/60">
         {item.thumbnailUrl ? (
           <Image
@@ -245,15 +245,15 @@ function VideoManagerCard({ item, onUpdate, onDelete }: VideoManagerCardProps) {
         </div>
       </div>
       <div className="flex flex-1 flex-col gap-3 px-6 pb-6">
-        <h3 className="font-heading text-lg font-semibold text-slate-900">{item.title}</h3>
+        <h3 className="font-heading text-lg font-semibold text-slate-900 dark:text-slate-100">{item.title}</h3>
         {item.description ? (
-          <p className="text-sm text-slate-600 line-clamp-3">{item.description}</p>
+          <p className="text-sm text-slate-600 line-clamp-3 dark:text-slate-300">{item.description}</p>
         ) : null}
         <div className="mt-auto flex items-center justify-between pt-2">
           <Button
             asChild
             variant="ghost"
-            className="rounded-full bg-slate-100/60 px-4 py-1 text-sm font-medium text-slate-700 hover:bg-slate-200"
+            className="rounded-full bg-slate-100/60 px-4 py-1 text-sm font-medium text-slate-700 hover:bg-slate-200 dark:bg-slate-800/70 dark:text-slate-200 dark:hover:bg-slate-700/60"
           >
             <Link href={`/player/${item.id}`}>Assistir</Link>
           </Button>
@@ -262,7 +262,7 @@ function VideoManagerCard({ item, onUpdate, onDelete }: VideoManagerCardProps) {
               type="button"
               variant="ghost"
               size="icon"
-              className="h-9 w-9 rounded-full text-sky-600 hover:bg-sky-50"
+              className="h-9 w-9 rounded-full text-sky-600 hover:bg-sky-50 dark:text-sky-300 dark:hover:bg-sky-500/10"
               onClick={() => setIsEditing(true)}
             >
               <PenSquare className="h-4 w-4" />
@@ -272,7 +272,7 @@ function VideoManagerCard({ item, onUpdate, onDelete }: VideoManagerCardProps) {
               type="button"
               variant="ghost"
               size="icon"
-              className="h-9 w-9 rounded-full text-rose-500 hover:bg-rose-50"
+              className="h-9 w-9 rounded-full text-rose-500 hover:bg-rose-50 dark:text-rose-300 dark:hover:bg-rose-500/10"
               onClick={handleDelete}
             >
               <Trash2 className="h-4 w-4" />

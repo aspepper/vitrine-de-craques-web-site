@@ -53,6 +53,21 @@ const driver = detectDriver()
 
 const normalizedBaseUrl = storageEnv.publicBaseUrl?.replace(/\/+$/, '')
 
+let inferredAzureBaseUrl: string | null = null
+
+if (!normalizedBaseUrl && storageEnv.azureConnectionString && storageEnv.azureContainer) {
+  try {
+    const azureService = BlobServiceClient.fromConnectionString(storageEnv.azureConnectionString)
+    const containerUrl = azureService.getContainerClient(storageEnv.azureContainer).url
+    inferredAzureBaseUrl = containerUrl.replace(/\/+$/, '')
+  } catch (error) {
+    console.warn(
+      'Failed to infer Azure Blob base URL:',
+      error instanceof Error ? error.message : error,
+    )
+  }
+}
+
 let s3Client: S3Client | null = null
 let azureContainerClient: ContainerClient | null = null
 
@@ -107,6 +122,10 @@ function buildFileUrl(key: string) {
     return `${normalizedBaseUrl}/${normalizedKey}`
   }
 
+  if (driver === 'azure' && inferredAzureBaseUrl) {
+    return `${inferredAzureBaseUrl}/${normalizedKey}`
+  }
+
   if (driver === 'local') {
     return `/${normalizedKey}`
   }
@@ -158,9 +177,13 @@ export async function uploadFile({
       },
     })
 
+    const publicUrl = normalizedBaseUrl
+      ? buildFileUrl(normalizedKey)
+      : blob.url
+
     return {
       key: normalizedKey,
-      url: buildFileUrl(normalizedKey),
+      url: publicUrl,
     }
   }
 
@@ -240,6 +263,13 @@ export function extractKeyFromUrl(url: string) {
   if (withoutQuery.startsWith('http://') || withoutQuery.startsWith('https://')) {
     if (normalizedBaseUrl && withoutQuery.startsWith(normalizedBaseUrl)) {
       const suffix = withoutQuery.slice(normalizedBaseUrl.length)
+      if (suffix === '' || suffix.startsWith('/')) {
+        const normalized = normalizeKey(suffix)
+        return normalized || null
+      }
+    }
+    if (driver === 'azure' && inferredAzureBaseUrl && withoutQuery.startsWith(inferredAzureBaseUrl)) {
+      const suffix = withoutQuery.slice(inferredAzureBaseUrl.length)
       if (suffix === '' || suffix.startsWith('/')) {
         const normalized = normalizeKey(suffix)
         return normalized || null

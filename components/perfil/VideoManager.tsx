@@ -81,10 +81,10 @@ export function VideoManager({ initialVideos }: VideoManagerProps) {
           />
         ))}
         {ordered.length === 0 ? (
-          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-sky-200 bg-white/80 p-10 text-center text-slate-500 shadow-[0_18px_60px_-40px_rgba(14,165,233,0.55)] dark:border-sky-500/20 dark:bg-slate-900/70 dark:text-slate-300 dark:shadow-[0_24px_70px_-42px_rgba(8,47,73,0.75)]">
+          <div className="col-span-full flex flex-col items-center gap-3 rounded-3xl border border-dashed border-sky-200 bg-slate-50/90 p-10 text-center text-slate-500 shadow-[0_18px_60px_-40px_rgba(14,165,233,0.55)] dark:border-sky-500/20 dark:bg-gradient-to-br dark:from-slate-900/90 dark:via-slate-900/80 dark:to-slate-900/70 dark:text-slate-200 dark:shadow-[0_28px_88px_-48px_rgba(8,47,73,0.85)]">
             <Film className="h-8 w-8 text-sky-400" aria-hidden />
             <p className="text-sm">Nenhum vídeo cadastrado ainda.</p>
-            <p className="text-xs text-slate-400 dark:text-slate-500">
+            <p className="text-xs text-slate-400 dark:text-slate-400">
               Publique vídeos na área de upload para vê-los aqui.
             </p>
           </div>

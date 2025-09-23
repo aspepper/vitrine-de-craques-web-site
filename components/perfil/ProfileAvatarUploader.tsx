@@ -279,7 +279,7 @@ export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: Profile
       />
 
       <Dialog open={isDialogOpen} onOpenChange={(open) => (!open ? resetDialog() : setIsDialogOpen(open))}>
-        <DialogContent className="max-w-xl gap-6 border border-slate-200/60 bg-white text-slate-900 shadow-2xl dark:border-slate-800/60 dark:bg-slate-900 dark:text-slate-100 dark:shadow-[0_48px_96px_-60px_rgba(15,23,42,0.8)]">
+        <DialogContent className="max-w-xl gap-6 border border-slate-200/60 bg-white text-slate-900 shadow-2xl dark:border-slate-800/60 dark:bg-slate-950 dark:text-slate-100 dark:shadow-[0_48px_96px_-60px_rgba(15,23,42,0.8)]">
           <DialogHeader>
             <DialogTitle>Atualizar foto de perfil</DialogTitle>
             <DialogDescription>
@@ -287,7 +287,7 @@ export function ProfileAvatarUploader({ displayName, initialAvatarUrl }: Profile
             </DialogDescription>
           </DialogHeader>
 
-          <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-inner dark:border-slate-700/60 dark:bg-slate-900">
+          <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-inner dark:border-slate-700/60 dark:bg-slate-950">
             {imageSrc ? (
               <Cropper
                 image={imageSrc}

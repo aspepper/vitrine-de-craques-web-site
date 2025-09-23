@@ -209,7 +209,7 @@ export default async function PerfilPage() {
   let sectionTitle = "Conteúdos personalizados";
   let sectionDescription = "Mantenha seu perfil atualizado para desbloquear recursos exclusivos.";
   let sectionContent: ReactNode = (
-    <div className="rounded-[28px] border border-dashed border-slate-200 bg-white/80 p-8 text-center text-sm text-slate-500 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.2)] dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:shadow-[0_32px_80px_-48px_rgba(2,6,23,0.7)]">
+    <div className="rounded-[28px] border border-dashed border-slate-200 bg-slate-50/90 p-8 text-center text-sm text-slate-500 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.2)] dark:border-slate-700 dark:bg-gradient-to-br dark:from-slate-900/90 dark:via-slate-900/80 dark:to-slate-900/70 dark:text-slate-200 dark:shadow-[0_36px_96px_-52px_rgba(2,6,23,0.85)]">
       Complete seu perfil para visualizar conteúdos personalizados aqui.
     </div>
   );
@@ -244,7 +244,7 @@ export default async function PerfilPage() {
         sectionContent = favoriteTeam ? (
           <FavoriteTeamCard team={favoriteTeam} />
         ) : (
-          <div className="rounded-[28px] border border-dashed border-slate-200 bg-white/80 p-8 text-center text-sm text-slate-500 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.2)] dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:shadow-[0_32px_80px_-48px_rgba(2,6,23,0.7)]">
+          <div className="rounded-[28px] border border-dashed border-slate-200 bg-slate-50/90 p-8 text-center text-sm text-slate-500 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.2)] dark:border-slate-700 dark:bg-gradient-to-br dark:from-slate-900/90 dark:via-slate-900/80 dark:to-slate-900/70 dark:text-slate-200 dark:shadow-[0_36px_96px_-52px_rgba(2,6,23,0.85)]">
             Escolha um clube do coração para visualizar os detalhes aqui.
           </div>
         );

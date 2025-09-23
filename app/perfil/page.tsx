@@ -179,7 +179,7 @@ export default async function PerfilPage() {
           {interestedAthletes.map((athlete) => (
             <article
               key={athlete.id ?? athlete.name}
-              className="group relative overflow-hidden rounded-[28px] bg-slate-900 p-6 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)] transition-transform duration-300 hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-[28px] bg-slate-900 p-6 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)] transition-transform duration-300 hover:-translate-y-1 dark:bg-slate-800/80 dark:shadow-[0_32px_70px_-40px_rgba(2,6,23,0.9)]"
             >
               <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white">
                 <UserRound aria-hidden className="h-8 w-8" />
@@ -200,7 +200,7 @@ export default async function PerfilPage() {
           {Array.from({ length: 10 }).map((_, index) => (
             <div
               key={index}
-              className="aspect-[4/5] rounded-[28px] bg-slate-900/90 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)]"
+              className="aspect-[4/5] rounded-[28px] bg-slate-900/90 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.9)] dark:bg-slate-800/60 dark:shadow-[0_32px_70px_-40px_rgba(2,6,23,0.85)]"
             />
           ))}
         </div>

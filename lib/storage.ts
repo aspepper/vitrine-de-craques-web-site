@@ -53,6 +53,19 @@ const driver = detectDriver()
 
 const normalizedBaseUrl = storageEnv.publicBaseUrl?.replace(/\/+$/, '')
 
+function buildDefaultR2PublicBaseUrl() {
+  if (!storageEnv.accountId || !storageEnv.bucket) {
+    return null
+  }
+
+  // Cloudflare R2 buckets are publicly accessible through the account endpoint
+  // using the path-style URL: https://<accountId>.r2.cloudflarestorage.com/<bucket>/<key>
+  return `https://${storageEnv.accountId}.r2.cloudflarestorage.com/${storageEnv.bucket}`
+}
+
+const fallbackR2BaseUrl =
+  normalizedBaseUrl || (driver === 'r2' ? buildDefaultR2PublicBaseUrl() : null)
+
 let inferredAzureBaseUrl: string | null = null
 
 if (!normalizedBaseUrl && storageEnv.azureConnectionString && storageEnv.azureContainer) {
@@ -120,6 +133,10 @@ function buildFileUrl(key: string) {
 
   if (normalizedBaseUrl) {
     return `${normalizedBaseUrl}/${normalizedKey}`
+  }
+
+  if (driver === 'r2' && fallbackR2BaseUrl) {
+    return `${fallbackR2BaseUrl.replace(/\/+$/, '')}/${normalizedKey}`
   }
 
   if (driver === 'azure' && inferredAzureBaseUrl) {
@@ -268,6 +285,31 @@ export function extractKeyFromUrl(url: string) {
         return normalized || null
       }
     }
+    if (driver === 'r2' && fallbackR2BaseUrl) {
+      const fallbackBase = fallbackR2BaseUrl.replace(/\/+$/, '')
+
+      const candidates = [fallbackBase]
+
+      if (storageEnv.bucket && storageEnv.accountId) {
+        candidates.push(
+          `https://${storageEnv.bucket}.${storageEnv.accountId}.r2.cloudflarestorage.com`,
+        )
+      }
+
+      for (const candidate of candidates) {
+        if (!candidate) continue
+        if (withoutQuery.startsWith(candidate)) {
+          const suffix = withoutQuery.slice(candidate.length)
+          if (suffix === '' || suffix.startsWith('/')) {
+            const normalized = normalizeKey(suffix)
+            if (normalized) {
+              return normalized
+            }
+          }
+        }
+      }
+    }
+
     if (driver === 'azure' && inferredAzureBaseUrl && withoutQuery.startsWith(inferredAzureBaseUrl)) {
       const suffix = withoutQuery.slice(inferredAzureBaseUrl.length)
       if (suffix === '' || suffix.startsWith('/')) {

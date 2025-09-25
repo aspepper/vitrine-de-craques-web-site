@@ -32,32 +32,34 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
   };
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full w-full flex-1 flex-col">
       <div className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto pb-6 pt-8">
-          <div className="flex flex-col items-center gap-6 px-6">
-            {videos.map((video) => (
+        <div className="flex h-full snap-y snap-mandatory flex-col overflow-y-auto">
+          {videos.map((video) => (
+            <div
+              key={video.id}
+              className="flex min-h-[calc(100vh-240px)] w-full items-center justify-center snap-start px-4 py-6"
+            >
               <FeedVideoCard
-                key={video.id}
                 video={video}
                 showOverlayActions={false}
-                className="max-w-full"
+                className="h-full max-h-[680px] w-full max-w-[400px]"
               />
-            ))}
-          </div>
+            </div>
+          ))}
+          {hasMore && (
+            <div className="flex min-h-[calc(100vh-240px)] items-center justify-center px-6 py-8">
+              <Button
+                onClick={loadMore}
+                disabled={loading}
+                className="h-12 w-full max-w-[260px] rounded-full bg-emerald-500 text-base font-semibold text-white transition-colors hover:bg-emerald-500/90"
+              >
+                {loading ? "Carregando..." : "Carregar mais"}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
-      {hasMore && (
-        <div className="px-6 pb-8">
-          <Button
-            onClick={loadMore}
-            disabled={loading}
-            className="h-12 w-full rounded-full bg-emerald-500 text-base font-semibold text-white transition-colors hover:bg-emerald-500/90"
-          >
-            {loading ? "Carregando..." : "Carregar mais"}
-          </Button>
-        </div>
-      )}
     </div>
   );
 }

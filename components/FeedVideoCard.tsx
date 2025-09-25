@@ -27,6 +27,7 @@ export function FeedVideoCard({
   showOverlayActions = true,
 }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
+  const authorName = video.user?.name?.trim() || "Talento anônimo";
 
   useEffect(() => {
     const videoEl = ref.current;
@@ -51,11 +52,11 @@ export function FeedVideoCard({
 
   const ActionButton = ({ src, alt }: { src: string; alt: string }) => (
     <button
-      className="p-2 bg-white/30 rounded-full"
+      className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 transition hover:scale-105 hover:bg-white/25"
       onClick={() => console.log(alt)}
       type="button"
     >
-      <Image src={src} alt={alt} width={32} height={32} />
+      <Image src={src} alt={alt} width={28} height={28} />
     </button>
   );
 
@@ -75,6 +76,7 @@ export function FeedVideoCard({
         muted
         playsInline
       />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black via-black/40 to-transparent" />
       {showOverlayActions && (
         <div className="absolute bottom-10 right-2 flex flex-col gap-3">
           <ActionButton src="/icons/icon-like.svg" alt="Curtir" />
@@ -84,9 +86,9 @@ export function FeedVideoCard({
           <ActionButton src="/icons/icon-report.svg" alt="Denunciar" />
         </div>
       )}
-      <div className="absolute left-3 bottom-3 text-white drop-shadow">
-        <p className="font-semibold leading-tight">{video.user?.name}</p>
-        <p className="text-sm leading-tight">{video.title}</p>
+      <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-1 text-white drop-shadow">
+        <p className="text-sm font-semibold uppercase tracking-[0.1em] text-white/70">{authorName}</p>
+        <p className="text-base font-semibold leading-tight">{video.title}</p>
       </div>
     </div>
   );

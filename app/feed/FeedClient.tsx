@@ -43,7 +43,7 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
               <FeedVideoCard
                 video={video}
                 showOverlayActions={false}
-                className="h-full max-h-[720px] w-full max-w-[520px]"
+                className="h-full max-h-[720px] w-full max-w-[420px]"
               />
             </div>
           ))}

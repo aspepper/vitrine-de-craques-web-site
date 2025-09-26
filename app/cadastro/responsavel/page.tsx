@@ -124,7 +124,7 @@ export default function CadastroResponsavelPage() {
                 <Label htmlFor="responsavelNascimento">Data de nascimento</Label>
                 <Input
                   id="responsavelNascimento"
-                  placeholder="DD/MM/AAAA"
+                  type="date"
                   {...form.register('responsavelNascimento')}
                 />
                 {form.formState.errors.responsavelNascimento && (
@@ -193,7 +193,7 @@ export default function CadastroResponsavelPage() {
                 <Label htmlFor="atletaNascimento">Data de nascimento</Label>
                 <Input
                   id="atletaNascimento"
-                  placeholder="DD/MM/AAAA"
+                  type="date"
                   {...form.register('atletaNascimento')}
                 />
                 {form.formState.errors.atletaNascimento && (

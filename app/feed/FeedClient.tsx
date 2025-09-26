@@ -9,6 +9,7 @@ export interface FeedVideo {
   title: string;
   videoUrl: string;
   thumbnailUrl?: string | null;
+  likesCount?: number | null;
   user: {
     name?: string | null;
   };
@@ -42,8 +43,8 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
             >
               <FeedVideoCard
                 video={video}
-                showOverlayActions={false}
                 className="h-full max-h-[720px] w-full max-w-[420px]"
+                initialLikes={video.likesCount ?? 0}
               />
             </div>
           ))}

@@ -32,7 +32,7 @@ async function generateThumbnailFromVideo(videoBuffer: Buffer, originalName?: st
         .outputOptions(['-qscale:v', '2'])
         .output(outputPath)
         .on('end', () => resolve())
-        .on('error', (error) => reject(error))
+        .on('error', (error: Error) => reject(error))
         .run()
     })
 

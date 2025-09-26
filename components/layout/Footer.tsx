@@ -79,13 +79,6 @@ export function Footer() {
             <Link
               href="#"
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
-              aria-label="TikTok"
-            >
-              <Image src="/icons/icon-tiktok.svg" alt="" width={18} height={18} />
-            </Link>
-            <Link
-              href="#"
-              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
               aria-label="YouTube"
             >
               <Image src="/icons/icon-youtube.svg" alt="" width={20} height={20} />

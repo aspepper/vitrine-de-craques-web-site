@@ -10,7 +10,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
-import { uploadFile } from '@/lib/storage'
+import { deleteFileByUrl, extractKeyFromUrl, uploadFile } from '@/lib/storage'
 import ffmpeg from 'fluent-ffmpeg'
 import sharp from 'sharp'
 
@@ -85,6 +85,108 @@ async function generateThumbnailFromVideo(videoBuffer: Buffer, originalName?: st
   }
 }
 
+async function remoteFileExists(url: string) {
+  try {
+    const headResponse = await fetch(url, { method: 'HEAD' })
+    if (headResponse.ok) {
+      return true
+    }
+
+    if (headResponse.status === 405) {
+      const getResponse = await fetch(url)
+      return getResponse.ok
+    }
+  } catch (error) {
+    console.warn(`Failed to verify remote file availability for ${url}`, error)
+  }
+
+  return false
+}
+
+async function thumbnailExists(thumbnailUrl: string | null) {
+  if (!thumbnailUrl) {
+    return false
+  }
+
+  const [withoutQuery] = thumbnailUrl.split(/[?#]/)
+  if (!withoutQuery) {
+    return false
+  }
+
+  if (withoutQuery.startsWith('http://') || withoutQuery.startsWith('https://')) {
+    return remoteFileExists(withoutQuery)
+  }
+
+  const key = extractKeyFromUrl(thumbnailUrl) ?? withoutQuery.replace(/^\/+/, '')
+  const filePath = path.join(process.cwd(), 'public', key)
+
+  try {
+    await fs.access(filePath)
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function readVideoFile(videoUrl: string) {
+  const [withoutQuery] = videoUrl.split(/[?#]/)
+  if (!withoutQuery) {
+    throw new Error('Invalid video URL')
+  }
+
+  if (withoutQuery.startsWith('http://') || withoutQuery.startsWith('https://')) {
+    const response = await fetch(withoutQuery)
+    if (!response.ok) {
+      throw new Error(
+        `Failed to download video for thumbnail regeneration (${response.status} ${response.statusText})`,
+      )
+    }
+
+    const arrayBuffer = await response.arrayBuffer()
+    return Buffer.from(arrayBuffer)
+  }
+
+  const key = extractKeyFromUrl(videoUrl) ?? withoutQuery.replace(/^\/+/, '')
+  const filePath = path.join(process.cwd(), 'public', key)
+
+  return fs.readFile(filePath)
+}
+
+async function ensureVideoThumbnail<T extends { id: string; videoUrl: string; thumbnailUrl: string | null }>(
+  video: T,
+): Promise<T> {
+  if (await thumbnailExists(video.thumbnailUrl)) {
+    return video
+  }
+
+  try {
+    const videoBuffer = await readVideoFile(video.videoUrl)
+    const [withoutQuery] = video.videoUrl.split(/[?#]/)
+    const originalName = withoutQuery ? path.basename(withoutQuery) : undefined
+    const generatedThumbnail = await generateThumbnailFromVideo(videoBuffer, originalName)
+    const thumbName = `${randomUUID()}.jpg`
+    const thumbKey = `uploads/thumbnails/${thumbName}`
+    const { url } = await uploadFile({
+      key: thumbKey,
+      data: generatedThumbnail,
+      contentType: 'image/jpeg',
+      cacheControl: 'public, max-age=31536000, immutable',
+    })
+
+    await deleteFileByUrl(video.thumbnailUrl)
+
+    await prisma.video.update({
+      where: { id: video.id },
+      data: { thumbnailUrl: url },
+    })
+
+    return { ...video, thumbnailUrl: url }
+  } catch (error) {
+    console.error(`Failed to regenerate thumbnail for video ${video.id}`, error)
+    return video
+  }
+}
+
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
@@ -99,7 +201,13 @@ export async function GET(req: NextRequest) {
       orderBy: { createdAt: 'desc' },
       include: { user: true },
     })
-    return NextResponse.json(videos)
+    const videosWithThumbnails: typeof videos = []
+
+    for (const video of videos) {
+      videosWithThumbnails.push(await ensureVideoThumbnail(video))
+    }
+
+    return NextResponse.json(videosWithThumbnails)
   } catch (error) {
     return errorResponse(req, error, 'AO LISTAR VÍDEOS')
   }

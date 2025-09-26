@@ -79,7 +79,7 @@ export async function POST(req: Request) {
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    let optimizedBuffer = buffer
+    let optimizedBuffer: Buffer<ArrayBufferLike> = buffer
     let contentType = file.type || 'application/octet-stream'
     let extension = getExtensionFromContentType(contentType)
 

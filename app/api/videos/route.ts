@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto'
 import { promises as fs } from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
+import { createRequire } from 'node:module'
 
 import { getServerSession } from 'next-auth'
 
@@ -11,10 +12,27 @@ import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
 import { uploadFile } from '@/lib/storage'
 import ffmpeg from 'fluent-ffmpeg'
-import ffmpegInstaller from '@ffmpeg-installer/ffmpeg'
 import sharp from 'sharp'
 
-ffmpeg.setFfmpegPath(ffmpegInstaller.path)
+const require = createRequire(import.meta.url)
+
+let ffmpegBinaryPath = process.env.FFMPEG_PATH
+
+if (!ffmpegBinaryPath) {
+  try {
+    const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg') as { path: string }
+    ffmpegBinaryPath = ffmpegInstaller.path
+  } catch (error) {
+    console.warn(
+      'FFmpeg installer package not available. Falling back to system ffmpeg binary.',
+      error,
+    )
+  }
+}
+
+if (ffmpegBinaryPath) {
+  ffmpeg.setFfmpegPath(ffmpegBinaryPath)
+}
 
 async function generateThumbnailFromVideo(videoBuffer: Buffer, originalName?: string) {
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'video-thumb-'))

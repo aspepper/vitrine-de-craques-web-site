@@ -38,12 +38,12 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
           {videos.map((video) => (
             <div
               key={video.id}
-              className="flex min-h-[calc(100vh-240px)] w-full items-center justify-center snap-start px-4 py-6"
+              className="flex min-h-[calc(100vh-220px)] w-full items-center justify-center snap-start px-4 py-6"
             >
               <FeedVideoCard
                 video={video}
                 showOverlayActions={false}
-                className="h-full max-h-[680px] w-full max-w-[400px]"
+                className="h-full max-h-[720px] w-full max-w-[520px]"
               />
             </div>
           ))}

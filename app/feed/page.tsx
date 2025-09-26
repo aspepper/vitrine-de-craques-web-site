@@ -1,13 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import {
-  Bookmark,
-  CirclePlay,
-  Compass,
-  MessageSquare,
-  Settings,
-  Users,
-} from "lucide-react";
+import { Calendar, ChevronDown, Filter, Hash, MapPin, PlayCircle } from "lucide-react";
 
 import ApiError from "@/components/ApiError";
 import { Button } from "@/components/ui/button";
@@ -37,18 +29,6 @@ export default async function FeedPage() {
     loadError = true;
   }
 
-  const primaryNavigation = [
-    { label: "Para você", href: "/feed", icon: CirclePlay },
-    { label: "Explorar", href: "/explorar", icon: Compass },
-    { label: "Seguindo", href: "/feed/seguindo", icon: Users },
-    { label: "Mensagens", href: "/mensagens", icon: MessageSquare },
-    { label: "Itens salvos", href: "/favoritos", icon: Bookmark },
-  ];
-
-  const secondaryNavigation = [
-    { label: "Configurações", href: "/configuracoes", icon: Settings },
-  ];
-
   const trendingHashtags = [
     { label: "#basebrasileira", views: "1.2M" },
     { label: "#talentos", views: "856K" },
@@ -62,61 +42,111 @@ export default async function FeedPage() {
     { label: "Compartilhar", icon: "/icons/icon-share.svg" },
   ];
 
+  const quickFilters = ["Categoria", "Estado", "Hashtags"];
+
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 dark:text-slate-100">
-      <main className="mx-auto flex w-full max-w-7xl flex-1 gap-6 px-4 pb-16 pt-6 lg:px-8">
-        <aside className="hidden w-64 shrink-0 flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-sm backdrop-blur dark:border-white/5 dark:bg-white/10 dark:text-slate-100 dark:shadow-none lg:flex">
-          <div className="space-y-6">
-            <div className="flex items-center gap-3 rounded-2xl bg-slate-100 px-3 py-2 dark:bg-white/5">
-              <Image src="/icons/icon-tiktok.svg" alt="Feed" width={32} height={32} className="opacity-80" />
-              <div>
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-300">Feed Personalizado</p>
-                <p className="text-xs text-slate-500 dark:text-slate-500">Recomendações inteligentes para você</p>
-              </div>
+      <main className="mx-auto flex w-full max-w-7xl flex-1 gap-6 px-4 pb-16 pt-4 lg:px-8">
+        <aside className="hidden w-72 shrink-0 flex-col gap-6 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-sm backdrop-blur dark:border-white/5 dark:bg-white/10 dark:text-slate-100 dark:shadow-none lg:flex">
+          <div className="flex items-center gap-3 rounded-2xl bg-emerald-500/10 px-3 py-2 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-200">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-emerald-600 shadow-sm dark:bg-slate-900 dark:text-emerald-300">
+              <Filter className="h-5 w-5" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold">Filtros rápidos</p>
+              <p className="text-xs text-emerald-700/80 dark:text-emerald-200/80">Refine as recomendações do feed</p>
             </div>
-
-            <nav className="space-y-4">
-              <div className="space-y-1">
-                {primaryNavigation.map(({ label, href, icon: Icon }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className="flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-white/10"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-200">
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <span>{label}</span>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="space-y-1 border-t border-slate-200 pt-4 dark:border-white/10">
-                {secondaryNavigation.map(({ label, href, icon: Icon }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className="flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-white/10"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-200">
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <span>{label}</span>
-                  </Link>
-                ))}
-              </div>
-            </nav>
           </div>
 
-          <Button className="h-12 w-full rounded-2xl bg-emerald-500 text-sm font-semibold text-white hover:bg-emerald-500/90">
-            Enviar meu vídeo
-          </Button>
+          <form className="flex flex-col gap-5">
+            <div className="flex flex-wrap gap-2">
+              {quickFilters.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-600 transition hover:-translate-y-0.5 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:bg-transparent dark:text-emerald-200"
+                >
+                  {item === "Categoria" && <PlayCircle className="h-4 w-4" aria-hidden />}
+                  {item === "Estado" && <MapPin className="h-4 w-4" aria-hidden />}
+                  {item === "Hashtags" && <Hash className="h-4 w-4" aria-hidden />}
+                  <span>{item}</span>
+                </button>
+              ))}
+            </div>
+
+            <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+              Categoria
+              <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-sm dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
+                <span>Todos</span>
+                <ChevronDown className="h-4 w-4 text-slate-400" aria-hidden />
+              </div>
+            </label>
+
+            <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+              Estado
+              <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-sm dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
+                <span>Selecione</span>
+                <ChevronDown className="h-4 w-4 text-slate-400" aria-hidden />
+              </div>
+            </label>
+
+            <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+              Hashtag
+              <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-sm dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
+                <Hash className="h-4 w-4 text-slate-400" aria-hidden />
+                <span className="text-xs uppercase tracking-[0.14em] text-slate-400">Digite uma hashtag</span>
+              </div>
+            </label>
+
+            <div className="grid grid-cols-2 gap-3">
+              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+                Idade mínima
+                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-sm dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
+                  14 anos
+                </div>
+              </label>
+              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+                Idade máxima
+                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-sm dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
+                  22 anos
+                </div>
+              </label>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+                Data inicial
+                <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-sm dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
+                  <Calendar className="h-4 w-4 text-slate-400" aria-hidden />
+                  <span className="text-xs uppercase tracking-[0.14em] text-slate-400">DD/MM/AAAA</span>
+                </div>
+              </label>
+              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
+                Data final
+                <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-sm dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
+                  <Calendar className="h-4 w-4 text-slate-400" aria-hidden />
+                  <span className="text-xs uppercase tracking-[0.14em] text-slate-400">DD/MM/AAAA</span>
+                </div>
+              </label>
+            </div>
+
+            <Button className="h-12 w-full rounded-2xl bg-emerald-500 text-sm font-semibold text-white shadow-[0_18px_32px_-18px_rgba(34,197,94,0.8)] transition hover:-translate-y-0.5 hover:bg-emerald-500/90">
+              Aplicar filtros
+            </Button>
+          </form>
+
+          <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-700 dark:text-emerald-100">
+            <p className="font-semibold">Dica</p>
+            <p className="mt-1 text-xs text-emerald-700/80 dark:text-emerald-100/80">
+              Ajuste os filtros para encontrar talentos e conteúdos que combinam com o que você procura.
+            </p>
+          </div>
         </aside>
 
         <section className="flex flex-1 flex-col gap-6 overflow-hidden lg:flex-row">
           <div className="flex w-full justify-center overflow-hidden">
-            <div className="relative flex h-[calc(100vh-220px)] w-full max-w-[520px] justify-center">
-              <div className="flex h-full w-full max-w-[440px] flex-col overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-black dark:shadow-[0_40px_120px_-40px_rgba(15,23,42,0.85)]">
+            <div className="relative flex h-[calc(100vh-200px)] w-full max-w-[680px] justify-center">
+              <div className="flex h-full w-full max-w-[560px] flex-col overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-black dark:shadow-[0_40px_120px_-40px_rgba(15,23,42,0.85)]">
                 {initialVideos.length > 0 ? (
                   <FeedClient initialVideos={initialVideos} />
                 ) : (
@@ -155,7 +185,7 @@ export default async function FeedPage() {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 overflow-hidden rounded-full border border-slate-200 bg-white dark:border-white/20 dark:bg-transparent">
-                  <Image src="/icons/icon-tiktok.svg" alt="Canal" width={48} height={48} className="h-full w-full object-cover p-2" />
+                  <Image src="/brand/logo.svg" alt="Vitrine de Craques" width={48} height={48} className="h-full w-full object-cover p-2" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">Vitrine de Craques</p>

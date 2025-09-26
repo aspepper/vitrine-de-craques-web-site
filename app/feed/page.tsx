@@ -37,13 +37,6 @@ export default async function FeedPage() {
     { label: "#jogosdafinal", views: "612K" },
   ];
 
-  const actionButtons = [
-    { label: "Curtir", icon: "/icons/icon-like.svg" },
-    { label: "Comentar", icon: "/icons/icon-comment.svg" },
-    { label: "Salvar", icon: "/icons/icon-save.svg" },
-    { label: "Compartilhar", icon: "/icons/icon-share.svg" },
-  ];
-
   const quickFilters = ["Categoria", "Estado", "Hashtags"];
 
   return (
@@ -178,19 +171,6 @@ export default async function FeedPage() {
                 )}
               </div>
 
-              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-20 items-end justify-end pb-16 pr-2 md:flex">
-                <div className="pointer-events-auto flex flex-col items-center gap-5 rounded-3xl bg-white/80 px-3 py-5 text-xs text-slate-900 shadow-[0_20px_60px_-50px_rgba(15,23,42,0.45)] backdrop-blur-sm dark:bg-black/40 dark:text-white dark:shadow-[0_20px_60px_-40px_rgba(15,23,42,0.95)]">
-                  {actionButtons.map((action) => (
-                    <button
-                      key={action.label}
-                      type="button"
-                      className="flex h-12 w-12 items-center justify-center rounded-full bg-black/10 text-slate-900 transition hover:scale-105 hover:bg-black/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
-                    >
-                      <Image src={action.icon} alt={action.label} width={28} height={28} />
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 

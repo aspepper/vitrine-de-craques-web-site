@@ -42,7 +42,7 @@ export default async function FeedPage() {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 dark:text-slate-100">
       <main className="mx-auto flex w-full max-w-7xl flex-1 gap-6 px-4 pb-16 pt-4 lg:px-8">
-        <aside className="hidden w-72 shrink-0 flex-col gap-6 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-[0_30px_90px_-45px_rgba(15,23,42,0.45)] backdrop-blur dark:border-white/5 dark:bg-white/10 dark:text-slate-100 dark:shadow-[0_30px_90px_-45px_rgba(15,23,42,0.85)] lg:flex">
+        <aside className="hidden w-80 shrink-0 flex-col gap-6 rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-[0_30px_90px_-45px_rgba(15,23,42,0.45)] backdrop-blur dark:border-white/5 dark:bg-white/10 dark:text-slate-100 dark:shadow-[0_30px_90px_-45px_rgba(15,23,42,0.85)] lg:flex">
           <div className="flex items-center gap-3 rounded-2xl bg-emerald-500/10 px-3 py-2 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-200">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-emerald-600 shadow-sm dark:bg-slate-900 dark:text-emerald-300">
               <Filter className="h-5 w-5" />

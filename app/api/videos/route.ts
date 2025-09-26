@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
+import { promises as fs } from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
 
 import { getServerSession } from 'next-auth'
 
@@ -7,6 +10,62 @@ import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
 import { uploadFile } from '@/lib/storage'
+import ffmpeg from 'fluent-ffmpeg'
+import ffmpegInstaller from '@ffmpeg-installer/ffmpeg'
+import sharp from 'sharp'
+
+ffmpeg.setFfmpegPath(ffmpegInstaller.path)
+
+async function generateThumbnailFromVideo(videoBuffer: Buffer, originalName?: string) {
+  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'video-thumb-'))
+  const extension = originalName ? path.extname(originalName) : ''
+  const inputPath = path.join(tmpDir, `input${extension || '.mp4'}`)
+  const outputPath = path.join(tmpDir, 'frame.jpg')
+
+  try {
+    await fs.writeFile(inputPath, videoBuffer)
+
+    await new Promise<void>((resolve, reject) => {
+      ffmpeg(inputPath)
+        .seekInput(0.5)
+        .frames(1)
+        .outputOptions(['-qscale:v', '2'])
+        .output(outputPath)
+        .on('end', () => resolve())
+        .on('error', (error) => reject(error))
+        .run()
+    })
+
+    const frameBuffer = await fs.readFile(outputPath)
+    const image = sharp(frameBuffer)
+    const metadata = await image.metadata()
+    const width = metadata.width ?? 0
+    const height = metadata.height ?? 0
+
+    if (!width || !height) {
+      return frameBuffer
+    }
+
+    const targetRatio = 16 / 9
+    let cropWidth = width
+    let cropHeight = Math.round(cropWidth / targetRatio)
+
+    if (cropHeight > height) {
+      cropHeight = height
+      cropWidth = Math.round(cropHeight * targetRatio)
+    }
+
+    const left = Math.max(0, Math.floor((width - cropWidth) / 2))
+    const top = Math.max(0, Math.floor((height - cropHeight) / 2))
+
+    return await image
+      .extract({ left, top, width: cropWidth, height: cropHeight })
+      .toFormat('jpeg')
+      .toBuffer()
+  } finally {
+    await fs.rm(tmpDir, { recursive: true, force: true })
+  }
+}
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -46,6 +105,16 @@ export async function POST(req: NextRequest) {
     }
 
     const videoBytes = Buffer.from(await videoFile.arrayBuffer())
+    let generatedThumbnail: Buffer | null = null
+
+    if (!thumbFile) {
+      try {
+        generatedThumbnail = await generateThumbnailFromVideo(videoBytes, videoFile.name)
+      } catch (error) {
+        console.error('Failed to generate thumbnail from video', error)
+      }
+    }
+
     const videoName = `${randomUUID()}-${videoFile.name}`
     const videoKey = `uploads/videos/${videoName}`
     const { url: videoUrl } = await uploadFile({
@@ -64,6 +133,16 @@ export async function POST(req: NextRequest) {
         key: thumbKey,
         data: thumbBytes,
         contentType: thumbFile.type,
+        cacheControl: 'public, max-age=31536000, immutable',
+      })
+      thumbnailUrl = url
+    } else if (generatedThumbnail) {
+      const thumbName = `${randomUUID()}.jpg`
+      const thumbKey = `uploads/thumbnails/${thumbName}`
+      const { url } = await uploadFile({
+        key: thumbKey,
+        data: generatedThumbnail,
+        contentType: 'image/jpeg',
         cacheControl: 'public, max-age=31536000, immutable',
       })
       thumbnailUrl = url

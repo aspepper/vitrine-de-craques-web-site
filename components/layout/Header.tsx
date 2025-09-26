@@ -300,70 +300,74 @@ export function Header() {
       </nav>
 
       {isMobileMenuOpen ? (
-        <div className="border-t border-border/50 bg-background shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)] lg:hidden">
-          <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
-            <Input
-              type="search"
-              placeholder="Buscar..."
-              className="h-11 rounded-full border border-border/60 bg-surface/80 shadow-inner placeholder:text-muted-foreground"
-            />
-            <ThemeToggleButton className="self-start" />
-            <nav className="flex flex-col gap-3">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    'text-base font-medium text-foreground/80 transition-colors',
-                    'hover:text-foreground',
-                    pathname.startsWith(item.href) && item.href !== '/' && 'text-foreground',
-                    item.href === '/' && pathname === '/' && 'text-foreground'
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="h-px bg-border/50" />
-            {session ? (
-              <div className="flex flex-col gap-3">
-                <Link
-                  href={profileHref}
-                  className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface px-4 py-3 shadow-inner transition hover:bg-surface/90"
-                >
-                  <Avatar className="h-11 w-11 border border-border/40 bg-surface">
-                    <AvatarImage src={profileImage ?? undefined} alt={profileName} />
-                    <AvatarFallback className="bg-muted text-muted-foreground">
-                      <UserRound aria-hidden className="h-5 w-5" />
-                      <span className="sr-only">{profileName}</span>
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium text-foreground">{profileName}</span>
-                    <span className="text-xs text-muted-foreground">Ver perfil</span>
-                  </div>
-                </Link>
-                <Button asChild className="w-full">
-                  <Link href="/upload">Enviar vídeo</Link>
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="w-full border border-border/60 bg-surface"
-                  onClick={() => signOut()}
-                >
-                  Sair
-                </Button>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-3">
-                <Button asChild className="w-full">
-                  <Link href="/login">Login</Link>
-                </Button>
-                <Button asChild variant="secondary" className="w-full">
-                  <Link href="/registrar-escolha-perfil">Registrar</Link>
-                </Button>
-              </div>
-            )}
+        <div className="lg:hidden">
+          <div
+            className="fixed inset-x-0 top-14 z-[60] border-t border-border/50 bg-background/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/80 md:top-16 dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]"
+          >
+            <div className="container mx-auto flex max-h-[calc(100vh-3.5rem)] flex-col gap-4 overflow-y-auto px-4 py-4 md:max-h-[calc(100vh-4rem)]">
+              <Input
+                type="search"
+                placeholder="Buscar..."
+                className="h-11 rounded-full border border-border/60 bg-surface/80 shadow-inner placeholder:text-muted-foreground"
+              />
+              <ThemeToggleButton className="self-start" />
+              <nav className="flex flex-col gap-3">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      'text-base font-medium text-foreground/80 transition-colors',
+                      'hover:text-foreground',
+                      pathname.startsWith(item.href) && item.href !== '/' && 'text-foreground',
+                      item.href === '/' && pathname === '/' && 'text-foreground'
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+              <div className="h-px bg-border/50" />
+              {session ? (
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href={profileHref}
+                    className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface px-4 py-3 shadow-inner transition hover:bg-surface/90"
+                  >
+                    <Avatar className="h-11 w-11 border border-border/40 bg-surface">
+                      <AvatarImage src={profileImage ?? undefined} alt={profileName} />
+                      <AvatarFallback className="bg-muted text-muted-foreground">
+                        <UserRound aria-hidden className="h-5 w-5" />
+                        <span className="sr-only">{profileName}</span>
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium text-foreground">{profileName}</span>
+                      <span className="text-xs text-muted-foreground">Ver perfil</span>
+                    </div>
+                  </Link>
+                  <Button asChild className="w-full">
+                    <Link href="/upload">Enviar vídeo</Link>
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="w-full border border-border/60 bg-surface"
+                    onClick={() => signOut()}
+                  >
+                    Sair
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-3">
+                  <Button asChild className="w-full">
+                    <Link href="/login">Login</Link>
+                  </Button>
+                  <Button asChild variant="secondary" className="w-full">
+                    <Link href="/registrar-escolha-perfil">Registrar</Link>
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ) : null}

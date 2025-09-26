@@ -96,14 +96,20 @@ export function FeedVideoCard({
   className,
   showOverlayActions = true,
   initialLikes = 0,
-  initialComments = [],
+  initialComments,
 }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
   const authorName = video.user?.name?.trim() || "Talento anônimo";
   const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [comments, setComments] = useState<FeedVideoComment[]>(initialComments);
+  const normalizedInitialComments = useMemo(
+    () => initialComments ?? [],
+    [initialComments],
+  );
+  const [comments, setComments] = useState<FeedVideoComment[]>(
+    normalizedInitialComments,
+  );
   const [isCommentPanelOpen, setIsCommentPanelOpen] = useState(false);
   const [commentInput, setCommentInput] = useState("");
 
@@ -153,9 +159,9 @@ export function FeedVideoCard({
     if (storedComments.length > 0) {
       setComments(storedComments);
     } else {
-      setComments(initialComments);
+      setComments(normalizedInitialComments);
     }
-  }, [video.id, initialLikes, initialComments]);
+  }, [video.id, initialLikes, normalizedInitialComments]);
 
   const formattedLikes = useMemo(() => numberFormatter.format(Math.max(likes, 0)), [likes]);
   const formattedCommentsCount = useMemo(

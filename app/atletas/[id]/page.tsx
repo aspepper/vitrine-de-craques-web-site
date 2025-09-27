@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 
 import { AthleteMessageDialog } from "@/components/AthleteMessageDialog";
 import { FollowButton } from "@/components/FollowButton";
+import { PlayerFollowConnectionsDialog, type PlayerFollowConnection } from "@/components/player/FollowConnectionsDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -14,10 +15,24 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { authOptions } from "@/lib/auth";
-import { getFollowInfo } from "@/lib/follow";
 import { logError } from "@/lib/error";
+import type { Role } from "@prisma/client";
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
+const roleLabels: Record<Role, string> = {
+  ATLETA: "Atleta",
+  AGENTE: "Agente",
+  CLUBE: "Clube",
+  TORCEDOR: "Torcedor",
+  IMPRENSA: "Imprensa",
+  RESPONSAVEL: "Responsável",
+};
+
+function getRoleLabel(role: Role | null | undefined) {
+  if (!role) return "Perfil";
+  return roleLabels[role] ?? "Perfil";
+}
 
 async function getAthlete(id: string) {
   const res = await fetch(`${baseUrl}/api/atletas/${id}`, { cache: "no-store" });
@@ -200,10 +215,108 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
 
   let followerCount = 0;
   let isFollowing = false;
+  let followersConnections: PlayerFollowConnection[] = [];
+  let followingConnections: PlayerFollowConnection[] = [];
+
   if (targetUserId && process.env.DATABASE_URL) {
-    const info = await getFollowInfo(targetUserId, viewerId ?? undefined);
-    followerCount = info.followerCount;
-    isFollowing = info.isFollowing;
+    const { default: prisma } = await import("@/lib/db");
+
+    const [followersData, followingData, viewerFollowingData] = await Promise.all([
+      prisma.follow.findMany({
+        where: { followingId: targetUserId },
+        orderBy: { createdAt: "desc" },
+        include: {
+          follower: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              image: true,
+              profile: {
+                select: {
+                  displayName: true,
+                  role: true,
+                  avatarUrl: true,
+                },
+              },
+            },
+          },
+        },
+      }),
+      prisma.follow.findMany({
+        where: { followerId: targetUserId },
+        orderBy: { createdAt: "desc" },
+        include: {
+          following: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              image: true,
+              profile: {
+                select: {
+                  displayName: true,
+                  role: true,
+                  avatarUrl: true,
+                },
+              },
+            },
+          },
+        },
+      }),
+      viewerId
+        ? prisma.follow.findMany({
+            where: { followerId: viewerId },
+            select: { followingId: true },
+          })
+        : Promise.resolve([] as { followingId: string }[]),
+    ]);
+
+    followerCount = followersData.length;
+    const viewerFollowingSet = new Set(viewerFollowingData.map((entry) => entry.followingId));
+    isFollowing = viewerId ? viewerFollowingSet.has(targetUserId) : false;
+
+    const mapToConnection = (
+      user: {
+        id: string;
+        name: string | null;
+        email: string | null;
+        image: string | null;
+        profile: {
+          displayName: string | null;
+          role: Role | null;
+          avatarUrl: string | null;
+        } | null;
+      },
+      createdAt: Date,
+    ): PlayerFollowConnection => {
+      const profileData = user.profile;
+      const displayName =
+        profileData?.displayName?.trim() ||
+        user.name?.trim() ||
+        user.email?.trim() ||
+        "Perfil sem nome";
+      const avatarUrl = profileData?.avatarUrl ?? user.image ?? null;
+      const roleLabel = getRoleLabel(profileData?.role);
+      const userId = user.id;
+
+      return {
+        userId,
+        displayName,
+        avatarUrl,
+        roleLabel,
+        since: createdAt.toISOString(),
+        isFollowedByViewer: viewerFollowingSet.has(userId),
+        isViewer: Boolean(viewerId && viewerId === userId),
+      };
+    };
+
+    followersConnections = followersData.map((entry) =>
+      mapToConnection(entry.follower, entry.createdAt),
+    );
+    followingConnections = followingData.map((entry) =>
+      mapToConnection(entry.following, entry.createdAt),
+    );
   }
 
   const videos = profile.userId ? await getAthleteVideos(profile.userId) : [];
@@ -216,7 +329,6 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
   );
   const canSendMessage = canInteractWithFollow;
   const loginRedirectTo = `/login?callbackUrl=/atletas/${params.id}`;
-  const followersLabel = new Intl.NumberFormat("pt-BR").format(followerCount);
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
@@ -230,27 +342,6 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
             <span aria-hidden>←</span>
             Voltar para atletas
           </Link>
-
-          <header className="space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
-              Perfil do Atleta
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h1 className="text-3xl font-semibold text-slate-900">
-                  {profile.displayName}
-                </h1>
-                {meta ? (
-                  <p className="mt-1 text-base text-slate-600">{meta}</p>
-                ) : null}
-                {isOwnProfile ? (
-                  <p className="mt-2 text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
-                    {followersLabel} seguidores
-                  </p>
-                ) : null}
-              </div>
-            </div>
-          </header>
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,360px),1fr]">
             <Card className="rounded-[32px] border-slate-200/60 bg-white/90 shadow-[0_30px_80px_-45px_rgba(15,23,42,0.35)]">
@@ -270,7 +361,7 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
                   </CardTitle>
                   {meta && <p className="text-sm font-medium text-slate-500">{meta}</p>}
                   {!targetUserId || isOwnProfile ? null : (
-                    <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                    <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:justify-center">
                       <FollowButton
                         targetUserId={targetUserId}
                         initialIsFollowing={isFollowing}
@@ -278,7 +369,8 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
                         canInteract={canInteractWithFollow}
                         loginRedirectTo={loginRedirectTo}
                         appearance="light"
-                        className="w-full sm:w-auto"
+                        showFollowerCount={false}
+                        className="w-full gap-0 sm:w-auto"
                       />
                       <AthleteMessageDialog
                         recipientId={targetUserId}
@@ -288,6 +380,14 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
                       />
                     </div>
                   )}
+                  {targetUserId ? (
+                    <PlayerFollowConnectionsDialog
+                      followers={followersConnections}
+                      following={followingConnections}
+                      viewerId={viewerId ?? null}
+                      loginRedirectTo={loginRedirectTo}
+                    />
+                  ) : null}
                 </div>
               </CardHeader>
               <CardContent className="space-y-6 p-8">

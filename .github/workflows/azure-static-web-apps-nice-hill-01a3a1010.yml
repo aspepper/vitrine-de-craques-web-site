@@ -46,6 +46,11 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npx prisma generate --schema prisma/schema.prisma
 
+      - name: Apply Prisma schema (deploy or push)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/prisma-deploy-or-push.mjs
+
       - name: Build web app (includes Prisma client)
         run: npm run build
         

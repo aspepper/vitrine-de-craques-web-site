@@ -6,6 +6,10 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 import { FavoriteTeamCard, type FavoriteTeamInfo } from "@/components/perfil/FavoriteTeamCard";
+import {
+  FollowConnectionsDialog,
+  type FollowConnectionProfile,
+} from "@/components/perfil/FollowConnectionsDialog";
 import { NewsManager, type NewsManagerItem } from "@/components/perfil/NewsManager";
 import { ResponsibleAthleteDetails } from "@/components/perfil/ResponsibleAthleteDetails";
 import { VideoManager, type VideoManagerItem } from "@/components/perfil/VideoManager";
@@ -77,6 +81,91 @@ export default async function PerfilPage() {
     (segment): segment is string => Boolean(segment && segment.length > 0),
   );
   const hasContactCards = Boolean(location || phone);
+
+  let followersConnections: FollowConnectionProfile[] = [];
+  let followingConnections: FollowConnectionProfile[] = [];
+
+  if (profile) {
+    const [followersData, followingData] = await Promise.all([
+      prisma.follow.findMany({
+        where: { followingId: profile.userId },
+        orderBy: { createdAt: "desc" },
+        include: {
+          follower: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              image: true,
+              profile: {
+                select: {
+                  displayName: true,
+                  role: true,
+                  avatarUrl: true,
+                },
+              },
+            },
+          },
+        },
+      }),
+      prisma.follow.findMany({
+        where: { followerId: profile.userId },
+        orderBy: { createdAt: "desc" },
+        include: {
+          following: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              image: true,
+              profile: {
+                select: {
+                  displayName: true,
+                  role: true,
+                  avatarUrl: true,
+                },
+              },
+            },
+          },
+        },
+      }),
+    ]);
+
+    const mapToConnection = (
+      user: {
+        id: string;
+        name: string | null;
+        email: string | null;
+        image: string | null;
+        profile: {
+          displayName: string | null;
+          role: Role | null;
+          avatarUrl: string | null;
+        } | null;
+      },
+      createdAt: Date,
+    ): FollowConnectionProfile => {
+      const profileData = user.profile;
+      const displayName = profileData?.displayName ?? user.name ?? user.email ?? "Perfil sem nome";
+      const avatarUrl = profileData?.avatarUrl ?? user.image ?? null;
+      const roleLabel = profileData?.role ? getRoleLabel(profileData.role) : "Perfil";
+
+      return {
+        userId: user.id,
+        displayName,
+        avatarUrl,
+        roleLabel,
+        since: createdAt.toISOString(),
+      };
+    };
+
+    followersConnections = followersData.map((entry) =>
+      mapToConnection(entry.follower, entry.createdAt),
+    );
+    followingConnections = followingData.map((entry) =>
+      mapToConnection(entry.following, entry.createdAt),
+    );
+  }
 
   let newsItems: NewsManagerItem[] = [];
   if (profile?.role === "IMPRENSA") {
@@ -199,12 +288,20 @@ export default async function PerfilPage() {
       case "ATLETA":
         sectionTitle = "Seus vídeos";
         sectionDescription = "Gerencie suas publicações e acompanhe o total de curtidas.";
-        sectionContent = <VideoManager initialVideos={videoItems} />;
+        sectionContent = (
+          <div className="rounded-[32px] border border-slate-100/70 bg-white/95 p-8 shadow-[0_30px_80px_-50px_rgba(15,23,42,0.45)] dark:border-white/5 dark:bg-slate-900/80 dark:shadow-[0_40px_120px_-52px_rgba(2,6,23,0.8)]">
+            <VideoManager initialVideos={videoItems} />
+          </div>
+        );
         break;
       case "RESPONSAVEL":
         sectionTitle = "Conteúdos do atleta";
         sectionDescription = "Atualize os vídeos e mantenha os dados do atleta sempre em destaque.";
-        sectionContent = <VideoManager initialVideos={videoItems} />;
+        sectionContent = (
+          <div className="rounded-[32px] border border-slate-100/70 bg-white/95 p-8 shadow-[0_30px_80px_-50px_rgba(15,23,42,0.45)] dark:border-white/5 dark:bg-slate-900/80 dark:shadow-[0_40px_120px_-52px_rgba(2,6,23,0.8)]">
+            <VideoManager initialVideos={videoItems} />
+          </div>
+        );
         break;
       case "TORCEDOR":
         sectionTitle = "Seu time do coração";
@@ -261,6 +358,11 @@ export default async function PerfilPage() {
                           Nenhuma informação de contato foi cadastrada ainda.
                         </p>
                       )}
+
+                      <FollowConnectionsDialog
+                        followers={followersConnections}
+                        following={followingConnections}
+                      />
 
                       {profile.bio ? (
                         <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-200">{profile.bio}</p>

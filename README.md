@@ -50,63 +50,94 @@ O aviso não interrompe o build, mas o upload de vídeos só funcionará se o bi
 
 ## Obter json do Figma
 
-curl -sS -H 'X-Figma-Token: figd_W_exi3tkL5S1Cn6mLn-XEfDkgeBICmgttw3NfPXc' 'https://api.figma.com/v1/files/6XEeSvXW0gl4gvxkovsiuz' > docs/figma.json
-python3 split_figma_pages.py docs/figma.json docs/figma_pages
+% curl -sS -H 'X-Figma-Token: figd_W_exi3tkL5S1Cn6mLn-XEfDkgeBICmgttw3NfPXc' 'https://api.figma.com/v1/files/6XEeSvXW0gl4gvxkovsiuz' > docs/figma.json
+% python3 split_figma_pages.py docs/figma.json docs/figma_pages
 
 ## Atualização da Base de Dados
 
-npx prisma format
-npx prisma generate
-npx prisma generate --schema prisma/schema.prisma
+% npx prisma format
+% npx prisma generate
+% npx prisma generate --schema prisma/schema.prisma
 
 ### Verifica status do migration
 
-npx prisma migrate status --schema prisma/schema.prisma
+% npx prisma migrate status --schema prisma/schema.prisma
+
+### Gerando o Migration
+
+% export DATABASE_URL='postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require'
+% export SHADOW_DATABASE_URL='postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require'
+% # 2.1. Gere o SQL de init (vazio -> schema.prisma)
+
+% npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > /tmp/init.sql
+% npx prisma migrate dev --name init --create-only --schema prisma/schema.prisma
+% cp /tmp/init.sql prisma/migrations/20XXXXXXXXXXXX_init/migration.sql
+
+% npx prisma migrate dev --name add_users_blocked_following_followed  --schema prisma/schema.prisma
 
 ### Volta um migration específico
 
-npx prisma migrate resolve --rolled-back "20241021120000_add_confederation_details" --schema prisma/schema.prisma
+% npx prisma migrate resolve --rolled-back "20241021120000_add_confederation_details" --schema prisma/schema.prisma
 
 ### Aplica um migration
 
-npx prisma migrate resolve --applied "20251104120000_profile_club_relation" --schema prisma/schema.prisma
+% npx prisma migrate resolve --applied "20251104120000_profile_club_relation" --schema prisma/schema.prisma
 
 ### Limpa todos os migrations e zera a base de dados
 
-npx prisma migrate reset
+% npx prisma migrate reset
 
 ### Aplica os migrations
 
-npx prisma migrate deploy
+% npx prisma migrate deploy
 
 ### Prepara para inserir os dados
 
-npx prisma db seed
+% npx prisma db seed
 
-npx prisma migrate diff --from-schema-datamodel=prisma/schema.prisma --to-url="postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" --script > ./prisma/migrations/migration.sql
+% npx prisma migrate diff --from-schema-datamodel=prisma/schema.prisma --to-url="postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" --script > ./prisma/migrations/migration.sql
 
-npx prisma migrate dev --name ./prisma/migrations/migration.sql
+% npx prisma migrate dev --name ./prisma/migrations/migration.sql
 
 ### Aplica os migrations
 
-npm run db:push
+% npm run db:push
 
 ### Popula a base de dados
-npm run db:seed
 
-npm test -- --run
-npm install
-npm run lint
-npm run build
+% npm run db:seed
+
+% npm test -- --run
+% npm install
+% npm run lint
+% npm run build
 
 ### backup
 
-pg_dump "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" > backup_pre_migrate_$(date +%Y%m%d_%H%M%S).sql
+% pg_dump "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" > backup_pre_migrate_$(date +%Y%m%d_%H%M%S).sql
 
+### Backup só dos dados:
+
+% STAMP=$(date +'%Y%m%d_%H%M%S')
+% OUT="backup_data_${STAMP}.dump"
+% pg_dump "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" --format=custom --compress=9 --no-owner --no-privileges --data-only --schema=public --exclude-table-data=_prisma_migrations --file "$OUT"
+
+### Restore os dados
+
+-- Production
+% pg_restore --dbname="postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" --data-only --no-owner --no-privileges --disable-triggers --jobs=4 backup_data_20250927_174357.dump
+
+-- Developmento
+% pg_restore --dbname="postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-summer-bush-a8oiqmqm-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" --data-only --no-owner --no-privileges --disable-triggers --jobs=4 backup_data_20250927_174357.dump
+
+### Dropa todas as tabelas
+% psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" -v ON_ERROR_STOP=1 -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'
+
+psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-summer-bush-a8oiqmqm-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" -v ON_ERROR_STOP=1 -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'
 
 
 ## Congelando uma release com tag
 
-git tag -a v1.2.0 -m "Release ..."
-git push origin v1.2.0
+% git tag -a v1.2.0 -m "Release ..."
+% git push origin v1.2.0
 

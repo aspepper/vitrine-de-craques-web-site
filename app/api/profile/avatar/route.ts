@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
 
 import { getServerSession } from 'next-auth'
@@ -12,6 +12,20 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 const MAX_FILE_SIZE = 6 * 1024 * 1024
+
+function isFileLike(value: FormDataEntryValue | null): value is Blob {
+  if (!value || typeof value === 'string') {
+    return false
+  }
+
+  const blob = value as Blob
+
+  return (
+    typeof blob.arrayBuffer === 'function' &&
+    typeof blob.size === 'number' &&
+    typeof blob.type === 'string'
+  )
+}
 
 function getExtensionFromContentType(contentType: string | undefined | null) {
   if (!contentType) {
@@ -41,7 +55,7 @@ function getExtensionFromContentType(contentType: string | undefined | null) {
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
 
@@ -64,7 +78,7 @@ export async function POST(req: Request) {
     const formData = await req.formData()
     const file = formData.get('avatar')
 
-    if (!file || !(file instanceof File)) {
+    if (!isFileLike(file)) {
       return NextResponse.json({ error: 'Imagem obrigatória.' }, { status: 400 })
     }
 

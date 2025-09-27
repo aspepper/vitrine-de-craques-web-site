@@ -14,6 +14,10 @@ import { NewsManager, type NewsManagerItem } from "@/components/perfil/NewsManag
 import { ResponsibleAthleteDetails } from "@/components/perfil/ResponsibleAthleteDetails";
 import { VideoManager, type VideoManagerItem } from "@/components/perfil/VideoManager";
 import { ProfileAvatarUploader } from "@/components/perfil/ProfileAvatarUploader";
+import {
+  ProfilePersonalInfoDialog,
+  type EditableProfile,
+} from "@/components/perfil/ProfilePersonalInfoDialog";
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/db";
 import {
@@ -204,6 +208,56 @@ export default async function PerfilPage() {
     }));
   }
 
+  const editableProfile: EditableProfile | null = profile
+    ? {
+        role: profile.role,
+        displayName: profile.displayName ?? null,
+        bio: profile.bio ?? null,
+        cpf: profile.cpf ?? null,
+        telefone: profile.telefone ?? null,
+        ddd: profile.ddd ?? null,
+        nascimento: profile.nascimento ?? null,
+        genero: profile.genero ?? null,
+        whatsapp: profile.whatsapp ?? null,
+        uf: profile.uf ?? null,
+        cidade: profile.cidade ?? null,
+        pais: profile.pais ?? null,
+        altura: profile.altura ?? null,
+        peso: profile.peso ?? null,
+        posicao: profile.posicao ?? null,
+        perna: profile.perna ?? null,
+        site: profile.site ?? null,
+        endereco: profile.endereco ?? null,
+        redesSociais: profile.redesSociais ?? null,
+        areaAtuacao: profile.areaAtuacao ?? null,
+        portfolio: profile.portfolio ?? null,
+        nomeFantasia: profile.nomeFantasia ?? null,
+        emailClube: profile.emailClube ?? null,
+        cnpj: profile.cnpj ?? null,
+        inscricaoEstadual: profile.inscricaoEstadual ?? null,
+        representanteNome: profile.representanteNome ?? null,
+        representanteCpf: profile.representanteCpf ?? null,
+        representanteEmail: profile.representanteEmail ?? null,
+        registroCbf: profile.registroCbf ?? null,
+        registroFifa: profile.registroFifa ?? null,
+        responsavelInstagram: profile.responsavelInstagram ?? null,
+        atletaNome: profile.atletaNome ?? null,
+        atletaCpf: profile.atletaCpf ?? null,
+        atletaNascimento: profile.atletaNascimento ?? null,
+        atletaGenero: profile.atletaGenero ?? null,
+        atletaEsporte: profile.atletaEsporte ?? null,
+        atletaModalidade: profile.atletaModalidade ?? null,
+        atletaObservacoes: profile.atletaObservacoes ?? null,
+        favoriteClubId: profile.favoriteClubId ?? null,
+        notifNovidades: profile.notifNovidades ?? null,
+        notifJogos: profile.notifJogos ?? null,
+        notifEventos: profile.notifEventos ?? null,
+        notifAtletas: profile.notifAtletas ?? null,
+        lgpdWhatsappNoticias: profile.lgpdWhatsappNoticias ?? null,
+        lgpdWhatsappConvites: profile.lgpdWhatsappConvites ?? null,
+      }
+    : null;
+
   const favoriteTeam: FavoriteTeamInfo | null = profile?.favoriteClub
     ? {
         id: profile.favoriteClub.id,
@@ -341,9 +395,14 @@ export default async function PerfilPage() {
                     />
 
                     <div className="flex max-w-2xl flex-col gap-4">
-                      <h1 className="font-heading text-[40px] font-semibold italic leading-tight text-slate-900 dark:text-white md:text-[48px]">
-                        {profile.displayName ?? "Perfil sem nome"}
-                      </h1>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <h1 className="font-heading text-[40px] font-semibold italic leading-tight text-slate-900 dark:text-white md:text-[48px]">
+                          {profile.displayName ?? "Perfil sem nome"}
+                        </h1>
+                        {editableProfile ? (
+                          <ProfilePersonalInfoDialog profile={editableProfile} />
+                        ) : null}
+                      </div>
                       {contactSegments.length > 0 ? (
                         <p className="text-base leading-relaxed text-slate-500 dark:text-slate-300">
                           {contactSegments.map((segment, index) => (

@@ -131,6 +131,14 @@ CREATE TABLE "public"."Confederation" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
+    "logoUrl" TEXT,
+    "foundedAt" TIMESTAMP(3),
+    "purpose" TEXT,
+    "currentPresident" TEXT,
+    "officialStatement" TEXT,
+    "officialStatementDate" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Confederation_pkey" PRIMARY KEY ("id")
 );

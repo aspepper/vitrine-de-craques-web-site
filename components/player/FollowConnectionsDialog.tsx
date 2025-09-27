@@ -137,6 +137,8 @@ export function PlayerFollowConnectionsDialog({
               const sinceLabel = connection.since
                 ? dateFormatter.format(new Date(connection.since))
                 : null;
+              const isViewerConnection =
+                connection.isViewer || (viewerId ? viewerId === connection.userId : false);
 
               return (
                 <li
@@ -166,7 +168,7 @@ export function PlayerFollowConnectionsDialog({
                     </div>
                   </div>
                   <div className="flex flex-shrink-0 items-center gap-2">
-                    {connection.isViewer ? (
+                    {isViewerConnection ? (
                       <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-300">
                         Você
                       </span>

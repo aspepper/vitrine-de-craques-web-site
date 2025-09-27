@@ -57,23 +57,53 @@ python3 split_figma_pages.py docs/figma.json docs/figma_pages
 
 npx prisma format
 npx prisma generate
+npx prisma generate --schema prisma/schema.prisma
+
+### Verifica status do migration
+
+npx prisma migrate status --schema prisma/schema.prisma
+
+### Volta um migration específico
+
+npx prisma migrate resolve --rolled-back "20241021120000_add_confederation_details" --schema prisma/schema.prisma
+
+### Aplica um migration
+
+npx prisma migrate resolve --applied "20251104120000_profile_club_relation" --schema prisma/schema.prisma
+
+### Limpa todos os migrations e zera a base de dados
 
 npx prisma migrate reset
+
+### Aplica os migrations
+
 npx prisma migrate deploy
+
+### Prepara para inserir os dados
+
 npx prisma db seed
 
 npx prisma migrate diff --from-schema-datamodel=prisma/schema.prisma --to-url="postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" --script > ./prisma/migrations/migration.sql
 
 npx prisma migrate dev --name ./prisma/migrations/migration.sql
 
-npm run db:push
-npm run db:seed
+### Aplica os migrations
 
+npm run db:push
+
+### Popula a base de dados
+npm run db:seed
 
 npm test -- --run
 npm install
 npm run lint
 npm run build
+
+### backup
+
+pg_dump "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" > backup_pre_migrate_$(date +%Y%m%d_%H%M%S).sql
+
+
 
 ## Congelando uma release com tag
 

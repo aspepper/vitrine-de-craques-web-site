@@ -10,8 +10,8 @@ on:
       - main
 
 concurrency:
-  group: ${{ github.workflow }} 
-  cancel-in-progress: false # Define se outros workflows em andamento são cancelados ou não
+  group: ${{ github.workflow }}-${{ github.ref }} 
+  cancel-in-progress: true # Define se outros workflows em andamento são cancelados ou não
 
 jobs:
   build_and_deploy_job:
@@ -36,28 +36,19 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm ci
 
-      - name: Detect failed Prisma migration state
-        if: env.DATABASE_URL != ''
-        id: detect_failed_confederation_migration
-        run: |
-          set -e
-          NEEDS_RESOLVE=$(node scripts/check-failed-confederation-migration.cjs)
-          echo "needs_resolve=$NEEDS_RESOLVE" >> "$GITHUB_OUTPUT"
-
-      - name: Resolve failed Prisma migration
-        if: env.DATABASE_URL != '' && steps.detect_failed_confederation_migration.outputs.needs_resolve == 'true'
-        run: npx prisma migrate resolve --rolled-back 20241021120000_add_confederation_details
-
-      - name: Apply Prisma migrations
-        if: env.DATABASE_URL != ''
-        run: npx prisma migrate deploy
+      # Se o projeto usa Prisma Client em runtime (ex.: em API Functions ou no app),
+      # gere o client ANTES do build para garantir que estará presente.
+      - name: Generate Prisma Client
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npx prisma generate --schema prisma/schema.prisma
 
       - name: Build web app (includes Prisma client)
         run: npm run build
-
+        
       - name: Prepare standalone artifact for deployment
         run: |
           rm -rf deploy

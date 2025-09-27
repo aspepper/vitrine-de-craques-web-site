@@ -18,7 +18,23 @@ export default async function FeedPage() {
       initialVideos = await prisma.video.findMany({
         take: 6,
         orderBy: { createdAt: "desc" },
-        include: { user: true },
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              image: true,
+              profile: {
+                select: {
+                  id: true,
+                  role: true,
+                  displayName: true,
+                  avatarUrl: true,
+                },
+              },
+            },
+          },
+        },
       });
     } catch (error) {
       await logError(error, "AO CARREGAR FEED INICIAL", {

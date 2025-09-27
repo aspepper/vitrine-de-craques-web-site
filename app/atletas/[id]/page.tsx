@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getServerSession } from "next-auth";
 
+import { FollowButton } from "@/components/FollowButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { authOptions } from "@/lib/auth";
+import { getFollowInfo } from "@/lib/follow";
 import { logError } from "@/lib/error";
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
@@ -184,9 +188,28 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
     notFound();
   }
 
+  const session = await getServerSession(authOptions);
+  const viewerId = session?.user?.id ?? null;
+  const targetUserId = profile.userId ?? null;
+
+  let followerCount = 0;
+  let isFollowing = false;
+  if (targetUserId && process.env.DATABASE_URL) {
+    const info = await getFollowInfo(targetUserId, viewerId ?? undefined);
+    followerCount = info.followerCount;
+    isFollowing = info.isFollowing;
+  }
+
   const videos = profile.userId ? await getAthleteVideos(profile.userId) : [];
   const details = buildDetails(profile);
   const meta = buildMeta(profile);
+
+  const isOwnProfile = Boolean(viewerId && targetUserId && viewerId === targetUserId);
+  const canInteractWithFollow = Boolean(
+    viewerId && targetUserId && viewerId !== targetUserId,
+  );
+  const loginRedirectTo = `/login?callbackUrl=/atletas/${params.id}`;
+  const followersLabel = new Intl.NumberFormat("pt-BR").format(followerCount);
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
@@ -205,8 +228,31 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
               Perfil do Atleta
             </p>
-            <h1 className="text-3xl font-semibold text-slate-900">{profile.displayName}</h1>
-            {meta && <p className="text-base text-slate-600">{meta}</p>}
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h1 className="text-3xl font-semibold text-slate-900">
+                  {profile.displayName}
+                </h1>
+                {meta ? (
+                  <p className="mt-1 text-base text-slate-600">{meta}</p>
+                ) : null}
+                {isOwnProfile ? (
+                  <p className="mt-2 text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
+                    {followersLabel} seguidores
+                  </p>
+                ) : null}
+              </div>
+              {!targetUserId || isOwnProfile ? null : (
+                <FollowButton
+                  targetUserId={targetUserId}
+                  initialIsFollowing={isFollowing}
+                  initialFollowerCount={followerCount}
+                  canInteract={canInteractWithFollow}
+                  loginRedirectTo={loginRedirectTo}
+                  appearance="light"
+                />
+              )}
+            </div>
           </header>
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,360px),1fr]">

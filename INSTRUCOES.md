@@ -43,11 +43,16 @@ Siga os passos abaixo para configurar e rodar o projeto em seu ambiente de desen
 ## 4. Banco de Dados (Prisma)
 
 1.  **Aplique as migrações do Prisma:**
-    Este comando irá criar as tabelas no seu banco de dados com base no `schema.prisma`.
+    Utilize o comando abaixo para garantir que todas as migrações versionadas sejam executadas (incluindo a criação da tabela `Follow`, usada para o recurso de seguidores).
+    ```bash
+    npm run deploy
+    ```
+2.  **(Opcional) Sincronize o schema diretamente:**
+    Para ambientes de desenvolvimento, você ainda pode utilizar o `db:push` se preferir uma abordagem sem histórico de migrações.
     ```bash
     npm run db:push
     ```
-2.  **(Opcional) Popule o banco com dados de teste:**
+3.  **(Opcional) Popule o banco com dados de teste:**
     ```bash
     npm run db:seed
     ```

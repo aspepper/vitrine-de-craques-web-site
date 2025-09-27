@@ -30,6 +30,8 @@ interface Props {
   showOverlayActions?: boolean;
   initialLikes?: number;
   initialComments?: FeedVideoComment[];
+  isActive?: boolean;
+  onActive?: (videoId: string) => void;
 }
 
 const numberFormatter = new Intl.NumberFormat("pt-BR");
@@ -97,6 +99,8 @@ export function FeedVideoCard({
   showOverlayActions = true,
   initialLikes = 0,
   initialComments,
+  isActive = false,
+  onActive,
 }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
   const authorName = video.user?.name?.trim() || "Talento anônimo";
@@ -112,28 +116,35 @@ export function FeedVideoCard({
   );
   const [isCommentPanelOpen, setIsCommentPanelOpen] = useState(false);
   const [commentInput, setCommentInput] = useState("");
+  const [isMuted, setIsMuted] = useState(true);
+  const [isUserPaused, setIsUserPaused] = useState(false);
+
+  useEffect(() => {
+    setIsMuted(true);
+    setIsUserPaused(false);
+  }, [video.id]);
 
   useEffect(() => {
     const videoEl = ref.current;
-    if (!videoEl) return;
+    if (!videoEl || !onActive) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
-            videoEl.play().catch(() => {});
-          } else {
-            videoEl.pause();
+            onActive(video.id);
           }
         });
       },
-      { threshold: [0, 0.7, 1] }
+      { threshold: [0, 0.5, 0.7, 1] },
     );
 
     observer.observe(videoEl);
 
     return () => observer.disconnect();
-  }, []);
+  }, [onActive, video.id]);
 
   useEffect(() => {
     const videoEl = ref.current;
@@ -141,6 +152,37 @@ export function FeedVideoCard({
       videoEl.load();
     }
   }, [video.videoUrl]);
+
+  useEffect(() => {
+    const videoEl = ref.current;
+    if (!videoEl) {
+      return;
+    }
+
+    videoEl.muted = isMuted;
+  }, [isMuted]);
+
+  useEffect(() => {
+    const videoEl = ref.current;
+    if (!videoEl) {
+      return;
+    }
+
+    if (!isActive) {
+      videoEl.pause();
+      return;
+    }
+
+    if (isUserPaused) {
+      videoEl.pause();
+      return;
+    }
+
+    videoEl
+      .play()
+      .then(() => {})
+      .catch(() => {});
+  }, [isActive, isUserPaused]);
 
   useEffect(() => {
     const baseLikes = initialLikes;
@@ -168,6 +210,28 @@ export function FeedVideoCard({
     () => numberFormatter.format(comments.length),
     [comments.length],
   );
+
+  const isPlaying = isActive && !isUserPaused;
+
+  const handleTogglePlayback = () => {
+    setIsUserPaused((current) => {
+      const next = !current;
+      const videoEl = ref.current;
+      if (!videoEl) {
+        return next;
+      }
+      if (next) {
+        videoEl.pause();
+      } else if (isActive) {
+        videoEl.play().catch(() => {});
+      }
+      return next;
+    });
+  };
+
+  const handleToggleMute = () => {
+    setIsMuted((current) => !current);
+  };
 
   const handleToggleLike = () => {
     setLiked((current) => {
@@ -220,11 +284,11 @@ export function FeedVideoCard({
     alt: string;
     onClick: () => void;
     active?: boolean;
-    count?: string;
-  }) => (
-    <div className="flex flex-col items-center gap-1">
-      <button
-        className={cn(
+      count?: string;
+    }) => (
+      <div className="flex flex-col items-center gap-1">
+        <button
+          className={cn(
           "flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white transition hover:scale-105 hover:bg-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
           active && "bg-emerald-500 text-white shadow-[0_12px_30px_-12px_rgba(16,185,129,0.75)]",
         )}
@@ -256,15 +320,26 @@ export function FeedVideoCard({
         poster={video.thumbnailUrl || undefined}
         className="h-full w-full object-cover"
         loop
-        muted
+        muted={isMuted}
         playsInline
-        autoPlay
         preload="metadata"
       />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black via-black/40 to-transparent" />
       {showOverlayActions && (
         <>
           <div className="absolute bottom-10 right-2 flex flex-col gap-4">
+            <ActionButton
+              src={isPlaying ? "/icons/icon-pause.svg" : "/icons/icon-play.svg"}
+              alt={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
+              onClick={handleTogglePlayback}
+              active={isPlaying}
+            />
+            <ActionButton
+              src={isMuted ? "/icons/icon-volume-off.svg" : "/icons/icon-volume-on.svg"}
+              alt={isMuted ? "Ativar som" : "Desativar som"}
+              onClick={handleToggleMute}
+              active={!isMuted}
+            />
             <ActionButton
               src="/icons/icon-like.svg"
               alt="Curtir"

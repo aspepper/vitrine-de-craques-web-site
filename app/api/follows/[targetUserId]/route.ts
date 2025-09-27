@@ -16,6 +16,20 @@ async function ensureUserExists(userId: string) {
   });
 }
 
+async function hasBlockBetweenUsers(userA: string, userB: string) {
+  const block = await prisma.block.findFirst({
+    where: {
+      OR: [
+        { blockerId: userA, blockedId: userB },
+        { blockerId: userB, blockedId: userA },
+      ],
+    },
+    select: { id: true },
+  });
+
+  return Boolean(block);
+}
+
 async function buildFollowResponse(targetUserId: string, viewerId?: string) {
   const [followersCount, existing] = await Promise.all([
     prisma.follow.count({ where: { followingId: targetUserId } }),
@@ -79,6 +93,14 @@ export async function POST(req: NextRequest, { params }: RouteParams) {
     const exists = await ensureUserExists(targetUserId);
     if (!exists) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
+
+    const isBlocked = await hasBlockBetweenUsers(viewerId, targetUserId);
+    if (isBlocked) {
+      return NextResponse.json(
+        { message: "Não é possível seguir este perfil." },
+        { status: 403 },
+      );
     }
 
     await prisma.follow.upsert({

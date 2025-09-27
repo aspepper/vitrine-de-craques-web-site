@@ -69,7 +69,8 @@ O aviso não interrompe o build, mas o upload de vídeos só funcionará se o bi
 % export SHADOW_DATABASE_URL='postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require'
 % # 2.1. Gere o SQL de init (vazio -> schema.prisma)
 
-% npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > /tmp/init.sql
+### Gerando o migrate das diferenças
+
 % npx prisma migrate dev --name init --create-only --schema prisma/schema.prisma
 % cp /tmp/init.sql prisma/migrations/20XXXXXXXXXXXX_init/migration.sql
 

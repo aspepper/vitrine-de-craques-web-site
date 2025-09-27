@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -270,6 +271,25 @@ async function fetchVideoDetails(id: string): Promise<VideoDetails | null> {
 }
 
 export default async function PlayerPage({ params }: { params: { id: string } }) {
+  const headersList = headers();
+  const referer = headersList.get("referer");
+  const host = headersList.get("host");
+
+  let backHref = "/";
+  if (referer) {
+    try {
+      const refererUrl = new URL(referer);
+      const refererPath = `${refererUrl.pathname}${refererUrl.search}${refererUrl.hash}`;
+      if (!host || refererUrl.host === host) {
+        backHref = refererPath || "/";
+      }
+    } catch {
+      backHref = "/";
+    }
+  }
+
+  const backLabel = backHref === "/" ? "Voltar para destaques" : "Voltar";
+
   const video = await fetchVideoDetails(params.id);
 
   if (!video) {
@@ -284,12 +304,12 @@ export default async function PlayerPage({ params }: { params: { id: string } })
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
           <Link
-            href="/"
+            href={backHref}
             prefetch={false}
             className="inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             <span aria-hidden>←</span>
-            Voltar para destaques
+            {backLabel}
           </Link>
 
           <div className="flex flex-col gap-12 lg:flex-row">

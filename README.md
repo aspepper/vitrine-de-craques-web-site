@@ -22,6 +22,17 @@ O projeto é uma plataforma para compartilhamento de vídeos curtos, permitindo 
 
 Consulte o arquivo `out/INSTRUCOES.md` para um guia detalhado de como instalar, configurar e rodar o projeto localmente.
 
+### Aviso sobre FFmpeg na build
+
+Durante o `npm run build` pode aparecer o aviso `FFmpeg installer package not available. Falling back to system ffmpeg binary.`.
+Ele indica que o pacote opcional `@ffmpeg-installer/ffmpeg` não forneceu um binário para a plataforma atual e que a aplicação
+vai tentar usar o binário do FFmpeg disponível no sistema operacional. Caso você veja esse aviso:
+
+- Verifique se o FFmpeg está instalado e acessível no seu `PATH` (por exemplo, executando `ffmpeg -version`).
+- Como alternativa, defina a variável de ambiente `FFMPEG_PATH` apontando para o caminho completo do binário FFmpeg que deve ser utilizado.
+
+O aviso não interrompe o build, mas o upload de vídeos só funcionará se o binário estiver acessível.
+
 ## Estrutura do Projeto
 
 -   `app/`: Contém todas as rotas, páginas e layouts da aplicação (App Router).

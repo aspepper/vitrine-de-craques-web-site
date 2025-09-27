@@ -255,13 +255,16 @@ export function Header() {
                 </Button>
                 <Link
                   href={profileHref}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-surface text-foreground shadow-inner transition hover:bg-surface/90"
+                  className={cn(
+                    'group inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 via-sky-400 to-cyan-500 p-[2px] shadow-[0_16px_40px_-24px_rgba(14,165,233,0.7)] transition hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                    'dark:from-emerald-500/70 dark:via-sky-500/70 dark:to-cyan-500/80 dark:shadow-[0_20px_52px_-26px_rgba(56,189,248,0.65)]'
+                  )}
                   title="Perfil"
                   aria-label="Ir para o perfil"
                 >
-                  <Avatar className="h-9 w-9 border border-border/40 bg-surface">
+                  <Avatar className="h-full w-full rounded-full border-2 border-white/80 bg-white text-slate-700 shadow-[0_8px_22px_-18px_rgba(15,23,42,0.45)] transition group-hover:shadow-[0_10px_28px_-18px_rgba(14,165,233,0.55)] dark:border-slate-950/80 dark:bg-slate-950 dark:text-slate-100">
                     <AvatarImage src={profileImage ?? undefined} alt={profileName} />
-                    <AvatarFallback className="bg-muted text-muted-foreground">
+                    <AvatarFallback className="bg-sky-500/15 text-sm font-medium uppercase tracking-wide text-sky-900 dark:bg-sky-500/20 dark:text-sky-100">
                       <UserRound aria-hidden className="h-4 w-4" />
                       <span className="sr-only">{profileName}</span>
                     </AvatarFallback>
@@ -334,13 +337,15 @@ export function Header() {
                     href={profileHref}
                     className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface px-4 py-3 shadow-inner transition hover:bg-surface/90"
                   >
-                    <Avatar className="h-11 w-11 border border-border/40 bg-surface">
-                      <AvatarImage src={profileImage ?? undefined} alt={profileName} />
-                      <AvatarFallback className="bg-muted text-muted-foreground">
-                        <UserRound aria-hidden className="h-5 w-5" />
-                        <span className="sr-only">{profileName}</span>
-                      </AvatarFallback>
-                    </Avatar>
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 via-sky-400 to-cyan-500 p-[2px] shadow-[0_16px_40px_-24px_rgba(14,165,233,0.7)] dark:from-emerald-500/70 dark:via-sky-500/70 dark:to-cyan-500/80 dark:shadow-[0_20px_52px_-26px_rgba(56,189,248,0.65)]">
+                      <Avatar className="h-full w-full rounded-full border-2 border-white/80 bg-white text-slate-700 shadow-[0_8px_22px_-18px_rgba(15,23,42,0.45)] dark:border-slate-950/80 dark:bg-slate-950 dark:text-slate-100">
+                        <AvatarImage src={profileImage ?? undefined} alt={profileName} />
+                        <AvatarFallback className="bg-sky-500/15 text-sm font-medium uppercase tracking-wide text-sky-900 dark:bg-sky-500/20 dark:text-sky-100">
+                          <UserRound aria-hidden className="h-5 w-5" />
+                          <span className="sr-only">{profileName}</span>
+                        </AvatarFallback>
+                      </Avatar>
+                    </span>
                     <div className="flex flex-col">
                       <span className="text-sm font-medium text-foreground">{profileName}</span>
                       <span className="text-xs text-muted-foreground">Ver perfil</span>

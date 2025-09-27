@@ -1,2 +1,0 @@
--- This migration has been intentionally left blank.
--- The confederation details are now handled by a later migration.

@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
 import { Button } from "./ui/button"
@@ -13,6 +14,68 @@ import {
 
 export function Header() {
   const { data: session } = useSession()
+  const [unreadCount, setUnreadCount] = useState(0)
+
+  useEffect(() => {
+    let active = true
+    let interval: ReturnType<typeof setInterval> | undefined
+
+    async function loadUnreadMessages() {
+      if (!session?.user?.id) return
+
+      try {
+        const response = await fetch("/api/messages/unread-count", {
+          cache: "no-store",
+        })
+
+        if (!response.ok) {
+          throw new Error("Falha ao carregar mensagens")
+        }
+
+        const data = (await response.json()) as { count?: unknown }
+        if (!active) return
+
+        const count = typeof data.count === "number" ? data.count : 0
+        setUnreadCount(count)
+      } catch (error) {
+        console.error(error)
+        if (!active) return
+      }
+    }
+
+    if (session?.user?.id) {
+      loadUnreadMessages()
+      interval = setInterval(loadUnreadMessages, 60_000)
+
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === "visible") {
+          loadUnreadMessages()
+        }
+      }
+
+      document.addEventListener("visibilitychange", handleVisibilityChange)
+
+      return () => {
+        active = false
+        if (interval) {
+          clearInterval(interval)
+        }
+        document.removeEventListener("visibilitychange", handleVisibilityChange)
+      }
+    }
+
+    setUnreadCount(0)
+
+    return () => {
+      active = false
+      if (interval) {
+        clearInterval(interval)
+      }
+    }
+  }, [session?.user?.id])
+
+  const hasUnreadMessages = unreadCount > 0
+  const badgeLabel = unreadCount > 99 ? "99+" : String(unreadCount)
 
   return (
     <header className="shadow-sm">
@@ -35,11 +98,20 @@ export function Header() {
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="rounded-full focus:outline-none">
+                  <button
+                    type="button"
+                    className="relative rounded-full focus:outline-none"
+                    aria-label="Abrir menu do usuário"
+                  >
                     <Avatar className="h-10 w-10">
                       <AvatarImage src={session.user?.image ?? undefined} alt={session.user?.name ?? ""} />
                       <AvatarFallback>{session.user?.name?.[0] ?? "U"}</AvatarFallback>
                     </Avatar>
+                    {hasUnreadMessages ? (
+                      <span className="absolute -right-1 -top-1 flex min-h-[18px] min-w-[18px] items-center justify-center rounded-full bg-emerald-500 px-1 text-[10px] font-semibold text-white shadow-sm">
+                        {badgeLabel}
+                      </span>
+                    ) : null}
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">

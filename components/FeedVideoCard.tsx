@@ -2,10 +2,18 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+import type { Role } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
 
 interface Video {
   id: string;
@@ -13,7 +21,15 @@ interface Video {
   videoUrl: string;
   thumbnailUrl?: string | null;
   user: {
+    id?: string;
     name?: string | null;
+    image?: string | null;
+    profile?: {
+      id?: string;
+      role?: Role;
+      displayName?: string | null;
+      avatarUrl?: string | null;
+    } | null;
   };
 }
 
@@ -32,6 +48,8 @@ interface Props {
   initialComments?: FeedVideoComment[];
   isActive?: boolean;
   onActive?: (videoId: string) => void;
+  muted?: boolean;
+  onMuteChange?: (videoId: string, nextMuted: boolean) => void;
 }
 
 const numberFormatter = new Intl.NumberFormat("pt-BR");
@@ -101,9 +119,14 @@ export function FeedVideoCard({
   initialComments,
   isActive = false,
   onActive,
+  muted,
+  onMuteChange,
 }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
-  const authorName = video.user?.name?.trim() || "Talento anônimo";
+  const profileName =
+    video.user?.profile?.displayName?.trim() ||
+    video.user?.name?.trim() ||
+    "Talento anônimo";
   const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -116,13 +139,17 @@ export function FeedVideoCard({
   );
   const [isCommentPanelOpen, setIsCommentPanelOpen] = useState(false);
   const [commentInput, setCommentInput] = useState("");
-  const [isMuted, setIsMuted] = useState(true);
+  const [internalMuted, setInternalMuted] = useState(true);
   const [isUserPaused, setIsUserPaused] = useState(false);
+  const isMuted = muted ?? internalMuted;
+  const profileLink = resolveProfileHref(video.user?.profile);
 
   useEffect(() => {
-    setIsMuted(true);
+    if (muted === undefined) {
+      setInternalMuted(true);
+    }
     setIsUserPaused(false);
-  }, [video.id]);
+  }, [video.id, muted]);
 
   useEffect(() => {
     const videoEl = ref.current;
@@ -230,7 +257,11 @@ export function FeedVideoCard({
   };
 
   const handleToggleMute = () => {
-    setIsMuted((current) => !current);
+    const nextMuted = !isMuted;
+    if (muted === undefined) {
+      setInternalMuted(nextMuted);
+    }
+    onMuteChange?.(video.id, nextMuted);
   };
 
   const handleToggleLike = () => {
@@ -437,10 +468,95 @@ export function FeedVideoCard({
           ) : null}
         </>
       )}
-      <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-1 text-white drop-shadow">
-        <p className="text-sm font-semibold uppercase tracking-[0.1em] text-white/70">{authorName}</p>
-        <p className="text-base font-semibold leading-tight">{video.title}</p>
+      <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-2 text-white drop-shadow">
+        <div className="flex items-center gap-3">
+          <ProfileAvatar
+            name={profileName}
+            avatarUrl={
+              video.user?.profile?.avatarUrl ?? video.user?.image ?? null
+            }
+            profileHref={profileLink}
+          />
+          <div className="flex flex-col">
+            <Link
+              href={profileLink ?? "#"}
+              aria-disabled={!profileLink}
+              tabIndex={profileLink ? 0 : -1}
+              className={cn(
+                "text-sm font-semibold uppercase tracking-[0.1em] text-white/70",
+                !profileLink && "pointer-events-none opacity-60",
+              )}
+            >
+              {profileName}
+            </Link>
+            <p className="text-base font-semibold leading-tight text-white">
+              {video.title}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
+}
+
+function resolveProfileHref(
+  profile?: {
+    id?: string | null;
+    role?: Role | null;
+  } | null,
+) {
+  if (!profile?.id) {
+    return null;
+  }
+
+  switch (profile.role) {
+    case "ATLETA":
+      return `/atletas/${profile.id}`;
+    case "AGENTE":
+      return `/agentes/${profile.id}`;
+    default:
+      return `/perfis/${profile.id}`;
+  }
+}
+
+function ProfileAvatar({
+  name,
+  avatarUrl,
+  profileHref,
+}: {
+  name: string;
+  avatarUrl: string | null;
+  profileHref: string | null;
+}) {
+  const initials = createInitials(name);
+
+  const avatar = (
+    <Avatar className="h-12 w-12 border-2 border-white/60 bg-white/20">
+      <AvatarImage src={avatarUrl ?? undefined} alt={name} />
+      <AvatarFallback className="bg-emerald-500/80 text-sm font-semibold uppercase tracking-[0.18em] text-white">
+        {initials}
+      </AvatarFallback>
+    </Avatar>
+  );
+
+  if (profileHref) {
+    return (
+      <Link href={profileHref} className="shrink-0" aria-label={`Ver perfil de ${name}`}>
+        {avatar}
+      </Link>
+    );
+  }
+
+  return <div className="shrink-0">{avatar}</div>;
+}
+
+function createInitials(name: string) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("")
+    .padEnd(2, "");
 }

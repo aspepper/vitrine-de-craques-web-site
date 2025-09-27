@@ -208,7 +208,23 @@ export async function GET(req: NextRequest) {
       skip,
       take,
       orderBy: { createdAt: 'desc' },
-      include: { user: true },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+            profile: {
+              select: {
+                id: true,
+                role: true,
+                displayName: true,
+                avatarUrl: true,
+              },
+            },
+          },
+        },
+      },
     })
     const videosWithThumbnails: typeof videos = []
 

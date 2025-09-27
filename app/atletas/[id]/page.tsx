@@ -3,10 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 
+import { AthleteMessageDialog } from "@/components/AthleteMessageDialog";
 import { FollowButton } from "@/components/FollowButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { authOptions } from "@/lib/auth";
 import { getFollowInfo } from "@/lib/follow";
 import { logError } from "@/lib/error";
@@ -208,6 +214,7 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
   const canInteractWithFollow = Boolean(
     viewerId && targetUserId && viewerId !== targetUserId,
   );
+  const canSendMessage = canInteractWithFollow;
   const loginRedirectTo = `/login?callbackUrl=/atletas/${params.id}`;
   const followersLabel = new Intl.NumberFormat("pt-BR").format(followerCount);
 
@@ -242,16 +249,6 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
                   </p>
                 ) : null}
               </div>
-              {!targetUserId || isOwnProfile ? null : (
-                <FollowButton
-                  targetUserId={targetUserId}
-                  initialIsFollowing={isFollowing}
-                  initialFollowerCount={followerCount}
-                  canInteract={canInteractWithFollow}
-                  loginRedirectTo={loginRedirectTo}
-                  appearance="light"
-                />
-              )}
             </div>
           </header>
 
@@ -272,9 +269,25 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
                     {profile.displayName}
                   </CardTitle>
                   {meta && <p className="text-sm font-medium text-slate-500">{meta}</p>}
-                  <Button className="bg-sky-500 px-8 text-base font-semibold text-white shadow-[0_20px_45px_-30px_rgba(14,116,144,0.9)] transition hover:bg-sky-500/90">
-                    Manifestar Interesse
-                  </Button>
+                  {!targetUserId || isOwnProfile ? null : (
+                    <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                      <FollowButton
+                        targetUserId={targetUserId}
+                        initialIsFollowing={isFollowing}
+                        initialFollowerCount={followerCount}
+                        canInteract={canInteractWithFollow}
+                        loginRedirectTo={loginRedirectTo}
+                        appearance="light"
+                        className="w-full sm:w-auto"
+                      />
+                      <AthleteMessageDialog
+                        recipientId={targetUserId}
+                        recipientName={profile.displayName}
+                        canMessage={canSendMessage}
+                        loginRedirectTo={loginRedirectTo}
+                      />
+                    </div>
+                  )}
                 </div>
               </CardHeader>
               <CardContent className="space-y-6 p-8">
@@ -325,35 +338,38 @@ export default async function AtletaDetalhePage({ params }: PageProps) {
             </Card>
           </div>
 
-          <section className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-semibold text-slate-900">Vídeos</h2>
-                <p className="text-sm text-slate-500">
-                  Últimos destaques publicados pelo atleta na Vitrine de Craques.
-                </p>
-              </div>
-              {videos.length > 0 && (
-                <Link
-                  href={`/player?user=${profile.userId}`}
-                  className="text-sm font-semibold text-sky-600 transition hover:text-sky-700"
-                >
-                  Ver todos
-                </Link>
-              )}
-            </div>
-
-            {videos.length > 0 ? (
-              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {videos.map((video) => (
-                  <AthleteVideoCard key={video.id} video={video} author={profile.displayName} />
-                ))}
-              </div>
-            ) : (
-              <div className="rounded-[32px] border border-dashed border-slate-300/80 bg-white/70 p-10 text-center text-sm text-slate-500">
-                Nenhum vídeo foi publicado por este atleta até o momento.
-              </div>
-            )}
+          <section>
+            <Card className="rounded-[32px] border-slate-200/70 bg-white/95 shadow-[0_30px_80px_-45px_rgba(15,23,42,0.35)]">
+              <CardHeader className="space-y-4 pb-0 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                <div className="space-y-1">
+                  <CardTitle className="text-2xl font-semibold text-slate-900">Vídeos</CardTitle>
+                  <CardDescription>
+                    Últimos destaques publicados pelo atleta na Vitrine de Craques.
+                  </CardDescription>
+                </div>
+                {videos.length > 0 && (
+                  <Link
+                    href={`/player?user=${profile.userId}`}
+                    className="text-sm font-semibold text-sky-600 transition hover:text-sky-700"
+                  >
+                    Ver todos
+                  </Link>
+                )}
+              </CardHeader>
+              <CardContent className="pt-6">
+                {videos.length > 0 ? (
+                  <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                    {videos.map((video) => (
+                      <AthleteVideoCard key={video.id} video={video} author={profile.displayName} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-[28px] border border-dashed border-slate-300/80 bg-white/70 p-10 text-center text-sm text-slate-500">
+                    Nenhum vídeo foi publicado por este atleta até o momento.
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </section>
         </div>
       </main>

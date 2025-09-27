@@ -39,6 +39,18 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      - name: Detect failed Prisma migration state
+        if: env.DATABASE_URL != ''
+        id: detect_failed_confederation_migration
+        run: |
+          set -e
+          NEEDS_RESOLVE=$(node scripts/check-failed-confederation-migration.cjs)
+          echo "needs_resolve=$NEEDS_RESOLVE" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve failed Prisma migration
+        if: env.DATABASE_URL != '' && steps.detect_failed_confederation_migration.outputs.needs_resolve == 'true'
+        run: npx prisma migrate resolve --rolled-back 20241021120000_add_confederation_details
+
       - name: Apply Prisma migrations
         if: env.DATABASE_URL != ''
         run: npx prisma migrate deploy

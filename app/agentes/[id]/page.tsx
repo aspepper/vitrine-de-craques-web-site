@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getServerSession } from "next-auth";
+
+import { FollowButton } from "@/components/FollowButton";
+import { authOptions } from "@/lib/auth";
+import { getFollowInfo } from "@/lib/follow";
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
@@ -19,6 +24,23 @@ export default async function AgenteDetalhePage({ params }: PageProps) {
   if (!profile) {
     notFound();
   }
+
+  const session = await getServerSession(authOptions);
+  const viewerId = session?.user?.id ?? null;
+  const targetUserId = profile.userId ?? null;
+
+  let followerCount = 0;
+  let isFollowing = false;
+  if (targetUserId && process.env.DATABASE_URL) {
+    const info = await getFollowInfo(targetUserId, viewerId ?? undefined);
+    followerCount = info.followerCount;
+    isFollowing = info.isFollowing;
+  }
+
+  const isOwnProfile = Boolean(viewerId && targetUserId && viewerId === targetUserId);
+  const canInteract = Boolean(viewerId && targetUserId && viewerId !== targetUserId);
+  const loginRedirectTo = `/login?callbackUrl=/agentes/${params.id}`;
+  const followersLabel = new Intl.NumberFormat("pt-BR").format(followerCount);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
@@ -43,7 +65,24 @@ export default async function AgenteDetalhePage({ params }: PageProps) {
               />
             </div>
           )}
-          <h1 className="text-3xl font-semibold text-slate-900">{profile.displayName}</h1>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h1 className="text-3xl font-semibold text-slate-900">{profile.displayName}</h1>
+            {!targetUserId || isOwnProfile ? null : (
+              <FollowButton
+                targetUserId={targetUserId}
+                initialIsFollowing={isFollowing}
+                initialFollowerCount={followerCount}
+                canInteract={canInteract}
+                loginRedirectTo={loginRedirectTo}
+                appearance="light"
+              />
+            )}
+          </div>
+          {isOwnProfile ? (
+            <p className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
+              {followersLabel} seguidores
+            </p>
+          ) : null}
           {profile.bio && <p className="text-muted-foreground">{profile.bio}</p>}
           {profile.data && (
             <pre className="bg-slate-100 p-4 rounded-md">

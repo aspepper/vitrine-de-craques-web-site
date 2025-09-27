@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
+import type { Role } from "@prisma/client";
+
 import { FeedVideoCard } from "@/components/FeedVideoCard";
 import { Button } from "@/components/ui/button";
 
@@ -13,7 +15,15 @@ export interface FeedVideo {
   thumbnailUrl?: string | null;
   likesCount?: number | null;
   user: {
+    id?: string;
     name?: string | null;
+    image?: string | null;
+    profile?: {
+      id?: string;
+      role?: Role;
+      displayName?: string | null;
+      avatarUrl?: string | null;
+    } | null;
   };
 }
 
@@ -27,6 +37,7 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
     initialVideos[0]?.id ?? null,
   );
   const [pendingVideos, setPendingVideos] = useState<FeedVideo[]>([]);
+  const [muted, setMuted] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const videosRef = useRef(videos);
   const pendingVideosRef = useRef(pendingVideos);
@@ -41,6 +52,10 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
 
   const handleVideoInView = useCallback((videoId: string) => {
     setActiveVideoId(videoId);
+  }, []);
+
+  const handleMuteChange = useCallback((_: string, nextMuted: boolean) => {
+    setMuted(nextMuted);
   }, []);
 
   const loadMore = async () => {
@@ -160,6 +175,8 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
                 initialLikes={video.likesCount ?? 0}
                 isActive={activeVideoId === video.id}
                 onActive={handleVideoInView}
+                muted={muted}
+                onMuteChange={handleMuteChange}
               />
             </div>
           ))}

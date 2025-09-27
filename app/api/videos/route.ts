@@ -23,9 +23,18 @@ if (!ffmpegBinaryPath) {
     const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg') as { path: string }
     ffmpegBinaryPath = ffmpegInstaller.path
   } catch (error) {
+    const nodeError = error as NodeJS.ErrnoException
+    const details =
+      nodeError?.code === 'MODULE_NOT_FOUND'
+        ?
+            'O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. '
+        +
+            'Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.'
+        : 'Não foi possível carregar o instalador do FFmpeg.'
+
     console.warn(
       'FFmpeg installer package not available. Falling back to system ffmpeg binary.',
-      error,
+      details,
     )
   }
 }

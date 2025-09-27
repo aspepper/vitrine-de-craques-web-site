@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
+import { PlayerBackLink } from "@/components/player/BackLink";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -289,6 +289,8 @@ export default async function PlayerPage({ params }: { params: { id: string } })
   }
 
   const backLabel = backHref === "/" ? "Voltar para destaques" : "Voltar";
+  const backLinkClasses =
+    "inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground";
 
   const video = await fetchVideoDetails(params.id);
 
@@ -303,14 +305,7 @@ export default async function PlayerPage({ params }: { params: { id: string } })
     <div className="flex min-h-screen flex-col bg-background transition-colors">
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
-          <Link
-            href={backHref}
-            prefetch={false}
-            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
-          >
-            <span aria-hidden>←</span>
-            {backLabel}
-          </Link>
+          <PlayerBackLink fallbackHref={backHref} label={backLabel} className={backLinkClasses} />
 
           <div className="flex flex-col gap-12 lg:flex-row">
             <div className="mx-auto w-full max-w-sm flex-shrink-0">

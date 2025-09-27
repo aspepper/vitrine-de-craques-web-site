@@ -13,17 +13,18 @@ export const dynamic = 'force-dynamic'
 
 const MAX_FILE_SIZE = 6 * 1024 * 1024
 
-function isFileLike(value: FormDataEntryValue | null): value is Blob {
+function isFileLike(value: FormDataEntryValue | null): value is File {
   if (!value || typeof value === 'string') {
     return false
   }
 
-  const blob = value as Blob
+  const file = value as File
 
   return (
-    typeof blob.arrayBuffer === 'function' &&
-    typeof blob.size === 'number' &&
-    typeof blob.type === 'string'
+    typeof file.arrayBuffer === 'function' &&
+    typeof file.size === 'number' &&
+    typeof file.type === 'string' &&
+    typeof file.name === 'string'
   )
 }
 

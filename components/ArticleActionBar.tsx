@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,7 +11,8 @@ export type ArticleActionType = "news" | "game";
 
 interface ArticleActionBarProps {
   itemId: string;
-  itemType: ArticleActionType;
+  itemSlug: string;
+  itemType: "news" | "game";
   shareUrl: string;
   commentHref?: string;
   className?: string;
@@ -67,8 +69,11 @@ function toggleId(key: string, id: string, enabled: boolean) {
   writeStoredIds(key, Array.from(ids));
 }
 
+type EngagementMode = "authenticated" | "anonymous" | "local-only";
+
 export function ArticleActionBar({
   itemId,
+  itemSlug,
   itemType,
   shareUrl,
   commentHref,
@@ -77,26 +82,125 @@ export function ArticleActionBar({
   metrics,
 }: ArticleActionBarProps) {
   const router = useRouter();
+  const { status } = useSession();
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
   const [initialLiked, setInitialLiked] = useState(false);
   const [initialSaved, setInitialSaved] = useState(false);
+  const [baseMetrics, setBaseMetrics] = useState(() => ({
+    likes: metrics?.likes ?? 0,
+    saves: metrics?.saves ?? 0,
+    comments: metrics?.comments ?? 0,
+    shares: metrics?.shares ?? 0,
+  }));
+  const [mode, setMode] = useState<EngagementMode>("local-only");
   const [engagementMetrics, setEngagementMetrics] = useState<ArticleActionBarProps["metrics"]>(metrics);
 
   const likeKey = useMemo(() => storageKey(itemType, "likes"), [itemType]);
   const saveKey = useMemo(() => storageKey(itemType, "saved"), [itemType]);
 
-  useEffect(() => {
-    const likedIds = readStoredIds(likeKey);
-    const savedIds = readStoredIds(saveKey);
-    const isInitiallyLiked = likedIds.includes(itemId);
-    const isInitiallySaved = savedIds.includes(itemId);
+  const engagementUrl = useMemo(() => {
+    if (!itemSlug) {
+      return null;
+    }
+    const segment = itemType === "news" ? "noticias" : "games";
+    return `/api/${segment}/${encodeURIComponent(itemSlug)}/engagement`;
+  }, [itemSlug, itemType]);
 
+  useEffect(() => {
+    setBaseMetrics({
+      likes: metrics?.likes ?? 0,
+      saves: metrics?.saves ?? 0,
+      comments: metrics?.comments ?? 0,
+      shares: metrics?.shares ?? 0,
+    });
+  }, [metrics?.likes, metrics?.saves, metrics?.comments, metrics?.shares]);
+
+  useEffect(() => {
+    if (!engagementUrl) {
+      setMode("local-only");
+      return;
+    }
+
+    let cancelled = false;
+    const controller = new AbortController();
+
+    async function loadEngagement() {
+      try {
+        const response = await fetch(engagementUrl, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Falha ao carregar interações");
+        }
+
+        const data = (await response.json()) as {
+          metrics?: { likes?: number; saves?: number; comments?: number; shares?: number };
+          user?: { liked?: boolean; saved?: boolean } | null;
+        };
+
+        if (cancelled) {
+          return;
+        }
+
+        setBaseMetrics((current) => ({
+          likes: data.metrics?.likes ?? current.likes,
+          saves: data.metrics?.saves ?? current.saves,
+          comments: data.metrics?.comments ?? current.comments,
+          shares: data.metrics?.shares ?? current.shares,
+        }));
+
+        if (data.user) {
+          const likedState = Boolean(data.user.liked);
+          const savedState = Boolean(data.user.saved);
+          setLiked(likedState);
+          setInitialLiked(likedState);
+          setSaved(savedState);
+          setInitialSaved(savedState);
+          setMode("authenticated");
+        } else {
+          setMode("anonymous");
+        }
+      } catch {
+        if (cancelled) {
+          return;
+        }
+
+        setMode("local-only");
+      }
+    }
+
+    loadEngagement();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [engagementUrl, status]);
+
+  useEffect(() => {
+    if (mode === "authenticated") {
+      return;
+    }
+
+    const likedIds = readStoredIds(likeKey);
+    const isInitiallyLiked = likedIds.includes(itemId);
     setLiked(isInitiallyLiked);
-    setSaved(isInitiallySaved);
     setInitialLiked(isInitiallyLiked);
-    setInitialSaved(isInitiallySaved);
-  }, [itemId, likeKey, saveKey]);
+
+    if (mode === "local-only") {
+      const savedIds = readStoredIds(saveKey);
+      const isInitiallySaved = savedIds.includes(itemId);
+      setSaved(isInitiallySaved);
+      setInitialSaved(isInitiallySaved);
+      return;
+    }
+
+    setSaved(false);
+    setInitialSaved(false);
+  }, [itemId, likeKey, mode, saveKey]);
 
   useEffect(() => {
     setEngagementMetrics(metrics);
@@ -144,20 +248,117 @@ export function ArticleActionBar({
   }, [engagementUrl]);
 
   const handleToggleLike = useCallback(() => {
+    if (mode === "authenticated" && engagementUrl) {
+      setLiked((current) => !current);
+
+      const next = !liked;
+
+      fetch(engagementUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ action: "like", enabled: next }),
+      })
+        .then(async (response) => {
+          if (!response.ok) {
+            throw new Error("Falha ao registrar curtida");
+          }
+
+          const data = (await response.json()) as {
+            metrics?: { likes?: number; saves?: number; comments?: number; shares?: number };
+            user?: { liked?: boolean; saved?: boolean };
+          };
+
+          const finalLiked = Boolean(data.user?.liked);
+          const finalSaved = typeof data.user?.saved === "boolean" ? data.user.saved : saved;
+
+          setLiked(finalLiked);
+          setInitialLiked(finalLiked);
+          setSaved(finalSaved);
+          setInitialSaved(finalSaved);
+          setBaseMetrics((current) => ({
+            likes: data.metrics?.likes ?? current.likes,
+            saves: data.metrics?.saves ?? current.saves,
+            comments: data.metrics?.comments ?? current.comments,
+            shares: data.metrics?.shares ?? current.shares,
+          }));
+        })
+        .catch(() => {
+          setLiked((current) => !current);
+        });
+
+      return;
+    }
+
     setLiked((current) => {
-      const next = !current;
-      toggleId(likeKey, itemId, next);
-      return next;
+      const nextLiked = !current;
+      toggleId(likeKey, itemId, nextLiked);
+      return nextLiked;
     });
-  }, [itemId, likeKey]);
+  }, [engagementUrl, itemId, likeKey, liked, mode, saved]);
 
   const handleToggleSave = useCallback(() => {
-    setSaved((current) => {
-      const next = !current;
-      toggleId(saveKey, itemId, next);
-      return next;
-    });
-  }, [itemId, saveKey]);
+    if (mode === "authenticated" && engagementUrl) {
+      setSaved((current) => !current);
+
+      const next = !saved;
+
+      fetch(engagementUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ action: "save", enabled: next }),
+      })
+        .then(async (response) => {
+          if (!response.ok) {
+            throw new Error("Falha ao registrar salvamento");
+          }
+
+          const data = (await response.json()) as {
+            metrics?: { likes?: number; saves?: number; comments?: number; shares?: number };
+            user?: { liked?: boolean; saved?: boolean };
+          };
+
+          const finalSaved = Boolean(data.user?.saved);
+          const finalLiked = typeof data.user?.liked === "boolean" ? data.user.liked : liked;
+
+          setSaved(finalSaved);
+          setInitialSaved(finalSaved);
+          setLiked(finalLiked);
+          setInitialLiked(finalLiked);
+          setBaseMetrics((current) => ({
+            likes: data.metrics?.likes ?? current.likes,
+            saves: data.metrics?.saves ?? current.saves,
+            comments: data.metrics?.comments ?? current.comments,
+            shares: data.metrics?.shares ?? current.shares,
+          }));
+        })
+        .catch(() => {
+          setSaved((current) => !current);
+        });
+
+      return;
+    }
+
+    if (mode === "local-only") {
+      setSaved((current) => {
+        const nextSaved = !current;
+        toggleId(saveKey, itemId, nextSaved);
+        return nextSaved;
+      });
+      return;
+    }
+
+    if (typeof window !== "undefined") {
+      const callbackUrl = window.location.href;
+      router.push(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
+      return;
+    }
+
+    router.push("/login");
+  }, [engagementUrl, itemId, mode, router, saveKey, saved, liked]);
 
   const handleShare = useCallback(() => {
     if (typeof window === "undefined") {
@@ -199,13 +400,11 @@ export function ArticleActionBar({
   const likeDelta = liked === initialLiked ? 0 : liked ? 1 : -1;
   const saveDelta = saved === initialSaved ? 0 : saved ? 1 : -1;
 
+  const likeCount = Math.max(0, baseMetrics.likes + likeDelta);
+  const saveCount = Math.max(0, baseMetrics.saves + saveDelta);
+  const commentCount = Math.max(0, baseMetrics.comments);
+  const shareCount = Math.max(0, baseMetrics.shares);
   const resolvedMetrics = engagementMetrics ?? metrics;
-
-  const likeCount = Math.max(0, (resolvedMetrics?.likes ?? 0) + likeDelta);
-  const saveCount = Math.max(0, (resolvedMetrics?.saves ?? 0) + saveDelta);
-  const commentCount = Math.max(0, resolvedMetrics?.comments ?? 0);
-  const shareCount = Math.max(0, resolvedMetrics?.shares ?? 0);
-
   const formattedLikes = numberFormatter.format(likeCount);
   const formattedSaves = numberFormatter.format(saveCount);
   const formattedComments = numberFormatter.format(commentCount);

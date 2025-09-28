@@ -21,6 +21,8 @@ interface ArticleData {
   coverImage: string | null;
   publishedAt: Date;
   authorName: string;
+  likesCount: number;
+  savesCount: number;
 }
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
@@ -48,6 +50,8 @@ function mapSampleArticle(slug: string): ArticleData | null {
     coverImage: sample.coverImage,
     publishedAt: new Date(sample.publishedAt),
     authorName: sample.author.profile.displayName,
+    likesCount: 0,
+    savesCount: 0,
   };
 }
 
@@ -59,9 +63,19 @@ async function fetchArticle(slug: string): Promise<ArticleData | null> {
   try {
     const article = await prisma.news.findUnique({
       where: { slug },
-      include: {
+      select: {
+        title: true,
+        slug: true,
+        excerpt: true,
+        content: true,
+        category: true,
+        coverImage: true,
+        publishedAt: true,
+        likesCount: true,
+        savesCount: true,
         author: {
-          include: {
+          select: {
+            name: true,
             profile: true,
           },
         },
@@ -81,6 +95,8 @@ async function fetchArticle(slug: string): Promise<ArticleData | null> {
       coverImage: article.coverImage,
       publishedAt: article.publishedAt,
       authorName: article.author?.profile?.displayName ?? article.author?.name ?? "Equipe Vitrine",
+      likesCount: article.likesCount,
+      savesCount: article.savesCount,
     };
   } catch (error) {
     console.error(error);
@@ -140,6 +156,7 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
               articleSlug={article.slug}
               shareUrl={`${baseUrl}/noticias/${article.slug}`}
               initialComments={initialComments}
+              initialMetrics={{ likes: article.likesCount, saves: article.savesCount }}
             >
               <div className="space-y-6 text-base leading-relaxed text-foreground">
                 {paragraphs.length > 0 ? (

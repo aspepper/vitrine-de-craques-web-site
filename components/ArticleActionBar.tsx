@@ -78,7 +78,7 @@ export function ArticleActionBar({
   shareUrl,
   commentHref,
   className,
-  engagementUrl,
+  engagementUrl: providedEngagementUrl,
   metrics,
 }: ArticleActionBarProps) {
   const router = useRouter();
@@ -100,12 +100,16 @@ export function ArticleActionBar({
   const saveKey = useMemo(() => storageKey(itemType, "saved"), [itemType]);
 
   const engagementUrl = useMemo(() => {
+    if (typeof providedEngagementUrl !== "undefined") {
+      return providedEngagementUrl;
+    }
+
     if (!itemSlug) {
       return null;
     }
     const segment = itemType === "news" ? "noticias" : "games";
     return `/api/${segment}/${encodeURIComponent(itemSlug)}/engagement`;
-  }, [itemSlug, itemType]);
+  }, [itemSlug, itemType, providedEngagementUrl]);
 
   useEffect(() => {
     setBaseMetrics({
@@ -122,12 +126,14 @@ export function ArticleActionBar({
       return;
     }
 
+    const endpoint = engagementUrl;
+
     let cancelled = false;
     const controller = new AbortController();
 
     async function loadEngagement() {
       try {
-        const response = await fetch(engagementUrl, {
+        const response = await fetch(endpoint, {
           cache: "no-store",
           signal: controller.signal,
         });
@@ -211,17 +217,19 @@ export function ArticleActionBar({
       return;
     }
 
+    const endpoint = engagementUrl;
+
     const controller = new AbortController();
 
     async function loadEngagement() {
       try {
-        const response = await fetch(engagementUrl, {
+        const response = await fetch(endpoint, {
           cache: "no-store",
           signal: controller.signal,
         });
 
         if (!response.ok) {
-          throw new Error(`Falha ao buscar métricas em ${engagementUrl}`);
+          throw new Error(`Falha ao buscar métricas em ${endpoint}`);
         }
 
         const data = (await response.json()) as ArticleActionBarProps["metrics"];
@@ -249,11 +257,12 @@ export function ArticleActionBar({
 
   const handleToggleLike = useCallback(() => {
     if (mode === "authenticated" && engagementUrl) {
+      const endpoint = engagementUrl;
       setLiked((current) => !current);
 
       const next = !liked;
 
-      fetch(engagementUrl, {
+      fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -300,11 +309,12 @@ export function ArticleActionBar({
 
   const handleToggleSave = useCallback(() => {
     if (mode === "authenticated" && engagementUrl) {
+      const endpoint = engagementUrl;
       setSaved((current) => !current);
 
       const next = !saved;
 
-      fetch(engagementUrl, {
+      fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

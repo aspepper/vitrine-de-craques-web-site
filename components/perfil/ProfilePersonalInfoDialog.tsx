@@ -715,7 +715,7 @@ export function ProfilePersonalInfoDialog({ profile }: { profile: EditableProfil
           <span className="sr-only">Editar informações pessoais</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-3xl max-h-[calc(100vh-2rem)] overflow-y-auto sm:max-h-[calc(100vh-4rem)]">
         <DialogHeader>
           <DialogTitle>Editar informações pessoais</DialogTitle>
           <DialogDescription>

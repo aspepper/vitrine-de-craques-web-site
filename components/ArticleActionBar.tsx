@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
+export type ArticleActionType = "news" | "game";
+
 interface ArticleActionBarProps {
   itemId: string;
-  itemType: "news" | "game";
+  itemType: ArticleActionType;
   shareUrl: string;
   commentHref?: string;
   className?: string;

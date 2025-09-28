@@ -118,17 +118,18 @@ export function ArticleInteractive({
   }, [articleSlug, itemType]);
 
   useEffect(() => {
-    if (!commentsEndpoint) {
+    const endpoint = commentsEndpoint;
+    if (!endpoint) {
       return;
     }
 
     let cancelled = false;
     const controller = new AbortController();
 
-    async function loadComments() {
+    async function loadComments(targetEndpoint: string) {
       setIsLoadingComments(true);
       try {
-        const response = await fetch(commentsEndpoint, {
+        const response = await fetch(targetEndpoint, {
           cache: "no-store",
           signal: controller.signal,
         });
@@ -155,7 +156,7 @@ export function ArticleInteractive({
       }
     }
 
-    loadComments();
+    loadComments(endpoint);
 
     return () => {
       cancelled = true;
@@ -195,7 +196,8 @@ export function ArticleInteractive({
 
   const handleSubmitComment = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!commentsEndpoint) {
+    const endpoint = commentsEndpoint;
+    if (!endpoint) {
       return;
     }
 
@@ -216,7 +218,7 @@ export function ArticleInteractive({
     setFeedbackMessage(null);
 
     try {
-      const response = await fetch(commentsEndpoint, {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content }),
@@ -284,7 +286,8 @@ export function ArticleInteractive({
     commentId: string,
   ) => {
     event.preventDefault();
-    if (!commentsEndpoint) {
+    const endpoint = commentsEndpoint;
+    if (!endpoint) {
       return;
     }
 
@@ -306,7 +309,7 @@ export function ArticleInteractive({
     setReplyErrors((current) => ({ ...current, [commentId]: null }));
 
     try {
-      const response = await fetch(commentsEndpoint, {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content, parentId: commentId }),

@@ -25,6 +25,8 @@ interface NewsItem {
   coverImage: string | null;
   publishedAt: string;
   author: NewsAuthor | null;
+  likesCount?: number;
+  savesCount?: number;
 }
 
 interface NewsResponse {
@@ -97,6 +99,8 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
         displayName: news.author.profile.displayName,
       },
     },
+    likesCount: 0,
+    savesCount: 0,
   }));
 
   const hasFetchedNews = items.length > 0;
@@ -141,6 +145,8 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
               );
               const excerpt = news.excerpt ?? news.content?.slice(0, 220)?.concat("...") ?? "";
               const actionBarId = news.slug || news.id;
+              const likesCount = typeof news.likesCount === "number" ? news.likesCount : 0;
+              const savesCount = typeof news.savesCount === "number" ? news.savesCount : 0;
 
               return (
                 <article
@@ -176,9 +182,11 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                   <div className="mt-6 flex flex-col gap-3">
                     <ArticleActionBar
                       itemId={actionBarId}
+                      itemSlug={news.slug}
                       itemType="news"
                       shareUrl={`${baseUrl}/noticias/${news.slug}`}
                       commentHref={`/noticias/${news.slug}`}
+                      metrics={{ likes: likesCount, saves: savesCount }}
                     />
                     <div className="flex justify-end">
                       <Button

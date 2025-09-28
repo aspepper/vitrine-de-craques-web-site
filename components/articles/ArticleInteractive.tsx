@@ -61,6 +61,12 @@ export interface ArticleInteractiveProps {
   storageKeyPrefix?: string;
   initialComments?: CommentSeed[];
   actionBarClassName?: string;
+  initialMetrics?: {
+    likes?: number;
+    saves?: number;
+    shares?: number;
+    comments?: number;
+  };
   labels?: ArticleInteractiveLabels;
   children: React.ReactNode;
 }
@@ -168,6 +174,7 @@ export function ArticleInteractive({
   storageKeyPrefix = "vitrine:articles:comments",
   initialComments = [],
   actionBarClassName = "justify-center gap-8",
+  initialMetrics,
   labels,
   children,
 }: ArticleInteractiveProps) {
@@ -327,11 +334,17 @@ export function ArticleInteractive({
     <div className="space-y-8">
       <ArticleActionBar
         itemId={articleSlug}
+        itemSlug={articleSlug}
         itemType={itemType}
         shareUrl={shareUrl}
         commentHref="#comentarios"
         className={actionBarClassName}
-        metrics={{ comments: totalInteractions }}
+        metrics={{
+          comments: initialMetrics?.comments ?? totalInteractions,
+          likes: initialMetrics?.likes,
+          saves: initialMetrics?.saves,
+          shares: initialMetrics?.shares,
+        }}
       />
 
       {children}

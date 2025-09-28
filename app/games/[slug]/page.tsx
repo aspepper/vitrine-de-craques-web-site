@@ -25,6 +25,8 @@ interface Game {
   coverImage: string | null
   date: string
   author: GameAuthor | null
+  likesCount: number
+  savesCount: number
 }
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000"
@@ -67,6 +69,8 @@ const fallbackGames = new Map(
         name: game.author.name,
         profile: { displayName: game.author.profile.displayName },
       },
+      likesCount: 0,
+      savesCount: 0,
     } satisfies Game,
   ])
 )
@@ -163,6 +167,7 @@ export default async function GameDetalhePage({ params }: PageProps) {
                   shareUrl={`${baseUrl}/games/${game.slug}`}
                   itemType="game"
                   storageKeyPrefix="vitrine:games:comments"
+                  initialMetrics={{ likes: game.likesCount, saves: game.savesCount }}
                   labels={{
                     commentDescription: "Compartilhe descobertas e memórias sobre este game.",
                     emptyStateMessage: "Seja o primeiro a comentar este game e iniciar a conversa.",

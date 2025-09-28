@@ -141,6 +141,7 @@ model Profile {
   favoriteClub          Times?   @relation(fields: [favoriteClubId], references: [id])
   user                  User     @relation(fields: [userId], references: [id])
   userId                String   @unique
+  comments              Comment[]
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 }
@@ -152,6 +153,7 @@ model Video {
   videoUrl     String
   thumbnailUrl String?
   likesCount   Int      @default(0)
+  commentsCount Int     @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   user         User     @relation(fields: [userId], references: [id])
@@ -228,6 +230,7 @@ model News {
   updatedAt   DateTime @updatedAt
   likesCount  Int      @default(0)
   savesCount  Int      @default(0)
+  commentsCount Int    @default(0)
   author      User?    @relation(fields: [authorId], references: [id])
   authorId    String?
   likes       NewsLike[]
@@ -249,8 +252,34 @@ model Game {
   updatedAt  DateTime @updatedAt
   likesCount Int      @default(0)
   savesCount Int      @default(0)
+  commentsCount Int   @default(0)
   likes      GameLike[]
   saves      GameSave[]
+}
+
+enum CommentItemType {
+  NEWS
+  GAME
+  VIDEO
+}
+
+model Comment {
+  id               String           @id @default(cuid())
+  itemType         CommentItemType
+  itemId           String
+  parentId         String?
+  content          String           @db.Text
+  authorProfileId  String?
+  authorName       String?
+  authorAvatarUrl  String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  parent           Comment?         @relation("CommentReplies", fields: [parentId], references: [id])
+  replies          Comment[]        @relation("CommentReplies")
+  authorProfile    Profile?         @relation(fields: [authorProfileId], references: [id])
+
+  @@index([itemType, itemId])
+  @@index([parentId])
 }
 
 model NewsLike {

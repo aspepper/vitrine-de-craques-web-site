@@ -269,9 +269,11 @@ export function VideoEngagementPanel({
           <div className="flex flex-wrap gap-3">
             <ActionButton
               icon="/icons/icon-like.svg"
+              activeIcon="/icons/icon-like-active.svg"
               label={liked ? "Curtido" : "Curtir"}
               onClick={handleToggleLike}
               active={liked}
+              disableActiveBackground
               counter={formattedLikes}
             />
             <ActionButton
@@ -282,9 +284,11 @@ export function VideoEngagementPanel({
             />
             <ActionButton
               icon="/icons/icon-save.svg"
+              activeIcon="/icons/icon-save-active.svg"
               label={isSaved ? "Salvo" : "Salvar"}
               onClick={handleToggleSave}
               active={isSaved}
+              disableActiveBackground
             />
             <ActionButton
               icon="/icons/icon-share.svg"
@@ -374,24 +378,32 @@ function ActionButton({
   onClick,
   active = false,
   counter,
+  activeIcon,
+  disableActiveBackground = false,
 }: {
   icon: string;
   label: string;
   onClick: () => void;
   active?: boolean;
   counter?: string;
+  activeIcon?: string;
+  disableActiveBackground?: boolean;
 }) {
+  const iconSrc = active && activeIcon ? activeIcon : icon;
+
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
         "flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-2 text-sm font-semibold text-foreground transition hover:border-foreground/40 hover:bg-background/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200",
-        active && "border-emerald-500 bg-emerald-500/10 text-emerald-600",
+        active &&
+          !disableActiveBackground &&
+          "border-emerald-500 bg-emerald-500/10 text-emerald-600",
       )}
     >
       <span className="flex h-6 w-6 items-center justify-center">
-        <Image src={icon} alt="" width={20} height={20} />
+        <Image src={iconSrc} alt="" width={20} height={20} />
       </span>
       <span>{label}</span>
       {counter ? (

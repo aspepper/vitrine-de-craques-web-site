@@ -79,13 +79,22 @@ export function Footer() {
               <Image src="/icons/icon-instagram.svg" alt="" width={18} height={18} />
             </Link>
             <Link
-              href="https://www.facebook.com/profile.php?id=100069873766577"
+              href="https://www.tiktok.com/@vitrinedecraquesoficial"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
-              aria-label="Facebook"
+              aria-label="TikTok"
             >
-              <Image src="/icons/icon-facebook.svg" alt="" width={16} height={16} />
+              <Image src="/icons/icon-tiktok.svg" alt="" width={18} height={18} />
+            </Link>
+            <Link
+              href="https://www.youtube.com/@vitrinedecraques621"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="YouTube"
+            >
+              <Image src="/icons/icon-youtube.svg" alt="" width={20} height={20} />
             </Link>
             <Link
               href="https://x.com/VCraques"
@@ -97,13 +106,22 @@ export function Footer() {
               <Image src="/icons/icon-x.svg" alt="" width={18} height={18} />
             </Link>
             <Link
-              href="https://www.youtube.com/@vitrinedecraques621"
+              href="https://www.facebook.com/profile.php?id=100069873766577"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
-              aria-label="YouTube"
+              aria-label="Facebook"
             >
-              <Image src="/icons/icon-youtube.svg" alt="" width={20} height={20} />
+              <Image src="/icons/icon-facebook.svg" alt="" width={16} height={16} />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/vitrine-de-craques-oficial-284695181/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
+              aria-label="LinkedIn"
+            >
+              <Image src="/icons/icon-linkedin.svg" alt="" width={18} height={18} />
             </Link>
           </div>
         </div>

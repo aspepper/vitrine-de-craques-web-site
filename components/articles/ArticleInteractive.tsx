@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { ArticleActionBar } from "@/components/ArticleActionBar";
+import { ArticleActionBar, type ArticleActionType } from "@/components/ArticleActionBar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -57,7 +57,7 @@ export interface ArticleInteractiveLabels {
 export interface ArticleInteractiveProps {
   articleSlug: string;
   shareUrl: string;
-  itemType: string;
+  itemType: ArticleActionType;
   storageKeyPrefix?: string;
   initialComments?: CommentSeed[];
   actionBarClassName?: string;

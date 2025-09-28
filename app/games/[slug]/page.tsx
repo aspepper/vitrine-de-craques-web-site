@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
+import { ArticleActionBar } from "@/components/ArticleActionBar"
 import { Button } from "@/components/ui/button"
 import { ensureImage } from "@/lib/ensureImage"
 import { sampleGames } from "@/lib/sample-games"
@@ -145,6 +146,13 @@ export default async function GameDetalhePage({ params }: PageProps) {
               <div className="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <span>Por {getAuthorName(game.author)}</span>
               </div>
+              <ArticleActionBar
+                itemId={game.slug}
+                itemType="game"
+                shareUrl={`${baseUrl}/games/${game.slug}`}
+                commentHref="#comentarios"
+                className="mt-6 justify-center gap-8"
+              />
               <Button
                 asChild
                 className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90"
@@ -160,6 +168,13 @@ export default async function GameDetalhePage({ params }: PageProps) {
                 ))}
               </section>
             ) : null}
+
+            <section
+              id="comentarios"
+              className="rounded-3xl border border-dashed border-border/70 bg-background/50 px-6 py-8 text-center text-sm text-muted-foreground"
+            >
+              Os comentários estarão disponíveis em breve.
+            </section>
           </article>
         </div>
       </main>

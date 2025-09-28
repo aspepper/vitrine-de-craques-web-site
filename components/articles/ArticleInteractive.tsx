@@ -1,11 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 
 import { ArticleActionBar, type ArticleActionType } from "@/components/ArticleActionBar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import type { CommentReply, CommentThread } from "@/types/comments";
 
 const commentDateFormatter = new Intl.DateTimeFormat("pt-BR", {
   day: "2-digit",
@@ -16,30 +19,6 @@ const commentDateFormatter = new Intl.DateTimeFormat("pt-BR", {
 });
 
 const commentCountFormatter = new Intl.NumberFormat("pt-BR");
-
-export type CommentReplySeed = {
-  id?: string;
-  authorName?: string | null;
-  authorAvatarUrl?: string | null;
-  content?: string | null;
-  createdAt?: string | null;
-};
-
-export type CommentSeed = CommentReplySeed & {
-  replies?: CommentReplySeed[] | null;
-};
-
-export type CommentReply = {
-  id: string;
-  authorName: string;
-  authorAvatarUrl: string | null;
-  content: string;
-  createdAt: string | null;
-};
-
-export type CommentThread = CommentReply & {
-  replies: CommentReply[];
-};
 
 export interface ArticleInteractiveLabels {
   commentTitle?: string;
@@ -59,7 +38,7 @@ export interface ArticleInteractiveProps {
   shareUrl: string;
   itemType: ArticleActionType;
   storageKeyPrefix?: string;
-  initialComments?: CommentSeed[];
+  initialComments?: CommentThread[];
   actionBarClassName?: string;
   initialMetrics?: {
     likes?: number;
@@ -69,17 +48,6 @@ export interface ArticleInteractiveProps {
   };
   labels?: ArticleInteractiveLabels;
   children: React.ReactNode;
-}
-
-function storageKey(prefix: string, slug: string) {
-  return `${prefix}:${slug}`;
-}
-
-function createCommentId() {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
-    return crypto.randomUUID();
-  }
-  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
 function initialsFromName(name: string) {
@@ -92,106 +60,40 @@ function initialsFromName(name: string) {
   ).slice(0, 2);
 }
 
-function normalizeReply(seed: CommentReplySeed | null | undefined): CommentReply | null {
-  if (!seed) {
-    return null;
-  }
-
-  const content = seed.content?.trim();
-  if (!content) {
-    return null;
-  }
-
-  return {
-    id: seed.id?.toString() || createCommentId(),
-    authorName: seed.authorName?.trim() || "Agente",
-    authorAvatarUrl: seed.authorAvatarUrl ?? null,
-    content,
-    createdAt: seed.createdAt ?? null,
-  } satisfies CommentReply;
-}
-
-function normalizeComment(seed: CommentSeed | null | undefined): CommentThread | null {
-  if (!seed) {
-    return null;
-  }
-
-  const content = seed.content?.trim();
-  if (!content) {
-    return null;
-  }
-
-  const replies = (seed.replies ?? [])
-    .map((reply) => normalizeReply(reply))
-    .filter((reply): reply is CommentReply => Boolean(reply));
-
-  return {
-    id: seed.id?.toString() || createCommentId(),
-    authorName: seed.authorName?.trim() || "Agente",
-    authorAvatarUrl: seed.authorAvatarUrl ?? null,
-    content,
-    createdAt: seed.createdAt ?? null,
-    replies,
-  } satisfies CommentThread;
-}
-
-function readStoredComments(prefix: string, slug: string): CommentThread[] {
-  if (typeof window === "undefined") {
-    return [];
-  }
-
-  try {
-    const raw = window.localStorage.getItem(storageKey(prefix, slug));
-    if (!raw) {
-      return [];
-    }
-    const parsed = JSON.parse(raw) as CommentSeed[];
-    return parsed
-      .map((seed) => normalizeComment(seed))
-      .filter((comment): comment is CommentThread => Boolean(comment));
-  } catch (error) {
-    console.error("Não foi possível ler os comentários salvos localmente", error);
-    return [];
-  }
-}
-
-function writeStoredComments(prefix: string, slug: string, comments: CommentThread[]) {
-  if (typeof window === "undefined") {
-    return;
-  }
-
-  try {
-    window.localStorage.setItem(storageKey(prefix, slug), JSON.stringify(comments));
-  } catch (error) {
-    console.error("Não foi possível salvar os comentários localmente", error);
-  }
-}
-
 export function ArticleInteractive({
   articleSlug,
   shareUrl,
   itemType,
-  storageKeyPrefix = "vitrine:articles:comments",
+  storageKeyPrefix: _storageKeyPrefix = "vitrine:articles:comments",
   initialComments = [],
   actionBarClassName = "justify-center gap-8",
   initialMetrics,
   labels,
   children,
 }: ArticleInteractiveProps) {
-  const normalizedInitialComments = useMemo(
-    () =>
-      initialComments
-        .map((seed) => normalizeComment(seed))
-        .filter((comment): comment is CommentThread => Boolean(comment)),
-    [initialComments],
-  );
-  const [comments, setComments] = useState<CommentThread[]>(normalizedInitialComments);
-  const [isHydrated, setIsHydrated] = useState(false);
+  const { status } = useSession();
+  const isAuthenticated = status === "authenticated";
+  const [comments, setComments] = useState<CommentThread[]>(initialComments);
+  const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [commentInput, setCommentInput] = useState("");
+  const [isSubmittingComment, setIsSubmittingComment] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
   const [activeReplyId, setActiveReplyId] = useState<string | null>(null);
   const [replyInputs, setReplyInputs] = useState<Record<string, string>>({});
+  const [replySubmittingId, setReplySubmittingId] = useState<string | null>(null);
+  const [replyErrors, setReplyErrors] = useState<Record<string, string | null>>({});
   const commentTextareaRef = useRef<HTMLTextAreaElement>(null);
   const replyRefs = useRef<Record<string, HTMLTextAreaElement | null>>({});
+
+  useEffect(() => {
+    setComments(initialComments);
+  }, [initialComments]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setFeedbackMessage(null);
+    }
+  }, [isAuthenticated]);
 
   const {
     commentTitle = "Comentários",
@@ -207,34 +109,66 @@ export function ArticleInteractive({
       `${formattedCount} ${total === 1 ? "interação" : "interações"}`,
   } = labels ?? {};
 
-  useEffect(() => {
-    const stored = readStoredComments(storageKeyPrefix, articleSlug);
-    if (stored.length > 0) {
-      setComments(stored);
-    } else {
-      setComments(normalizedInitialComments);
+  const commentsEndpoint = useMemo(() => {
+    const segment = itemType === "news" ? "noticias" : itemType === "game" ? "games" : null;
+    if (!segment) {
+      return null;
     }
-    setCommentInput("");
-    setReplyInputs({});
-    setActiveReplyId(null);
-    setIsHydrated(true);
-  }, [articleSlug, normalizedInitialComments, storageKeyPrefix]);
+    return `/api/${segment}/${encodeURIComponent(articleSlug)}/comments`;
+  }, [articleSlug, itemType]);
 
   useEffect(() => {
-    if (!isHydrated) {
+    if (!commentsEndpoint) {
       return;
     }
-    writeStoredComments(storageKeyPrefix, articleSlug, comments);
-  }, [articleSlug, comments, isHydrated, storageKeyPrefix]);
+
+    let cancelled = false;
+    const controller = new AbortController();
+
+    async function loadComments() {
+      setIsLoadingComments(true);
+      try {
+        const response = await fetch(commentsEndpoint, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch comments");
+        }
+
+        const data = (await response.json()) as CommentThread[];
+        if (!cancelled) {
+          setComments(data);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error("Erro ao carregar comentários", error);
+          setFeedbackMessage(
+            "Não foi possível carregar os comentários mais recentes. Exibindo a última versão conhecida.",
+          );
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoadingComments(false);
+        }
+      }
+    }
+
+    loadComments();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [commentsEndpoint]);
 
   useEffect(() => {
     if (!activeReplyId) {
       return;
     }
     const field = replyRefs.current[activeReplyId];
-    if (field) {
-      field.focus();
-    }
+    field?.focus();
   }, [activeReplyId]);
 
   const totalInteractions = useMemo(
@@ -251,8 +185,20 @@ export function ArticleInteractive({
     [totalInteractions],
   );
 
-  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
+  const displayedCommentMetric = useMemo(
+    () => Math.max(initialMetrics?.comments ?? 0, totalInteractions),
+    [initialMetrics?.comments, totalInteractions],
+  );
+
+  const commentsAreDisabled = !isAuthenticated;
+  const loginHref = "/login";
+
+  const handleSubmitComment = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!commentsEndpoint) {
+      return;
+    }
+
     const content = commentInput.trim();
     if (!content) {
       commentTextareaRef.current?.setCustomValidity("Informe um comentário antes de enviar");
@@ -260,23 +206,60 @@ export function ArticleInteractive({
       return;
     }
 
-    const newComment: CommentThread = {
-      id: createCommentId(),
-      authorName: "Você",
-      authorAvatarUrl: null,
-      content,
-      createdAt: new Date().toISOString(),
-      replies: [],
-    };
+    if (!isAuthenticated) {
+      setFeedbackMessage("Faça login para publicar comentários.");
+      return;
+    }
 
-    setComments((current) => [newComment, ...current]);
-    setCommentInput("");
-    requestAnimationFrame(() => {
-      commentTextareaRef.current?.focus();
-    });
+    commentTextareaRef.current?.setCustomValidity("");
+    setIsSubmittingComment(true);
+    setFeedbackMessage(null);
+
+    try {
+      const response = await fetch(commentsEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content }),
+      });
+
+      if (response.status === 401) {
+        setFeedbackMessage("Faça login para publicar comentários.");
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(`Failed to publish comment (${response.status})`);
+      }
+
+      const data = (await response.json()) as {
+        comment?: CommentThread;
+        reply?: CommentReply;
+        parentId?: string;
+        totalCount?: number;
+      };
+
+      if (data.comment) {
+        setComments((current) => [data.comment!, ...current]);
+      }
+
+      setCommentInput("");
+      requestAnimationFrame(() => {
+        commentTextareaRef.current?.focus();
+      });
+    } catch (error) {
+      console.error("Erro ao publicar comentário", error);
+      setFeedbackMessage("Não foi possível publicar o comentário. Tente novamente em instantes.");
+    } finally {
+      setIsSubmittingComment(false);
+    }
   };
 
   const handleToggleReply = (commentId: string) => {
+    if (!isAuthenticated) {
+      setFeedbackMessage("Faça login para responder comentários.");
+      return;
+    }
+
     setActiveReplyId((current) => (current === commentId ? null : commentId));
     setReplyInputs((current) => {
       if (current[commentId] !== undefined) {
@@ -284,50 +267,91 @@ export function ArticleInteractive({
       }
       return { ...current, [commentId]: "" };
     });
+    setReplyErrors((current) => ({ ...current, [commentId]: null }));
     const field = replyRefs.current[commentId];
     field?.setCustomValidity("");
   };
 
   const handleReplyInputChange = (commentId: string, value: string) => {
     setReplyInputs((current) => ({ ...current, [commentId]: value }));
+    setReplyErrors((current) => ({ ...current, [commentId]: null }));
     const field = replyRefs.current[commentId];
     field?.setCustomValidity("");
   };
 
-  const handleSubmitReply = (
+  const handleSubmitReply = async (
     event: React.FormEvent<HTMLFormElement>,
     commentId: string,
   ) => {
     event.preventDefault();
+    if (!commentsEndpoint) {
+      return;
+    }
+
+    if (!isAuthenticated) {
+      setFeedbackMessage("Faça login para responder comentários.");
+      return;
+    }
+
     const content = replyInputs[commentId]?.trim() ?? "";
+    const field = replyRefs.current[commentId];
     if (!content) {
-      const field = replyRefs.current[commentId];
       field?.setCustomValidity("Informe uma resposta antes de enviar");
       field?.reportValidity();
       return;
     }
 
-    const reply: CommentReply = {
-      id: createCommentId(),
-      authorName: "Você",
-      authorAvatarUrl: null,
-      content,
-      createdAt: new Date().toISOString(),
-    };
+    field?.setCustomValidity("");
+    setReplySubmittingId(commentId);
+    setReplyErrors((current) => ({ ...current, [commentId]: null }));
 
-    setComments((current) =>
-      current.map((comment) => {
-        if (comment.id !== commentId) {
-          return comment;
-        }
-        return {
-          ...comment,
-          replies: [...comment.replies, reply],
-        } satisfies CommentThread;
-      }),
-    );
-    setReplyInputs((current) => ({ ...current, [commentId]: "" }));
-    setActiveReplyId(null);
+    try {
+      const response = await fetch(commentsEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, parentId: commentId }),
+      });
+
+      if (response.status === 401) {
+        setFeedbackMessage("Faça login para responder comentários.");
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(`Failed to publish reply (${response.status})`);
+      }
+
+      const data = (await response.json()) as {
+        reply?: CommentReply;
+        parentId?: string;
+        totalCount?: number;
+      };
+
+      if (data.reply && data.parentId) {
+        setComments((current) =>
+          current.map((comment) => {
+            if (comment.id !== data.parentId) {
+              return comment;
+            }
+            return {
+              ...comment,
+              replies: [...comment.replies, data.reply!],
+            } satisfies CommentThread;
+          }),
+        );
+      }
+
+      setReplyInputs((current) => ({ ...current, [commentId]: "" }));
+      setActiveReplyId(null);
+    } catch (error) {
+      console.error("Erro ao publicar resposta", error);
+      setReplyErrors((current) => ({
+        ...current,
+        [commentId]: "Não foi possível publicar a resposta. Tente novamente.",
+      }));
+    } finally {
+      setReplySubmittingId(null);
+    }
   };
 
   return (
@@ -340,7 +364,7 @@ export function ArticleInteractive({
         commentHref="#comentarios"
         className={actionBarClassName}
         metrics={{
-          comments: initialMetrics?.comments ?? totalInteractions,
+          comments: displayedCommentMetric,
           likes: initialMetrics?.likes,
           saves: initialMetrics?.saves,
           shares: initialMetrics?.shares,
@@ -374,24 +398,45 @@ export function ArticleInteractive({
             placeholder={commentPlaceholder}
             className="min-h-[120px] rounded-3xl border border-border/60 bg-background/80 text-base text-foreground placeholder:text-muted-foreground"
             aria-label="Adicionar comentário"
+            disabled={isSubmittingComment || commentsAreDisabled}
             required
           />
-          <div className="flex justify-end">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            {!isAuthenticated ? (
+              <p className="text-xs text-muted-foreground">
+                Faça login para comentar. {" "}
+                <Link href={loginHref} className="text-emerald-600 hover:underline">
+                  Acessar conta
+                </Link>
+              </p>
+            ) : null}
             <Button
               type="submit"
               className="h-11 rounded-full bg-emerald-500 px-8 text-sm font-semibold text-white transition hover:bg-emerald-500/90"
+              disabled={isSubmittingComment || commentsAreDisabled}
             >
-              {publishCommentLabel}
+              {isSubmittingComment ? "Enviando..." : publishCommentLabel}
             </Button>
           </div>
         </form>
 
-        {comments.length > 0 ? (
+        {feedbackMessage ? (
+          <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+            {feedbackMessage}
+          </div>
+        ) : null}
+
+        {isLoadingComments && comments.length === 0 ? (
+          <div className="rounded-3xl border border-dashed border-border/70 bg-background/40 px-6 py-8 text-center text-muted-foreground">
+            Carregando comentários...
+          </div>
+        ) : comments.length > 0 ? (
           <ul className="flex flex-col gap-6">
             {comments.map((comment) => {
               const initials = initialsFromName(comment.authorName);
               const commentDate = comment.createdAt ? new Date(comment.createdAt) : null;
               const formattedDate = commentDate ? commentDateFormatter.format(commentDate) : null;
+              const isReplySubmitting = replySubmittingId === comment.id;
 
               return (
                 <li
@@ -420,6 +465,7 @@ export function ArticleInteractive({
                           size="sm"
                           onClick={() => handleToggleReply(comment.id)}
                           className="h-8 rounded-full border border-emerald-100 bg-emerald-50 px-3 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-600 transition hover:bg-emerald-100"
+                          disabled={!isAuthenticated}
                         >
                           {activeReplyId === comment.id ? cancelReplyLabel : "Responder"}
                         </Button>
@@ -441,8 +487,12 @@ export function ArticleInteractive({
                         placeholder={replyPlaceholder}
                         className="min-h-[96px] rounded-2xl border border-border/60 bg-background/80 text-sm text-foreground placeholder:text-muted-foreground"
                         aria-label={replyAriaLabel(comment.authorName)}
+                        disabled={isReplySubmitting}
                         required
                       />
+                      {replyErrors[comment.id] ? (
+                        <p className="mt-2 text-xs text-amber-600">{replyErrors[comment.id]}</p>
+                      ) : null}
                       <div className="mt-3 flex justify-end gap-2">
                         <Button
                           type="button"
@@ -456,8 +506,9 @@ export function ArticleInteractive({
                         <Button
                           type="submit"
                           className="h-9 rounded-full bg-emerald-500 px-5 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-emerald-500/90"
+                          disabled={isReplySubmitting}
                         >
-                          {sendReplyLabel}
+                          {isReplySubmitting ? "Enviando..." : sendReplyLabel}
                         </Button>
                       </div>
                     </form>
@@ -468,7 +519,9 @@ export function ArticleInteractive({
                       {comment.replies.map((reply) => {
                         const replyInitials = initialsFromName(reply.authorName);
                         const replyDate = reply.createdAt ? new Date(reply.createdAt) : null;
-                        const formattedReplyDate = replyDate ? commentDateFormatter.format(replyDate) : null;
+                        const formattedReplyDate = replyDate
+                          ? commentDateFormatter.format(replyDate)
+                          : null;
 
                         return (
                           <li

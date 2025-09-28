@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum Role {
@@ -50,26 +50,26 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  passwordHash  String
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  videos        Video[]
-  news          News[]
-  profile       Profile?
-  following     Follow[]  @relation("UserFollowing")
-  followers     Follow[]  @relation("UserFollowers")
-  blocking      Block[]   @relation("UserBlocking")
-  blockedBy     Block[]   @relation("UserBlocked")
-  sentMessages  Message[] @relation("UserSentMessages")
+  id               String    @id @default(cuid())
+  name             String?
+  email            String?   @unique
+  passwordHash     String
+  emailVerified    DateTime?
+  image            String?
+  accounts         Account[]
+  sessions         Session[]
+  videos           Video[]
+  news             News[]
+  profile          Profile?
+  following        Follow[]  @relation("UserFollowing")
+  followers        Follow[]  @relation("UserFollowers")
+  blocking         Block[]   @relation("UserBlocking")
+  blockedBy        Block[]   @relation("UserBlocked")
+  sentMessages     Message[] @relation("UserSentMessages")
   receivedMessages Message[] @relation("UserReceivedMessages")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  Game          Game[]
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  Game             Game[]
 }
 
 model VerificationToken {
@@ -166,15 +166,15 @@ model Follow {
 }
 
 model Message {
-  id           String   @id @default(cuid())
-  content      String   @db.Text
-  readAt       DateTime?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  sender       User     @relation("UserSentMessages", fields: [senderId], references: [id], onDelete: Cascade)
-  senderId     String
-  recipient    User     @relation("UserReceivedMessages", fields: [recipientId], references: [id], onDelete: Cascade)
-  recipientId  String
+  id          String    @id @default(cuid())
+  content     String    @db.Text
+  readAt      DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  sender      User      @relation("UserSentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId    String
+  recipient   User      @relation("UserReceivedMessages", fields: [recipientId], references: [id], onDelete: Cascade)
+  recipientId String
 }
 
 model Block {

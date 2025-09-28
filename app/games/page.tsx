@@ -156,7 +156,7 @@ export default async function GamesPage({ searchParams }: PageProps) {
                 </div>
               </Link>
               <ArticleActionBar
-                itemId={game.id}
+                itemId={game.slug || game.id}
                 itemType="game"
                 shareUrl={`${baseUrl}/games/${game.slug}`}
                 commentHref={`/games/${game.slug}`}

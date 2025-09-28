@@ -24,6 +24,8 @@ interface GameItem {
   coverImage: string | null
   date: string
   author: GameAuthor | null
+  likesCount?: number
+  savesCount?: number
 }
 
 interface GamesResponse {
@@ -73,6 +75,8 @@ const fallbackGames: GameItem[] = sampleGames.map((game) => ({
     name: game.author.name,
     profile: { displayName: game.author.profile.displayName },
   },
+  likesCount: 0,
+  savesCount: 0,
 }))
 
 export default async function GamesPage({ searchParams }: PageProps) {
@@ -157,10 +161,15 @@ export default async function GamesPage({ searchParams }: PageProps) {
               </Link>
               <ArticleActionBar
                 itemId={game.slug || game.id}
+                itemSlug={game.slug}
                 itemType="game"
                 shareUrl={`${baseUrl}/games/${game.slug}`}
                 commentHref={`/games/${game.slug}`}
                 className="mt-6"
+                metrics={{
+                  likes: typeof game.likesCount === "number" ? game.likesCount : 0,
+                  saves: typeof game.savesCount === "number" ? game.savesCount : 0,
+                }}
               />
             </article>
           ))}

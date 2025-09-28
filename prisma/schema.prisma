@@ -70,6 +70,10 @@ model User {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
   Game             Game[]
+  newsLikes        NewsLike[]
+  newsSaves        NewsSave[]
+  gameLikes        GameLike[]
+  gameSaves        GameSave[]
 }
 
 model VerificationToken {
@@ -223,8 +227,11 @@ model News {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   likesCount  Int      @default(0)
+  savesCount  Int      @default(0)
   author      User?    @relation(fields: [authorId], references: [id])
   authorId    String?
+  likes       NewsLike[]
+  saves       NewsSave[]
 }
 
 model Game {
@@ -240,6 +247,54 @@ model Game {
   date       DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  likesCount Int      @default(0)
+  savesCount Int      @default(0)
+  likes      GameLike[]
+  saves      GameSave[]
+}
+
+model NewsLike {
+  id        String   @id @default(cuid())
+  news      News     @relation(fields: [newsId], references: [id], onDelete: Cascade)
+  newsId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([newsId, userId])
+}
+
+model NewsSave {
+  id        String   @id @default(cuid())
+  news      News     @relation(fields: [newsId], references: [id], onDelete: Cascade)
+  newsId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([newsId, userId])
+}
+
+model GameLike {
+  id        String   @id @default(cuid())
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([gameId, userId])
+}
+
+model GameSave {
+  id        String   @id @default(cuid())
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([gameId, userId])
 }
 
 model Times {

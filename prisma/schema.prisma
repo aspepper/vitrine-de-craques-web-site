@@ -50,9 +50,9 @@ model Session {
 }
 
 model User {
-  id               String    @id @default(cuid())
+  id               String     @id @default(cuid())
   name             String?
-  email            String?   @unique
+  email            String?    @unique
   passwordHash     String
   emailVerified    DateTime?
   image            String?
@@ -61,14 +61,14 @@ model User {
   videos           Video[]
   news             News[]
   profile          Profile?
-  following        Follow[]  @relation("UserFollowing")
-  followers        Follow[]  @relation("UserFollowers")
-  blocking         Block[]   @relation("UserBlocking")
-  blockedBy        Block[]   @relation("UserBlocked")
-  sentMessages     Message[] @relation("UserSentMessages")
-  receivedMessages Message[] @relation("UserReceivedMessages")
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  following        Follow[]   @relation("UserFollowing")
+  followers        Follow[]   @relation("UserFollowers")
+  blocking         Block[]    @relation("UserBlocking")
+  blockedBy        Block[]    @relation("UserBlocked")
+  sentMessages     Message[]  @relation("UserSentMessages")
+  receivedMessages Message[]  @relation("UserReceivedMessages")
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
   Game             Game[]
   newsLikes        NewsLike[]
   newsSaves        NewsSave[]
@@ -85,7 +85,7 @@ model VerificationToken {
 }
 
 model Profile {
-  id                    String   @id @default(cuid())
+  id                    String    @id @default(cuid())
   displayName           String?
   avatarUrl             String?
   bio                   String?
@@ -109,7 +109,7 @@ model Profile {
   peso                  String?
   pais                  String?
   uf                    String?
-  favoriteClubId        String?  @map("clube")
+  favoriteClubId        String?   @map("clube")
   nomeFantasia          String?
   emailClube            String?
   cidade                String?
@@ -131,33 +131,33 @@ model Profile {
   atletaEsporte         String?
   atletaModalidade      String?
   atletaObservacoes     String?
-  notifNovidades        Boolean? @default(false)
-  notifJogos            Boolean? @default(false)
-  notifEventos          Boolean? @default(false)
-  notifAtletas          Boolean? @default(false)
-  termos                Boolean? @default(false)
-  lgpdWhatsappNoticias  Boolean? @default(false)
-  lgpdWhatsappConvites  Boolean? @default(false)
-  favoriteClub          Times?   @relation(fields: [favoriteClubId], references: [id])
-  user                  User     @relation(fields: [userId], references: [id])
-  userId                String   @unique
+  notifNovidades        Boolean?  @default(false)
+  notifJogos            Boolean?  @default(false)
+  notifEventos          Boolean?  @default(false)
+  notifAtletas          Boolean?  @default(false)
+  termos                Boolean?  @default(false)
+  lgpdWhatsappNoticias  Boolean?  @default(false)
+  lgpdWhatsappConvites  Boolean?  @default(false)
+  favoriteClub          Times?    @relation(fields: [favoriteClubId], references: [id])
+  user                  User      @relation(fields: [userId], references: [id])
+  userId                String    @unique
   comments              Comment[]
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 }
 
 model Video {
-  id           String   @id @default(cuid())
-  title        String
-  description  String?
-  videoUrl     String
-  thumbnailUrl String?
-  likesCount   Int      @default(0)
-  commentsCount Int     @default(0)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  user         User     @relation(fields: [userId], references: [id])
-  userId       String
+  id            String   @id @default(cuid())
+  title         String
+  description   String?
+  videoUrl      String
+  thumbnailUrl  String?
+  likesCount    Int      @default(0)
+  commentsCount Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id])
+  userId        String
 }
 
 model Follow {
@@ -218,43 +218,43 @@ model Club {
 }
 
 model News {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique
-  excerpt     String?  @db.Text
-  content     String?  @db.Text
-  category    String?
-  coverImage  String?
-  publishedAt DateTime @default(now())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  likesCount  Int      @default(0)
-  savesCount  Int      @default(0)
-  commentsCount Int    @default(0)
-  author      User?    @relation(fields: [authorId], references: [id])
-  authorId    String?
-  likes       NewsLike[]
-  saves       NewsSave[]
+  id            String     @id @default(cuid())
+  title         String
+  slug          String     @unique
+  excerpt       String?    @db.Text
+  content       String?    @db.Text
+  category      String?
+  coverImage    String?
+  publishedAt   DateTime   @default(now())
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  likesCount    Int        @default(0)
+  savesCount    Int        @default(0)
+  commentsCount Int        @default(0)
+  author        User?      @relation(fields: [authorId], references: [id])
+  authorId      String?
+  likes         NewsLike[]
+  saves         NewsSave[]
 }
 
 model Game {
-  id         String   @id @default(cuid())
-  slug       String   @unique
-  title      String?
-  category   String?
-  excerpt    String?  @db.Text
-  content    String?  @db.Text
-  coverImage String?
-  author     User?    @relation(fields: [authorId], references: [id])
-  authorId   String?
-  date       DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  likesCount Int      @default(0)
-  savesCount Int      @default(0)
-  commentsCount Int   @default(0)
-  likes      GameLike[]
-  saves      GameSave[]
+  id            String     @id @default(cuid())
+  slug          String     @unique
+  title         String?
+  category      String?
+  excerpt       String?    @db.Text
+  content       String?    @db.Text
+  coverImage    String?
+  author        User?      @relation(fields: [authorId], references: [id])
+  authorId      String?
+  date          DateTime
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  likesCount    Int        @default(0)
+  savesCount    Int        @default(0)
+  commentsCount Int        @default(0)
+  likes         GameLike[]
+  saves         GameSave[]
 }
 
 enum CommentItemType {
@@ -264,19 +264,19 @@ enum CommentItemType {
 }
 
 model Comment {
-  id               String           @id @default(cuid())
-  itemType         CommentItemType
-  itemId           String
-  parentId         String?
-  content          String           @db.Text
-  authorProfileId  String?
-  authorName       String?
-  authorAvatarUrl  String?
-  createdAt        DateTime         @default(now())
-  updatedAt        DateTime         @updatedAt
-  parent           Comment?         @relation("CommentReplies", fields: [parentId], references: [id])
-  replies          Comment[]        @relation("CommentReplies")
-  authorProfile    Profile?         @relation(fields: [authorProfileId], references: [id])
+  id              String          @id @default(cuid())
+  itemType        CommentItemType
+  itemId          String
+  parentId        String?
+  content         String          @db.Text
+  authorProfileId String?
+  authorName      String?
+  authorAvatarUrl String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  parent          Comment?        @relation("CommentReplies", fields: [parentId], references: [id])
+  replies         Comment[]       @relation("CommentReplies")
+  authorProfile   Profile?        @relation(fields: [authorProfileId], references: [id])
 
   @@index([itemType, itemId])
   @@index([parentId])

@@ -38,6 +38,7 @@ interface FeedVideoComment {
   authorName: string;
   content: string;
   createdAt: string;
+  replies?: FeedVideoComment[];
 }
 
 interface Props {
@@ -65,6 +66,20 @@ const SAVED_STORAGE_KEY = "vitrine:feed:saved";
 
 function commentsStorageKey(videoId: string) {
   return `vitrine:feed:comments:${videoId}`;
+}
+
+function normalizeComments(comments: FeedVideoComment[]): FeedVideoComment[] {
+  return comments.map((comment) => ({
+    ...comment,
+    replies: normalizeComments(comment.replies ?? []),
+  }));
+}
+
+function countComments(comments: FeedVideoComment[]): number {
+  return comments.reduce((total, comment) => {
+    const repliesCount = countComments(comment.replies ?? []);
+    return total + 1 + repliesCount;
+  }, 0);
 }
 
 function readStorage<T>(key: string, fallback: T): T {
@@ -131,7 +146,7 @@ export function FeedVideoCard({
   const [liked, setLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const normalizedInitialComments = useMemo(
-    () => initialComments ?? [],
+    () => normalizeComments(initialComments ?? []),
     [initialComments],
   );
   const [comments, setComments] = useState<FeedVideoComment[]>(
@@ -139,6 +154,8 @@ export function FeedVideoCard({
   );
   const [isCommentPanelOpen, setIsCommentPanelOpen] = useState(false);
   const [commentInput, setCommentInput] = useState("");
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [replyInput, setReplyInput] = useState("");
   const [internalMuted, setInternalMuted] = useState(true);
   const [isUserPaused, setIsUserPaused] = useState(false);
   const isMuted = muted ?? internalMuted;
@@ -215,9 +232,8 @@ export function FeedVideoCard({
     const baseLikes = initialLikes;
     const likedIds = readStorage<string[]>(LIKED_STORAGE_KEY, []);
     const savedIds = readStorage<string[]>(SAVED_STORAGE_KEY, []);
-    const storedComments = readStorage<FeedVideoComment[]>(
-      commentsStorageKey(video.id),
-      [],
+    const storedComments = normalizeComments(
+      readStorage<FeedVideoComment[]>(commentsStorageKey(video.id), []),
     );
 
     const alreadyLiked = likedIds.includes(video.id);
@@ -234,8 +250,8 @@ export function FeedVideoCard({
 
   const formattedLikes = useMemo(() => numberFormatter.format(Math.max(likes, 0)), [likes]);
   const formattedCommentsCount = useMemo(
-    () => numberFormatter.format(comments.length),
-    [comments.length],
+    () => numberFormatter.format(countComments(comments)),
+    [comments],
   );
 
   const isPlaying = isActive && !isUserPaused;
@@ -293,6 +309,7 @@ export function FeedVideoCard({
       authorName: "Você",
       content,
       createdAt: new Date().toISOString(),
+      replies: [],
     };
 
     setComments((current) => {
@@ -302,6 +319,56 @@ export function FeedVideoCard({
     });
     setCommentInput("");
     setIsCommentPanelOpen(true);
+    setReplyingTo(null);
+    setReplyInput("");
+  };
+
+  const handleStartReply = (commentId: string) => {
+    setIsCommentPanelOpen(true);
+    setReplyingTo(commentId);
+    setReplyInput("");
+  };
+
+  const handleCancelReply = () => {
+    setReplyingTo(null);
+    setReplyInput("");
+  };
+
+  const handleSubmitReply = (
+    event: React.FormEvent<HTMLFormElement>,
+    parentId: string,
+  ) => {
+    event.preventDefault();
+    const content = replyInput.trim();
+    if (!content) {
+      return;
+    }
+
+    const newReply: FeedVideoComment = {
+      id: createCommentId(),
+      authorName: "Você",
+      content,
+      createdAt: new Date().toISOString(),
+      replies: [],
+    };
+
+    setComments((current) => {
+      const next = current.map((comment) => {
+        if (comment.id !== parentId) {
+          return comment;
+        }
+        const replies = comment.replies ?? [];
+        return {
+          ...comment,
+          replies: [newReply, ...replies],
+        };
+      });
+      writeStorage(commentsStorageKey(video.id), next);
+      return next;
+    });
+
+    setReplyInput("");
+    setReplyingTo(null);
   };
 
   const ActionButton = ({
@@ -388,7 +455,16 @@ export function FeedVideoCard({
             <ActionButton
               src="/icons/icon-comment.svg"
               alt="Comentários"
-              onClick={() => setIsCommentPanelOpen((value) => !value)}
+              onClick={() => {
+                setIsCommentPanelOpen((value) => {
+                  const next = !value;
+                  if (!next) {
+                    setReplyingTo(null);
+                    setReplyInput("");
+                  }
+                  return next;
+                });
+              }}
               active={isCommentPanelOpen}
               count={formattedCommentsCount}
             />
@@ -426,37 +502,9 @@ export function FeedVideoCard({
           </div>
 
           {isCommentPanelOpen ? (
-            <div className="pointer-events-none absolute inset-x-4 bottom-4">
+            <div className="pointer-events-none absolute inset-x-4 bottom-[128px] sm:bottom-[144px]">
               <div className="pointer-events-auto rounded-3xl bg-black/80 p-4 text-white shadow-[0_24px_60px_-40px_rgba(15,23,42,0.95)] backdrop-blur">
-                <div className="flex max-h-36 flex-col gap-3 overflow-y-auto pr-1">
-                  {comments.length > 0 ? (
-                    comments.map((comment) => {
-                      const createdAt = new Date(comment.createdAt);
-                      return (
-                        <div
-                          key={comment.id}
-                          className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2"
-                        >
-                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">
-                            {comment.authorName}
-                          </p>
-                          <p className="mt-1 text-sm leading-relaxed text-white/90">
-                            {comment.content}
-                          </p>
-                          <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/50">
-                            {commentDateFormatter.format(createdAt)}
-                          </p>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <p className="text-center text-xs text-white/70">
-                      Seja o primeiro a deixar um comentário sobre este vídeo.
-                    </p>
-                  )}
-                </div>
-
-                <form onSubmit={handleSubmitComment} className="mt-3 flex gap-2">
+                <form onSubmit={handleSubmitComment} className="flex gap-2">
                   <Input
                     value={commentInput}
                     onChange={(event) => setCommentInput(event.target.value)}
@@ -470,6 +518,100 @@ export function FeedVideoCard({
                     Enviar
                   </Button>
                 </form>
+
+                <div className="mt-3 flex max-h-60 flex-col gap-3 overflow-y-auto pr-1">
+                  {comments.length > 0 ? (
+                    comments.map((comment) => {
+                      const createdAt = new Date(comment.createdAt);
+                      return (
+                        <div key={comment.id}>
+                          <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/70">
+                              {comment.authorName}
+                            </p>
+                            <p className="mt-1 text-sm leading-relaxed text-white/90">
+                              {comment.content}
+                            </p>
+                            <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                              <p className="text-[10px] uppercase tracking-[0.16em] text-white/50">
+                                {commentDateFormatter.format(createdAt)}
+                              </p>
+                              <button
+                                type="button"
+                                onClick={() => handleStartReply(comment.id)}
+                                className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-300 transition hover:text-emerald-200"
+                              >
+                                Responder
+                              </button>
+                            </div>
+                          </div>
+
+                          {replyingTo === comment.id ? (
+                            <form
+                              onSubmit={(event) => handleSubmitReply(event, comment.id)}
+                              className="mt-2 flex flex-col gap-2 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-3"
+                            >
+                              <Input
+                                value={replyInput}
+                                onChange={(event) => setReplyInput(event.target.value)}
+                                placeholder="Escreva uma resposta"
+                                className="border-white/20 bg-white/10 text-white placeholder:text-white/60 focus-visible:ring-white/70"
+                              />
+                              <div className="flex justify-end gap-2">
+                                <Button
+                                  type="button"
+                                  variant="ghost"
+                                  size="sm"
+                                  rounded="lg"
+                                  className="border-transparent bg-transparent px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/70 hover:bg-white/10"
+                                  onClick={handleCancelReply}
+                                >
+                                  Cancelar
+                                </Button>
+                                <Button
+                                  type="submit"
+                                  size="sm"
+                                  rounded="lg"
+                                  className="px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em]"
+                                >
+                                  Enviar resposta
+                                </Button>
+                              </div>
+                            </form>
+                          ) : null}
+
+                          {comment.replies && comment.replies.length > 0 ? (
+                            <div className="mt-2 flex flex-col gap-2 border-l border-white/15 pl-3">
+                              {comment.replies.map((reply) => {
+                                const replyCreatedAt = new Date(reply.createdAt);
+                                return (
+                                  <div
+                                    key={reply.id}
+                                    className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2"
+                                  >
+                                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70">
+                                      {reply.authorName}
+                                    </p>
+                                    <p className="mt-1 text-[13px] leading-relaxed text-white/90">
+                                      {reply.content}
+                                    </p>
+                                    <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/50">
+                                      {commentDateFormatter.format(replyCreatedAt)}
+                                    </p>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <p className="text-center text-xs text-white/70">
+                      Seja o primeiro a deixar um comentário sobre este vídeo.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           ) : null}

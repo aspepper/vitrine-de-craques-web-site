@@ -16,6 +16,7 @@ interface ArticleActionBarProps {
   shareUrl: string;
   commentHref?: string;
   className?: string;
+  engagementUrl?: string | null;
   metrics?: {
     likes?: number;
     comments?: number;
@@ -77,6 +78,7 @@ export function ArticleActionBar({
   shareUrl,
   commentHref,
   className,
+  engagementUrl,
   metrics,
 }: ArticleActionBarProps) {
   const router = useRouter();
@@ -92,6 +94,7 @@ export function ArticleActionBar({
     shares: metrics?.shares ?? 0,
   }));
   const [mode, setMode] = useState<EngagementMode>("local-only");
+  const [engagementMetrics, setEngagementMetrics] = useState<ArticleActionBarProps["metrics"]>(metrics);
 
   const likeKey = useMemo(() => storageKey(itemType, "likes"), [itemType]);
   const saveKey = useMemo(() => storageKey(itemType, "saved"), [itemType]);
@@ -198,6 +201,51 @@ export function ArticleActionBar({
     setSaved(false);
     setInitialSaved(false);
   }, [itemId, likeKey, mode, saveKey]);
+
+  useEffect(() => {
+    setEngagementMetrics(metrics);
+  }, [metrics]);
+
+  useEffect(() => {
+    if (!engagementUrl) {
+      return;
+    }
+
+    const controller = new AbortController();
+
+    async function loadEngagement() {
+      try {
+        const response = await fetch(engagementUrl, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Falha ao buscar métricas em ${engagementUrl}`);
+        }
+
+        const data = (await response.json()) as ArticleActionBarProps["metrics"];
+
+        if (!controller.signal.aborted) {
+          setEngagementMetrics((current) => ({ ...current, ...data }));
+        }
+      } catch (error) {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        if (process.env.NODE_ENV !== "production") {
+          console.error("Não foi possível carregar as métricas de engajamento", error);
+        }
+      }
+    }
+
+    loadEngagement();
+
+    return () => {
+      controller.abort();
+    };
+  }, [engagementUrl]);
 
   const handleToggleLike = useCallback(() => {
     if (mode === "authenticated" && engagementUrl) {
@@ -356,7 +404,7 @@ export function ArticleActionBar({
   const saveCount = Math.max(0, baseMetrics.saves + saveDelta);
   const commentCount = Math.max(0, baseMetrics.comments);
   const shareCount = Math.max(0, baseMetrics.shares);
-
+  const resolvedMetrics = engagementMetrics ?? metrics;
   const formattedLikes = numberFormatter.format(likeCount);
   const formattedSaves = numberFormatter.format(saveCount);
   const formattedComments = numberFormatter.format(commentCount);

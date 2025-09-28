@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { VideoEngagementPanel } from "@/components/player/VideoEngagementPanel";
 import prisma from "@/lib/db";
 import { parseInterestedAthletes } from "@/lib/profile-interests";
 import { sampleVideos } from "@/lib/sample-videos";
@@ -37,15 +38,6 @@ type VideoDetails = {
   interestedAgents: AgentInfo[];
   comments: CommentInfo[];
 };
-
-const numberFormatter = new Intl.NumberFormat("pt-BR");
-const commentDateFormatter = new Intl.DateTimeFormat("pt-BR", {
-  day: "2-digit",
-  month: "long",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-});
 
 function initialsFromName(name: string) {
   return name
@@ -298,9 +290,6 @@ export default async function PlayerPage({ params }: { params: { id: string } })
     notFound();
   }
 
-  const formattedLikes = numberFormatter.format(video.likesCount);
-  const formattedCommentsCount = numberFormatter.format(video.comments.length);
-
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
       <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
@@ -321,81 +310,13 @@ export default async function PlayerPage({ params }: { params: { id: string } })
             </div>
 
             <div className="flex flex-1 flex-col gap-8">
-              <Card className="border-border/60 bg-card/80 shadow-[0_24px_72px_-48px_rgba(15,23,42,0.65)] backdrop-blur">
-                <CardHeader className="space-y-4">
-                  <span className="inline-flex rounded-full bg-secondary/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-secondary-foreground">
-                    Vídeo do atleta
-                  </span>
-                  <CardTitle className="font-heading text-4xl font-semibold leading-tight text-foreground">
-                    {video.title}
-                  </CardTitle>
-                  <div className="flex flex-wrap items-center gap-4 text-sm font-medium text-muted-foreground">
-                    <span>{formattedLikes} curtidas</span>
-                    <span aria-hidden className="text-muted-foreground/60">
-                      •
-                    </span>
-                    <span>{formattedCommentsCount} comentários</span>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3 text-base leading-relaxed text-foreground/90">
-                  {video.description ? (
-                    <p>{video.description}</p>
-                  ) : (
-                    <p className="text-muted-foreground">
-                      Este vídeo ainda não possui uma descrição detalhada.
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
-
-              <Card className="border-border/60 bg-card/80 shadow-[0_24px_72px_-48px_rgba(15,23,42,0.65)] backdrop-blur">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-foreground">
-                    Comentários
-                  </CardTitle>
-                  <CardDescription>
-                    Feedbacks publicados por agentes e clubes que assistiram ao conteúdo.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-5">
-                  {video.comments.length > 0 ? (
-                    <ul className="flex flex-col gap-4">
-                      {video.comments.map((comment) => {
-                        const initials = initialsFromName(comment.authorName);
-                        const commentDate = comment.createdAt ? new Date(comment.createdAt) : null;
-                        const formattedDate = commentDate ? commentDateFormatter.format(commentDate) : null;
-
-                        return (
-                          <li
-                            key={comment.id}
-                            className="flex gap-4 rounded-3xl border border-border/60 bg-background/40 px-5 py-4 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.7)] backdrop-blur"
-                          >
-                            <Avatar className="h-12 w-12">
-                              {comment.authorAvatarUrl ? (
-                                <AvatarImage src={comment.authorAvatarUrl} alt={comment.authorName} />
-                              ) : null}
-                              <AvatarFallback>{initials}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex flex-1 flex-col gap-2">
-                              <div className="flex flex-wrap items-center gap-2">
-                                <span className="font-medium text-foreground">{comment.authorName}</span>
-                                {formattedDate ? (
-                                  <span className="text-xs text-muted-foreground">{formattedDate}</span>
-                                ) : null}
-                              </div>
-                              <p className="text-sm leading-relaxed text-foreground/90">{comment.content}</p>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  ) : (
-                    <div className="rounded-3xl border border-dashed border-border/60 bg-background/30 px-6 py-8 text-center text-muted-foreground">
-                      Nenhum comentário foi registrado para este vídeo até o momento.
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+              <VideoEngagementPanel
+                videoId={video.id}
+                title={video.title}
+                description={video.description}
+                initialLikes={video.likesCount}
+                initialComments={video.comments}
+              />
 
               <Card className="border-border/60 bg-card/80 shadow-[0_24px_72px_-48px_rgba(15,23,42,0.65)] backdrop-blur">
                 <CardHeader>

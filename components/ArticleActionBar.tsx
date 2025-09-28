@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 
 import { cn } from "@/lib/utils";
 
+export type ArticleActionType = "news" | "game";
+
 interface ArticleActionBarProps {
   itemId: string;
   itemSlug: string;

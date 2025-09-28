@@ -140,6 +140,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                 "news-cover"
               );
               const excerpt = news.excerpt ?? news.content?.slice(0, 220)?.concat("...") ?? "";
+              const actionBarId = news.slug || news.id;
 
               return (
                 <article
@@ -174,7 +175,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
 
                   <div className="mt-6 flex flex-col gap-3">
                     <ArticleActionBar
-                      itemId={news.id}
+                      itemId={actionBarId}
                       itemType="news"
                       shareUrl={`${baseUrl}/noticias/${news.slug}`}
                       commentHref={`/noticias/${news.slug}`}

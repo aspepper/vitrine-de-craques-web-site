@@ -58,6 +58,8 @@ interface Props {
   showOverlayActions?: boolean;
   initialLikes?: number;
   initialComments?: FeedVideoComment[];
+  initialSaves?: number;
+  initialShares?: number;
   isActive?: boolean;
   onActive?: (videoId: string) => void;
   muted?: boolean;
@@ -74,6 +76,7 @@ const commentDateFormatter = new Intl.DateTimeFormat("pt-BR", {
 
 const LIKED_STORAGE_KEY = "vitrine:feed:likes";
 const SAVED_STORAGE_KEY = "vitrine:feed:saved";
+const SHARE_COUNT_STORAGE_KEY = "vitrine:feed:share-counts";
 
 function commentsStorageKey(videoId: string) {
   return `vitrine:feed:comments:${videoId}`;
@@ -143,6 +146,8 @@ export function FeedVideoCard({
   showOverlayActions = true,
   initialLikes = 0,
   initialComments,
+  initialSaves = 0,
+  initialShares = 0,
   isActive = false,
   onActive,
   muted,
@@ -165,6 +170,8 @@ export function FeedVideoCard({
   const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [savedCount, setSavedCount] = useState(initialSaves);
+  const [shareCount, setShareCount] = useState(initialShares);
   const normalizedInitialComments = useMemo(
     () => normalizeComments(initialComments ?? []),
     [initialComments],
@@ -323,6 +330,7 @@ export function FeedVideoCard({
     const baseLikes = initialLikes;
     const likedIds = readStorage<string[]>(LIKED_STORAGE_KEY, []);
     const savedIds = readStorage<string[]>(SAVED_STORAGE_KEY, []);
+    const shareCounts = readStorage<Record<string, number>>(SHARE_COUNT_STORAGE_KEY, {});
     const storedComments = normalizeComments(
       readStorage<FeedVideoComment[]>(commentsStorageKey(video.id), []),
     );
@@ -330,19 +338,37 @@ export function FeedVideoCard({
     const alreadyLiked = likedIds.includes(video.id);
     setLiked(alreadyLiked);
     setLikes(baseLikes + (alreadyLiked ? 1 : 0));
-    setIsSaved(savedIds.includes(video.id));
+    const alreadySaved = savedIds.includes(video.id);
+    setIsSaved(alreadySaved);
+    setSavedCount(Math.max(0, initialSaves + (alreadySaved ? 1 : 0)));
+    const storedShares = shareCounts[video.id] ?? 0;
+    setShareCount(Math.max(0, initialShares + storedShares));
 
     if (storedComments.length > 0) {
       setComments(storedComments);
     } else {
       setComments(normalizedInitialComments);
     }
-  }, [video.id, initialLikes, normalizedInitialComments]);
+  }, [
+    video.id,
+    initialLikes,
+    normalizedInitialComments,
+    initialSaves,
+    initialShares,
+  ]);
 
   const formattedLikes = useMemo(() => numberFormatter.format(Math.max(likes, 0)), [likes]);
   const formattedCommentsCount = useMemo(
     () => numberFormatter.format(countComments(comments)),
     [comments],
+  );
+  const formattedSavedCount = useMemo(
+    () => numberFormatter.format(Math.max(savedCount, 0)),
+    [savedCount],
+  );
+  const formattedShareCount = useMemo(
+    () => numberFormatter.format(Math.max(shareCount, 0)),
+    [shareCount],
   );
 
   const isPlaying = isActive && !isUserPaused;
@@ -383,6 +409,7 @@ export function FeedVideoCard({
   const toggleSave = useCallback(() => {
     setIsSaved((current) => {
       const next = !current;
+      setSavedCount((value) => Math.max(0, value + (next ? 1 : -1)));
       toggleStoredId(SAVED_STORAGE_KEY, video.id, next);
       return next;
     });
@@ -619,24 +646,45 @@ export function FeedVideoCard({
               active={isSaved}
               activeIcon="/icons/icon-save-active.svg"
               disableActiveBackground
+              count={formattedSavedCount}
             />
             <ActionButton
               icon="/icons/icon-share.svg"
               alt="Compartilhar"
               onClick={() => {
-                if (
-                  typeof navigator !== "undefined" &&
-                  navigator.share &&
-                  typeof window !== "undefined"
-                ) {
+                if (typeof window === "undefined") {
+                  return;
+                }
+
+                const shareUrl = `${window.location.origin}/player/${video.id}`;
+
+                const registerShare = () => {
+                  setShareCount((value) => value + 1);
+                  const shareCounts = readStorage<Record<string, number>>(SHARE_COUNT_STORAGE_KEY, {});
+                  const nextCounts = {
+                    ...shareCounts,
+                    [video.id]: (shareCounts[video.id] ?? 0) + 1,
+                  };
+                  writeStorage(SHARE_COUNT_STORAGE_KEY, nextCounts);
+                };
+
+                if (typeof navigator !== "undefined" && navigator.share) {
                   navigator
                     .share({
                       title: video.title,
-                      url: `${window.location.origin}/player/${video.id}`,
+                      url: shareUrl,
                     })
+                    .then(registerShare)
                     .catch(() => {});
+                  return;
+                }
+
+                const clipboard = navigator.clipboard;
+                if (clipboard) {
+                  clipboard.writeText(shareUrl).then(registerShare).catch(() => {});
                 }
               }}
+              count={formattedShareCount}
             />
             <ActionButton
               icon="/icons/icon-report.svg"

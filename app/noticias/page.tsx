@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ArticleActionBar } from "@/components/ArticleActionBar";
 import { Button } from "@/components/ui/button";
 import { ensureImage } from "@/lib/ensureImage";
 import { sampleNews } from "@/lib/sample-news";
@@ -171,14 +172,22 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                     <p className="text-sm leading-relaxed text-muted-foreground">{excerpt}</p>
                   </div>
 
-                  <div className="mt-6 flex justify-end">
-                    <Button
-                      asChild
-                      size="sm"
-                      className="bg-primary px-6 text-sm font-semibold italic text-primary-foreground hover:bg-primary/90"
-                    >
-                      <Link href={`/noticias/${news.slug}`}>Ver completo</Link>
-                    </Button>
+                  <div className="mt-6 flex flex-col gap-3">
+                    <ArticleActionBar
+                      itemId={news.id}
+                      itemType="news"
+                      shareUrl={`${baseUrl}/noticias/${news.slug}`}
+                      commentHref={`/noticias/${news.slug}`}
+                    />
+                    <div className="flex justify-end">
+                      <Button
+                        asChild
+                        size="sm"
+                        className="bg-primary px-6 text-sm font-semibold italic text-primary-foreground hover:bg-primary/90"
+                      >
+                        <Link href={`/noticias/${news.slug}`}>Ver completo</Link>
+                      </Button>
+                    </div>
                   </div>
                 </article>
               );

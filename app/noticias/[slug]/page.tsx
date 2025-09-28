@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ArticleActionBar } from "@/components/ArticleActionBar";
+import { NewsArticleInteractive } from "@/components/news/NewsArticleInteractive";
 import prisma from "@/lib/db";
 import { ensureImage } from "@/lib/ensureImage";
+import { getSampleNewsComments } from "@/lib/sample-news-comments";
 import { sampleNews } from "@/lib/sample-news";
 
 interface PageProps {
@@ -101,6 +102,7 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
   );
 
   const paragraphs = article.content?.split(/\r?\n\r?\n/).filter(Boolean) ?? [];
+  const initialComments = getSampleNewsComments(article.slug);
 
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
@@ -133,28 +135,20 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
               <Image src={heroImage} alt={article.title} fill className="object-cover" priority />
             </div>
 
-            <ArticleActionBar
-              itemId={article.slug}
-              itemType="news"
+            <NewsArticleInteractive
+              key={article.slug}
+              articleSlug={article.slug}
               shareUrl={`${baseUrl}/noticias/${article.slug}`}
-              commentHref="#comentarios"
-              className="justify-center gap-8"
-            />
-
-            <div className="space-y-6 text-base leading-relaxed text-foreground">
-              {paragraphs.length > 0 ? (
-                paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
-              ) : (
-                <p>{article.content ?? "Conteúdo indisponível no momento."}</p>
-              )}
-            </div>
-
-            <section
-              id="comentarios"
-              className="rounded-3xl border border-dashed border-border/70 bg-background/50 px-6 py-8 text-center text-sm text-muted-foreground"
+              initialComments={initialComments}
             >
-              Os comentários estarão disponíveis em breve.
-            </section>
+              <div className="space-y-6 text-base leading-relaxed text-foreground">
+                {paragraphs.length > 0 ? (
+                  paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
+                ) : (
+                  <p>{article.content ?? "Conteúdo indisponível no momento."}</p>
+                )}
+              </div>
+            </NewsArticleInteractive>
           </article>
         </div>
       </main>

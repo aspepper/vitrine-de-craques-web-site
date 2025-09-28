@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { X } from "lucide-react";
 
 import type { Role } from "@prisma/client";
 
@@ -14,6 +17,14 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface Video {
   id: string;
@@ -138,6 +149,15 @@ export function FeedVideoCard({
   onMuteChange,
 }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
+  const router = useRouter();
+  const { status } = useSession();
+  const isAuthenticated = status === "authenticated";
+  const pendingActionRef = useRef<(() => void) | null>(null);
+  const preservePendingRef = useRef(false);
+  const [loginDialogOpen, setLoginDialogOpen] = useState(false);
+  const [loginDialogAction, setLoginDialogAction] = useState<
+    "save" | "comment" | null
+  >(null);
   const profileName =
     video.user?.profile?.displayName?.trim() ||
     video.user?.name?.trim() ||
@@ -160,6 +180,77 @@ export function FeedVideoCard({
   const [isUserPaused, setIsUserPaused] = useState(false);
   const isMuted = muted ?? internalMuted;
   const profileLink = resolveProfileHref(video.user?.profile);
+
+  const handleLoginDialogOpenChange = useCallback((open: boolean) => {
+    setLoginDialogOpen(open);
+    if (!open) {
+      if (!preservePendingRef.current) {
+        pendingActionRef.current = null;
+        setLoginDialogAction(null);
+      }
+      preservePendingRef.current = false;
+    }
+  }, []);
+
+  const openLoginDialog = useCallback(() => {
+    handleLoginDialogOpenChange(true);
+  }, [handleLoginDialogOpenChange]);
+
+  const closeLoginDialog = useCallback(
+    (preservePending = false) => {
+      preservePendingRef.current = preservePending;
+      handleLoginDialogOpenChange(false);
+    },
+    [handleLoginDialogOpenChange],
+  );
+
+  const requestAuthentication = useCallback(
+    (action: () => void, reason: "save" | "comment") => {
+      if (isAuthenticated) {
+        action();
+        return;
+      }
+
+      pendingActionRef.current = action;
+      setLoginDialogAction(reason);
+      openLoginDialog();
+    },
+    [isAuthenticated, openLoginDialog],
+  );
+
+  useEffect(() => {
+    if (!isAuthenticated || !pendingActionRef.current) {
+      return;
+    }
+
+    const action = pendingActionRef.current;
+    pendingActionRef.current = null;
+    setLoginDialogAction(null);
+    closeLoginDialog();
+    action();
+  }, [isAuthenticated, closeLoginDialog]);
+
+  const closeComments = useCallback(() => {
+    setIsCommentPanelOpen(false);
+    setReplyingTo(null);
+    setReplyInput("");
+  }, []);
+
+  useEffect(() => {
+    if (!isCommentPanelOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeComments();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [closeComments, isCommentPanelOpen]);
 
   useEffect(() => {
     if (muted === undefined) {
@@ -289,16 +380,28 @@ export function FeedVideoCard({
     });
   };
 
-  const handleToggleSave = () => {
+  const toggleSave = useCallback(() => {
     setIsSaved((current) => {
       const next = !current;
       toggleStoredId(SAVED_STORAGE_KEY, video.id, next);
       return next;
     });
-  };
+  }, [video.id]);
 
-  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSaveClick = useCallback(() => {
+    requestAuthentication(toggleSave, "save");
+  }, [requestAuthentication, toggleSave]);
+
+  const handleSubmitComment = (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
+    if (!isAuthenticated) {
+      requestAuthentication(() => {
+        setIsCommentPanelOpen(true);
+      }, "comment");
+      return;
+    }
     const content = commentInput.trim();
     if (!content) {
       return;
@@ -324,9 +427,11 @@ export function FeedVideoCard({
   };
 
   const handleStartReply = (commentId: string) => {
-    setIsCommentPanelOpen(true);
-    setReplyingTo(commentId);
-    setReplyInput("");
+    requestAuthentication(() => {
+      setIsCommentPanelOpen(true);
+      setReplyingTo(commentId);
+      setReplyInput("");
+    }, "comment");
   };
 
   const handleCancelReply = () => {
@@ -339,6 +444,13 @@ export function FeedVideoCard({
     parentId: string,
   ) => {
     event.preventDefault();
+    if (!isAuthenticated) {
+      requestAuthentication(() => {
+        setIsCommentPanelOpen(true);
+        setReplyingTo(parentId);
+      }, "comment");
+      return;
+    }
     const content = replyInput.trim();
     if (!content) {
       return;
@@ -370,6 +482,41 @@ export function FeedVideoCard({
     setReplyInput("");
     setReplyingTo(null);
   };
+
+  const handleCommentButtonClick = () => {
+    if (isCommentPanelOpen) {
+      closeComments();
+      return;
+    }
+
+    requestAuthentication(() => {
+      setIsCommentPanelOpen(true);
+    }, "comment");
+  };
+
+  const handleNavigateToLogin = useCallback(() => {
+    closeLoginDialog(true);
+    router.push("/login");
+  }, [closeLoginDialog, router]);
+
+  const handleNavigateToRegister = useCallback(() => {
+    closeLoginDialog(true);
+    router.push("/registrar-escolha-perfil");
+  }, [closeLoginDialog, router]);
+
+  const dialogContent = loginDialogAction
+    ? loginDialogAction === "save"
+      ? {
+          title: "Entre para salvar vídeos",
+          description:
+            "Crie uma conta ou faça login para guardar seus vídeos favoritos e acessá-los em qualquer dispositivo.",
+        }
+      : {
+          title: "Entre para comentar",
+          description:
+            "Crie uma conta ou faça login para participar das conversas e interagir com outros talentos.",
+        }
+    : null;
 
   const ActionButton = ({
     src,
@@ -412,12 +559,13 @@ export function FeedVideoCard({
   };
 
   return (
-    <div
-      className={cn(
-        "relative aspect-[9/16] w-full max-w-full overflow-hidden rounded-[32px] bg-slate-900 shadow-[0_24px_64px_-32px_rgba(15,23,42,0.65)] ring-1 ring-black/10 sm:max-w-sm",
-        className,
-      )}
-    >
+    <>
+      <div
+        className={cn(
+          "relative aspect-[9/16] w-full max-w-full overflow-hidden rounded-[32px] bg-slate-900 shadow-[0_24px_64px_-32px_rgba(15,23,42,0.65)] ring-1 ring-black/10 sm:max-w-sm",
+          className,
+        )}
+      >
       <video
         ref={ref}
         src={video.videoUrl}
@@ -455,23 +603,14 @@ export function FeedVideoCard({
             <ActionButton
               src="/icons/icon-comment.svg"
               alt="Comentários"
-              onClick={() => {
-                setIsCommentPanelOpen((value) => {
-                  const next = !value;
-                  if (!next) {
-                    setReplyingTo(null);
-                    setReplyInput("");
-                  }
-                  return next;
-                });
-              }}
+              onClick={handleCommentButtonClick}
               active={isCommentPanelOpen}
               count={formattedCommentsCount}
             />
             <ActionButton
               src="/icons/icon-save.svg"
               alt="Salvar vídeo"
-              onClick={handleToggleSave}
+              onClick={handleSaveClick}
               active={isSaved}
             />
             <ActionButton
@@ -504,6 +643,19 @@ export function FeedVideoCard({
           {isCommentPanelOpen ? (
             <div className="pointer-events-none absolute inset-x-4 bottom-[128px] sm:bottom-[144px]">
               <div className="pointer-events-auto rounded-3xl bg-black/80 p-4 text-white shadow-[0_24px_60px_-40px_rgba(15,23,42,0.95)] backdrop-blur">
+                <div className="mb-3 flex items-center justify-between gap-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                    Comentários
+                  </p>
+                  <button
+                    type="button"
+                    onClick={closeComments}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                  >
+                    <X className="h-4 w-4" aria-hidden />
+                    <span className="sr-only">Fechar comentários</span>
+                  </button>
+                </div>
                 <form onSubmit={handleSubmitComment} className="flex gap-2">
                   <Input
                     value={commentInput}
@@ -645,6 +797,38 @@ export function FeedVideoCard({
         </div>
       </div>
     </div>
+    <Dialog open={loginDialogOpen} onOpenChange={handleLoginDialogOpenChange}>
+      <DialogContent className="max-w-sm border-white/20 bg-slate-900/95 text-white">
+        {dialogContent ? (
+          <DialogHeader className="space-y-3 text-left">
+            <DialogTitle className="text-lg font-semibold text-white">
+              {dialogContent.title}
+            </DialogTitle>
+            <DialogDescription className="text-sm text-white/80">
+              {dialogContent.description}
+            </DialogDescription>
+          </DialogHeader>
+        ) : null}
+        <DialogFooter className="flex flex-col gap-2 sm:flex-col">
+          <Button
+            type="button"
+            className="h-11 w-full rounded-full bg-emerald-500 text-sm font-semibold text-white hover:bg-emerald-500/90"
+            onClick={handleNavigateToLogin}
+          >
+            Fazer login
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            className="h-11 w-full rounded-full border-white/40 bg-transparent text-sm font-semibold text-white hover:bg-white/10"
+            onClick={handleNavigateToRegister}
+          >
+            Criar conta
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+    </>
   );
 }
 

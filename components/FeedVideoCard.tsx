@@ -519,28 +519,32 @@ export function FeedVideoCard({
     : null;
 
   const ActionButton = ({
-    src,
+    icon,
     alt,
     onClick,
     active = false,
     count,
-    activeSrc,
+    activeIcon,
+    disableActiveBackground = false,
   }: {
-    src: string;
+    icon: string;
     alt: string;
     onClick: () => void;
     active?: boolean;
     count?: string;
-    activeSrc?: string;
+    activeIcon?: string;
+    disableActiveBackground?: boolean;
   }) => {
-    const iconSrc = active && activeSrc ? activeSrc : src;
+    const iconSrc = active && activeIcon ? activeIcon : icon;
 
     return (
       <div className="flex flex-col items-center gap-1">
         <button
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white transition hover:scale-105 hover:bg-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
-            active && "bg-emerald-500 text-white shadow-[0_12px_30px_-12px_rgba(16,185,129,0.75)]",
+            active &&
+              !disableActiveBackground &&
+              "bg-emerald-500 text-white shadow-[0_12px_30px_-12px_rgba(16,185,129,0.75)]",
           )}
           onClick={onClick}
           type="button"
@@ -581,40 +585,43 @@ export function FeedVideoCard({
         <>
           <div className="absolute bottom-10 right-2 flex flex-col gap-4">
             <ActionButton
-              src={isPlaying ? "/icons/icon-pause.svg" : "/icons/icon-play.svg"}
+              icon={isPlaying ? "/icons/icon-pause.svg" : "/icons/icon-play.svg"}
               alt={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
               onClick={handleTogglePlayback}
               active={isPlaying}
             />
             <ActionButton
-              src={isMuted ? "/icons/icon-volume-off.svg" : "/icons/icon-volume-on.svg"}
+              icon={isMuted ? "/icons/icon-volume-off.svg" : "/icons/icon-volume-on.svg"}
               alt={isMuted ? "Ativar som" : "Desativar som"}
               onClick={handleToggleMute}
               active={!isMuted}
             />
             <ActionButton
-              src="/icons/icon-like.svg"
+              icon="/icons/icon-like.svg"
               alt="Curtir"
               onClick={handleToggleLike}
               active={liked}
-              activeSrc="/icons/icon-like-active.svg"
+              activeIcon="/icons/icon-like-active.svg"
+              disableActiveBackground
               count={formattedLikes}
             />
             <ActionButton
-              src="/icons/icon-comment.svg"
+              icon="/icons/icon-comment.svg"
               alt="Comentários"
               onClick={handleCommentButtonClick}
               active={isCommentPanelOpen}
               count={formattedCommentsCount}
             />
             <ActionButton
-              src="/icons/icon-save.svg"
+              icon="/icons/icon-save.svg"
               alt="Salvar vídeo"
               onClick={handleSaveClick}
               active={isSaved}
+              activeIcon="/icons/icon-save-active.svg"
+              disableActiveBackground
             />
             <ActionButton
-              src="/icons/icon-share.svg"
+              icon="/icons/icon-share.svg"
               alt="Compartilhar"
               onClick={() => {
                 if (
@@ -632,7 +639,7 @@ export function FeedVideoCard({
               }}
             />
             <ActionButton
-              src="/icons/icon-report.svg"
+              icon="/icons/icon-report.svg"
               alt="Denunciar"
               onClick={() => {
                 console.info(`Denunciar vídeo ${video.id}`);

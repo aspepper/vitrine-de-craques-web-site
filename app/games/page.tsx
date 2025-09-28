@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
+import { ArticleActionBar } from "@/components/ArticleActionBar"
 import { Button } from "@/components/ui/button"
 import { sampleGames } from "@/lib/sample-games"
 
@@ -126,8 +127,11 @@ export default async function GamesPage({ searchParams }: PageProps) {
 
         <section className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {displayedGames.map((game) => (
-            <Link key={game.slug} href={`/games/${game.slug}`} className="group">
-              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card px-7 py-8 shadow-lg transition duration-200 ease-out group-hover:-translate-y-1">
+            <article
+              key={game.slug}
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card px-7 py-8 shadow-lg transition duration-200 ease-out group-hover:-translate-y-1"
+            >
+              <Link href={`/games/${game.slug}`} className="flex flex-1 flex-col">
                 <div className="flex items-center gap-3">
                   <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                     {game.category ?? "Game"}
@@ -150,8 +154,15 @@ export default async function GamesPage({ searchParams }: PageProps) {
                     <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </span>
                 </div>
-              </article>
-            </Link>
+              </Link>
+              <ArticleActionBar
+                itemId={game.id}
+                itemType="game"
+                shareUrl={`${baseUrl}/games/${game.slug}`}
+                commentHref={`/games/${game.slug}`}
+                className="mt-6"
+              />
+            </article>
           ))}
         </section>
 

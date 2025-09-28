@@ -9,6 +9,8 @@ import { logError } from '@/lib/error'
 import { ensureImage } from '@/lib/ensureImage'
 import { sampleNews } from '@/lib/sample-news'
 import { sampleGames } from '@/lib/sample-games'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 
 interface HighlightCardData {
   id: string
@@ -192,6 +194,8 @@ async function loadLatestGames(): Promise<GameCardData[]> {
 
 export default async function HomePage() {
   const databaseConfigured = Boolean(process.env.DATABASE_URL)
+  const session = await getServerSession(authOptions)
+  const isAuthenticated = Boolean(session)
 
   let highlights: HighlightCardData[] = []
   let latestNews: NewsCardData[] = []
@@ -294,9 +298,12 @@ export default async function HomePage() {
                   <div className="flex flex-wrap gap-4">
                     <Button
                       asChild
+                      variant={isAuthenticated ? 'secondary' : undefined}
                       className="h-14 rounded-full px-8 text-[16px] font-semibold shadow-sm"
                     >
-                      <Link href="/registrar-escolha-perfil">Registrar</Link>
+                      <Link href={isAuthenticated ? '/perfil' : '/registrar-escolha-perfil'}>
+                        {isAuthenticated ? 'Perfil' : 'Registrar'}
+                      </Link>
                     </Button>
 
                     <Button

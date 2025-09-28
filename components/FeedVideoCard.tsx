@@ -310,38 +310,44 @@ export function FeedVideoCard({
     onClick,
     active = false,
     count,
+    activeSrc,
   }: {
     src: string;
     alt: string;
     onClick: () => void;
     active?: boolean;
-      count?: string;
-    }) => (
+    count?: string;
+    activeSrc?: string;
+  }) => {
+    const iconSrc = active && activeSrc ? activeSrc : src;
+
+    return (
       <div className="flex flex-col items-center gap-1">
         <button
           className={cn(
-          "flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white transition hover:scale-105 hover:bg-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
-          active && "bg-emerald-500 text-white shadow-[0_12px_30px_-12px_rgba(16,185,129,0.75)]",
-        )}
-        onClick={onClick}
-        type="button"
-        aria-pressed={active}
-        title={alt}
-      >
-        <Image src={src} alt={alt} width={28} height={28} />
-      </button>
-      {count ? (
-        <span className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80">
-          {count}
-        </span>
-      ) : null}
-    </div>
-  );
+            "flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white transition hover:scale-105 hover:bg-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+            active && "bg-emerald-500 text-white shadow-[0_12px_30px_-12px_rgba(16,185,129,0.75)]",
+          )}
+          onClick={onClick}
+          type="button"
+          aria-pressed={active}
+          title={alt}
+        >
+          <Image src={iconSrc} alt={alt} width={28} height={28} />
+        </button>
+        {count ? (
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80">
+            {count}
+          </span>
+        ) : null}
+      </div>
+    );
+  };
 
   return (
     <div
       className={cn(
-        "relative aspect-[9/16] w-full max-w-sm overflow-hidden rounded-[32px] bg-slate-900 shadow-[0_24px_64px_-32px_rgba(15,23,42,0.65)] ring-1 ring-black/10",
+        "relative aspect-[9/16] w-full max-w-full overflow-hidden rounded-[32px] bg-slate-900 shadow-[0_24px_64px_-32px_rgba(15,23,42,0.65)] ring-1 ring-black/10 sm:max-w-sm",
         className,
       )}
     >
@@ -376,6 +382,7 @@ export function FeedVideoCard({
               alt="Curtir"
               onClick={handleToggleLike}
               active={liked}
+              activeSrc="/icons/icon-like-active.svg"
               count={formattedLikes}
             />
             <ActionButton

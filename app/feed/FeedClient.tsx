@@ -171,7 +171,7 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
             >
               <FeedVideoCard
                 video={video}
-                className="h-full max-h-[720px] w-full max-w-[420px]"
+                className="h-full max-h-[720px] w-full max-w-full md:max-w-[420px]"
                 initialLikes={video.likesCount ?? 0}
                 isActive={activeVideoId === video.id}
                 onActive={handleVideoInView}

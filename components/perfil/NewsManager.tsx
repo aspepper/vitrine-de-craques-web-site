@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { NewsCoverImageField } from "@/components/perfil/NewsCoverImageField"
 
 export type NewsManagerItem = {
   id: string
@@ -166,15 +167,7 @@ export function NewsManager({ initialNews }: NewsManagerProps) {
               className="min-h-[80px]"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="coverImage">Imagem de capa</Label>
-            <Input
-              id="coverImage"
-              name="coverImage"
-              placeholder="URL da imagem (opcional)"
-              type="url"
-            />
-          </div>
+          <NewsCoverImageField id="coverImage" name="coverImage" />
           <div className="grid gap-2">
             <Label htmlFor="content">Conteúdo</Label>
             <Textarea
@@ -350,14 +343,11 @@ function NewsManagerCard({ item, onUpdate, onDelete }: NewsManagerCardProps) {
               className="min-h-[70px]"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor={`coverImage-${item.id}`}>Imagem de capa</Label>
-            <Input
-              id={`coverImage-${item.id}`}
-              name="coverImage"
-              defaultValue={item.coverImage ?? ""}
-            />
-          </div>
+          <NewsCoverImageField
+            id={`coverImage-${item.id}`}
+            name="coverImage"
+            defaultValue={item.coverImage ?? null}
+          />
           <div className="grid gap-2">
             <Label htmlFor={`content-${item.id}`}>Conteúdo</Label>
             <Textarea

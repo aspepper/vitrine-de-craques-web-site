@@ -1,10 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { CommentItemType } from "@prisma/client"
 
 import { ArticleInteractive } from "@/components/articles/ArticleInteractive"
 import { ensureImage } from "@/lib/ensureImage"
 import { sampleGames } from "@/lib/sample-games"
+import { fetchCommentThreads } from "@/lib/comments"
+import type { CommentThread } from "@/types/comments"
 
 interface PageProps {
   params: { slug: string }
@@ -27,6 +30,7 @@ interface Game {
   author: GameAuthor | null
   likesCount: number
   savesCount: number
+  commentsCount: number
 }
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000"
@@ -71,6 +75,7 @@ const fallbackGames = new Map(
       },
       likesCount: 0,
       savesCount: 0,
+      commentsCount: 0,
     } satisfies Game,
   ])
 )
@@ -117,6 +122,10 @@ export default async function GameDetalhePage({ params }: PageProps) {
       <p>{game.content ?? "Conteúdo indisponível no momento."}</p>
     </section>
   )
+
+  const initialComments: CommentThread[] = process.env.DATABASE_URL
+    ? await fetchCommentThreads(CommentItemType.GAME, game.slug)
+    : []
 
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
@@ -167,7 +176,12 @@ export default async function GameDetalhePage({ params }: PageProps) {
                   shareUrl={`${baseUrl}/games/${game.slug}`}
                   itemType="game"
                   storageKeyPrefix="vitrine:games:comments"
-                  initialMetrics={{ likes: game.likesCount, saves: game.savesCount }}
+                  initialComments={initialComments}
+                  initialMetrics={{
+                    likes: game.likesCount,
+                    saves: game.savesCount,
+                    comments: game.commentsCount,
+                  }}
                   labels={{
                     commentDescription: "Compartilhe descobertas e memórias sobre este game.",
                     emptyStateMessage: "Seja o primeiro a comentar este game e iniciar a conversa.",

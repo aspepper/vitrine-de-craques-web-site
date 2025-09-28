@@ -2,12 +2,15 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import type { CommentThread } from "@/types/comments";
 
 interface CommentInfo {
   id: string;
@@ -39,10 +42,6 @@ const commentDateFormatter = new Intl.DateTimeFormat("pt-BR", {
 const LIKED_STORAGE_KEY = "vitrine:feed:likes";
 const SAVED_STORAGE_KEY = "vitrine:feed:saved";
 const SHARE_COUNT_STORAGE_KEY = "vitrine:feed:share-counts";
-
-function commentsStorageKey(videoId: string) {
-  return `vitrine:feed:comments:${videoId}`;
-}
 
 function readStorage<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") {
@@ -80,14 +79,6 @@ function toggleStoredId(key: string, id: string, enabled: boolean) {
   writeStorage(key, Array.from(current));
 }
 
-function createCommentId() {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
-    return crypto.randomUUID();
-  }
-
-  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-}
-
 function initialsFromName(name: string) {
   return name
     .split(/\s+/)
@@ -95,6 +86,16 @@ function initialsFromName(name: string) {
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("")
     .slice(0, 2) || "AG";
+}
+
+function threadToCommentInfo(thread: CommentThread): CommentInfo {
+  return {
+    id: thread.id,
+    authorName: thread.authorName,
+    authorAvatarUrl: thread.authorAvatarUrl,
+    content: thread.content,
+    createdAt: thread.createdAt,
+  } satisfies CommentInfo;
 }
 
 export function VideoEngagementPanel({
@@ -119,16 +120,25 @@ export function VideoEngagementPanel({
   );
   const [comments, setComments] = useState<CommentInfo[]>(normalizedInitialComments);
   const [commentInput, setCommentInput] = useState("");
+  const { status } = useSession();
+  const isAuthenticated = status === "authenticated";
+  const [isLoadingComments, setIsLoadingComments] = useState(false);
+  const [isSubmittingComment, setIsSubmittingComment] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+  const commentsEndpoint = useMemo(
+    () => `/api/videos/${encodeURIComponent(videoId)}/comments`,
+    [videoId],
+  );
+
+  useEffect(() => {
+    setComments(normalizedInitialComments);
+  }, [normalizedInitialComments]);
 
   useEffect(() => {
     const baseLikes = initialLikes;
     const likedIds = readStorage<string[]>(LIKED_STORAGE_KEY, []);
     const savedIds = readStorage<string[]>(SAVED_STORAGE_KEY, []);
     const shareCounts = readStorage<Record<string, number>>(SHARE_COUNT_STORAGE_KEY, {});
-    const storedComments = readStorage<CommentInfo[]>(
-      commentsStorageKey(videoId),
-      [],
-    );
 
     const alreadyLiked = likedIds.includes(videoId);
     setLiked(alreadyLiked);
@@ -138,17 +148,6 @@ export function VideoEngagementPanel({
     setSavedCount(Math.max(0, initialSaves + (alreadySaved ? 1 : 0)));
     const storedShares = shareCounts[videoId] ?? 0;
     setShareCount(Math.max(0, initialShares + storedShares));
-
-    if (storedComments.length > 0) {
-      setComments(
-        storedComments.map((comment) => ({
-          ...comment,
-          authorAvatarUrl: comment.authorAvatarUrl ?? null,
-        })),
-      );
-    } else {
-      setComments(normalizedInitialComments);
-    }
   }, [
     videoId,
     initialLikes,
@@ -156,6 +155,52 @@ export function VideoEngagementPanel({
     initialSaves,
     initialShares,
   ]);
+
+  useEffect(() => {
+    if (!commentsEndpoint) {
+      return;
+    }
+
+    let cancelled = false;
+    const controller = new AbortController();
+
+    async function loadComments() {
+      setIsLoadingComments(true);
+      try {
+        const response = await fetch(commentsEndpoint, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch comments (${response.status})`);
+        }
+
+        const data = (await response.json()) as CommentThread[];
+        if (!cancelled) {
+          setComments(data.map((thread) => threadToCommentInfo(thread)));
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error("Erro ao carregar comentários do vídeo", error);
+          setFeedbackMessage(
+            "Não foi possível carregar os comentários mais recentes. Exibindo a última versão conhecida.",
+          );
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoadingComments(false);
+        }
+      }
+    }
+
+    loadComments();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [commentsEndpoint]);
 
   useEffect(() => {
     if (!commentInputRef.current) {
@@ -250,8 +295,9 @@ export function VideoEngagementPanel({
     });
   };
 
-  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitComment = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const content = commentInput.trim();
     if (!content) {
       commentInputRef.current?.setCustomValidity("Informe um comentário antes de enviar");
@@ -259,23 +305,47 @@ export function VideoEngagementPanel({
       return;
     }
 
-    const newComment: CommentInfo = {
-      id: createCommentId(),
-      authorName: "Você",
-      authorAvatarUrl: null,
-      content,
-      createdAt: new Date().toISOString(),
-    };
+    if (!isAuthenticated) {
+      setFeedbackMessage("Faça login para comentar neste vídeo.");
+      return;
+    }
 
-    setComments((current) => {
-      const next = [newComment, ...current];
-      writeStorage(commentsStorageKey(videoId), next);
-      return next;
-    });
-    setCommentInput("");
-    requestAnimationFrame(() => {
-      commentInputRef.current?.focus();
-    });
+    commentInputRef.current?.setCustomValidity("");
+    setIsSubmittingComment(true);
+    setFeedbackMessage(null);
+
+    try {
+      const response = await fetch(commentsEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content }),
+      });
+
+      if (response.status === 401) {
+        setFeedbackMessage("Faça login para comentar neste vídeo.");
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(`Failed to publish comment (${response.status})`);
+      }
+
+      const data = (await response.json()) as { comment?: CommentThread };
+
+      if (data.comment) {
+        setComments((current) => [threadToCommentInfo(data.comment!), ...current]);
+      }
+
+      setCommentInput("");
+      requestAnimationFrame(() => {
+        commentInputRef.current?.focus();
+      });
+    } catch (error) {
+      console.error("Erro ao publicar comentário do vídeo", error);
+      setFeedbackMessage("Não foi possível publicar o comentário. Tente novamente em instantes.");
+    } finally {
+      setIsSubmittingComment(false);
+    }
   };
 
   return (
@@ -361,15 +431,38 @@ export function VideoEngagementPanel({
               placeholder="Adicionar comentário"
               className="flex-1"
               aria-label="Adicionar comentário"
+              disabled={isSubmittingComment || !isAuthenticated}
               required
             />
             <Button
               type="submit"
-              className="h-11 shrink-0 rounded-full bg-emerald-500 px-6 text-sm font-semibold text-white hover:bg-emerald-500/90"
+              className="h-11 shrink-0 rounded-full bg-emerald-500 px-6 text-sm font-semibold text-white transition hover:bg-emerald-500/90"
+              disabled={isSubmittingComment || !isAuthenticated}
             >
-              Enviar
+              {isSubmittingComment ? "Enviando..." : "Enviar"}
             </Button>
           </form>
+
+          {!isAuthenticated ? (
+            <p className="text-xs text-muted-foreground">
+              Faça login para publicar comentários. {" "}
+              <Link href="/login" className="text-emerald-600 hover:underline">
+                Acessar conta
+              </Link>
+            </p>
+          ) : null}
+
+          {feedbackMessage ? (
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+              {feedbackMessage}
+            </div>
+          ) : null}
+
+          {isLoadingComments && comments.length === 0 ? (
+            <div className="rounded-3xl border border-dashed border-border/60 bg-background/30 px-6 py-8 text-center text-muted-foreground">
+              Carregando comentários...
+            </div>
+          ) : null}
 
           {comments.length > 0 ? (
             <ul className="flex flex-col gap-4">

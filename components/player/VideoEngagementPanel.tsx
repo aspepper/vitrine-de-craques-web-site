@@ -23,6 +23,8 @@ interface PlayerVideoEngagementProps {
   description: string | null;
   initialLikes: number;
   initialComments: CommentInfo[];
+  initialSaves?: number;
+  initialShares?: number;
 }
 
 const numberFormatter = new Intl.NumberFormat("pt-BR");
@@ -36,6 +38,7 @@ const commentDateFormatter = new Intl.DateTimeFormat("pt-BR", {
 
 const LIKED_STORAGE_KEY = "vitrine:feed:likes";
 const SAVED_STORAGE_KEY = "vitrine:feed:saved";
+const SHARE_COUNT_STORAGE_KEY = "vitrine:feed:share-counts";
 
 function commentsStorageKey(videoId: string) {
   return `vitrine:feed:comments:${videoId}`;
@@ -100,12 +103,16 @@ export function VideoEngagementPanel({
   description,
   initialLikes,
   initialComments,
+  initialSaves = 0,
+  initialShares = 0,
 }: PlayerVideoEngagementProps) {
   const commentInputRef = useRef<HTMLInputElement>(null);
   const commentSectionRef = useRef<HTMLDivElement>(null);
   const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [savedCount, setSavedCount] = useState(initialSaves);
+  const [shareCount, setShareCount] = useState(initialShares);
   const normalizedInitialComments = useMemo(
     () => initialComments ?? [],
     [initialComments],
@@ -117,6 +124,7 @@ export function VideoEngagementPanel({
     const baseLikes = initialLikes;
     const likedIds = readStorage<string[]>(LIKED_STORAGE_KEY, []);
     const savedIds = readStorage<string[]>(SAVED_STORAGE_KEY, []);
+    const shareCounts = readStorage<Record<string, number>>(SHARE_COUNT_STORAGE_KEY, {});
     const storedComments = readStorage<CommentInfo[]>(
       commentsStorageKey(videoId),
       [],
@@ -125,7 +133,11 @@ export function VideoEngagementPanel({
     const alreadyLiked = likedIds.includes(videoId);
     setLiked(alreadyLiked);
     setLikes(baseLikes + (alreadyLiked ? 1 : 0));
-    setIsSaved(savedIds.includes(videoId));
+    const alreadySaved = savedIds.includes(videoId);
+    setIsSaved(alreadySaved);
+    setSavedCount(Math.max(0, initialSaves + (alreadySaved ? 1 : 0)));
+    const storedShares = shareCounts[videoId] ?? 0;
+    setShareCount(Math.max(0, initialShares + storedShares));
 
     if (storedComments.length > 0) {
       setComments(
@@ -137,7 +149,13 @@ export function VideoEngagementPanel({
     } else {
       setComments(normalizedInitialComments);
     }
-  }, [videoId, initialLikes, normalizedInitialComments]);
+  }, [
+    videoId,
+    initialLikes,
+    normalizedInitialComments,
+    initialSaves,
+    initialShares,
+  ]);
 
   useEffect(() => {
     if (!commentInputRef.current) {
@@ -158,6 +176,14 @@ export function VideoEngagementPanel({
     () => numberFormatter.format(comments.length),
     [comments.length],
   );
+  const formattedSavedCount = useMemo(
+    () => numberFormatter.format(Math.max(savedCount, 0)),
+    [savedCount],
+  );
+  const formattedShareCount = useMemo(
+    () => numberFormatter.format(Math.max(shareCount, 0)),
+    [shareCount],
+  );
 
   const handleToggleLike = () => {
     setLiked((current) => {
@@ -171,6 +197,7 @@ export function VideoEngagementPanel({
   const handleToggleSave = () => {
     setIsSaved((current) => {
       const next = !current;
+      setSavedCount((value) => Math.max(0, value + (next ? 1 : -1)));
       toggleStoredId(SAVED_STORAGE_KEY, videoId, next);
       return next;
     });
@@ -183,12 +210,20 @@ export function VideoEngagementPanel({
 
     const shareUrl = `${window.location.origin}/player/${videoId}`;
 
+    const registerShare = () => {
+      setShareCount((value) => value + 1);
+      const shareCounts = readStorage<Record<string, number>>(SHARE_COUNT_STORAGE_KEY, {});
+      const nextCounts = { ...shareCounts, [videoId]: (shareCounts[videoId] ?? 0) + 1 };
+      writeStorage(SHARE_COUNT_STORAGE_KEY, nextCounts);
+    };
+
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({
           title,
           url: shareUrl,
         });
+        registerShare();
         return;
       } catch (error) {
         console.error("Não foi possível compartilhar o vídeo", error);
@@ -196,7 +231,11 @@ export function VideoEngagementPanel({
     }
 
     try {
-      await navigator.clipboard?.writeText(shareUrl);
+      const clipboard = navigator.clipboard;
+      if (clipboard) {
+        await clipboard.writeText(shareUrl);
+        registerShare();
+      }
     } catch (error) {
       console.error("Não foi possível copiar o link para a área de transferência", error);
     }
@@ -289,11 +328,13 @@ export function VideoEngagementPanel({
               onClick={handleToggleSave}
               active={isSaved}
               disableActiveBackground
+              counter={formattedSavedCount}
             />
             <ActionButton
               icon="/icons/icon-share.svg"
               label="Compartilhar"
               onClick={handleShare}
+              counter={formattedShareCount}
             />
           </div>
         </CardContent>

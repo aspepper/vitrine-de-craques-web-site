@@ -32,7 +32,7 @@ export function Footer() {
           </p>
 
           <Link
-            href="https://wa.me/5500000000000"
+            href="https://wa.me/5511971668383"
             target="_blank"
             rel="noopener noreferrer"
             className="

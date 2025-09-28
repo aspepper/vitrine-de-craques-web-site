@@ -25,6 +25,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import type { CommentReply, CommentThread } from "@/types/comments";
 
 interface Video {
   id: string;
@@ -44,20 +45,12 @@ interface Video {
   };
 }
 
-interface FeedVideoComment {
-  id: string;
-  authorName: string;
-  content: string;
-  createdAt: string;
-  replies?: FeedVideoComment[];
-}
-
 interface Props {
   video: Video;
   className?: string;
   showOverlayActions?: boolean;
   initialLikes?: number;
-  initialComments?: FeedVideoComment[];
+  initialComments?: CommentThread[];
   initialSaves?: number;
   initialShares?: number;
   isActive?: boolean;
@@ -78,22 +71,15 @@ const LIKED_STORAGE_KEY = "vitrine:feed:likes";
 const SAVED_STORAGE_KEY = "vitrine:feed:saved";
 const SHARE_COUNT_STORAGE_KEY = "vitrine:feed:share-counts";
 
-function commentsStorageKey(videoId: string) {
-  return `vitrine:feed:comments:${videoId}`;
-}
-
-function normalizeComments(comments: FeedVideoComment[]): FeedVideoComment[] {
+function normalizeComments(comments: CommentThread[]): CommentThread[] {
   return comments.map((comment) => ({
     ...comment,
-    replies: normalizeComments(comment.replies ?? []),
+    replies: comment.replies ? [...comment.replies] : [],
   }));
 }
 
-function countComments(comments: FeedVideoComment[]): number {
-  return comments.reduce((total, comment) => {
-    const repliesCount = countComments(comment.replies ?? []);
-    return total + 1 + repliesCount;
-  }, 0);
+function countComments(comments: CommentThread[]): number {
+  return comments.reduce((total, comment) => total + 1 + comment.replies.length, 0);
 }
 
 function readStorage<T>(key: string, fallback: T): T {
@@ -132,14 +118,6 @@ function toggleStoredId(key: string, id: string, enabled: boolean) {
   writeStorage(key, Array.from(current));
 }
 
-function createCommentId() {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
-    return crypto.randomUUID();
-  }
-
-  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-}
-
 export function FeedVideoCard({
   video,
   className,
@@ -176,8 +154,11 @@ export function FeedVideoCard({
     () => normalizeComments(initialComments ?? []),
     [initialComments],
   );
-  const [comments, setComments] = useState<FeedVideoComment[]>(
+  const [comments, setComments] = useState<CommentThread[]>(
     normalizedInitialComments,
+  );
+  const [totalComments, setTotalComments] = useState(() =>
+    countComments(normalizedInitialComments),
   );
   const [isCommentPanelOpen, setIsCommentPanelOpen] = useState(false);
   const [commentInput, setCommentInput] = useState("");
@@ -185,8 +166,17 @@ export function FeedVideoCard({
   const [replyInput, setReplyInput] = useState("");
   const [internalMuted, setInternalMuted] = useState(true);
   const [isUserPaused, setIsUserPaused] = useState(false);
+  const [isLoadingComments, setIsLoadingComments] = useState(false);
+  const [isSubmittingComment, setIsSubmittingComment] = useState(false);
+  const [replySubmittingId, setReplySubmittingId] = useState<string | null>(null);
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+  const [replyErrors, setReplyErrors] = useState<Record<string, string | null>>({});
   const isMuted = muted ?? internalMuted;
   const profileLink = resolveProfileHref(video.user?.profile);
+  const commentsEndpoint = useMemo(
+    () => `/api/videos/${encodeURIComponent(video.id)}/comments`,
+    [video.id],
+  );
 
   const handleLoginDialogOpenChange = useCallback((open: boolean) => {
     setLoginDialogOpen(open);
@@ -331,9 +321,6 @@ export function FeedVideoCard({
     const likedIds = readStorage<string[]>(LIKED_STORAGE_KEY, []);
     const savedIds = readStorage<string[]>(SAVED_STORAGE_KEY, []);
     const shareCounts = readStorage<Record<string, number>>(SHARE_COUNT_STORAGE_KEY, {});
-    const storedComments = normalizeComments(
-      readStorage<FeedVideoComment[]>(commentsStorageKey(video.id), []),
-    );
 
     const alreadyLiked = likedIds.includes(video.id);
     setLiked(alreadyLiked);
@@ -343,12 +330,8 @@ export function FeedVideoCard({
     setSavedCount(Math.max(0, initialSaves + (alreadySaved ? 1 : 0)));
     const storedShares = shareCounts[video.id] ?? 0;
     setShareCount(Math.max(0, initialShares + storedShares));
-
-    if (storedComments.length > 0) {
-      setComments(storedComments);
-    } else {
-      setComments(normalizedInitialComments);
-    }
+    setComments(normalizedInitialComments);
+    setTotalComments(countComments(normalizedInitialComments));
   }, [
     video.id,
     initialLikes,
@@ -357,10 +340,59 @@ export function FeedVideoCard({
     initialShares,
   ]);
 
+  useEffect(() => {
+    if (!commentsEndpoint) {
+      return;
+    }
+
+    let cancelled = false;
+    const controller = new AbortController();
+
+    async function loadComments() {
+      setIsLoadingComments(true);
+      try {
+        const response = await fetch(commentsEndpoint, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch comments (${response.status})`);
+        }
+
+        const data = (await response.json()) as CommentThread[];
+        if (!cancelled) {
+          const normalized = normalizeComments(data);
+          setComments(normalized);
+          setTotalComments(countComments(normalized));
+          setFeedbackMessage(null);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error("Erro ao carregar comentários do feed", error);
+          setFeedbackMessage(
+            "Não foi possível carregar os comentários mais recentes deste vídeo.",
+          );
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoadingComments(false);
+        }
+      }
+    }
+
+    loadComments();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [commentsEndpoint]);
+
   const formattedLikes = useMemo(() => numberFormatter.format(Math.max(likes, 0)), [likes]);
   const formattedCommentsCount = useMemo(
-    () => numberFormatter.format(countComments(comments)),
-    [comments],
+    () => numberFormatter.format(Math.max(totalComments, 0)),
+    [totalComments],
   );
   const formattedSavedCount = useMemo(
     () => numberFormatter.format(Math.max(savedCount, 0)),
@@ -419,38 +451,72 @@ export function FeedVideoCard({
     requestAuthentication(toggleSave, "save");
   }, [requestAuthentication, toggleSave]);
 
-  const handleSubmitComment = (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isAuthenticated) {
-      requestAuthentication(() => {
-        setIsCommentPanelOpen(true);
-      }, "comment");
-      return;
-    }
+
     const content = commentInput.trim();
     if (!content) {
       return;
     }
 
-    const newComment: FeedVideoComment = {
-      id: createCommentId(),
-      authorName: "Você",
-      content,
-      createdAt: new Date().toISOString(),
-      replies: [],
+    const execute = async () => {
+      setIsSubmittingComment(true);
+      setFeedbackMessage(null);
+      try {
+        const response = await fetch(commentsEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content }),
+        });
+
+        if (response.status === 401) {
+          setFeedbackMessage("Faça login para comentar este vídeo.");
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(`Failed to publish comment (${response.status})`);
+        }
+
+        const data = (await response.json()) as {
+          comment?: CommentThread;
+          totalCount?: number;
+        };
+
+        if (data.comment) {
+          const [normalizedComment] = normalizeComments([data.comment]);
+          if (normalizedComment) {
+            setComments((current) => [normalizedComment, ...current]);
+          }
+        }
+
+        if (typeof data.totalCount === "number") {
+          setTotalComments(data.totalCount);
+        } else {
+          setTotalComments((current) => current + 1);
+        }
+
+        setCommentInput("");
+        setIsCommentPanelOpen(true);
+        setReplyingTo(null);
+        setReplyInput("");
+      } catch (error) {
+        console.error("Erro ao publicar comentário no feed", error);
+        setFeedbackMessage("Não foi possível publicar o comentário. Tente novamente em instantes.");
+      } finally {
+        setIsSubmittingComment(false);
+      }
     };
 
-    setComments((current) => {
-      const next = [newComment, ...current];
-      writeStorage(commentsStorageKey(video.id), next);
-      return next;
-    });
-    setCommentInput("");
-    setIsCommentPanelOpen(true);
-    setReplyingTo(null);
-    setReplyInput("");
+    if (!isAuthenticated) {
+      requestAuthentication(() => {
+        setIsCommentPanelOpen(true);
+        void execute();
+      }, "comment");
+      return;
+    }
+
+    void execute();
   };
 
   const handleStartReply = (commentId: string) => {
@@ -458,12 +524,22 @@ export function FeedVideoCard({
       setIsCommentPanelOpen(true);
       setReplyingTo(commentId);
       setReplyInput("");
+      setReplyErrors((current) => ({ ...current, [commentId]: null }));
     }, "comment");
   };
 
   const handleCancelReply = () => {
+    const parentId = replyingTo;
     setReplyingTo(null);
     setReplyInput("");
+    if (!parentId) {
+      return;
+    }
+    setReplyErrors((current) => {
+      const next = { ...current };
+      delete next[parentId];
+      return next;
+    });
   };
 
   const handleSubmitReply = (
@@ -483,31 +559,74 @@ export function FeedVideoCard({
       return;
     }
 
-    const newReply: FeedVideoComment = {
-      id: createCommentId(),
-      authorName: "Você",
-      content,
-      createdAt: new Date().toISOString(),
-      replies: [],
+    const execute = async () => {
+      setReplySubmittingId(parentId);
+      setReplyErrors((current) => ({ ...current, [parentId]: null }));
+      try {
+        const response = await fetch(commentsEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content, parentId }),
+        });
+
+        if (response.status === 401) {
+          setFeedbackMessage("Faça login para responder comentários.");
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(`Failed to publish reply (${response.status})`);
+        }
+
+        const data = (await response.json()) as {
+          reply?: CommentReply;
+          parentId?: string;
+          totalCount?: number;
+        };
+
+        if (data.reply && data.parentId) {
+          setComments((current) =>
+            current.map((comment) => {
+              if (comment.id !== data.parentId) {
+                return comment;
+              }
+              return {
+                ...comment,
+                replies: [data.reply!, ...comment.replies],
+              } satisfies CommentThread;
+            }),
+          );
+        }
+
+        if (typeof data.totalCount === "number") {
+          setTotalComments(data.totalCount);
+        } else {
+          setTotalComments((current) => current + 1);
+        }
+
+        setReplyInput("");
+        setReplyingTo(null);
+      } catch (error) {
+        console.error("Erro ao publicar resposta no feed", error);
+        setReplyErrors((current) => ({
+          ...current,
+          [parentId]: "Não foi possível publicar a resposta. Tente novamente.",
+        }));
+      } finally {
+        setReplySubmittingId(null);
+      }
     };
 
-    setComments((current) => {
-      const next = current.map((comment) => {
-        if (comment.id !== parentId) {
-          return comment;
-        }
-        const replies = comment.replies ?? [];
-        return {
-          ...comment,
-          replies: [newReply, ...replies],
-        };
-      });
-      writeStorage(commentsStorageKey(video.id), next);
-      return next;
-    });
+    if (!isAuthenticated) {
+      requestAuthentication(() => {
+        setIsCommentPanelOpen(true);
+        setReplyingTo(parentId);
+        void execute();
+      }, "comment");
+      return;
+    }
 
-    setReplyInput("");
-    setReplyingTo(null);
+    void execute();
   };
 
   const handleCommentButtonClick = () => {
@@ -711,25 +830,39 @@ export function FeedVideoCard({
                     <span className="sr-only">Fechar comentários</span>
                   </button>
                 </div>
-                <form onSubmit={handleSubmitComment} className="flex gap-2">
+                <form onSubmit={handleSubmitComment} className="flex flex-col gap-2">
                   <Input
                     value={commentInput}
                     onChange={(event) => setCommentInput(event.target.value)}
                     placeholder="Adicionar comentário"
                     className="flex-1 border-white/20 bg-white/10 text-white placeholder:text-white/60 focus-visible:ring-white/70"
+                    disabled={isSubmittingComment}
                   />
                   <Button
                     type="submit"
-                    className="rounded-full bg-emerald-500 px-5 text-sm font-semibold text-white hover:bg-emerald-500/90"
+                    className="self-end rounded-full bg-emerald-500 px-5 text-sm font-semibold text-white hover:bg-emerald-500/90"
+                    disabled={isSubmittingComment}
                   >
-                    Enviar
+                    {isSubmittingComment ? "Enviando..." : "Enviar"}
                   </Button>
                 </form>
 
+                {feedbackMessage ? (
+                  <div className="rounded-2xl border border-amber-300/60 bg-amber-400/10 px-3 py-2 text-xs text-amber-100">
+                    {feedbackMessage}
+                  </div>
+                ) : null}
+
                 <div className="mt-3 flex max-h-60 flex-col gap-3 overflow-y-auto pr-1">
-                  {comments.length > 0 ? (
+                  {isLoadingComments && comments.length === 0 ? (
+                    <p className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-xs text-white/70">
+                      Carregando comentários...
+                    </p>
+                  ) : comments.length > 0 ? (
                     comments.map((comment) => {
                       const createdAt = new Date(comment.createdAt);
+                      const isReplySubmitting = replySubmittingId === comment.id;
+                      const replyError = replyErrors[comment.id] ?? null;
                       return (
                         <div key={comment.id}>
                           <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
@@ -763,7 +896,11 @@ export function FeedVideoCard({
                                 onChange={(event) => setReplyInput(event.target.value)}
                                 placeholder="Escreva uma resposta"
                                 className="border-white/20 bg-white/10 text-white placeholder:text-white/60 focus-visible:ring-white/70"
+                                disabled={isReplySubmitting}
                               />
+                              {replyError ? (
+                                <p className="text-xs text-amber-200">{replyError}</p>
+                              ) : null}
                               <div className="flex justify-end gap-2">
                                 <Button
                                   type="button"
@@ -772,6 +909,7 @@ export function FeedVideoCard({
                                   rounded="lg"
                                   className="border-transparent bg-transparent px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/70 hover:bg-white/10"
                                   onClick={handleCancelReply}
+                                  disabled={isReplySubmitting}
                                 >
                                   Cancelar
                                 </Button>
@@ -780,8 +918,9 @@ export function FeedVideoCard({
                                   size="sm"
                                   rounded="lg"
                                   className="px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em]"
+                                  disabled={isReplySubmitting}
                                 >
-                                  Enviar resposta
+                                  {isReplySubmitting ? "Enviando..." : "Enviar resposta"}
                                 </Button>
                               </div>
                             </form>

@@ -3,9 +3,8 @@
 import {
   ArticleInteractive,
   ArticleInteractiveProps,
-  CommentReply,
-  CommentThread,
 } from "@/components/articles/ArticleInteractive";
+import type { CommentReply, CommentThread } from "@/types/comments";
 
 export type { CommentReply, CommentThread };
 

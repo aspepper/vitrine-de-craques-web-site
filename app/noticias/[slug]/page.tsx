@@ -1,12 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CommentItemType } from "@prisma/client";
 
 import { NewsArticleInteractive } from "@/components/news/NewsArticleInteractive";
 import prisma from "@/lib/db";
 import { ensureImage } from "@/lib/ensureImage";
-import { getSampleNewsComments } from "@/lib/sample-news-comments";
+import { fetchCommentThreads } from "@/lib/comments";
+import {
+  getSampleNewsComments,
+  type SampleNewsComment,
+} from "@/lib/sample-news-comments";
 import { sampleNews } from "@/lib/sample-news";
+import type { CommentThread } from "@/types/comments";
 
 interface PageProps {
   params: { slug: string };
@@ -23,6 +29,7 @@ interface ArticleData {
   authorName: string;
   likesCount: number;
   savesCount: number;
+  commentsCount: number;
 }
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
@@ -35,11 +42,20 @@ function formatPublishedAt(date: Date) {
   }).format(date);
 }
 
+function countSampleComments(comments: SampleNewsComment[]): number {
+  return comments.reduce((total, comment) => {
+    const replies = comment.replies ?? [];
+    return total + 1 + replies.length;
+  }, 0);
+}
+
 function mapSampleArticle(slug: string): ArticleData | null {
   const sample = sampleNews.find((news) => news.slug === slug);
   if (!sample) {
     return null;
   }
+
+  const sampleComments = getSampleNewsComments(slug);
 
   return {
     title: sample.title,
@@ -52,7 +68,26 @@ function mapSampleArticle(slug: string): ArticleData | null {
     authorName: sample.author.profile.displayName,
     likesCount: 0,
     savesCount: 0,
+    commentsCount: countSampleComments(sampleComments),
   };
+}
+
+function mapSampleComments(slug: string): CommentThread[] {
+  return getSampleNewsComments(slug).map((comment) => ({
+    id: comment.id,
+    authorName: comment.authorName,
+    authorAvatarUrl: comment.authorAvatarUrl ?? null,
+    content: comment.content,
+    createdAt: comment.createdAt,
+    replies:
+      comment.replies?.map((reply) => ({
+        id: reply.id,
+        authorName: reply.authorName,
+        authorAvatarUrl: reply.authorAvatarUrl ?? null,
+        content: reply.content,
+        createdAt: reply.createdAt,
+      })) ?? [],
+  }));
 }
 
 async function fetchArticle(slug: string): Promise<ArticleData | null> {
@@ -64,6 +99,7 @@ async function fetchArticle(slug: string): Promise<ArticleData | null> {
     const article = await prisma.news.findUnique({
       where: { slug },
       select: {
+        id: true,
         title: true,
         slug: true,
         excerpt: true,
@@ -73,6 +109,7 @@ async function fetchArticle(slug: string): Promise<ArticleData | null> {
         publishedAt: true,
         likesCount: true,
         savesCount: true,
+        commentsCount: true,
         author: {
           select: {
             name: true,
@@ -97,6 +134,7 @@ async function fetchArticle(slug: string): Promise<ArticleData | null> {
       authorName: article.author?.profile?.displayName ?? article.author?.name ?? "Equipe Vitrine",
       likesCount: article.likesCount,
       savesCount: article.savesCount,
+      commentsCount: article.commentsCount ?? 0,
     };
   } catch (error) {
     console.error(error);
@@ -118,7 +156,9 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
   );
 
   const paragraphs = article.content?.split(/\r?\n\r?\n/).filter(Boolean) ?? [];
-  const initialComments = getSampleNewsComments(article.slug);
+  const initialComments: CommentThread[] = process.env.DATABASE_URL
+    ? await fetchCommentThreads(CommentItemType.NEWS, article.slug)
+    : mapSampleComments(article.slug);
 
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
@@ -156,7 +196,11 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
               articleSlug={article.slug}
               shareUrl={`${baseUrl}/noticias/${article.slug}`}
               initialComments={initialComments}
-              initialMetrics={{ likes: article.likesCount, saves: article.savesCount }}
+                initialMetrics={{
+                  likes: article.likesCount,
+                  saves: article.savesCount,
+                  comments: article.commentsCount,
+                }}
             >
               <div className="space-y-6 text-base leading-relaxed text-foreground">
                 {paragraphs.length > 0 ? (

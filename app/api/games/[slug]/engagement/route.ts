@@ -24,6 +24,7 @@ export async function GET(req: NextRequest, { params }: Params) {
         id: true,
         likesCount: true,
         savesCount: true,
+        commentsCount: true,
       },
     })
 
@@ -64,7 +65,7 @@ export async function GET(req: NextRequest, { params }: Params) {
       metrics: {
         likes: game.likesCount,
         saves: game.savesCount,
-        comments: 0,
+        comments: game.commentsCount,
         shares: 0,
       },
       user: userState,
@@ -85,6 +86,7 @@ export async function POST(req: NextRequest, { params }: Params) {
         id: true,
         likesCount: true,
         savesCount: true,
+        commentsCount: true,
       },
     })
 
@@ -119,6 +121,7 @@ export async function POST(req: NextRequest, { params }: Params) {
 
     let likesCount = game.likesCount
     let savesCount = game.savesCount
+    const commentsCount = game.commentsCount
     let liked = Boolean(existingLike)
     let saved = Boolean(existingSave)
 
@@ -138,7 +141,7 @@ export async function POST(req: NextRequest, { params }: Params) {
             data: {
               likesCount: { increment: 1 },
             },
-            select: { likesCount: true, savesCount: true },
+            select: { likesCount: true, savesCount: true, commentsCount: true },
           }),
         ])
 
@@ -153,7 +156,7 @@ export async function POST(req: NextRequest, { params }: Params) {
             data: {
               likesCount: { decrement: 1 },
             },
-            select: { likesCount: true, savesCount: true },
+            select: { likesCount: true, savesCount: true, commentsCount: true },
           }),
         ])
 
@@ -177,7 +180,7 @@ export async function POST(req: NextRequest, { params }: Params) {
             data: {
               savesCount: { increment: 1 },
             },
-            select: { likesCount: true, savesCount: true },
+            select: { likesCount: true, savesCount: true, commentsCount: true },
           }),
         ])
 
@@ -192,7 +195,7 @@ export async function POST(req: NextRequest, { params }: Params) {
             data: {
               savesCount: { decrement: 1 },
             },
-            select: { likesCount: true, savesCount: true },
+            select: { likesCount: true, savesCount: true, commentsCount: true },
           }),
         ])
 
@@ -206,7 +209,7 @@ export async function POST(req: NextRequest, { params }: Params) {
       metrics: {
         likes: likesCount,
         saves: savesCount,
-        comments: 0,
+        comments: commentsCount,
         shares: 0,
       },
       user: {

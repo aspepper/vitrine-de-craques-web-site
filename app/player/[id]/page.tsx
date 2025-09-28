@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
+import { CommentItemType } from "@prisma/client";
 
 import { PlayerBackLink } from "@/components/player/BackLink";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { VideoEngagementPanel } from "@/components/player/VideoEngagementPanel";
 import prisma from "@/lib/db";
+import { fetchCommentThreads } from "@/lib/comments";
 import { parseInterestedAthletes } from "@/lib/profile-interests";
 import { sampleVideos } from "@/lib/sample-videos";
 
@@ -119,56 +121,15 @@ async function fetchAgentsFromInterestTable(videoId: string): Promise<AgentInfo[
 
 async function fetchVideoComments(videoId: string): Promise<CommentInfo[]> {
   try {
-    const existenceResult = await prisma.$queryRaw<
-      { exists: boolean }[]
-    >`SELECT to_regclass('public."VideoComment"') IS NOT NULL AS exists`;
+    const threads = await fetchCommentThreads(CommentItemType.VIDEO, videoId);
 
-    const tableExists = existenceResult[0]?.exists ?? false;
-    if (!tableExists) {
-      return [];
-    }
-
-    const rows = await prisma.$queryRaw<
-      {
-        id: string;
-        content: string | null;
-        createdAt: Date | null;
-        displayName: string | null;
-        name: string | null;
-        avatarUrl: string | null;
-      }[]
-    >`
-      SELECT
-        vc.id,
-        vc."content" AS "content",
-        vc."createdAt" AS "createdAt",
-        p."displayName" AS "displayName",
-        u.name AS name,
-        p."avatarUrl" AS "avatarUrl"
-      FROM "VideoComment" vc
-      LEFT JOIN "Profile" p ON p.id = vc."profileId"
-      LEFT JOIN "User" u ON u.id = p."userId"
-      WHERE vc."videoId" = ${videoId}
-      ORDER BY vc."createdAt" DESC
-    `;
-
-    return rows
-      .map((row) => {
-        const authorName = row.displayName?.trim() || row.name?.trim() || "Agente";
-        const content = row.content?.trim();
-        if (!content) {
-          return null;
-        }
-
-        return {
-          id: row.id,
-          authorName,
-          authorAvatarUrl: row.avatarUrl ?? null,
-          content,
-          createdAt: row.createdAt ? new Date(row.createdAt).toISOString() : null,
-        } satisfies CommentInfo;
-      })
-      .filter((comment): comment is CommentInfo => Boolean(comment));
+    return threads.map((thread) => ({
+      id: thread.id,
+      authorName: thread.authorName,
+      authorAvatarUrl: thread.authorAvatarUrl,
+      content: thread.content,
+      createdAt: thread.createdAt,
+    } satisfies CommentInfo));
   } catch (error) {
     console.error("Erro ao consultar comentários de vídeo", error);
     return [];

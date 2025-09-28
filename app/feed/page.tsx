@@ -167,8 +167,8 @@ export default async function FeedPage() {
 
         <section className="flex flex-1 flex-col gap-6 overflow-hidden lg:flex-row">
           <div className="flex w-full justify-center overflow-hidden">
-            <div className="relative flex h-[calc(100vh-200px)] w-full max-w-[560px] justify-center">
-              <div className="flex h-full w-full max-w-[460px] flex-col overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-black dark:shadow-[0_40px_120px_-40px_rgba(15,23,42,0.85)]">
+            <div className="relative flex h-[calc(100vh-200px)] w-full max-w-full justify-center lg:max-w-[560px]">
+              <div className="flex h-full w-full max-w-full flex-col overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-black dark:shadow-[0_40px_120px_-40px_rgba(15,23,42,0.85)] md:max-w-[460px]">
                 {initialVideos.length > 0 ? (
                   <FeedClient initialVideos={initialVideos} />
                 ) : (

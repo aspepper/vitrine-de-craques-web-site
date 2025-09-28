@@ -12,7 +12,15 @@ interface ArticleActionBarProps {
   shareUrl: string;
   commentHref?: string;
   className?: string;
+  metrics?: {
+    likes?: number;
+    comments?: number;
+    saves?: number;
+    shares?: number;
+  };
 }
+
+const numberFormatter = new Intl.NumberFormat("pt-BR");
 
 const STORAGE_PREFIX = "vitrine:articles";
 
@@ -62,10 +70,13 @@ export function ArticleActionBar({
   shareUrl,
   commentHref,
   className,
+  metrics,
 }: ArticleActionBarProps) {
   const router = useRouter();
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [initialLiked, setInitialLiked] = useState(false);
+  const [initialSaved, setInitialSaved] = useState(false);
 
   const likeKey = useMemo(() => storageKey(itemType, "likes"), [itemType]);
   const saveKey = useMemo(() => storageKey(itemType, "saved"), [itemType]);
@@ -73,8 +84,13 @@ export function ArticleActionBar({
   useEffect(() => {
     const likedIds = readStoredIds(likeKey);
     const savedIds = readStoredIds(saveKey);
-    setLiked(likedIds.includes(itemId));
-    setSaved(savedIds.includes(itemId));
+    const isInitiallyLiked = likedIds.includes(itemId);
+    const isInitiallySaved = savedIds.includes(itemId);
+
+    setLiked(isInitiallyLiked);
+    setSaved(isInitiallySaved);
+    setInitialLiked(isInitiallyLiked);
+    setInitialSaved(isInitiallySaved);
   }, [itemId, likeKey, saveKey]);
 
   const handleToggleLike = useCallback(() => {
@@ -117,42 +133,64 @@ export function ArticleActionBar({
       return;
     }
 
+    if (commentHref.startsWith("#")) {
+      if (typeof document === "undefined") {
+        return;
+      }
+
+      const target = document.querySelector(commentHref);
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
     router.push(commentHref);
   }, [commentHref, router]);
 
+  const likeDelta = liked === initialLiked ? 0 : liked ? 1 : -1;
+  const saveDelta = saved === initialSaved ? 0 : saved ? 1 : -1;
+
+  const likeCount = Math.max(0, (metrics?.likes ?? 0) + likeDelta);
+  const saveCount = Math.max(0, (metrics?.saves ?? 0) + saveDelta);
+  const commentCount = Math.max(0, metrics?.comments ?? 0);
+  const shareCount = Math.max(0, metrics?.shares ?? 0);
+
+  const formattedLikes = numberFormatter.format(likeCount);
+  const formattedSaves = numberFormatter.format(saveCount);
+  const formattedComments = numberFormatter.format(commentCount);
+  const formattedShares = numberFormatter.format(shareCount);
+
   return (
-    <div
-      className={cn(
-        "flex flex-wrap items-center gap-3 rounded-full border border-border/60 bg-background/60 px-4 py-2 text-sm font-semibold text-foreground/80",
-        className,
-      )}
-    >
+    <div className={cn("flex flex-wrap items-center gap-5", className)}>
       <ArticleActionButton
         icon="/icons/icon-like.svg"
         activeIcon="/icons/icon-like-active.svg"
-        label={liked ? "Curtido" : "Curtir"}
+        label={liked ? "Remover curtida" : "Curtir"}
         onClick={handleToggleLike}
         active={liked}
         disableActiveBackground
-      />
-      <ArticleActionButton
-        icon="/icons/icon-save.svg"
-        activeIcon="/icons/icon-save-active.svg"
-        label={saved ? "Salvo" : "Salvar"}
-        onClick={handleToggleSave}
-        active={saved}
-        disableActiveBackground
+        count={formattedLikes}
       />
       <ArticleActionButton
         icon="/icons/icon-comment.svg"
         label="Comentar"
         onClick={handleComment}
         disabled={!commentHref}
+        count={formattedComments}
+      />
+      <ArticleActionButton
+        icon="/icons/icon-save.svg"
+        activeIcon="/icons/icon-save-active.svg"
+        label={saved ? "Remover dos salvos" : "Salvar"}
+        onClick={handleToggleSave}
+        active={saved}
+        disableActiveBackground
+        count={formattedSaves}
       />
       <ArticleActionButton
         icon="/icons/icon-share.svg"
         label="Compartilhar"
         onClick={handleShare}
+        count={formattedShares}
       />
     </div>
   );
@@ -166,6 +204,7 @@ interface ArticleActionButtonProps {
   activeIcon?: string;
   disableActiveBackground?: boolean;
   disabled?: boolean;
+  count?: string;
 }
 
 function ArticleActionButton({
@@ -176,26 +215,32 @@ function ArticleActionButton({
   activeIcon,
   disableActiveBackground = false,
   disabled = false,
+  count,
 }: ArticleActionButtonProps) {
   const iconSrc = active && activeIcon ? activeIcon : icon;
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={cn(
-        "flex items-center gap-2 rounded-full border border-border/40 bg-background/40 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80 transition hover:border-foreground/40 hover:bg-background/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200",
-        active &&
-          !disableActiveBackground &&
-          "border-emerald-500 bg-emerald-500/10 text-emerald-600",
-        disabled && "cursor-not-allowed opacity-60",
-      )}
-    >
-      <span className="flex h-6 w-6 items-center justify-center">
-        <Image src={iconSrc} alt="" width={20} height={20} />
+    <div className="flex flex-col items-center gap-1 text-center">
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={disabled}
+        aria-label={label}
+        className={cn(
+          "flex h-12 w-12 items-center justify-center rounded-full border border-border/40 bg-foreground/5 text-foreground transition hover:scale-[1.03] hover:border-foreground/60 hover:bg-foreground/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200",
+          active &&
+            !disableActiveBackground &&
+            "border-emerald-500 bg-emerald-500/10 text-emerald-600 shadow-[0_12px_30px_-12px_rgba(16,185,129,0.75)]",
+          disabled &&
+            "cursor-not-allowed opacity-60 hover:scale-100 hover:border-border/40 hover:bg-foreground/5",
+        )}
+      >
+        <span className="sr-only">{label}</span>
+        <Image src={iconSrc} alt="" width={24} height={24} />
+      </button>
+      <span className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        {count}
       </span>
-      <span>{label}</span>
-    </button>
+    </div>
   );
 }

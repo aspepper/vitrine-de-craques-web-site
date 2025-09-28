@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ArticleActionBar } from "@/components/ArticleActionBar";
 import prisma from "@/lib/db";
 import { ensureImage } from "@/lib/ensureImage";
 import { sampleNews } from "@/lib/sample-news";
@@ -20,6 +21,8 @@ interface ArticleData {
   publishedAt: Date;
   authorName: string;
 }
+
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
 function formatPublishedAt(date: Date) {
   return new Intl.DateTimeFormat("pt-BR", {
@@ -130,6 +133,14 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
               <Image src={heroImage} alt={article.title} fill className="object-cover" priority />
             </div>
 
+            <ArticleActionBar
+              itemId={article.slug}
+              itemType="news"
+              shareUrl={`${baseUrl}/noticias/${article.slug}`}
+              commentHref="#comentarios"
+              className="justify-center gap-8"
+            />
+
             <div className="space-y-6 text-base leading-relaxed text-foreground">
               {paragraphs.length > 0 ? (
                 paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
@@ -137,6 +148,13 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
                 <p>{article.content ?? "Conteúdo indisponível no momento."}</p>
               )}
             </div>
+
+            <section
+              id="comentarios"
+              className="rounded-3xl border border-dashed border-border/70 bg-background/50 px-6 py-8 text-center text-sm text-muted-foreground"
+            >
+              Os comentários estarão disponíveis em breve.
+            </section>
           </article>
         </div>
       </main>

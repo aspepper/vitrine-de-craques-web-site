@@ -2,8 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import { ArticleActionBar } from "@/components/ArticleActionBar"
-import { Button } from "@/components/ui/button"
+import { ArticleInteractive } from "@/components/articles/ArticleInteractive"
 import { ensureImage } from "@/lib/ensureImage"
 import { sampleGames } from "@/lib/sample-games"
 
@@ -103,6 +102,18 @@ export default async function GameDetalhePage({ params }: PageProps) {
     .map((paragraph) => paragraph.trim())
     .filter(Boolean)
 
+  const articleBody = contentParagraphs.length > 0 ? (
+    <section className="space-y-6 text-base leading-relaxed text-muted-foreground">
+      {contentParagraphs.map((paragraph, index) => (
+        <p key={index}>{paragraph}</p>
+      ))}
+    </section>
+  ) : (
+    <section className="text-base leading-relaxed text-muted-foreground">
+      <p>{game.content ?? "Conteúdo indisponível no momento."}</p>
+    </section>
+  )
+
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
       <main className="container mx-auto flex-grow px-4 pb-20 pt-10">
@@ -146,34 +157,20 @@ export default async function GameDetalhePage({ params }: PageProps) {
               <div className="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <span>Por {getAuthorName(game.author)}</span>
               </div>
-              <ArticleActionBar
-                itemId={game.slug}
-                itemType="game"
-                shareUrl={`${baseUrl}/games/${game.slug}`}
-                commentHref="#comentarios"
-                className="mt-6 justify-center gap-8"
-              />
-              <Button
-                asChild
-                className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                <a href="#conteudo">Ler mais</a>
-              </Button>
-            </section>
-
-            {contentParagraphs.length > 0 ? (
-              <section id="conteudo" className="space-y-6 text-base leading-relaxed text-muted-foreground">
-                {contentParagraphs.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-              </section>
-            ) : null}
-
-            <section
-              id="comentarios"
-              className="rounded-3xl border border-dashed border-border/70 bg-background/50 px-6 py-8 text-center text-sm text-muted-foreground"
-            >
-              Os comentários estarão disponíveis em breve.
+              <div className="mt-8 space-y-8">
+                <ArticleInteractive
+                  articleSlug={game.slug}
+                  shareUrl={`${baseUrl}/games/${game.slug}`}
+                  itemType="game"
+                  storageKeyPrefix="vitrine:games:comments"
+                  labels={{
+                    commentDescription: "Compartilhe descobertas e memórias sobre este game.",
+                    emptyStateMessage: "Seja o primeiro a comentar este game e iniciar a conversa.",
+                  }}
+                >
+                  {articleBody}
+                </ArticleInteractive>
+              </div>
             </section>
           </article>
         </div>

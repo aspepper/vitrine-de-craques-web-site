@@ -29,7 +29,13 @@ export interface FeedVideo {
 
 const PAGE_SIZE = 6;
 
-export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
+export function FeedClient({
+  initialVideos,
+  queryString,
+}: {
+  initialVideos: FeedVideo[];
+  queryString?: string;
+}) {
   const [videos, setVideos] = useState(initialVideos);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialVideos.length === PAGE_SIZE);
@@ -42,6 +48,29 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
   const videosRef = useRef(videos);
   const pendingVideosRef = useRef(pendingVideos);
 
+  const filtersQuery = queryString ? queryString : "";
+
+  const buildUrl = useCallback(
+    (baseParams: Record<string, string | number>) => {
+      const params = new URLSearchParams();
+      for (const [key, value] of Object.entries(baseParams)) {
+        params.set(key, String(value));
+      }
+
+      if (filtersQuery) {
+        const extra = new URLSearchParams(filtersQuery);
+        extra.forEach((value, key) => {
+          if (!params.has(key)) {
+            params.set(key, value);
+          }
+        });
+      }
+
+      return `/api/videos?${params.toString()}`;
+    },
+    [filtersQuery],
+  );
+
   useEffect(() => {
     videosRef.current = videos;
   }, [videos]);
@@ -49,6 +78,13 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
   useEffect(() => {
     pendingVideosRef.current = pendingVideos;
   }, [pendingVideos]);
+
+  useEffect(() => {
+    setVideos(initialVideos);
+    setHasMore(initialVideos.length === PAGE_SIZE);
+    setPendingVideos([]);
+    setActiveVideoId(initialVideos[0]?.id ?? null);
+  }, [initialVideos]);
 
   const handleVideoInView = useCallback((videoId: string) => {
     setActiveVideoId(videoId);
@@ -61,7 +97,9 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
   const loadMore = async () => {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 300));
-    const res = await fetch(`/api/videos?skip=${videos.length}&take=${PAGE_SIZE}`);
+    const res = await fetch(
+      buildUrl({ skip: videos.length, take: PAGE_SIZE }),
+    );
     const more: FeedVideo[] = await res.json();
     setVideos((v) => [...v, ...more]);
     setHasMore(more.length === PAGE_SIZE);
@@ -72,7 +110,7 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
     let isMounted = true;
     const interval = setInterval(async () => {
       try {
-        const res = await fetch(`/api/videos?skip=0&take=${PAGE_SIZE}`);
+        const res = await fetch(buildUrl({ skip: 0, take: PAGE_SIZE }));
         if (!res.ok) {
           return;
         }
@@ -103,13 +141,16 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
       isMounted = false;
       clearInterval(interval);
     };
-  }, []);
+  }, [buildUrl]);
 
   const handleConsumeNewVideos = useCallback(async () => {
     let targetVideoId: string | null = null;
     try {
       const res = await fetch(
-        `/api/videos?skip=0&take=${Math.max(videosRef.current.length, PAGE_SIZE)}`,
+        buildUrl({
+          skip: 0,
+          take: Math.max(videosRef.current.length, PAGE_SIZE),
+        }),
       );
       if (!res.ok) {
         throw new Error("Não foi possível carregar novos vídeos");
@@ -138,7 +179,7 @@ export function FeedClient({ initialVideos }: { initialVideos: FeedVideo[] }) {
         });
       }
     }
-  }, []);
+  }, [buildUrl]);
 
   return (
     <div className="flex h-full w-full flex-1 flex-col">

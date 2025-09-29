@@ -10,6 +10,8 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
+import { buildVideoWhere } from '@/lib/video-filter-where'
+import { parseVideoFilters } from '@/lib/video-filters'
 import { deleteFileByUrl, extractKeyFromUrl, uploadFile } from '@/lib/storage'
 import ffmpeg from 'fluent-ffmpeg'
 import sharp from 'sharp'
@@ -204,9 +206,12 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const skip = parseInt(searchParams.get('skip') ?? '0', 10)
     const take = parseInt(searchParams.get('take') ?? '6', 10)
+    const filters = parseVideoFilters(searchParams)
+
     const videos = await prisma.video.findMany({
       skip,
       take,
+      where: buildVideoWhere(filters),
       orderBy: { createdAt: 'desc' },
       include: {
         user: {

@@ -9,8 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { buildVideoQueryString, parseVideoFilters } from "@/lib/video-filters";
-import type { VideoFilters } from "@/lib/video-filters";
-import type { Role } from "@prisma/client";
+import type { FilterableRole, VideoFilters } from "@/lib/video-filters";
 
 const CATEGORY_OPTIONS = [
   { label: "Todos", value: "" },
@@ -55,7 +54,7 @@ const STATES = [
 const QUICK_FILTERS = ["Categoria", "Estado", "Hashtags"] as const;
 
 type CategoryValue = (typeof CATEGORY_OPTIONS)[number]["value"];
-type RoleCategory = Extract<Role, CategoryValue>;
+type RoleCategory = FilterableRole;
 type StateValue = "" | (typeof STATES)[number];
 
 type FilterFormState = {

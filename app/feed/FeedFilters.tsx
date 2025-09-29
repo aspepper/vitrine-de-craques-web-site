@@ -67,6 +67,10 @@ type FilterFormState = {
   endDate: string;
 };
 
+function isRole(value: CategoryValue): value is Role {
+  return value !== "";
+}
+
 function normalizeStateValue(state: string | undefined): StateValue {
   if (!state) {
     return "";
@@ -130,10 +134,9 @@ export function FeedFilters() {
     event.preventDefault();
 
     const nextFilters: VideoFilters = {
-      category:
-        formState.category && formState.category !== ""
-          ? (formState.category as Role)
-          : undefined,
+      category: isRole(formState.category)
+        ? formState.category
+        : undefined,
       state: formState.state || undefined,
       hashtag: formState.hashtag ? `#${formState.hashtag.replace(/^#+/, "")}` : undefined,
       minAge: formState.minAge ? Number.parseInt(formState.minAge, 10) : undefined,

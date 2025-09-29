@@ -39,18 +39,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Se o projeto usa Prisma Client em runtime (ex.: em API Functions ou no app),
-      # gere o client ANTES do build para garantir que estará presente.
-      - name: Generate Prisma Client
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: npx prisma generate --schema prisma/schema.prisma
-
-      - name: Apply Prisma schema (deploy or push)
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: node scripts/prisma-deploy-or-push.mjs
-
       - name: Build web app (includes Prisma client)
         run: npm run build
         

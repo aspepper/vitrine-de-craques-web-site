@@ -6,7 +6,17 @@ import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/db";
 import { errorResponse, logApiError } from "@/lib/error";
 
-const roleEnum = z.enum(["TORCEDOR", "ATLETA", "RESPONSAVEL", "IMPRENSA", "CLUBE", "AGENTE"]);
+const roleEnum = z.enum([
+  "TORCEDOR",
+  "ATLETA",
+  "RESPONSAVEL",
+  "IMPRENSA",
+  "CLUBE",
+  "AGENTE",
+  "ADMINISTRADOR",
+  "SUPER",
+  "MODERADOR",
+]);
 
 const displayNameSchema = z
   .string({ required_error: "Informe um nome" })
@@ -107,6 +117,18 @@ const agenteSchema = baseSchema.extend({
   registroFifa: optionalString,
 });
 
+const administradorSchema = baseSchema.extend({
+  role: z.literal("ADMINISTRADOR"),
+});
+
+const superSchema = baseSchema.extend({
+  role: z.literal("SUPER"),
+});
+
+const moderadorSchema = baseSchema.extend({
+  role: z.literal("MODERADOR"),
+});
+
 const payloadSchema = z.discriminatedUnion("role", [
   torcedorSchema,
   atletaSchema,
@@ -114,6 +136,9 @@ const payloadSchema = z.discriminatedUnion("role", [
   imprensaSchema,
   clubeSchema,
   agenteSchema,
+  administradorSchema,
+  superSchema,
+  moderadorSchema,
 ]);
 
 function valueOrNull<T>(value: T | null | undefined) {
@@ -224,6 +249,11 @@ export async function PATCH(req: Request) {
         updateData.telefone = valueOrNull(payload.telefone);
         updateData.registroCbf = valueOrNull(payload.registroCbf);
         updateData.registroFifa = valueOrNull(payload.registroFifa);
+        break;
+      }
+      case "ADMINISTRADOR":
+      case "SUPER":
+      case "MODERADOR": {
         break;
       }
       default:

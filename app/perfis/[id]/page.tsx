@@ -18,6 +18,9 @@ const roleLabel: Partial<Record<Role, string>> = {
   TORCEDOR: "Torcedor",
   IMPRENSA: "Imprensa",
   RESPONSAVEL: "Responsável",
+  ADMINISTRADOR: "Administrador",
+  SUPER: "Super",
+  MODERADOR: "Moderador",
 };
 
 interface PageProps {

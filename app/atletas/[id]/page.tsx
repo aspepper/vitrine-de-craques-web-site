@@ -27,6 +27,9 @@ const roleLabels: Record<Role, string> = {
   TORCEDOR: "Torcedor",
   IMPRENSA: "Imprensa",
   RESPONSAVEL: "Responsável",
+  ADMINISTRADOR: "Administrador",
+  SUPER: "Super",
+  MODERADOR: "Moderador",
 };
 
 function getRoleLabel(role: Role | null | undefined) {

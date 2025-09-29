@@ -20,6 +20,9 @@ enum Role {
   TORCEDOR
   IMPRENSA
   RESPONSAVEL
+  ADMINISTRADOR
+  SUPER
+  MODERADOR
 }
 
 model Account {

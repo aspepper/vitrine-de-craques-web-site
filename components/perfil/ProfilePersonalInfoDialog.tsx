@@ -168,6 +168,9 @@ const schemaMap: SchemaMap = {
     registroCbf: z.string().optional(),
     registroFifa: z.string().optional(),
   }),
+  ADMINISTRADOR: baseSchema,
+  SUPER: baseSchema,
+  MODERADOR: baseSchema,
 };
 
 function getDefaultValues(profile: EditableProfile): FormValues {
@@ -260,6 +263,10 @@ function getDefaultValues(profile: EditableProfile): FormValues {
         registroCbf: profile.registroCbf ?? "",
         registroFifa: profile.registroFifa ?? "",
       };
+    case "ADMINISTRADOR":
+    case "SUPER":
+    case "MODERADOR":
+      return base;
     default:
       return base;
   }
@@ -638,6 +645,10 @@ function RoleSpecificFields({ role, register, control, errors }: RoleSpecificFie
           </div>
         </div>
       );
+    case "ADMINISTRADOR":
+    case "SUPER":
+    case "MODERADOR":
+      return null;
     default:
       return null;
   }

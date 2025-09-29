@@ -1,7 +1,18 @@
 import type { Role } from "@prisma/client";
 
+const FILTERABLE_ROLES = [
+  "ATLETA",
+  "AGENTE",
+  "CLUBE",
+  "TORCEDOR",
+  "IMPRENSA",
+  "RESPONSAVEL",
+] satisfies Role[];
+
+export type FilterableRole = (typeof FILTERABLE_ROLES)[number];
+
 export interface VideoFilters {
-  category?: Role;
+  category?: FilterableRole;
   state?: string;
   hashtag?: string;
   startDate?: string;
@@ -65,7 +76,9 @@ export function parseVideoFilters(
   const maxAge = parseNumber(params.get("maxAge"));
 
   return {
-    category: category as Role | undefined,
+    category: FILTERABLE_ROLES.includes(category as Role)
+      ? (category as FilterableRole)
+      : undefined,
     state,
     hashtag,
     startDate,

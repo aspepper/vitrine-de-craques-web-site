@@ -67,10 +67,20 @@ type FilterFormState = {
   endDate: string;
 };
 
+function normalizeStateValue(state: string | undefined): StateValue {
+  if (!state) {
+    return "";
+  }
+
+  return STATES.includes(state as (typeof STATES)[number])
+    ? (state as StateValue)
+    : "";
+}
+
 function buildInitialState(filters: VideoFilters): FilterFormState {
   return {
     category: filters.category ?? "",
-    state: filters.state ?? "",
+    state: normalizeStateValue(filters.state),
     hashtag: filters.hashtag?.replace(/^#+/, "") ?? "",
     minAge: filters.minAge != null ? String(filters.minAge) : "",
     maxAge: filters.maxAge != null ? String(filters.maxAge) : "",
@@ -194,7 +204,7 @@ export function FeedFilters() {
           <select
             ref={stateRef}
             value={formState.state}
-            onChange={(event) => handleChange("state", event.target.value)}
+            onChange={(event) => handleChange("state", normalizeStateValue(event.target.value))}
             className="flex h-12 w-full appearance-none rounded-2xl border border-slate-200 bg-white px-4 pr-10 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/30 dark:border-white/15 dark:bg-white/5 dark:text-slate-100"
           >
             <option value="">Selecione</option>

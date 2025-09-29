@@ -42,6 +42,9 @@ const roleEnum = z.enum([
   'IMPRENSA',
   'CLUBE',
   'AGENTE',
+  'ADMINISTRADOR',
+  'SUPER',
+  'MODERADOR',
 ])
 
 const schema = z.object({ role: roleEnum, data: z.record(z.any()) })

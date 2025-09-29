@@ -33,6 +33,85 @@ type ConfederationSeed = {
   clubs?: { name: string }[]
 }
 
+type PrivilegedUserSeed = {
+  email: string
+  name: string
+  displayName: string
+  role: Role
+  bio: string
+}
+
+const privilegedUserSeeds: PrivilegedUserSeed[] = [
+  {
+    email: 'super@vitrinecraques.com',
+    name: 'Virtrine de Craques',
+    displayName: 'Virtrine de Craques',
+    role: Role.SUPER,
+    bio: 'Conta super administradora com acesso total à plataforma.',
+  },
+  {
+    email: 'admin@vitrinecraques.com',
+    name: 'Administrador Principal',
+    displayName: 'Administrador Principal',
+    role: Role.ADMINISTRADOR,
+    bio: 'Responsável pela gestão administrativa da plataforma.',
+  },
+  {
+    email: 'moderador1@vitrinecraques.com',
+    name: 'Moderador Norte',
+    displayName: 'Moderador Norte',
+    role: Role.MODERADOR,
+    bio: 'Moderação focada nas comunidades da região Norte.',
+  },
+  {
+    email: 'moderador2@vitrinecraques.com',
+    name: 'Moderador Sul',
+    displayName: 'Moderador Sul',
+    role: Role.MODERADOR,
+    bio: 'Moderação focada nas comunidades da região Sul.',
+  },
+]
+
+async function ensurePrivilegedUsers(hashedPassword: string) {
+  await Promise.all(
+    privilegedUserSeeds.map((seed) =>
+      prisma.user.upsert({
+        where: { email: seed.email },
+        update: {
+          name: seed.name,
+          passwordHash: hashedPassword,
+          profile: {
+            upsert: {
+              create: {
+                displayName: seed.displayName,
+                role: seed.role,
+                bio: seed.bio,
+              },
+              update: {
+                displayName: seed.displayName,
+                role: seed.role,
+                bio: seed.bio,
+              },
+            },
+          },
+        },
+        create: {
+          email: seed.email,
+          name: seed.name,
+          passwordHash: hashedPassword,
+          profile: {
+            create: {
+              displayName: seed.displayName,
+              role: seed.role,
+              bio: seed.bio,
+            },
+          },
+        },
+      })
+    )
+  )
+}
+
 function composeStatement(seed: ConfederationSeed) {
   return [
     `${seed.name} informa que ${seed.statementFocus}.`,
@@ -49,6 +128,27 @@ async function main() {
   console.log('Start seeding ...')
 
   const hashedPassword = await bcrypt.hash('senha@2025', 10)
+
+  const [existingUsers, existingConfederations] = await Promise.all([
+    prisma.user.count(),
+    prisma.confederation.count(),
+  ])
+
+  const hasExistingData = existingUsers > 0 || existingConfederations > 0
+  const forceBaseSeed = process.env.FORCE_BASE_SEED === 'true'
+
+  if (hasExistingData && !forceBaseSeed) {
+    console.log(
+      'Existing data detected. Ensuring privileged accounts are present and skipping base dataset seeding.'
+    )
+    await ensurePrivilegedUsers(hashedPassword)
+    console.log('Seeding finished.')
+    return
+  }
+
+  if (forceBaseSeed && hasExistingData) {
+    console.log('FORCE_BASE_SEED=true detected. Existing data will be replaced by seed data.')
+  }
 
   const seedGames = [
     {
@@ -670,6 +770,8 @@ async function main() {
 
     await prisma.confederation.create({ data })
   }
+
+  await ensurePrivilegedUsers(hashedPassword)
 
   const [agent1, agent2] = await Promise.all([
     prisma.user.create({

@@ -55,6 +55,7 @@ const STATES = [
 const QUICK_FILTERS = ["Categoria", "Estado", "Hashtags"] as const;
 
 type CategoryValue = (typeof CATEGORY_OPTIONS)[number]["value"];
+type RoleCategory = Extract<Role, CategoryValue>;
 type StateValue = "" | (typeof STATES)[number];
 
 type FilterFormState = {
@@ -67,7 +68,7 @@ type FilterFormState = {
   endDate: string;
 };
 
-function isRole(value: CategoryValue): value is Role {
+function isRole(value: CategoryValue): value is RoleCategory {
   return value !== "";
 }
 

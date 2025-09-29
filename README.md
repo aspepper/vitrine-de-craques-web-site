@@ -78,11 +78,11 @@ O aviso não interrompe o build, mas o upload de vídeos só funcionará se o bi
 
 ### Volta um migration específico
 
-% npx prisma migrate resolve --rolled-back "20241021120000_add_confederation_details" --schema prisma/schema.prisma
+% npx prisma migrate resolve --rolled-back "" --schema prisma/schema.prisma
 
 ### Aplica um migration
 
-% npx prisma migrate resolve --applied "20251104120000_profile_club_relation" --schema prisma/schema.prisma
+% npx prisma migrate resolve --applied "" --schema prisma/schema.prisma
 
 ### Limpa todos os migrations e zera a base de dados
 
@@ -141,4 +141,14 @@ psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-summer-bush-a8oiqmqm-pooler.
 
 % git tag -a v1.2.0 -m "Release ..."
 % git push origin v1.2.0
+
+
+
+
+
+
+psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" -c 'SELECT migration_name, finished_at FROM "_prisma_migrations" WHERE finished_at IS NOT NULL ORDER BY finished_at DESC LIMIT 1;'
+
+psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-summer-bush-a8oiqmqm-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" -c 'SELECT migration_name, finished_at FROM "_prisma_migrations" WHERE finished_at IS NOT NULL ORDER BY finished_at DESC LIMIT 1;'
+
 

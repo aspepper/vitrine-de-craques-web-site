@@ -1,22 +1,33 @@
 import Image from "next/image";
-import { Calendar, ChevronDown, Filter, Hash, MapPin, PlayCircle } from "lucide-react";
+import { Filter } from "lucide-react";
 
 import ApiError from "@/components/ApiError";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { logError } from "@/lib/error";
+import { buildVideoWhere } from "@/lib/video-filter-where";
+import { buildVideoQueryString, parseVideoFilters } from "@/lib/video-filters";
 import { FeedClient, type FeedVideo } from "./FeedClient";
+import { FeedFilters } from "./FeedFilters";
 
-export default async function FeedPage() {
+interface FeedPageProps {
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
+export default async function FeedPage({
+  searchParams = {},
+}: FeedPageProps) {
   let initialVideos: FeedVideo[] = [];
   let loadError = false;
+
+  const filters = parseVideoFilters(searchParams);
+  const queryString = buildVideoQueryString(filters);
 
   if (process.env.DATABASE_URL) {
     try {
       const { default: prisma } = await import("@/lib/db");
       initialVideos = await prisma.video.findMany({
         take: 6,
+        where: buildVideoWhere(filters),
         orderBy: { createdAt: "desc" },
         include: {
           user: {
@@ -53,8 +64,6 @@ export default async function FeedPage() {
     { label: "#jogosdafinal", views: "612K" },
   ];
 
-  const quickFilters = ["Categoria", "Estado", "Hashtags"];
-
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 dark:text-slate-100">
       <main className="mx-auto flex w-full max-w-7xl flex-1 gap-6 px-4 pb-16 pt-4 lg:px-8">
@@ -69,93 +78,7 @@ export default async function FeedPage() {
             </div>
           </div>
 
-          <form className="flex flex-col gap-5">
-            <div className="flex flex-wrap gap-2">
-              {quickFilters.map((item, index) => (
-                <button
-                  key={item}
-                  type="button"
-                  className={cn(
-                    "inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-600 transition hover:-translate-y-0.5 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:bg-transparent dark:text-emerald-200",
-                    index === 0 && "min-w-[156px] justify-center px-6 py-3 text-sm"
-                  )}
-                >
-                  {item === "Categoria" && <PlayCircle className="h-4 w-4" aria-hidden />}
-                  {item === "Estado" && <MapPin className="h-4 w-4" aria-hidden />}
-                  {item === "Hashtags" && <Hash className="h-4 w-4" aria-hidden />}
-                  <span>{item}</span>
-                </button>
-              ))}
-            </div>
-
-            <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-              Categoria
-              <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
-                <span>Todos</span>
-                <ChevronDown className="h-4 w-4 text-slate-400" aria-hidden />
-              </div>
-            </label>
-
-            <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-              Estado
-              <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
-                <span>Selecione</span>
-                <ChevronDown className="h-4 w-4 text-slate-400" aria-hidden />
-              </div>
-            </label>
-
-            <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-              Hashtag
-              <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
-                <Hash className="h-4 w-4 text-slate-400" aria-hidden />
-                <span className="text-xs uppercase tracking-[0.14em] text-slate-400">Digite uma hashtag</span>
-              </div>
-            </label>
-
-            <div className="grid grid-cols-2 gap-3">
-              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-                Idade mínima
-                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
-                  14 anos
-                </div>
-              </label>
-              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-                Idade máxima
-                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] dark:border-white/15 dark:bg-white/5 dark:text-slate-100">
-                  22 anos
-                </div>
-              </label>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-                Data inicial
-                <div className="relative">
-                  <Calendar className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
-                  <Input
-                    type="date"
-                    className="bg-white pl-11 pr-5 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] dark:bg-white/5 dark:text-slate-100"
-                    aria-label="Data inicial"
-                  />
-                </div>
-              </label>
-              <label className="flex flex-col gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-                Data final
-                <div className="relative">
-                  <Calendar className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
-                  <Input
-                    type="date"
-                    className="bg-white pl-11 pr-5 text-sm text-slate-600 shadow-[0_25px_60px_-40px_rgba(15,23,42,0.5)] dark:bg-white/5 dark:text-slate-100"
-                    aria-label="Data final"
-                  />
-                </div>
-              </label>
-            </div>
-
-            <Button className="h-12 w-full rounded-2xl bg-emerald-500 text-sm font-semibold text-white shadow-[0_18px_32px_-18px_rgba(34,197,94,0.8)] transition hover:-translate-y-0.5 hover:bg-emerald-500/90">
-              Aplicar filtros
-            </Button>
-          </form>
+          <FeedFilters />
 
           <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-700 dark:text-emerald-100">
             <p className="font-semibold">Dica</p>
@@ -170,7 +93,7 @@ export default async function FeedPage() {
             <div className="relative flex h-[calc(100vh-200px)] w-full max-w-full justify-center lg:max-w-[560px]">
               <div className="flex h-full w-full max-w-full flex-col overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-black dark:shadow-[0_40px_120px_-40px_rgba(15,23,42,0.85)] md:max-w-[460px]">
                 {initialVideos.length > 0 ? (
-                  <FeedClient initialVideos={initialVideos} />
+                  <FeedClient initialVideos={initialVideos} queryString={queryString} />
                 ) : (
                   <div className="flex h-full flex-col items-center justify-center gap-2 px-6 text-center text-sm text-slate-600 dark:text-slate-200">
                     {loadError ? (

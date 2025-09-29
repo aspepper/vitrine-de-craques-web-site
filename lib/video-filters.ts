@@ -76,9 +76,7 @@ export function parseVideoFilters(
   const maxAge = parseNumber(params.get("maxAge"));
 
   return {
-    category: FILTERABLE_ROLES.includes(category as Role)
-      ? (category as FilterableRole)
-      : undefined,
+    category: toFilterableRole(category),
     state,
     hashtag,
     startDate,
@@ -86,6 +84,10 @@ export function parseVideoFilters(
     minAge,
     maxAge,
   };
+}
+
+function toFilterableRole(value: string | null | undefined): FilterableRole | undefined {
+  return FILTERABLE_ROLES.find((role) => role === value);
 }
 
 export function buildVideoQueryString(filters: VideoFilters) {

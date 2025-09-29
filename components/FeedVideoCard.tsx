@@ -860,7 +860,10 @@ export function FeedVideoCard({
                     </p>
                   ) : comments.length > 0 ? (
                     comments.map((comment) => {
-                      const createdAt = new Date(comment.createdAt);
+                      const createdAt = comment.createdAt ? new Date(comment.createdAt) : null;
+                      const formattedCreatedAt = createdAt
+                        ? commentDateFormatter.format(createdAt)
+                        : null;
                       const isReplySubmitting = replySubmittingId === comment.id;
                       const replyError = replyErrors[comment.id] ?? null;
                       return (
@@ -874,7 +877,7 @@ export function FeedVideoCard({
                             </p>
                             <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                               <p className="text-[10px] uppercase tracking-[0.16em] text-white/50">
-                                {commentDateFormatter.format(createdAt)}
+                                {formattedCreatedAt ?? ""}
                               </p>
                               <button
                                 type="button"
@@ -929,7 +932,10 @@ export function FeedVideoCard({
                           {comment.replies && comment.replies.length > 0 ? (
                             <div className="mt-2 flex flex-col gap-2 border-l border-white/15 pl-3">
                               {comment.replies.map((reply) => {
-                                const replyCreatedAt = new Date(reply.createdAt);
+                                const replyCreatedAt = reply.createdAt ? new Date(reply.createdAt) : null;
+                                const formattedReplyCreatedAt = replyCreatedAt
+                                  ? commentDateFormatter.format(replyCreatedAt)
+                                  : null;
                                 return (
                                   <div
                                     key={reply.id}
@@ -942,7 +948,7 @@ export function FeedVideoCard({
                                       {reply.content}
                                     </p>
                                     <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/50">
-                                      {commentDateFormatter.format(replyCreatedAt)}
+                                      {formattedReplyCreatedAt ?? ""}
                                     </p>
                                   </div>
                                 );

@@ -87,7 +87,7 @@ export function FollowButton({
       <Button
         type="button"
         onClick={handleClick}
-        disabled={pending}
+        disabled={pending || isFollowing}
         aria-pressed={isFollowing}
         className={cn(
           "min-w-[140px] rounded-full px-6 py-2 text-sm font-semibold transition",

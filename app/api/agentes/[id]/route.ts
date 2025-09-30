@@ -10,6 +10,16 @@ export async function GET(req: Request, { params }: Params) {
   try {
     const profile = await prisma.profile.findUnique({
       where: { id: params.id },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+            email: true,
+          },
+        },
+      },
     })
     if (!profile || profile.role !== 'AGENTE') {
       return NextResponse.json({ message: 'Not found' }, { status: 404 })

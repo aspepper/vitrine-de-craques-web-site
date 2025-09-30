@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -34,10 +35,12 @@ export function FollowButton({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
   const router = useRouter();
+  const { status } = useSession();
   const isDarkAppearance = appearance === "dark";
+  const isAuthenticated = status === "authenticated";
 
   const handleClick = () => {
-    if (!canInteract) {
+    if (!canInteract && !isAuthenticated) {
       router.push(loginRedirectTo);
       return;
     }
@@ -48,10 +51,17 @@ export function FollowButton({
         const method = isFollowing ? "DELETE" : "POST";
         const response = await fetch(`/api/follows/${targetUserId}`, {
           method,
+          credentials: "include",
         });
 
         if (response.status === 401) {
-          router.push(loginRedirectTo);
+          if (!isAuthenticated) {
+            router.push(loginRedirectTo);
+            return;
+          }
+
+          router.refresh();
+          setErrorMessage("Não foi possível validar sua sessão. Tente novamente.");
           return;
         }
 

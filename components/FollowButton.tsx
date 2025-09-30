@@ -38,6 +38,8 @@ export function FollowButton({
   const { status } = useSession();
   const isDarkAppearance = appearance === "dark";
   const isAuthenticated = status === "authenticated";
+  const followersLabel = followersFormatter.format(followerCount);
+  const followersText = followerCount === 1 ? "seguidor" : "seguidores";
 
   const handleClick = () => {
     if (!canInteract && !isAuthenticated) {
@@ -107,7 +109,7 @@ export function FollowButton({
             isDarkAppearance ? "text-white/70" : "text-slate-600",
           )}
         >
-          {followersFormatter.format(followerCount)} seguidores
+          {followersLabel} {followersText}
         </span>
       ) : null}
       {errorMessage ? (

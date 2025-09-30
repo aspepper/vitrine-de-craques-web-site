@@ -72,6 +72,7 @@ export default async function PerfilPublicoPage({ params }: PageProps) {
   const canInteract = Boolean(viewerId && targetUserId && viewerId !== targetUserId);
   const loginRedirectTo = `/login?callbackUrl=/perfis/${params.id}`;
   const followersLabel = new Intl.NumberFormat("pt-BR").format(followerCount);
+  const followersText = followerCount === 1 ? "seguidor" : "seguidores";
   const displayName = profile.displayName?.trim() || profile.user?.name || "Perfil";
   const avatarUrl = profile.avatarUrl ?? profile.user?.image ?? null;
   const role = profile.role ? roleLabel[profile.role] ?? profile.role : "Perfil";
@@ -105,7 +106,7 @@ export default async function PerfilPublicoPage({ params }: PageProps) {
                 </div>
                 {!targetUserId || isOwnProfile ? (
                   <p className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
-                    {followersLabel} seguidores
+                    {followersLabel} {followersText}
                   </p>
                 ) : (
                   <FollowButton

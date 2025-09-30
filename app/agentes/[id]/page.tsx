@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { UserRound } from "lucide-react";
@@ -200,6 +201,8 @@ function buildInfoItems(profile: AgentProfile) {
 }
 
 export default async function AgenteDetalhePage({ params }: { params: { id: string } }) {
+  noStore();
+
   const profile = await getAgent(params.id);
   if (!profile) {
     notFound();

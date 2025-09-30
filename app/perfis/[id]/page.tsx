@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 import { notFound, redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 
@@ -28,6 +29,8 @@ interface PageProps {
 }
 
 export default async function PerfilPublicoPage({ params }: PageProps) {
+  noStore();
+
   const profile = await prisma.profile.findUnique({
     where: { id: params.id },
     include: {

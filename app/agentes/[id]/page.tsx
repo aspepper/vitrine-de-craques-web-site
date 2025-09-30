@@ -224,6 +224,7 @@ export default async function AgenteDetalhePage({ params }: { params: { id: stri
   const canInteract = Boolean(viewerId && targetUserId && viewerId !== targetUserId);
   const loginRedirectTo = `/login?callbackUrl=/agentes/${params.id}`;
   const followersLabel = new Intl.NumberFormat("pt-BR").format(followerCount);
+  const followersText = followerCount === 1 ? "seguidor" : "seguidores";
   const displayName = profile.displayName?.trim() || profile.user?.name || "Agente";
   const avatarUrl = profile.avatarUrl ?? profile.user?.image ?? null;
   const infoItems = buildInfoItems(profile);
@@ -274,7 +275,7 @@ export default async function AgenteDetalhePage({ params }: { params: { id: stri
                 <div className="flex w-full max-w-[220px] flex-col items-center gap-3 sm:items-end">
                   {!targetUserId || isOwnProfile ? (
                     <p className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
-                      {followersLabel} seguidores
+                      {followersLabel} {followersText}
                     </p>
                   ) : (
                     <>
@@ -287,7 +288,7 @@ export default async function AgenteDetalhePage({ params }: { params: { id: stri
                         appearance="light"
                       />
                       <p className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
-                        {followersLabel} seguidores
+                        {followersLabel} {followersText}
                       </p>
                     </>
                   )}

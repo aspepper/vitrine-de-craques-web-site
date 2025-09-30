@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 import { getServerSession } from "next-auth";
 import { Filter } from "lucide-react";
 
@@ -21,6 +22,8 @@ interface FeedPageProps {
 export default async function FeedPage({
   searchParams = {},
 }: FeedPageProps) {
+  noStore();
+
   let initialVideos: FeedVideo[] = [];
   let loadError = false;
   let prisma: typeof import("@/lib/db").default | null = null;

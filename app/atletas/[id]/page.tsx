@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 
@@ -207,6 +208,8 @@ function AthleteVideoCard({ video, author }: { video: AthleteVideo; author?: str
 }
 
 export default async function AtletaDetalhePage({ params }: PageProps) {
+  noStore();
+
   const profile = await getAthlete(params.id);
   if (!profile) {
     notFound();

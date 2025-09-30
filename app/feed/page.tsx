@@ -1,9 +1,13 @@
 import Image from "next/image";
+import { getServerSession } from "next-auth";
 import { Filter } from "lucide-react";
 
+import { FollowButton } from "@/components/FollowButton";
 import ApiError from "@/components/ApiError";
 import { Button } from "@/components/ui/button";
+import { authOptions } from "@/lib/auth";
 import { logError } from "@/lib/error";
+import { getFollowInfo } from "@/lib/follow";
 import { buildVideoWhere } from "@/lib/video-filter-where";
 import { buildVideoQueryString, parseVideoFilters } from "@/lib/video-filters";
 import { FeedClient, type FeedVideo } from "./FeedClient";
@@ -18,13 +22,18 @@ export default async function FeedPage({
 }: FeedPageProps) {
   let initialVideos: FeedVideo[] = [];
   let loadError = false;
+  let prisma: typeof import("@/lib/db").default | null = null;
+
+  const session = await getServerSession(authOptions);
+  const viewerId = session?.user?.id ?? null;
 
   const filters = parseVideoFilters(searchParams);
   const queryString = buildVideoQueryString(filters);
 
   if (process.env.DATABASE_URL) {
     try {
-      const { default: prisma } = await import("@/lib/db");
+      const { default: db } = await import("@/lib/db");
+      prisma = db;
       initialVideos = await prisma.video.findMany({
         take: 6,
         where: buildVideoWhere(filters),
@@ -57,6 +66,40 @@ export default async function FeedPage({
   } else {
     loadError = true;
   }
+
+  let officialUserId: string | null = null;
+  let officialFollowerCount = 0;
+  let officialIsFollowing = false;
+
+  if (prisma) {
+    try {
+      const officialUser = await prisma.user.findFirst({
+        where: {
+          OR: [
+            { profile: { displayName: "Vitrine de Craques" } },
+            { name: "Vitrine de Craques" },
+            { email: "midia@vitrinecraques.com" },
+          ],
+        },
+        select: { id: true },
+      });
+
+      if (officialUser) {
+        officialUserId = officialUser.id;
+        const followInfo = await getFollowInfo(officialUser.id, viewerId ?? undefined);
+        officialFollowerCount = followInfo.followerCount;
+        officialIsFollowing = followInfo.isFollowing;
+      }
+    } catch (error) {
+      await logError(error, "AO CARREGAR PERFIL OFICIAL", {
+        scope: "FeedPage",
+      });
+    }
+  }
+
+  const loginRedirectTo = "/login?callbackUrl=/feed";
+  const viewerIsOfficial = Boolean(viewerId && officialUserId && viewerId === officialUserId);
+  const canInteractWithOfficial = Boolean(viewerId && officialUserId && viewerId !== officialUserId);
 
   const trendingHashtags = [
     { label: "#basebrasileira", views: "1.2M" },
@@ -128,9 +171,25 @@ export default async function FeedPage({
                 Descubra atletas em ascensão, jogadas marcantes e bastidores do futebol brasileiro em um feed pensado para
                 conectar talentos e oportunidades.
               </p>
-              <Button className="w-full rounded-2xl bg-slate-900 text-xs font-semibold text-white hover:bg-slate-800 dark:bg-white/10 dark:text-white dark:hover:bg-white/20">
-                Seguir perfil
-              </Button>
+              {officialUserId && !viewerIsOfficial ? (
+                <FollowButton
+                  targetUserId={officialUserId}
+                  initialIsFollowing={officialIsFollowing}
+                  initialFollowerCount={officialFollowerCount}
+                  canInteract={canInteractWithOfficial}
+                  loginRedirectTo={loginRedirectTo}
+                  appearance="light"
+                  showFollowerCount={false}
+                  className="w-full [&>button]:w-full"
+                />
+              ) : (
+                <Button
+                  className="w-full rounded-2xl bg-slate-900 text-xs font-semibold text-white hover:bg-slate-800 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+                  disabled
+                >
+                  {viewerIsOfficial ? "Seu perfil" : "Seguir perfil"}
+                </Button>
+              )}
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-black/40">

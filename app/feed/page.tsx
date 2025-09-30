@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { Filter } from "lucide-react";
 
@@ -182,12 +183,19 @@ export default async function FeedPage({
                   showFollowerCount={false}
                   className="w-full [&>button]:w-full"
                 />
-              ) : (
+              ) : viewerIsOfficial ? (
                 <Button
                   className="w-full rounded-2xl bg-slate-900 text-xs font-semibold text-white hover:bg-slate-800 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
                   disabled
                 >
                   {viewerIsOfficial ? "Seu perfil" : "Seguir perfil"}
+                </Button>
+              ) : (
+                <Button
+                  asChild
+                  className="w-full rounded-2xl bg-emerald-500 text-xs font-semibold text-white hover:bg-emerald-500/90 dark:bg-emerald-500 dark:hover:bg-emerald-500/80"
+                >
+                  <Link href={loginRedirectTo}>Seguir perfil</Link>
                 </Button>
               )}
             </div>

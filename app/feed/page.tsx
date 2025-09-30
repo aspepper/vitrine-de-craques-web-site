@@ -80,6 +80,7 @@ export default async function FeedPage({
             { profile: { displayName: "Vitrine de Craques" } },
             { name: "Vitrine de Craques" },
             { email: "midia@vitrinecraques.com" },
+            { email: "super@vitrinecraques.com" },
           ],
         },
         select: { id: true },

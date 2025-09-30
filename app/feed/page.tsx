@@ -190,6 +190,13 @@ export default async function FeedPage({
                 >
                   {viewerIsOfficial ? "Seu perfil" : "Seguir perfil"}
                 </Button>
+              ) : viewerId ? (
+                <Button
+                  className="w-full rounded-2xl bg-slate-300 text-xs font-semibold text-slate-600 hover:bg-slate-300 dark:bg-white/10 dark:text-slate-400 dark:hover:bg-white/10"
+                  disabled
+                >
+                  Seguir perfil
+                </Button>
               ) : (
                 <Button
                   asChild

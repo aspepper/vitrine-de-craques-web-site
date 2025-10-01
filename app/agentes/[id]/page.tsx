@@ -285,6 +285,7 @@ export default async function AgenteDetalhePage({ params }: { params: { id: stri
                         initialFollowerCount={followerCount}
                         canInteract={canInteract}
                         loginRedirectTo={loginRedirectTo}
+                        showFollowerCount={false}
                         appearance="light"
                       />
                       <p className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">

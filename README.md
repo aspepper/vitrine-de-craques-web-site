@@ -58,6 +58,7 @@ O aviso não interrompe o build, mas o upload de vídeos só funcionará se o bi
 % npx prisma format
 % npx prisma generate
 % npx prisma generate --schema prisma/schema.prisma
+% npx prisma migrate dev --name add-comments-support --create-only --schema prisma/schema.prisma
 
 ### Verifica status do migration
 

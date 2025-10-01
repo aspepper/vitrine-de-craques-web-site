@@ -53,8 +53,8 @@ export async function GET(req: Request) {
 
     const { searchParams } = new URL(req.url)
     const parsed = clubSearchSchema.parse({
-      page: searchParams.get('page'),
-      limit: searchParams.get('limit'),
+      page: searchParams.get('page') ?? undefined,
+      limit: searchParams.get('limit') ?? undefined,
       search: searchParams.get('search') ?? undefined,
     })
 

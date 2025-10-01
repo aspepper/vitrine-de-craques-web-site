@@ -53,10 +53,14 @@ export default async function AdministratorVideosPage() {
   const host = headers().get('host')
   const baseUrl = resolveBaseUrl(host)
 
+  const cookieHeader = cookieStore
+    .getAll()
+    .map((cookie) => `${cookie.name}=${cookie.value}`)
+    .join('; ')
+
   const response = await fetch(`${baseUrl}/api/admin/videos?limit=12`, {
-    headers: { cookie: cookieStore.toString() },
+    headers: cookieHeader ? { cookie: cookieHeader } : undefined,
     cache: 'no-store',
-    credentials: 'include',
   })
 
   if (!response.ok) {

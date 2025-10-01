@@ -55,7 +55,7 @@ export async function PATCH(req: Request, { params }: RouteParams) {
     const approve = decision === 'approve'
     const now = new Date()
 
-    const updateData: Prisma.VideoUpdateInput = {
+    const updateData: Prisma.VideoUncheckedUpdateInput = {
       blockAppealStatus: approve
         ? VideoBlockAppealStatus.APPROVED
         : VideoBlockAppealStatus.REJECTED,

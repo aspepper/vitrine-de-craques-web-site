@@ -37,7 +37,7 @@ export async function getAdminDashboardSummary(): Promise<AdminDashboardSummary>
       prisma.video.count(),
       prisma.video.count({ where: { visibilityStatus: VideoVisibilityStatus.BLOCKED } }),
       prisma.video.count({ where: { blockAppealStatus: VideoBlockAppealStatus.PENDING } }),
-      prisma.profile.groupBy({ by: ['role'], _count: { role: true } }),
+      prisma.profile.groupBy({ by: ['role'], orderBy: { role: 'asc' }, _count: { role: true } }),
       prisma.user.count({ where: { createdAt: { gte: daysAgo(30) } } }),
       prisma.video.count({ where: { createdAt: { gte: daysAgo(30) } } }),
     ])
@@ -60,10 +60,16 @@ export async function getAdminDashboardSummary(): Promise<AdminDashboardSummary>
     }),
   ])
 
-  const roleDistribution: RoleDistributionEntry[] = roleStats.map((entry) => ({
-    role: entry.role,
-    count: entry._count.role,
-  }))
+  const roleDistribution: RoleDistributionEntry[] = roleStats.map((entry) => {
+    const countValue = typeof entry._count === 'object' && entry._count
+      ? entry._count.role ?? 0
+      : 0
+
+    return {
+      role: entry.role,
+      count: countValue,
+    }
+  })
 
   return {
     totalUsers,

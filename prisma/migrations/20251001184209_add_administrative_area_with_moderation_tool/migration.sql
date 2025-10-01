@@ -26,7 +26,7 @@ ADD COLUMN     "foundedAt" TIMESTAMP(3),
 ADD COLUMN     "nickname" TEXT,
 ADD COLUMN     "stadium" TEXT,
 ADD COLUMN     "state" TEXT,
-ADD COLUMN     "updatedAt" TIMESTAMP(3) NOT NULL,
+ADD COLUMN     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 ADD COLUMN     "website" TEXT;
 
 -- AlterTable
@@ -58,7 +58,7 @@ CREATE TABLE "public"."Notification" (
     "metadata" JSONB,
     "readAt" TIMESTAMP(3),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Notification_pkey" PRIMARY KEY ("id")
 );

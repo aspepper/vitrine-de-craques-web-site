@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
-import { CommentItemType } from "@prisma/client";
+import { getServerSession } from "next-auth";
+import { CommentItemType, VideoBlockAppealStatus, VideoVisibilityStatus } from "@prisma/client";
 
 import { PlayerBackLink } from "@/components/player/BackLink";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,10 +13,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { VideoEngagementPanel } from "@/components/player/VideoEngagementPanel";
+import { VideoAppealForm } from "@/components/player/VideoAppealForm";
 import prisma from "@/lib/db";
 import { fetchCommentThreads } from "@/lib/comments";
 import { parseInterestedAthletes } from "@/lib/profile-interests";
 import { sampleVideos } from "@/lib/sample-videos";
+import { authOptions } from "@/lib/auth";
+import { isAdminRole } from "@/lib/admin-auth";
 
 type AgentInfo = {
   id: string;
@@ -39,6 +43,15 @@ type VideoDetails = {
   likesCount: number;
   interestedAgents: AgentInfo[];
   comments: CommentInfo[];
+  ownerId: string | null;
+  visibilityStatus: VideoVisibilityStatus;
+  blockReason: string | null;
+  blockedAt: string | null;
+  blockAppealStatus: VideoBlockAppealStatus | null;
+  blockAppealMessage: string | null;
+  blockAppealResponse: string | null;
+  blockAppealAt: string | null;
+  blockAppealResolvedAt: string | null;
 };
 
 function initialsFromName(name: string) {
@@ -74,6 +87,15 @@ function mapSampleVideo(id: string): VideoDetails | null {
       content: comment.content,
       createdAt: comment.createdAt,
     })),
+    ownerId: null,
+    visibilityStatus: VideoVisibilityStatus.PUBLIC,
+    blockReason: null,
+    blockedAt: null,
+    blockAppealStatus: null,
+    blockAppealMessage: null,
+    blockAppealResponse: null,
+    blockAppealAt: null,
+    blockAppealResolvedAt: null,
   } satisfies VideoDetails;
 }
 
@@ -181,7 +203,12 @@ async function fetchInterestedAgents(videoId: string, athleteUserId: string): Pr
     .filter((agent): agent is AgentInfo => Boolean(agent));
 }
 
-async function fetchVideoDetails(id: string): Promise<VideoDetails | null> {
+async function fetchVideoDetails(
+  id: string,
+  options?: { viewerId?: string | null; canModerate?: boolean },
+): Promise<VideoDetails | null> {
+  const viewerId = options?.viewerId ?? null;
+  const canModerate = options?.canModerate ?? false;
   const databaseConfigured = Boolean(process.env.DATABASE_URL);
 
   if (!databaseConfigured) {
@@ -204,6 +231,14 @@ async function fetchVideoDetails(id: string): Promise<VideoDetails | null> {
       return mapSampleVideo(id);
     }
 
+    if (
+      video.visibilityStatus === VideoVisibilityStatus.BLOCKED &&
+      video.userId !== viewerId &&
+      !canModerate
+    ) {
+      return null;
+    }
+
     const interestedAgents = await fetchInterestedAgents(video.id, video.userId);
 
     const comments = await fetchVideoComments(video.id);
@@ -216,6 +251,17 @@ async function fetchVideoDetails(id: string): Promise<VideoDetails | null> {
       likesCount: video.likesCount ?? 0,
       interestedAgents,
       comments,
+      ownerId: video.user?.id ?? null,
+      visibilityStatus: video.visibilityStatus,
+      blockReason: video.blockReason ?? null,
+      blockedAt: video.blockedAt ? video.blockedAt.toISOString() : null,
+      blockAppealStatus: video.blockAppealStatus ?? null,
+      blockAppealMessage: video.blockAppealMessage ?? null,
+      blockAppealResponse: video.blockAppealResponse ?? null,
+      blockAppealAt: video.blockAppealAt ? video.blockAppealAt.toISOString() : null,
+      blockAppealResolvedAt: video.blockAppealResolvedAt
+        ? video.blockAppealResolvedAt.toISOString()
+        : null,
     } satisfies VideoDetails;
   } catch (error) {
     console.error("Erro ao carregar detalhes do vídeo", error);
@@ -224,6 +270,10 @@ async function fetchVideoDetails(id: string): Promise<VideoDetails | null> {
 }
 
 export default async function PlayerPage({ params }: { params: { id: string } }) {
+  const session = await getServerSession(authOptions);
+  const viewerId = session?.user?.id ?? null;
+  const viewerRole = session?.user?.role ?? null;
+  const canModerate = viewerRole ? isAdminRole(viewerRole) : false;
   const headersList = headers();
   const referer = headersList.get("referer");
   const host = headersList.get("host");
@@ -245,11 +295,18 @@ export default async function PlayerPage({ params }: { params: { id: string } })
   const backLinkClasses =
     "inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground";
 
-  const video = await fetchVideoDetails(params.id);
+  const video = await fetchVideoDetails(params.id, { viewerId, canModerate });
 
   if (!video) {
     notFound();
   }
+
+  const isOwner = Boolean(video.ownerId && video.ownerId === viewerId);
+  const isBlocked = video.visibilityStatus === VideoVisibilityStatus.BLOCKED;
+  const blockJustification = video.blockReason ?? "Sem justificativa informada.";
+  const blockedAtLabel = video.blockedAt
+    ? new Date(video.blockedAt).toLocaleString("pt-BR")
+    : null;
 
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
@@ -278,6 +335,37 @@ export default async function PlayerPage({ params }: { params: { id: string } })
                 initialLikes={video.likesCount}
                 initialComments={video.comments}
               />
+
+              {isBlocked ? (
+                <div className="space-y-4">
+                  <div className="space-y-2 rounded-3xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm text-amber-900 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-100">
+                    <p className="font-semibold">Vídeo indisponível publicamente</p>
+                    <p>
+                      Este vídeo foi bloqueado pela moderação
+                      {blockedAtLabel ? ` em ${blockedAtLabel}` : ''}. Motivo:
+                      {' '}
+                      <span className="font-medium">{blockJustification}</span>
+                    </p>
+                    {!isOwner && canModerate ? (
+                      <p className="text-xs text-amber-800 dark:text-amber-200">
+                        Você possui permissões administrativas. Analise este caso na área de administração.
+                      </p>
+                    ) : null}
+                  </div>
+
+                  {isOwner ? (
+                    <VideoAppealForm
+                      videoId={video.id}
+                      status={video.blockAppealStatus}
+                      initialMessage={video.blockAppealMessage}
+                      blockReason={blockJustification}
+                      appealAt={video.blockAppealAt}
+                      response={video.blockAppealResponse}
+                      resolvedAt={video.blockAppealResolvedAt}
+                    />
+                  ) : null}
+                </div>
+              ) : null}
 
               <Card className="border-border/60 bg-card/80 shadow-[0_24px_72px_-48px_rgba(15,23,42,0.65)] backdrop-blur">
                 <CardHeader>

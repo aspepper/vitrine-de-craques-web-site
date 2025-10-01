@@ -21,13 +21,13 @@ export default async function AdministratorLayout({ children }: { children: Reac
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-10 lg:flex-row">
-        <aside className="w-full rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_32px_120px_-64px_rgba(15,23,42,0.95)] backdrop-blur lg:w-64">
+        <aside className="w-full rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-soft backdrop-blur lg:w-64">
           <div className="space-y-2">
-            <p className="text-sm uppercase tracking-[0.25em] text-slate-300">Administração</p>
-            <h1 className="text-2xl font-semibold text-white">Vitrine de Craques</h1>
-            <p className="text-xs text-slate-400">Acesse os controles da plataforma.</p>
+            <p className="text-sm uppercase tracking-[0.25em] text-muted-foreground">Administração</p>
+            <h1 className="text-2xl font-semibold text-foreground">Vitrine de Craques</h1>
+            <p className="text-xs text-muted-foreground">Acesse os controles da plataforma.</p>
           </div>
 
           <nav className="mt-6 space-y-2">
@@ -35,15 +35,15 @@ export default async function AdministratorLayout({ children }: { children: Reac
               <Link
                 key={item.href}
                 href={item.href}
-                className="block rounded-2xl px-4 py-3 text-sm font-medium text-slate-100 transition hover:bg-white/10"
+                className="block rounded-2xl px-4 py-3 text-sm font-medium text-foreground transition hover:bg-muted/60"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="mt-8 space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-xs text-slate-300">
-            <p className="font-semibold text-white">Perfis com acesso</p>
+          <div className="mt-8 space-y-2 rounded-2xl border border-border/60 bg-surface/70 p-4 text-xs text-muted-foreground">
+            <p className="font-semibold text-foreground">Perfis com acesso</p>
             <ul className="list-disc space-y-1 pl-4">
               {ADMIN_ALLOWED_ROLES.map((role) => (
                 <li key={role}>{role}</li>
@@ -52,7 +52,7 @@ export default async function AdministratorLayout({ children }: { children: Reac
           </div>
         </aside>
 
-        <section className="flex-1 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_32px_120px_-64px_rgba(15,23,42,0.95)] backdrop-blur">
+        <section className="flex-1 rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-soft backdrop-blur">
           {children}
         </section>
       </div>

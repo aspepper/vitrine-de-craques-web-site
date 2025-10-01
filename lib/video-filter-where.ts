@@ -18,7 +18,9 @@ function normalizeHashtag(hashtag: string) {
 }
 
 export function buildVideoWhere(filters: VideoFilters): Prisma.VideoWhereInput {
-  const and: Prisma.VideoWhereInput[] = [];
+  const and: Prisma.VideoWhereInput[] = [
+    { visibilityStatus: "PUBLIC" },
+  ];
 
   if (filters.category) {
     and.push({
@@ -130,10 +132,6 @@ export function buildVideoWhere(filters: VideoFilters): Prisma.VideoWhereInput {
         },
       },
     });
-  }
-
-  if (and.length === 0) {
-    return {};
   }
 
   return { AND: and };

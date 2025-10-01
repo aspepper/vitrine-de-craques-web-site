@@ -121,6 +121,7 @@ async function loadHighlights(): Promise<HighlightCardData[]> {
   const videos = await prisma.video.findMany({
     take: 4,
     orderBy: { createdAt: 'desc' },
+    where: { visibilityStatus: 'PUBLIC' },
     include: {
       user: {
         select: {

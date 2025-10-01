@@ -53,7 +53,7 @@ async function getAthleteVideos(userId: string) {
     const { default: prisma } = await import("@/lib/db");
 
     return await prisma.video.findMany({
-      where: { userId },
+      where: { userId, visibilityStatus: 'PUBLIC' },
       orderBy: { createdAt: "desc" },
       take: 6,
     });

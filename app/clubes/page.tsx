@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Filters } from "@/components/Filters";
@@ -7,6 +8,10 @@ interface Club {
   id: string;
   name: string;
   slug: string;
+  crestUrl: string | null;
+  nickname?: string | null;
+  city?: string | null;
+  state?: string | null;
   confederation?: {
     name?: string | null;
   } | null;
@@ -102,6 +107,7 @@ export default async function ClubesPage({ searchParams }: PageProps) {
           {clubs.map((club) => {
             const initials = club.name?.trim().charAt(0) || "C";
             const confederationName = club.confederation?.name?.trim();
+            const location = [club.city, club.state].filter(Boolean).join("/");
 
             return (
               <Link
@@ -111,16 +117,33 @@ export default async function ClubesPage({ searchParams }: PageProps) {
                 prefetch={false}
               >
                 <article className="flex h-full flex-col items-center gap-6 rounded-[32px] border border-border/80 bg-card/90 px-10 py-12 text-center shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-foreground text-2xl font-semibold text-background shadow-[0_12px_24px_-18px_rgba(15,23,42,0.6)]">
-                    {initials}
-                  </div>
+                  {club.crestUrl ? (
+                    <div className="relative h-20 w-20 overflow-hidden rounded-full border border-border/40 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.6)]">
+                      <Image
+                        src={club.crestUrl}
+                        alt={club.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-foreground text-2xl font-semibold text-background shadow-[0_12px_24px_-18px_rgba(15,23,42,0.6)]">
+                      {initials}
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <h2 className="text-lg font-semibold text-foreground">{club.name}</h2>
+                    {club.nickname ? (
+                      <p className="text-sm text-muted-foreground">{club.nickname}</p>
+                    ) : null}
                     {confederationName ? (
                       <p className="text-sm text-muted-foreground">{confederationName}</p>
                     ) : (
                       <p className="text-sm text-muted-foreground">Sem confederação</p>
                     )}
+                    {location ? (
+                      <p className="text-xs text-muted-foreground/80">{location}</p>
+                    ) : null}
                   </div>
                 </article>
               </Link>

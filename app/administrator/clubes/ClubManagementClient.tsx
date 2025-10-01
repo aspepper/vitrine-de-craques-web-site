@@ -377,13 +377,12 @@ export function ClubManagementClient({ initialData, confederations }: ClubManage
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-4 text-slate-100 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-surface/80 p-4 text-foreground md:flex-row md:items-center md:justify-between">
         <form onSubmit={handleSearchSubmit} className="flex w-full max-w-md items-center gap-2">
           <Input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Buscar por nome, cidade ou estado"
-            className="bg-slate-900/40 text-slate-100"
           />
           <Button type="submit" disabled={loading} size="sm">
             Buscar
@@ -395,38 +394,40 @@ export function ClubManagementClient({ initialData, confederations }: ClubManage
         </Button>
       </div>
 
-      {feedback ? <p className="text-sm text-emerald-400">{feedback}</p> : null}
-      {error ? <p className="text-sm text-rose-400">{error}</p> : null}
+      {feedback ? <p className="text-sm text-success">{feedback}</p> : null}
+      {error ? <p className="text-sm text-error">{error}</p> : null}
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {clubs.map((club) => (
-          <div key={club.id} className="space-y-3 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_24px_96px_-64px_rgba(15,23,42,0.85)]">
+          <div key={club.id} className="space-y-3 rounded-3xl border border-border/60 bg-surface/80 p-5 shadow-soft">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <h3 className="text-lg font-semibold text-white">{club.name}</h3>
-                <p className="text-xs text-slate-300">{club.city ? `${club.city}/${club.state ?? ''}` : 'Local não informado'}</p>
+                <h3 className="text-lg font-semibold text-foreground">{club.name}</h3>
+                <p className="text-xs text-muted-foreground">
+                  {club.city ? `${club.city}/${club.state ?? ''}` : 'Local não informado'}
+                </p>
               </div>
               {club.crestUrl ? (
-                <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/10">
+                <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-border/60">
                   <Image src={club.crestUrl} alt={club.name} fill className="object-cover" />
                 </div>
               ) : (
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-slate-900 text-sm text-slate-200">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
                   {club.name.charAt(0)}
                 </div>
               )}
             </div>
-            {club.nickname ? <p className="text-xs text-slate-200">Apelido: {club.nickname}</p> : null}
-            {club.description ? <p className="text-xs text-slate-300">{club.description}</p> : null}
-            <div className="text-[11px] text-slate-400">
+            {club.nickname ? <p className="text-xs text-foreground">Apelido: {club.nickname}</p> : null}
+            {club.description ? <p className="text-xs text-muted-foreground">{club.description}</p> : null}
+            <div className="text-[11px] text-muted-foreground">
               <p>Estádio: {club.stadium ?? '—'}</p>
               <p>Confederação: {club.confederation?.name ?? '—'}</p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Button size="sm" variant="outline" className="border-white/20" onClick={() => handleOpenEdit(club)}>
+              <Button size="sm" variant="outline" onClick={() => handleOpenEdit(club)}>
                 Editar
               </Button>
-              <Button size="sm" variant="outline" className="border-rose-400 text-rose-300" onClick={() => setDeleteClub(club)}>
+              <Button size="sm" variant="outline" className="border-error/60 text-error" onClick={() => setDeleteClub(club)}>
                 Excluir
               </Button>
             </div>
@@ -434,7 +435,7 @@ export function ClubManagementClient({ initialData, confederations }: ClubManage
         ))}
       </div>
 
-      <div className="flex items-center justify-between rounded-3xl border border-white/10 bg-white/5 px-4 py-3 text-xs text-slate-300">
+      <div className="flex items-center justify-between rounded-3xl border border-border/60 bg-surface/80 px-4 py-3 text-xs text-muted-foreground">
         <span>{clubs.length} clubes listados</span>
         {paginationButtons}
       </div>
@@ -448,7 +449,7 @@ export function ClubManagementClient({ initialData, confederations }: ClubManage
           }
         }}
       >
-        <DialogContent className="bg-slate-950 text-slate-100 max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-h-[90vh] overflow-y-auto bg-background text-foreground">
           <DialogHeader>
             <DialogTitle>Novo clube</DialogTitle>
           </DialogHeader>
@@ -470,7 +471,7 @@ export function ClubManagementClient({ initialData, confederations }: ClubManage
           }
         }}
       >
-        <DialogContent className="bg-slate-950 text-slate-100 max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-h-[90vh] overflow-y-auto bg-background text-foreground">
           <DialogHeader>
             <DialogTitle>Editar clube</DialogTitle>
           </DialogHeader>
@@ -484,11 +485,11 @@ export function ClubManagementClient({ initialData, confederations }: ClubManage
       </Dialog>
 
       <Dialog open={Boolean(deleteClub)} onOpenChange={(open) => (open ? null : setDeleteClub(null))}>
-        <DialogContent className="bg-slate-950 text-slate-100">
+        <DialogContent className="bg-background text-foreground">
           <DialogHeader>
             <DialogTitle>Remover clube</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-muted-foreground">
             Tem certeza de que deseja remover o clube <strong>{deleteClub?.name}</strong>? Esta ação não pode ser desfeita.
           </p>
           <DialogFooter>

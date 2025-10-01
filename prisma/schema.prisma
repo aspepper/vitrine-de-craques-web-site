@@ -25,6 +25,28 @@ enum Role {
   MODERADOR
 }
 
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+}
+
+enum VideoVisibilityStatus {
+  PUBLIC
+  BLOCKED
+}
+
+enum VideoBlockAppealStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum NotificationType {
+  VIDEO_BLOCK
+  VIDEO_APPEAL_UPDATE
+  USER_BLOCK
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -77,6 +99,16 @@ model User {
   newsSaves        NewsSave[]
   gameLikes        GameLike[]
   gameSaves        GameSave[]
+  status           UserStatus @default(ACTIVE)
+  blockedReason    String?
+  blockedAt        DateTime?
+  blockedByAdminId String?
+  lastWebLoginAt   DateTime?
+  lastAppLoginAt   DateTime?
+  administrativelyBlockedUsers User[] @relation("AdminBlockedUsers")
+  blockedByAdmin               User?  @relation("AdminBlockedUsers", fields: [blockedByAdminId], references: [id])
+  blockedVideos                Video[] @relation("VideoBlockedBy")
+  notifications    Notification[]
 }
 
 model VerificationToken {
@@ -161,6 +193,16 @@ model Video {
   updatedAt     DateTime @updatedAt
   user          User     @relation(fields: [userId], references: [id])
   userId        String
+  visibilityStatus      VideoVisibilityStatus   @default(PUBLIC)
+  blockReason           String?
+  blockedAt             DateTime?
+  blockedByAdminId      String?
+  blockAppealMessage    String?
+  blockAppealAt         DateTime?
+  blockAppealStatus     VideoBlockAppealStatus?
+  blockAppealResponse   String?
+  blockAppealResolvedAt DateTime?
+  blockedByAdmin        User? @relation("VideoBlockedBy", fields: [blockedByAdminId], references: [id])
 }
 
 model Follow {
@@ -218,6 +260,17 @@ model Club {
   slug            String         @unique
   confederation   Confederation? @relation(fields: [confederationId], references: [id])
   confederationId String?
+  crestUrl        String?
+  nickname        String?
+  stadium         String?
+  city            String?
+  state           String?
+  colors          String?
+  website         String?
+  foundedAt       DateTime?
+  description     String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }
 
 model News {
@@ -327,6 +380,19 @@ model GameSave {
   createdAt DateTime @default(now())
 
   @@unique([gameId, userId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  type      NotificationType
+  title     String
+  message   String           @db.Text
+  metadata  Json?
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
 }
 
 model Times {

@@ -47,65 +47,69 @@ export default async function AdministratorDashboardPage() {
   ]
 
   return (
-    <div className="space-y-8 text-slate-100">
+    <div className="space-y-8 text-foreground">
       <header className="space-y-2">
-        <h2 className="text-3xl font-semibold text-white">Visão geral</h2>
-        <p className="text-sm text-slate-300">Resumo atualizado com os principais indicadores da plataforma.</p>
+        <h2 className="text-3xl font-semibold text-foreground">Visão geral</h2>
+        <p className="text-sm text-muted-foreground">Resumo atualizado com os principais indicadores da plataforma.</p>
       </header>
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {statCards.map((card) => (
-          <Card key={card.label} className="border-white/10 bg-white/5">
+          <Card key={card.label} className="border-border/60 bg-surface/80">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300">{card.label}</CardTitle>
+              <CardTitle className="text-sm text-muted-foreground">{card.label}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-semibold text-white">{card.value}</p>
+              <p className="text-3xl font-semibold text-foreground">{card.value}</p>
             </CardContent>
           </Card>
         ))}
       </section>
 
       <section className="grid gap-6 lg:grid-cols-2">
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border/60 bg-surface/80">
           <CardHeader>
-            <CardTitle className="text-lg text-white">Distribuição por perfil</CardTitle>
+            <CardTitle className="text-lg text-foreground">Distribuição por perfil</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {summary.roleDistribution.length > 0 ? (
-              <ul className="space-y-2 text-sm text-slate-200">
+              <ul className="space-y-2 text-sm text-muted-foreground">
                 {summary.roleDistribution.map((entry) => (
-                  <li key={entry.role} className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-2">
+                  <li key={entry.role} className="flex items-center justify-between rounded-xl bg-surface/70 px-4 py-2 text-foreground">
                     <span>{entry.role}</span>
-                    <span className="font-semibold text-white">{entry.count}</span>
+                    <span className="font-semibold text-foreground">{entry.count}</span>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-slate-300">Nenhum perfil cadastrado.</p>
+              <p className="text-sm text-muted-foreground">Nenhum perfil cadastrado.</p>
             )}
           </CardContent>
         </Card>
 
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border/60 bg-surface/80">
           <CardHeader>
-            <CardTitle className="text-lg text-white">Contestação de vídeos</CardTitle>
+            <CardTitle className="text-lg text-foreground">Contestação de vídeos</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {pendingAppeals.length > 0 ? (
               pendingAppeals.map((appeal) => (
-                <div key={appeal.id} className="space-y-1 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm">
-                  <p className="text-base font-semibold text-white">{appeal.title}</p>
-                  <p className="text-xs text-slate-300">
+                <div key={appeal.id} className="space-y-1 rounded-2xl border border-border/60 bg-surface/70 p-4 text-sm">
+                  <p className="text-base font-semibold text-foreground">{appeal.title}</p>
+                  <p className="text-xs text-muted-foreground">
                     Enviado por {appeal.user.profile?.displayName ?? appeal.user.email} em{' '}
                     {appeal.blockAppealAt ? new Date(appeal.blockAppealAt).toLocaleString('pt-BR') : '—'}
                   </p>
-                  <p className="text-xs text-slate-300">Motivo do bloqueio: {appeal.blockReason ?? 'Sem justificativa informada.'}</p>
-                  <p className="text-sm text-slate-200">Contestação: {appeal.blockAppealMessage ?? 'Sem detalhes.'}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Motivo do bloqueio: {appeal.blockReason ?? 'Sem justificativa informada.'}
+                  </p>
+                  <p className="text-sm text-foreground">
+                    Contestação: {appeal.blockAppealMessage ?? 'Sem detalhes.'}
+                  </p>
                 </div>
               ))
             ) : (
-              <p className="text-sm text-slate-300">Nenhuma contestação pendente no momento.</p>
+              <p className="text-sm text-muted-foreground">Nenhuma contestação pendente no momento.</p>
             )}
           </CardContent>
         </Card>

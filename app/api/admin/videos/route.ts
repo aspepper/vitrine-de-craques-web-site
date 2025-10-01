@@ -17,9 +17,12 @@ export async function GET(req: Request) {
     await requireAdminSession()
 
     const { searchParams } = new URL(req.url)
+    const normalizedParam = (value: string | null) =>
+      value === null || value.trim() === '' ? undefined : value
+
     const parsed = listSchema.parse({
-      page: searchParams.get('page'),
-      limit: searchParams.get('limit'),
+      page: normalizedParam(searchParams.get('page')),
+      limit: normalizedParam(searchParams.get('limit')),
       search: searchParams.get('search') ?? undefined,
       status: searchParams.get('status') ?? undefined,
     })

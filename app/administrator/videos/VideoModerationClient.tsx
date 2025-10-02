@@ -203,7 +203,7 @@ export function VideoModerationClient({ initialData }: VideoModerationClientProp
         <Button disabled={loading || page <= 1} onClick={() => fetchVideos(page - 1, search, statusFilter)} variant="outline" size="sm">
           Anterior
         </Button>
-        <span className="text-xs text-slate-300">
+        <span className="text-xs text-muted-foreground">
           Página {page} de {totalPages}
         </span>
         <Button
@@ -220,20 +220,20 @@ export function VideoModerationClient({ initialData }: VideoModerationClientProp
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-4 text-slate-100 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-surface/80 p-4 text-foreground shadow-soft md:flex-row md:items-center md:justify-between">
         <form onSubmit={handleSearchSubmit} className="flex w-full max-w-md items-center gap-2">
           <Input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Buscar por título ou responsável"
-            className="bg-slate-900/40 text-slate-100"
+            className="bg-surface text-foreground placeholder:text-muted-foreground"
           />
           <Button type="submit" disabled={loading} size="sm">
             Buscar
           </Button>
         </form>
 
-        <div className="flex items-center gap-2 text-xs">
+        <div className="flex items-center gap-2">
           <Button
             size="sm"
             variant={statusFilter === 'all' ? 'default' : 'outline'}
@@ -258,8 +258,8 @@ export function VideoModerationClient({ initialData }: VideoModerationClientProp
         </div>
       </div>
 
-      {feedback ? <p className="text-sm text-emerald-400">{feedback}</p> : null}
-      {error ? <p className="text-sm text-rose-400">{error}</p> : null}
+      {feedback ? <p className="text-sm text-success">{feedback}</p> : null}
+      {error ? <p className="text-sm text-error">{error}</p> : null}
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {videos.map((video) => {
@@ -268,36 +268,36 @@ export function VideoModerationClient({ initialData }: VideoModerationClientProp
           const appealLabel = video.blockAppealStatus ? APPEAL_STATUS_LABEL[video.blockAppealStatus] ?? video.blockAppealStatus : null
 
           return (
-            <div key={video.id} className="space-y-3 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_24px_96px_-64px_rgba(15,23,42,0.85)]">
+            <div key={video.id} className="space-y-3 rounded-3xl border border-border/60 bg-surface/80 p-5 shadow-soft">
               <div className="space-y-1">
-                <p className="text-sm uppercase tracking-[0.2em] text-slate-300">{statusLabel}</p>
-                <h3 className="text-lg font-semibold text-white">{video.title}</h3>
-                <p className="text-xs text-slate-300">Responsável: {owner}</p>
-                <p className="text-xs text-slate-400">Enviado em {new Date(video.createdAt).toLocaleString('pt-BR')}</p>
+                <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{statusLabel}</p>
+                <h3 className="text-lg font-semibold text-foreground">{video.title}</h3>
+                <p className="text-xs text-muted-foreground">Responsável: {owner}</p>
+                <p className="text-xs text-muted-foreground">Enviado em {new Date(video.createdAt).toLocaleString('pt-BR')}</p>
               </div>
 
               {video.blockReason ? (
-                <div className="rounded-2xl border border-amber-400/40 bg-amber-500/10 p-3 text-xs text-amber-200">
+                <div className="rounded-2xl border border-warning/60 bg-warning/10 p-3 text-xs text-warning">
                   Motivo do bloqueio: {video.blockReason}
                 </div>
               ) : null}
 
               {appealLabel ? (
-                <div className="rounded-2xl border border-sky-400/40 bg-sky-500/10 p-3 text-xs text-sky-200">
+                <div className="rounded-2xl border border-info/60 bg-info/10 p-3 text-xs text-info">
                   {appealLabel}
                   {video.blockAppealMessage ? (
-                    <p className="mt-1 text-[11px] text-sky-100">Contestação: {video.blockAppealMessage}</p>
+                    <p className="mt-1 text-[11px] text-info/80">Contestação: {video.blockAppealMessage}</p>
                   ) : null}
                 </div>
               ) : null}
 
               <div className="flex flex-wrap gap-2">
                 {video.visibilityStatus === 'BLOCKED' ? (
-                  <Button size="sm" variant="outline" className="border-emerald-400 text-emerald-300" onClick={() => handleUnblockVideo(video.id)} disabled={loading}>
+                  <Button size="sm" variant="outline" className="border-success/80 text-success" onClick={() => handleUnblockVideo(video.id)} disabled={loading}>
                     Liberar vídeo
                   </Button>
                 ) : (
-                  <Button size="sm" variant="outline" className="border-rose-400 text-rose-300" onClick={() => openBlockDialog(video.id)} disabled={loading}>
+                  <Button size="sm" variant="outline" className="border-error/70 text-error" onClick={() => openBlockDialog(video.id)} disabled={loading}>
                     Bloquear vídeo
                   </Button>
                 )}
@@ -312,18 +312,18 @@ export function VideoModerationClient({ initialData }: VideoModerationClientProp
         })}
       </div>
 
-      <div className="flex items-center justify-between rounded-3xl border border-white/10 bg-white/5 px-4 py-3 text-xs text-slate-300">
+      <div className="flex items-center justify-between rounded-3xl border border-border/60 bg-surface/80 px-4 py-3 text-xs text-muted-foreground">
         <span>{videos.length} vídeos listados</span>
         {paginationButtons}
       </div>
 
       <Dialog open={blockDialogOpen} onOpenChange={setBlockDialogOpen}>
-        <DialogContent className="bg-slate-950 text-slate-100">
+        <DialogContent className="bg-surface text-foreground">
           <DialogHeader>
             <DialogTitle>Bloquear vídeo</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
-            <p className="text-sm text-slate-300">Descreva o motivo do bloqueio para que o responsável seja notificado.</p>
+            <p className="text-sm text-muted-foreground">Descreva o motivo do bloqueio para que o responsável seja notificado.</p>
             <Textarea
               value={blockReason}
               onChange={(event) => setBlockReason(event.target.value)}
@@ -336,7 +336,7 @@ export function VideoModerationClient({ initialData }: VideoModerationClientProp
             <Button variant="ghost" onClick={() => setBlockDialogOpen(false)}>
               Cancelar
             </Button>
-            <Button className="bg-rose-500 hover:bg-rose-600" onClick={handleBlockVideo}>
+            <Button variant="destructive" onClick={handleBlockVideo}>
               Confirmar bloqueio
             </Button>
           </DialogFooter>
@@ -344,7 +344,7 @@ export function VideoModerationClient({ initialData }: VideoModerationClientProp
       </Dialog>
 
       <Dialog open={appealDialogOpen} onOpenChange={setAppealDialogOpen}>
-        <DialogContent className="bg-slate-950 text-slate-100">
+        <DialogContent className="bg-surface text-foreground">
           <DialogHeader>
             <DialogTitle>Responder contestação</DialogTitle>
           </DialogHeader>

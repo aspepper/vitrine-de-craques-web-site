@@ -26,10 +26,22 @@ function parseDateInput(value: string | null | undefined) {
   return Number.isNaN(date.getTime()) ? null : date
 }
 
-async function handleCrestUpload(file: File | null, slug: string) {
+type FileLike = Blob & { name?: string; type?: string }
+
+function isFileLike(value: unknown): value is FileLike {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+
+  const maybeBlob = value as Blob
+  return typeof maybeBlob.arrayBuffer === 'function' && typeof maybeBlob.size === 'number'
+}
+
+async function handleCrestUpload(file: FileLike | null, slug: string) {
   if (!file || file.size === 0) {
     return null
   }
+
   const buffer = Buffer.from(await file.arrayBuffer())
   const extension = getFileExtension(file.name)
   const crestKey = `uploads/clubs/${slug}-${Date.now()}.${extension}`
@@ -106,7 +118,7 @@ export async function PATCH(req: Request, { params }: RouteParams) {
     }
 
     const crestFile = formData.get('crest')
-    if (crestFile instanceof File && crestFile.size > 0) {
+    if (isFileLike(crestFile) && crestFile.size > 0) {
       const newSlug = (updates.slug as string | undefined) ?? club.slug
       const crestUrl = await handleCrestUpload(crestFile, newSlug)
       if (crestUrl) {

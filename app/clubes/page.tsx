@@ -118,12 +118,13 @@ export default async function ClubesPage({ searchParams }: PageProps) {
               >
                 <article className="flex h-full flex-col items-center gap-6 rounded-[32px] border border-border/80 bg-card/90 px-10 py-12 text-center shadow-[0_24px_56px_-32px_rgba(15,23,42,0.35)] backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_32px_72px_-32px_rgba(15,23,42,0.45)]">
                   {club.crestUrl ? (
-                    <div className="relative h-20 w-20 overflow-hidden rounded-full border border-border/40 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.6)]">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-border/40 bg-card shadow-[0_12px_24px_-18px_rgba(15,23,42,0.6)]">
                       <Image
                         src={club.crestUrl}
                         alt={club.name}
-                        fill
-                        className="object-cover"
+                        width={64}
+                        height={64}
+                        className="h-16 w-16 object-contain"
                       />
                     </div>
                   ) : (

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ensureImage } from "@/lib/ensureImage";
 
 function formatDate(input: string | null) {
   if (!input) return null;
@@ -29,12 +28,6 @@ async function getClub(slug: string) {
 
 export default async function ClubeDetalhePage({ params }: PageProps) {
   const club = await getClub(params.slug);
-  const heroImage = ensureImage(
-    "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
-    "clube-detalhe",
-    "stadium@1920"
-  );
-
   const location = [club.city, club.state].filter(Boolean).join("/") || null;
   const foundedAt = formatDate(club.foundedAt ?? null);
 
@@ -50,16 +43,6 @@ export default async function ClubeDetalhePage({ params }: PageProps) {
             <span aria-hidden>←</span>
             Voltar para clubes
           </Link>
-
-          <div className="relative h-64 w-full overflow-hidden rounded-3xl shadow">
-            <Image
-              src={heroImage}
-              alt={club.name}
-              fill
-              className="object-cover"
-              loading="lazy"
-            />
-          </div>
 
           <div className="flex flex-col gap-8 rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-[0_32px_96px_-64px_rgba(15,23,42,0.35)] md:flex-row md:items-center">
             {club.crestUrl ? (

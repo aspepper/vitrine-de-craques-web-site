@@ -199,7 +199,7 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
         <Button disabled={loading || page <= 1} onClick={() => fetchUsers(page - 1, search)} variant="outline" size="sm">
           Anterior
         </Button>
-        <span className="text-xs text-slate-300">
+        <span className="text-xs text-muted-foreground">
           Página {page} de {totalPages}
         </span>
         <Button
@@ -216,13 +216,13 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-4 text-slate-100 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-surface/80 p-4 text-foreground shadow-soft md:flex-row md:items-center md:justify-between">
         <form onSubmit={handleSearchSubmit} className="flex w-full max-w-md items-center gap-2">
           <Input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Buscar por nome, e-mail ou perfil"
-            className="bg-slate-900/40 text-slate-100"
+            className="bg-surface text-foreground placeholder:text-muted-foreground"
           />
           <Button type="submit" disabled={loading} size="sm">
             Buscar
@@ -233,7 +233,7 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
           <DialogTrigger asChild>
             <Button size="sm">Novo usuário</Button>
           </DialogTrigger>
-          <DialogContent className="bg-slate-950 text-slate-100">
+          <DialogContent className="bg-surface text-foreground">
             <DialogHeader>
               <DialogTitle>Criar usuário</DialogTitle>
             </DialogHeader>
@@ -271,7 +271,7 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
                 <Label htmlFor="new-user-role">Perfil</Label>
                 <select
                   id="new-user-role"
-                  className="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-border/60 bg-surface px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                   value={newUserRole}
                   onChange={(event) => setNewUserRole(event.target.value as Role)}
                 >
@@ -290,12 +290,12 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
         </Dialog>
       </div>
 
-      {feedback ? <p className="text-sm text-emerald-400">{feedback}</p> : null}
-      {error ? <p className="text-sm text-rose-400">{error}</p> : null}
+      {feedback ? <p className="text-sm text-success">{feedback}</p> : null}
+      {error ? <p className="text-sm text-error">{error}</p> : null}
 
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-        <table className="min-w-full divide-y divide-white/10 text-left text-sm text-slate-200">
-          <thead className="bg-white/5 text-xs uppercase tracking-wide text-slate-300">
+      <div className="overflow-hidden rounded-3xl border border-border/60 bg-surface/80 shadow-soft">
+        <table className="min-w-full divide-y divide-border/60 text-left text-sm text-muted-foreground">
+          <thead className="bg-muted/40 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
               <th className="px-4 py-3">Usuário</th>
               <th className="px-4 py-3">E-mail</th>
@@ -305,23 +305,23 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
               <th className="px-4 py-3 text-right">Ações</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
+          <tbody className="divide-y divide-border/40">
             {users.map((user) => {
               const roleLabel = user.profile?.role ?? '—'
               const statusLabel = STATUS_LABEL[user.status] ?? user.status
               const lastLogin = user.lastWebLoginAt || user.lastAppLoginAt
               return (
-                <tr key={user.id} className="hover:bg-white/5">
+                <tr key={user.id} className="hover:bg-muted/20">
                   <td className="px-4 py-3">
-                    <div className="font-medium text-white">{user.profile?.displayName ?? user.name ?? 'Usuário'}</div>
+                    <div className="font-medium text-foreground">{user.profile?.displayName ?? user.name ?? 'Usuário'}</div>
                     {user.blockedReason ? (
-                      <p className="text-xs text-amber-300">Motivo: {user.blockedReason}</p>
+                      <p className="text-xs text-warning">Motivo: {user.blockedReason}</p>
                     ) : null}
                   </td>
-                  <td className="px-4 py-3 text-xs text-slate-300">{user.email ?? '—'}</td>
-                  <td className="px-4 py-3 text-xs uppercase tracking-wide text-slate-300">{roleLabel}</td>
-                  <td className="px-4 py-3 text-xs text-slate-200">{statusLabel}</td>
-                  <td className="px-4 py-3 text-xs text-slate-300">
+                  <td className="px-4 py-3 text-xs text-muted-foreground">{user.email ?? '—'}</td>
+                  <td className="px-4 py-3 text-xs uppercase tracking-wide text-muted-foreground">{roleLabel}</td>
+                  <td className="px-4 py-3 text-xs font-medium text-foreground">{statusLabel}</td>
+                  <td className="px-4 py-3 text-xs text-muted-foreground">
                     {lastLogin ? new Date(lastLogin).toLocaleString('pt-BR') : '—'}
                   </td>
                   <td className="px-4 py-3 text-right">
@@ -329,7 +329,7 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
                       <Button
                         size="sm"
                         variant="outline"
-                        className="border-emerald-400 text-emerald-300"
+                        className="border-success/80 text-success"
                         onClick={() => handleUnblockUser(user.id)}
                         disabled={loading}
                       >
@@ -339,7 +339,7 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
                       <Button
                         size="sm"
                         variant="outline"
-                        className="border-rose-400 text-rose-300"
+                        className="border-error/70 text-error"
                         onClick={() => openBlockDialog(user.id)}
                         disabled={loading}
                       >
@@ -352,19 +352,19 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
             })}
           </tbody>
         </table>
-        <div className="flex items-center justify-between border-t border-white/10 bg-white/5 px-4 py-3 text-xs text-slate-300">
+        <div className="flex items-center justify-between border-t border-border/60 bg-surface/70 px-4 py-3 text-xs text-muted-foreground">
           <span>{users.length} usuários listados</span>
           {paginationButtons}
         </div>
       </div>
 
       <Dialog open={blockDialogOpen} onOpenChange={setBlockDialogOpen}>
-        <DialogContent className="bg-slate-950 text-slate-100">
+        <DialogContent className="bg-surface text-foreground">
           <DialogHeader>
             <DialogTitle>Bloquear usuário</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
-            <p className="text-sm text-slate-300">Descreva o motivo do bloqueio. O usuário receberá esta informação.</p>
+            <p className="text-sm text-muted-foreground">Descreva o motivo do bloqueio. O usuário receberá esta informação.</p>
             <Textarea
               value={blockReason}
               onChange={(event) => setBlockReason(event.target.value)}
@@ -377,7 +377,7 @@ export function UserManagementClient({ initialData, roles }: UserManagementClien
             <Button variant="ghost" onClick={() => setBlockDialogOpen(false)}>
               Cancelar
             </Button>
-            <Button className="bg-rose-500 hover:bg-rose-600" onClick={handleBlockUser}>
+            <Button variant="destructive" onClick={handleBlockUser}>
               Confirmar bloqueio
             </Button>
           </DialogFooter>

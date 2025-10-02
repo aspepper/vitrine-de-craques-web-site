@@ -21,7 +21,18 @@ function getFileExtension(filename: string | undefined) {
   return extension || 'png'
 }
 
-async function handleCrestUpload(file: File | null, slug: string) {
+type FileLike = Blob & { name?: string; type?: string }
+
+function isFileLike(value: unknown): value is FileLike {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+
+  const maybeBlob = value as Blob
+  return typeof maybeBlob.arrayBuffer === 'function' && typeof maybeBlob.size === 'number'
+}
+
+async function handleCrestUpload(file: FileLike | null, slug: string) {
   if (!file || file.size === 0) {
     return null
   }
@@ -112,8 +123,7 @@ export async function POST(req: Request) {
     const slug = slugify(name)
 
     const crestFile = formData.get('crest')
-    const crestUrl =
-      crestFile instanceof File && crestFile.size > 0 ? await handleCrestUpload(crestFile, slug) : null
+    const crestUrl = isFileLike(crestFile) && crestFile.size > 0 ? await handleCrestUpload(crestFile, slug) : null
 
     const foundedAt = parseDateInput(formData.get('foundedAt')?.toString())
 

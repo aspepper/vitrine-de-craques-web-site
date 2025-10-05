@@ -43,6 +43,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -67,10 +68,10 @@ import com.example.vitrinedecraques.data.model.FeedVideo
 import com.example.vitrinedecraques.ui.theme.BrandRed
 import com.example.vitrinedecraques.ui.theme.BrandSand
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.snapshotFlow
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 
 @Composable
@@ -119,7 +120,9 @@ fun FeedScreen(
                 }
 
                 uiState.error != null && uiState.videos.isEmpty() -> {
-                    ErrorState(message = uiState.error, onRetry = viewModel::refresh)
+                    uiState.error?.let { errorMessage ->
+                        ErrorState(message = errorMessage, onRetry = viewModel::refresh)
+                    }
                 }
 
                 else -> {
@@ -325,7 +328,7 @@ private fun FeedVideoCard(
             factory = { ctx ->
                 PlayerView(ctx).apply {
                     useController = false
-                    resizeMode = PlayerView.RESIZE_MODE_ZOOM
+                    resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
                     player = exoPlayer
                     (videoSurfaceView as? View)?.alpha = 0.98f
                 }

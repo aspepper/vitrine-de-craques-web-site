@@ -36,6 +36,7 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      # Nota: este workflow trata apenas do app web Next.js; o app_mobile é construído em pipeline separado.
       - name: Install dependencies
         run: npm ci
 

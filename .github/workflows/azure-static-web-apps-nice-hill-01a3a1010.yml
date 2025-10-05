@@ -65,6 +65,7 @@ jobs:
           npx prisma -v
 
       - name: Build And Deploy
+        if: github.event_name == 'push'
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:

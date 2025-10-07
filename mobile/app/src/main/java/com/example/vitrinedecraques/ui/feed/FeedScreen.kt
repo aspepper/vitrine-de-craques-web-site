@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.matchParentSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -294,7 +293,7 @@ private fun VideoOverlay(
     Box(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
-                .matchParentSize()
+                .fillMaxSize()
                 .background(
                     Brush.verticalGradient(
                         listOf(Color.Transparent, Color.Black.copy(alpha = 0.72f))
@@ -370,7 +369,7 @@ private fun NotificationBellButton(
         color = Color.Black.copy(alpha = 0.45f)
     ) {
         Box(modifier = Modifier.size(44.dp)) {
-            IconButton(onClick = onClick, modifier = Modifier.matchParentSize()) {
+            IconButton(onClick = onClick, modifier = Modifier.fillMaxSize()) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_bell_body_header),

@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -25,15 +23,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.vitrinedecraques.R
 import com.example.vitrinedecraques.ui.feed.FeedScreen
 import kotlinx.coroutines.delay
@@ -62,16 +57,10 @@ private fun SplashScreen(onFinished: () -> Unit) {
         onFinished()
     }
 
-    val backgroundBrush = remember {
-        Brush.verticalGradient(
-            colors = listOf(Color(0xFFF6C98B), Color(0xFFFFF5E9))
-        )
-    }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(backgroundBrush)
+            .background(Color.White)
             .statusBarsPadding(),
         contentAlignment = Alignment.Center
     ) {
@@ -82,18 +71,9 @@ private fun SplashScreen(onFinished: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 32.dp, vertical = 40.dp),
-            verticalArrangement = Arrangement.SpaceBetween,
+            verticalArrangement = Arrangement.spacedBy(48.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "TICO",
-                style = MaterialTheme.typography.displaySmall.copy(
-                    color = Color(0xFF2F180A),
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 6.sp
-                )
-            )
-
             Image(
                 bitmap = illustration,
                 contentDescription = "Ilustração do personagem Tico",

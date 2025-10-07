@@ -3,7 +3,6 @@ package com.example.vitrinedecraques.data
 import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import androidx.datastore.preferences.core.remove
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.vitrinedecraques.data.model.FeedVideo
@@ -50,7 +49,7 @@ class FeedCache(
             preferences[Keys.VIDEOS] = serialized
             val lastViewedId = preferences[Keys.LAST_VIEWED_VIDEO_ID]
             if (lastViewedId != null && limited.none { it.id == lastViewedId }) {
-                preferences.remove(Keys.LAST_VIEWED_VIDEO_ID)
+                preferences -= Keys.LAST_VIEWED_VIDEO_ID
             }
         }
     }
@@ -58,7 +57,7 @@ class FeedCache(
     suspend fun saveLastViewedVideoId(videoId: String?) {
         context.feedCacheDataStore.edit { preferences ->
             if (videoId.isNullOrBlank()) {
-                preferences.remove(Keys.LAST_VIEWED_VIDEO_ID)
+                preferences -= Keys.LAST_VIEWED_VIDEO_ID
             } else {
                 preferences[Keys.LAST_VIEWED_VIDEO_ID] = videoId
             }

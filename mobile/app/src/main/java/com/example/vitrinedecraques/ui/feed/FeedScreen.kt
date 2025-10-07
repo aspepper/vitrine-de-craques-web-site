@@ -1,9 +1,12 @@
 package com.example.vitrinedecraques.ui.feed
 
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.View
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +15,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,10 +26,27 @@ import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountBalance
+import androidx.compose.material.icons.outlined.Article
+import androidx.compose.material.icons.outlined.Flag
+import androidx.compose.material.icons.outlined.Groups
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.PersonSearch
+import androidx.compose.material.icons.outlined.PlayCircle
+import androidx.compose.material.icons.outlined.Public
+import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.SportsEsports
+import androidx.compose.material.icons.outlined.SportsSoccer
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,12 +56,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
@@ -62,6 +88,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import androidx.compose.foundation.ExperimentalFoundationApi
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -75,6 +102,9 @@ fun FeedScreen(
     val backgroundBrush = remember {
         Brush.verticalGradient(listOf(Color(0xFF1C432A), Color(0xFF0A1510)))
     }
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val coroutineScope = rememberCoroutineScope()
+    var selectedBottomItem by remember { mutableStateOf(FeedBottomNavItem.Home) }
 
     LaunchedEffect(pagerState.currentPage, uiState.videos.size, uiState.hasMore, uiState.isLoading) {
         if (!hasVideos) return@LaunchedEffect
@@ -84,52 +114,76 @@ fun FeedScreen(
         }
     }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(backgroundBrush)
-    ) {
-        when {
-            uiState.isLoading && !hasVideos -> {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center),
-                    color = BrandSand
-                )
-            }
-
-            uiState.error != null && !hasVideos -> {
-                uiState.error?.let { errorMessage ->
-                    ErrorState(message = errorMessage, onRetry = viewModel::refresh)
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            FeedNavigationDrawer(
+                onItemSelected = {
+                    coroutineScope.launch { drawerState.close() }
+                },
+                onSocialSelected = {
+                    coroutineScope.launch { drawerState.close() }
                 }
-            }
-
-            hasVideos -> {
-                val currentPage = pagerState.currentPage
-                VerticalPager(
-                    state = pagerState,
-                    modifier = Modifier.fillMaxSize(),
-                    beyondViewportPageCount = 1,
-                    key = { index -> uiState.videos[index].id },
-                ) { page ->
-                    val video = uiState.videos[page]
-                    FeedVideoCard(
-                        video = video,
-                        isActive = page == currentPage,
+            )
+        },
+        gesturesEnabled = true
+    ) {
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .background(backgroundBrush)
+        ) {
+            when {
+                uiState.isLoading && !hasVideos -> {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center),
+                        color = BrandSand
                     )
                 }
-            }
-        }
 
-        AnimatedVisibility(
-            visible = uiState.isLoading && hasVideos,
-            enter = fadeIn(),
-            exit = fadeOut(),
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 32.dp)
-                .navigationBarsPadding()
-        ) {
-            CircularProgressIndicator(color = BrandSand)
+                uiState.error != null && !hasVideos -> {
+                    uiState.error?.let { errorMessage ->
+                        ErrorState(message = errorMessage, onRetry = viewModel::refresh)
+                    }
+                }
+
+                hasVideos -> {
+                    val currentPage = pagerState.currentPage
+                    VerticalPager(
+                        state = pagerState,
+                        modifier = Modifier.fillMaxSize(),
+                        beyondViewportPageCount = 1,
+                        key = { index -> uiState.videos[index].id },
+                    ) { page ->
+                        val video = uiState.videos[page]
+                        FeedVideoCard(
+                            video = video,
+                            isActive = page == currentPage,
+                            onMenuClick = {
+                                coroutineScope.launch { drawerState.open() }
+                            }
+                        )
+                    }
+                }
+            }
+
+            AnimatedVisibility(
+                visible = uiState.isLoading && hasVideos,
+                enter = fadeIn(),
+                exit = fadeOut(),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 32.dp)
+                    .navigationBarsPadding()
+            ) {
+                CircularProgressIndicator(color = BrandSand)
+            }
+
+            FeedBottomNavigation(
+                selectedItem = selectedBottomItem,
+                onItemSelected = { selectedBottomItem = it },
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
         }
     }
 }
@@ -139,6 +193,7 @@ private fun FeedVideoCard(
     video: FeedVideo,
     isActive: Boolean,
     modifier: Modifier = Modifier,
+    onMenuClick: () -> Unit,
 ) {
     val context = LocalContext.current
     var isMuted by remember { mutableStateOf(true) }
@@ -210,7 +265,8 @@ private fun FeedVideoCard(
         VideoOverlay(
             video = video,
             isMuted = isMuted,
-            onToggleSound = { isMuted = !isMuted }
+            onToggleSound = { isMuted = !isMuted },
+            onMenuClick = onMenuClick
         )
     }
 }
@@ -220,6 +276,7 @@ private fun VideoOverlay(
     video: FeedVideo,
     isMuted: Boolean,
     onToggleSound: () -> Unit,
+    onMenuClick: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -234,13 +291,13 @@ private fun VideoOverlay(
 
         Surface(
             modifier = Modifier
-                .align(Alignment.TopEnd)
+                .align(Alignment.TopStart)
                 .statusBarsPadding()
-                .padding(top = 16.dp, end = 20.dp),
+                .padding(top = 16.dp, start = 20.dp),
             shape = CircleShape,
             color = Color.Black.copy(alpha = 0.45f)
         ) {
-            IconButton(onClick = { }, modifier = Modifier.size(44.dp)) {
+            IconButton(onClick = onMenuClick, modifier = Modifier.size(44.dp)) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_menu),
                     contentDescription = "Abrir menu",
@@ -252,7 +309,7 @@ private fun VideoOverlay(
         Column(
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(start = 20.dp, bottom = 36.dp, end = 120.dp),
+                .padding(start = 20.dp, bottom = 120.dp, end = 120.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Row(
@@ -361,6 +418,215 @@ private fun FeedActionButton(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
+    }
+}
+
+private enum class FeedBottomNavItem(val icon: Int, val contentDescription: String) {
+    Home(R.drawable.ic_nav_home, "Início"),
+    Search(R.drawable.ic_nav_search, "Buscar"),
+    Add(R.drawable.ic_nav_add, "Adicionar"),
+    Inbox(R.drawable.ic_nav_inbox, "Mensagens"),
+    Profile(R.drawable.ic_nav_profile, "Perfil")
+}
+
+@Composable
+private fun FeedBottomNavigation(
+    selectedItem: FeedBottomNavItem,
+    onItemSelected: (FeedBottomNavItem) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .navigationBarsPadding(),
+        color = Color.White.copy(alpha = 0.92f),
+        shadowElevation = 16.dp,
+        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp, vertical = 12.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            FeedBottomNavItem.values().forEach { item ->
+                val isSelected = item == selectedItem
+                val tint = if (isSelected) BrandRed else Color.Black.copy(alpha = 0.8f)
+                IconButton(onClick = { onItemSelected(item) }) {
+                    Icon(
+                        painter = painterResource(id = item.icon),
+                        contentDescription = item.contentDescription,
+                        tint = tint,
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+private data class DrawerMenuItem(
+    val icon: ImageVector,
+    val label: String,
+)
+
+@Composable
+private fun FeedNavigationDrawer(
+    onItemSelected: (DrawerMenuItem) -> Unit,
+    onSocialSelected: (String) -> Unit,
+) {
+    val menuItems = listOf(
+        DrawerMenuItem(Icons.Outlined.SportsSoccer, "Atletas"),
+        DrawerMenuItem(Icons.Outlined.Groups, "Torcida"),
+        DrawerMenuItem(Icons.Outlined.PersonSearch, "Agentes de Futebol e Olheiros"),
+        DrawerMenuItem(Icons.Outlined.AccountBalance, "Clubes de Futebol"),
+        DrawerMenuItem(Icons.Outlined.Article, "Notícias"),
+        DrawerMenuItem(Icons.Outlined.SportsEsports, "Games"),
+        DrawerMenuItem(Icons.Outlined.Flag, "Confederações"),
+        DrawerMenuItem(Icons.Outlined.Info, "Sobre o Vitrine de Craques"),
+        DrawerMenuItem(Icons.Outlined.Lock, "Privacidade"),
+    )
+    val socialItems = listOf(
+        Icons.Outlined.SportsSoccer to "TikTok",
+        Icons.Outlined.PlayCircle to "YouTube",
+        Icons.Outlined.Share to "Instagram",
+        Icons.Outlined.Public to "Site",
+    )
+
+    ModalDrawerSheet(
+        modifier = Modifier.fillMaxHeight(),
+        drawerShape = RoundedCornerShape(topEnd = 32.dp, bottomEnd = 32.dp),
+        drawerContainerColor = Color.White
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp, vertical = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            VitrineLogo(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(72.dp)
+            )
+
+            Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                menuItems.forEach { item ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(16.dp))
+                            .clickable { onItemSelected(item) }
+                            .padding(horizontal = 12.dp, vertical = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        Surface(
+                            modifier = Modifier.size(42.dp),
+                            shape = CircleShape,
+                            color = BrandSand.copy(alpha = 0.25f)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = item.icon,
+                                    contentDescription = item.label,
+                                    tint = Color(0xFF1E1E1E),
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            }
+                        }
+                        Text(
+                            text = item.label,
+                            style = MaterialTheme.typography.titleMedium.copy(color = Color.Black),
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                Text(
+                    text = "Siga nossas redes",
+                    style = MaterialTheme.typography.labelMedium.copy(color = Color.Black.copy(alpha = 0.7f))
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    socialItems.forEach { (icon, label) ->
+                        Surface(
+                            modifier = Modifier.size(44.dp),
+                            shape = CircleShape,
+                            color = Color.Black
+                        ) {
+                            IconButton(onClick = { onSocialSelected(label) }) {
+                                Icon(
+                                    imageVector = icon,
+                                    contentDescription = label,
+                                    tint = Color.White,
+                                    modifier = Modifier.size(22.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = "Vitrine de Craques®",
+                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Black)
+                )
+                Text(
+                    text = "2025",
+                    style = MaterialTheme.typography.bodySmall.copy(color = Color.Black.copy(alpha = 0.7f))
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun VitrineLogo(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val imageBitmap = remember {
+        runCatching {
+            val base64String = context.resources.openRawResource(R.raw.logo_vitrine_splash_screen_base64)
+                .bufferedReader()
+                .use { it.readText() }
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)?.asImageBitmap()
+        }.getOrNull()
+    }
+
+    if (imageBitmap != null) {
+        Image(
+            bitmap = imageBitmap,
+            contentDescription = "Logotipo Vitrine de Craques",
+            modifier = modifier,
+            contentScale = ContentScale.Fit
+        )
+    } else {
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "Vitrine de Craques",
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Black, fontWeight = FontWeight.SemiBold)
+            )
+        }
     }
 }
 

@@ -4,34 +4,26 @@ import android.view.View
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,22 +31,19 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -67,202 +56,81 @@ import com.example.vitrinedecraques.R
 import com.example.vitrinedecraques.data.model.FeedVideo
 import com.example.vitrinedecraques.ui.theme.BrandRed
 import com.example.vitrinedecraques.ui.theme.BrandSand
-import kotlinx.coroutines.flow.collectLatest
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
+import androidx.compose.foundation.ExperimentalFoundationApi
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FeedScreen(
     modifier: Modifier = Modifier,
     viewModel: FeedViewModel = viewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    val listState = rememberLazyListState()
-    var activeIndex by remember { mutableIntStateOf(0) }
-
-    LaunchedEffect(listState, uiState.videos.size) {
-        snapshotFlow { listState.firstVisibleItemIndex }
-            .collectLatest { index ->
-                activeIndex = index
-                if (index >= uiState.videos.lastIndex - 1 && uiState.hasMore && !uiState.isLoading) {
-                    viewModel.loadMore()
-                }
-            }
-    }
-
+    val pagerState = rememberPagerState(initialPage = 0) { uiState.videos.size.coerceAtLeast(1) }
+    val hasVideos = uiState.videos.isNotEmpty()
     val backgroundBrush = remember {
         Brush.verticalGradient(listOf(Color(0xFF1C432A), Color(0xFF0A1510)))
     }
 
-    Scaffold(
+    LaunchedEffect(pagerState.currentPage, uiState.videos.size, uiState.hasMore, uiState.isLoading) {
+        if (!hasVideos) return@LaunchedEffect
+        val index = pagerState.currentPage.coerceAtMost(uiState.videos.lastIndex)
+        if (index >= uiState.videos.lastIndex - 1 && uiState.hasMore && !uiState.isLoading) {
+            viewModel.loadMore()
+        }
+    }
+
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundBrush),
-        containerColor = Color.Transparent,
-        topBar = { FeedTopBar() },
-        bottomBar = { FeedBottomBar() }
-    ) { padding ->
-        Box(
+            .background(backgroundBrush)
+    ) {
+        when {
+            uiState.isLoading && !hasVideos -> {
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center),
+                    color = BrandSand
+                )
+            }
+
+            uiState.error != null && !hasVideos -> {
+                uiState.error?.let { errorMessage ->
+                    ErrorState(message = errorMessage, onRetry = viewModel::refresh)
+                }
+            }
+
+            hasVideos -> {
+                val currentPage = pagerState.currentPage
+                VerticalPager(
+                    state = pagerState,
+                    modifier = Modifier.fillMaxSize(),
+                    beyondViewportPageCount = 1,
+                    key = { index -> uiState.videos[index].id },
+                ) { page ->
+                    val video = uiState.videos[page]
+                    FeedVideoCard(
+                        video = video,
+                        isActive = page == currentPage,
+                    )
+                }
+            }
+        }
+
+        AnimatedVisibility(
+            visible = uiState.isLoading && hasVideos,
+            enter = fadeIn(),
+            exit = fadeOut(),
             modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .background(backgroundBrush)
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 32.dp)
+                .navigationBarsPadding()
         ) {
-            when {
-                uiState.isLoading && uiState.videos.isEmpty() -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center),
-                        color = BrandSand
-                    )
-                }
-
-                uiState.error != null && uiState.videos.isEmpty() -> {
-                    uiState.error?.let { errorMessage ->
-                        ErrorState(message = errorMessage, onRetry = viewModel::refresh)
-                    }
-                }
-
-                else -> {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        state = listState,
-                        verticalArrangement = Arrangement.spacedBy(24.dp),
-                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp)
-                    ) {
-                        itemsIndexed(uiState.videos) { index, video ->
-                            FeedVideoCard(
-                                video = video,
-                                isActive = index == activeIndex,
-                            )
-                        }
-
-                        item {
-                            AnimatedVisibility(
-                                visible = uiState.isLoading && uiState.videos.isNotEmpty(),
-                                enter = fadeIn(),
-                                exit = fadeOut()
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(vertical = 16.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    CircularProgressIndicator(color = BrandSand)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            CircularProgressIndicator(color = BrandSand)
         }
-    }
-}
-
-@Composable
-private fun FeedTopBar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .statusBarsPadding()
-            .padding(horizontal = 24.dp, vertical = 12.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text(
-                text = "Vitrine de Craques",
-                style = MaterialTheme.typography.titleMedium.copy(
-                    color = Color.White,
-                    fontWeight = FontWeight.SemiBold
-                )
-            )
-            Text(
-                text = "Descubra novos talentos",
-                style = MaterialTheme.typography.bodySmall.copy(color = Color.White.copy(alpha = 0.8f))
-            )
-        }
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            IconButton(onClick = { }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_action_share),
-                    contentDescription = "Compartilhar",
-                    tint = Color.White
-                )
-            }
-            Box {
-                IconButton(onClick = { }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_nav_inbox),
-                        contentDescription = "Mensagens",
-                        tint = Color.White
-                    )
-                }
-                Image(
-                    painter = painterResource(id = R.drawable.ic_notification_dot),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(12.dp)
-                        .align(Alignment.TopEnd)
-                        .offset(x = (-4).dp, y = 6.dp)
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun FeedBottomBar() {
-    val activeColor = BrandSand
-    val inactiveColor = Color.White.copy(alpha = 0.6f)
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .navigationBarsPadding()
-            .padding(horizontal = 32.dp, vertical = 20.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        BottomBarItem(icon = R.drawable.ic_nav_home, label = "Home", isActive = true, activeColor = activeColor, inactiveColor = inactiveColor)
-        BottomBarItem(icon = R.drawable.ic_nav_search, label = "Buscar", isActive = false, activeColor = activeColor, inactiveColor = inactiveColor)
-        BottomBarItem(icon = R.drawable.ic_nav_add, label = "Criar", isActive = false, activeColor = activeColor, inactiveColor = inactiveColor)
-        BottomBarItem(icon = R.drawable.ic_nav_inbox, label = "Inbox", isActive = false, activeColor = activeColor, inactiveColor = inactiveColor)
-        BottomBarItem(icon = R.drawable.ic_nav_profile, label = "Perfil", isActive = false, activeColor = activeColor, inactiveColor = inactiveColor)
-    }
-}
-
-@Composable
-private fun BottomBarItem(
-    icon: Int,
-    label: String,
-    isActive: Boolean,
-    activeColor: Color,
-    inactiveColor: Color,
-) {
-    val tint = if (isActive) activeColor else inactiveColor
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Surface(
-            modifier = Modifier.size(48.dp),
-            shape = CircleShape,
-            color = if (isActive) Color.White.copy(alpha = 0.12f) else Color.Transparent
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Icon(
-                    painter = painterResource(id = icon),
-                    contentDescription = label,
-                    tint = tint
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = label,
-            color = tint,
-            style = MaterialTheme.typography.labelSmall
-        )
     }
 }
 
@@ -292,6 +160,9 @@ private fun FeedVideoCard(
         if (isActive) {
             exoPlayer.playWhenReady = true
             exoPlayer.volume = if (mutedState) 0f else 1f
+            if (exoPlayer.playbackState == Player.STATE_IDLE) {
+                exoPlayer.prepare()
+            }
             exoPlayer.play()
         } else {
             exoPlayer.playWhenReady = false
@@ -304,11 +175,7 @@ private fun FeedVideoCard(
     }
 
     Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .aspectRatio(9f / 16f)
-            .clip(RoundedCornerShape(32.dp))
-            .shadow(20.dp, RoundedCornerShape(32.dp))
+        modifier = modifier.fillMaxSize()
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context)
@@ -365,11 +232,28 @@ private fun VideoOverlay(
                 )
         )
 
+        Surface(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .statusBarsPadding()
+                .padding(top = 16.dp, end = 20.dp),
+            shape = CircleShape,
+            color = Color.Black.copy(alpha = 0.45f)
+        ) {
+            IconButton(onClick = { }, modifier = Modifier.size(44.dp)) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_menu),
+                    contentDescription = "Abrir menu",
+                    tint = Color.White
+                )
+            }
+        }
+
         Column(
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(start = 20.dp, bottom = 28.dp, end = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+                .padding(start = 20.dp, bottom = 36.dp, end = 120.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -378,13 +262,14 @@ private fun VideoOverlay(
                 Surface(
                     shape = CircleShape,
                     color = Color.White.copy(alpha = 0.18f),
-                    modifier = Modifier.size(52.dp)
+                    modifier = Modifier.size(60.dp)
                 ) {
                     AsyncImage(
                         model = video.user?.profile?.avatarUrl ?: video.user?.image,
                         contentDescription = video.user?.profile?.displayName,
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
+                        placeholder = ColorPainter(Color.Transparent)
                     )
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -405,30 +290,44 @@ private fun VideoOverlay(
                     }
                 }
             }
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                ActionChip(icon = R.drawable.ic_action_like, label = formatCount(video.likesCount ?: 0))
-                ActionChip(icon = R.drawable.ic_action_comment, label = "Comente")
-                ActionChip(icon = R.drawable.ic_action_share, label = "Compartilhar")
-            }
         }
 
-        Surface(
+        Column(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(end = 24.dp, bottom = 32.dp),
-            shape = CircleShape,
-            color = Color.Black.copy(alpha = 0.45f)
+                .padding(end = 20.dp, bottom = 28.dp)
+                .navigationBarsPadding(),
+            verticalArrangement = Arrangement.spacedBy(18.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            IconButton(onClick = onToggleSound, modifier = Modifier.size(52.dp)) {
-                val icon = if (isMuted) R.drawable.ic_volume_off else R.drawable.ic_volume_on
-                Icon(
-                    painter = painterResource(id = icon),
-                    contentDescription = if (isMuted) "Ativar som" else "Desativar som",
-                    tint = Color.White
+            FeedActionButton(
+                icon = R.drawable.ic_action_like,
+                label = formatCount(video.likesCount ?: 0)
+            )
+            FeedActionButton(
+                icon = R.drawable.ic_action_comment,
+                label = "Comentar"
+            )
+            FeedActionButton(
+                icon = R.drawable.ic_action_share,
+                label = "Compartilhar"
+            )
+            FeedActionButton(
+                icon = R.drawable.ic_action_save,
+                label = "Salvar"
+            )
+            SoundToggleButton(isMuted = isMuted, onToggleSound = onToggleSound)
+            Surface(
+                shape = CircleShape,
+                color = Color.White.copy(alpha = 0.2f),
+                modifier = Modifier.size(64.dp)
+            ) {
+                AsyncImage(
+                    model = video.user?.profile?.avatarUrl ?: video.user?.image,
+                    contentDescription = video.user?.profile?.displayName,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize(),
+                    placeholder = ColorPainter(Color.Transparent)
                 )
             }
         }
@@ -436,24 +335,50 @@ private fun VideoOverlay(
 }
 
 @Composable
-private fun ActionChip(icon: Int, label: String) {
-    Surface(
-        color = Color.Black.copy(alpha = 0.55f),
-        shape = RoundedCornerShape(20.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+private fun FeedActionButton(
+    icon: Int,
+    label: String,
+    onClick: () -> Unit = {},
+) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Surface(
+            shape = CircleShape,
+            color = Color.Black.copy(alpha = 0.45f)
         ) {
+            IconButton(onClick = onClick, modifier = Modifier.size(56.dp)) {
+                Icon(
+                    painter = painterResource(id = icon),
+                    contentDescription = label,
+                    tint = Color.White
+                )
+            }
+        }
+        Spacer(modifier = Modifier.size(4.dp))
+        Text(
+            text = label,
+            color = Color.White,
+            style = MaterialTheme.typography.labelSmall,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
+}
+
+@Composable
+private fun SoundToggleButton(
+    isMuted: Boolean,
+    onToggleSound: () -> Unit,
+) {
+    Surface(
+        shape = CircleShape,
+        color = Color.Black.copy(alpha = 0.45f)
+    ) {
+        IconButton(onClick = onToggleSound, modifier = Modifier.size(56.dp)) {
+            val icon = if (isMuted) R.drawable.ic_volume_off else R.drawable.ic_volume_on
             Icon(
                 painter = painterResource(id = icon),
-                contentDescription = label,
+                contentDescription = if (isMuted) "Ativar som" else "Desativar som",
                 tint = Color.White
-            )
-            Text(
-                text = label,
-                style = MaterialTheme.typography.labelMedium.copy(color = Color.White)
             )
         }
     }
@@ -473,7 +398,7 @@ private fun ErrorState(message: String, onRetry: () -> Unit) {
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyMedium.copy(color = Color.White)
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.size(16.dp))
         Surface(
             color = BrandRed,
             shape = RoundedCornerShape(24.dp),

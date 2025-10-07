@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 data class FeedVideo(
     val id: String,
     val title: String? = null,
+    val description: String? = null,
     @SerialName("videoUrl")
     val videoUrl: String,
     @SerialName("thumbnailUrl")

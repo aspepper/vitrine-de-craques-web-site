@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.View
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
@@ -14,11 +15,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.matchParentSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -106,9 +109,21 @@ fun FeedScreen(
     val coroutineScope = rememberCoroutineScope()
     var selectedBottomItem by remember { mutableStateOf(FeedBottomNavItem.Home) }
 
+    LaunchedEffect(uiState.lastViewedVideoId, uiState.videos) {
+        val targetId = uiState.lastViewedVideoId ?: return@LaunchedEffect
+        val targetIndex = uiState.videos.indexOfFirst { it.id == targetId }
+        if (targetIndex >= 0 && targetIndex != pagerState.currentPage) {
+            pagerState.scrollToPage(targetIndex)
+        }
+    }
+
     LaunchedEffect(pagerState.currentPage, uiState.videos.size, uiState.hasMore, uiState.isLoading) {
         if (!hasVideos) return@LaunchedEffect
         val index = pagerState.currentPage.coerceAtMost(uiState.videos.lastIndex)
+        val currentVideo = uiState.videos.getOrNull(index)
+        if (currentVideo != null) {
+            viewModel.updateLastViewedVideo(currentVideo.id)
+        }
         if (index >= uiState.videos.lastIndex - 1 && uiState.hasMore && !uiState.isLoading) {
             viewModel.loadMore()
         }
@@ -215,9 +230,7 @@ private fun FeedVideoCard(
         if (isActive) {
             exoPlayer.playWhenReady = true
             exoPlayer.volume = if (mutedState) 0f else 1f
-            if (exoPlayer.playbackState == Player.STATE_IDLE) {
-                exoPlayer.prepare()
-            }
+            exoPlayer.prepare()
             exoPlayer.play()
         } else {
             exoPlayer.playWhenReady = false
@@ -289,11 +302,47 @@ private fun VideoOverlay(
                 )
         )
 
-        Surface(
+        FeedTopBar(
+            onMenuClick = onMenuClick,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
+
+        FeedVideoDetails(
+            video = video,
             modifier = Modifier
-                .align(Alignment.TopStart)
-                .statusBarsPadding()
-                .padding(top = 16.dp, start = 20.dp),
+                .align(Alignment.BottomStart)
+                .padding(start = 20.dp, end = 120.dp, bottom = 132.dp)
+                .navigationBarsPadding()
+        )
+
+        FeedActionsPanel(
+            video = video,
+            isMuted = isMuted,
+            onToggleSound = onToggleSound,
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .fillMaxHeight()
+                .padding(top = 96.dp, end = 20.dp, bottom = 132.dp)
+                .navigationBarsPadding()
+        )
+    }
+}
+
+@Composable
+private fun FeedTopBar(
+    onMenuClick: () -> Unit,
+    onNotificationsClick: () -> Unit = {},
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .statusBarsPadding()
+            .padding(horizontal = 20.dp, vertical = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Surface(
             shape = CircleShape,
             color = Color.Black.copy(alpha = 0.45f)
         ) {
@@ -306,54 +355,106 @@ private fun VideoOverlay(
             }
         }
 
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(start = 20.dp, bottom = 120.dp, end = 120.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Surface(
-                    shape = CircleShape,
-                    color = Color.White.copy(alpha = 0.18f),
-                    modifier = Modifier.size(60.dp)
-                ) {
-                    AsyncImage(
-                        model = video.user?.profile?.avatarUrl ?: video.user?.image,
-                        contentDescription = video.user?.profile?.displayName,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize(),
-                        placeholder = ColorPainter(Color.Transparent)
+        NotificationBellButton(onClick = onNotificationsClick)
+    }
+}
+
+@Composable
+private fun NotificationBellButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Surface(
+        modifier = modifier,
+        shape = CircleShape,
+        color = Color.Black.copy(alpha = 0.45f)
+    ) {
+        Box(modifier = Modifier.size(44.dp)) {
+            IconButton(onClick = onClick, modifier = Modifier.matchParentSize()) {
+                Box(contentAlignment = Alignment.Center) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_bell_body_header),
+                        contentDescription = "Notificações",
+                        tint = Color.White,
+                        modifier = Modifier.size(22.dp)
                     )
-                }
-                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text(
-                        text = video.user?.profile?.displayName ?: video.user?.name ?: "Craque",
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            color = Color.White,
-                            fontWeight = FontWeight.SemiBold
-                        )
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_bell_bell_header),
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.size(16.dp)
                     )
-                    if (!video.title.isNullOrBlank()) {
-                        Text(
-                            text = video.title,
-                            style = MaterialTheme.typography.bodySmall.copy(color = Color.White.copy(alpha = 0.85f)),
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
                 }
             }
+            Icon(
+                painter = painterResource(id = R.drawable.ic_bell_notification_header),
+                contentDescription = null,
+                tint = Color.Unspecified,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .offset(x = (-2).dp, y = (-2).dp)
+                    .size(10.dp)
+            )
         }
+    }
+}
 
+@Composable
+private fun FeedVideoDetails(
+    video: FeedVideo,
+    modifier: Modifier = Modifier,
+) {
+    val title = video.title?.takeIf { it.isNotBlank() } ?: "Vídeo em destaque"
+    val description = video.description?.takeIf { it.isNotBlank() }
+
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge.copy(
+                color = Color.White,
+                fontWeight = FontWeight.Bold
+            ),
+        )
+
+        if (description != null) {
+            var showFullDescription by remember(video.id) { mutableStateOf(false) }
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodyMedium.copy(color = Color.White.copy(alpha = 0.9f)),
+                maxLines = if (showFullDescription) Int.MAX_VALUE else 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize()
+            )
+            Text(
+                text = if (showFullDescription) "ver menos..." else "ver mais...",
+                style = MaterialTheme.typography.bodySmall.copy(
+                    color = BrandSand,
+                    fontWeight = FontWeight.SemiBold
+                ),
+                modifier = Modifier.clickable { showFullDescription = !showFullDescription }
+            )
+        }
+    }
+}
+
+@Composable
+private fun FeedActionsPanel(
+    video: FeedVideo,
+    isMuted: Boolean,
+    onToggleSound: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Column(
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = 20.dp, bottom = 28.dp)
-                .navigationBarsPadding(),
             verticalArrangement = Arrangement.spacedBy(18.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -374,13 +475,17 @@ private fun VideoOverlay(
                 label = "Salvar"
             )
             SoundToggleButton(isMuted = isMuted, onToggleSound = onToggleSound)
+        }
+
+        val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
+        if (!avatarUrl.isNullOrBlank()) {
             Surface(
                 shape = CircleShape,
                 color = Color.White.copy(alpha = 0.2f),
                 modifier = Modifier.size(64.dp)
             ) {
                 AsyncImage(
-                    model = video.user?.profile?.avatarUrl ?: video.user?.image,
+                    model = avatarUrl,
                     contentDescription = video.user?.profile?.displayName,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize(),

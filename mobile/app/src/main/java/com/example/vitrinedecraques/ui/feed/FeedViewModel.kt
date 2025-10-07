@@ -1,7 +1,9 @@
 package com.example.vitrinedecraques.ui.feed
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.vitrinedecraques.data.FeedCache
 import com.example.vitrinedecraques.data.NextApiService
 import com.example.vitrinedecraques.data.model.FeedVideo
 import kotlinx.coroutines.Job
@@ -17,20 +19,27 @@ data class FeedUiState(
     val isLoading: Boolean = false,
     val error: String? = null,
     val hasMore: Boolean = true,
+    val lastViewedVideoId: String? = null,
 )
 
 class FeedViewModel(
+    application: Application,
     private val service: NextApiService = NextApiService(),
-) : ViewModel() {
+    private val cache: FeedCache = FeedCache(application)
+) : AndroidViewModel(application) {
 
     private val _uiState = MutableStateFlow(FeedUiState(isLoading = true))
     val uiState: StateFlow<FeedUiState> = _uiState.asStateFlow()
 
     private var loadJob: Job? = null
     private var currentSkip = 0
+    private var lastViewedVideoId: String? = null
 
     init {
-        loadInitial()
+        viewModelScope.launch {
+            restoreFromCache()
+            loadInitial()
+        }
     }
 
     fun refresh() {
@@ -54,37 +63,93 @@ class FeedViewModel(
             try {
                 val skip = if (reset) 0 else currentSkip
                 val videos = service.fetchVideos(skip = skip, take = PAGE_SIZE)
-                currentSkip = skip + videos.size
-                _uiState.value = if (reset) {
-                    FeedUiState(
-                        videos = videos,
-                        isLoading = false,
-                        hasMore = videos.size == PAGE_SIZE,
-                    )
+                currentSkip = if (reset) {
+                    videos.size
                 } else {
-                    val merged = _uiState.value.videos + videos
-                    _uiState.value.copy(
-                        videos = merged,
-                        isLoading = false,
-                        hasMore = videos.size == PAGE_SIZE,
-                        error = null,
-                    )
+                    skip + videos.size
                 }
+                val merged = if (reset) {
+                    (videos + _uiState.value.videos).distinctBy { it.id }
+                } else {
+                    (_uiState.value.videos + videos).distinctBy { it.id }
+                }
+                val alignedLastViewed = alignLastViewedVideoId(merged)
+                _uiState.value = _uiState.value.copy(
+                    videos = merged,
+                    isLoading = false,
+                    hasMore = videos.size == PAGE_SIZE,
+                    error = null,
+                    lastViewedVideoId = alignedLastViewed,
+                )
+                persistVideos(merged)
             } catch (error: Exception) {
                 if (reset) {
-                    _uiState.value = FeedUiState(
-                        videos = emptyList(),
-                        isLoading = false,
-                        hasMore = true,
-                        error = error.message ?: "Não foi possível carregar o feed.",
-                    )
+                    val existing = _uiState.value.videos
+                    if (existing.isEmpty()) {
+                        _uiState.value = FeedUiState(
+                            videos = emptyList(),
+                            isLoading = false,
+                            hasMore = true,
+                            error = error.message ?: "Não foi possível carregar o feed.",
+                            lastViewedVideoId = null,
+                        )
+                    } else {
+                        _uiState.value = _uiState.value.copy(
+                            isLoading = false,
+                            error = error.message ?: "Não foi possível carregar o feed.",
+                            hasMore = true,
+                            lastViewedVideoId = lastViewedVideoId,
+                        )
+                    }
                 } else {
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
                         error = error.message ?: "Não foi possível carregar mais vídeos.",
+                        lastViewedVideoId = lastViewedVideoId,
                     )
                 }
             }
+        }
+    }
+
+    fun updateLastViewedVideo(videoId: String) {
+        if (lastViewedVideoId == videoId) return
+        lastViewedVideoId = videoId
+        _uiState.value = _uiState.value.copy(lastViewedVideoId = videoId)
+        viewModelScope.launch {
+            cache.saveLastViewedVideoId(videoId)
+        }
+    }
+
+    private suspend fun restoreFromCache() {
+        val snapshot = cache.loadSnapshot()
+        if (snapshot.videos.isNotEmpty()) {
+            lastViewedVideoId = snapshot.lastViewedVideoId
+            _uiState.value = FeedUiState(
+                videos = snapshot.videos,
+                isLoading = true,
+                hasMore = true,
+                error = null,
+                lastViewedVideoId = lastViewedVideoId,
+            )
+        }
+    }
+
+    private fun alignLastViewedVideoId(videos: List<FeedVideo>): String? {
+        if (videos.isEmpty()) {
+            lastViewedVideoId = null
+            return null
+        }
+        if (lastViewedVideoId == null || videos.none { it.id == lastViewedVideoId }) {
+            lastViewedVideoId = videos.first().id
+        }
+        return lastViewedVideoId
+    }
+
+    private fun persistVideos(videos: List<FeedVideo>) {
+        viewModelScope.launch {
+            cache.saveVideos(videos)
+            cache.saveLastViewedVideoId(lastViewedVideoId)
         }
     }
 }

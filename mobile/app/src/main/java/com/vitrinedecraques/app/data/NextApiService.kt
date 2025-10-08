@@ -20,7 +20,7 @@ class NextApiService(
         ignoreUnknownKeys = true
         isLenient = true
     },
-    baseUrl: String = BuildConfig.API_BASE_URL,
+    private val baseUrl: String = BuildConfig.API_BASE_URL,
 ) {
     private val apiBaseUrl: HttpUrl = baseUrl.trim().takeIf { it.isNotEmpty() }
         ?.toHttpUrlOrNull()

@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.matchParentSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -265,14 +264,14 @@ private fun FeedVideoCard(
                     .build(),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.matchParentSize(),
+                modifier = Modifier.fillMaxSize(),
                 placeholder = ColorPainter(Color(0xFF0E1F36)),
                 error = ColorPainter(Color(0xFF0E1F36)),
                 fallback = ColorPainter(Color(0xFF0E1F36))
             )
 
             AndroidView(
-                modifier = Modifier.matchParentSize(),
+                modifier = Modifier.fillMaxSize(),
                 factory = { ctx ->
                     PlayerView(ctx).apply {
                         useController = false
@@ -293,7 +292,7 @@ private fun FeedVideoCard(
                 isMuted = isMuted,
                 onToggleSound = { isMuted = !isMuted },
                 onMenuClick = onMenuClick,
-                modifier = Modifier.matchParentSize()
+                modifier = Modifier.fillMaxSize()
             )
         }
     }

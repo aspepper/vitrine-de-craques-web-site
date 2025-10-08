@@ -22,7 +22,7 @@ data class FeedUiState(
     val lastViewedVideoId: String? = null,
 )
 
-class FeedViewModel(
+class FeedViewModel @JvmOverloads constructor(
     application: Application,
     private val service: NextApiService = NextApiService(),
     private val cache: FeedCache = FeedCache(application)

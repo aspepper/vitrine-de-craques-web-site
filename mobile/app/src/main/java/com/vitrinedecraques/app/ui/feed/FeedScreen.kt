@@ -144,61 +144,66 @@ fun FeedScreen(
         },
         gesturesEnabled = true
     ) {
-        Box(
+        Column(
             modifier = modifier
                 .fillMaxSize()
                 .background(backgroundBrush)
         ) {
-            when {
-                uiState.isLoading && !hasVideos -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center),
-                        color = BrandSand
-                    )
-                }
-
-                uiState.error != null && !hasVideos -> {
-                    uiState.error?.let { errorMessage ->
-                        ErrorState(message = errorMessage, onRetry = viewModel::refresh)
-                    }
-                }
-
-                hasVideos -> {
-                    val currentPage = pagerState.currentPage
-                    VerticalPager(
-                        state = pagerState,
-                        modifier = Modifier.fillMaxSize(),
-                        beyondViewportPageCount = 1,
-                        key = { index -> uiState.videos[index].id },
-                    ) { page ->
-                        val video = uiState.videos[page]
-                        FeedVideoCard(
-                            video = video,
-                            isActive = page == currentPage,
-                            onMenuClick = {
-                                coroutineScope.launch { drawerState.open() }
-                            }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+            ) {
+                when {
+                    uiState.isLoading && !hasVideos -> {
+                        CircularProgressIndicator(
+                            modifier = Modifier.align(Alignment.Center),
+                            color = BrandSand
                         )
                     }
-                }
-            }
 
-            AnimatedVisibility(
-                visible = uiState.isLoading && hasVideos,
-                enter = fadeIn(),
-                exit = fadeOut(),
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 32.dp)
-                    .navigationBarsPadding()
-            ) {
-                CircularProgressIndicator(color = BrandSand)
+                    uiState.error != null && !hasVideos -> {
+                        uiState.error?.let { errorMessage ->
+                            ErrorState(message = errorMessage, onRetry = viewModel::refresh)
+                        }
+                    }
+
+                    hasVideos -> {
+                        val currentPage = pagerState.currentPage
+                        VerticalPager(
+                            state = pagerState,
+                            modifier = Modifier.fillMaxSize(),
+                            beyondViewportPageCount = 1,
+                            key = { index -> uiState.videos[index].id },
+                        ) { page ->
+                            val video = uiState.videos[page]
+                            FeedVideoCard(
+                                video = video,
+                                isActive = page == currentPage,
+                                onMenuClick = {
+                                    coroutineScope.launch { drawerState.open() }
+                                }
+                            )
+                        }
+                    }
+                }
+
+                AnimatedVisibility(
+                    visible = uiState.isLoading && hasVideos,
+                    enter = fadeIn(),
+                    exit = fadeOut(),
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(bottom = 32.dp)
+                        .navigationBarsPadding()
+                ) {
+                    CircularProgressIndicator(color = BrandSand)
+                }
             }
 
             FeedBottomNavigation(
                 selectedItem = selectedBottomItem,
                 onItemSelected = { selectedBottomItem = it },
-                modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
     }
@@ -252,10 +257,7 @@ private fun FeedVideoCard(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-                .aspectRatio(9f / 16f)
-                .clip(RoundedCornerShape(36.dp))
+                .fillMaxSize()
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(context)
@@ -275,7 +277,7 @@ private fun FeedVideoCard(
                 factory = { ctx ->
                     PlayerView(ctx).apply {
                         useController = false
-                        resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+                        resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
                         player = exoPlayer
                         (videoSurfaceView as? View)?.alpha = 0.98f
                     }

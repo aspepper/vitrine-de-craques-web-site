@@ -488,7 +488,7 @@ private fun FeedActionsPanel(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(20.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             FeedActionButton(
@@ -561,17 +561,22 @@ private fun FeedActionButton(
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Surface(
             shape = CircleShape,
-            color = Color.Black.copy(alpha = 0.45f)
+            color = Color.Black.copy(alpha = 0.45f),
+            modifier = Modifier.size(48.dp)
         ) {
-            IconButton(onClick = onClick, modifier = Modifier.size(56.dp)) {
+            IconButton(
+                onClick = onClick,
+                modifier = Modifier.fillMaxSize()
+            ) {
                 Icon(
                     painter = painterResource(id = icon),
                     contentDescription = label,
-                    tint = Color.White
+                    tint = Color.White,
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }
-        Spacer(modifier = Modifier.size(4.dp))
+        Spacer(modifier = Modifier.size(6.dp))
         Text(
             text = label,
             color = Color.White,

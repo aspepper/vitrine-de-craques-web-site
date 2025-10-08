@@ -1,4 +1,4 @@
-package com.example.vitrinedecraques.ui.theme
+package com.vitrinedecraques.app.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

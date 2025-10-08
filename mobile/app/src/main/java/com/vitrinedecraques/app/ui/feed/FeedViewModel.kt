@@ -1,11 +1,11 @@
-package com.example.vitrinedecraques.ui.feed
+package com.vitrinedecraques.app.ui.feed
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vitrinedecraques.data.FeedCache
-import com.example.vitrinedecraques.data.NextApiService
-import com.example.vitrinedecraques.data.model.FeedVideo
+import com.vitrinedecraques.app.data.FeedCache
+import com.vitrinedecraques.app.data.NextApiService
+import com.vitrinedecraques.app.data.model.FeedVideo
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

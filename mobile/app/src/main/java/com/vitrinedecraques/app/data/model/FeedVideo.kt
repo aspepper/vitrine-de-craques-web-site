@@ -1,4 +1,4 @@
-package com.example.vitrinedecraques.data.model
+package com.vitrinedecraques.app.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

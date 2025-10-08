@@ -1,4 +1,4 @@
-package com.example.vitrinedecraques
+package com.vitrinedecraques.app
 
 import org.junit.Test
 

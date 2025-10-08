@@ -1,4 +1,4 @@
-package com.example.vitrinedecraques.ui
+package com.vitrinedecraques.app.ui
 
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -29,8 +29,8 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.vitrinedecraques.R
-import com.example.vitrinedecraques.ui.feed.FeedScreen
+import com.vitrinedecraques.app.R
+import com.vitrinedecraques.app.ui.feed.FeedScreen
 import kotlinx.coroutines.delay
 
 private enum class AppDestination {

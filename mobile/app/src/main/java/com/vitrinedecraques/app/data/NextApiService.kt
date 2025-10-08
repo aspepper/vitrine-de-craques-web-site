@@ -1,7 +1,7 @@
-package com.example.vitrinedecraques.data
+package com.vitrinedecraques.app.data
 
-import com.example.vitrinedecraques.BuildConfig
-import com.example.vitrinedecraques.data.model.FeedVideo
+import com.vitrinedecraques.app.BuildConfig
+import com.vitrinedecraques.app.data.model.FeedVideo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString

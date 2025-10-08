@@ -1,4 +1,4 @@
-package com.example.vitrinedecraques.ui.theme
+package com.vitrinedecraques.app.ui.theme
 
 import android.app.Activity
 import android.os.Build

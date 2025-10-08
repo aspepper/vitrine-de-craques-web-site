@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,9 +17,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.matchParentSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -63,11 +66,11 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -225,61 +228,74 @@ private fun FeedVideoCard(
         onDispose { exoPlayer.release() }
     }
 
-    LaunchedEffect(isActive) {
+    LaunchedEffect(isActive, exoPlayer) {
         if (isActive) {
             exoPlayer.playWhenReady = true
             exoPlayer.volume = if (mutedState) 0f else 1f
-            exoPlayer.prepare()
+            if (exoPlayer.playbackState == Player.STATE_IDLE) {
+                exoPlayer.prepare()
+            }
             exoPlayer.play()
         } else {
             exoPlayer.playWhenReady = false
             exoPlayer.pause()
+            exoPlayer.seekToDefaultPosition()
         }
     }
 
-    LaunchedEffect(mutedState) {
+    LaunchedEffect(mutedState, exoPlayer) {
         exoPlayer.volume = if (mutedState) 0f else 1f
     }
 
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(context)
-                .data(video.thumbnailUrl)
-                .crossfade(true)
-                .build(),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize(),
-            placeholder = ColorPainter(Color(0xFF0E1F36)),
-            error = ColorPainter(Color(0xFF0E1F36)),
-            fallback = ColorPainter(Color(0xFF0E1F36))
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+                .aspectRatio(9f / 16f)
+                .clip(RoundedCornerShape(36.dp))
+        ) {
+            AsyncImage(
+                model = ImageRequest.Builder(context)
+                    .data(video.thumbnailUrl)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.matchParentSize(),
+                placeholder = ColorPainter(Color(0xFF0E1F36)),
+                error = ColorPainter(Color(0xFF0E1F36)),
+                fallback = ColorPainter(Color(0xFF0E1F36))
+            )
 
-        AndroidView(
-            modifier = Modifier.fillMaxSize(),
-            factory = { ctx ->
-                PlayerView(ctx).apply {
-                    useController = false
-                    resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
-                    player = exoPlayer
-                    (videoSurfaceView as? View)?.alpha = 0.98f
+            AndroidView(
+                modifier = Modifier.matchParentSize(),
+                factory = { ctx ->
+                    PlayerView(ctx).apply {
+                        useController = false
+                        resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+                        player = exoPlayer
+                        (videoSurfaceView as? View)?.alpha = 0.98f
+                    }
+                },
+                update = { view ->
+                    if (view.player !== exoPlayer) {
+                        view.player = exoPlayer
+                    }
                 }
-            },
-            update = { view ->
-                if (view.player !== exoPlayer) {
-                    view.player = exoPlayer
-                }
-            }
-        )
+            )
 
-        VideoOverlay(
-            video = video,
-            isMuted = isMuted,
-            onToggleSound = { isMuted = !isMuted },
-            onMenuClick = onMenuClick
-        )
+            VideoOverlay(
+                video = video,
+                isMuted = isMuted,
+                onToggleSound = { isMuted = !isMuted },
+                onMenuClick = onMenuClick,
+                modifier = Modifier.matchParentSize()
+            )
+        }
     }
 }
 
@@ -289,8 +305,9 @@ private fun VideoOverlay(
     isMuted: Boolean,
     onToggleSound: () -> Unit,
     onMenuClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = modifier) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -310,8 +327,7 @@ private fun VideoOverlay(
             video = video,
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(start = 20.dp, end = 120.dp, bottom = 132.dp)
-                .navigationBarsPadding()
+                .padding(start = 24.dp, end = 120.dp, bottom = 48.dp)
         )
 
         FeedActionsPanel(
@@ -321,8 +337,7 @@ private fun VideoOverlay(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .fillMaxHeight()
-                .padding(top = 96.dp, end = 20.dp, bottom = 132.dp)
-                .navigationBarsPadding()
+                .padding(top = 32.dp, end = 16.dp, bottom = 32.dp)
         )
     }
 }
@@ -454,7 +469,7 @@ private fun FeedActionsPanel(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(18.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             FeedActionButton(
@@ -478,19 +493,42 @@ private fun FeedActionsPanel(
 
         val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         if (!avatarUrl.isNullOrBlank()) {
-            Surface(
-                shape = CircleShape,
-                color = Color.White.copy(alpha = 0.2f),
-                modifier = Modifier.size(64.dp)
-            ) {
-                AsyncImage(
-                    model = avatarUrl,
-                    contentDescription = video.user?.profile?.displayName,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize(),
-                    placeholder = ColorPainter(Color.Transparent)
-                )
-            }
+            UserAvatar(
+                imageUrl = avatarUrl,
+                contentDescription = video.user?.profile?.displayName
+            )
+        }
+    }
+}
+
+@Composable
+private fun UserAvatar(
+    imageUrl: String,
+    contentDescription: String?
+) {
+    Surface(
+        shape = CircleShape,
+        color = Color.White.copy(alpha = 0.3f),
+        modifier = Modifier.size(72.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(6.dp)
+                .clip(CircleShape)
+                .background(Color.White)
+                .border(2.dp, Color.White, CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            AsyncImage(
+                model = imageUrl,
+                contentDescription = contentDescription,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(CircleShape),
+                placeholder = ColorPainter(Color.Transparent)
+            )
         }
     }
 }

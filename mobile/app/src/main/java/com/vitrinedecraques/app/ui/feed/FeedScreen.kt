@@ -243,11 +243,24 @@ private fun FeedVideoCard(
         }
     }
     val mutedState by rememberUpdatedState(isMuted)
+    val isActiveState by rememberUpdatedState(isActive)
 
     DisposableEffect(exoPlayer, video.id) {
+        val listener = object : Player.Listener {
+            override fun onPlaybackStateChanged(playbackState: Int) {
+                if (playbackState == Player.STATE_READY && isActiveState) {
+                    exoPlayer.playWhenReady = true
+                    exoPlayer.play()
+                }
+            }
+        }
+        exoPlayer.addListener(listener)
         exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
         exoPlayer.prepare()
-        onDispose { exoPlayer.release() }
+        onDispose {
+            exoPlayer.removeListener(listener)
+            exoPlayer.release()
+        }
     }
 
     LaunchedEffect(isActive, exoPlayer) {
@@ -354,9 +367,8 @@ private fun VideoOverlay(
             isMuted = isMuted,
             onToggleSound = onToggleSound,
             modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .fillMaxHeight()
-                .padding(top = 32.dp, end = 16.dp, bottom = 32.dp)
+                .align(Alignment.BottomEnd)
+                .padding(end = 16.dp, bottom = 112.dp)
         )
     }
 }
@@ -484,9 +496,10 @@ private fun FeedActionsPanel(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -510,8 +523,8 @@ private fun FeedActionsPanel(
             SoundToggleButton(isMuted = isMuted, onToggleSound = onToggleSound)
         }
 
-        val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         if (!avatarUrl.isNullOrBlank()) {
+            Spacer(modifier = Modifier.height(32.dp))
             UserAvatar(
                 imageUrl = avatarUrl,
                 contentDescription = video.user?.profile?.displayName

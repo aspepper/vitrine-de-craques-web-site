@@ -3,16 +3,17 @@ package com.vitrinedecraques.app.ui.feed
 import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.View
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -65,6 +66,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -188,17 +190,13 @@ fun FeedScreen(
                     }
                 }
 
-                AnimatedVisibility(
+                LoadingIndicator(
                     visible = uiState.isLoading && hasVideos,
-                    enter = fadeIn(),
-                    exit = fadeOut(),
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .padding(bottom = 32.dp)
                         .navigationBarsPadding()
-                ) {
-                    CircularProgressIndicator(color = BrandSand)
-                }
+                )
             }
 
             FeedBottomNavigation(
@@ -206,6 +204,26 @@ fun FeedScreen(
                 onItemSelected = { selectedBottomItem = it },
             )
         }
+    }
+}
+
+@Composable
+private fun BoxScope.LoadingIndicator(
+    visible: Boolean,
+    modifier: Modifier = Modifier,
+    animationSpec: AnimationSpec<Float> = tween(durationMillis = 200),
+) {
+    val alpha by animateFloatAsState(
+        targetValue = if (visible) 1f else 0f,
+        animationSpec = animationSpec,
+        label = "loadingIndicatorAlpha"
+    )
+
+    if (alpha > 0f) {
+        CircularProgressIndicator(
+            color = BrandSand,
+            modifier = modifier.alpha(alpha)
+        )
     }
 }
 

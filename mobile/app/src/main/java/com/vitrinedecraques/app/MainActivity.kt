@@ -1,4 +1,4 @@
-package com.example.vitrinedecraques
+package com.vitrinedecraques.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,8 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.vitrinedecraques.ui.theme.VitrineDeCraquesTheme
-import com.example.vitrinedecraques.ui.VitrineDeCraquesApp
+import com.vitrinedecraques.app.ui.theme.VitrineDeCraquesTheme
+import com.vitrinedecraques.app.ui.VitrineDeCraquesApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

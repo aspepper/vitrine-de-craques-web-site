@@ -1,4 +1,4 @@
-package com.example.vitrinedecraques.ui.feed
+package com.vitrinedecraques.app.ui.feed
 
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -80,10 +80,10 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.vitrinedecraques.R
-import com.example.vitrinedecraques.data.model.FeedVideo
-import com.example.vitrinedecraques.ui.theme.BrandRed
-import com.example.vitrinedecraques.ui.theme.BrandSand
+import com.vitrinedecraques.app.R
+import com.vitrinedecraques.app.data.model.FeedVideo
+import com.vitrinedecraques.app.ui.theme.BrandRed
+import com.vitrinedecraques.app.ui.theme.BrandSand
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer

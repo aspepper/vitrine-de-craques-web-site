@@ -1,11 +1,11 @@
-package com.example.vitrinedecraques.data
+package com.vitrinedecraques.app.data
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.vitrinedecraques.data.model.FeedVideo
+import com.vitrinedecraques.app.data.model.FeedVideo
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map

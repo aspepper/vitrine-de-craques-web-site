@@ -367,8 +367,10 @@ private fun VideoOverlay(
             isMuted = isMuted,
             onToggleSound = onToggleSound,
             modifier = Modifier
+                .fillMaxHeight()
+                .navigationBarsPadding()
+                .padding(end = 16.dp, bottom = 24.dp)
                 .align(Alignment.BottomEnd)
-                .padding(end = 16.dp, bottom = 112.dp)
         )
     }
 }
@@ -501,7 +503,7 @@ private fun FeedActionsPanel(
     ) {
         val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             FeedActionButton(
@@ -524,7 +526,7 @@ private fun FeedActionsPanel(
         }
 
         if (!avatarUrl.isNullOrBlank()) {
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(24.dp))
             UserAvatar(
                 imageUrl = avatarUrl,
                 contentDescription = video.user?.profile?.displayName
@@ -575,7 +577,7 @@ private fun FeedActionButton(
         Surface(
             shape = CircleShape,
             color = Color.Black.copy(alpha = 0.45f),
-            modifier = Modifier.size(48.dp)
+            modifier = Modifier.size(40.dp)
         ) {
             IconButton(
                 onClick = onClick,
@@ -585,7 +587,7 @@ private fun FeedActionButton(
                     painter = painterResource(id = icon),
                     contentDescription = label,
                     tint = Color.White,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(20.dp)
                 )
             }
         }

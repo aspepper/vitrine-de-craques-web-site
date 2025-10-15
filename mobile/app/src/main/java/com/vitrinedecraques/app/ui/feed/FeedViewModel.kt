@@ -20,6 +20,9 @@ data class FeedUiState(
     val error: String? = null,
     val hasMore: Boolean = true,
     val lastViewedVideoId: String? = null,
+    val pendingNewVideos: List<FeedVideo> = emptyList(),
+    val showNewVideosBanner: Boolean = false,
+    val isCheckingUpdates: Boolean = false,
 )
 
 class FeedViewModel @JvmOverloads constructor(
@@ -32,19 +35,27 @@ class FeedViewModel @JvmOverloads constructor(
     val uiState: StateFlow<FeedUiState> = _uiState.asStateFlow()
 
     private var loadJob: Job? = null
+    private var updatesJob: Job? = null
     private var currentSkip = 0
     private var lastViewedVideoId: String? = null
 
     init {
         viewModelScope.launch {
             restoreFromCache()
-            loadInitial()
+            if (_uiState.value.videos.isEmpty()) {
+                loadInitial()
+            } else {
+                checkForUpdates()
+            }
         }
     }
 
     fun refresh() {
-        currentSkip = 0
-        loadVideos(reset = true)
+        if (_uiState.value.videos.isEmpty()) {
+            loadInitial()
+        } else {
+            checkForUpdates(force = true)
+        }
     }
 
     fun loadMore() {
@@ -59,55 +70,10 @@ class FeedViewModel @JvmOverloads constructor(
     private fun loadVideos(reset: Boolean) {
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(isLoading = true, error = null)
-            try {
-                val skip = if (reset) 0 else currentSkip
-                val videos = service.fetchVideos(skip = skip, take = PAGE_SIZE)
-                currentSkip = if (reset) {
-                    videos.size
-                } else {
-                    skip + videos.size
-                }
-                val merged = if (reset) {
-                    (videos + _uiState.value.videos).distinctBy { it.id }
-                } else {
-                    (_uiState.value.videos + videos).distinctBy { it.id }
-                }
-                val alignedLastViewed = alignLastViewedVideoId(merged)
-                _uiState.value = _uiState.value.copy(
-                    videos = merged,
-                    isLoading = false,
-                    hasMore = videos.size == PAGE_SIZE,
-                    error = null,
-                    lastViewedVideoId = alignedLastViewed,
-                )
-                persistVideos(merged)
-            } catch (error: Exception) {
-                if (reset) {
-                    val existing = _uiState.value.videos
-                    if (existing.isEmpty()) {
-                        _uiState.value = FeedUiState(
-                            videos = emptyList(),
-                            isLoading = false,
-                            hasMore = true,
-                            error = error.message ?: "Não foi possível carregar o feed.",
-                            lastViewedVideoId = null,
-                        )
-                    } else {
-                        _uiState.value = _uiState.value.copy(
-                            isLoading = false,
-                            error = error.message ?: "Não foi possível carregar o feed.",
-                            hasMore = true,
-                            lastViewedVideoId = lastViewedVideoId,
-                        )
-                    }
-                } else {
-                    _uiState.value = _uiState.value.copy(
-                        isLoading = false,
-                        error = error.message ?: "Não foi possível carregar mais vídeos.",
-                        lastViewedVideoId = lastViewedVideoId,
-                    )
-                }
+            if (reset) {
+                loadFirstPage()
+            } else {
+                loadNextPage()
             }
         }
     }
@@ -132,6 +98,7 @@ class FeedViewModel @JvmOverloads constructor(
                 error = null,
                 lastViewedVideoId = lastViewedVideoId,
             )
+            currentSkip = snapshot.videos.size
         }
     }
 
@@ -151,5 +118,140 @@ class FeedViewModel @JvmOverloads constructor(
             cache.saveVideos(videos)
             cache.saveLastViewedVideoId(lastViewedVideoId)
         }
+    }
+
+    fun checkForUpdates(force: Boolean = false) {
+        val currentState = _uiState.value
+        if (currentState.isLoading && !force) return
+        if (updatesJob?.isActive == true && !force) return
+        updatesJob?.cancel()
+        updatesJob = viewModelScope.launch {
+            val baseState = _uiState.value
+            if (baseState.videos.isEmpty()) {
+                loadFirstPage()
+                return@launch
+            }
+
+            val interimState = if (force) {
+                baseState.copy(isLoading = true, error = null)
+            } else {
+                baseState.copy(isCheckingUpdates = true, error = null)
+            }
+            _uiState.value = interimState
+
+            try {
+                val knownIds = (baseState.videos + baseState.pendingNewVideos).map { it.id }.toSet()
+                val newVideos = fetchAllNewVideos(knownIds)
+                val combinedPending = mergePendingVideos(newVideos, baseState.pendingNewVideos)
+                currentSkip = baseState.videos.size + combinedPending.size
+                _uiState.value = interimState.copy(
+                    isLoading = false,
+                    isCheckingUpdates = false,
+                    pendingNewVideos = combinedPending,
+                    showNewVideosBanner = combinedPending.isNotEmpty(),
+                    error = null,
+                )
+            } catch (error: Exception) {
+                _uiState.value = interimState.copy(
+                    isLoading = false,
+                    isCheckingUpdates = false,
+                    error = error.message ?: "Não foi possível verificar por novos vídeos.",
+                )
+            }
+        }
+    }
+
+    fun revealPendingNewVideos() {
+        val state = _uiState.value
+        if (state.pendingNewVideos.isEmpty()) return
+        val merged = (state.pendingNewVideos + state.videos).distinctBy { it.id }
+        currentSkip = merged.size
+        val alignedLastViewed = alignLastViewedVideoId(merged)
+        _uiState.value = state.copy(
+            videos = merged,
+            pendingNewVideos = emptyList(),
+            showNewVideosBanner = false,
+            lastViewedVideoId = alignedLastViewed,
+        )
+        persistVideos(merged)
+    }
+
+    private suspend fun loadFirstPage() {
+        _uiState.value = FeedUiState(isLoading = true)
+        try {
+            val videos = service.fetchVideos(skip = 0, take = PAGE_SIZE)
+            currentSkip = videos.size
+            val alignedLastViewed = alignLastViewedVideoId(videos)
+            _uiState.value = FeedUiState(
+                videos = videos,
+                isLoading = false,
+                hasMore = videos.size == PAGE_SIZE,
+                error = null,
+                lastViewedVideoId = alignedLastViewed,
+            )
+            persistVideos(videos)
+        } catch (error: Exception) {
+            _uiState.value = FeedUiState(
+                videos = emptyList(),
+                isLoading = false,
+                hasMore = true,
+                error = error.message ?: "Não foi possível carregar o feed.",
+                lastViewedVideoId = null,
+            )
+        }
+    }
+
+    private suspend fun loadNextPage() {
+        val state = _uiState.value
+        val skip = currentSkip
+        _uiState.value = state.copy(isLoading = true, error = null)
+        try {
+            val videos = service.fetchVideos(skip = skip, take = PAGE_SIZE)
+            currentSkip = skip + videos.size
+            val merged = (state.videos + videos).distinctBy { it.id }
+            val alignedLastViewed = alignLastViewedVideoId(merged)
+            _uiState.value = state.copy(
+                videos = merged,
+                isLoading = false,
+                hasMore = videos.size == PAGE_SIZE,
+                error = null,
+                lastViewedVideoId = alignedLastViewed,
+                pendingNewVideos = state.pendingNewVideos,
+                showNewVideosBanner = state.showNewVideosBanner,
+                isCheckingUpdates = false,
+            )
+            persistVideos(merged)
+        } catch (error: Exception) {
+            _uiState.value = state.copy(
+                isLoading = false,
+                error = error.message ?: "Não foi possível carregar mais vídeos.",
+            )
+        }
+    }
+
+    private suspend fun fetchAllNewVideos(knownIds: Set<String>): List<FeedVideo> {
+        val collected = mutableListOf<FeedVideo>()
+        var skip = 0
+        do {
+            val page = service.fetchVideos(skip = skip, take = PAGE_SIZE)
+            if (page.isEmpty()) break
+            val newFromPage = page.filterNot { video ->
+                knownIds.contains(video.id) || collected.any { it.id == video.id }
+            }
+            collected += newFromPage
+            val reachedKnownVideo = newFromPage.size < page.size
+            skip += page.size
+            if (reachedKnownVideo || page.size < PAGE_SIZE) {
+                break
+            }
+        } while (true)
+        return collected
+    }
+
+    private fun mergePendingVideos(newVideos: List<FeedVideo>, pending: List<FeedVideo>): List<FeedVideo> {
+        if (newVideos.isEmpty() && pending.isEmpty()) return emptyList()
+        if (newVideos.isEmpty()) return pending
+        if (pending.isEmpty()) return newVideos
+        return (newVideos + pending).distinctBy { it.id }
     }
 }

@@ -3,6 +3,7 @@ package com.vitrinedecraques.app.ui.feed
 import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.View
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -63,6 +64,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -88,6 +90,9 @@ import com.vitrinedecraques.app.R
 import com.vitrinedecraques.app.data.model.FeedVideo
 import com.vitrinedecraques.app.ui.theme.BrandRed
 import com.vitrinedecraques.app.ui.theme.BrandSand
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
@@ -111,6 +116,19 @@ fun FeedScreen(
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
     var selectedBottomItem by remember { mutableStateOf(FeedBottomNavItem.Home) }
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                viewModel.checkForUpdates()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
 
     LaunchedEffect(uiState.lastViewedVideoId, uiState.videos) {
         val targetId = uiState.lastViewedVideoId ?: return@LaunchedEffect
@@ -120,15 +138,29 @@ fun FeedScreen(
         }
     }
 
-    LaunchedEffect(pagerState.currentPage, uiState.videos.size, uiState.hasMore, uiState.isLoading) {
-        if (!hasVideos) return@LaunchedEffect
-        val index = pagerState.currentPage.coerceAtMost(uiState.videos.lastIndex)
-        val currentVideo = uiState.videos.getOrNull(index)
-        if (currentVideo != null) {
-            viewModel.updateLastViewedVideo(currentVideo.id)
-        }
-        if (index >= uiState.videos.lastIndex - 1 && uiState.hasMore && !uiState.isLoading) {
-            viewModel.loadMore()
+    LaunchedEffect(pagerState) {
+        snapshotFlow {
+            PagerSnapshot(
+                page = pagerState.currentPage,
+                videos = uiState.videos,
+                hasMore = uiState.hasMore,
+                isLoading = uiState.isLoading,
+            )
+        }.collect { snapshot ->
+            val videos = snapshot.videos
+            if (videos.isEmpty()) return@collect
+            val boundedIndex = snapshot.page.coerceIn(0, videos.lastIndex)
+            val currentVideo = videos.getOrNull(boundedIndex)
+            if (currentVideo != null) {
+                viewModel.updateLastViewedVideo(currentVideo.id)
+            }
+            if (
+                snapshot.hasMore &&
+                !snapshot.isLoading &&
+                boundedIndex >= (videos.lastIndex - 1).coerceAtLeast(0)
+            ) {
+                viewModel.loadMore()
+            }
         }
     }
 
@@ -190,6 +222,19 @@ fun FeedScreen(
                     }
                 }
 
+                AnimatedVisibility(
+                    visible = uiState.showNewVideosBanner,
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .statusBarsPadding()
+                        .padding(top = 88.dp)
+                ) {
+                    NewVideosBanner(
+                        count = uiState.pendingNewVideos.size,
+                        onClick = viewModel::revealPendingNewVideos,
+                    )
+                }
+
                 LoadingIndicator(
                     visible = uiState.isLoading && hasVideos,
                     modifier = Modifier
@@ -206,6 +251,13 @@ fun FeedScreen(
         }
     }
 }
+
+private data class PagerSnapshot(
+    val page: Int,
+    val videos: List<FeedVideo>,
+    val hasMore: Boolean,
+    val isLoading: Boolean,
+)
 
 @Composable
 private fun BoxScope.LoadingIndicator(
@@ -228,6 +280,31 @@ private fun BoxScope.LoadingIndicator(
 }
 
 @Composable
+private fun NewVideosBanner(
+    count: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val label = if (count == 1) "1 vídeo novo" else "$count vídeos novos"
+    Surface(
+        modifier = modifier
+            .clip(RoundedCornerShape(40.dp))
+            .clickable(onClick = onClick),
+        color = BrandRed,
+        tonalElevation = 0.dp,
+    ) {
+        Text(
+            text = "$label · toque para assistir",
+            modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp),
+            style = MaterialTheme.typography.bodyMedium.copy(
+                color = Color.White,
+                fontWeight = FontWeight.Bold
+            )
+        )
+    }
+}
+
+@Composable
 private fun FeedVideoCard(
     video: FeedVideo,
     isActive: Boolean,
@@ -242,13 +319,14 @@ private fun FeedVideoCard(
             playWhenReady = false
         }
     }
-    val mutedState by rememberUpdatedState(isMuted)
-    val isActiveState by rememberUpdatedState(isActive)
+    val mutedState = rememberUpdatedState(isMuted)
+    val isActiveState = rememberUpdatedState(isActive)
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     DisposableEffect(exoPlayer, video.id) {
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
-                if (playbackState == Player.STATE_READY && isActiveState) {
+                if (playbackState == Player.STATE_READY && isActiveState.value) {
                     exoPlayer.playWhenReady = true
                     exoPlayer.play()
                 }
@@ -263,10 +341,34 @@ private fun FeedVideoCard(
         }
     }
 
+    DisposableEffect(lifecycleOwner, exoPlayer) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
+                    exoPlayer.playWhenReady = false
+                    exoPlayer.pause()
+                }
+
+                Lifecycle.Event.ON_START, Lifecycle.Event.ON_RESUME -> {
+                    if (isActiveState.value) {
+                        exoPlayer.playWhenReady = true
+                        exoPlayer.play()
+                    }
+                }
+
+                else -> Unit
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
     LaunchedEffect(isActive, exoPlayer) {
         if (isActive) {
             exoPlayer.playWhenReady = true
-            exoPlayer.volume = if (mutedState) 0f else 1f
+            exoPlayer.volume = if (mutedState.value) 0f else 1f
             if (exoPlayer.playbackState == Player.STATE_IDLE) {
                 exoPlayer.prepare()
             }
@@ -278,8 +380,8 @@ private fun FeedVideoCard(
         }
     }
 
-    LaunchedEffect(mutedState, exoPlayer) {
-        exoPlayer.volume = if (mutedState) 0f else 1f
+    LaunchedEffect(mutedState.value, exoPlayer) {
+        exoPlayer.volume = if (mutedState.value) 0f else 1f
     }
 
     Box(

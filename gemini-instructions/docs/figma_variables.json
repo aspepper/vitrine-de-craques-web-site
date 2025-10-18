@@ -1,1 +1,0 @@
-{"status":403,"error":true,"message":"Invalid scope(s): file_comments:read, current_user:read, file_dev_resources:read, file_content:read, file_metadata:read, file_versions:read, library_assets:read, library_content:read, projects:read, team_library_content:read, webhooks:read, webhooks:write. This endpoint requires the file_variables:read scope"}

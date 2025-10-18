@@ -4,6 +4,8 @@ import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.model.FeedUser
 import com.vitrinedecraques.app.data.model.FeedUserProfile
 import com.vitrinedecraques.app.data.model.FeedVideo
+import com.vitrinedecraques.app.data.model.FollowStats
+import com.vitrinedecraques.app.data.model.ProfileDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
@@ -57,6 +59,59 @@ class NextApiService(
             }
             val body = response.body?.string() ?: "[]"
             return json.decodeFromString(body)
+        }
+    }
+
+    suspend fun fetchProfileDetails(profileId: String, role: String?): ProfileDetail? =
+        withContext(Dispatchers.IO) {
+            val segments = when (role?.uppercase()) {
+                "ATLETA" -> listOf("api", "atletas", profileId)
+                "AGENTE" -> listOf("api", "agentes", profileId)
+                else -> return@withContext null
+            }
+
+            val httpUrlBuilder = apiBaseUrl.newBuilder()
+            segments.forEach { httpUrlBuilder.addPathSegment(it) }
+            val httpUrl = httpUrlBuilder.build()
+
+            val request = Request.Builder()
+                .url(httpUrl)
+                .get()
+                .build()
+
+            client.newCall(request).execute().use { response ->
+                if (response.code == 404) {
+                    return@withContext null
+                }
+                if (!response.isSuccessful) {
+                    throw IOException("Erro ${'$'}{response.code()} ao carregar perfil")
+                }
+                val body = response.body?.string() ?: return@withContext null
+                return@withContext json.decodeFromString<ProfileDetail>(body)
+            }
+        }
+
+    suspend fun fetchFollowStats(userId: String): FollowStats? = withContext(Dispatchers.IO) {
+        val httpUrl = apiBaseUrl.newBuilder()
+            .addPathSegment("api")
+            .addPathSegment("follows")
+            .addPathSegment(userId)
+            .build()
+
+        val request = Request.Builder()
+            .url(httpUrl)
+            .get()
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (response.code == 404) {
+                return@withContext null
+            }
+            if (!response.isSuccessful) {
+                throw IOException("Erro ${'$'}{response.code()} ao carregar seguidores")
+            }
+            val body = response.body?.string() ?: return@withContext null
+            return@withContext json.decodeFromString<FollowStats>(body)
         }
     }
 

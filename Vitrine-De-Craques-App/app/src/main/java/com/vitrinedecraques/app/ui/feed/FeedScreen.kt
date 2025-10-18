@@ -86,7 +86,10 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vitrinedecraques.app.R
 import com.vitrinedecraques.app.data.model.FeedVideo
+import com.vitrinedecraques.app.data.model.ProfileDetail
 import com.vitrinedecraques.app.ui.profile.ProfileScreen
+import com.vitrinedecraques.app.ui.profile.ProfileUiState
+import com.vitrinedecraques.app.ui.profile.ProfileVideo
 import com.vitrinedecraques.app.ui.theme.BrandRed
 import com.vitrinedecraques.app.ui.theme.BrandSand
 import androidx.media3.common.MediaItem
@@ -96,6 +99,9 @@ import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import androidx.compose.foundation.ExperimentalFoundationApi
 import kotlinx.coroutines.launch
+import java.text.Normalizer
+import java.util.Calendar
+import java.util.Locale
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -106,6 +112,34 @@ fun FeedScreen(
     val uiState by viewModel.uiState.collectAsState()
     val pagerState = rememberPagerState(initialPage = 0) { uiState.videos.size.coerceAtLeast(1) }
     val hasVideos = uiState.videos.isNotEmpty()
+    val profileService = remember { NextApiService() }
+    var profileUiState by remember { mutableStateOf(ProfileUiState(isLoading = uiState.isLoading)) }
+    val profileVideo = uiState.lastViewedVideoId?.let { id ->
+        uiState.videos.firstOrNull { it.id == id }
+    } ?: uiState.videos.firstOrNull()
+    val profileUserId = profileVideo?.user?.id
+    val profileVideoIds = remember(profileUserId, uiState.videos) {
+        uiState.videos.filter { it.user?.id == profileUserId }.map { it.id }
+    }
+
+    LaunchedEffect(profileVideo?.user?.profile?.id, profileUserId, profileVideoIds, uiState.isLoading) {
+        if (profileVideo == null) {
+            profileUiState = ProfileUiState(
+                isLoading = uiState.isLoading,
+                error = if (uiState.isLoading) null else "Nenhum perfil disponível no momento."
+            )
+            return@LaunchedEffect
+        }
+
+        profileUiState = ProfileUiState(isLoading = true)
+
+        profileUiState = loadProfileUiState(
+            video = profileVideo,
+            allVideos = uiState.videos,
+            service = profileService
+        )
+    }
+
     val backgroundBrush = remember {
         Brush.verticalGradient(listOf(Color(0xFF1C432A), Color(0xFF0A1510)))
     }
@@ -211,6 +245,7 @@ fun FeedScreen(
                     FeedBottomNavItem.Profile -> {
                         ProfileScreen(
                             modifier = Modifier.fillMaxSize(),
+                            state = profileUiState,
                             onMenuClick = { coroutineScope.launch { drawerState.open() } }
                         )
                     }
@@ -261,6 +296,139 @@ private fun FeaturePlaceholder(label: String) {
             )
         }
     }
+}
+
+private suspend fun loadProfileUiState(
+    video: FeedVideo,
+    allVideos: List<FeedVideo>,
+    service: NextApiService,
+): ProfileUiState {
+    val user = video.user
+    val profile = user?.profile
+    val fallbackName = profile?.displayName?.takeIf { !it.isNullOrBlank() }
+        ?: user?.name?.takeIf { !it.isNullOrBlank() }
+        ?: "Perfil"
+    val fallbackAvatar = profile?.avatarUrl ?: user?.image
+    val fallbackBio = video.description?.takeIf { !it.isNullOrBlank() } ?: "Perfil em atualização."
+
+    val detail = profile?.id?.let { id ->
+        runCatching { service.fetchProfileDetails(id, profile.role) }.getOrNull()
+    }
+    val followerCount = user?.id?.let { id ->
+        runCatching { service.fetchFollowStats(id)?.followerCount }.getOrNull()
+    } ?: 0
+
+    val resolvedName = detail?.displayName?.takeIf { !it.isNullOrBlank() } ?: fallbackName
+    val resolvedAvatar = detail?.avatarUrl ?: fallbackAvatar
+    val resolvedBio = detail?.bio?.takeIf { !it.isNullOrBlank() } ?: fallbackBio
+    val highlights = buildHighlights(detail)
+    val roleDescription = buildRoleDescription(detail)
+    val username = buildHandle(resolvedName, user?.id)
+    val profileVideos = allVideos
+        .filter { it.user?.id == user?.id }
+        .map(::toProfileVideo)
+
+    return ProfileUiState(
+        name = resolvedName,
+        username = username,
+        roleDescription = roleDescription,
+        followers = followerCount,
+        following = 0,
+        bio = resolvedBio,
+        avatarUrl = resolvedAvatar,
+        highlights = highlights,
+        videos = profileVideos,
+        isLoading = false,
+        error = null,
+    )
+}
+
+private fun toProfileVideo(video: FeedVideo): ProfileVideo {
+    val title = video.title?.takeIf { !it.isNullOrBlank() } ?: "Vídeo"
+    return ProfileVideo(
+        id = video.id,
+        thumbnailUrl = video.thumbnailUrl,
+        title = title,
+    )
+}
+
+private fun buildHandle(name: String?, fallback: String?): String {
+    val source = name?.takeIf { it.isNotBlank() }
+        ?: fallback?.takeIf { it.isNotBlank() }
+        ?: return ""
+    val normalized = Normalizer.normalize(source.lowercase(Locale.ROOT), Normalizer.Form.NFD)
+        .replace("\\p{InCombiningDiacriticalMarks}+".toRegex(), "")
+        .replace("[^a-z0-9]+".toRegex(), ".")
+        .trim('.')
+    if (normalized.isBlank()) {
+        return ""
+    }
+    return "@" + normalized.take(24)
+}
+
+private fun buildRoleDescription(detail: ProfileDetail?): String {
+    if (detail == null) return ""
+    val parts = mutableListOf<String>()
+    detail.posicao?.takeIf { it.isNotBlank() }?.let { parts += it }
+    calculateAge(detail.nascimento)?.let { parts += "$it anos" }
+    detail.altura?.takeIf { it.isNotBlank() }?.let { parts += it }
+    val city = detail.cidade?.takeIf { it.isNotBlank() }
+    val state = detail.uf?.takeIf { it.isNotBlank() }
+    if (city != null || state != null) {
+        parts += listOfNotNull(city, state).joinToString("/")
+    }
+    return parts.joinToString(" • ")
+}
+
+private fun buildHighlights(detail: ProfileDetail?): List<String> {
+    if (detail == null) return emptyList()
+    val highlights = mutableListOf<String>()
+    detail.perna?.takeIf { it.isNotBlank() }?.let { highlights += "Perna dominante: $it" }
+    detail.peso?.takeIf { it.isNotBlank() }?.let { highlights += "Peso: $it" }
+    detail.favoriteClub?.clube?.takeIf { !it.isNullOrBlank() }?.let { highlights += "Clube: $it" }
+    val locationParts = listOfNotNull(
+        detail.cidade?.takeIf { it.isNotBlank() },
+        detail.uf?.takeIf { it.isNotBlank() },
+        detail.pais?.takeIf { it.isNotBlank() },
+    )
+    if (locationParts.isNotEmpty()) {
+        highlights += "Localidade: ${locationParts.joinToString("/")}"
+    }
+    detail.telefone?.takeIf { it.isNotBlank() }?.let { highlights += "Telefone: $it" }
+    detail.whatsapp?.takeIf { it.isNotBlank() }?.let { highlights += "WhatsApp: $it" }
+    detail.site?.takeIf { it.isNotBlank() }?.let { highlights += "Site: $it" }
+    return highlights
+}
+
+private fun calculateAge(rawBirthDate: String?): Int? {
+    val (day, month, year) = parseDateParts(rawBirthDate) ?: return null
+    val today = Calendar.getInstance()
+    val birth = Calendar.getInstance().apply {
+        set(Calendar.YEAR, year)
+        set(Calendar.MONTH, month - 1)
+        set(Calendar.DAY_OF_MONTH, day)
+    }
+    var age = today.get(Calendar.YEAR) - birth.get(Calendar.YEAR)
+    if (today.get(Calendar.DAY_OF_YEAR) < birth.get(Calendar.DAY_OF_YEAR)) {
+        age -= 1
+    }
+    return age.takeIf { it >= 0 }
+}
+
+private fun parseDateParts(raw: String?): Triple<Int, Int, Int>? {
+    val value = raw?.trim()?.takeIf { it.isNotEmpty() } ?: return null
+    val tokens = value.split("/", "-", "\\").map { it.trim() }.filter { it.isNotEmpty() }
+    if (tokens.size != 3) return null
+    val first = tokens[0]
+    val second = tokens[1]
+    val third = tokens[2]
+    val isYearFirst = first.length == 4
+    val day = if (isYearFirst) third.toIntOrNull() else first.toIntOrNull()
+    val month = second.toIntOrNull()
+    val year = if (isYearFirst) first.toIntOrNull() else third.toIntOrNull()
+    if (day == null || month == null || year == null) return null
+    if (month !in 1..12 || day !in 1..31) return null
+    return Triple(day, month, year)
 }
 
 @Composable

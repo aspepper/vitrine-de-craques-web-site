@@ -38,7 +38,8 @@
 > Task :app:writeDebugSigningConfigVersions UP-TO-DATE
 
 > Task :app:compileDebugKotlin FAILED
-e: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/profile/ProfileScreen.kt:252:29 Unresolved reference 'weight'.
+e: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/profile/ProfileScreen.kt:16:43 Cannot access 'val RowColumnParentData?.weight: Float': it is internal in file.
+e: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/profile/ProfileScreen.kt:252:29 Expression 'weight' of type 'kotlin.Float' cannot be invoked as a function. Function 'invoke()' is not found.
 
 FAILURE: Build failed with an exception.
 
@@ -53,5 +54,5 @@ Execution failed for task ':app:compileDebugKotlin'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 1m 19s
+BUILD FAILED in 1m 14s
 31 actionable tasks: 1 executed, 30 up-to-date

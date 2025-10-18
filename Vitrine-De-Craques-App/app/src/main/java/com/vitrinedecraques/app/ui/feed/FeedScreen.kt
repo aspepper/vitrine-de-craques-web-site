@@ -86,6 +86,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vitrinedecraques.app.R
 import com.vitrinedecraques.app.data.model.FeedVideo
+import com.vitrinedecraques.app.ui.profile.ProfileScreen
 import com.vitrinedecraques.app.ui.theme.BrandRed
 import com.vitrinedecraques.app.ui.theme.BrandSand
 import androidx.media3.common.MediaItem
@@ -146,62 +147,117 @@ fun FeedScreen(
         },
         gesturesEnabled = true
     ) {
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .background(backgroundBrush)
-        ) {
+        val columnModifier = modifier
+            .fillMaxSize()
+            .let { base ->
+                if (selectedBottomItem == FeedBottomNavItem.Home) {
+                    base.background(backgroundBrush)
+                } else {
+                    base.background(Color.White)
+                }
+            }
+
+        Column(modifier = columnModifier) {
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
             ) {
-                when {
-                    uiState.isLoading && !hasVideos -> {
-                        CircularProgressIndicator(
-                            modifier = Modifier.align(Alignment.Center),
-                            color = BrandSand
+                when (selectedBottomItem) {
+                    FeedBottomNavItem.Home -> {
+                        when {
+                            uiState.isLoading && !hasVideos -> {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.align(Alignment.Center),
+                                    color = BrandSand
+                                )
+                            }
+
+                            uiState.error != null && !hasVideos -> {
+                                uiState.error?.let { errorMessage ->
+                                    ErrorState(message = errorMessage, onRetry = viewModel::refresh)
+                                }
+                            }
+
+                            hasVideos -> {
+                                val currentPage = pagerState.currentPage
+                                VerticalPager(
+                                    state = pagerState,
+                                    modifier = Modifier.fillMaxSize(),
+                                    beyondViewportPageCount = 1,
+                                    key = { index -> uiState.videos[index].id },
+                                ) { page ->
+                                    val video = uiState.videos[page]
+                                    FeedVideoCard(
+                                        video = video,
+                                        isActive = page == currentPage,
+                                        onMenuClick = {
+                                            coroutineScope.launch { drawerState.open() }
+                                        }
+                                    )
+                                }
+                            }
+                        }
+
+                        LoadingIndicator(
+                            visible = uiState.isLoading && hasVideos,
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .padding(bottom = 32.dp)
+                                .navigationBarsPadding(),
                         )
                     }
 
-                    uiState.error != null && !hasVideos -> {
-                        uiState.error?.let { errorMessage ->
-                            ErrorState(message = errorMessage, onRetry = viewModel::refresh)
-                        }
+                    FeedBottomNavItem.Profile -> {
+                        ProfileScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            onMenuClick = { coroutineScope.launch { drawerState.open() } }
+                        )
                     }
 
-                    hasVideos -> {
-                        val currentPage = pagerState.currentPage
-                        VerticalPager(
-                            state = pagerState,
-                            modifier = Modifier.fillMaxSize(),
-                            beyondViewportPageCount = 1,
-                            key = { index -> uiState.videos[index].id },
-                        ) { page ->
-                            val video = uiState.videos[page]
-                            FeedVideoCard(
-                                video = video,
-                                isActive = page == currentPage,
-                                onMenuClick = {
-                                    coroutineScope.launch { drawerState.open() }
-                                }
-                            )
-                        }
+                    else -> {
+                        FeaturePlaceholder(label = selectedBottomItem.contentDescription)
                     }
                 }
-
-                LoadingIndicator(
-                    visible = uiState.isLoading && hasVideos,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(bottom = 32.dp)
-                        .navigationBarsPadding()
-                )
             }
 
             FeedBottomNavigation(
                 selectedItem = selectedBottomItem,
                 onItemSelected = { selectedBottomItem = it },
+            )
+        }
+    }
+}
+
+@Composable
+private fun FeaturePlaceholder(label: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
+            .padding(horizontal = 24.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Info,
+                contentDescription = null,
+                tint = Color.Black.copy(alpha = 0.7f),
+                modifier = Modifier.size(40.dp)
+            )
+            Text(
+                text = "$label em breve",
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Medium),
+                color = Color.Black
+            )
+            Text(
+                text = "Estamos trabalhando para liberar esta funcionalidade.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.Black.copy(alpha = 0.7f),
+                textAlign = TextAlign.Center
             )
         }
     }

@@ -12,7 +12,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import com.vitrinedecraques.app.data.auth.AuthPreferences.authDataStore
+import com.vitrinedecraques.app.data.auth.authDataStore
 
 data class AuthData(
     val cookie: StoredCookie?,

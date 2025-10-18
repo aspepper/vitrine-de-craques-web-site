@@ -16,7 +16,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Badge
-import androidx.compose.material.icons.outlined.Building
+import androidx.compose.material.icons.outlined.Apartment
 import androidx.compose.material.icons.outlined.Newspaper
 import androidx.compose.material.icons.outlined.People
 import androidx.compose.material.icons.outlined.SportsSoccer
@@ -25,6 +25,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -49,6 +50,7 @@ private data class ProfileOption(
     val icon: androidx.compose.ui.graphics.vector.ImageVector,
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileSelectionScreen(
     modifier: Modifier = Modifier,
@@ -80,7 +82,7 @@ fun ProfileSelectionScreen(
                 slug = "clube",
                 title = "Clube/Entidade",
                 description = "Perfis oficiais de clubes/entidades desportivas.",
-                icon = Icons.Outlined.Building,
+                icon = Icons.Outlined.Apartment,
             ),
             ProfileOption(
                 slug = "de-agentes-licenciados",

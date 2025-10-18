@@ -85,6 +85,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vitrinedecraques.app.R
+import com.vitrinedecraques.app.data.NextApiService
 import com.vitrinedecraques.app.data.model.FeedVideo
 import com.vitrinedecraques.app.data.model.ProfileDetail
 import com.vitrinedecraques.app.ui.profile.ProfileScreen

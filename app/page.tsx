@@ -403,6 +403,21 @@ export default async function HomePage() {
                     Filtros por clube/estado
                   </span>
                 </div>
+
+                <div className="mt-6 flex justify-center">
+                  <Button
+                    asChild
+                    className="h-12 rounded-full bg-emerald-600 px-8 text-base font-semibold text-white shadow-[0_12px_30px_-12px_rgba(16,185,129,0.8)] transition-colors hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 dark:bg-emerald-500 dark:hover:bg-emerald-400"
+                  >
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.vitrinedecraques.app"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Baixar app Vitrine de Craques
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </section>

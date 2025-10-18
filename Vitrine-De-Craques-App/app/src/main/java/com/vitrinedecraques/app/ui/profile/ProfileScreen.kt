@@ -240,16 +240,28 @@ private fun ProfileHeader(state: ProfileUiState) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            ProfileStatCard(label = "Seguidores", value = state.followers)
-            ProfileStatCard(label = "Seguindo", value = state.following)
+            ProfileStatCard(
+                label = "Seguidores",
+                value = state.followers,
+                modifier = Modifier.weight(1f)
+            )
+            ProfileStatCard(
+                label = "Seguindo",
+                value = state.following,
+                modifier = Modifier.weight(1f)
+            )
         }
     }
 }
 
 @Composable
-private fun ProfileStatCard(label: String, value: Int) {
+private fun ProfileStatCard(
+    label: String,
+    value: Int,
+    modifier: Modifier = Modifier,
+) {
     Surface(
-        modifier = Modifier.weight(1f),
+        modifier = modifier,
         shape = RoundedCornerShape(18.dp),
         tonalElevation = 0.dp,
         color = Color.White,

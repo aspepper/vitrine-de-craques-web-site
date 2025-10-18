@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.weight
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -45,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -63,6 +64,14 @@ fun ProfileScreen(
     onShareClick: () -> Unit = {}
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(ProfileTab.Videos) }
+    val configuration = LocalConfiguration.current
+    val cardWidth = remember(configuration) {
+        val screenWidth = configuration.screenWidthDp.dp
+        val totalHorizontalPadding = 40.dp
+        val spacing = 16.dp
+        val availableWidth = screenWidth - totalHorizontalPadding - spacing
+        maxOf(0.dp, availableWidth) / 2
+    }
 
     LazyColumn(
         modifier = modifier
@@ -104,11 +113,11 @@ fun ProfileScreen(
                         rowItems.forEach { video ->
                             ProfileVideoCard(
                                 video = video,
-                                modifier = Modifier.weight(1f)
+                                modifier = Modifier.width(cardWidth)
                             )
                         }
                         if (rowItems.size == 1) {
-                            Spacer(modifier = Modifier.weight(1f))
+                            Spacer(modifier = Modifier.width(cardWidth))
                         }
                     }
                 }

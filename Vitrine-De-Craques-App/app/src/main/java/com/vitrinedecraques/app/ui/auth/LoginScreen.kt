@@ -127,9 +127,13 @@ fun LoginScreen(
                             )
                         },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            focusedBorderColor = BrandGreen,
+                        colors = TextFieldDefaults.colors(
+                            focusedIndicatorColor = BrandGreen,
+                            unfocusedIndicatorColor = BrandGreen.copy(alpha = 0.5f),
+                            focusedLabelColor = BrandGreen,
                             cursorColor = BrandGreen,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
                         )
                     )
 
@@ -166,9 +170,13 @@ fun LoginScreen(
                                 onLogin(email, password)
                             }
                         }),
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            focusedBorderColor = BrandGreen,
+                        colors = TextFieldDefaults.colors(
+                            focusedIndicatorColor = BrandGreen,
+                            unfocusedIndicatorColor = BrandGreen.copy(alpha = 0.5f),
+                            focusedLabelColor = BrandGreen,
                             cursorColor = BrandGreen,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
                         )
                     )
 

@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -30,23 +33,68 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.vitrinedecraques.app.R
+import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.ui.feed.FeedScreen
+import com.vitrinedecraques.app.ui.auth.AuthViewModel
+import com.vitrinedecraques.app.ui.auth.LoginScreen
+import com.vitrinedecraques.app.ui.auth.ProfileSelectionScreen
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 
 private enum class AppDestination {
     Splash,
+    Login,
+    ProfileSelection,
     Feed,
 }
 
 @Composable
 fun VitrineDeCraquesApp() {
+    val authViewModel: AuthViewModel = viewModel()
+    val authState by authViewModel.authState.collectAsState()
+    val loginState by authViewModel.loginState.collectAsState()
     var destination by rememberSaveable { mutableStateOf(AppDestination.Splash) }
+    val context = LocalContext.current
+    val baseUrl = remember { BuildConfig.API_BASE_URL.trimEnd('/') }
+
+    LaunchedEffect(authState.isAuthenticated) {
+        if (authState.isAuthenticated) {
+            destination = AppDestination.Feed
+        }
+    }
 
     Crossfade(targetState = destination, label = "AppDestination") { target ->
         when (target) {
-            AppDestination.Splash -> SplashScreen(onFinished = { destination = AppDestination.Feed })
+            AppDestination.Splash -> SplashScreen(onFinished = {
+                destination = if (authState.isAuthenticated) {
+                    AppDestination.Feed
+                } else {
+                    AppDestination.Login
+                }
+            })
+            AppDestination.Login -> LoginScreen(
+                loginState = loginState,
+                onLogin = authViewModel::login,
+                onRegisterClick = { destination = AppDestination.ProfileSelection },
+                onForgotPasswordClick = {
+                    openExternalUrl(context, "$baseUrl/recuperar-senha")
+                },
+                onUserInteraction = authViewModel::clearLoginError
+            )
+            AppDestination.ProfileSelection -> ProfileSelectionScreen(
+                baseUrl = baseUrl,
+                onBack = { destination = AppDestination.Login }
+            )
             AppDestination.Feed -> FeedScreen()
         }
+    }
+}
+
+private fun openExternalUrl(context: Context, url: String) {
+    runCatching {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        context.startActivity(intent)
     }
 }
 

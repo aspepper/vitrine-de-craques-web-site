@@ -1,3 +1,6 @@
+import com.android.build.api.dsl.ApplicationExtension
+import org.gradle.kotlin.dsl.getByType
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -20,13 +23,47 @@ android {
         buildConfigField("String", "API_BASE_URL", "\"https://nice-hill-01a3a1010.2.azurestaticapps.net\"")
     }
 
+    signingConfigs {
+        create("release") {
+            // Lê do gradle.properties (local ou do usuário)
+            val storeFilePath = providers.gradleProperty("VC_STORE_FILE").orNull
+            val storePasswordProp = providers.gradleProperty("VC_STORE_PASSWORD").orNull
+            val keyAliasProp = providers.gradleProperty("VC_KEY_ALIAS").orNull
+            val keyPasswordProp = providers.gradleProperty("VC_KEY_PASSWORD").orNull
+
+            // Se preferir permitir override por variável de ambiente:
+            val envStoreFile = System.getenv("VC_STORE_FILE")
+            val envStorePass = System.getenv("VC_STORE_PASSWORD")
+            val envKeyAlias = System.getenv("VC_KEY_ALIAS")
+            val envKeyPass = System.getenv("VC_KEY_PASSWORD")
+
+            storeFile = file((envStoreFile ?: storeFilePath) ?: error("VC_STORE_FILE não definido"))
+            storePassword = (envStorePass ?: storePasswordProp) ?: error("VC_STORE_PASSWORD não definido")
+            keyAlias = (envKeyAlias ?: keyAliasProp) ?: error("VC_KEY_ALIAS não definido")
+            keyPassword = (envKeyPass ?: keyPasswordProp) ?: error("VC_KEY_PASSWORD não definido")
+
+            // Muito importante: tipo PKCS12 para .p12
+            storeType = "PKCS12"
+
+            // Assinaturas habilitadas (recomendado para compatibilidade)
+            enableV1Signing = true   // JAR Signature (Android 4.x)
+            enableV2Signing = true   // APK Signature Scheme v2 (Android 7+)
+            enableV3Signing = true   // v3 (Android 9+)
+            enableV4Signing = true   // v4 (incremental install - opcional)
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfigs.findByName("release")?.let {
+                signingConfig = it
+            }   
         }
     }
     compileOptions {
@@ -51,7 +88,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation("androidx.compose.foundation:foundation")
+    implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.google.material)

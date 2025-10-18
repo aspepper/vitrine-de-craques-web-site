@@ -15,9 +15,10 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
+import com.vitrinedecraques.app.data.network.HttpClientProvider
 
 class NextApiService(
-    private val client: OkHttpClient = OkHttpClient(),
+    private val client: OkHttpClient = HttpClientProvider.client,
     private val json: Json = Json {
         ignoreUnknownKeys = true
         isLenient = true

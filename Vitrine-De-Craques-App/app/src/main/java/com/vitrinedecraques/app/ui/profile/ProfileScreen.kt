@@ -24,6 +24,7 @@ import androidx.compose.material.icons.outlined.Send
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -57,7 +58,7 @@ import com.vitrinedecraques.app.ui.theme.BrandRed
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
-    state: ProfileUiState = remember { ProfileUiState.sample() },
+    state: ProfileUiState = ProfileUiState(isLoading = true),
     onMenuClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {},
     onMessagesClick: () -> Unit = {},
@@ -88,44 +89,62 @@ fun ProfileScreen(
                     onShareClick = onShareClick,
                     hasUnreadMessages = state.unreadMessagesCount > 0
                 )
-                ProfileHeader(state = state)
-            }
-        }
-
-        item {
-            ProfileBio(bio = state.bio)
-        }
-
-        item {
-            Spacer(modifier = Modifier.height(16.dp))
-            ProfileTabRow(selectedTab = selectedTab, onTabSelected = { selectedTab = it })
-        }
-
-        when (selectedTab) {
-            ProfileTab.Videos -> {
-                items(state.videos.chunked(2)) { rowItems ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 20.dp, vertical = 12.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        rowItems.forEach { video ->
-                            ProfileVideoCard(
-                                video = video,
-                                modifier = Modifier.width(cardWidth)
-                            )
-                        }
-                        if (rowItems.size == 1) {
-                            Spacer(modifier = Modifier.width(cardWidth))
-                        }
-                    }
+                when {
+                    state.isLoading -> ProfileLoadingHeader()
+                    state.error != null -> ProfileError(state.error)
+                    else -> ProfileHeader(state = state)
                 }
             }
+        }
 
-            ProfileTab.About -> {
+        when {
+            state.isLoading -> {
+                item { ProfileLoadingContent() }
+            }
+
+            state.error != null -> {
+                item { ProfileErrorDescription(state.error) }
+            }
+
+            else -> {
+                if (state.bio.isNotBlank()) {
+                    item { ProfileBio(bio = state.bio) }
+                }
+
                 item {
-                    ProfileAboutSection(state = state)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    ProfileTabRow(selectedTab = selectedTab, onTabSelected = { selectedTab = it })
+                }
+
+                when (selectedTab) {
+                    ProfileTab.Videos -> {
+                        if (state.videos.isEmpty()) {
+                            item { EmptyVideosMessage() }
+                        } else {
+                            items(state.videos.chunked(2)) { rowItems ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 20.dp, vertical = 12.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                                ) {
+                                    rowItems.forEach { video ->
+                                        ProfileVideoCard(
+                                            video = video,
+                                            modifier = Modifier.width(cardWidth)
+                                        )
+                                    }
+                                    if (rowItems.size == 1) {
+                                        Spacer(modifier = Modifier.width(cardWidth))
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    ProfileTab.About -> {
+                        item { ProfileAboutSection(state = state) }
+                    }
                 }
             }
         }
@@ -229,20 +248,24 @@ private fun ProfileHeader(state: ProfileUiState) {
 
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(
-                text = state.name,
+                text = state.name.ifBlank { "Perfil" },
                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
                 color = Color.Black
             )
-            Text(
-                text = state.username,
-                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
-                color = BrandRed
-            )
-            Text(
-                text = state.roleDescription,
-                style = MaterialTheme.typography.bodyMedium,
-                color = BrandRed
-            )
+            if (state.username.isNotBlank()) {
+                Text(
+                    text = state.username,
+                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
+                    color = BrandRed
+                )
+            }
+            if (state.roleDescription.isNotBlank()) {
+                Text(
+                    text = state.roleDescription,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = BrandRed
+                )
+            }
         }
 
         Row(
@@ -362,12 +385,28 @@ private fun ProfileVideoCard(
         tonalElevation = 0.dp,
         color = Color.White
     ) {
-        AsyncImage(
-            model = video.thumbnailUrl,
-            contentDescription = video.title,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-        )
+        if (video.thumbnailUrl != null) {
+            AsyncImage(
+                model = video.thumbnailUrl,
+                contentDescription = video.title,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        } else {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFFE8E8E8)),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = video.title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color(0xFF1E1E1E),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
     }
 }
 
@@ -379,32 +418,36 @@ private fun ProfileAboutSection(state: ProfileUiState) {
             .padding(horizontal = 24.dp, vertical = 24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text(
-            text = "Sobre Alex",
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-            color = Color.Black
-        )
+        if (state.name.isNotBlank()) {
+            Text(
+                text = "Sobre ${state.name.split(' ').firstOrNull() ?: state.name}",
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+                color = Color.Black
+            )
+        }
         Text(
             text = state.bio,
             style = MaterialTheme.typography.bodyMedium,
             color = Color(0xFF3A3A3A)
         )
-        Divider(color = Color(0xFFE8E8E8))
-        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            state.highlights.forEach { highlight ->
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .size(6.dp)
-                            .clip(CircleShape)
-                            .background(BrandRed)
-                    )
-                    Text(
-                        text = highlight,
-                        modifier = Modifier.padding(start = 12.dp),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFF1E1E1E)
-                    )
+        if (state.highlights.isNotEmpty()) {
+            Divider(color = Color(0xFFE8E8E8))
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                state.highlights.forEach { highlight ->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Box(
+                            modifier = Modifier
+                                .size(6.dp)
+                                .clip(CircleShape)
+                                .background(BrandRed)
+                        )
+                        Text(
+                            text = highlight,
+                            modifier = Modifier.padding(start = 12.dp),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = Color(0xFF1E1E1E)
+                        )
+                    }
                 }
             }
         }
@@ -418,62 +461,113 @@ private enum class ProfileTab(val label: String) {
 
 data class ProfileVideo(
     val id: String,
-    val thumbnailUrl: String,
+    val thumbnailUrl: String?,
     val title: String,
 )
 
 data class ProfileUiState(
-    val name: String,
-    val username: String,
-    val roleDescription: String,
-    val followers: Int,
-    val following: Int,
-    val bio: String,
-    val avatarUrl: String,
-    val unreadMessagesCount: Int,
-    val highlights: List<String>,
-    val videos: List<ProfileVideo>,
-) {
-    companion object {
-        fun sample(): ProfileUiState {
-            return ProfileUiState(
-                name = "Alex Pimenta",
-                username = "@alex.pimenta",
-                roleDescription = "Atleta | 12 | São Paulo",
-                followers = 120,
-                following = 85,
-                bio = "Aspirante a jogador de futebol, apaixonado pelo esporte. Dedicado a aprimorar minhas habilidades e fazer a diferença em campo.",
-                avatarUrl = "https://images.pexels.com/photos/164492/pexels-photo-164492.jpeg?auto=compress&cs=tinysrgb&w=200",
-                unreadMessagesCount = 2,
-                highlights = listOf(
-                    "Posição: Atacante",
-                    "Clube atual: Projeto Futuro FC",
-                    "Pé dominante: Direito",
-                    "Habilidades-chave: velocidade, finalização e visão de jogo"
-                ),
-                videos = listOf(
-                    ProfileVideo(
-                        id = "1",
-                        thumbnailUrl = "https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=400",
-                        title = "Treino de finalização"
-                    ),
-                    ProfileVideo(
-                        id = "2",
-                        thumbnailUrl = "https://images.pexels.com/photos/2744225/pexels-photo-2744225.jpeg?auto=compress&cs=tinysrgb&w=400",
-                        title = "Partida amistosa"
-                    ),
-                    ProfileVideo(
-                        id = "3",
-                        thumbnailUrl = "https://images.pexels.com/photos/3617335/pexels-photo-3617335.jpeg?auto=compress&cs=tinysrgb&w=400",
-                        title = "Treino de agilidade"
-                    ),
-                    ProfileVideo(
-                        id = "4",
-                        thumbnailUrl = "https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=400",
-                        title = "Destaques do campeonato"
-                    ),
-                )
-            )
-        }
+    val name: String = "",
+    val username: String = "",
+    val roleDescription: String = "",
+    val followers: Int = 0,
+    val following: Int = 0,
+    val bio: String = "",
+    val avatarUrl: String? = null,
+    val unreadMessagesCount: Int = 0,
+    val highlights: List<String> = emptyList(),
+    val videos: List<ProfileVideo> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: String? = null,
+)
+
+@Composable
+private fun ProfileLoadingHeader() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFFFFF5F7))
+            .padding(horizontal = 24.dp, vertical = 48.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        CircularProgressIndicator(color = BrandRed)
+    }
+}
+
+@Composable
+private fun ProfileLoadingContent() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 48.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        CircularProgressIndicator(color = BrandRed)
+    }
+}
+
+@Composable
+private fun ProfileError(message: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFFFFF5F7))
+            .padding(horizontal = 24.dp, vertical = 48.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text(
+            text = "Não foi possível carregar o perfil",
+            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+            color = BrandRed
+        )
+        Text(
+            text = message,
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color.Black,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+private fun ProfileErrorDescription(message: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text(
+            text = message,
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color.Black,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+private fun EmptyVideosMessage() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 48.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text(
+            text = "Nenhum vídeo disponível ainda",
+            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+            color = Color.Black,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = "Quando este atleta publicar vídeos, eles aparecerão aqui.",
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color(0xFF3A3A3A),
+            textAlign = TextAlign.Center
+        )
     }
 }

@@ -144,12 +144,42 @@ psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-summer-bush-a8oiqmqm-pooler.
 % git push origin v1.2.0
 
 
-
-
-
-
 psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" -c 'SELECT migration_name, finished_at FROM "_prisma_migrations" WHERE finished_at IS NOT NULL ORDER BY finished_at DESC LIMIT 1;'
 
 psql "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-summer-bush-a8oiqmqm-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require" -c 'SELECT migration_name, finished_at FROM "_prisma_migrations" WHERE finished_at IS NOT NULL ORDER BY finished_at DESC LIMIT 1;'
+
+
+### Gerando Keystore P12
+
+keytool -genkeypair -v \
+  -alias vitrine \
+  -keyalg RSA -keysize 4096 \
+  -sigalg SHA256withRSA \
+  -validity 36500 \
+  -storetype PKCS12 \
+  -keystore vitrine-release.p12
+
+Enter keystore password: V17r1n3-d3-cr4qu35@2025 <br />
+Re-enter new password: V17r1n3-d3-cr4qu35@2025 <br />
+Enter the distinguished name. Provide a single dot (.) to leave a sub-component empty or press ENTER to use the default value in braces. <br />
+What is your first and last name? <br />
+  [Unknown]:  Alex Pimenta <br />
+What is the name of your organizational unit? <br />
+  [Unknown]:  Vitrine de Craques <br />
+What is the name of your organization? <br />
+  [Unknown]:  Vitrine de Craques <br />
+What is the name of your City or Locality? <br />
+  [Unknown]:  Santos <br />
+What is the name of your State or Province? <br />
+  [Unknown]:  SP <br />
+What is the two-letter country code for this unit? <br />
+  [Unknown]:  BR <br />
+Is CN=Alex Pimenta, OU=Vitrine de Craques, O=Vitrine de Craques, L=Santos, ST=SP, C=BR correct? <br />
+  [no]:  yes <br />
+
+Generating 4,096 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 36,500 days <br />
+	for: CN=Alex Pimenta, OU=Vitrine de Craques, O=Vitrine de Craques, L=Santos, ST=SP, C=BR <br />
+[Storing vitrine-release.p12] <br />
+
 
 

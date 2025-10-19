@@ -22,8 +22,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.matchParentSize
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -464,7 +464,7 @@ private fun FeedVideoCard(
     val exoPlayer = remember(video.id) {
         ExoPlayer.Builder(context).build().apply {
             repeatMode = Player.REPEAT_MODE_ONE
-            playWhenReady = false
+            playWhenReady = isActive
         }
     }
     val mutedState by rememberUpdatedState(isMuted)
@@ -482,6 +482,10 @@ private fun FeedVideoCard(
         exoPlayer.addListener(listener)
         exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
         exoPlayer.prepare()
+        if (isActiveState) {
+            exoPlayer.playWhenReady = true
+            exoPlayer.play()
+        }
         onDispose {
             exoPlayer.removeListener(listener)
             exoPlayer.release()
@@ -594,7 +598,7 @@ private fun VideoOverlay(
             modifier = Modifier
                 .fillMaxHeight()
                 .navigationBarsPadding()
-                .padding(end = 16.dp, bottom = 24.dp)
+                .padding(end = 12.dp, bottom = 20.dp)
                 .align(Alignment.BottomEnd)
         )
     }
@@ -615,10 +619,11 @@ private fun FeedTopBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(
+            modifier = Modifier.size(40.dp),
             shape = CircleShape,
             color = Color.Black.copy(alpha = 0.45f)
         ) {
-            IconButton(onClick = onMenuClick, modifier = Modifier.size(44.dp)) {
+            IconButton(onClick = onMenuClick, modifier = Modifier.fillMaxSize()) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_menu),
                     contentDescription = "Abrir menu",
@@ -637,24 +642,30 @@ private fun NotificationBellButton(
     modifier: Modifier = Modifier,
 ) {
     Surface(
-        modifier = modifier,
+        modifier = modifier.size(40.dp),
         shape = CircleShape,
         color = Color.Black.copy(alpha = 0.45f)
     ) {
-        Box(modifier = Modifier.size(44.dp)) {
-            IconButton(onClick = onClick, modifier = Modifier.fillMaxSize()) {
-                Box(contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            IconButton(onClick = onClick, modifier = Modifier.matchParentSize()) {
+                Box(
+                    modifier = Modifier.size(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_bell_body_header),
                         contentDescription = "Notificações",
                         tint = Color.White,
-                        modifier = Modifier.size(22.dp)
+                        modifier = Modifier.fillMaxSize()
                     )
                     Icon(
                         painter = painterResource(id = R.drawable.ic_bell_bell_header),
                         contentDescription = null,
                         tint = Color.White,
-                        modifier = Modifier.size(16.dp)
+                        modifier = Modifier
+                            .align(Alignment.TopCenter)
+                            .padding(top = 3.dp)
+                            .fillMaxWidth(0.6f)
                     )
                 }
             }
@@ -724,12 +735,12 @@ private fun FeedActionsPanel(
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.End
     ) {
         val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         Column(
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.End
         ) {
             FeedActionButton(
                 icon = R.drawable.ic_action_like,
@@ -798,11 +809,14 @@ private fun FeedActionButton(
     label: String,
     onClick: () -> Unit = {},
 ) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
         Surface(
             shape = CircleShape,
             color = Color.Black.copy(alpha = 0.45f),
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(32.dp)
         ) {
             IconButton(
                 onClick = onClick,
@@ -812,17 +826,17 @@ private fun FeedActionButton(
                     painter = painterResource(id = icon),
                     contentDescription = label,
                     tint = Color.White,
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(16.dp)
                 )
             }
         }
-        Spacer(modifier = Modifier.size(6.dp))
         Text(
             text = label,
             color = Color.White,
             style = MaterialTheme.typography.labelSmall,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.End
         )
     }
 }
@@ -1043,14 +1057,16 @@ private fun SoundToggleButton(
 ) {
     Surface(
         shape = CircleShape,
-        color = Color.Black.copy(alpha = 0.45f)
+        color = Color.Black.copy(alpha = 0.45f),
+        modifier = Modifier.size(32.dp)
     ) {
-        IconButton(onClick = onToggleSound, modifier = Modifier.size(56.dp)) {
+        IconButton(onClick = onToggleSound, modifier = Modifier.fillMaxSize()) {
             val icon = if (isMuted) R.drawable.ic_volume_off else R.drawable.ic_volume_on
             Icon(
                 painter = painterResource(id = icon),
                 contentDescription = if (isMuted) "Ativar som" else "Desativar som",
-                tint = Color.White
+                tint = Color.White,
+                modifier = Modifier.size(16.dp)
             )
         }
     }

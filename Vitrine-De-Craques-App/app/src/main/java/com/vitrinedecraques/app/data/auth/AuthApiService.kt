@@ -86,6 +86,10 @@ class AuthApiService(
                 throw InvalidCredentialsException("E-mail ou senha inválidos.")
             }
 
+            detectNextAuthError(response)?.let { errorCode ->
+                throw mapNextAuthError(errorCode)
+            }
+
             val cookies = extractSessionCookies(response, baseUrl)
             Log.i(TAG, "Cookies de sessão extraídos: ${cookies.describeCookies()}")
             if (cookies.isEmpty()) {
@@ -221,6 +225,25 @@ private fun logLoginResponseChain(response: okhttp3.Response) {
         )
         current = current.priorResponse
         index += 1
+    }
+}
+
+private fun detectNextAuthError(response: okhttp3.Response): String? {
+    var current: okhttp3.Response? = response
+    while (current != null) {
+        val errorParam = current.request.url.queryParameter("error")
+        if (errorParam != null) {
+            return errorParam
+        }
+        current = current.priorResponse
+    }
+    return null
+}
+
+private fun mapNextAuthError(errorCode: String): Exception {
+    return when (errorCode) {
+        "CredentialsSignin" -> InvalidCredentialsException("E-mail ou senha inválidos.")
+        else -> IOException("Falha no login: código de erro '${'$'}errorCode'.")
     }
 }
 

@@ -1,0 +1,53 @@
+--------- beginning of main
+10-19 14:59:08.221 I/Perf    (13680): Connecting to perf service.
+10-19 14:59:08.353 I/FeatureParser(13680): can't find olive.xml in assets/device_features/,it may be in /system/etc/device_features
+10-19 14:59:08.386 E/Perf    (13680): Fail to get file list com.vitrinedecraques.app
+10-19 14:59:08.386 E/Perf    (13680): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+10-19 14:59:08.386 E/Perf    (13680): Fail to get file list com.vitrinedecraques.app
+10-19 14:59:08.386 E/Perf    (13680): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+--------- beginning of system
+10-19 14:59:08.387 W/Looper  (13680): Slow Looper main: Long Msg: seq=2 plan=14:59:03.086  late=9ms wall=5289ms running=0ms h=android.app.ActivityThread$H w=110
+10-19 14:59:08.762 W/Looper  (13680): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5296ms late (wall=374ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.LaunchActivityItem] lifecycleRequest=android.app.servertransaction.ResumeActivityItem }) because of 2 msg, msg 2 took 5289ms (seq=2 late=9ms h=android.app.ActivityThread$H w=110)
+10-19 14:59:08.763 W/Looper  (13680): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5656ms late (wall=1ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.TopResumedActivityChangeItem] }) because of 2 msg, msg 1 took 5289ms (seq=2 late=9ms h=android.app.ActivityThread$H w=110), msg 2 took 374ms (seq=3 late=5296ms h=android.app.ActivityThread$H w=159)
+10-19 14:59:10.327 W/nedecraques.ap(13680): Accessing hidden method Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl; (greylist, reflection, allowed)
+10-19 14:59:10.327 W/nedecraques.ap(13680): Accessing hidden field Landroid/view/View$AttachInfo;->mVisibleInsets:Landroid/graphics/Rect; (greylist, reflection, allowed)
+10-19 14:59:10.328 W/nedecraques.ap(13680): Accessing hidden field Landroid/view/ViewRootImpl;->mAttachInfo:Landroid/view/View$AttachInfo; (greylist, reflection, allowed)
+10-19 14:59:10.374 I/AdrenoGLES(13680): QUALCOMM build                   : 9d44e36, Ie3bb699d95
+10-19 14:59:10.374 I/AdrenoGLES(13680): Build Date                       : 09/29/20
+10-19 14:59:10.374 I/AdrenoGLES(13680): OpenGL ES Shader Compiler Version: EV031.27.05.02
+10-19 14:59:10.374 I/AdrenoGLES(13680): Local Branch                     : 
+10-19 14:59:10.374 I/AdrenoGLES(13680): Remote Branch                    : refs/tags/AU_LINUX_ANDROID_LA.UM.8.6.2.R1.10.00.00.537.053
+10-19 14:59:10.374 I/AdrenoGLES(13680): Remote Branch                    : NONE
+10-19 14:59:10.374 I/AdrenoGLES(13680): Reconstruct Branch               : NOTHING
+10-19 14:59:10.374 I/AdrenoGLES(13680): Build Config                     : S L 8.0.10 AArch64
+10-19 14:59:10.414 I/AdrenoGLES(13680): PFP: 0x005ff112, ME: 0x005ff066
+10-19 14:59:10.450 W/Gralloc3(13680): mapper 3.x is not supported
+10-19 14:59:10.613 I/OpenGLRenderer(13680): Davey! duration=2255ms; Flags=1, IntendedVsync=1251132352304612, Vsync=1251132752304596, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1251132760750593, AnimationStart=1251132760889030, PerformTraversalsStart=1251132761273561, DrawStart=1251134429217623, SyncQueued=1251134444194082, SyncStart=1251134444788665, IssueDrawCommandsStart=1251134444912884, SwapBuffers=1251134606463717, FrameCompleted=1251134608755436, DequeueBufferDuration=131000, QueueBufferDuration=1337000, 
+10-19 14:59:10.616 W/Looper  (13680): Slow Looper main: Long Msg: seq=7 plan=14:59:08.356  late=408ms wall=1851ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+10-19 14:59:10.616 W/Looper  (13680): Slow Looper main: doFrame is 408ms late because of 5 msg, msg 1 took 5289ms (seq=2 late=9ms h=android.app.ActivityThread$H w=110), msg 2 took 374ms (seq=3 late=5296ms h=android.app.ActivityThread$H w=159)
+10-19 14:59:10.658 I/Choreographer(13680): Skipped 101 frames!  The application may be doing too much work on its main thread.
+10-19 14:59:10.667 W/Looper  (13680): Slow Looper main: doFrame is 1684ms late because of 5 msg, msg 1 took 1851ms (seq=7 late=408ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+10-19 14:59:10.671 I/OpenGLRenderer(13680): Davey! duration=1697ms; Flags=0, IntendedVsync=1251132970509226, Vsync=1251134653842492, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1251134656959863, AnimationStart=1251134657052936, PerformTraversalsStart=1251134657060071, DrawStart=1251134661766113, SyncQueued=1251134663163300, SyncStart=1251134663553352, IssueDrawCommandsStart=1251134663642206, SwapBuffers=1251134665486686, FrameCompleted=1251134668051634, DequeueBufferDuration=106000, QueueBufferDuration=1565000, 
+10-19 14:59:10.704 W/ApiBaseUrlResolver(13680): Falha ao detectar host canônico: null
+10-19 14:59:10.706 I/HttpClientProvider(13680): updateSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> nenhum
+10-19 14:59:13.742 I/OpenGLRenderer(13680): Davey! duration=875ms; Flags=0, IntendedVsync=1251136863156093, Vsync=1251136863156093, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1251136864216372, AnimationStart=1251136864229654, PerformTraversalsStart=1251137539795122, DrawStart=1251137540349132, SyncQueued=1251137736353612, SyncStart=1251137736952257, IssueDrawCommandsStart=1251137737114809, SwapBuffers=1251137738022153, FrameCompleted=1251137739198976, DequeueBufferDuration=137000, QueueBufferDuration=359000, 
+10-19 14:59:13.870 W/Looper  (13680): Slow Looper main: doFrame is 329ms late because of 2 msg, msg 1 took 873ms (seq=41 late=1ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver), msg 2 took 73ms (seq=42 late=272ms h=android.os.Handler c=androidx.compose.ui.platform.AndroidComposeViewAccessibilityDelegateCompat$$ExternalSyntheticLambda3)
+10-19 14:59:16.263 I/nedecraques.ap(13680): ProcessProfilingInfo new_methods=10925 is saved saved_to_disk=1 resolve_classes_delay=8000
+10-19 14:59:28.833 I/HttpClientProvider(13680): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> nenhum
+10-19 14:59:28.833 I/AuthApiService(13680): Cookies antes do login: nenhum
+10-19 14:59:28.835 I/AuthApiService(13680): Buscando CSRF token em https://nice-hill-01a3a1010.2.azurestaticapps.net/api/auth/csrf
+10-19 14:59:28.950 W/IInputConnectionWrapper(13680): requestCursorAnchorInfo on inactive InputConnection
+10-19 14:59:30.423 I/AuthApiService(13680): Resposta do CSRF: code=200 bodyLength=-1
+10-19 14:59:30.446 I/AuthApiService(13680): CSRF token carregado (64 chars) para host=nice-hill-01a3a1010.2.azurestaticapps.net
+10-19 14:59:30.447 I/HttpClientProvider(13680): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> nenhum
+10-19 14:59:30.447 I/AuthApiService(13680): Cookies após obter CSRF: nenhum
+10-19 14:59:30.451 I/AuthApiService(13680): Enviando login POST para https://nice-hill-01a3a1010.2.azurestaticapps.net/api/auth/callback/credentials?json=true
+10-19 14:59:32.973 I/AuthApiService(13680): Resposta final: code=200 url=https://nice-hill-01a3a1010.2.azurestaticapps.net/login?callbackUrl=https%3A%2F%2Fnice-hill-01a3a1010.2.azurestaticapps.net%2F&error=CredentialsSignin setCookie=[]
+10-19 14:59:32.973 I/AuthApiService(13680): Resposta redirect#1: code=302 url=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/auth/signin?error=CredentialsSignin setCookie=[]
+10-19 14:59:32.974 I/AuthApiService(13680): Resposta redirect#2: code=302 url=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/auth/error?error=CredentialsSignin&provider=credentials setCookie=[]
+10-19 14:59:32.975 I/AuthApiService(13680): Resposta redirect#3: code=302 url=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/auth/callback/credentials?json=true setCookie=[__Secure-next-auth.callback-url=***; domain=nice-hill-01a3a1010.2.azurestaticapps.net; path=/; secure; samesite=lax; httponly]
+10-19 14:59:32.982 I/HttpClientProvider(13680): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> nenhum
+10-19 14:59:32.982 I/AuthApiService(13680): Cookies obtidos do cookie jar: nenhum
+10-19 14:59:32.982 I/AuthApiService(13680): Cookies de sessão extraídos: nenhum
+10-19 14:59:32.984 I/HttpClientProvider(13680): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> nenhum
+10-19 14:59:32.984 E/AuthApiService(13680): Nenhum cookie de sessão encontrado. set-cookie-final=[] cookiesJar=nenhum bodyPreview=<!DOCTYPE html><html lang="pt-BR"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" imageSrcSet="/_next/image?url=%2Fbrand%2Flogo.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2Fbrand%2Flogo.png&amp;w=128&amp;q=75 2x" fetchPriority="high"/><link rel="preload" as="image" href="/brand/logo.svg" fetchPriority="high"/><link rel="stylesheet" href="/_next/static/css/55e6e65434008183.css" data-precedence="next"/><link rel="stylesheet" hre…

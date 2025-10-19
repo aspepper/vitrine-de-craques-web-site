@@ -11,7 +11,7 @@ MAIN_ACTIVITY="${MAIN_ACTIVITY:-}"               # vazio => auto-resolver a ativ
 ADB_BIN="${ADB_BIN:-adb}"
 GRADLEW="${GRADLEW:-./gradlew}"
 LOG_DIR="${LOG_DIR:-./logs}"
-LOG_LEVEL_FILTER="${LOG_LEVEL_FILTER:-package:mine}"  # "package:mine" => --pid <pid> do APP_ID
+LOG_LEVEL_FILTER="${LOG_LEVEL_FILTER:-}"         # "package:mine" => --pid <pid> do APP_ID
 WAIT_FOR_DEVICE="${WAIT_FOR_DEVICE:-1}"          # aguardar dispositivo (1=yes, 0=no)
 
 # Ex.: export ANDROID_SERIAL="emulator-5554" para escolher um device específico
@@ -196,40 +196,55 @@ append_system_events_snapshot() {
 # - Senão, usa filtro literal (formato do logcat).
 start_logcat() {
   echo "[INFO] Limpando logcat..." | tee -a "$BUILD_LOG"
-  $ADB_BIN logcat -c || true
+  $ADB_BIN logcat -c 2>/dev/null || true
 
   local filter="$LOG_LEVEL_FILTER"
   local mode="raw"
   local pid=""
+  local pkg="$APP_ID"
 
   echo "[INFO] Gravando logcat em: $RUNTIME_LOG" | tee -a "$BUILD_LOG"
-  if [[ "$filter" == package:* ]]; then
-    local pkg="${filter#package:}"
-    [[ "$pkg" == "mine" ]] && pkg="$APP_ID"
-    if [[ -n "$pkg" ]]; then
-      echo "[INFO] Resolvendo PID para pacote '${pkg}'..." | tee -a "$BUILD_LOG"
-      if pid="$(resolve_pid_for_package "$pkg" 30)"; then
-        echo "[INFO] PID detectado: $pid" | tee -a "$BUILD_LOG"
-        # Snapshot de eventos do sistema (dump) ANTES do streaming
-        append_system_events_snapshot >> "$RUNTIME_LOG" || true
-        # Streaming somente do processo do app
-        ($ADB_BIN logcat -v time -b all --pid "$pid") | tee -a "$RUNTIME_LOG" &
-        LOGCAT_PID=$!
-        trap '[[ -n "${LOGCAT_PID:-}" ]] && kill $LOGCAT_PID >/dev/null 2>&1 || true' EXIT
-        echo "[INFO] Logcat PID: $LOGCAT_PID" | tee -a "$BUILD_LOG"
-        return
-      else
-        echo "[WARN] Não foi possível obter PID para '${pkg}'. Caindo para filtro literal." | tee -a "$BUILD_LOG"
-      fi
-    fi
+
+  # Tenta usar UID (pega todos os processos do app)
+  local app_uid="$($ADB_BIN shell dumpsys package "$pkg" | sed -n 's/.*userId=\([0-9]\+\).*/\1/p' | tr -d '\r')"
+  if [[ -n "$app_uid" ]]; then
+    echo "[INFO] Usando filtro por UID=$app_uid (mais estável que PID)" | tee -a "$BUILD_LOG"
+    $ADB_BIN logcat --uid "$app_uid" -v time '*:I' 2>/dev/null | tee -a "$RUNTIME_LOG" &
+    wait
+    return
   fi
 
-  # Filtro literal
-  echo "[INFO] Filtro: ${filter}" | tee -a "$BUILD_LOG"
-  ($ADB_BIN logcat -v time -b all ${=filter}) | tee "$RUNTIME_LOG" &
-  LOGCAT_PID=$!
-  trap '[[ -n "${LOGCAT_PID:-}" ]] && kill $LOGCAT_PID >/dev/null 2>&1 || true' EXIT
-  echo "[INFO] Logcat PID: $LOGCAT_PID" | tee -a "$BUILD_LOG"
+  # Fallback: resolver PID e anexar
+  echo "[INFO] Resolvendo PID para pacote '${pkg}'..." | tee -a "$BUILD_LOG"
+  if ! pid="$(resolve_pid_for_package "$pkg" 60)"; then
+    echo "[ERRO] Não consegui resolver PID para ${pkg}. Abra a Activity e tente novamente." | tee -a "$BUILD_LOG"
+    exit 1
+  fi
+
+  # Snapshot de eventos do sistema para contexto (não bloqueia execução principal)
+  ($ADB_BIN logcat -d -v time -b all 2>/dev/null | grep -E "$pkg|ActivityManager|ActivityTaskManager|AndroidRuntime" > "$RUNTIME_SYS_LOG" 2>/dev/null || true) &
+
+  while true; do
+    echo "[INFO] Conectando logcat com --pid=$pid ..." | tee -a "$BUILD_LOG"
+    $ADB_BIN logcat --pid "$pid" -v time '*:I' 2>/dev/null | tee -a "$RUNTIME_LOG" &
+    logcat_pid=$!
+
+    # Mantém enquanto /proc/<pid> existir
+    while $ADB_BIN shell "ls -d /proc/$pid >/dev/null 2>&1"; do
+      sleep 0.5
+    done
+    echo "[WARN] Processo $pid finalizou. Procurando novo PID..." | tee -a "$BUILD_LOG"
+    kill "$logcat_pid" 2>/dev/null || true
+
+    # Reanexar em novo PID
+    if pid="$(resolve_pid_for_package "$pkg" 120)"; then
+      echo "[INFO] Novo PID: $pid" | tee -a "$BUILD_LOG"
+      continue
+    else
+      echo "[ERRO] Não encontrei novo PID. Encerrando logcat." | tee -a "$BUILD_LOG"
+      break
+    fi
+  done
 }
 
 # ----------------------------

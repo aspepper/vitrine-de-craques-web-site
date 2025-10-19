@@ -36,6 +36,7 @@ import com.vitrinedecraques.app.R
 import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.ui.feed.FeedScreen
 import com.vitrinedecraques.app.ui.auth.AuthViewModel
+import com.vitrinedecraques.app.ui.auth.AuthViewModelFactory
 import com.vitrinedecraques.app.ui.auth.LoginScreen
 import com.vitrinedecraques.app.ui.auth.ProfileSelectionScreen
 import androidx.compose.runtime.collectAsState
@@ -51,7 +52,7 @@ private enum class AppDestination {
 
 @Composable
 fun VitrineDeCraquesApp() {
-    val authViewModel: AuthViewModel = viewModel()
+    val authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory)
     val authState by authViewModel.authState.collectAsState()
     val loginState by authViewModel.loginState.collectAsState()
     var destination by rememberSaveable { mutableStateOf(AppDestination.Splash) }

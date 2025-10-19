@@ -3,6 +3,7 @@ package com.vitrinedecraques.app.data.auth
 import android.util.Log
 import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.network.HttpClientProvider
+import com.vitrinedecraques.app.data.network.SESSION_COOKIE_PREFIXES
 import com.vitrinedecraques.app.data.network.StoredCookie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -172,17 +173,17 @@ class AuthApiService(
             current.headers("Set-Cookie").forEach { header ->
                 val cookie = runCatching { Cookie.parse(requestUrl, header) }.getOrNull()
                 if (cookie != null) {
-                    val lowerName = cookie.name.lowercase()
-                    val isSessionCookie = lowerName == "next-auth.session-token" ||
-                        lowerName == "__secure-next-auth.session-token" ||
-                        lowerName.startsWith("next-auth.session-token.") ||
-                        lowerName.startsWith("__secure-next-auth.session-token.")
-                    if (isSessionCookie) {
+                    if (cookie.name.isSessionCookieName()) {
                         val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
                         matched[key] = cookie.toStoredCookie()
                         Log.i(
                             TAG,
                             "Cookie de sessão capturado da resposta ${current.code}: ${cookie.name} domínio=${cookie.domain} path=${cookie.path}"
+                        )
+                    } else {
+                        Log.d(
+                            TAG,
+                            "Set-Cookie ignorado por não corresponder aos prefixos conhecidos: nome=${cookie.name} domínio=${cookie.domain} path=${cookie.path}"
                         )
                     }
                 } else {
@@ -245,6 +246,14 @@ private fun List<StoredCookie>.describeCookies(): String = if (isEmpty()) {
 } else {
     joinToString { cookie ->
         "${'$'}{cookie.name}@${'$'}{cookie.domain}${'$'}{cookie.path}"
+    }
+}
+
+private fun String.isSessionCookieName(): Boolean {
+    val lowerName = lowercase()
+    return SESSION_COOKIE_PREFIXES.any { prefix ->
+        val lowerPrefix = prefix.lowercase()
+        lowerName == lowerPrefix || lowerName.startsWith("${'$'}{lowerPrefix}.")
     }
 }
 

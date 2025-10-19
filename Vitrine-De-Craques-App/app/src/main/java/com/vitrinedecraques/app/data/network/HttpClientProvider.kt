@@ -11,6 +11,13 @@ import java.util.LinkedHashMap
 import java.util.concurrent.TimeUnit
 import kotlinx.serialization.Serializable
 
+internal val SESSION_COOKIE_PREFIXES = listOf(
+    "next-auth.session-token",
+    "__Secure-next-auth.session-token",
+    "authjs.session-token",
+    "__Secure-authjs.session-token",
+)
+
 /**
  * Provides a shared [OkHttpClient] instance configured with a cookie jar so that
  * authentication cookies obtained during login can be reused across requests.
@@ -31,11 +38,6 @@ object HttpClientProvider {
             .build()
     }
 
-    private val sessionCookiePrefixes = listOf(
-        "next-auth.session-token",
-        "__Secure-next-auth.session-token",
-    )
-
     fun getSessionCookies(baseUrl: HttpUrl): List<StoredCookie> {
         val store = cookieManager.cookieStore
         val targetHost = baseUrl.host
@@ -44,7 +46,7 @@ object HttpClientProvider {
         store.cookies
             .asSequence()
             .filter { cookie ->
-                sessionCookiePrefixes.any { prefix ->
+                SESSION_COOKIE_PREFIXES.any { prefix ->
                     cookie.name.equals(prefix, ignoreCase = true) ||
                         cookie.name.startsWith("${prefix}.", ignoreCase = true)
                 }
@@ -69,7 +71,7 @@ object HttpClientProvider {
         val uri = baseUrl.toUri()
         val store = cookieManager.cookieStore
         val existing = store.cookies.filter { cookie ->
-            sessionCookiePrefixes.any { prefix ->
+            SESSION_COOKIE_PREFIXES.any { prefix ->
                 cookie.name.equals(prefix, ignoreCase = true) ||
                     cookie.name.startsWith("${prefix}.", ignoreCase = true)
             }
@@ -97,7 +99,7 @@ object HttpClientProvider {
         val iterator = store.cookies.iterator()
         while (iterator.hasNext()) {
             val cookie = iterator.next()
-            val matchesPrefix = sessionCookiePrefixes.any { prefix ->
+            val matchesPrefix = SESSION_COOKIE_PREFIXES.any { prefix ->
                 cookie.name.equals(prefix, ignoreCase = true) ||
                     cookie.name.startsWith("${prefix}.", ignoreCase = true)
             }

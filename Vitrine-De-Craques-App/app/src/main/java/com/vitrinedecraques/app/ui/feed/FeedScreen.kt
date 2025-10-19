@@ -111,12 +111,16 @@ import androidx.media3.ui.PlayerView
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.text.Normalizer
 import java.util.Calendar
 import java.util.Locale
+import kotlinx.serialization.json.Json
+import com.vitrinedecraques.app.data.network.ApiBaseUrlResolver
 
 private val BottomNavigationHeight = 96.dp
 
@@ -490,13 +494,7 @@ private fun FeedVideoCard(
     val mediaSourceFactory = remember(video.id) {
         DefaultMediaSourceFactory(DefaultDataSource.Factory(context, httpDataSourceFactory))
     }
-    val appOrigin = remember {
-        BuildConfig.API_BASE_URL
-            .trim()
-            .takeIf { it.isNotEmpty() }
-            ?.toHttpUrlOrNull()
-            ?.toOriginString()
-    }
+    val appOrigin = rememberResolvedAppOrigin()
     val exoPlayer = remember(video.id) {
         ExoPlayer.Builder(context)
             .setMediaSourceFactory(mediaSourceFactory)
@@ -879,6 +877,7 @@ private fun FeedActionsPanel(
     ) {
         Column(
             modifier = Modifier
+                .align(Alignment.BottomEnd)
                 .wrapContentWidth(Alignment.End)
                 .navigationBarsPadding()
                 .padding(end = 12.dp, bottom = 20.dp),
@@ -1018,6 +1017,38 @@ private fun HttpUrl.toCookieScope(): HttpUrl = newBuilder()
     .query(null)
     .fragment(null)
     .build()
+
+@Composable
+private fun rememberResolvedAppOrigin(): String? {
+    val fallbackUrl = remember {
+        BuildConfig.API_BASE_URL
+            .trim()
+            .takeIf { it.isNotEmpty() }
+            ?.toHttpUrlOrNull()
+    }
+    val defaultOrigin = remember(fallbackUrl) { fallbackUrl?.toOriginString() }
+    var origin by remember { mutableStateOf(defaultOrigin) }
+    val client = remember { HttpClientProvider.client }
+    val json = remember {
+        Json {
+            ignoreUnknownKeys = true
+            isLenient = true
+        }
+    }
+
+    LaunchedEffect(client, json, fallbackUrl) {
+        if (fallbackUrl == null) return@LaunchedEffect
+        val resolved = withContext(Dispatchers.IO) {
+            runCatching { ApiBaseUrlResolver.resolve(client, json, fallbackUrl) }.getOrNull()
+        }
+        val resolvedOrigin = resolved?.toOriginString()
+        if (resolvedOrigin != null && resolvedOrigin != origin) {
+            origin = resolvedOrigin
+        }
+    }
+
+    return origin
+}
 
 private fun HttpUrl.toOriginString(): String = newBuilder()
     .encodedPath("/")

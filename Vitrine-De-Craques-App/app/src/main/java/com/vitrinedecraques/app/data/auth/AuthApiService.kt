@@ -1,5 +1,6 @@
 package com.vitrinedecraques.app.data.auth
 
+import android.util.Log
 import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.network.StoredCookie
@@ -14,6 +15,8 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
+
+private const val TAG = "AuthApiService"
 
 class AuthApiService(
     private val client: OkHttpClient = HttpClientProvider.client,
@@ -34,6 +37,7 @@ class AuthApiService(
 
     suspend fun login(email: String, password: String): AuthLoginResult = withContext(Dispatchers.IO) {
         val csrfToken = fetchCsrfToken()
+        Log.d(TAG, "CSRF token carregado (${csrfToken.length} chars) para host=${apiBaseUrl.host}")
         val loginUrl = apiBaseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("auth")
@@ -54,8 +58,14 @@ class AuthApiService(
             .post(formBody)
             .build()
 
+        Log.d(TAG, "Enviando login POST para $loginUrl")
         client.newCall(request).execute().use { response ->
             val body = response.body?.string().orEmpty()
+            Log.d(
+                TAG,
+                "Resposta do login: code=${response.code} prior=${response.priorResponse != null} " +
+                    "setCookie=${response.headers("Set-Cookie").maskCookieHeaders()}"
+            )
             if (response.code == 401) {
                 throw InvalidCredentialsException("E-mail ou senha inválidos.")
             }
@@ -72,11 +82,13 @@ class AuthApiService(
             }
 
             val cookies = extractSessionCookies(response)
+            Log.d(TAG, "Cookies de sessão extraídos: ${cookies.describeCookies()}")
             if (cookies.isEmpty()) {
                 throw IOException("Nenhum cookie de sessão retornado pela API.")
             }
 
             val session = fetchSession()
+            Log.d(TAG, "Sessão carregada: user=${session.user?.email ?: "null"} expires=${session.expires}")
             if (session.user == null) {
                 throw IOException("Sessão inválida retornada pela API.")
             }
@@ -97,7 +109,9 @@ class AuthApiService(
             .get()
             .build()
 
+        Log.d(TAG, "Buscando sessão em ${request.url}")
         client.newCall(request).execute().use { response ->
+            Log.d(TAG, "Resposta da sessão: code=${response.code} bodyLength=${response.body?.contentLength() ?: -1}")
             if (response.code == 401) {
                 return@withContext SessionResponse(user = null, expires = null)
             }
@@ -124,7 +138,9 @@ class AuthApiService(
             .get()
             .build()
 
+        Log.d(TAG, "Buscando CSRF token em ${request.url}")
         client.newCall(request).execute().use { response ->
+            Log.d(TAG, "Resposta do CSRF: code=${response.code} bodyLength=${response.body?.contentLength() ?: -1}")
             if (!response.isSuccessful) {
                 throw IOException("Erro ${'$'}{response.code} ao obter token CSRF")
             }
@@ -154,6 +170,10 @@ class AuthApiService(
                         if (isSessionCookie) {
                             val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
                             matched[key] = cookie.toStoredCookie()
+                            Log.d(
+                                TAG,
+                                "Cookie de sessão capturado da resposta ${current.code}: ${cookie.name} domínio=${cookie.domain} path=${cookie.path}"
+                            )
                         }
                     }
             }
@@ -164,7 +184,30 @@ class AuthApiService(
             return matched.values.toList()
         }
 
-        return HttpClientProvider.getSessionCookies(apiBaseUrl)
+        val fallback = HttpClientProvider.getSessionCookies(apiBaseUrl)
+        Log.d(TAG, "Cookies obtidos do cookie jar: ${fallback.describeCookies()}")
+        return fallback
+    }
+}
+
+private fun List<String>.maskCookieHeaders(): List<String> = map { header ->
+    val parts = header.split(';')
+    if (parts.isEmpty()) return@map header
+    val nameValue = parts.first()
+    val idx = nameValue.indexOf('=')
+    if (idx == -1) {
+        header
+    } else {
+        val masked = nameValue.substring(0, idx + 1) + "***"
+        listOf(masked) + parts.drop(1)
+    }.joinToString(";")
+}
+
+private fun List<StoredCookie>.describeCookies(): String = if (isEmpty()) {
+    "nenhum"
+} else {
+    joinToString { cookie ->
+        "${'$'}{cookie.name}@${'$'}{cookie.domain}${'$'}{cookie.path}"
     }
 }
 

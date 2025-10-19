@@ -88,6 +88,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.vitrinedecraques.app.R
 import com.vitrinedecraques.app.data.NextApiService
+import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.model.FeedVideo
 import com.vitrinedecraques.app.data.model.ProfileDetail
 import com.vitrinedecraques.app.ui.profile.ProfileScreen
@@ -99,13 +100,18 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.datasource.HttpDataSource
+import androidx.media3.datasource.DefaultDataSource
+import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import kotlinx.coroutines.launch
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.text.Normalizer
 import java.util.Calendar
 import java.util.Locale
@@ -473,11 +479,23 @@ private fun FeedVideoCard(
     val context = LocalContext.current
     var isMuted by remember { mutableStateOf(true) }
     var playbackError by remember(video.id) { mutableStateOf<String?>(null) }
+    val httpDataSourceFactory = remember(video.id) {
+        DefaultHttpDataSource.Factory()
+            .setAllowCrossProtocolRedirects(true)
+            .setConnectTimeoutMs(30_000)
+            .setReadTimeoutMs(30_000)
+    }
+    val mediaSourceFactory = remember(video.id) {
+        DefaultMediaSourceFactory(DefaultDataSource.Factory(context, httpDataSourceFactory))
+    }
     val exoPlayer = remember(video.id) {
-        ExoPlayer.Builder(context).build().apply {
-            repeatMode = Player.REPEAT_MODE_ONE
-            playWhenReady = isActive
-        }
+        ExoPlayer.Builder(context)
+            .setMediaSourceFactory(mediaSourceFactory)
+            .build()
+            .apply {
+                repeatMode = Player.REPEAT_MODE_ONE
+                playWhenReady = isActive
+            }
     }
     val mutedState by rememberUpdatedState(isMuted)
     val isActiveState by rememberUpdatedState(isActive)
@@ -513,6 +531,13 @@ private fun FeedVideoCard(
             exoPlayer.playWhenReady = false
             playbackError = "Vídeo indisponível."
         } else {
+            val cookieHeader = buildCookieHeaderFor(video.videoUrl)
+            val requestProperties = if (!cookieHeader.isNullOrEmpty()) {
+                mapOf("Cookie" to cookieHeader)
+            } else {
+                emptyMap()
+            }
+            httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
             exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
             exoPlayer.prepare()
             if (isActiveState) {
@@ -696,7 +721,6 @@ private fun VideoOverlay(
             isMuted = isMuted,
             onToggleSound = onToggleSound,
             modifier = Modifier
-                .fillMaxHeight()
                 .navigationBarsPadding()
                 .padding(end = 12.dp, bottom = 20.dp)
                 .align(Alignment.BottomEnd)
@@ -832,41 +856,44 @@ private fun FeedActionsPanel(
     onToggleSound: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.fillMaxHeight(),
-        horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.Bottom
-    ) {
+    Box(modifier = modifier) {
         val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.End
+            modifier = Modifier.align(Alignment.BottomEnd),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            FeedActionButton(
-                icon = R.drawable.ic_action_like,
-                label = formatCount(video.likesCount ?: 0)
-            )
-            FeedActionButton(
-                icon = R.drawable.ic_action_comment,
-                label = "Comentar"
-            )
-            FeedActionButton(
-                icon = R.drawable.ic_action_share,
-                label = "Compartilhar"
-            )
-            FeedActionButton(
-                icon = R.drawable.ic_action_save,
-                label = "Salvar"
-            )
-            SoundToggleButton(isMuted = isMuted, onToggleSound = onToggleSound)
-        }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                FeedActionButton(
+                    icon = R.drawable.ic_action_like,
+                    label = formatCount(video.likesCount ?: 0)
+                )
+                FeedActionButton(
+                    icon = R.drawable.ic_action_comment,
+                    label = "Comentar"
+                )
+                FeedActionButton(
+                    icon = R.drawable.ic_action_share,
+                    label = "Compartilhar"
+                )
+                FeedActionButton(
+                    icon = R.drawable.ic_action_save,
+                    label = "Salvar"
+                )
+            }
 
-        if (!avatarUrl.isNullOrBlank()) {
-            Spacer(modifier = Modifier.height(24.dp))
-            UserAvatar(
-                imageUrl = avatarUrl,
-                contentDescription = video.user?.profile?.displayName
-            )
+            Spacer(modifier = Modifier.height(12.dp))
+            SoundToggleButton(isMuted = isMuted, onToggleSound = onToggleSound)
+
+            if (!avatarUrl.isNullOrBlank()) {
+                Spacer(modifier = Modifier.height(28.dp))
+                UserAvatar(
+                    imageUrl = avatarUrl,
+                    contentDescription = video.user?.profile?.displayName
+                )
+            }
         }
     }
 }
@@ -942,6 +969,22 @@ private fun FeedActionButton(
         )
     }
 }
+
+private fun buildCookieHeaderFor(url: String): String? {
+    val targetUrl = url.toHttpUrlOrNull() ?: return null
+    val cookieScope = targetUrl.toCookieScope()
+    val cookies = HttpClientProvider.getSessionCookies(cookieScope)
+    if (cookies.isEmpty()) {
+        return null
+    }
+    return cookies.joinToString(separator = "; ") { cookie -> "${cookie.name}=${cookie.value}" }
+}
+
+private fun HttpUrl.toCookieScope(): HttpUrl = newBuilder()
+    .encodedPath("/")
+    .query(null)
+    .fragment(null)
+    .build()
 
 private enum class FeedBottomNavItem(val icon: Int, val contentDescription: String) {
     Home(R.drawable.ic_nav_home, "Início"),

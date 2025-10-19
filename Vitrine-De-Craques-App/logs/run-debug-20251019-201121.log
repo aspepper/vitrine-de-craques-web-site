@@ -1,0 +1,144 @@
+--------- beginning of main
+10-19 20:12:46.398 I/Perf    (27903): Connecting to perf service.
+10-19 20:12:46.495 I/FeatureParser(27903): can't find olive.xml in assets/device_features/,it may be in /system/etc/device_features
+--------- beginning of system
+10-19 20:12:46.527 W/Looper  (27903): Slow Looper main: Long Msg: seq=2 plan=20:12:41.504  late=3ms wall=5018ms running=0ms h=android.app.ActivityThread$H w=110
+10-19 20:12:46.536 E/Perf    (27903): Fail to get file list com.vitrinedecraques.app
+10-19 20:12:46.536 E/Perf    (27903): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+10-19 20:12:46.537 E/Perf    (27903): Fail to get file list com.vitrinedecraques.app
+10-19 20:12:46.537 E/Perf    (27903): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+10-19 20:12:46.637 I/chatty  (27903): uid=11390(com.vitrinedecraques.app) identical 1 line
+10-19 20:12:46.820 W/Looper  (27903): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 4961ms late (wall=291ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.LaunchActivityItem] lifecycleRequest=android.app.servertransaction.ResumeActivityItem }) because of 1 msg, msg 1 took 5018ms (seq=2 late=3ms h=android.app.ActivityThread$H w=110)
+10-19 20:12:46.821 W/Looper  (27903): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5252ms late (wall=1ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.TopResumedActivityChangeItem] }) because of 2 msg, msg 1 took 5018ms (seq=2 late=3ms h=android.app.ActivityThread$H w=110), msg 2 took 291ms (seq=3 late=4961ms h=android.app.ActivityThread$H w=159)
+10-19 20:12:47.955 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+10-19 20:12:47.955 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+10-19 20:12:47.955 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+10-19 20:12:47.956 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, linking, allowed)
+10-19 20:12:47.960 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+10-19 20:12:47.962 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->objectFieldOffset(Ljava/lang/reflect/Field;)J (greylist,core-platform-api, linking, allowed)
+10-19 20:12:47.963 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+10-19 20:12:47.964 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+10-19 20:12:47.964 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, linking, allowed)
+10-19 20:12:47.967 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, linking, allowed)
+10-19 20:12:47.971 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, linking, allowed)
+10-19 20:12:47.972 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->allocateInstance(Ljava/lang/Class;)Ljava/lang/Object; (greylist, linking, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->peekLong(JZ)J (greylist, reflection, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->pokeLong(JJZ)V (greylist, reflection, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->pokeInt(JIZ)V (greylist, reflection, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->peekInt(JZ)I (greylist, reflection, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->pokeByte(JB)V (greylist, reflection, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->peekByte(J)B (greylist, reflection, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->pokeByteArray(J[BII)V (greylist, reflection, allowed)
+10-19 20:12:47.975 W/nedecraques.ap(27903): Accessing hidden method Llibcore/io/Memory;->peekByteArray(J[BII)V (greylist, reflection, allowed)
+10-19 20:12:47.976 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->arrayBaseOffset(Ljava/lang/Class;)I (greylist,core-platform-api, linking, allowed)
+10-19 20:12:47.976 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->arrayIndexScale(Ljava/lang/Class;)I (greylist, linking, allowed)
+10-19 20:12:47.976 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+10-19 20:12:47.978 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, reflection, allowed)
+10-19 20:12:47.978 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, reflection, allowed)
+10-19 20:12:47.978 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, reflection, allowed)
+10-19 20:12:47.978 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, reflection, allowed)
+10-19 20:12:47.979 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, reflection, allowed)
+10-19 20:12:47.979 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, reflection, allowed)
+10-19 20:12:47.979 W/nedecraques.ap(27903): Accessing hidden field Ljava/nio/Buffer;->address:J (greylist, reflection, allowed)
+10-19 20:12:47.993 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+10-19 20:12:48.152 W/nedecraques.ap(27903): Accessing hidden method Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl; (greylist, reflection, allowed)
+10-19 20:12:48.152 W/nedecraques.ap(27903): Accessing hidden field Landroid/view/View$AttachInfo;->mVisibleInsets:Landroid/graphics/Rect; (greylist, reflection, allowed)
+10-19 20:12:48.152 W/nedecraques.ap(27903): Accessing hidden field Landroid/view/ViewRootImpl;->mAttachInfo:Landroid/view/View$AttachInfo; (greylist, reflection, allowed)
+10-19 20:12:48.195 I/AdrenoGLES(27903): QUALCOMM build                   : 9d44e36, Ie3bb699d95
+10-19 20:12:48.195 I/AdrenoGLES(27903): Build Date                       : 09/29/20
+10-19 20:12:48.195 I/AdrenoGLES(27903): OpenGL ES Shader Compiler Version: EV031.27.05.02
+10-19 20:12:48.195 I/AdrenoGLES(27903): Local Branch                     : 
+10-19 20:12:48.195 I/AdrenoGLES(27903): Remote Branch                    : refs/tags/AU_LINUX_ANDROID_LA.UM.8.6.2.R1.10.00.00.537.053
+10-19 20:12:48.195 I/AdrenoGLES(27903): Remote Branch                    : NONE
+10-19 20:12:48.195 I/AdrenoGLES(27903): Reconstruct Branch               : NOTHING
+10-19 20:12:48.195 I/AdrenoGLES(27903): Build Config                     : S L 8.0.10 AArch64
+10-19 20:12:48.224 I/AdrenoGLES(27903): PFP: 0x005ff112, ME: 0x005ff066
+10-19 20:12:48.279 W/Gralloc3(27903): mapper 3.x is not supported
+10-19 20:12:48.381 I/OpenGLRenderer(27903): Davey! duration=1885ms; Flags=1, IntendedVsync=1269937072722890, Vsync=1269937389389544, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1269937399962846, AnimationStart=1269937400249513, PerformTraversalsStart=1269937400643992, DrawStart=1269938840350971, SyncQueued=1269938855054304, SyncStart=1269938855487481, IssueDrawCommandsStart=1269938855569773, SwapBuffers=1269938956299825, FrameCompleted=1269938958456544, DequeueBufferDuration=104000, QueueBufferDuration=1226000, 
+10-19 20:12:48.385 W/Looper  (27903): Slow Looper main: Long Msg: seq=9 plan=20:12:46.494  late=327ms wall=1562ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+10-19 20:12:48.385 W/Looper  (27903): Slow Looper main: doFrame is 327ms late because of 7 msg, msg 1 took 5018ms (seq=2 late=3ms h=android.app.ActivityThread$H w=110), msg 2 took 291ms (seq=3 late=4961ms h=android.app.ActivityThread$H w=159)
+10-19 20:12:48.419 I/Choreographer(27903): Skipped 84 frames!  The application may be doing too much work on its main thread.
+10-19 20:12:48.427 W/Looper  (27903): Slow Looper main: doFrame is 1406ms late because of 5 msg, msg 1 took 1562ms (seq=9 late=327ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+10-19 20:12:48.430 I/OpenGLRenderer(27903): Davey! duration=1416ms; Flags=0, IntendedVsync=1269937590697365, Vsync=1269938990697309, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1269938998466596, AnimationStart=1269938998602794, PerformTraversalsStart=1269938998609669, DrawStart=1269939002381335, SyncQueued=1269939003607533, SyncStart=1269939004120867, IssueDrawCommandsStart=1269939004202742, SwapBuffers=1269939005538106, FrameCompleted=1269939007870710, DequeueBufferDuration=88000, QueueBufferDuration=1498000, 
+10-19 20:12:48.484 W/ApiBaseUrlResolver(27903): Falha ao detectar host canônico: null
+10-19 20:12:48.487 I/HttpClientProvider(27903): updateSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+10-19 20:12:48.597 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+10-19 20:12:48.597 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+10-19 20:12:48.597 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+10-19 20:12:48.597 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+10-19 20:12:49.387 I/OpenGLRenderer(27903): Davey! duration=870ms; Flags=0, IntendedVsync=1269939094499587, Vsync=1269939094499587, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1269939103718002, AnimationStart=1269939103724929, PerformTraversalsStart=1269939612601231, DrawStart=1269939612939773, SyncQueued=1269939961584512, SyncStart=1269939961999304, IssueDrawCommandsStart=1269939962306647, SwapBuffers=1269939963419356, FrameCompleted=1269939964915918, DequeueBufferDuration=135000, QueueBufferDuration=583000, 
+10-19 20:12:49.735 I/ExoPlayerImpl(27903): Init a8b8abc [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+10-19 20:12:49.824 W/nedecraques.ap(27903): Accessing hidden method Landroid/media/AudioTrack;->getLatency()I (greylist, reflection, allowed)
+10-19 20:12:50.256 I/chatty  (27903): uid=11390(com.vitrinedecraques.app) identical 34 lines
+10-19 20:12:50.296 I/chatty  (27903): uid=11390(com.vitrinedecraques.app) identical 4 lines
+10-19 20:12:50.565 I/ExoPlayerImpl(27903): Init 94a6e37 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+10-19 20:12:50.641 W/Gralloc3(27903): allocator 3.x is not supported
+10-19 20:12:50.723 I/chatty  (27903): uid=11390(com.vitrinedecraques.app) identical 41 lines
+10-19 20:12:50.997 W/Looper  (27903): Slow Looper main: Long Msg: seq=37 plan=20:12:49.385  late=100ms wall=1510ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+10-19 20:12:50.998 I/OpenGLRenderer(27903): Davey! duration=1611ms; Flags=0, IntendedVsync=1269939963340474, Vsync=1269940063340470, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1269940063428262, AnimationStart=1269940063502220, PerformTraversalsStart=1269940174495189, DrawStart=1269940174811804, SyncQueued=1269941572372897, SyncStart=1269941572858782, IssueDrawCommandsStart=1269941573710605, SwapBuffers=1269941574623001, FrameCompleted=1269941575534303, DequeueBufferDuration=186000, QueueBufferDuration=332000, 
+10-19 20:12:51.078 I/ExoPlayerImpl(27903): Init b66f787 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+10-19 20:12:51.163 I/chatty  (27903): uid=11390(com.vitrinedecraques.app) identical 16 lines
+10-19 20:12:51.168 I/chatty  (27903): uid=11390(com.vitrinedecraques.app) identical 1 line
+10-19 20:12:51.200 I/chatty  (27903): uid=11390(com.vitrinedecraques.app) identical 19 lines
+10-19 20:12:51.309 I/HttpClientProvider(27903): getSessionCookies host=pub-11c79f639e314f208bdf80d01ef7056c.r2.dev -> nenhum
+10-19 20:12:51.327 I/HttpClientProvider(27903): getSessionCookies host=pub-11c79f639e314f208bdf80d01ef7056c.r2.dev -> nenhum
+10-19 20:12:51.360 I/DpmTcmClient(27903): RegisterTcmMonitor from: $Proxy0
+10-19 20:12:51.384 I/HttpClientProvider(27903): getSessionCookies host=storage.googleapis.com -> nenhum
+10-19 20:12:51.398 I/Choreographer(27903): Skipped 113 frames!  The application may be doing too much work on its main thread.
+10-19 20:12:51.549 W/Looper  (27903): Slow Looper main: doFrame is 1895ms late because of 14 msg, msg 1 took 1510ms (seq=37 late=100ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver), msg 7 took 61ms (seq=43 late=1523ms h=android.os.Handler c=androidx.compose.ui.platform.AndroidComposeViewAccessibilityDelegateCompat$$ExternalSyntheticLambda3), msg 8 took 336ms (seq=44 late=1575ms h=android.os.Handler c=androidx.compose.ui.platform.AndroidUiDispatcher$dispatchCallback$1)
+10-19 20:12:51.773 I/OpenGLRenderer(27903): Davey! duration=2270ms; Flags=1, IntendedVsync=1269940080294354, Vsync=1269941963627612, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1269941976955188, AnimationStart=1269941977049980, PerformTraversalsStart=1269942043709876, DrawStart=1269942076066803, SyncQueued=1269942124318105, SyncStart=1269942124863313, IssueDrawCommandsStart=1269942125948938, SwapBuffers=1269942348962740, FrameCompleted=1269942350840240, DequeueBufferDuration=235000, QueueBufferDuration=310000, 
+10-19 20:12:53.728 I/nedecraques.ap(27903): Background young concurrent copying GC freed 113925(6905KB) AllocSpace objects, 29(808KB) LOS objects, 43% free, 10MB/17MB, paused 211us total 100.027ms
+10-19 20:12:54.406 W/VideoCapabilities(27903): Unsupported mime video/divx
+10-19 20:12:54.408 W/VideoCapabilities(27903): Unsupported mime video/divx4
+10-19 20:12:54.436 W/Utils   (27903): could not parse long range '146-132'
+10-19 20:12:54.447 I/VideoCapabilities(27903): Unsupported profile 4 for video/mp4v-es
+10-19 20:12:54.476 I/nedecraques.ap(27903): ProcessProfilingInfo new_methods=15635 is saved saved_to_disk=1 resolve_classes_delay=8000
+10-19 20:12:54.543 I/OMXClient(27903): IOmx service obtained
+10-19 20:12:54.965 I/MediaCodec(27903): [OMX.qcom.video.decoder.avc] setting surface generation to 28572673
+10-19 20:12:54.972 I/ExtendedACodec(27903): setupVideoDecoder()
+10-19 20:12:54.980 I/ExtendedACodec(27903): Decoder will be in frame by frame mode
+10-19 20:12:55.054 I/OMXClient(27903): IOmx service obtained
+10-19 20:12:55.057 I/ACodec  (27903): codec does not support config priority (err -2147483648)
+10-19 20:12:55.058 I/ACodec  (27903): codec does not support config priority (err -2147483648)
+10-19 20:12:55.058 I/ACodec  (27903): codec does not support config operating rate (err -2147483648)
+10-19 20:12:55.059 W/ExtendedACodec(27903): Failed to get extension for extradata parameter
+10-19 20:12:55.127 W/RenderInspector(27903): DequeueBuffer time out on com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity, count=1, avg=25 ms, max=25 ms.
+10-19 20:12:55.250 I/OMXClient(27903): IOmx service obtained
+10-19 20:12:55.259 W/RenderInspector(27903): DequeueBuffer time out on com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity, count=1, avg=20 ms, max=20 ms.
+10-19 20:12:55.269 I/MediaCodec(27903): [OMX.qcom.video.decoder.avc] setting surface generation to 28572674
+10-19 20:12:55.272 I/ExtendedACodec(27903): setupVideoDecoder()
+10-19 20:12:55.280 I/ExtendedACodec(27903): Decoder will be in frame by frame mode
+10-19 20:12:55.318 I/OMXClient(27903): IOmx service obtained
+10-19 20:12:55.323 I/ACodec  (27903): codec does not support config priority (err -2147483648)
+10-19 20:12:55.324 I/ACodec  (27903): codec does not support config priority (err -2147483648)
+10-19 20:12:55.324 I/ACodec  (27903): codec does not support config operating rate (err -2147483648)
+10-19 20:12:55.326 W/ExtendedACodec(27903): Failed to get extension for extradata parameter
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903): Playback error
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):   androidx.media3.exoplayer.ExoPlaybackException: Source error
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at android.os.Handler.dispatchMessage(Handler.java:103)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at android.os.Looper.loop(Looper.java:223)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at android.os.HandlerThread.run(HandlerThread.java:67)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):   Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 403
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+10-19 20:12:56.128 E/ExoPlayerImplInternal(27903):       at java.lang.Thread.run(Thread.java:919)
+10-19 20:12:56.334 I/nedecraques.ap(27903): NativeAlloc concurrent copying GC freed 37469(1849KB) AllocSpace objects, 11(3140KB) LOS objects, 53% free, 10MB/22MB, paused 145us total 125.760ms
+10-19 20:12:56.345 W/AudioTrack(27903): getTimestamp_l(481): retrograde timestamp time corrected, 1269946905569822 < 1269946912603051
+10-19 20:13:02.842 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+10-19 20:13:02.843 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+10-19 20:13:02.844 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+10-19 20:13:02.844 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+10-19 20:13:02.915 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+10-19 20:13:02.916 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+10-19 20:13:02.916 W/nedecraques.ap(27903): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+10-19 20:13:05.986 I/nedecraques.ap(27903): Background concurrent copying GC freed 2641(378KB) AllocSpace objects, 1(68KB) LOS objects, 49% free, 21MB/43MB, paused 61us total 119.812ms
+10-19 20:13:32.151 I/nedecraques.ap(27903): Background concurrent copying GC freed 3641(585KB) AllocSpace objects, 2(136KB) LOS objects, 36% free, 42MB/66MB, paused 68us total 126.380ms
+10-19 20:13:36.385 I/MediaCodec(27903): [OMX.qcom.video.decoder.avc] setting surface generation to 28572675
+10-19 20:13:36.425 I/MediaCodec(27903): [OMX.qcom.video.decoder.avc] setting surface generation to 28572676

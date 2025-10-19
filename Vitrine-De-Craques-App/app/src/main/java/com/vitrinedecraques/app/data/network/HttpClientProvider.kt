@@ -61,7 +61,7 @@ object HttpClientProvider {
         }
 
         return matched.values.toList().also { cookies ->
-            Log.d(TAG, "getSessionCookies host=${baseUrl.host} -> ${cookies.describeCookies()}")
+            Log.i(TAG, "getSessionCookies host=${baseUrl.host} -> ${cookies.describeCookies()}")
         }
     }
 
@@ -89,7 +89,7 @@ object HttpClientProvider {
             }
             store.add(uri, httpCookie)
         }
-        Log.d(TAG, "updateSessionCookies host=${baseUrl.host} -> ${cookies.describeCookies()}")
+        Log.i(TAG, "updateSessionCookies host=${baseUrl.host} -> ${cookies.describeCookies()}")
     }
 
     fun clearSessionCookies() {
@@ -105,7 +105,7 @@ object HttpClientProvider {
                 iterator.remove()
             }
         }
-        Log.d(TAG, "clearSessionCookies executado")
+        Log.i(TAG, "clearSessionCookies executado")
     }
 }
 

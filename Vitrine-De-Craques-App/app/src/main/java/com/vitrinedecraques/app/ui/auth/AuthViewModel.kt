@@ -24,7 +24,7 @@ data class LoginUiState(
     val error: String? = null,
 )
 
-class AuthViewModel(
+class AuthViewModel @JvmOverloads constructor(
     application: Application,
     private val repository: AuthRepository = AuthRepository(application.applicationContext)
 ) : AndroidViewModel(application) {

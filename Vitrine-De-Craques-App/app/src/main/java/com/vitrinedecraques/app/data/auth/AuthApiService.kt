@@ -3,6 +3,7 @@ package com.vitrinedecraques.app.data.auth
 import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.network.StoredCookie
+import com.vitrinedecraques.app.data.network.toStoredCookie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
@@ -139,22 +140,28 @@ class AuthApiService(
     }
 
     private fun extractSessionCookies(cookieHeaders: List<String>): List<StoredCookie> {
-        if (cookieHeaders.isEmpty()) return emptyList()
         val matched = linkedMapOf<String, StoredCookie>()
         cookieHeaders.forEach { header ->
-            val parsed = HttpCookie.parse(header)
-            parsed.forEach { cookie ->
-                val lowerName = cookie.name.lowercase()
-                val isSessionCookie = lowerName == "next-auth.session-token" ||
-                    lowerName == "__secure-next-auth.session-token" ||
-                    lowerName.startsWith("next-auth.session-token.") ||
-                    lowerName.startsWith("__secure-next-auth.session-token.")
-                if (isSessionCookie) {
-                    matched[cookie.name] = cookie.toStoredCookie(apiBaseUrl)
+            runCatching { HttpCookie.parse(header) }
+                .getOrElse { emptyList() }
+                .forEach { cookie ->
+                    val lowerName = cookie.name.lowercase()
+                    val isSessionCookie = lowerName == "next-auth.session-token" ||
+                        lowerName == "__secure-next-auth.session-token" ||
+                        lowerName.startsWith("next-auth.session-token.") ||
+                        lowerName.startsWith("__secure-next-auth.session-token.")
+                    if (isSessionCookie) {
+                        val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
+                        matched[key] = cookie.toStoredCookie(apiBaseUrl)
+                    }
                 }
-            }
         }
-        return matched.values.toList()
+
+        if (matched.isNotEmpty()) {
+            return matched.values.toList()
+        }
+
+        return HttpClientProvider.getSessionCookies(apiBaseUrl)
     }
 }
 
@@ -168,18 +175,3 @@ private fun okhttp3.Response.collectSetCookieHeaders(): List<String> {
     return headers
 }
 
-private fun HttpCookie.toStoredCookie(baseUrl: HttpUrl): StoredCookie {
-    val domain = domain?.takeIf { it.isNotBlank() }?.trim('.') ?: baseUrl.host
-    val path = path ?: "/"
-    val expiresAt = when {
-        maxAge >= 0 -> System.currentTimeMillis() + maxAge * 1000
-        else -> null
-    }
-    return StoredCookie(
-        name = name,
-        value = value,
-        domain = domain,
-        path = path,
-        expiresAt = expiresAt,
-    )
-}

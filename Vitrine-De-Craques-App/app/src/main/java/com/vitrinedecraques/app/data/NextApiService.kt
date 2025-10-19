@@ -16,6 +16,8 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
+import java.util.Locale
+import kotlin.math.abs
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 
 class NextApiService(
@@ -26,6 +28,12 @@ class NextApiService(
     },
     private val baseUrl: String = BuildConfig.API_BASE_URL,
 ) {
+    private val fallbackVideoUrls = listOf(
+        "https://storage.googleapis.com/coverr-main/mp4/Footboys.mp4",
+        "https://storage.googleapis.com/coverr-main/mp4/Mountains.mp4",
+        "https://storage.googleapis.com/coverr-main/mp4/Beach.mp4"
+    )
+
     private val apiBaseUrl: HttpUrl = baseUrl.trim().takeIf { it.isNotEmpty() }
         ?.toHttpUrlOrNull()
         ?.newBuilder()
@@ -117,11 +125,14 @@ class NextApiService(
 
     private fun resolveVideoUrls(video: FeedVideo, baseUrl: HttpUrl, origin: HttpUrl): FeedVideo {
         val resolvedVideoUrl = resolveUrl(video.videoUrl, baseUrl, origin) ?: video.videoUrl
+        val sanitizedVideoUrl = resolvedVideoUrl
+            .takeIf { isLikelyValidVideoUrl(it) }
+            ?: fallbackVideoUrlFor(video.id, resolvedVideoUrl)
         val resolvedThumbnail = resolveUrl(video.thumbnailUrl, baseUrl, origin)
         val resolvedUser = video.user?.let { resolveUser(it, baseUrl, origin) }
 
         return video.copy(
-            videoUrl = resolvedVideoUrl,
+            videoUrl = sanitizedVideoUrl,
             thumbnailUrl = resolvedThumbnail,
             user = resolvedUser,
         )
@@ -162,4 +173,25 @@ class NextApiService(
         .query(null)
         .fragment(null)
         .build()
+
+    private fun isLikelyValidVideoUrl(url: String): Boolean {
+        val httpUrl = url.toHttpUrlOrNull() ?: return false
+        val host = httpUrl.host.lowercase(Locale.ROOT)
+        if (host == "example.com" || host == "localhost" || host == "127.0.0.1") {
+            return false
+        }
+        val path = httpUrl.encodedPath
+        if (path.isBlank() || path == "/") {
+            return false
+        }
+        return true
+    }
+
+    private fun fallbackVideoUrlFor(videoId: String, original: String): String {
+        if (fallbackVideoUrls.isEmpty()) {
+            return original
+        }
+        val index = abs(videoId.hashCode()) % fallbackVideoUrls.size
+        return fallbackVideoUrls[index]
+    }
 }

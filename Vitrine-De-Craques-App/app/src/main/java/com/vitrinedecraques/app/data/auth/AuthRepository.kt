@@ -76,13 +76,15 @@ class AuthRepository(
         }
         .map { preferences -> AuthDataStoreMapper.mapToAuthData(preferences) }
         .onEach { data ->
-            HttpClientProvider.updateSessionCookies(service.apiBaseUrl, data.cookies)
+            val baseUrl = service.resolvedApiBaseUrl()
+            HttpClientProvider.updateSessionCookies(baseUrl, data.cookies)
         }
 
     suspend fun login(email: String, password: String): Result<Unit> = runCatching {
         val result = service.login(email, password)
         Log.i(TAG, "Persistindo ${result.cookies.size} cookies após login")
-        HttpClientProvider.updateSessionCookies(service.apiBaseUrl, result.cookies)
+        val baseUrl = service.resolvedApiBaseUrl()
+        HttpClientProvider.updateSessionCookies(baseUrl, result.cookies)
         AuthDataStoreMapper.persist(context, result.cookies, result.session.user)
     }
 

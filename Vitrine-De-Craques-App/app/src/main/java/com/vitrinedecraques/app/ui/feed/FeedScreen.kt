@@ -87,6 +87,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.R
 import com.vitrinedecraques.app.data.NextApiService
 import com.vitrinedecraques.app.data.network.HttpClientProvider
@@ -489,6 +490,13 @@ private fun FeedVideoCard(
     val mediaSourceFactory = remember(video.id) {
         DefaultMediaSourceFactory(DefaultDataSource.Factory(context, httpDataSourceFactory))
     }
+    val appOrigin = remember {
+        BuildConfig.API_BASE_URL
+            .trim()
+            .takeIf { it.isNotEmpty() }
+            ?.toHttpUrlOrNull()
+            ?.toOriginString()
+    }
     val exoPlayer = remember(video.id) {
         ExoPlayer.Builder(context)
             .setMediaSourceFactory(mediaSourceFactory)
@@ -540,10 +548,16 @@ private fun FeedVideoCard(
             playbackError = "Vídeo indisponível."
         } else {
             val cookieHeader = buildCookieHeaderFor(video.videoUrl)
-            val requestProperties = if (!cookieHeader.isNullOrEmpty()) {
-                mapOf("Cookie" to cookieHeader)
-            } else {
-                emptyMap()
+            val requestProperties = mutableMapOf<String, String>().apply {
+                put("User-Agent", "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)")
+                put("Accept", "*/*")
+                if (!cookieHeader.isNullOrEmpty()) {
+                    put("Cookie", cookieHeader)
+                }
+                appOrigin?.let {
+                    put("Referer", it)
+                    put("Origin", it.trimEnd('/'))
+                }
             }
             httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
             exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
@@ -876,19 +890,23 @@ private fun FeedActionsPanel(
             ) {
                 FeedActionButton(
                     icon = R.drawable.ic_action_like,
-                    label = formatCount(video.likesCount ?: 0)
+                    contentDescription = "Curtidas do vídeo",
+                    value = formatCount(video.likesCount ?: 0)
                 )
                 FeedActionButton(
                     icon = R.drawable.ic_action_comment,
-                    label = "Comentar"
+                    contentDescription = "Comentários do vídeo",
+                    value = formatCount(video.commentsCount ?: 0)
                 )
                 FeedActionButton(
                     icon = R.drawable.ic_action_share,
-                    label = "Compartilhar"
+                    contentDescription = "Compartilhamentos do vídeo",
+                    value = formatCount(video.sharesCount ?: 0)
                 )
                 FeedActionButton(
                     icon = R.drawable.ic_action_save,
-                    label = "Salvar"
+                    contentDescription = "Salvos do vídeo",
+                    value = formatCount(video.savesCount ?: 0)
                 )
             }
 
@@ -945,15 +963,16 @@ private fun UserAvatar(
 @Composable
 private fun FeedActionButton(
     icon: Int,
-    label: String,
+    contentDescription: String,
+    value: String,
     onClick: () -> Unit = {},
 ) {
     Column(
-        horizontalAlignment = Alignment.End,
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier
             .widthIn(min = 56.dp)
-            .wrapContentWidth(Alignment.End)
+            .wrapContentWidth(Alignment.CenterHorizontally)
     ) {
         Surface(
             shape = CircleShape,
@@ -966,19 +985,19 @@ private fun FeedActionButton(
             ) {
                 Icon(
                     painter = painterResource(id = icon),
-                    contentDescription = label,
+                    contentDescription = contentDescription,
                     tint = Color.White,
                     modifier = Modifier.size(16.dp)
                 )
             }
         }
         Text(
-            text = label,
+            text = value,
             color = Color.White,
             style = MaterialTheme.typography.labelSmall,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.End,
+            textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
     }
@@ -999,6 +1018,13 @@ private fun HttpUrl.toCookieScope(): HttpUrl = newBuilder()
     .query(null)
     .fragment(null)
     .build()
+
+private fun HttpUrl.toOriginString(): String = newBuilder()
+    .encodedPath("/")
+    .query(null)
+    .fragment(null)
+    .build()
+    .toString()
 
 private enum class FeedBottomNavItem(val icon: Int, val contentDescription: String) {
     Home(R.drawable.ic_nav_home, "Início"),

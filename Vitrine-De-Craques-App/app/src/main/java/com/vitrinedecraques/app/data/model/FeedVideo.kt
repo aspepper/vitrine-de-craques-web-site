@@ -14,6 +14,12 @@ data class FeedVideo(
     val thumbnailUrl: String? = null,
     @SerialName("likesCount")
     val likesCount: Int? = null,
+    @SerialName("commentsCount")
+    val commentsCount: Int? = null,
+    @SerialName("sharesCount")
+    val sharesCount: Int? = null,
+    @SerialName("savesCount")
+    val savesCount: Int? = null,
     val user: FeedUser? = null,
 )
 

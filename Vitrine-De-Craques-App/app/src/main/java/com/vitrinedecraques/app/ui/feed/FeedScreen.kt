@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.weight
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -76,6 +77,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -102,6 +104,8 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import kotlinx.coroutines.launch
 import java.text.Normalizer
 import java.util.Calendar
@@ -473,8 +477,10 @@ private fun FeedVideoCard(
     }
     val mutedState by rememberUpdatedState(isMuted)
     val isActiveState by rememberUpdatedState(isActive)
+    val playbackErrorState by rememberUpdatedState(playbackError)
+    val lifecycleOwner = LocalLifecycleOwner.current
 
-    DisposableEffect(exoPlayer, video.id) {
+    DisposableEffect(exoPlayer, video.id, video.videoUrl) {
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
                 if (playbackState == Player.STATE_READY && isActiveState) {
@@ -516,13 +522,36 @@ private fun FeedVideoCard(
         }
     }
 
+    DisposableEffect(lifecycleOwner, exoPlayer) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_START -> {
+                    if (isActiveState && playbackErrorState == null) {
+                        exoPlayer.playWhenReady = true
+                        if (exoPlayer.playbackState == Player.STATE_IDLE) {
+                            exoPlayer.prepare()
+                        }
+                        exoPlayer.play()
+                    }
+                }
+
+                Lifecycle.Event.ON_STOP, Lifecycle.Event.ON_PAUSE -> {
+                    exoPlayer.playWhenReady = false
+                    exoPlayer.pause()
+                }
+
+                else -> Unit
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
     LaunchedEffect(isActive, playbackError, exoPlayer) {
         if (isActive && playbackError == null) {
             exoPlayer.playWhenReady = true
             exoPlayer.volume = if (mutedState) 0f else 1f
-            if (exoPlayer.playbackState == Player.STATE_IDLE) {
-                exoPlayer.prepare()
-            }
+            exoPlayer.prepare()
             exoPlayer.play()
         } else {
             exoPlayer.playWhenReady = false
@@ -801,9 +830,9 @@ private fun FeedActionsPanel(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.End
     ) {
+        Spacer(modifier = Modifier.weight(1f))
         val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),

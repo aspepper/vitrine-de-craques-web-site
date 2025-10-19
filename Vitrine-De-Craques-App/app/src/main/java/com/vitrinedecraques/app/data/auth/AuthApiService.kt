@@ -107,8 +107,9 @@ class AuthApiService(
         }
     }
 
-    suspend fun fetchSession(baseUrl: HttpUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)): SessionResponse = withContext(Dispatchers.IO) {
-        val sessionUrl = baseUrl.newBuilder()
+    suspend fun fetchSession(baseUrl: HttpUrl? = null): SessionResponse = withContext(Dispatchers.IO) {
+        val resolvedBaseUrl = baseUrl ?: ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+        val sessionUrl = resolvedBaseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("auth")
             .addPathSegment("session")

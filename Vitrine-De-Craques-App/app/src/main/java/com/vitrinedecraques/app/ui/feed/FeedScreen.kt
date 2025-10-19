@@ -22,8 +22,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.matchParentSize
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -647,7 +647,7 @@ private fun NotificationBellButton(
         color = Color.Black.copy(alpha = 0.45f)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            IconButton(onClick = onClick, modifier = Modifier.matchParentSize()) {
+            IconButton(onClick = onClick, modifier = Modifier.fillMaxSize()) {
                 Box(
                     modifier = Modifier.size(24.dp),
                     contentAlignment = Alignment.Center

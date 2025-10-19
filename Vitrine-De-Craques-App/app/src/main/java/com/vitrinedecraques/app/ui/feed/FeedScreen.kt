@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -502,7 +503,7 @@ private fun FeedVideoCard(
     val playbackErrorState by rememberUpdatedState(playbackError)
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    DisposableEffect(exoPlayer, video.id, video.videoUrl) {
+    DisposableEffect(exoPlayer) {
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
                 if (playbackState == Player.STATE_READY && isActiveState) {
@@ -526,6 +527,13 @@ private fun FeedVideoCard(
             }
         }
         exoPlayer.addListener(listener)
+        onDispose {
+            exoPlayer.removeListener(listener)
+            exoPlayer.release()
+        }
+    }
+
+    LaunchedEffect(video.id, video.videoUrl, exoPlayer) {
         playbackError = null
         if (video.videoUrl.isBlank()) {
             exoPlayer.playWhenReady = false
@@ -544,10 +552,6 @@ private fun FeedVideoCard(
                 exoPlayer.playWhenReady = true
                 exoPlayer.play()
             }
-        }
-        onDispose {
-            exoPlayer.removeListener(listener)
-            exoPlayer.release()
         }
     }
 
@@ -720,10 +724,6 @@ private fun VideoOverlay(
             video = video,
             isMuted = isMuted,
             onToggleSound = onToggleSound,
-            modifier = Modifier
-                .navigationBarsPadding()
-                .padding(end = 12.dp, bottom = 20.dp)
-                .align(Alignment.BottomEnd)
         )
     }
 }
@@ -859,17 +859,19 @@ private fun FeedActionsPanel(
     val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
     Box(
         modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
+            .fillMaxSize()
             .then(modifier),
         contentAlignment = Alignment.BottomEnd
     ) {
         Column(
+            modifier = Modifier
+                .wrapContentWidth(Alignment.End)
+                .navigationBarsPadding()
+                .padding(end = 12.dp, bottom = 20.dp),
             horizontalAlignment = Alignment.End
         ) {
             Column(
-                modifier = Modifier.align(Alignment.End),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 FeedActionButton(
@@ -894,7 +896,6 @@ private fun FeedActionsPanel(
             SoundToggleButton(
                 isMuted = isMuted,
                 onToggleSound = onToggleSound,
-                modifier = Modifier.align(Alignment.End)
             )
 
             if (!avatarUrl.isNullOrBlank()) {
@@ -902,7 +903,6 @@ private fun FeedActionsPanel(
                 UserAvatar(
                     imageUrl = avatarUrl,
                     contentDescription = video.user?.profile?.displayName,
-                    modifier = Modifier.align(Alignment.End)
                 )
             }
         }
@@ -949,9 +949,11 @@ private fun FeedActionButton(
     onClick: () -> Unit = {},
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier.widthIn(min = 56.dp)
+        modifier = Modifier
+            .widthIn(min = 56.dp)
+            .wrapContentWidth(Alignment.End)
     ) {
         Surface(
             shape = CircleShape,
@@ -976,7 +978,7 @@ private fun FeedActionButton(
             style = MaterialTheme.typography.labelSmall,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.End,
             modifier = Modifier.fillMaxWidth()
         )
     }

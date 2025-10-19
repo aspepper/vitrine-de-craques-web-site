@@ -28,7 +28,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.weight
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -111,6 +110,8 @@ import java.text.Normalizer
 import java.util.Calendar
 import java.util.Locale
 
+private val BottomNavigationHeight = 96.dp
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FeedScreen(
@@ -189,7 +190,7 @@ fun FeedScreen(
         },
         gesturesEnabled = true
     ) {
-        val columnModifier = modifier
+        val screenModifier = modifier
             .fillMaxSize()
             .let { base ->
                 if (selectedBottomItem == FeedBottomNavItem.Home) {
@@ -199,14 +200,14 @@ fun FeedScreen(
                 }
             }
 
-        Column(modifier = columnModifier) {
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-            ) {
-                when (selectedBottomItem) {
-                    FeedBottomNavItem.Home -> {
+        Box(modifier = screenModifier) {
+            val contentModifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = BottomNavigationHeight)
+
+            when (selectedBottomItem) {
+                FeedBottomNavItem.Home -> {
+                    Box(modifier = contentModifier) {
                         when {
                             uiState.isLoading && !hasVideos -> {
                                 CircularProgressIndicator(
@@ -249,16 +250,18 @@ fun FeedScreen(
                                 .navigationBarsPadding(),
                         )
                     }
+                }
 
-                    FeedBottomNavItem.Profile -> {
-                        ProfileScreen(
-                            modifier = Modifier.fillMaxSize(),
-                            state = profileUiState,
-                            onMenuClick = { coroutineScope.launch { drawerState.open() } }
-                        )
-                    }
+                FeedBottomNavItem.Profile -> {
+                    ProfileScreen(
+                        modifier = contentModifier,
+                        state = profileUiState,
+                        onMenuClick = { coroutineScope.launch { drawerState.open() } }
+                    )
+                }
 
-                    else -> {
+                else -> {
+                    Box(modifier = contentModifier) {
                         FeaturePlaceholder(label = selectedBottomItem.contentDescription)
                     }
                 }
@@ -267,6 +270,7 @@ fun FeedScreen(
             FeedBottomNavigation(
                 selectedItem = selectedBottomItem,
                 onItemSelected = { selectedBottomItem = it },
+                modifier = Modifier.align(Alignment.BottomCenter),
             )
         }
     }
@@ -829,10 +833,10 @@ private fun FeedActionsPanel(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.End
+        modifier = modifier.fillMaxHeight(),
+        horizontalAlignment = Alignment.End,
+        verticalArrangement = Arrangement.Bottom
     ) {
-        Spacer(modifier = Modifier.weight(1f))
         val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),

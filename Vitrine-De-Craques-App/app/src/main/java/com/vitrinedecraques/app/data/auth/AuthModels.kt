@@ -36,8 +36,8 @@ data class SessionUser(
 )
 
 data class AuthLoginResult(
-    val cookie: StoredCookie,
-    val session: SessionResponse
+    val cookies: List<StoredCookie>,
+    val session: SessionResponse,
 )
 
 class InvalidCredentialsException(message: String) : Exception(message)

@@ -72,15 +72,17 @@ class AuthApiService(
             }
 
             val cookieHeaders = response.collectSetCookieHeaders()
-            val cookie = extractSessionCookie(cookieHeaders)
-                ?: throw IOException("Nenhum cookie de sessão retornado pela API.")
+            val cookies = extractSessionCookies(cookieHeaders)
+            if (cookies.isEmpty()) {
+                throw IOException("Nenhum cookie de sessão retornado pela API.")
+            }
 
             val session = fetchSession()
             if (session.user == null) {
                 throw IOException("Sessão inválida retornada pela API.")
             }
 
-            AuthLoginResult(cookie = cookie, session = session)
+            AuthLoginResult(cookies = cookies, session = session)
         }
     }
 
@@ -136,30 +138,23 @@ class AuthApiService(
         }
     }
 
-    private fun extractSessionCookie(cookieHeaders: List<String>): StoredCookie? {
+    private fun extractSessionCookies(cookieHeaders: List<String>): List<StoredCookie> {
+        if (cookieHeaders.isEmpty()) return emptyList()
+        val matched = linkedMapOf<String, StoredCookie>()
         cookieHeaders.forEach { header ->
             val parsed = HttpCookie.parse(header)
-            val candidate = parsed.firstOrNull { cookie ->
-                cookie.name.equals("next-auth.session-token", ignoreCase = true) ||
-                    cookie.name.equals("__Secure-next-auth.session-token", ignoreCase = true)
-            }
-            if (candidate != null) {
-                val domain = candidate.domain?.trim('.') ?: apiBaseUrl.host
-                val path = candidate.path ?: "/"
-                val expiresAt = when {
-                    candidate.maxAge >= 0 -> System.currentTimeMillis() + candidate.maxAge * 1000
-                    else -> null
+            parsed.forEach { cookie ->
+                val lowerName = cookie.name.lowercase()
+                val isSessionCookie = lowerName == "next-auth.session-token" ||
+                    lowerName == "__secure-next-auth.session-token" ||
+                    lowerName.startsWith("next-auth.session-token.") ||
+                    lowerName.startsWith("__secure-next-auth.session-token.")
+                if (isSessionCookie) {
+                    matched[cookie.name] = cookie.toStoredCookie(apiBaseUrl)
                 }
-                return StoredCookie(
-                    name = candidate.name,
-                    value = candidate.value,
-                    domain = domain,
-                    path = path,
-                    expiresAt = expiresAt,
-                )
             }
         }
-        return null
+        return matched.values.toList()
     }
 }
 
@@ -171,4 +166,20 @@ private fun okhttp3.Response.collectSetCookieHeaders(): List<String> {
         current = current.priorResponse
     }
     return headers
+}
+
+private fun HttpCookie.toStoredCookie(baseUrl: HttpUrl): StoredCookie {
+    val domain = domain?.takeIf { it.isNotBlank() }?.trim('.') ?: baseUrl.host
+    val path = path ?: "/"
+    val expiresAt = when {
+        maxAge >= 0 -> System.currentTimeMillis() + maxAge * 1000
+        else -> null
+    }
+    return StoredCookie(
+        name = name,
+        value = value,
+        domain = domain,
+        path = path,
+        expiresAt = expiresAt,
+    )
 }

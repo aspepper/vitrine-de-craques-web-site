@@ -26,16 +26,18 @@ private object AuthDataStoreMapper {
     fun mapToAuthData(preferences: androidx.datastore.preferences.core.Preferences): AuthData {
         val cookiesJson = preferences[SESSION_COOKIE_KEY]
         val userJson = preferences[SESSION_USER_KEY]
-        val cookies = cookiesJson?.let {
+        val cookies = cookiesJson?.let { rawCookiesJson ->
             runCatching {
-                json.decodeFromString(ListSerializer(StoredCookie.serializer()), it)
+                json.decodeFromString(ListSerializer(StoredCookie.serializer()), rawCookiesJson)
             }.getOrElse {
-                runCatching { json.decodeFromString(StoredCookie.serializer(), it) }
+                runCatching { json.decodeFromString(StoredCookie.serializer(), rawCookiesJson) }
                     .map { stored -> listOf(stored) }
                     .getOrElse { emptyList() }
             }
         } ?: emptyList()
-        val user = userJson?.let { json.decodeFromString(SessionUser.serializer(), it) }
+        val user = userJson?.let { rawUserJson ->
+            json.decodeFromString(SessionUser.serializer(), rawUserJson)
+        }
         return AuthData(cookies = cookies, user = user)
     }
 

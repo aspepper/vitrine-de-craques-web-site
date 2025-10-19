@@ -17,6 +17,8 @@ import okhttp3.Request
 import java.io.IOException
 import kotlin.collections.joinToString
 
+private val COOKIE_DOMAIN_REGEX = Regex("(?i)domain=([^;]+)")
+
 private const val TAG = "AuthApiService"
 
 class AuthApiService(
@@ -168,23 +170,29 @@ class AuthApiService(
         while (current != null) {
             val requestUrl = current.request.url
             current.headers("Set-Cookie").forEach { header ->
-                runCatching { Cookie.parse(requestUrl, header) }
-                    .getOrNull()
-                    ?.let { cookie ->
-                        val lowerName = cookie.name.lowercase()
-                        val isSessionCookie = lowerName == "next-auth.session-token" ||
-                            lowerName == "__secure-next-auth.session-token" ||
-                            lowerName.startsWith("next-auth.session-token.") ||
-                            lowerName.startsWith("__secure-next-auth.session-token.")
-                        if (isSessionCookie) {
-                            val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
-                            matched[key] = cookie.toStoredCookie()
-                            Log.i(
-                                TAG,
-                                "Cookie de sessão capturado da resposta ${current.code}: ${cookie.name} domínio=${cookie.domain} path=${cookie.path}"
-                            )
-                        }
+                val cookie = runCatching { Cookie.parse(requestUrl, header) }.getOrNull()
+                if (cookie != null) {
+                    val lowerName = cookie.name.lowercase()
+                    val isSessionCookie = lowerName == "next-auth.session-token" ||
+                        lowerName == "__secure-next-auth.session-token" ||
+                        lowerName.startsWith("next-auth.session-token.") ||
+                        lowerName.startsWith("__secure-next-auth.session-token.")
+                    if (isSessionCookie) {
+                        val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
+                        matched[key] = cookie.toStoredCookie()
+                        Log.i(
+                            TAG,
+                            "Cookie de sessão capturado da resposta ${current.code}: ${cookie.name} domínio=${cookie.domain} path=${cookie.path}"
+                        )
                     }
+                } else {
+                    val masked = listOf(header).maskCookieHeaders().joinToString()
+                    val domainAttr = COOKIE_DOMAIN_REGEX.find(header)?.groupValues?.getOrNull(1)?.trim()
+                    Log.w(
+                        TAG,
+                        "Set-Cookie ignorado para host=${requestUrl.host}: header=${masked} domainAttr=${domainAttr ?: "<nenhum>"}"
+                    )
+                }
             }
             current = current.priorResponse
         }

@@ -1,5 +1,6 @@
 package com.vitrinedecraques.app.data.network
 
+import android.util.Log
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.HttpUrl
@@ -15,6 +16,7 @@ import kotlinx.serialization.Serializable
  * authentication cookies obtained during login can be reused across requests.
  */
 object HttpClientProvider {
+    private const val TAG = "HttpClientProvider"
     private val cookieManager = CookieManager().apply {
         setCookiePolicy(CookiePolicy.ACCEPT_ALL)
     }
@@ -56,9 +58,11 @@ object HttpClientProvider {
             .forEach { cookie ->
                 val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
                 matched[key] = cookie.toStoredCookie(baseUrl)
-            }
+        }
 
-        return matched.values.toList()
+        return matched.values.toList().also { cookies ->
+            Log.d(TAG, "getSessionCookies host=${baseUrl.host} -> ${cookies.describeCookies()}")
+        }
     }
 
     fun updateSessionCookies(baseUrl: HttpUrl, cookies: List<StoredCookie>) {
@@ -85,6 +89,7 @@ object HttpClientProvider {
             }
             store.add(uri, httpCookie)
         }
+        Log.d(TAG, "updateSessionCookies host=${baseUrl.host} -> ${cookies.describeCookies()}")
     }
 
     fun clearSessionCookies() {
@@ -100,6 +105,7 @@ object HttpClientProvider {
                 iterator.remove()
             }
         }
+        Log.d(TAG, "clearSessionCookies executado")
     }
 }
 
@@ -131,3 +137,11 @@ data class StoredCookie(
     val path: String,
     val expiresAt: Long?
 )
+
+private fun List<StoredCookie>.describeCookies(): String = if (isEmpty()) {
+    "nenhum"
+} else {
+    joinToString { cookie ->
+        "${'$'}{cookie.name}@${'$'}{cookie.domain}${'$'}{cookie.path}"
+    }
+}

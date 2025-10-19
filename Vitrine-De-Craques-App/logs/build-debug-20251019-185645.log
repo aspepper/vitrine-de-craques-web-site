@@ -38,7 +38,8 @@
 > Task :app:writeDebugSigningConfigVersions UP-TO-DATE
 
 > Task :app:compileDebugKotlin
-w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:973:39 'val Icons.Outlined.Article: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Outlined.Article.
+w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:485:26 'val LocalLifecycleOwner: ProvidableCompositionLocal<LifecycleOwner>' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.
+w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:1006:39 'val Icons.Outlined.Article: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Outlined.Article.
 
 > Task :app:compileDebugJavaWithJavac UP-TO-DATE
 > Task :app:processDebugJavaRes UP-TO-DATE
@@ -49,7 +50,7 @@ w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-
 > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
 > Task :app:assembleDebug
 
-BUILD SUCCESSFUL in 1m 26s
+BUILD SUCCESSFUL in 1m 20s
 38 actionable tasks: 4 executed, 34 up-to-date
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :app:preBuild UP-TO-DATE
@@ -99,10 +100,10 @@ BUILD SUCCESSFUL in 1m 26s
 Installing APK 'app-debug.apk' on 'Redmi 8 - 10' for :app:debug
 Installed on 1 device.
 
-BUILD SUCCESSFUL in 7s
+BUILD SUCCESSFUL in 9s
 39 actionable tasks: 1 executed, 38 up-to-date
 [INFO] Limpando logcat...
-[INFO] Gravando logcat em: ./logs/run-debug-20251019-181334.log
+[INFO] Gravando logcat em: ./logs/run-debug-20251019-185645.log
 [INFO] Resolvendo PID para pacote 'com.vitrinedecraques.app'...
-[INFO] Conectando logcat com --pid=9747 ...
-[WARN] Processo 9747 finalizou. Procurando novo PID...
+[INFO] Conectando logcat com --pid=15346 ...
+[WARN] Processo 15346 finalizou. Procurando novo PID...

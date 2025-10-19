@@ -1,6 +1,7 @@
 package com.vitrinedecraques.app.data.auth
 
 import android.content.Context
+import android.util.Log
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.network.StoredCookie
 import kotlinx.coroutines.flow.Flow
@@ -80,6 +81,8 @@ class AuthRepository(
 
     suspend fun login(email: String, password: String): Result<Unit> = runCatching {
         val result = service.login(email, password)
+        Log.i(TAG, "Persistindo ${result.cookies.size} cookies após login")
+        HttpClientProvider.updateSessionCookies(service.apiBaseUrl, result.cookies)
         AuthDataStoreMapper.persist(context, result.cookies, result.session.user)
     }
 
@@ -88,3 +91,5 @@ class AuthRepository(
         HttpClientProvider.clearSessionCookies()
     }
 }
+
+private const val TAG = "AuthRepository"

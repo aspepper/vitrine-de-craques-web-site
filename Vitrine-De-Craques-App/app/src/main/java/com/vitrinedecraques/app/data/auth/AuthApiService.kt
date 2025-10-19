@@ -3,18 +3,17 @@ package com.vitrinedecraques.app.data.auth
 import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.network.StoredCookie
-import com.vitrinedecraques.app.data.network.toStoredCookie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import okhttp3.Cookie
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
-import java.net.HttpCookie
 
 class AuthApiService(
     private val client: OkHttpClient = HttpClientProvider.client,
@@ -72,8 +71,7 @@ class AuthApiService(
                 throw InvalidCredentialsException("E-mail ou senha inválidos.")
             }
 
-            val cookieHeaders = response.collectSetCookieHeaders()
-            val cookies = extractSessionCookies(cookieHeaders)
+            val cookies = extractSessionCookies(response)
             if (cookies.isEmpty()) {
                 throw IOException("Nenhum cookie de sessão retornado pela API.")
             }
@@ -139,22 +137,27 @@ class AuthApiService(
         }
     }
 
-    private fun extractSessionCookies(cookieHeaders: List<String>): List<StoredCookie> {
+    private fun extractSessionCookies(response: okhttp3.Response): List<StoredCookie> {
         val matched = linkedMapOf<String, StoredCookie>()
-        cookieHeaders.forEach { header ->
-            runCatching { HttpCookie.parse(header) }
-                .getOrElse { emptyList() }
-                .forEach { cookie ->
-                    val lowerName = cookie.name.lowercase()
-                    val isSessionCookie = lowerName == "next-auth.session-token" ||
-                        lowerName == "__secure-next-auth.session-token" ||
-                        lowerName.startsWith("next-auth.session-token.") ||
-                        lowerName.startsWith("__secure-next-auth.session-token.")
-                    if (isSessionCookie) {
-                        val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
-                        matched[key] = cookie.toStoredCookie(apiBaseUrl)
+        var current: okhttp3.Response? = response
+        while (current != null) {
+            val requestUrl = current.request.url
+            current.headers("Set-Cookie").forEach { header ->
+                runCatching { Cookie.parse(requestUrl, header) }
+                    .getOrNull()
+                    ?.let { cookie ->
+                        val lowerName = cookie.name.lowercase()
+                        val isSessionCookie = lowerName == "next-auth.session-token" ||
+                            lowerName == "__secure-next-auth.session-token" ||
+                            lowerName.startsWith("next-auth.session-token.") ||
+                            lowerName.startsWith("__secure-next-auth.session-token.")
+                        if (isSessionCookie) {
+                            val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
+                            matched[key] = cookie.toStoredCookie()
+                        }
                     }
-                }
+            }
+            current = current.priorResponse
         }
 
         if (matched.isNotEmpty()) {
@@ -165,13 +168,14 @@ class AuthApiService(
     }
 }
 
-private fun okhttp3.Response.collectSetCookieHeaders(): List<String> {
-    val headers = mutableListOf<String>()
-    var current: okhttp3.Response? = this
-    while (current != null) {
-        headers += current.headers.values("Set-Cookie")
-        current = current.priorResponse
-    }
-    return headers
+private fun Cookie.toStoredCookie(): StoredCookie {
+    val domain = domain.trimStart('.')
+    val expiresAt = expiresAt
+    return StoredCookie(
+        name = name,
+        value = value,
+        domain = domain,
+        path = path,
+        expiresAt = if (expiresAt != Long.MAX_VALUE) expiresAt else null,
+    )
 }
-

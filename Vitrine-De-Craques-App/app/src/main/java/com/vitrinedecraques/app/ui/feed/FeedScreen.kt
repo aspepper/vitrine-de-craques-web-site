@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -94,7 +95,9 @@ import com.vitrinedecraques.app.ui.profile.ProfileVideo
 import com.vitrinedecraques.app.ui.theme.BrandRed
 import com.vitrinedecraques.app.ui.theme.BrandSand
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.datasource.HttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
@@ -461,6 +464,7 @@ private fun FeedVideoCard(
 ) {
     val context = LocalContext.current
     var isMuted by remember { mutableStateOf(true) }
+    var playbackError by remember(video.id) { mutableStateOf<String?>(null) }
     val exoPlayer = remember(video.id) {
         ExoPlayer.Builder(context).build().apply {
             repeatMode = Player.REPEAT_MODE_ONE
@@ -478,13 +482,33 @@ private fun FeedVideoCard(
                     exoPlayer.play()
                 }
             }
+            override fun onPlayerError(error: PlaybackException) {
+                exoPlayer.playWhenReady = false
+                val message = when (val cause = error.cause) {
+                    is HttpDataSource.InvalidResponseCodeException -> {
+                        if (cause.responseCode == 404) {
+                            "Vídeo não encontrado ou indisponível."
+                        } else {
+                            "Erro ao carregar o vídeo (código ${cause.responseCode})."
+                        }
+                    }
+                    else -> "Não foi possível reproduzir o vídeo."
+                }
+                playbackError = message
+            }
         }
         exoPlayer.addListener(listener)
-        exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
-        exoPlayer.prepare()
-        if (isActiveState) {
-            exoPlayer.playWhenReady = true
-            exoPlayer.play()
+        playbackError = null
+        if (video.videoUrl.isBlank()) {
+            exoPlayer.playWhenReady = false
+            playbackError = "Vídeo indisponível."
+        } else {
+            exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
+            exoPlayer.prepare()
+            if (isActiveState) {
+                exoPlayer.playWhenReady = true
+                exoPlayer.play()
+            }
         }
         onDispose {
             exoPlayer.removeListener(listener)
@@ -492,8 +516,8 @@ private fun FeedVideoCard(
         }
     }
 
-    LaunchedEffect(isActive, exoPlayer) {
-        if (isActive) {
+    LaunchedEffect(isActive, playbackError, exoPlayer) {
+        if (isActive && playbackError == null) {
             exoPlayer.playWhenReady = true
             exoPlayer.volume = if (mutedState) 0f else 1f
             if (exoPlayer.playbackState == Player.STATE_IDLE) {
@@ -556,6 +580,49 @@ private fun FeedVideoCard(
                 onMenuClick = onMenuClick,
                 modifier = Modifier.fillMaxSize()
             )
+
+            if (playbackError != null) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.65f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.padding(horizontal = 32.dp)
+                    ) {
+                        Text(
+                            text = playbackError!!,
+                            style = MaterialTheme.typography.bodyMedium.copy(color = Color.White),
+                            textAlign = TextAlign.Center
+                        )
+                        Surface(
+                            color = BrandRed,
+                            shape = RoundedCornerShape(24.dp),
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(24.dp))
+                                .clickable {
+                                    playbackError = null
+                                    exoPlayer.seekToDefaultPosition()
+                                    exoPlayer.prepare()
+                                    if (isActiveState) {
+                                        exoPlayer.playWhenReady = true
+                                        exoPlayer.play()
+                                    }
+                                }
+                        ) {
+                            Text(
+                                text = "Tentar novamente",
+                                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                                color = Color.White,
+                                style = MaterialTheme.typography.labelLarge
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -809,9 +876,10 @@ private fun FeedActionButton(
     label: String,
     onClick: () -> Unit = {},
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(6.dp)
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier.widthIn(min = 56.dp)
     ) {
         Surface(
             shape = CircleShape,
@@ -834,9 +902,10 @@ private fun FeedActionButton(
             text = label,
             color = Color.White,
             style = MaterialTheme.typography.labelSmall,
-            maxLines = 1,
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.End
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }
@@ -1066,7 +1135,7 @@ private fun SoundToggleButton(
                 painter = painterResource(id = icon),
                 contentDescription = if (isMuted) "Ativar som" else "Desativar som",
                 tint = Color.White,
-                modifier = Modifier.size(16.dp)
+                modifier = Modifier.size(20.dp)
             )
         }
     }

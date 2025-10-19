@@ -6,6 +6,7 @@ import com.vitrinedecraques.app.data.model.FeedUserProfile
 import com.vitrinedecraques.app.data.model.FeedVideo
 import com.vitrinedecraques.app.data.model.FollowStats
 import com.vitrinedecraques.app.data.model.ProfileDetail
+import com.vitrinedecraques.app.data.network.ApiBaseUrlResolver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
@@ -31,14 +32,10 @@ class NextApiService(
         ?.build()
         ?: throw IllegalStateException("API_BASE_URL inválida: $baseUrl")
 
-    private val apiOrigin: HttpUrl = apiBaseUrl.newBuilder()
-        .encodedPath("/")
-        .query(null)
-        .fragment(null)
-        .build()
-
     suspend fun fetchVideos(skip: Int, take: Int): List<FeedVideo> = withContext(Dispatchers.IO) {
-        val httpUrl = apiBaseUrl.newBuilder()
+        val effectiveBaseUrl = resolvedBaseUrl()
+        val origin = effectiveBaseUrl.toOrigin()
+        val httpUrl = effectiveBaseUrl.newBuilder()
             .addPathSegments("api/videos")
             ?.addQueryParameter("skip", skip.toString())
             ?.addQueryParameter("take", take.toString())
@@ -50,7 +47,7 @@ class NextApiService(
             .get()
             .build()
 
-        execute(request).map(::resolveVideoUrls)
+        execute(request).map { resolveVideoUrls(it, effectiveBaseUrl, origin) }
     }
 
     private fun execute(request: Request): List<FeedVideo> {
@@ -71,7 +68,8 @@ class NextApiService(
                 else -> return@withContext null
             }
 
-            val httpUrlBuilder = apiBaseUrl.newBuilder()
+            val effectiveBaseUrl = resolvedBaseUrl()
+            val httpUrlBuilder = effectiveBaseUrl.newBuilder()
             segments.forEach { httpUrlBuilder.addPathSegment(it) }
             val httpUrl = httpUrlBuilder.build()
 
@@ -93,7 +91,8 @@ class NextApiService(
         }
 
     suspend fun fetchFollowStats(userId: String): FollowStats? = withContext(Dispatchers.IO) {
-        val httpUrl = apiBaseUrl.newBuilder()
+        val effectiveBaseUrl = resolvedBaseUrl()
+        val httpUrl = effectiveBaseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("follows")
             .addPathSegment(userId)
@@ -116,10 +115,10 @@ class NextApiService(
         }
     }
 
-    private fun resolveVideoUrls(video: FeedVideo): FeedVideo {
-        val resolvedVideoUrl = resolveUrl(video.videoUrl) ?: video.videoUrl
-        val resolvedThumbnail = resolveUrl(video.thumbnailUrl)
-        val resolvedUser = video.user?.let(::resolveUser)
+    private fun resolveVideoUrls(video: FeedVideo, baseUrl: HttpUrl, origin: HttpUrl): FeedVideo {
+        val resolvedVideoUrl = resolveUrl(video.videoUrl, baseUrl, origin) ?: video.videoUrl
+        val resolvedThumbnail = resolveUrl(video.thumbnailUrl, baseUrl, origin)
+        val resolvedUser = video.user?.let { resolveUser(it, baseUrl, origin) }
 
         return video.copy(
             videoUrl = resolvedVideoUrl,
@@ -128,19 +127,19 @@ class NextApiService(
         )
     }
 
-    private fun resolveUser(user: FeedUser): FeedUser {
-        val resolvedProfile = user.profile?.let(::resolveUserProfile)
+    private fun resolveUser(user: FeedUser, baseUrl: HttpUrl, origin: HttpUrl): FeedUser {
+        val resolvedProfile = user.profile?.let { resolveUserProfile(it, baseUrl, origin) }
         return user.copy(
-            image = resolveUrl(user.image),
+            image = resolveUrl(user.image, baseUrl, origin),
             profile = resolvedProfile,
         )
     }
 
-    private fun resolveUserProfile(profile: FeedUserProfile): FeedUserProfile {
-        return profile.copy(avatarUrl = resolveUrl(profile.avatarUrl))
+    private fun resolveUserProfile(profile: FeedUserProfile, baseUrl: HttpUrl, origin: HttpUrl): FeedUserProfile {
+        return profile.copy(avatarUrl = resolveUrl(profile.avatarUrl, baseUrl, origin))
     }
 
-    private fun resolveUrl(url: String?): String? {
+    private fun resolveUrl(url: String?, baseUrl: HttpUrl, origin: HttpUrl): String? {
         if (url.isNullOrBlank()) {
             return url
         }
@@ -149,10 +148,18 @@ class NextApiService(
             return trimmed
         }
         if (trimmed.startsWith("//")) {
-            return "${apiBaseUrl.scheme}:$trimmed"
+            return "${baseUrl.scheme}:$trimmed"
         }
-        return apiOrigin.resolve(trimmed)?.toString()
-            ?: apiBaseUrl.resolve(trimmed)?.toString()
+        return origin.resolve(trimmed)?.toString()
+            ?: baseUrl.resolve(trimmed)?.toString()
             ?: trimmed
     }
+
+    private suspend fun resolvedBaseUrl(): HttpUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+
+    private fun HttpUrl.toOrigin(): HttpUrl = newBuilder()
+        .encodedPath("/")
+        .query(null)
+        .fragment(null)
+        .build()
 }

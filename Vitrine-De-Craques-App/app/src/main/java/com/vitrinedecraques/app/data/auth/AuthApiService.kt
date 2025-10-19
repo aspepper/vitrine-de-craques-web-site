@@ -2,6 +2,7 @@ package com.vitrinedecraques.app.data.auth
 
 import android.util.Log
 import com.vitrinedecraques.app.BuildConfig
+import com.vitrinedecraques.app.data.network.ApiBaseUrlResolver
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.network.SESSION_COOKIE_PREFIXES
 import com.vitrinedecraques.app.data.network.StoredCookie
@@ -33,23 +34,20 @@ class AuthApiService(
         ?.build()
         ?: throw IllegalStateException("API_BASE_URL inválida: $baseUrl")
 
-    private val siteOrigin: HttpUrl = apiBaseUrl.newBuilder()
-        .encodedPath("/")
-        .query(null)
-        .fragment(null)
-        .build()
-
     suspend fun login(email: String, password: String): AuthLoginResult = withContext(Dispatchers.IO) {
-        val cookiesBeforeLogin = HttpClientProvider.getSessionCookies(apiBaseUrl)
+        val baseUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+        val siteOrigin = baseUrl.toOrigin()
+
+        val cookiesBeforeLogin = HttpClientProvider.getSessionCookies(baseUrl)
         Log.i(TAG, "Cookies antes do login: ${cookiesBeforeLogin.describeCookies()}")
 
-        val csrfToken = fetchCsrfToken()
-        Log.i(TAG, "CSRF token carregado (${csrfToken.length} chars) para host=${apiBaseUrl.host}")
+        val csrfToken = fetchCsrfToken(baseUrl)
+        Log.i(TAG, "CSRF token carregado (${csrfToken.length} chars) para host=${baseUrl.host}")
         Log.i(
             TAG,
-            "Cookies após obter CSRF: ${HttpClientProvider.getSessionCookies(apiBaseUrl).describeCookies()}"
+            "Cookies após obter CSRF: ${HttpClientProvider.getSessionCookies(baseUrl).describeCookies()}"
         )
-        val loginUrl = apiBaseUrl.newBuilder()
+        val loginUrl = baseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("auth")
             .addPathSegment("callback")
@@ -88,18 +86,18 @@ class AuthApiService(
                 throw InvalidCredentialsException("E-mail ou senha inválidos.")
             }
 
-            val cookies = extractSessionCookies(response)
+            val cookies = extractSessionCookies(response, baseUrl)
             Log.i(TAG, "Cookies de sessão extraídos: ${cookies.describeCookies()}")
             if (cookies.isEmpty()) {
                 Log.e(
                     TAG,
                     "Nenhum cookie de sessão encontrado. set-cookie-final=${response.headers("Set-Cookie").maskCookieHeaders()} " +
-                        "cookiesJar=${HttpClientProvider.getSessionCookies(apiBaseUrl).describeCookies()} bodyPreview=${body.truncateForLog()}"
+                        "cookiesJar=${HttpClientProvider.getSessionCookies(baseUrl).describeCookies()} bodyPreview=${body.truncateForLog()}"
                 )
                 throw IOException("Nenhum cookie de sessão retornado pela API.")
             }
 
-            val session = fetchSession()
+            val session = fetchSession(baseUrl)
             Log.i(TAG, "Sessão carregada: user=${session.user?.email ?: "null"} expires=${session.expires}")
             if (session.user == null) {
                 throw IOException("Sessão inválida retornada pela API.")
@@ -109,8 +107,8 @@ class AuthApiService(
         }
     }
 
-    suspend fun fetchSession(): SessionResponse = withContext(Dispatchers.IO) {
-        val sessionUrl = apiBaseUrl.newBuilder()
+    suspend fun fetchSession(baseUrl: HttpUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)): SessionResponse = withContext(Dispatchers.IO) {
+        val sessionUrl = baseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("auth")
             .addPathSegment("session")
@@ -138,8 +136,8 @@ class AuthApiService(
         }
     }
 
-    private suspend fun fetchCsrfToken(): String = withContext(Dispatchers.IO) {
-        val csrfUrl = apiBaseUrl.newBuilder()
+    private suspend fun fetchCsrfToken(baseUrl: HttpUrl): String = withContext(Dispatchers.IO) {
+        val csrfUrl = baseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("auth")
             .addPathSegment("csrf")
@@ -165,7 +163,7 @@ class AuthApiService(
         }
     }
 
-    private fun extractSessionCookies(response: okhttp3.Response): List<StoredCookie> {
+    private fun extractSessionCookies(response: okhttp3.Response, baseUrl: HttpUrl): List<StoredCookie> {
         val matched = linkedMapOf<String, StoredCookie>()
         var current: okhttp3.Response? = response
         while (current != null) {
@@ -202,10 +200,12 @@ class AuthApiService(
             return matched.values.toList()
         }
 
-        val fallback = HttpClientProvider.getSessionCookies(apiBaseUrl)
+        val fallback = HttpClientProvider.getSessionCookies(baseUrl)
         Log.i(TAG, "Cookies obtidos do cookie jar: ${fallback.describeCookies()}")
         return fallback
     }
+
+    suspend fun resolvedApiBaseUrl(): HttpUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
 }
 
 private fun logLoginResponseChain(response: okhttp3.Response) {
@@ -240,6 +240,12 @@ private fun String.truncateForLog(limit: Int = 512): String {
     if (isEmpty()) return ""
     return if (length <= limit) this else substring(0, limit) + "…"
 }
+
+private fun HttpUrl.toOrigin(): HttpUrl = newBuilder()
+    .encodedPath("/")
+    .query(null)
+    .fragment(null)
+    .build()
 
 private fun List<StoredCookie>.describeCookies(): String = if (isEmpty()) {
     "nenhum"

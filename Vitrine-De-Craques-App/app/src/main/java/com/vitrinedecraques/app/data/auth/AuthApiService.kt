@@ -200,8 +200,8 @@ private fun List<String>.maskCookieHeaders(): List<String> = map { header ->
         header
     } else {
         val masked = nameValue.substring(0, idx + 1) + "***"
-        listOf(masked) + parts.drop(1)
-    }.joinToString(";")
+        (listOf(masked) + parts.drop(1)).joinToString(";")
+    }
 }
 
 private fun List<StoredCookie>.describeCookies(): String = if (isEmpty()) {

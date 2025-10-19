@@ -1,8 +1,3 @@
-10-18 05:17:10.844 I/dvm_lock_sample( 1594): [system_server,1,ActivityManager,379,PackageManagerService.java,4817,android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int),-,17551,void com.android.server.pm.PackageManagerService.installPackagesLI(java.util.List),75]
-10-18 05:17:10.896 I/dvm_lock_sample( 1594): [system_server,0,Binder:1594_16,466,ActivityManagerService.java,14494,void com.android.server.am.ActivityManagerService.serviceDoneExecuting(android.os.IBinder, int, int, int),-,1777,void com.android.server.am.ActivityManagerService$MainHandler.handleMessage(android.os.Message),93]
-10-18 05:17:10.896 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_E,465,ProcessManagerService.java,1704,java.util.List com.android.server.am.ProcessManagerService.getRunningProcessInfo(int, int, java.lang.String, java.lang.String, int),ActivityManagerService.java,1777,void com.android.server.am.ActivityManagerService$MainHandler.handleMessage(android.os.Message),93]
-10-18 05:17:10.896 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_9,301,ActivityManagerService.java,14463,boolean com.android.server.am.ActivityManagerService.unbindService(android.app.IServiceConnection),-,1777,void com.android.server.am.ActivityManagerService$MainHandler.handleMessage(android.os.Message),60]
-10-18 05:17:54.718 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_1C,22,ActivityManagerService.java,8605,boolean com.android.server.am.ActivityManagerService.isUidActive(int, java.lang.String),-,1537,void com.android.server.am.ActivityManagerService$AppDeathRecipient.binderDied(),4]
 10-18 05:17:59.501 I/dvm_lock_sample( 1594): [system_server,1,ActivityManager,36,BroadcastQueue.java,984,void com.android.server.am.BroadcastQueue.processNextBroadcast(boolean, boolean),ActivityManagerService.java,14463,boolean com.android.server.am.ActivityManagerService.unbindService(android.app.IServiceConnection),7]
 10-18 05:17:59.729 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_1E,20,ActivityManagerService.java,14285,android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, int),-,14450,int com.android.server.am.ActivityManagerService.bindIsolatedService(android.app.IApplicationThread, android.os.IBinder, android.content.Intent, java.lang.String, android.app.IServiceConnection, int, java.lang.String, java.lang.String, int),4]
 10-18 05:17:59.852 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_1B,15,ActivityManagerService.java,8605,boolean com.android.server.am.ActivityManagerService.isUidActive(int, java.lang.String),-,14463,boolean com.android.server.am.ActivityManagerService.unbindService(android.app.IServiceConnection),3]
@@ -626,53 +621,116 @@
 10-19 09:07:40.062 I/notification_cancel_all( 1594): [1000,1594,com.vitrinedecraques.app,0,0,0,5,NULL]
 10-19 09:07:40.285 I/am_create_activity( 1594): [0,94216609,1617,com.vitrinedecraques.app/.MainActivity,NULL,NULL,NULL,268435456]
 10-19 09:07:40.366 I/am_proc_start( 1594): [0,21260,11390,com.vitrinedecraques.app,activity,{com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity}]
-10-19 09:07:40.444 D/Launcher.Model( 2404): LauncherAppsCallback onPackageChanged|com.vitrinedecraques.app|UserHandle{0}
-10-19 09:07:40.445 D/Launcher.Model( 2404): Got broadcast:Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:com.vitrinedecraques.app (has extras) }
-10-19 09:07:40.469 D/Launcher.AllAppsList( 2404): updatePackage, packageName=com.vitrinedecraques.app, loadMissing=false, user=UserHandle{0}, matchedSize=1
-10-19 09:07:40.469 D/Launcher.AllAppsList( 2404): updatePackage, find appInfo=AppInfo, id=-1, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=com.vitrinedecraques.app, className=com.vitrinedecraques.app.MainActivity, screenId=-1, container=-1, cellX=-1, cellY=-1, spanX=1, spanY=1, isLandscapePos=false from ComponentInfo{com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity}
-10-19 09:07:40.475 D/Launcher.Model( 2404): onReceiveBackground, mAllAppsList=add=[], remove=[], modified=[(0, AppInfo, id=-1, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=com.vitrinedecraques.app, className=com.vitrinedecraques.app.MainActivity, screenId=-1, container=-1, cellX=-1, cellY=-1, spanX=1, spanY=1, isLandscapePos=false)]
 10-19 09:07:40.513 I/am_proc_bound( 1594): [0,21260,com.vitrinedecraques.app]
 10-19 09:07:40.524 I/am_restart_activity( 1594): [0,94216609,1617,com.vitrinedecraques.app/.MainActivity,21260]
-10-19 09:07:40.526 D/AutoInstallService(19739): onForegroundInfoChanged: com.vitrinedecraques.app
-10-19 09:07:40.526 D/PerfEngineController(19942): ForegroundInfo{mForegroundPackageName='com.vitrinedecraques.app', mForegroundUid=11390, mForegroundPid=21260, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10064, mLastForegroundPid=2404, mMultiWindowForegroundPackageName='null', mMultiWindowForegroundUid=-1, mFlags=1}
-10-19 09:07:40.526 I/ProcessMonitor( 7233): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.vitrinedecraques.app', mForegroundUid=11390, mForegroundPid=21260, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10064, mLastForegroundPid=2404, mMultiWindowForegroundPackageName='null', mMultiWindowForegroundUid=-1, mFlags=1}
-10-19 09:07:40.530 I/GST     (10006): forePkg: com.vitrinedecraques.app, preForePkg: com.miui.home
 10-19 09:07:40.532 I/am_set_resumed_activity( 1594): [0,com.vitrinedecraques.app/.MainActivity,minimalResumeActivityLocked]
-10-19 09:07:40.735 I/PI-ScanDispatch(21210): service bind, pkgName = com.vitrinedecraques.app, installer = null, isReplace = true, firstGoogleTime = 1614890563430
-10-19 09:07:40.950 I/ActivityManager( 1594): Process com.google.android.projection.gearhead:car (pid 20614) has died: cch+75 CEM 
-10-19 09:07:40.954 W/ActivityManager( 1594): Scheduling restart of crashed service com.google.android.projection.gearhead/com.google.android.apps.auto.carservice.service.impl.GearheadCarStartupService in 1000ms
-10-19 09:07:41.107 I/ActivityManager( 1594): Start proc 21383:com.google.android.projection.gearhead:car/u0a241 for service {com.google.android.projection.gearhead/com.google.android.apps.auto.carservice.service.impl.GearheadCarStartupService} caller=com.google.android.apps.maps
-10-19 09:07:41.186 I/ActivityManager( 1594): Process com.miui.cleaner (pid 20080) has died: cch+75 CEM 
-10-19 09:07:41.366 I/ActivityManager( 1594): Process com.huaqin.sarcontroller:controller (pid 18766) has died: svcb SVC 
-10-19 09:07:41.379 W/ActivityManager( 1594): Scheduling restart of crashed service com.huaqin.sarcontroller/.SarControllerService in 0ms
-10-19 09:07:41.435 I/ActivityManager( 1594): Start proc 21443:com.huaqin.sarcontroller:controller/1000 for service {com.huaqin.sarcontroller/com.huaqin.sarcontroller.SarControllerService} caller=com.huaqin.sarcontroller
-10-19 09:07:41.436 I/ActivityManager( 1594): Process com.android.chrome (pid 20790) has died: cch+75 CEM 
-10-19 09:07:41.492 I/ActivityManager( 1594): Process com.miui.cleaner:micleansdk (pid 20174) has died: cch+55 CEM 
-10-19 09:07:41.758 I/ActivityManager( 1594): Process com.google.process.gservices (pid 13157) has died: cch+55 CEM 
-10-19 09:07:41.974 I/ActivityManager( 1594): Process com.huaqin.diaglogger (pid 18837) has died: svcb SVC 
-10-19 09:07:41.977 W/ActivityManager( 1594): Scheduling restart of crashed service com.huaqin.diaglogger/.DiagLogService in 1000ms
-10-19 09:07:42.144 I/ActivityManager( 1594): Process com.google.android.apps.wellbeing (pid 20581) has died: cch+95 CEM 
-10-19 09:07:42.162 I/ActivityManager( 1594): Process com.google.android.apps.maps (pid 20528) has died: cch+95 CEM 
-10-19 09:07:42.672 I/ActivityManager( 1594): Start proc 21601:com.google.android.webview:webview_service/u0a112 for service {com.google.android.webview/org.chromium.android_webview.services.VariationsSeedServer} caller=com.miui.global.packageinstaller
-10-19 09:07:42.819 I/ActivityManager( 1594): Start proc 21626:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i882 for  {com.miui.global.packageinstaller/org.chromium.content.app.SandboxedProcessService0:0} caller=com.miui.global.packageinstaller
-10-19 09:07:43.014 I/ActivityManager( 1594): Start proc 21661:com.huaqin.diaglogger/1000 for service {com.huaqin.diaglogger/com.huaqin.diaglogger.DiagLogService} caller=com.huaqin.diaglogger
-10-19 09:07:43.044 I/ActivityManager( 1594): Process android.process.media (pid 7168) has died: svcb SVC 
-10-19 09:07:43.048 W/ActivityManager( 1594): Scheduling restart of crashed service com.android.providers.media/.MtpService in 1055750272ms
-10-19 09:07:43.060 I/ActivityManager( 1594): Process com.google.android.documentsui (pid 20674) has died: cch+95 CEM 
-10-19 09:07:43.285 I/ActivityManager( 1594): Process com.google.android.apps.photos (pid 20726) has died: cch+95 CEM 
-10-19 09:07:43.745 I/ActivityManager( 1594): Process com.xiaomi.bluetooth (pid 15716) has died: svcb SVC 
-10-19 09:07:43.749 W/ActivityManager( 1594): Scheduling restart of crashed service com.xiaomi.bluetooth/com.android.bluetooth.ble.app.MiuiBleAppService in 1000ms
-10-19 09:07:43.749 W/ActivityManager( 1594): Scheduling restart of crashed service com.xiaomi.bluetooth/com.android.bluetooth.ble.app.MiuiFastConnectService in 10999ms
-10-19 09:07:43.750 W/ActivityManager( 1594): Scheduling restart of crashed service com.xiaomi.bluetooth/com.android.bluetooth.ble.app.MiuiNearbyService in 20999ms
-10-19 09:07:43.815 I/ActivityManager( 1594): Process com.google.android.permissioncontroller (pid 20018) has died: cch+85 CEM 
-10-19 09:07:43.859 I/ActivityManager( 1594): Process com.xiaomi.glgm (pid 20880) has died: cch+75 CEM 
 10-19 09:07:43.900 W/ActivityManager( 1594): Sending non-protected broadcast android.intent.action.APPLICATION_MESSAGE_UPDATE from system 2131:com.android.systemui/1000 pkg com.android.systemui. Callers=
-10-19 09:07:43.948 I/ActivityManager( 1594): Process com.miui.securitycenter (pid 21092) has died: cch+65 CEM 
-10-19 09:07:43.959 W/ActivityManager( 1594): setHasOverlayUi called on unknown pid: 21092
-10-19 09:07:44.024 I/ActivityManager( 1594): Process com.android.keychain (pid 20031) has died: cch+55 CEM 
-10-19 09:07:44.165 I/ActivityManager( 1594): Process com.facebook.appmanager (pid 20491) has died: cch+45 CEM 
-10-19 09:07:44.184 I/ActivityManager( 1594): Process com.google.android.projection.gearhead:car (pid 21383) has died: cch+35 CEM 
-10-19 09:07:44.781 I/ActivityManager( 1594): Start proc 21750:com.xiaomi.bluetooth/1002 for service {com.xiaomi.bluetooth/com.android.bluetooth.ble.app.MiuiBleAppService} caller=com.xiaomi.bluetooth
-10-19 09:07:45.050 I/ActivityManager( 1594): Process com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0 (pid 21626) has died: cch+15 CEM 
-10-19 09:07:45.054 W/ActivityManager( 1594): Scheduling restart of crashed service com.miui.global.packageinstaller/org.chromium.content.app.SandboxedProcessService0:0 in 1000ms
-10-19 09:07:45.111 I/ActivityManager( 1594): Process com.miui.global.packageinstaller (pid 21210) has died: cch+15 CEM 
+10-19 09:07:45.670 I/am_lifecycle_sample(21260): [0,com.vitrinedecraques.app,110,5119]
+10-19 09:07:45.672 E/Perf    (21260): Fail to get file list com.vitrinedecraques.app
+10-19 09:07:45.672 E/Perf    (21260): Fail to get file list com.vitrinedecraques.app
+10-19 09:07:45.799 D/ForceDarkHelper(21260): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:07:45.804 I/chatty  (21260): uid=11390(com.vitrinedecraques.app) com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0 identical 1 line
+10-19 09:07:45.833 D/ForceDarkHelper(21260): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:07:45.900 I/am_on_create_called(21260): [0,com.vitrinedecraques.app.MainActivity,performCreate,132]
+10-19 09:07:45.954 I/am_on_start_called(21260): [0,com.vitrinedecraques.app.MainActivity,handleStartActivity,0]
+10-19 09:07:45.958 I/am_on_resume_called(21260): [0,com.vitrinedecraques.app.MainActivity,RESUME_ACTIVITY,1]
+10-19 09:07:45.989 I/am_on_top_resumed_gained_called(21260): [0,com.vitrinedecraques.app.MainActivity,topStateChangedWhenResumed]
+10-19 09:07:46.212 D/ForceDarkHelper(21260): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:07:46.817 D/AndroidRuntime(21260): Shutting down VM
+10-19 09:07:46.866 I/am_crash( 1594): [21260,0,com.vitrinedecraques.app,550026822,java.lang.NoSuchMethodException,com.vitrinedecraques.app.ui.auth.AuthViewModel.<init> [class android.app.Application],Class.java,2332]
+10-19 09:07:46.868 I/am_finish_activity( 1594): [21260,94216609,1617,com.vitrinedecraques.app/.MainActivity,force-crash]
+10-19 09:07:46.869 D/LauncherFsGestureCompat( 2404): componentName is com.vitrinedecraques.app/.MainActivity
+10-19 09:07:46.871 I/am_pause_activity( 1594): [21260,94216609,com.vitrinedecraques.app/.MainActivity,userLeaving=false]
+10-19 09:07:46.875 I/sysui_multi_action( 1594): [757,1144,758,7,806,com.vitrinedecraques.app,871,com.vitrinedecraques.app.MainActivity]
+10-19 09:07:47.014 W/InputDispatcher( 1594): channel 'a517ea9 com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+10-19 09:07:47.014 E/InputDispatcher( 1594): channel 'a517ea9 com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+10-19 09:07:47.016 W/InputDispatcher( 1594): Attempted to unregister already unregistered input channel 'a517ea9 com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity (server)'
+10-19 09:07:47.032 I/am_proc_died( 1594): [0,21260,com.vitrinedecraques.app,199,2]
+10-19 09:07:47.046 I/GST     (10006): forePkg: com.miui.home, preForePkg: com.vitrinedecraques.app
+10-19 09:07:47.046 D/PerfEngineController(19942): ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10064, mForegroundPid=2404, mLastForegroundPackageName='com.vitrinedecraques.app', mLastForegroundUid=11390, mLastForegroundPid=21260, mMultiWindowForegroundPackageName='null', mMultiWindowForegroundUid=-1, mFlags=0}
+10-19 09:07:47.046 I/ProcessMonitor( 7233): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10064, mForegroundPid=2404, mLastForegroundPackageName='com.vitrinedecraques.app', mLastForegroundUid=11390, mLastForegroundPid=21260, mMultiWindowForegroundPackageName='null', mMultiWindowForegroundUid=-1, mFlags=0}
+10-19 09:25:20.798 W/Binder  ( 1594): 	at com.android.server.am.ActivityManagerService.getProviderMimeType(ActivityManagerService.java:7973)
+10-19 09:25:20.798 W/Binder  ( 1594): 	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:3308)
+10-19 09:25:20.798 W/Binder  ( 1594): 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2800)
+10-19 09:27:07.766 W/System.err(30088): 	at d.c.a.b.f.b.a(ActivityManagerCompat.java:11)
+10-19 09:27:07.768 W/System.err(30088): 	at android.app.IActivityTaskManager$Stub$Proxy.getStackInfo(IActivityTaskManager.java:6398)
+10-19 09:27:07.768 W/System.err(30088): 	at com.android.server.am.ActivityManagerService.enforceCallingPermission(ActivityManagerService.java:6163)
+10-19 09:27:07.768 W/System.err(30088): 	at com.android.server.am.ActivityManagerService$LocalService.enforceCallingPermission(ActivityManagerService.java:18443)
+10-19 09:27:07.768 W/System.err(30088): 	at com.android.server.wm.ActivityTaskManagerService.enforceCallerIsRecentsOrHasPermission(ActivityTaskManagerService.java:3666)
+10-19 09:27:07.768 W/System.err(30088): 	at com.android.server.wm.ActivityTaskManagerService.getStackInfo(ActivityTaskManagerService.java:2910)
+10-19 09:27:07.768 W/System.err(30088): 	at android.app.IActivityTaskManager$Stub.onTransact(IActivityTaskManager.java:3003)
+10-19 09:27:09.856 D/MiuiNetworkPolicyAppBuckets( 1594): updateAppPN packageName=com.vitrinedecraques.app,uid=11390,installed=false
+10-19 09:27:09.869 D/BluetoothMapAppObserver(30467): The removed package is: com.vitrinedecraques.app
+10-19 09:27:09.885 D/MiuiNetworkPolicyAppBuckets( 1594): updateAppPN packageName=com.vitrinedecraques.app,uid=11390,installed=true
+10-19 09:27:09.886 E/Recents ( 2131): packageMonitor   onPackageModified  packageName=com.vitrinedecraques.app   mIsRecentsWithinLauncher=true
+10-19 09:27:09.891 D/Avrcp_ext(30467): AvrcpServiceBroadcastReceiver-> packageName: com.vitrinedecraques.app
+10-19 09:27:09.891 D/AppInstalledReceiver( 7233): packageName: com.vitrinedecraques.app
+10-19 09:27:09.891 D/Avrcp_ext(30467): packageName: com.vitrinedecraques.app removed: false
+10-19 09:27:09.896 D/ImsResolver( 2395): maybeAddedImsService, packageName: com.vitrinedecraques.app
+10-19 09:27:09.905 E/InstallApkReceiver( 2404): uninstall:package:com.vitrinedecraques.app
+10-19 09:27:09.905 E/InstallApkReceiver( 2404): install:package:com.vitrinedecraques.app
+10-19 09:27:09.905 D/BluetoothMapAppObserver(30467): The installed package is: com.vitrinedecraques.app
+10-19 09:27:09.923 I/MiPicks-LocalAppManager(22357): add package to list: com.vitrinedecraques.app
+10-19 09:27:09.970 I/Finsky:background(20376): [2] IQ: onPackageRemoved com.vitrinedecraques.app, replacing=true, uninstallingFromPlay=false
+10-19 09:27:10.007 I/dvm_lock_sample( 1594): [system_server,0,Binder:1594_11,37,ActivityManagerService.java,14494,void com.android.server.am.ActivityManagerService.serviceDoneExecuting(android.os.IBinder, int, int, int),-,15989,int com.android.server.am.ActivityManagerService.broadcastIntent(android.app.IApplicationThread, android.content.Intent, java.lang.String, android.content.IIntentReceiver, int, java.lang.String, android.os.Bundle, java.lang.String[], int, android.os.Bundle, boolean, boolean, int),7]
+10-19 09:27:10.027 I/sysui_multi_action( 1594): [757,147,758,4,759,1,806,com.vitrinedecraques.app]
+10-19 09:27:10.035 I/dvm_lock_sample( 1594): [system_server,1,ActivityManager:procStart,31,ProcessList.java,1687,void com.android.server.am.ProcessList.lambda$startProcessLocked$0$ProcessList(com.android.server.am.ProcessRecord, java.lang.String, int[], int, int, java.lang.String, java.lang.String, java.lang.String, long),BroadcastQueue.java,984,void com.android.server.am.BroadcastQueue.processNextBroadcast(boolean, boolean),6]
+10-19 09:27:10.045 I/Finsky  (20201): [2] AIM: AppInfoCacheUpdater -> invalidating apps: [com.vitrinedecraques.app]
+10-19 09:27:10.052 I/Finsky  (20201): [89742] AIM: AppInfoManager-Perf > OnDeviceAppInfo > cacheHitCount=0, cacheMissCount=1. Missed  in cache (limit 10) : [com.vitrinedecraques.app]
+10-19 09:27:10.298 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_D,38,ActivityManagerService.java,14285,android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, int),-,5395,void com.android.server.am.ActivityManagerService.attachApplication(android.app.IApplicationThread, long),7]
+10-19 09:27:10.309 I/Finsky  (20201): [2] AIM: AppInfoCacheUpdater -> invalidating apps: [com.vitrinedecraques.app]
+10-19 09:27:10.312 I/Finsky  (20201): [89748] AIM: AppInfoManager-Perf > OnDeviceAppInfo > cacheHitCount=0, cacheMissCount=1. Missed  in cache (limit 10) : [com.vitrinedecraques.app]
+10-19 09:27:10.516 I/notification_cancel_all( 1594): [1000,1594,com.vitrinedecraques.app,0,0,0,5,NULL]
+10-19 09:27:10.541 I/notification_cancel_all( 1594): [1000,1594,com.vitrinedecraques.app,0,0,0,5,NULL]
+10-19 09:27:11.008 I/am_create_activity( 1594): [0,25108654,1619,com.vitrinedecraques.app/.MainActivity,NULL,NULL,NULL,268435456]
+10-19 09:27:11.024 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_1E,95,WindowProcessUtils.java,405,java.lang.String com.android.server.wm.WindowProcessUtils.getCallerPackageName(com.android.server.wm.ActivityTaskManagerService, android.app.IApplicationThread),ActivityStarter.java,1313,int com.android.server.wm.ActivityStarter.startActivityMayWait(android.app.IApplicationThread, int, java.lang.String, int, int, android.content.Intent, java.lang.String, android.service.voice.IVoiceInteractionSession, com.android.internal.app.IVoiceInteractor, android.os.IBinder, java.lang.String, int, int, android.app.ProfilerInfo, android.app.WaitResult, android.content.res.Configuration, com.android.server.wm.SafeActivityOptions, boolean, int, com.android.server.wm.TaskRecord, java.lang.String, boolean, com.android.server.am.PendingIntentRecord, boolean),19]
+10-19 09:27:11.043 D/Launcher.Model( 2404): LauncherAppsCallback onPackageChanged|com.vitrinedecraques.app|UserHandle{0}
+10-19 09:27:11.043 D/Launcher.Model( 2404): Got broadcast:Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:com.vitrinedecraques.app (has extras) }
+10-19 09:27:11.072 D/Launcher.AllAppsList( 2404): updatePackage, packageName=com.vitrinedecraques.app, loadMissing=false, user=UserHandle{0}, matchedSize=1
+10-19 09:27:11.079 I/PI-ScanDispatch(23020): service bind, pkgName = com.vitrinedecraques.app, installer = null, isReplace = true, firstGoogleTime = 1614890563430
+10-19 09:27:11.107 I/dvm_lock_sample( 1594): [system_server,1,Binder:1594_1E,40,ActivityTaskManagerService.java,7377,com.android.server.wm.WindowProcessController com.android.server.wm.ActivityTaskManagerService$LocalService.getTopApp(),WindowManagerService.java,2209,int com.android.server.wm.WindowManagerService.relayoutWindow(com.android.server.wm.Session, android.view.IWindow, int, android.view.WindowManager$LayoutParams, int, int, int, int, long, android.graphics.Rect, android.graphics.Rect, android.graphics.Rect, android.graphics.Rect, android.graphics.Rect, android.graphics.Rect, android.graphics.Rect, android.view.DisplayCutout$ParcelableWrapper, android.util.MergedConfiguration, android.view.SurfaceControl, android.view.InsetsState),8]
+10-19 09:27:11.110 D/Launcher.AllAppsList( 2404): updatePackage, find appInfo=AppInfo, id=-1, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=com.vitrinedecraques.app, className=com.vitrinedecraques.app.MainActivity, screenId=-1, container=-1, cellX=-1, cellY=-1, spanX=1, spanY=1, isLandscapePos=false from ComponentInfo{com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity}
+10-19 09:27:11.124 D/Launcher.Model( 2404): onReceiveBackground, mAllAppsList=add=[], remove=[], modified=[(0, AppInfo, id=-1, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=com.vitrinedecraques.app, className=com.vitrinedecraques.app.MainActivity, screenId=-1, container=-1, cellX=-1, cellY=-1, spanX=1, spanY=1, isLandscapePos=false)]
+10-19 09:27:11.126 I/am_proc_start( 1594): [0,23168,11390,com.vitrinedecraques.app,activity,{com.vitrinedecraques.app/com.vitrinedecraques.app.MainActivity}]
+10-19 09:27:11.128 D/OemNetd (  518): setPidForPackage: packageName=com.vitrinedecraques.app, pid=23168, pid=11390
+10-19 09:27:11.194 I/am_proc_bound( 1594): [0,23168,com.vitrinedecraques.app]
+10-19 09:27:11.200 I/am_restart_activity( 1594): [0,25108654,1619,com.vitrinedecraques.app/.MainActivity,23168]
+10-19 09:27:11.201 I/am_set_resumed_activity( 1594): [0,com.vitrinedecraques.app/.MainActivity,minimalResumeActivityLocked]
+10-19 09:27:11.201 I/GST     (10006): forePkg: com.vitrinedecraques.app, preForePkg: com.miui.home
+10-19 09:27:11.202 D/PerfEngineController(19942): ForegroundInfo{mForegroundPackageName='com.vitrinedecraques.app', mForegroundUid=11390, mForegroundPid=23168, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10064, mLastForegroundPid=2404, mMultiWindowForegroundPackageName='null', mMultiWindowForegroundUid=-1, mFlags=1}
+10-19 09:27:11.202 I/ProcessMonitor( 7233): onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.vitrinedecraques.app', mForegroundUid=11390, mForegroundPid=23168, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10064, mLastForegroundPid=2404, mMultiWindowForegroundPackageName='null', mMultiWindowForegroundUid=-1, mFlags=1}
+10-19 09:27:14.526 I/ActivityManager( 1594): Start proc 23519:com.qualcomm.qti.workloadclassifier/1000 for service {com.qualcomm.qti.workloadclassifier/com.qualcomm.qti.workloadclassifier.WLCService} caller=com.qualcomm.qti.workloadclassifier
+10-19 09:27:14.546 I/ActivityManager( 1594): Process com.xiaomi.mipicks (pid 22357) has died: cch+85 CEM 
+10-19 09:27:14.584 I/ActivityManager( 1594): Process com.milink.runtime (pid 22757) has died: cch+75 CEM 
+10-19 09:27:14.749 I/ActivityManager( 1594): Process com.milink.service (pid 22721) has died: cch+65 CEM 
+10-19 09:27:14.767 I/ActivityManager( 1594): Process com.miui.securitycenter (pid 22929) has died: cch+55 CEM 
+10-19 09:27:14.786 W/ActivityManager( 1594): setHasOverlayUi called on unknown pid: 22929
+10-19 09:27:14.995 I/ActivityManager( 1594): Process com.android.keychain (pid 23043) has died: cch+45 CEM 
+10-19 09:27:15.016 I/ActivityManager( 1594): Process com.android.vending:background (pid 20376) has died: cch+35 CEM 
+10-19 09:27:16.071 I/am_lifecycle_sample(23168): [0,com.vitrinedecraques.app,110,4852]
+10-19 09:27:16.073 E/Perf    (23168): Fail to get file list com.vitrinedecraques.app
+10-19 09:27:16.073 E/Perf    (23168): Fail to get file list com.vitrinedecraques.app
+10-19 09:27:16.171 D/ForceDarkHelper(23168): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:27:16.175 D/ForceDarkHelper(23168): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:27:16.186 I/ActivityManager( 1594): Process com.miui.powerkeeper (pid 19942) has died: svcb BTOP
+10-19 09:27:16.194 W/ActivityManager( 1594): Scheduling restart of crashed service com.miui.powerkeeper/.feedbackcontrol.FeedbackControlService in 1000ms
+10-19 09:27:16.195 W/ActivityManager( 1594): Scheduling restart of crashed service com.miui.powerkeeper/.PowerKeeperBackgroundService in 11000ms
+10-19 09:27:16.195 W/ActivityManager( 1594): Scheduling restart of crashed service com.miui.powerkeeper/.powerchecker.PowerCheckerService in 20999ms
+10-19 09:27:16.196 W/ActivityManager( 1594): Scheduling restart of crashed service com.miui.powerkeeper/.statemachine.PowerStateMachineService in 30999ms
+10-19 09:27:16.196 W/ActivityManager( 1594): Scheduling restart of crashed service com.miui.powerkeeper/.stepsprovider.StepsService in 40998ms
+10-19 09:27:16.196 W/ActivityManager( 1594): Scheduling restart of crashed service com.xiaomi.powerchecker/.PowerCheckerService in 50998ms
+10-19 09:27:16.207 D/ForceDarkHelper(23168): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:27:16.279 I/am_on_create_called(23168): [0,com.vitrinedecraques.app.MainActivity,performCreate,135]
+10-19 09:27:16.334 I/am_on_start_called(23168): [0,com.vitrinedecraques.app.MainActivity,handleStartActivity,0]
+10-19 09:27:16.337 I/am_on_resume_called(23168): [0,com.vitrinedecraques.app.MainActivity,RESUME_ACTIVITY,1]
+10-19 09:27:16.374 W/Looper  (23168): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 4838ms late (wall=294ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.LaunchActivityItem] lifecycleRequest=android.app.servertransaction.ResumeActivityItem }) because of 1 msg, msg 1 took 4853ms (seq=2 late=1ms h=android.app.ActivityThread$H w=110)
+10-19 09:27:16.375 I/am_on_top_resumed_gained_called(23168): [0,com.vitrinedecraques.app.MainActivity,topStateChangedWhenResumed]
+10-19 09:27:16.375 W/Looper  (23168): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5131ms late (wall=0ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.TopResumedActivityChangeItem] }) because of 2 msg, msg 1 took 4853ms (seq=2 late=1ms h=android.app.ActivityThread$H w=110), msg 2 took 294ms (seq=3 late=4838ms h=android.app.ActivityThread$H w=159)
+10-19 09:27:16.615 D/ForceDarkHelper(23168): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:27:17.222 I/ActivityManager( 1594): Start proc 23564:com.miui.powerkeeper/1000 for service {com.miui.powerkeeper/com.miui.powerkeeper.feedbackcontrol.FeedbackControlService} caller=com.miui.powerkeeper
+10-19 09:27:17.954 D/ForceDarkHelper(23168): updateByCheckExcludeList: pkg: com.vitrinedecraques.app activity: com.vitrinedecraques.app.MainActivity@a23a989
+10-19 09:27:17.958 I/sysui_multi_action( 1594): [319,365,321,281,322,7107,325,1231215,757,761,758,7,759,1,806,com.vitrinedecraques.app,871,com.vitrinedecraques.app.MainActivity,904,com.android.shell,905,0,945,346,1320,12,1321,1]
+10-19 09:27:17.958 I/Timeline( 1594): Timeline: Activity_windows_visible id: ActivityRecord{17f20ae u0 com.vitrinedecraques.app/.MainActivity t1619} time:1231221954
+10-19 09:27:17.962 I/am_activity_launch_time( 1594): [0,25108654,com.vitrinedecraques.app/.MainActivity,7107]
+10-19 09:27:17.965 I/ActivityTaskManager( 1594): Displayed com.vitrinedecraques.app/.MainActivity: +7s107ms
+10-19 09:27:18.030 I/GoogleInputMethodService(17521): GoogleInputMethodService.onStartInput():1347 onStartInput(EditorInfo{EditorInfo{packageName=com.vitrinedecraques.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)

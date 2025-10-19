@@ -856,13 +856,19 @@ private fun FeedActionsPanel(
     onToggleSound: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Box(modifier = modifier) {
-        val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
+    val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+            .then(modifier),
+        contentAlignment = Alignment.BottomEnd
+    ) {
         Column(
-            modifier = Modifier.align(Alignment.BottomEnd),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.End
         ) {
             Column(
+                modifier = Modifier.align(Alignment.End),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
@@ -885,13 +891,18 @@ private fun FeedActionsPanel(
             }
 
             Spacer(modifier = Modifier.height(12.dp))
-            SoundToggleButton(isMuted = isMuted, onToggleSound = onToggleSound)
+            SoundToggleButton(
+                isMuted = isMuted,
+                onToggleSound = onToggleSound,
+                modifier = Modifier.align(Alignment.End)
+            )
 
             if (!avatarUrl.isNullOrBlank()) {
                 Spacer(modifier = Modifier.height(28.dp))
                 UserAvatar(
                     imageUrl = avatarUrl,
-                    contentDescription = video.user?.profile?.displayName
+                    contentDescription = video.user?.profile?.displayName,
+                    modifier = Modifier.align(Alignment.End)
                 )
             }
         }
@@ -901,12 +912,13 @@ private fun FeedActionsPanel(
 @Composable
 private fun UserAvatar(
     imageUrl: String,
-    contentDescription: String?
+    contentDescription: String?,
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = CircleShape,
         color = Color.White.copy(alpha = 0.3f),
-        modifier = Modifier.size(72.dp)
+        modifier = modifier.size(72.dp)
     ) {
         Box(
             modifier = Modifier
@@ -1199,11 +1211,12 @@ private fun VitrineLogo(modifier: Modifier = Modifier) {
 private fun SoundToggleButton(
     isMuted: Boolean,
     onToggleSound: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         shape = CircleShape,
         color = Color.Black.copy(alpha = 0.45f),
-        modifier = Modifier.size(32.dp)
+        modifier = modifier.size(32.dp)
     ) {
         IconButton(onClick = onToggleSound, modifier = Modifier.fillMaxSize()) {
             val icon = if (isMuted) R.drawable.ic_volume_off else R.drawable.ic_volume_on

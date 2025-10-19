@@ -37,8 +37,15 @@ class AuthApiService(
         .build()
 
     suspend fun login(email: String, password: String): AuthLoginResult = withContext(Dispatchers.IO) {
+        val cookiesBeforeLogin = HttpClientProvider.getSessionCookies(apiBaseUrl)
+        Log.i(TAG, "Cookies antes do login: ${cookiesBeforeLogin.describeCookies()}")
+
         val csrfToken = fetchCsrfToken()
-        Log.d(TAG, "CSRF token carregado (${csrfToken.length} chars) para host=${apiBaseUrl.host}")
+        Log.i(TAG, "CSRF token carregado (${csrfToken.length} chars) para host=${apiBaseUrl.host}")
+        Log.i(
+            TAG,
+            "Cookies após obter CSRF: ${HttpClientProvider.getSessionCookies(apiBaseUrl).describeCookies()}"
+        )
         val loginUrl = apiBaseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("auth")
@@ -59,14 +66,10 @@ class AuthApiService(
             .post(formBody)
             .build()
 
-        Log.d(TAG, "Enviando login POST para $loginUrl")
+        Log.i(TAG, "Enviando login POST para $loginUrl")
         client.newCall(request).execute().use { response ->
             val body = response.body?.string().orEmpty()
-            Log.d(
-                TAG,
-                "Resposta do login: code=${response.code} prior=${response.priorResponse != null} " +
-                    "setCookie=${response.headers("Set-Cookie").maskCookieHeaders()}"
-            )
+            logLoginResponseChain(response)
             if (response.code == 401) {
                 throw InvalidCredentialsException("E-mail ou senha inválidos.")
             }
@@ -83,13 +86,18 @@ class AuthApiService(
             }
 
             val cookies = extractSessionCookies(response)
-            Log.d(TAG, "Cookies de sessão extraídos: ${cookies.describeCookies()}")
+            Log.i(TAG, "Cookies de sessão extraídos: ${cookies.describeCookies()}")
             if (cookies.isEmpty()) {
+                Log.e(
+                    TAG,
+                    "Nenhum cookie de sessão encontrado. set-cookie-final=${response.headers("Set-Cookie").maskCookieHeaders()} " +
+                        "cookiesJar=${HttpClientProvider.getSessionCookies(apiBaseUrl).describeCookies()} bodyPreview=${body.truncateForLog()}"
+                )
                 throw IOException("Nenhum cookie de sessão retornado pela API.")
             }
 
             val session = fetchSession()
-            Log.d(TAG, "Sessão carregada: user=${session.user?.email ?: "null"} expires=${session.expires}")
+            Log.i(TAG, "Sessão carregada: user=${session.user?.email ?: "null"} expires=${session.expires}")
             if (session.user == null) {
                 throw IOException("Sessão inválida retornada pela API.")
             }
@@ -110,9 +118,9 @@ class AuthApiService(
             .get()
             .build()
 
-        Log.d(TAG, "Buscando sessão em ${request.url}")
+        Log.i(TAG, "Buscando sessão em ${request.url}")
         client.newCall(request).execute().use { response ->
-            Log.d(TAG, "Resposta da sessão: code=${response.code} bodyLength=${response.body?.contentLength() ?: -1}")
+            Log.i(TAG, "Resposta da sessão: code=${response.code} bodyLength=${response.body?.contentLength() ?: -1}")
             if (response.code == 401) {
                 return@withContext SessionResponse(user = null, expires = null)
             }
@@ -139,9 +147,9 @@ class AuthApiService(
             .get()
             .build()
 
-        Log.d(TAG, "Buscando CSRF token em ${request.url}")
+        Log.i(TAG, "Buscando CSRF token em ${request.url}")
         client.newCall(request).execute().use { response ->
-            Log.d(TAG, "Resposta do CSRF: code=${response.code} bodyLength=${response.body?.contentLength() ?: -1}")
+            Log.i(TAG, "Resposta do CSRF: code=${response.code} bodyLength=${response.body?.contentLength() ?: -1}")
             if (!response.isSuccessful) {
                 throw IOException("Erro ${'$'}{response.code} ao obter token CSRF")
             }
@@ -171,7 +179,7 @@ class AuthApiService(
                         if (isSessionCookie) {
                             val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
                             matched[key] = cookie.toStoredCookie()
-                            Log.d(
+                            Log.i(
                                 TAG,
                                 "Cookie de sessão capturado da resposta ${current.code}: ${cookie.name} domínio=${cookie.domain} path=${cookie.path}"
                             )
@@ -186,8 +194,23 @@ class AuthApiService(
         }
 
         val fallback = HttpClientProvider.getSessionCookies(apiBaseUrl)
-        Log.d(TAG, "Cookies obtidos do cookie jar: ${fallback.describeCookies()}")
+        Log.i(TAG, "Cookies obtidos do cookie jar: ${fallback.describeCookies()}")
         return fallback
+    }
+}
+
+private fun logLoginResponseChain(response: okhttp3.Response) {
+    var index = 0
+    var current: okhttp3.Response? = response
+    while (current != null) {
+        val label = if (index == 0) "final" else "redirect#$index"
+        Log.i(
+            TAG,
+            "Resposta ${label}: code=${current.code} url=${current.request.url} " +
+                "setCookie=${current.headers("Set-Cookie").maskCookieHeaders()}"
+        )
+        current = current.priorResponse
+        index += 1
     }
 }
 
@@ -202,6 +225,11 @@ private fun List<String>.maskCookieHeaders(): List<String> = map { header ->
         val masked = nameValue.substring(0, idx + 1) + "***"
         (listOf(masked) + parts.drop(1)).joinToString(";")
     }
+}
+
+private fun String.truncateForLog(limit: Int = 512): String {
+    if (isEmpty()) return ""
+    return if (length <= limit) this else substring(0, limit) + "…"
 }
 
 private fun List<StoredCookie>.describeCookies(): String = if (isEmpty()) {

@@ -6,6 +6,7 @@ import okhttp3.HttpUrl
 import java.net.CookieManager
 import java.net.CookiePolicy
 import java.net.HttpCookie
+import java.util.LinkedHashMap
 import java.util.concurrent.TimeUnit
 import kotlinx.serialization.Serializable
 
@@ -32,6 +33,33 @@ object HttpClientProvider {
         "next-auth.session-token",
         "__Secure-next-auth.session-token",
     )
+
+    fun getSessionCookies(baseUrl: HttpUrl): List<StoredCookie> {
+        val store = cookieManager.cookieStore
+        val targetHost = baseUrl.host
+        val matched = LinkedHashMap<String, StoredCookie>()
+
+        store.cookies
+            .asSequence()
+            .filter { cookie ->
+                sessionCookiePrefixes.any { prefix ->
+                    cookie.name.equals(prefix, ignoreCase = true) ||
+                        cookie.name.startsWith("${prefix}.", ignoreCase = true)
+                }
+            }
+            .filterNot { cookie -> cookie.hasExpired() }
+            .filter { cookie ->
+                val domain = cookie.domain?.takeIf { it.isNotBlank() } ?: targetHost
+                HttpCookie.domainMatches(domain, targetHost)
+            }
+            .sortedByDescending { cookie -> cookie.maxAge }
+            .forEach { cookie ->
+                val key = listOfNotNull(cookie.name, cookie.path).joinToString("|")
+                matched[key] = cookie.toStoredCookie(baseUrl)
+            }
+
+        return matched.values.toList()
+    }
 
     fun updateSessionCookies(baseUrl: HttpUrl, cookies: List<StoredCookie>) {
         val uri = baseUrl.toUri()
@@ -73,6 +101,22 @@ object HttpClientProvider {
             }
         }
     }
+}
+
+fun HttpCookie.toStoredCookie(baseUrl: HttpUrl): StoredCookie {
+    val domain = domain?.takeIf { it.isNotBlank() }?.trim('.') ?: baseUrl.host
+    val path = path ?: "/"
+    val expiresAt = when {
+        maxAge >= 0 -> System.currentTimeMillis() + maxAge * 1000
+        else -> null
+    }
+    return StoredCookie(
+        name = name,
+        value = value,
+        domain = domain,
+        path = path,
+        expiresAt = expiresAt,
+    )
 }
 
 /**

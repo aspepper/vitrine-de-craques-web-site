@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -15,31 +16,39 @@ import androidx.datastore.preferences.core.emptyPreferences
 import com.vitrinedecraques.app.data.auth.authDataStore
 
 data class AuthData(
-    val cookie: StoredCookie?,
-    val user: SessionUser?
+    val cookies: List<StoredCookie>,
+    val user: SessionUser?,
 )
 
 private object AuthDataStoreMapper {
     private val json = Json { ignoreUnknownKeys = true }
 
     fun mapToAuthData(preferences: androidx.datastore.preferences.core.Preferences): AuthData {
-        val cookieJson = preferences[SESSION_COOKIE_KEY]
+        val cookiesJson = preferences[SESSION_COOKIE_KEY]
         val userJson = preferences[SESSION_USER_KEY]
-        val cookie = cookieJson?.let { json.decodeFromString(StoredCookie.serializer(), it) }
+        val cookies = cookiesJson?.let {
+            runCatching {
+                json.decodeFromString(ListSerializer(StoredCookie.serializer()), it)
+            }.getOrElse {
+                runCatching { json.decodeFromString(StoredCookie.serializer(), it) }
+                    .map { stored -> listOf(stored) }
+                    .getOrElse { emptyList() }
+            }
+        } ?: emptyList()
         val user = userJson?.let { json.decodeFromString(SessionUser.serializer(), it) }
-        return AuthData(cookie = cookie, user = user)
+        return AuthData(cookies = cookies, user = user)
     }
 
     suspend fun persist(
         context: Context,
-        cookie: StoredCookie?,
+        cookies: List<StoredCookie>,
         user: SessionUser?,
     ) {
         context.authDataStore.edit { prefs ->
-            if (cookie != null) {
-                prefs[SESSION_COOKIE_KEY] = json.encodeToString(StoredCookie.serializer(), cookie)
-            } else {
+            if (cookies.isEmpty()) {
                 prefs.remove(SESSION_COOKIE_KEY)
+            } else {
+                prefs[SESSION_COOKIE_KEY] = json.encodeToString(ListSerializer(StoredCookie.serializer()), cookies)
             }
             if (user != null) {
                 prefs[SESSION_USER_KEY] = json.encodeToString(SessionUser.serializer(), user)
@@ -64,16 +73,16 @@ class AuthRepository(
         }
         .map { preferences -> AuthDataStoreMapper.mapToAuthData(preferences) }
         .onEach { data ->
-            HttpClientProvider.updateSessionCookie(service.apiBaseUrl, data.cookie)
+            HttpClientProvider.updateSessionCookies(service.apiBaseUrl, data.cookies)
         }
 
     suspend fun login(email: String, password: String): Result<Unit> = runCatching {
         val result = service.login(email, password)
-        AuthDataStoreMapper.persist(context, result.cookie, result.session.user)
+        AuthDataStoreMapper.persist(context, result.cookies, result.session.user)
     }
 
     suspend fun logout() {
-        AuthDataStoreMapper.persist(context, null, null)
+        AuthDataStoreMapper.persist(context, emptyList(), null)
         HttpClientProvider.clearSessionCookies()
     }
 }

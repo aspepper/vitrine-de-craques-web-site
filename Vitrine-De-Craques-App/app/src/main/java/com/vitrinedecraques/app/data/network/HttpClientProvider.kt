@@ -28,18 +28,23 @@ object HttpClientProvider {
             .build()
     }
 
-    private val sessionCookieNames = listOf(
+    private val sessionCookiePrefixes = listOf(
         "next-auth.session-token",
-        "__Secure-next-auth.session-token"
+        "__Secure-next-auth.session-token",
     )
 
-    fun updateSessionCookie(baseUrl: HttpUrl, cookie: StoredCookie?) {
+    fun updateSessionCookies(baseUrl: HttpUrl, cookies: List<StoredCookie>) {
         val uri = baseUrl.toUri()
         val store = cookieManager.cookieStore
-        val existing = store.cookies.filter { it.name in sessionCookieNames }
+        val existing = store.cookies.filter { cookie ->
+            sessionCookiePrefixes.any { prefix ->
+                cookie.name.equals(prefix, ignoreCase = true) ||
+                    cookie.name.startsWith("${prefix}.", ignoreCase = true)
+            }
+        }
         existing.forEach { store.remove(uri, it) }
 
-        if (cookie != null) {
+        cookies.forEach { cookie ->
             val httpCookie = HttpCookie(cookie.name, cookie.value).apply {
                 domain = cookie.domain
                 path = cookie.path
@@ -59,7 +64,11 @@ object HttpClientProvider {
         val iterator = store.cookies.iterator()
         while (iterator.hasNext()) {
             val cookie = iterator.next()
-            if (cookie.name in sessionCookieNames) {
+            val matchesPrefix = sessionCookiePrefixes.any { prefix ->
+                cookie.name.equals(prefix, ignoreCase = true) ||
+                    cookie.name.startsWith("${prefix}.", ignoreCase = true)
+            }
+            if (matchesPrefix) {
                 iterator.remove()
             }
         }

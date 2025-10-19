@@ -2,6 +2,10 @@ package com.vitrinedecraques.app.ui.auth
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.lifecycle.viewModelScope
 import com.vitrinedecraques.app.data.auth.AuthData
 import com.vitrinedecraques.app.data.auth.AuthRepository
@@ -24,9 +28,9 @@ data class LoginUiState(
     val error: String? = null,
 )
 
-class AuthViewModel @JvmOverloads constructor(
+class AuthViewModel(
     application: Application,
-    private val repository: AuthRepository = AuthRepository(application.applicationContext)
+    private val repository: AuthRepository,
 ) : AndroidViewModel(application) {
 
     private val _authState = MutableStateFlow(AuthUiState())
@@ -46,7 +50,7 @@ class AuthViewModel @JvmOverloads constructor(
     private fun updateAuthState(data: AuthData) {
         _authState.value = AuthUiState(
             isLoading = false,
-            isAuthenticated = data.cookie != null,
+            isAuthenticated = data.cookies.isNotEmpty(),
             user = data.user,
         )
     }
@@ -72,5 +76,19 @@ class AuthViewModel @JvmOverloads constructor(
         if (_loginState.value.error != null) {
             _loginState.value = _loginState.value.copy(error = null)
         }
+    }
+}
+
+private fun CreationExtras.requireApplication(): Application {
+    return checkNotNull(this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]) {
+        "Application must be provided in CreationExtras to create AuthViewModel"
+    } as Application
+}
+
+val AuthViewModelFactory = viewModelFactory {
+    initializer {
+        val application = this.requireApplication()
+        val repository = AuthRepository(application.applicationContext)
+        AuthViewModel(application, repository)
     }
 }

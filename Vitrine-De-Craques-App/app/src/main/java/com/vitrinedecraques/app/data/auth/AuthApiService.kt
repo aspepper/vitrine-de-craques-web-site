@@ -71,7 +71,8 @@ class AuthApiService(
                 throw InvalidCredentialsException("E-mail ou senha inválidos.")
             }
 
-            val cookie = extractSessionCookie(response.headers.values("Set-Cookie"))
+            val cookieHeaders = response.collectSetCookieHeaders()
+            val cookie = extractSessionCookie(cookieHeaders)
                 ?: throw IOException("Nenhum cookie de sessão retornado pela API.")
 
             val session = fetchSession()
@@ -160,4 +161,14 @@ class AuthApiService(
         }
         return null
     }
+}
+
+private fun okhttp3.Response.collectSetCookieHeaders(): List<String> {
+    val headers = mutableListOf<String>()
+    var current: okhttp3.Response? = this
+    while (current != null) {
+        headers += current.headers.values("Set-Cookie")
+        current = current.priorResponse
+    }
+    return headers
 }

@@ -546,23 +546,20 @@ private fun FeedVideoCard(
             playbackError = "Vídeo indisponível."
         } else {
             val cookieHeader = buildCookieHeaderFor(video.videoUrl)
-            val videoHttpUrl = video.videoUrl.toHttpUrlOrNull()
             val appOriginHttpUrl = appOrigin?.toHttpUrlOrNull()
-            val shouldIncludeOriginHeaders = appOriginHttpUrl != null && videoHttpUrl != null &&
-                appOriginHttpUrl.host.equals(videoHttpUrl.host, ignoreCase = true)
             val userAgent = "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)"
             val requestProperties = mutableMapOf<String, String>().apply {
-                put("User-Agent", userAgent)
                 put("Accept", "*/*")
                 if (!cookieHeader.isNullOrEmpty()) {
                     put("Cookie", cookieHeader)
                 }
-                if (shouldIncludeOriginHeaders) {
-                    val referer = appOriginHttpUrl!!.toString()
+                appOriginHttpUrl?.let { originUrl ->
+                    val referer = originUrl.toString()
                     put("Referer", referer)
                     put("Origin", referer.trimEnd('/'))
                 }
             }
+            httpDataSourceFactory.setUserAgent(userAgent)
             httpDataSourceFactory.setDefaultRequestProperties(emptyMap())
             httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
             exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))

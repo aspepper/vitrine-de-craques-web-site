@@ -546,17 +546,24 @@ private fun FeedVideoCard(
             playbackError = "Vídeo indisponível."
         } else {
             val cookieHeader = buildCookieHeaderFor(video.videoUrl)
+            val videoHttpUrl = video.videoUrl.toHttpUrlOrNull()
+            val appOriginHttpUrl = appOrigin?.toHttpUrlOrNull()
+            val shouldIncludeOriginHeaders = appOriginHttpUrl != null && videoHttpUrl != null &&
+                appOriginHttpUrl.host.equals(videoHttpUrl.host, ignoreCase = true)
+            val userAgent = "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)"
             val requestProperties = mutableMapOf<String, String>().apply {
-                put("User-Agent", "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)")
+                put("User-Agent", userAgent)
                 put("Accept", "*/*")
                 if (!cookieHeader.isNullOrEmpty()) {
                     put("Cookie", cookieHeader)
                 }
-                appOrigin?.let {
-                    put("Referer", it)
-                    put("Origin", it.trimEnd('/'))
+                if (shouldIncludeOriginHeaders) {
+                    val referer = appOriginHttpUrl!!.toString()
+                    put("Referer", referer)
+                    put("Origin", referer.trimEnd('/'))
                 }
             }
+            httpDataSourceFactory.setDefaultRequestProperties(emptyMap())
             httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
             exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
             exoPlayer.prepare()
@@ -967,11 +974,11 @@ private fun FeedActionButton(
     onClick: () -> Unit = {},
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier
             .widthIn(min = 56.dp)
-            .wrapContentWidth(Alignment.CenterHorizontally)
+            .wrapContentWidth(Alignment.End)
     ) {
         Surface(
             shape = CircleShape,
@@ -996,7 +1003,7 @@ private fun FeedActionButton(
             style = MaterialTheme.typography.labelSmall,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.End,
             modifier = Modifier.fillMaxWidth()
         )
     }

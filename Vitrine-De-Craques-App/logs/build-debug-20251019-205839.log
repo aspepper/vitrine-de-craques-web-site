@@ -20,38 +20,34 @@
 > Task :app:processDebugManifest UP-TO-DATE
 > Task :app:processDebugManifestForPackage UP-TO-DATE
 > Task :app:processDebugResources UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
 > Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
 > Task :app:mergeDebugShaders UP-TO-DATE
 > Task :app:compileDebugShaders NO-SOURCE
 > Task :app:generateDebugAssets UP-TO-DATE
 > Task :app:mergeDebugAssets UP-TO-DATE
 > Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
 > Task :app:checkDebugDuplicateClasses UP-TO-DATE
 > Task :app:desugarDebugFileDependencies UP-TO-DATE
 > Task :app:mergeExtDexDebug UP-TO-DATE
 > Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:dexBuilderDebug UP-TO-DATE
+> Task :app:mergeProjectDexDebug UP-TO-DATE
 > Task :app:mergeDebugJniLibFolders UP-TO-DATE
 > Task :app:mergeDebugNativeLibs UP-TO-DATE
 > Task :app:stripDebugDebugSymbols UP-TO-DATE
 > Task :app:validateSigningDebug UP-TO-DATE
 > Task :app:writeDebugAppMetadata UP-TO-DATE
 > Task :app:writeDebugSigningConfigVersions UP-TO-DATE
-
-> Task :app:compileDebugKotlin
-w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:512:26 'val LocalLifecycleOwner: ProvidableCompositionLocal<LifecycleOwner>' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.
-w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:1089:39 'val Icons.Outlined.Article: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Outlined.Article.
-
-> Task :app:compileDebugJavaWithJavac UP-TO-DATE
-> Task :app:processDebugJavaRes UP-TO-DATE
-> Task :app:mergeDebugJavaResource UP-TO-DATE
-> Task :app:dexBuilderDebug
-> Task :app:mergeProjectDexDebug
-> Task :app:packageDebug
+> Task :app:packageDebug UP-TO-DATE
 > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
-> Task :app:assembleDebug
+> Task :app:assembleDebug UP-TO-DATE
 
-BUILD SUCCESSFUL in 1m 13s
-38 actionable tasks: 4 executed, 34 up-to-date
+BUILD SUCCESSFUL in 1m 12s
+38 actionable tasks: 38 up-to-date
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
@@ -103,7 +99,7 @@ Installed on 1 device.
 BUILD SUCCESSFUL in 7s
 39 actionable tasks: 1 executed, 38 up-to-date
 [INFO] Limpando logcat...
-[INFO] Gravando logcat em: ./logs/run-debug-20251019-202708.log
+[INFO] Gravando logcat em: ./logs/run-debug-20251019-205839.log
 [INFO] Resolvendo PID para pacote 'com.vitrinedecraques.app'...
-[INFO] Conectando logcat com --pid=30544 ...
-[WARN] Processo 30544 finalizou. Procurando novo PID...
+[INFO] Conectando logcat com --pid=6965 ...
+[WARN] Processo 6965 finalizou. Procurando novo PID...

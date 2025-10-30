@@ -19,6 +19,9 @@ import java.io.IOException
 import java.util.Locale
 import kotlin.math.abs
 import com.vitrinedecraques.app.data.network.HttpClientProvider
+import android.util.Log
+
+private const val TAG = "NextApiService"
 
 class NextApiService(
     private val client: OkHttpClient = HttpClientProvider.client,
@@ -55,6 +58,8 @@ class NextApiService(
             .get()
             .build()
 
+        Log.i(TAG, "Fetching videos from: ${'$'}{httpUrl}")
+
         execute(request).map { resolveVideoUrls(it, effectiveBaseUrl, origin) }
     }
 
@@ -85,6 +90,8 @@ class NextApiService(
                 .url(httpUrl)
                 .get()
                 .build()
+
+            Log.i(TAG, "Fetching profile details from: ${'$'}{httpUrl}")
 
             client.newCall(request).execute().use { response ->
                 if (response.code == 404) {

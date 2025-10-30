@@ -27,7 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true
+          # O repositório contém entradas de submódulo sem configuração em .gitmodules,
+          # portanto a tentativa de inicialização causa falha (exit code 128).
+          # Como o build web não depende desses submódulos (app mobile/iOS é tratado
+          # em pipeline separado), desativamos a sincronização automática aqui.
+          submodules: false
           lfs: false
           
       - name: Setup Node

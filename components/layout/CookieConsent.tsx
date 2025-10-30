@@ -334,7 +334,7 @@ export function CookieConsent() {
   return (
     <>
       <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl border border-border/70 bg-background/95 text-foreground shadow-2xl backdrop-blur-sm dark:border-white/15 dark:bg-slate-950/95">
           <DialogHeader className="space-y-2">
             <div className="flex items-center gap-3">
               <Settings2 className="h-6 w-6 text-primary" aria-hidden />
@@ -446,18 +446,18 @@ export function CookieConsent() {
       </Dialog>
 
       <Dialog open={isTermsOpen} onOpenChange={setIsTermsOpen}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="max-w-3xl border border-border/70 bg-background/95 text-foreground shadow-2xl backdrop-blur-sm dark:border-white/15 dark:bg-slate-950/95">
           <DialogHeader className="space-y-3">
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-6 w-6 text-primary" aria-hidden />
               <DialogTitle className="text-xl">Termos LGPD e consentimento informado</DialogTitle>
             </div>
-            <DialogDescription className="text-left text-base">
+            <DialogDescription className="text-left text-base text-foreground/80">
               Construímos o Vitrine de Craques com segurança jurídica e transparência. Conheça como protegemos seus dados e
               como você pode exercer seus direitos.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-6 overflow-y-auto pr-1 text-sm leading-relaxed text-muted-foreground md:max-h-[60vh]">
+          <div className="space-y-6 overflow-y-auto pr-1 text-sm leading-relaxed text-foreground/80 md:max-h-[60vh] dark:text-foreground/70">
             <section className="space-y-2">
               <h3 className="text-base font-semibold text-foreground">Base legal e compromissos</h3>
               <p>
@@ -551,8 +551,9 @@ export function CookieConsent() {
                 </Button>
                 <Button
                   type="button"
-                  variant="ghost"
-                  className="rounded-full border border-transparent text-sm text-muted-foreground hover:border-border"
+                  variant="outline"
+                  size="md"
+                  className="rounded-full text-sm font-semibold shadow-sm hover:bg-muted"
                   onClick={handleOpenSettings}
                 >
                   Personalizar níveis

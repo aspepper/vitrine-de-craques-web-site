@@ -796,7 +796,8 @@ private fun NotificationBellButton(
                         painter = painterResource(id = R.drawable.ic_bell_body_header),
                         contentDescription = "Notificações",
                         tint = Color.White,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier
+                            .size(15.dp)
                     )
                     Icon(
                         painter = painterResource(id = R.drawable.ic_bell_bell_header),
@@ -804,8 +805,8 @@ private fun NotificationBellButton(
                         tint = Color.White,
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .padding(top = 3.dp)
-                            .fillMaxWidth(0.6f)
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f)
                     )
                 }
             }
@@ -815,8 +816,9 @@ private fun NotificationBellButton(
                 tint = Color.Unspecified,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
+                    .padding(top = 10.dp, end = 6.dp)
                     .offset(x = (-2).dp, y = (-2).dp)
-                    .size(10.dp)
+                    .size(7.dp)
             )
         }
     }

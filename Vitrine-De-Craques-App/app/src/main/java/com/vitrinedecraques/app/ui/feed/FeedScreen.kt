@@ -817,7 +817,7 @@ private fun NotificationBellButton(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(top = 10.dp, end = 6.dp)
-                    .offset(x = (-2).dp, y = (-2).dp)
+                    .offset(x = (-4).dp, y = (-2).dp)
                     .size(7.dp)
             )
         }

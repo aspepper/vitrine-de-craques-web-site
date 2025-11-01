@@ -76,6 +76,7 @@ export function Header() {
 
   const hasUnreadMessages = unreadCount > 0
   const badgeLabel = unreadCount > 99 ? "99+" : String(unreadCount)
+  const isArquibancadaMember = session?.user?.role === "TORCEDOR"
 
   return (
     <header className="shadow-sm">
@@ -84,7 +85,7 @@ export function Header() {
           Vitrine de Craques
         </Link>
         <div className="hidden md:flex items-center space-x-4">
-          <Link href="/torcida" className="hover:text-primary">Torcida</Link>
+          <Link href="/arquibancada" className="hover:text-primary">Arquibancada</Link>
           <Link href="/agentes" className="hover:text-primary">Agentes</Link>
           <Link href="/clubes" className="hover:text-primary">Clubes</Link>
           <Link href="/noticias" className="hover:text-primary">Notícias</Link>
@@ -93,9 +94,11 @@ export function Header() {
         <div className="flex items-center space-x-2">
           {session ? (
             <>
-              <Button asChild size="md" rounded="pill" className="px-6">
-                <Link href="/upload">Upload</Link>
-              </Button>
+              {!isArquibancadaMember ? (
+                <Button asChild size="md" rounded="pill" className="px-6">
+                  <Link href="/upload">Upload</Link>
+                </Button>
+              ) : null}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button
@@ -118,9 +121,11 @@ export function Header() {
                   <DropdownMenuItem asChild>
                     <Link href="/perfil">Perfil</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/upload">Upload</Link>
-                  </DropdownMenuItem>
+                  {!isArquibancadaMember ? (
+                    <DropdownMenuItem asChild>
+                      <Link href="/upload">Upload</Link>
+                    </DropdownMenuItem>
+                  ) : null}
                   <DropdownMenuItem onSelect={() => signOut()}>Sair</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

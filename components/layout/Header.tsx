@@ -33,7 +33,7 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/feed', label: 'Feed' },
   { href: '/atletas', label: 'Atletas' },
-  { href: '/torcida', label: 'Torcida' },
+  { href: '/arquibancada', label: 'Arquibancada' },
   { href: '/agentes', label: 'Agentes' },
   { href: '/clubes', label: 'Clubes' },
   { href: '/noticias', label: 'Notícias' },
@@ -178,6 +178,7 @@ export function Header() {
     profile?.displayName ?? profile?.user?.name ?? session?.user?.name ?? 'Perfil'
   const profileImage =
     profile?.avatarUrl ?? profile?.user?.image ?? session?.user?.image ?? undefined
+  const isArquibancadaMember = session?.user?.role === 'TORCEDOR'
 
   return (
     <header
@@ -243,16 +244,18 @@ export function Header() {
           <div className="hidden items-center gap-3 sm:flex">
             {session ? (
               <>
-                <Button
-                  asChild
-                  size="icon"
-                  className="rounded-full bg-success text-success-foreground hover:brightness-105"
-                  title="Enviar vídeo"
-                >
-                  <Link href="/upload">
-                    <Upload className="h-5 w-5" />
-                  </Link>
-                </Button>
+                {!isArquibancadaMember ? (
+                  <Button
+                    asChild
+                    size="icon"
+                    className="rounded-full bg-success text-success-foreground hover:brightness-105"
+                    title="Enviar vídeo"
+                  >
+                    <Link href="/upload">
+                      <Upload className="h-5 w-5" />
+                    </Link>
+                  </Button>
+                ) : null}
                 <Link
                   href={profileHref}
                   className={cn(
@@ -351,9 +354,11 @@ export function Header() {
                       <span className="text-xs text-muted-foreground">Ver perfil</span>
                     </div>
                   </Link>
-                  <Button asChild className="w-full">
-                    <Link href="/upload">Enviar vídeo</Link>
-                  </Button>
+                  {!isArquibancadaMember ? (
+                    <Button asChild className="w-full">
+                      <Link href="/upload">Enviar vídeo</Link>
+                    </Button>
+                  ) : null}
                   <Button
                     variant="ghost"
                     className="w-full border border-border/60 bg-surface"

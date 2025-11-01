@@ -191,7 +191,7 @@ private fun VideoPickerCard(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.68f)
                 .aspectRatio(9f / 16f)
                 .clip(RoundedCornerShape(28.dp))
                 .background(Color(0xFFF4F4F5))

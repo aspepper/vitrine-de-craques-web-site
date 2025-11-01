@@ -100,8 +100,7 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
 
   return (
     <div className="min-h-screen bg-background transition-colors">
-      <main className="container mx-auto px-4 pb-24 pt-16 md:pt-20">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-12">
+      <main className="container flex flex-col gap-12 pb-24 pt-16 md:pt-20">
           <header className="space-y-6">
             <div className="space-y-3 text-center md:text-left">
               <span className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
@@ -223,7 +222,6 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
               )}
             </div>
           )}
-        </div>
       </main>
     </div>
   )

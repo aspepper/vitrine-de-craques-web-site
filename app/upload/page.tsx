@@ -16,7 +16,7 @@ export default async function UploadPage() {
   return (
     <div className="bg-gradient-to-b from-slate-50 via-white to-slate-100 pb-16 text-slate-900 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 dark:text-slate-100">
       <header className="sticky top-16 z-10 border-b border-slate-200/70 bg-white/90 backdrop-blur dark:border-white/10 dark:bg-slate-900/80">
-        <div className="mx-auto flex w-full max-w-4xl items-center justify-between px-4 py-4">
+        <div className="container flex items-center justify-between px-4 py-4">
           <div className="flex items-center gap-3">
             <Link
               href="/feed"
@@ -44,7 +44,7 @@ export default async function UploadPage() {
         </div>
       </header>
 
-      <main className="mx-auto flex min-h-[calc(100vh-8rem)] w-full max-w-4xl flex-col gap-8 px-4 py-8">
+      <main className="container flex min-h-[calc(100vh-8rem)] flex-col gap-8 px-4 py-8">
         <section className="rounded-3xl border border-slate-200 bg-white/95 p-6 shadow-[0_40px_120px_-60px_rgba(15,23,42,0.35)] backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:shadow-[0_40px_120px_-40px_rgba(15,23,42,0.85)]">
           <div className="mb-6 flex flex-col gap-2">
             <div className="inline-flex items-center gap-2 rounded-full bg-sky-100 px-3 py-1 text-sm font-medium text-sky-600 dark:bg-sky-500/15 dark:text-sky-200">

@@ -240,7 +240,7 @@ export default async function HomePage() {
   }
 
   return (
-      <div className="relative min-h-screen">
+    <div className="relative min-h-screen font-heading">
         {/* BACKGROUND otimizado */}
         <div className="pointer-events-none absolute inset-0 -z-10 md:fixed">
           <Image

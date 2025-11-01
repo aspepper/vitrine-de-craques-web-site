@@ -13,13 +13,6 @@ const fontSans = Inter({
   display: "swap",
 });
 
-const fontHeading = Inter({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: "700",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Vitrine de Craques",
   description: "A sua plataforma para mostrar seu talento no futebol.",
@@ -34,7 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable, fontHeading.variable)}>
+      <head>
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/microgramma-d-extended" />
+      </head>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
         <Providers>
           <Header />
           <main className="pt-4 md:pt-6">{children}</main>

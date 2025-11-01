@@ -49,7 +49,8 @@
 
   /* Typography */
   --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Inter', sans-serif;
+  --font-heading: 'Microgramma D Extended Black Italic', 'Microgramma D Extended', 'Eurostile Extended', 'Eurostile', 'Inter',
+    sans-serif;
   --text-h1: 2.25rem; /* 36px */
   --text-h2: 1.875rem; /* 30px */
   --text-h3: 1.5rem; /* 24px */

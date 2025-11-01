@@ -1057,7 +1057,7 @@ private fun FeedVideoCard(
         if (isActive && playbackError == null) {
             exoPlayer.playWhenReady = true
             exoPlayer.volume = if (mutedState) 0f else 1f
-            exoPlayer.prepare()
+            // exoPlayer.prepare()
             exoPlayer.play()
         } else {
             exoPlayer.playWhenReady = false
@@ -1431,7 +1431,7 @@ private fun FeedActionButton(
     onClick: () -> Unit = {},
 ) {
     Column(
-        horizontalAlignment = Alignment.End,
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier
             .widthIn(min = 56.dp)
@@ -1460,7 +1460,7 @@ private fun FeedActionButton(
             style = MaterialTheme.typography.labelSmall,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.End,
+            textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
     }

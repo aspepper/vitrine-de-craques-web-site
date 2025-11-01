@@ -286,8 +286,12 @@ export default async function HomePage() {
                     italic leading-tight md:text-[48px]
                   "
                   >
-                    Descubra talentos do Futebol
+                    Vitrine de Craques
                   </h1>
+
+                  <p className="mb-8 max-w-[62ch] text-[17px] leading-relaxed text-foreground/90 md:text-[18px]">
+                    Seu sonho começa aqui. Mostre o seu talento.
+                  </p>
 
                   <p className="mb-8 max-w-[62ch] text-[17px] leading-relaxed text-foreground/90 md:text-[18px]">
                     Vídeos 9:16 com moderação ativa, consentimento destacado

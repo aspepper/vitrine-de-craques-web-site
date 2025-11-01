@@ -605,7 +605,7 @@ private fun FeedVideoCard(
         } else {
             exoPlayer.playWhenReady = false
             if (exoPlayer.playbackState != Player.STATE_IDLE) {
-                exoPlayer.stop(Player.STOP_MODE_KEEP_MEDIA_ITEM)
+                exoPlayer.stop()
             }
         }
     }

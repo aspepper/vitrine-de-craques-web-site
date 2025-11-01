@@ -549,37 +549,33 @@ private fun FeedVideoCard(
     }
 
     LaunchedEffect(video.id, video.videoUrl, exoPlayer) {
-        withContext(Dispatchers.IO) {
-            playbackError = null
-            if (video.videoUrl.isBlank()) {
-                withContext(Dispatchers.Main) {
-                    exoPlayer.playWhenReady = false
-                    playbackError = "Vídeo indisponível."
+        playbackError = null
+        if (video.videoUrl.isBlank()) {
+            exoPlayer.playWhenReady = false
+            playbackError = "Vídeo indisponível."
+        } else {
+            val cookieHeader = buildCookieHeaderFor(video.videoUrl)
+            val appOriginHttpUrl = appOrigin?.toHttpUrlOrNull()
+            val userAgent = "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)"
+            val requestProperties = mutableMapOf<String, String>().apply {
+                put("Accept", "*/*")
+                if (!cookieHeader.isNullOrEmpty()) {
+                    put("Cookie", cookieHeader)
                 }
-            } else {
-                val cookieHeader = buildCookieHeaderFor(video.videoUrl)
-                val appOriginHttpUrl = appOrigin?.toHttpUrlOrNull()
-                val userAgent = "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)"
-                val requestProperties = mutableMapOf<String, String>().apply {
-                    put("Accept", "*/*")
-                    if (!cookieHeader.isNullOrEmpty()) {
-                        put("Cookie", cookieHeader)
-                    }
-                    appOriginHttpUrl?.let { originUrl ->
-                        val referer = originUrl.toString()
-                        put("Referer", referer)
-                        put("Origin", referer.trimEnd('/'))
-                    }
+                appOriginHttpUrl?.let { originUrl ->
+                    val referer = originUrl.toString()
+                    put("Referer", referer)
+                    put("Origin", referer.trimEnd('/'))
                 }
-                httpDataSourceFactory.setUserAgent(userAgent)
-                httpDataSourceFactory.setDefaultRequestProperties(emptyMap())
-                httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
-                exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
-                exoPlayer.prepare()
-                if (isActiveState) {
-                    exoPlayer.playWhenReady = true
-                    // exoPlayer.play()
-                }
+            }
+            httpDataSourceFactory.setUserAgent(userAgent)
+            httpDataSourceFactory.setDefaultRequestProperties(emptyMap())
+            httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
+            exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
+            exoPlayer.prepare()
+            if (isActiveState) {
+                exoPlayer.playWhenReady = true
+                // exoPlayer.play()
             }
         }
     }
@@ -887,9 +883,9 @@ private fun FeedActionsPanel(
     isMuted: Boolean,
     onToggleSound: () -> Unit,
     modifier: Modifier = Modifier,
-) {
+) { 
     val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
-    Box(
+    Row(
         modifier = Modifier
             .fillMaxSize()
             .then(modifier),

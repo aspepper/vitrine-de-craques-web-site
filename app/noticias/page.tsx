@@ -111,16 +111,18 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
-      <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
-        <header className="mb-12 space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+      <main className="container mx-auto flex flex-1 flex-col gap-12 px-4 pb-24 pt-10 md:pt-12">
+        <header className="space-y-6 text-center md:text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
             Atualizações oficiais
           </p>
-          <h1 className="text-3xl font-semibold text-foreground">Notícias</h1>
-          <p className="max-w-3xl text-base text-muted-foreground">
-            Acompanhe as histórias mais recentes sobre atletas, bastidores e decisões estratégicas que
-            movimentam a comunidade Vitrine de Craques.
-          </p>
+          <h1 className="font-heading text-[44px] font-semibold leading-tight text-foreground md:text-[56px]">
+            Notícias
+          </h1>
+            <p className="mx-auto max-w-3xl text-base text-muted-foreground md:mx-0">
+              Acompanhe as histórias mais recentes sobre atletas, bastidores e decisões estratégicas que
+              movimentam a comunidade Vitrine de Craques.
+            </p>
           {showLoadErrorMessage ? (
             <p className="text-sm font-medium text-warning">
               Não foi possível carregar as notícias em tempo real. Exibindo os dados disponíveis no momento.

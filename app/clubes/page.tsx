@@ -83,13 +83,13 @@ export default async function ClubesPage({ searchParams }: PageProps) {
 
   return (
     <div className="min-h-screen bg-background transition-colors">
-      <main className="container flex flex-col gap-12 pb-24 pt-16">
-        <header className="flex flex-col gap-8">
-          <div className="space-y-2">
+      <main className="container mx-auto flex flex-col gap-12 px-4 pb-24 pt-10 md:pt-12">
+        <header className="space-y-8">
+          <div className="space-y-3 text-center md:text-left">
             <h1 className="font-heading text-[44px] font-semibold leading-tight text-foreground md:text-[56px]">
               Clubes
             </h1>
-            <p className="text-base text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-base text-muted-foreground md:mx-0">
               Conheça clubes cadastrados e busque por nome, confederação ou estado.
             </p>
           </div>

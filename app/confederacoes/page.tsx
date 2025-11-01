@@ -100,21 +100,21 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
 
   return (
     <div className="min-h-screen bg-background transition-colors">
-      <main className="container flex flex-col gap-12 pb-24 pt-16 md:pt-20">
-          <header className="space-y-6">
-            <div className="space-y-3 text-center md:text-left">
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-                Instituições
-              </span>
-              <h1 className="font-heading text-[44px] font-semibold leading-tight text-foreground md:text-[56px]">
-                Confederações
-              </h1>
-              <p className="text-base text-muted-foreground md:max-w-2xl">
-                Conheça as entidades que estruturam o futebol brasileiro, acompanhe os dados oficiais e leia os últimos
-                comunicados publicados por cada confederação.
-              </p>
-            </div>
-          </header>
+      <main className="container mx-auto flex flex-col gap-12 px-4 pb-24 pt-10 md:pt-12">
+        <header className="space-y-6 text-center md:text-left">
+          <div className="space-y-3">
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+              Instituições
+            </span>
+            <h1 className="font-heading text-[44px] font-semibold leading-tight text-foreground md:text-[56px]">
+              Confederações
+            </h1>
+            <p className="mx-auto text-base text-muted-foreground md:mx-0 md:max-w-2xl md:text-left">
+              Conheça as entidades que estruturam o futebol brasileiro, acompanhe os dados oficiais e leia os últimos
+              comunicados publicados por cada confederação.
+            </p>
+          </div>
+        </header>
 
           <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {items.map((confed) => {

@@ -111,11 +111,11 @@ export default async function GamesPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex min-h-screen flex-col bg-background transition-colors">
-      <main className="container mx-auto flex-grow px-4 pb-16 pt-10">
-        <header className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-muted-foreground">Seleção editorial</p>
-          <h1 className="text-3xl font-semibold text-foreground">Games</h1>
-          <p className="max-w-3xl text-base text-muted-foreground">
+      <main className="container mx-auto flex flex-1 flex-col gap-12 px-4 pb-24 pt-10 md:pt-12">
+        <header className="space-y-6 text-center md:text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">Seleção editorial</p>
+          <h1 className="font-heading text-[44px] font-semibold leading-tight text-foreground md:text-[56px]">Games</h1>
+          <p className="mx-auto max-w-3xl text-base text-muted-foreground md:mx-0">
             Aqui vamos mostrar o segredo para chegar ao fim das campanhas com repertórios sólidos, análises profundas e histórias
             contadas por especialistas da imprensa.
           </p>
@@ -129,7 +129,7 @@ export default async function GamesPage({ searchParams }: PageProps) {
           ) : null}
         </header>
 
-        <section className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {displayedGames.map((game) => (
             <article
               key={game.slug}
@@ -176,7 +176,7 @@ export default async function GamesPage({ searchParams }: PageProps) {
         </section>
 
         {totalPages > 1 ? (
-          <nav className="mt-12 flex items-center justify-between">
+          <nav className="flex items-center justify-between">
             {page > 1 ? (
               <Button asChild variant="outline">
                 <Link href={`/games?page=${page - 1}`}>Anterior</Link>

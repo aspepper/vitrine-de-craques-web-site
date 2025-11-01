@@ -12,13 +12,13 @@
     @apply bg-background text-foreground font-sans text-body leading-relaxed;
   }
   h1 {
-    @apply text-h1 font-heading font-bold mb-[var(--gap-h1)];
+    @apply text-h1 font-heading font-black italic mb-[var(--gap-h1)];
   }
   h2 {
-    @apply text-h2 font-heading font-semibold mb-[var(--gap-h2)];
+    @apply text-h2 font-heading font-black italic mb-[var(--gap-h2)];
   }
   h3 {
-    @apply text-h3 font-heading font-semibold mb-[var(--gap-h3)];
+    @apply text-h3 font-heading font-black italic mb-[var(--gap-h3)];
   }
   p {
     @apply text-body mb-[var(--gap-body)];

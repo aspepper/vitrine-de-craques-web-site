@@ -63,15 +63,15 @@ export default async function AgentesPage({ searchParams }: PageProps) {
 
   return (
     <div className="min-h-screen bg-background transition-colors">
-      <main className="container flex flex-col gap-12 pb-24 pt-16">
-        <header className="flex flex-col gap-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-            rede vitrine de craques
+      <main className="container mx-auto flex flex-col gap-12 px-4 pb-24 pt-10 md:pt-12">
+        <header className="space-y-6 text-center md:text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            Rede Vitrine de Craques
           </p>
-          <h1 className="max-w-3xl font-heading text-[44px] font-semibold italic leading-tight text-foreground md:text-[56px]">
+          <h1 className="mx-auto max-w-3xl font-heading text-[44px] font-semibold italic leading-tight text-foreground md:mx-0 md:text-[56px]">
             Time de Agentes de Futebol, Empresários e Olheiros
           </h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-base text-muted-foreground md:mx-0 md:text-lg">
             Conheça os profissionais que cuidam da carreira dos craques, conectando talentos promissores a grandes
             oportunidades no futebol brasileiro e internacional.
           </p>

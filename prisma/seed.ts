@@ -957,13 +957,13 @@ async function main() {
         likesCount: 167,
       },
       {
-        title: 'Torcida prepara mosaico especial para decisão continental',
-        slug: slugify('Torcida prepara mosaico especial para decisão continental'),
+        title: 'Arquibancada prepara mosaico especial para decisão continental',
+        slug: slugify('Arquibancada prepara mosaico especial para decisão continental'),
         excerpt:
-          'Organizadas se unem em ação solidária que arrecada alimentos enquanto prepara espetáculo de luzes e cores para o jogo mais aguardado do ano.',
+          'Grupos da arquibancada se unem em ação solidária que arrecada alimentos enquanto prepara espetáculo de luzes e cores para o jogo mais aguardado do ano.',
         content:
-          'Integrantes das principais torcidas organizadas anunciaram parceria para montar um mosaico 3D que ocupará os quatro setores do estádio. O material foi financiado por campanha coletiva que arrecadou cinco toneladas de alimentos para instituições locais.\n\nAlém do show nas arquibancadas, os torcedores planejam recepção calorosa ao elenco, com concentração nas imediações do CT na véspera da partida.',
-        category: 'Torcida',
+          'Integrantes das principais frentes da arquibancada anunciaram parceria para montar um mosaico 3D que ocupará os quatro setores do estádio. O material foi financiado por campanha coletiva que arrecadou cinco toneladas de alimentos para instituições locais.\n\nAlém do show nas arquibancadas, os apaixonados planejam recepção calorosa ao elenco, com concentração nas imediações do CT na véspera da partida.',
+        category: 'Arquibancada',
         coverImage:
           'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1600&q=80&fm=webp',
         publishedAt: new Date('2025-07-18T20:45:00Z'),

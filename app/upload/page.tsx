@@ -13,6 +13,10 @@ export default async function UploadPage() {
     redirect("/login?callbackUrl=/upload");
   }
 
+  if (session.user.role === "TORCEDOR") {
+    redirect("/arquibancada");
+  }
+
   return (
     <div className="bg-gradient-to-b from-slate-50 via-white to-slate-100 pb-16 text-slate-900 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 dark:text-slate-100">
       <header className="sticky top-16 z-10 border-b border-slate-200/70 bg-white/90 backdrop-blur dark:border-white/10 dark:bg-slate-900/80">

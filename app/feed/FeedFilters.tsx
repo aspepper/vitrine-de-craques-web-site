@@ -16,7 +16,7 @@ const CATEGORY_OPTIONS = [
   { label: "Atletas", value: "ATLETA" },
   { label: "Agentes", value: "AGENTE" },
   { label: "Clubes", value: "CLUBE" },
-  { label: "Torcida", value: "TORCEDOR" },
+  { label: "Arquibancada", value: "TORCEDOR" },
   { label: "Imprensa", value: "IMPRENSA" },
   { label: "Responsáveis", value: "RESPONSAVEL" },
 ] as const;

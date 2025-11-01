@@ -56,7 +56,7 @@ export function Footer() {
             <li><Link className="text-white/80 hover:text-white transition-colors" href="/noticias">Notícias</Link></li>
             <li><Link className="text-white/80 hover:text-white transition-colors" href="/atletas">Atletas</Link></li>
             <li><Link className="text-white/80 hover:text-white transition-colors" href="/games">Games</Link></li>
-            <li><Link className="text-white/80 hover:text-white transition-colors" href="/torcida">Torcida</Link></li>
+            <li><Link className="text-white/80 hover:text-white transition-colors" href="/arquibancada">Arquibancada</Link></li>
             <li><Link className="text-white/80 hover:text-white transition-colors" href="/confederacoes">Confederações</Link></li>
             <li><Link className="text-white/80 hover:text-white transition-colors" href="/agentes">Agentes</Link></li>
             <li><Link className="text-white/80 hover:text-white transition-colors" href="/sobre">Sobre</Link></li>

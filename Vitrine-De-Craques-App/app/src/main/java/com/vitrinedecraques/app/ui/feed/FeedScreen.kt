@@ -888,11 +888,12 @@ private fun FeedActionsPanel(
     Row(
         modifier = Modifier
             .fillMaxSize()
-            .then(modifier)
+            .then(modifier),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.Bottom
     ) {
         Column(
             modifier = Modifier
-                .align(Alignment.BottomEnd)
                 .navigationBarsPadding()
                 .padding(end = 12.dp, bottom = 20.dp),
             horizontalAlignment = Alignment.End

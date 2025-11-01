@@ -289,14 +289,8 @@ export default async function HomePage() {
                     Vitrine de Craques
                   </h1>
 
-                  <p className="mb-8 max-w-[62ch] text-[17px] leading-relaxed text-foreground/90 md:text-[18px]">
+                  <p className="mb-8 max-wx-[62ch] text-[17px] leading-relaxed text-foreground/90 md:text-[18px]">
                     Seu sonho começa aqui. Mostre o seu talento.
-                  </p>
-
-                  <p className="mb-8 max-w-[62ch] text-[17px] leading-relaxed text-foreground/90 md:text-[18px]">
-                    Vídeos 9:16 com moderação ativa, consentimento destacado
-                    (ECA/LGPD) e conexão ética entre atletas, famílias, clubes e
-                    agentes licenciados.
                   </p>
 
                   {/* CTAs principais */}

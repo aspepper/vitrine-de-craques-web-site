@@ -413,7 +413,53 @@ export async function getFileStreamByKey({
   }
 
   if (driver === 'azure') {
-    throw new Error('Azure storage streaming is not implemented')
+    const container = await ensureAzureContainerClient()
+    const blob = container.getBlockBlobClient(normalizedKey)
+
+    if (range) {
+      const properties = await blob.getProperties()
+      const fileSize = properties.contentLength
+
+      if (fileSize == null) {
+        throw new Error('Unable to determine blob size for range request')
+      }
+
+      const parsed = parseRangeHeader(range, Number(fileSize))
+      if (!parsed) {
+        throw Object.assign(new Error('Invalid range'), { code: 'ERR_INVALID_RANGE' })
+      }
+
+      const { start, end } = parsed
+      const count = end - start + 1
+      const response = await blob.download(start, count)
+      const stream = ensureNodeReadable(response.readableStreamBody)
+      const contentLength = response.contentLength ?? count
+      const totalSize = Number(fileSize)
+
+      return {
+        stream,
+        contentLength,
+        contentType: response.contentType ?? properties.contentType ?? undefined,
+        contentRange:
+          response.contentRange ?? `bytes ${start}-${start + contentLength - 1}/${totalSize}`,
+        etag: response.etag ?? properties.etag ?? undefined,
+        lastModified: response.lastModified ?? properties.lastModified ?? undefined,
+        totalSize,
+      }
+    }
+
+    const response = await blob.download()
+    const stream = ensureNodeReadable(response.readableStreamBody)
+
+    return {
+      stream,
+      contentLength: response.contentLength ?? undefined,
+      contentType: response.contentType ?? undefined,
+      contentRange: response.contentRange ?? undefined,
+      etag: response.etag ?? undefined,
+      lastModified: response.lastModified ?? undefined,
+      totalSize: response.contentLength ?? undefined,
+    }
   }
 
   if (!storageEnv.bucket) {

@@ -69,7 +69,7 @@ export default function LoginPage() {
                     href="/registrar-escolha-perfil"
                     className="text-sm font-semibold text-primary hover:underline"
                   >
-                    Não tem conta? Registrar
+                    Não tem conta? Cadastre-se
                   </Link>
                 </div>
 

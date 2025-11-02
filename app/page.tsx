@@ -306,7 +306,7 @@ export default async function HomePage() {
                       className="h-14 rounded-full px-8 text-[16px] font-semibold shadow-sm"
                     >
                       <Link href={isAuthenticated ? '/perfil' : '/registrar-escolha-perfil'}>
-                        {isAuthenticated ? 'Perfil' : 'Registrar'}
+                        {isAuthenticated ? 'Perfil' : 'Cadastre-se'}
                       </Link>
                     </Button>
 

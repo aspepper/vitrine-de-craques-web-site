@@ -58,18 +58,23 @@ class NextApiService(
             .get()
             .build()
 
-        Log.i(TAG, "Fetching videos from: ${'$'}{httpUrl}")
+        Log.i(TAG, "Fetching videos from: $httpUrl")
 
         execute(request).map { resolveVideoUrls(it, effectiveBaseUrl, origin) }
     }
 
     private fun execute(request: Request): List<FeedVideo> {
         client.newCall(request).execute().use { response ->
+            val body = response.body?.string().orEmpty()
             if (!response.isSuccessful) {
-                throw IOException("Erro ${'$'}{response.code()} ao carregar vídeos")
+                Log.e(
+                    TAG,
+                    "Falha ao carregar vídeos (HTTP ${response.code}): ${body.previewForLog()}"
+                )
+                throw IOException("Erro ${response.code} ao carregar vídeos")
             }
-            val body = response.body?.string() ?: "[]"
-            return json.decodeFromString(body)
+            val payload = if (body.isBlank()) "[]" else body
+            return json.decodeFromString(payload)
         }
     }
 
@@ -91,16 +96,23 @@ class NextApiService(
                 .get()
                 .build()
 
-            Log.i(TAG, "Fetching profile details from: ${'$'}{httpUrl}")
+            Log.i(TAG, "Fetching profile details from: $httpUrl")
 
             client.newCall(request).execute().use { response ->
+                val body = response.body?.string().orEmpty()
                 if (response.code == 404) {
                     return@withContext null
                 }
                 if (!response.isSuccessful) {
-                    throw IOException("Erro ${'$'}{response.code()} ao carregar perfil")
+                    Log.e(
+                        TAG,
+                        "Falha ao carregar perfil (HTTP ${response.code}): ${body.previewForLog()}"
+                    )
+                    throw IOException("Erro ${response.code} ao carregar perfil")
                 }
-                val body = response.body?.string() ?: return@withContext null
+                if (body.isBlank()) {
+                    return@withContext null
+                }
                 return@withContext json.decodeFromString<ProfileDetail>(body)
             }
         }
@@ -119,13 +131,20 @@ class NextApiService(
             .build()
 
         client.newCall(request).execute().use { response ->
+            val body = response.body?.string().orEmpty()
             if (response.code == 404) {
                 return@withContext null
             }
             if (!response.isSuccessful) {
-                throw IOException("Erro ${'$'}{response.code()} ao carregar seguidores")
+                Log.e(
+                    TAG,
+                    "Falha ao carregar seguidores (HTTP ${response.code}): ${body.previewForLog()}"
+                )
+                throw IOException("Erro ${response.code} ao carregar seguidores")
             }
-            val body = response.body?.string() ?: return@withContext null
+            if (body.isBlank()) {
+                return@withContext null
+            }
             return@withContext json.decodeFromString<FollowStats>(body)
         }
     }
@@ -235,4 +254,11 @@ class NextApiService(
         val index = abs(videoId.hashCode()) % fallbackVideoUrls.size
         return fallbackVideoUrls[index]
     }
+}
+
+private fun String.previewForLog(limit: Int = 256): String {
+    if (isBlank()) {
+        return "<vazio>"
+    }
+    return if (length <= limit) this else substring(0, limit) + "…"
 }

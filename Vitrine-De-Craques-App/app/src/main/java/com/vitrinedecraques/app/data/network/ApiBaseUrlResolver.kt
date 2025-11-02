@@ -1,6 +1,7 @@
 package com.vitrinedecraques.app.data.network
 
 import android.util.Log
+import java.io.IOException
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.Serializable
@@ -29,6 +30,13 @@ object ApiBaseUrlResolver {
     @Volatile
     private var cachedBaseUrl: HttpUrl? = null
 
+    private val additionalFallbackHosts = listOf(
+        "https://vitrinedecraques.com",
+        "https://www.vitrinedecraques.com",
+        "https://app.vitrinedecraques.com",
+        "https://nice-hill-01a3a1010.2.azurestaticapps.net",
+    )
+
     suspend fun resolve(
         client: OkHttpClient,
         json: Json,
@@ -37,26 +45,67 @@ object ApiBaseUrlResolver {
         cachedBaseUrl?.let { return it }
         return mutex.withLock {
             cachedBaseUrl?.let { return it }
-            val detected = runCatching { fetchCanonicalBaseUrl(client, json, fallback) }
-                .onFailure { error ->
-                    Log.w(TAG, "Falha ao detectar host canônico: ${error.message}")
+
+            val candidates = buildCandidateList(fallback)
+            var lastError: Throwable? = null
+
+            for (candidate in candidates) {
+                val result = runCatching { fetchCanonicalBaseUrl(client, json, candidate) }
+                    .onFailure { error ->
+                        lastError = error
+                        Log.w(
+                            TAG,
+                            "Falha ao consultar /api/health em ${candidate.host}: ${error.logMessage()}"
+                        )
+                    }
+                    .getOrNull()
+                    ?: continue
+
+                val resolved = (result.canonical ?: candidate).normalize()
+                if (result.canonical != null && !result.canonical.hasSameOrigin(candidate)) {
+                    Log.i(
+                        TAG,
+                        "Host canônico detectado: $resolved (fallback era ${candidate.normalize()})"
+                    )
                 }
-                .getOrNull()
-            val result = detected ?: fallback
-            if (detected != null && detected.host != fallback.host) {
-                Log.i(TAG, "Host canônico detectado: ${detected} (fallback era ${fallback})")
+                cachedBaseUrl = resolved
+                return resolved
             }
-            cachedBaseUrl = result
-            return result
+
+            lastError?.let { error ->
+                Log.w(
+                    TAG,
+                    "Não foi possível detectar host canônico; mantendo fallback ${fallback.normalize()}. Último erro: ${error.logMessage()}"
+                )
+            }
+
+            val normalizedFallback = fallback.normalize()
+            cachedBaseUrl = normalizedFallback
+            return normalizedFallback
         }
+    }
+
+    private fun buildCandidateList(primary: HttpUrl): List<HttpUrl> {
+        val unique = LinkedHashMap<String, HttpUrl>()
+        fun addCandidate(url: HttpUrl) {
+            val normalized = url.normalize()
+            unique[normalized.canonicalKey()] = normalized
+        }
+
+        addCandidate(primary)
+        additionalFallbackHosts.forEach { host ->
+            host.toHttpUrlOrNull()?.let { addCandidate(it) }
+        }
+
+        return unique.values.toList()
     }
 
     private fun fetchCanonicalBaseUrl(
         client: OkHttpClient,
         json: Json,
-        fallback: HttpUrl,
-    ): HttpUrl? {
-        val healthUrl = fallback.newBuilder()
+        candidate: HttpUrl,
+    ): HealthCheckResult {
+        val healthUrl = candidate.newBuilder()
             .addPathSegment("api")
             .addPathSegment("health")
             .build()
@@ -67,38 +116,73 @@ object ApiBaseUrlResolver {
             .build()
 
         client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) {
-                Log.w(TAG, "Falha ao consultar /api/health: code=${response.code}")
-                return null
-            }
             val body = response.body?.string().orEmpty()
-            if (body.isBlank()) {
-                Log.w(TAG, "Resposta vazia ao consultar /api/health")
-                return null
+            if (!response.isSuccessful) {
+                val preview = body.previewForLog()
+                throw IOException("HTTP ${response.code} ${response.message}. corpo=$preview")
             }
+
             val payload = runCatching { json.decodeFromString(HealthResponse.serializer(), body) }
                 .onFailure { error ->
-                    Log.w(TAG, "Não foi possível interpretar resposta do health endpoint: ${error.message}")
+                    Log.w(
+                        TAG,
+                        "Não foi possível interpretar resposta do health endpoint (${candidate.host}): ${error.message ?: error.javaClass.simpleName}"
+                    )
                 }
                 .getOrNull()
-                ?: return null
 
-            val hostUrl = payload.host?.trim()?.takeIf { it.isNotEmpty() }?.toHttpUrlOrNull()
-            if (hostUrl == null) {
+            val hostUrl = payload
+                ?.host
+                ?.trim()
+                ?.takeIf { it.isNotEmpty() }
+                ?.toHttpUrlOrNull()
+                ?.normalize()
+
+            if (payload != null && hostUrl == null) {
                 Log.w(TAG, "Health endpoint não informou NEXTAUTH_URL válida: host='${payload.host}'")
-                return null
             }
-            return hostUrl.newBuilder()
-                .encodedPath("/")
-                .query(null)
-                .fragment(null)
-                .build()
+
+            return HealthCheckResult(canonical = hostUrl)
         }
     }
 
     fun reset() {
         cachedBaseUrl = null
     }
+}
+
+private data class HealthCheckResult(
+    val canonical: HttpUrl?,
+)
+
+private fun HttpUrl.normalize(): HttpUrl = newBuilder()
+    .encodedPath("/")
+    .query(null)
+    .fragment(null)
+    .build()
+
+private fun HttpUrl.hasSameOrigin(other: HttpUrl): Boolean {
+    val sameHost = host.equals(other.host, ignoreCase = true)
+    if (!sameHost) return false
+    val sameScheme = scheme.equals(other.scheme, ignoreCase = true)
+    if (!sameScheme) return false
+    return port == other.port
+}
+
+private fun HttpUrl.canonicalKey(): String = buildString {
+    append(scheme.lowercase())
+    append("://")
+    append(host.lowercase())
+    append(":")
+    append(port)
+}
+
+private fun Throwable.logMessage(): String =
+    message?.takeIf { it.isNotBlank() } ?: this::class.java.simpleName
+
+private fun String.previewForLog(limit: Int = 256): String {
+    if (isBlank()) return "<vazio>"
+    return if (length <= limit) this else substring(0, limit) + "…"
 }
 
 @Serializable

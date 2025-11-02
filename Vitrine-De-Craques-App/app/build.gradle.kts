@@ -20,7 +20,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_BASE_URL", "\"https://nice-hill-01a3a1010.2.azurestaticapps.net\"")
+        buildConfigField("String", "API_BASE_URL", "\"https://vitrinedecraques.com\"")
     }
 
     signingConfigs {

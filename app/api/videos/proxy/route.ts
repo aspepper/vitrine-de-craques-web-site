@@ -22,9 +22,17 @@ export async function GET(request: NextRequest) {
   }
 
   const storageDriver = getStorageDriver()
-  if (storageDriver !== 'r2' && storageDriver !== 's3' && storageDriver !== 'local') {
+  if (
+    storageDriver !== 'r2' &&
+    storageDriver !== 's3' &&
+    storageDriver !== 'local' &&
+    storageDriver !== 'azure'
+  ) {
     return NextResponse.json(
-      { message: 'O proxy de vídeos só está disponível para armazenamentos S3/R2.' },
+      {
+        message:
+          'O proxy de vídeos só está disponível para armazenamentos S3/R2, Azure Blob ou local.',
+      },
       { status: 500 },
     )
   }

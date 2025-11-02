@@ -194,14 +194,16 @@ export function Header() {
     >
       <nav className="container mx-auto flex h-14 items-center gap-4 md:h-16">
         <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/brand/logo.png"
-            alt="Vitrine de Craques"
-            width={56}
-            height={56}
-            priority
-            className="h-12 w-auto transition dark:brightness-150 dark:invert"
-          />
+          <div className="relative h-12 w-14">
+            <Image
+              src="/brand/logo.png"
+              alt="Vitrine de Craques"
+              fill
+              priority
+              sizes="3.5rem"
+              className="object-contain transition dark:brightness-150 dark:invert"
+            />
+          </div>
         </Link>
 
         <div className="ml-4 hidden items-center gap-6 lg:flex">
@@ -295,9 +297,9 @@ export function Header() {
                 <Button
                   asChild
                   className="h-10 rounded-full px-5 bg-secondary text-white hover:bg-secondary/90"
-                  title="Registrar"
+                  title="Cadastre-se"
                 >
-                  <Link href="/registrar-escolha-perfil">Registrar</Link>
+                  <Link href="/registrar-escolha-perfil">Cadastre-se</Link>
                 </Button>
               </>
             )}
@@ -373,7 +375,7 @@ export function Header() {
                     <Link href="/login">Login</Link>
                   </Button>
                   <Button asChild variant="secondary" className="w-full">
-                    <Link href="/registrar-escolha-perfil">Registrar</Link>
+                    <Link href="/registrar-escolha-perfil">Cadastre-se</Link>
                   </Button>
                 </div>
               )}

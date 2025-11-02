@@ -562,10 +562,21 @@ private fun FeedVideoCard(
                 if (!cookieHeader.isNullOrEmpty()) {
                     put("Cookie", cookieHeader)
                 }
-                appOriginHttpUrl?.let { originUrl ->
-                    val referer = originUrl.toString()
-                    put("Referer", referer)
-                    put("Origin", referer.trimEnd('/'))
+
+                val videoHttpUrl = video.videoUrl.toHttpUrlOrNull()
+                if (videoHttpUrl != null && appOriginHttpUrl != null) {
+                    val videoHost = videoHttpUrl.host
+                    val originHost = appOriginHttpUrl.host
+                    val isSameHost = videoHost.equals(originHost, ignoreCase = true)
+                    val isSameParentDomain =
+                        videoHost.endsWith(".$originHost", ignoreCase = true) ||
+                            originHost.endsWith(".$videoHost", ignoreCase = true)
+
+                    if (isSameHost || isSameParentDomain) {
+                        val referer = appOriginHttpUrl.toString()
+                        put("Referer", referer)
+                        put("Origin", referer.trimEnd('/'))
+                    }
                 }
             }
             httpDataSourceFactory.setUserAgent(userAgent)

@@ -282,14 +282,19 @@ export default async function HomePage() {
                   <h1
                     className="
                     mb-4
-                    font-heading text-[34px] font-extrabold
-                    italic leading-tight md:text-[48px]
+                    font-heading text-[34px] font-black
+                    italic leading-tight tracking-[0.01em] md:text-[48px]
                   "
                   >
                     Vitrine de Craques
                   </h1>
 
-                  <p className="mb-8 max-wx-[62ch] text-[17px] leading-relaxed text-foreground/90 md:text-[18px]">
+                  <p
+                    className="
+                    mb-8 max-wx-[62ch] text-[17px]
+                    font-heading font-black italic leading-relaxed text-foreground/90 md:text-[18px]
+                  "
+                  >
                     Seu sonho começa aqui. Mostre o seu talento.
                   </p>
 

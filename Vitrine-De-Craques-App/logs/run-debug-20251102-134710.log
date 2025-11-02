@@ -1,0 +1,685 @@
+--------- beginning of main
+11-02 13:48:27.416 I/nedecraques.ap(12575): Late-enabling -Xcheck:jni
+11-02 13:48:27.507 E/nedecraques.ap(12575): Unknown bits set in runtime_flags: 0x8000
+11-02 13:48:32.644 I/Perf    (12575): Connecting to perf service.
+11-02 13:48:32.700 I/nedecraques.ap(12575): Waiting for a blocking GC ClassLinker
+11-02 13:48:32.794 I/FeatureParser(12575): can't find olive.xml in assets/device_features/,it may be in /system/etc/device_features
+11-02 13:48:32.826 E/Perf    (12575): Fail to get file list com.vitrinedecraques.app
+11-02 13:48:32.826 E/Perf    (12575): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+11-02 13:48:32.826 E/Perf    (12575): Fail to get file list com.vitrinedecraques.app
+11-02 13:48:32.826 E/Perf    (12575): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+--------- beginning of system
+11-02 13:48:32.827 W/Looper  (12575): Slow Looper main: Long Msg: seq=2 plan=13:48:27.662  late=2ms wall=5160ms running=0ms h=android.app.ActivityThread$H w=110
+11-02 13:48:32.952 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 1 line
+11-02 13:48:33.152 W/Looper  (12575): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5110ms late (wall=324ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.LaunchActivityItem] lifecycleRequest=android.app.servertransaction.ResumeActivityItem }) because of 1 msg, msg 1 took 5160ms (seq=2 late=2ms h=android.app.ActivityThread$H w=110)
+11-02 13:48:33.153 W/Looper  (12575): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5434ms late (wall=0ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.TopResumedActivityChangeItem] }) because of 2 msg, msg 1 took 5160ms (seq=2 late=2ms h=android.app.ActivityThread$H w=110), msg 2 took 324ms (seq=3 late=5110ms h=android.app.ActivityThread$H w=159)
+11-02 13:48:34.406 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:34.407 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-02 13:48:34.407 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-02 13:48:34.408 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, linking, allowed)
+11-02 13:48:34.412 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:48:34.414 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->objectFieldOffset(Ljava/lang/reflect/Field;)J (greylist,core-platform-api, linking, allowed)
+11-02 13:48:34.415 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:48:34.416 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:34.416 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, linking, allowed)
+11-02 13:48:34.418 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:34.419 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, linking, allowed)
+11-02 13:48:34.423 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, linking, allowed)
+11-02 13:48:34.424 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->allocateInstance(Ljava/lang/Class;)Ljava/lang/Object; (greylist, linking, allowed)
+11-02 13:48:34.428 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->peekLong(JZ)J (greylist, reflection, allowed)
+11-02 13:48:34.428 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->pokeLong(JJZ)V (greylist, reflection, allowed)
+11-02 13:48:34.428 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->pokeInt(JIZ)V (greylist, reflection, allowed)
+11-02 13:48:34.428 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->peekInt(JZ)I (greylist, reflection, allowed)
+11-02 13:48:34.428 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->pokeByte(JB)V (greylist, reflection, allowed)
+11-02 13:48:34.428 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->peekByte(J)B (greylist, reflection, allowed)
+11-02 13:48:34.429 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->pokeByteArray(J[BII)V (greylist, reflection, allowed)
+11-02 13:48:34.429 W/nedecraques.ap(12575): Accessing hidden method Llibcore/io/Memory;->peekByteArray(J[BII)V (greylist, reflection, allowed)
+11-02 13:48:34.429 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->arrayBaseOffset(Ljava/lang/Class;)I (greylist,core-platform-api, linking, allowed)
+11-02 13:48:34.429 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->arrayIndexScale(Ljava/lang/Class;)I (greylist, linking, allowed)
+11-02 13:48:34.429 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:34.431 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, reflection, allowed)
+11-02 13:48:34.431 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, reflection, allowed)
+11-02 13:48:34.431 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, reflection, allowed)
+11-02 13:48:34.431 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, reflection, allowed)
+11-02 13:48:34.431 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, reflection, allowed)
+11-02 13:48:34.431 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, reflection, allowed)
+11-02 13:48:34.432 W/nedecraques.ap(12575): Accessing hidden field Ljava/nio/Buffer;->address:J (greylist, reflection, allowed)
+11-02 13:48:34.442 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:48:34.642 W/nedecraques.ap(12575): Accessing hidden method Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl; (greylist, reflection, allowed)
+11-02 13:48:34.643 W/nedecraques.ap(12575): Accessing hidden field Landroid/view/View$AttachInfo;->mVisibleInsets:Landroid/graphics/Rect; (greylist, reflection, allowed)
+11-02 13:48:34.643 W/nedecraques.ap(12575): Accessing hidden field Landroid/view/ViewRootImpl;->mAttachInfo:Landroid/view/View$AttachInfo; (greylist, reflection, allowed)
+11-02 13:48:34.692 I/AdrenoGLES(12575): QUALCOMM build                   : 9d44e36, Ie3bb699d95
+11-02 13:48:34.692 I/AdrenoGLES(12575): Build Date                       : 09/29/20
+11-02 13:48:34.692 I/AdrenoGLES(12575): OpenGL ES Shader Compiler Version: EV031.27.05.02
+11-02 13:48:34.692 I/AdrenoGLES(12575): Local Branch                     : 
+11-02 13:48:34.692 I/AdrenoGLES(12575): Remote Branch                    : refs/tags/AU_LINUX_ANDROID_LA.UM.8.6.2.R1.10.00.00.537.053
+11-02 13:48:34.692 I/AdrenoGLES(12575): Remote Branch                    : NONE
+11-02 13:48:34.692 I/AdrenoGLES(12575): Reconstruct Branch               : NOTHING
+11-02 13:48:34.692 I/AdrenoGLES(12575): Build Config                     : S L 8.0.10 AArch64
+11-02 13:48:34.760 I/AdrenoGLES(12575): PFP: 0x005ff112, ME: 0x005ff066
+11-02 13:48:34.845 W/Gralloc3(12575): mapper 3.x is not supported
+11-02 13:48:35.036 I/OpenGLRenderer(12575): Davey! duration=2240ms; Flags=1, IntendedVsync=2444358485724008, Vsync=2444358835723994, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=2444358846059371, AnimationStart=2444358846161246, PerformTraversalsStart=2444358846446819, DrawStart=2444360513613589, SyncQueued=2444360531707444, SyncStart=2444360532310204, IssueDrawCommandsStart=2444360532403069, SwapBuffers=2444360724443694, FrameCompleted=2444360726891819, DequeueBufferDuration=115000, QueueBufferDuration=1279000, 
+11-02 13:48:35.041 W/Looper  (12575): Slow Looper main: Long Msg: seq=10 plan=13:48:32.794  late=360ms wall=1884ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+11-02 13:48:35.041 W/Looper  (12575): Slow Looper main: doFrame is 360ms late because of 8 msg, msg 1 took 5160ms (seq=2 late=2ms h=android.app.ActivityThread$H w=110), msg 2 took 324ms (seq=3 late=5110ms h=android.app.ActivityThread$H w=159)
+11-02 13:48:35.080 I/Choreographer(12575): Skipped 104 frames!  The application may be doing too much work on its main thread.
+11-02 13:48:35.088 W/Looper  (12575): Slow Looper main: doFrame is 1733ms late because of 5 msg, msg 1 took 1884ms (seq=10 late=360ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+11-02 13:48:35.092 I/OpenGLRenderer(12575): Davey! duration=1746ms; Flags=0, IntendedVsync=2444359037101438, Vsync=2444360770434702, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=2444360772417756, AnimationStart=2444360772589423, PerformTraversalsStart=2444360772597287, DrawStart=2444360777015568, SyncQueued=2444360778742548, SyncStart=2444360779154266, IssueDrawCommandsStart=2444360779256662, SwapBuffers=2444360781079214, FrameCompleted=2444360783644579, DequeueBufferDuration=109000, QueueBufferDuration=1594000, 
+11-02 13:48:35.159 W/ApiBaseUrlResolver(12575): Falha ao detectar host canônico: null
+11-02 13:48:35.163 I/HttpClientProvider(12575): updateSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-02 13:48:35.314 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-02 13:48:35.314 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:48:35.315 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-02 13:48:35.315 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:36.224 W/Looper  (12575): Slow Looper main: Long Msg: seq=33 plan=13:48:35.200  late=19ms wall=1003ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+11-02 13:48:36.224 I/OpenGLRenderer(12575): Davey! duration=1023ms; Flags=0, IntendedVsync=2444360891690981, Vsync=2444360908357647, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=2444360910813225, AnimationStart=2444360910821141, PerformTraversalsStart=2444361516220047, DrawStart=2444361516531141, SyncQueued=2444361912304162, SyncStart=2444361913015776, IssueDrawCommandsStart=2444361913324266, SwapBuffers=2444361914343901, FrameCompleted=2444361915735828, DequeueBufferDuration=165000, QueueBufferDuration=516000, 
+11-02 13:48:36.360 I/NextApiService(12575): Fetching videos from: ${httpUrl}
+11-02 13:48:36.703 I/ExoPlayerImpl(12575): Init bd992c0 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-02 13:48:36.796 W/nedecraques.ap(12575): Accessing hidden method Landroid/media/AudioTrack;->getLatency()I (greylist, reflection, allowed)
+11-02 13:48:37.233 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 6 lines
+11-02 13:48:37.272 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 1 line
+11-02 13:48:37.304 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 3 lines
+11-02 13:48:37.313 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 2 lines
+11-02 13:48:37.351 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 3 lines
+11-02 13:48:37.388 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 8 lines
+11-02 13:48:37.672 I/ExoPlayerImpl(12575): Init 84db6d3 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-02 13:48:37.781 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 7 lines
+11-02 13:48:37.787 W/Gralloc3(12575): allocator 3.x is not supported
+11-02 13:48:37.842 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 27 lines
+11-02 13:48:37.854 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 1 line
+11-02 13:48:38.147 W/Looper  (12575): Slow Looper main: Long Msg: seq=39 plan=13:48:36.236  late=149ms wall=1761ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+11-02 13:48:38.148 I/OpenGLRenderer(12575): Davey! duration=1910ms; Flags=0, IntendedVsync=2444361927565143, Vsync=2444362060898471, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=2444362076540308, AnimationStart=2444362076626766, PerformTraversalsStart=2444362221151141, DrawStart=2444362221510933, SyncQueued=2444363835475619, SyncStart=2444363836136453, IssueDrawCommandsStart=2444363836974578, SwapBuffers=2444363837926244, FrameCompleted=2444363838882494, DequeueBufferDuration=210000, QueueBufferDuration=349000, 
+11-02 13:48:38.201 I/NextApiService(12575): Fetching profile details from: ${httpUrl}
+11-02 13:48:38.213 I/ExoPlayerImpl(12575): Init 3b88a20 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-02 13:48:38.320 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 32 lines
+11-02 13:48:38.323 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 1 line
+11-02 13:48:38.341 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 4 lines
+11-02 13:48:38.440 I/HttpClientProvider(12575): getSessionCookies host=pub-11c79f639e314f208bdf80d01ef7056c.r2.dev -> nenhum
+11-02 13:48:38.460 I/HttpClientProvider(12575): getSessionCookies host=pub-11c79f639e314f208bdf80d01ef7056c.r2.dev -> nenhum
+11-02 13:48:38.494 I/DpmTcmClient(12575): RegisterTcmMonitor from: $Proxy0
+11-02 13:48:38.506 I/HttpClientProvider(12575): getSessionCookies host=storage.googleapis.com -> nenhum
+11-02 13:48:38.520 I/Choreographer(12575): Skipped 127 frames!  The application may be doing too much work on its main thread.
+11-02 13:48:38.682 W/Looper  (12575): Slow Looper main: doFrame is 2117ms late because of 13 msg, msg 1 took 1761ms (seq=39 late=149ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver), msg 7 took 370ms (seq=45 late=1763ms h=android.os.Handler c=androidx.compose.ui.platform.AndroidUiDispatcher$dispatchCallback$1)
+11-02 13:48:38.937 I/OpenGLRenderer(12575): Davey! duration=2532ms; Flags=1, IntendedVsync=2444362094645156, Vsync=2444364211311738, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=2444364213005359, AnimationStart=2444364213171140, PerformTraversalsStart=2444364282769057, DrawStart=2444364316751661, SyncQueued=2444364370912755, SyncStart=2444364371424161, IssueDrawCommandsStart=2444364372515255, SwapBuffers=2444364626451973, FrameCompleted=2444364628118275, DequeueBufferDuration=798000, QueueBufferDuration=330000, 
+11-02 13:48:39.059 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-02 13:48:39.059 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:48:39.059 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-02 13:48:39.059 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:39.143 I/NextApiService(12575): Fetching profile details from: ${httpUrl}
+11-02 13:48:39.146 I/HttpClientProvider(12575): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-02 13:48:39.158 I/HttpClientProvider(12575): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-02 13:48:39.166 I/HttpClientProvider(12575): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-02 13:48:39.199 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:39.200 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-02 13:48:39.200 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:48:39.213 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:39.219 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-02 13:48:39.273 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:48:39.274 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-02 13:48:39.274 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:48:40.725 I/nedecraques.ap(12575): ProcessProfilingInfo new_methods=15975 is saved saved_to_disk=1 resolve_classes_delay=8000
+11-02 13:48:42.371 I/ServiceManager(12575): Waiting for service 'media.player' on '/dev/binder'...
+11-02 13:48:43.372 I/ServiceManager(12575): Waiting for service 'media.player' on '/dev/binder'...
+11-02 13:48:44.372 I/ServiceManager(12575): Waiting for service 'media.player' on '/dev/binder'...
+11-02 13:48:45.373 I/ServiceManager(12575): Waiting for service 'media.player' on '/dev/binder'...
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575): Playback error
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):   androidx.media3.exoplayer.ExoPlaybackException: Source error
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at android.os.Handler.dispatchMessage(Handler.java:103)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at android.os.Looper.loop(Looper.java:223)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at android.os.HandlerThread.run(HandlerThread.java:67)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):   Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 500
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+11-02 13:48:46.235 E/ExoPlayerImplInternal(12575):       at java.lang.Thread.run(Thread.java:919)
+11-02 13:48:46.374 I/ServiceManager(12575): Waiting for service 'media.player' on '/dev/binder'...
+11-02 13:48:47.374 W/ServiceManager(12575): Service media.player didn't start. Returning NULL
+11-02 13:48:47.477 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.484 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.493 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.498 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.508 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.514 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.520 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.525 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.531 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.537 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.547 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.554 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.560 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.571 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.576 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.582 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.588 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:47.758 W/OmxInfoBuilder(12575): Fail to add media type video/avc to codec OMX.qcom.video.decoder.avc
+11-02 13:48:47.770 I/ServiceManagement(12575): getService: Trying again for android.hardware.media.omx@1.0::IOmx/default...
+11-02 13:48:48.011 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.002 W/ExoPlayer:Playb(12575): type=1400 audit(0.0:388436): avc: denied { read } for name="u:object_r:vendor_audio_prop:s0" dev="tmpfs" ino=17563 scontext=u:r:untrusted_app:s0:c124,c261,c512,c768 tcontext=u:object_r:vendor_audio_prop:s0 tclass=file permissive=0
+11-02 13:48:48.012 W/ExoPlayer:Playb(12575): type=1400 audit(0.0:388437): avc: denied { read } for name="u:object_r:vendor_audio_prop:s0" dev="tmpfs" ino=17563 scontext=u:r:untrusted_app:s0:c124,c261,c512,c768 tcontext=u:object_r:vendor_audio_prop:s0 tclass=file permissive=0
+11-02 13:48:48.019 E/libc    (12575): Access denied finding property "vendor.audio.record.aggregate.buffer.duration"
+11-02 13:48:48.019 E/libc    (12575): Access denied finding property "persist.vendor.audio.debug.sf.noaudio"
+11-02 13:48:48.019 E/libc    (12575): Access denied finding property "vendor.audio.use.sw.alac.decoder"
+11-02 13:48:48.019 E/libc    (12575): Access denied finding property "vendor.audio.use.sw.ape.decoder"
+11-02 13:48:48.020 E/libc    (12575): Access denied finding property "vendor.audio.use.sw.mpegh.decoder"
+11-02 13:48:48.020 E/libc    (12575): Access denied finding property "vendor.audio.flac.sw.decoder.24bit"
+11-02 13:48:48.020 E/libc    (12575): Access denied finding property "vendor.audio.hw.aac.encoder"
+11-02 13:48:48.023 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.012 W/ExoPlayer:Playb(12575): type=1400 audit(0.0:388438): avc: denied { read } for name="u:object_r:vendor_audio_prop:s0" dev="tmpfs" ino=17563 scontext=u:r:untrusted_app:s0:c124,c261,c512,c768 tcontext=u:object_r:vendor_audio_prop:s0 tclass=file permissive=0
+11-02 13:48:48.049 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.061 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.075 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.084 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.216 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.239 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.251 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.257 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.278 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.298 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.304 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.324 W/OMXUtils(12575): do not know color format 0x7fa30c04 = 2141391876
+11-02 13:48:48.325 W/OMXUtils(12575): do not know color format 0x7f000789 = 2130708361
+11-02 13:48:48.331 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.340 W/OMXUtils(12575): do not know color format 0x7f000789 = 2130708361
+11-02 13:48:48.344 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.363 W/OMXUtils(12575): do not know color format 0x7fa30c04 = 2141391876
+11-02 13:48:48.363 W/OMXUtils(12575): do not know color format 0x7f000789 = 2130708361
+11-02 13:48:48.368 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.375 W/OMXUtils(12575): do not know color format 0x7f000789 = 2130708361
+11-02 13:48:48.378 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.383 W/OMXUtils(12575): do not know color format 0x7fa30c04 = 2141391876
+11-02 13:48:48.384 W/OMXUtils(12575): do not know color format 0x7f000789 = 2130708361
+11-02 13:48:48.389 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.392 W/OMXUtils(12575): do not know color format 0x7f000789 = 2130708361
+11-02 13:48:48.395 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:48.399 W/OMXUtils(12575): do not know color format 0x7f000789 = 2130708361
+11-02 13:48:48.403 I/Codec2Client(12575): Available Codec2 services: "software"
+11-02 13:48:48.404 I/Codec2Client(12575): Creating a Codec2 client to service "software"
+11-02 13:48:48.436 I/Codec2Client(12575): Client to Codec2 service "software" created
+11-02 13:48:48.467 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 2
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000,11025,12000,16000,22050,24000,32000,44100,48000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 8000-320000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 4750-12200
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 16000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 6600-23850
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 7350,8000,11025,12000,16000,22050,24000,32000,44100,48000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 8000-960000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-48000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 64000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-48000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 64000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-96000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 32000-500000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 48000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 6000-510000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-96000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-10000000
+11-02 13:48:48.468 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.469 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 1-655350
+11-02 13:48:48.469 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-21000000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 13000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-352x288
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 12-11880
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-384000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-352x288
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-384000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-4080x4080
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-32768
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-1966080
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-48000000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-16384
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-491520
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-40000000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: block-size = 8x8
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-4096x4096
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-196608
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-2000000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-10000000
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.470 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-65536
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-491520
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-5000000
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-16384
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-1000000
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-40000000
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-8192
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-1000000
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-40000000
+11-02 13:48:48.471 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.471 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) ExoPlayer:Playb identical 1 line
+11-02 13:48:48.472 E/libc    (12575): Access denied finding property "vendor.sys.media.target.version"
+11-02 13:48:48.472 I/MediaCodecsXmlParser(12575): getVendorXmlPath (/vendor/etc/media_codecs_vendor.xml)
+11-02 13:48:48.472 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 2
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000,11025,12000,16000,22050,24000,32000,44100,48000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 8000-320000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 4750-12200
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 16000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 6600-23850
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 7350,8000,11025,12000,16000,22050,24000,32000,44100,48000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 8000-960000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-48000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 64000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-48000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 64000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-96000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 32000-500000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 48000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 6000-510000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000-192000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-10000000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 8
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 1-655350
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-21000000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 6
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000,11025,12000,16000,22050,24000,32000,44100,48000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 8000-960000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 4750-12200
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: feature-bitrate-modes = CBR
+11-02 13:48:48.473 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 16000
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 6600-23850
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: feature-bitrate-modes = CBR
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 2
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 1-655350
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-21000000
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: complexity-default = 5
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: complexity-range = 0-8
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: feature-bitrate-modes = CQ
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 10
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: max-channel-count = 1
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: sample-rate-ranges = 8000
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 13000
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: size-range = 96x96-1920x1088
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.474 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-20000000
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 8
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: feature-can-swap-width-height = 0
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: size-range = 32x32-864x480
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-48600
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-2000000
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 16
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: performance-point-720x480-range = 30-30
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: performance-point-720x576-range = 25-25
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: size-range = 32x32-864x480
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: alignment = 4x4
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-48600
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-2000000
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 16
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: performance-point-720x480-range = 30-30
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: performance-point-720x576-range = 25-25
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: size-range = 64x64-1920x1088
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-20000000
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 8
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: feature-can-swap-width-height = 0
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: size-range = 64x64-1920x1088
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-20000000
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 8
+11-02 13:48:48.475 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: size-range = 64x64-1920x1088
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-20000000
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 8
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: size-range = 16x16-1920x1088
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-6000000
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: size-range = 16x16-1920x1088
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-6000000
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: size-range = 16x16-1920x1088
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-6000000
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: size-range = 16x16-1920x1088
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-244800
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-6000000
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 16
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: performance-point-1920x1088-range = 30-30
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: size-range = 16x16-864x480
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: alignment = 4x4
+11-02 13:48:48.476 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-48600
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-2000000
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: max-concurrent-instances = 16
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: performance-point-720x480-range = 30-30
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: performance-point-720x576-range = 25-25
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: block-size = 8x8
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-65536
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-491520
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-5000000
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-16384
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-491520
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-40000000
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-352x288
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 12-11880
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-384000
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-352x288
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-384000
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.477 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-16384
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-108000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-40000000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-size = 8x8
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-65536
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-491520
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-5000000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-2048x2048
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-8192
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-500000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-40000000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-1280x1280
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-3600
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-108000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-5000000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: feature-adaptive-playback = 0
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: size-range = 176x144-176x144
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 16x16
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-128000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: size-range = 16x16-1808x1808
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-1620
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 1-40500
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-2000000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: feature-intra-refresh = 0
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: size-range = 16x16-176x144
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 16x16
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: blocks-per-second-range = 12-1485
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-64000
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: size-range = 2x2-1280x1280
+11-02 13:48:48.478 I/MediaCodecsXmlParser(12575): limit: alignment = 2x2
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: block-size = 16x16
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: block-count-range = 1-3600
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: bitrate-range = 1-20000000
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: feature-bitrate-modes = VBR,CBR
+11-02 13:48:48.479 E/libc    (12575): Access denied finding property "vendor.sys.media.target.version"
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): getVendorXmlPath (/vendor/etc/media_codecs_performance.xml)
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 377-377
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 113-113
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 33-33
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 18-18
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 160-160
+11-02 13:48:48.479 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 86-86
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 179-179
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 84-84
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x480-range = 54-54
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 208-208
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 98-98
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 44-44
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 21-21
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 397-397
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 413-413
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x180-range = 71-71
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 37-37
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 21-21
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 12-12
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 396-405
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 280-280
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 155-155
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1088-range = 57-57
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 57-57
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 337-337
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 253-253
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 200-200
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 91-91
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1088-range = 63-63
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 392-394
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 251-251
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x180-range = 360-360
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 659-659
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 370-370
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 162-162
+11-02 13:48:48.480 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 87-87
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-480x360-range = 232-232
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 322-322
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 250-250
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 92-92
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 35-35
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 15-15
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 122-122
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 68-68
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 32-32
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 6-10
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 226-226
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 146-132
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 183-183
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 83-83
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 11-11
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 170-180
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 89-89
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-720x480-range = 73-73
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 32-32
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 21-21
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 430-450
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 481-481
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 212-241
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 172-175
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-176x144-range = 896-955
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-352x288-range = 689-670
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 1330-1330
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x180-range = 495-500
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 146-149
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 31-31
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 12-13
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 330-381
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 139-185
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 22-38
+11-02 13:48:48.481 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 9-18
+11-02 13:48:48.482 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x180-range = 304-304
+11-02 13:48:48.482 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-320x240-range = 511-511
+11-02 13:48:48.482 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-640x360-range = 103-105
+11-02 13:48:48.482 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1280x720-range = 53-53
+11-02 13:48:48.482 I/MediaCodecsXmlParser(12575): limit: measured-frame-rate-1920x1080-range = 29-31
+11-02 13:48:48.498 W/VideoCapabilities(12575): Unsupported mime video/divx
+11-02 13:48:48.504 W/VideoCapabilities(12575): Unsupported mime video/divx4
+11-02 13:48:48.551 W/Utils   (12575): could not parse long range '146-132'
+11-02 13:48:48.562 I/VideoCapabilities(12575): Unsupported profile 4 for video/mp4v-es
+11-02 13:48:48.568 W/nedecraques.ap(12575): Long monitor contention with owner ExoPlayer:Playback (13265) at int android.media.MediaCodecList.native_getCodecCount()(MediaCodecList.java:-2) waiters=0 in java.util.List androidx.media3.exoplayer.mediacodec.MediaCodecUtil.getDecoderInfos(java.lang.String, boolean, boolean) for 4.884s
+11-02 13:48:48.640 W/Looper  (12575): Slow Looper ExoPlayer:Playback: Long Msg: seq=412 plan=13:48:42.363  late=1ms wall=6274ms running=0ms h=android.os.Handler w=8
+11-02 13:48:48.641 W/Looper  (12575): Slow Looper ExoPlayer:Playback: Long Msg: seq=539 plan=13:48:43.682  late=2ms wall=4954ms running=0ms h=android.os.Handler w=8
+11-02 13:48:48.647 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:48.647 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:49.648 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:49.648 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:50.649 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:50.649 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:51.650 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:51.650 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:52.650 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:52.651 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:53.651 W/ServiceManager(12575): Service media.resource_manager didn't start. Returning NULL
+11-02 13:48:53.651 E/MediaCodec(12575): Failed to get ResourceManagerService
+11-02 13:48:53.653 W/ServiceManager(12575): Service media.resource_manager didn't start. Returning NULL
+11-02 13:48:53.653 E/MediaCodec(12575): Failed to get ResourceManagerService
+11-02 13:48:53.659 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:53.662 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:53.669 I/MediaCodec(12575): [OMX.google.h264.decoder] setting surface generation to 12876801
+11-02 13:48:53.671 I/MediaCodec(12575): [OMX.google.h264.decoder] setting surface generation to 12876802
+11-02 13:48:53.671 I/ACodec  (12575): codec does not support config priority (err -1010)
+11-02 13:48:53.672 E/ACodec  (12575): [OMX.google.h264.decoder] setPortMode on output to DynamicANWBuffer failed w/ err -1010
+11-02 13:48:53.672 I/ACodec  (12575): codec does not support config priority (err -1010)
+11-02 13:48:53.673 I/ExtendedACodec(12575): setupVideoDecoder()
+11-02 13:48:53.673 E/ACodec  (12575): [OMX.google.h264.decoder] setPortMode on output to DynamicANWBuffer failed w/ err -1010
+11-02 13:48:53.674 I/ExtendedACodec(12575): setupVideoDecoder()
+11-02 13:48:53.675 I/ACodec  (12575): codec does not support config priority (err -1010)
+11-02 13:48:53.678 I/ACodec  (12575): codec does not support config priority (err -1010)
+11-02 13:48:53.678 W/ExtendedACodec(12575): Failed to get extension for extradata parameter
+11-02 13:48:53.681 W/ExtendedACodec(12575): Failed to get extension for extradata parameter
+11-02 13:48:53.757 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:53.764 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:54.758 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:54.765 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:55.759 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:55.766 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:56.759 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:56.767 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:57.760 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:57.767 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:48:58.761 W/ServiceManager(12575): Service media.resource_manager didn't start. Returning NULL
+11-02 13:48:58.761 E/MediaCodec(12575): Failed to get ResourceManagerService
+11-02 13:48:58.766 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:58.768 W/ServiceManager(12575): Service media.resource_manager didn't start. Returning NULL
+11-02 13:48:58.768 E/MediaCodec(12575): Failed to get ResourceManagerService
+11-02 13:48:58.772 I/OMXClient(12575): IOmx service obtained
+11-02 13:48:58.774 I/ACodec  (12575): codec does not support config priority (err -2147483648)
+11-02 13:48:58.776 I/ACodec  (12575): codec does not support config priority (err -2147483648)
+11-02 13:48:58.776 I/ACodec  (12575): codec does not support config operating rate (err -2147483648)
+11-02 13:48:58.777 I/ACodec  (12575): codec does not support config priority (err -2147483648)
+11-02 13:48:58.779 I/ACodec  (12575): codec does not support config priority (err -2147483648)
+11-02 13:48:58.779 W/ExtendedACodec(12575): Failed to get extension for extradata parameter
+11-02 13:48:58.779 I/ACodec  (12575): codec does not support config operating rate (err -2147483648)
+11-02 13:48:58.781 W/ExtendedACodec(12575): Failed to get extension for extradata parameter
+11-02 13:48:58.813 W/Looper  (12575): Slow Looper ExoPlayer:Playback: Long Msg: seq=540 plan=13:48:43.684  late=4957ms wall=10170ms running=0ms h=android.os.Handler w=2
+11-02 13:48:58.813 W/Looper  (12575): Slow Looper ExoPlayer:Playback: Long Msg: seq=413 plan=13:48:42.364  late=6276ms wall=10172ms running=0ms h=android.os.Handler w=2
+11-02 13:49:04.694 I/nedecraques.ap(12575): Background concurrent copying GC freed 3434(256KB) AllocSpace objects, 4(2476KB) LOS objects, 49% free, 15MB/30MB, paused 101us total 118.030ms
+11-02 13:49:17.097 W/AudioTrack(12575): getTimestamp_l(813): retrograde timestamp time corrected, 2444402616495709 < 2444402777805396
+11-02 13:49:20.110 I/ExoPlayerImpl(12575): Init b2f1017 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-02 13:49:20.285 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 41 lines
+11-02 13:49:20.430 I/HttpClientProvider(12575): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-02 13:49:20.501 W/InputEventReceiver(12575): App Input: 406ms before dispatchInputEvent (MotionEvent: event_seq=4, seq=1129378, action=ACTION_UP)
+11-02 13:49:20.528 W/Looper  (12575): Slow Looper main: doFrame is 415ms late because of 3 msg, msg 1 took 419ms (seq=419 late=1ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+11-02 13:49:20.663 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-02 13:49:20.663 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:49:20.663 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-02 13:49:20.663 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:49:20.756 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:49:20.756 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-02 13:49:20.756 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-02 13:49:20.757 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-02 13:49:20.757 W/nedecraques.ap(12575): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-02 13:49:21.042 I/MediaCodec(12575): [OMX.google.h264.decoder] setting surface generation to 12876803
+11-02 13:49:21.054 I/ExoPlayerImpl(12575): Release bd992c0 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29] [media3.common, media3.exoplayer, media3.decoder, media3.ui, media3.datasource, media3.extractor]
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575): Playback error
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):   androidx.media3.exoplayer.ExoPlaybackException: Source error
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at android.os.Handler.dispatchMessage(Handler.java:103)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at android.os.Looper.loop(Looper.java:223)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at android.os.HandlerThread.run(HandlerThread.java:67)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):   Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 500
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+11-02 13:49:26.351 E/ExoPlayerImplInternal(12575):       at java.lang.Thread.run(Thread.java:919)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575): Playback error
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):   androidx.media3.exoplayer.ExoPlaybackException: Source error
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at android.os.Handler.dispatchMessage(Handler.java:103)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at android.os.Looper.loop(Looper.java:223)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at android.os.HandlerThread.run(HandlerThread.java:67)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):   Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 500
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+11-02 13:49:27.199 E/ExoPlayerImplInternal(12575):       at java.lang.Thread.run(Thread.java:919)
+11-02 13:49:36.496 I/ExoPlayerImpl(12575): Init ab3494d [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-02 13:49:36.637 I/chatty  (12575): uid=11404(com.vitrinedecraques.app) identical 41 lines
+11-02 13:49:36.684 I/HttpClientProvider(12575): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-02 13:49:41.092 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:49:42.093 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:49:43.094 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:49:44.094 I/ServiceManager(12575): Waiting for service 'media.resource_manager' on '/dev/binder'...
+11-02 13:49:44.231 I/MediaCodec(12575): [OMX.google.h264.decoder] setting surface generation to 12876804

@@ -1,7 +1,14 @@
+import { createReadStream } from 'node:fs'
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
+import { Readable } from 'node:stream'
 
-import { DeleteObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import {
+  DeleteObjectCommand,
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from '@aws-sdk/client-s3'
 import { BlobServiceClient, ContainerClient } from '@azure/storage-blob'
 
 const storageEnv = {
@@ -50,6 +57,12 @@ function detectDriver(): 'local' | 's3' | 'r2' | 'azure' {
 }
 
 const driver = detectDriver()
+
+export type StorageDriver = 'local' | 's3' | 'r2' | 'azure'
+
+export function getStorageDriver(): StorageDriver {
+  return driver
+}
 
 const normalizedBaseUrl = storageEnv.publicBaseUrl?.replace(/\/+$/, '')
 
@@ -126,6 +139,10 @@ function normalizeKey(key: string) {
   const sanitized = key.replace(/\\/g, '/')
   const normalized = path.posix.normalize(`/${sanitized}`)
   return normalized.replace(/^\/+/, '')
+}
+
+export function normalizeStorageKey(key: string) {
+  return normalizeKey(key)
 }
 
 function buildFileUrl(key: string) {
@@ -270,6 +287,174 @@ export async function deleteFileByUrl(url?: string | null) {
   if (!key) return
 
   await deleteFileByKey(key)
+}
+
+export interface StorageStreamOptions {
+  key: string
+  range?: string
+}
+
+export interface StorageStreamResult {
+  stream: Readable
+  contentLength?: number
+  contentType?: string
+  contentRange?: string
+  etag?: string
+  lastModified?: Date
+  totalSize?: number
+}
+
+function ensureNodeReadable(body: unknown): Readable {
+  if (!body) {
+    throw new Error('Storage response body is empty')
+  }
+
+  if (body instanceof Readable) {
+    return body
+  }
+
+  if (typeof (body as any).pipe === 'function') {
+    return body as Readable
+  }
+
+  if (typeof Readable.from === 'function') {
+    return Readable.from(body as AsyncIterable<Uint8Array>)
+  }
+
+  throw new Error('Unsupported storage body stream type')
+}
+
+function parseRangeHeader(range: string, size: number) {
+  const match = /^bytes=(\d*)-(\d*)$/i.exec(range)
+  if (!match) {
+    return null
+  }
+
+  let start = match[1] ? Number.parseInt(match[1], 10) : undefined
+  let end = match[2] ? Number.parseInt(match[2], 10) : undefined
+
+  if (Number.isNaN(start as number)) start = undefined
+  if (Number.isNaN(end as number)) end = undefined
+
+  if (start === undefined && end === undefined) {
+    return null
+  }
+
+  if (start !== undefined && end !== undefined) {
+    if (start > end) {
+      return null
+    }
+  }
+
+  if (start === undefined && end !== undefined) {
+    if (end === 0) {
+      return null
+    }
+    const length = Math.min(end, size)
+    start = size - length
+    end = size - 1
+  }
+
+  if (start !== undefined && end === undefined) {
+    end = size - 1
+  }
+
+  start = start ?? 0
+  end = end ?? size - 1
+
+  if (start < 0 || end < 0 || start >= size) {
+    return null
+  }
+
+  end = Math.min(end, size - 1)
+
+  if (start > end) {
+    return null
+  }
+
+  return { start, end }
+}
+
+export async function getFileStreamByKey({
+  key,
+  range,
+}: StorageStreamOptions): Promise<StorageStreamResult> {
+  const normalizedKey = normalizeKey(key)
+
+  if (driver === 'local') {
+    const filePath = resolveFilePath(normalizedKey)
+    const stats = await fs.stat(filePath)
+    const fileSize = stats.size
+
+    if (range) {
+      const parsed = parseRangeHeader(range, fileSize)
+      if (!parsed) {
+        throw Object.assign(new Error('Invalid range'), { code: 'ERR_INVALID_RANGE' })
+      }
+
+      const { start, end } = parsed
+      const stream = createReadStream(filePath, { start, end })
+      const contentLength = end - start + 1
+      return {
+        stream,
+        contentLength,
+        contentRange: `bytes ${start}-${end}/${fileSize}`,
+        lastModified: stats.mtime,
+        totalSize: fileSize,
+      }
+    }
+
+    return {
+      stream: createReadStream(filePath),
+      contentLength: fileSize,
+      lastModified: stats.mtime,
+      totalSize: fileSize,
+    }
+  }
+
+  if (driver === 'azure') {
+    throw new Error('Azure storage streaming is not implemented')
+  }
+
+  if (!storageEnv.bucket) {
+    throw new Error('Storage bucket is not configured')
+  }
+
+  const client = ensureS3Client()
+  const response = await client.send(
+    new GetObjectCommand({
+      Bucket: storageEnv.bucket,
+      Key: normalizedKey,
+      Range: range,
+    }),
+  )
+
+  const stream = ensureNodeReadable(response.Body)
+  const contentLength = response.ContentLength ?? undefined
+  const contentType = response.ContentType ?? undefined
+  const contentRange = response.ContentRange ?? undefined
+  const etag = response.ETag ?? undefined
+  const lastModified = response.LastModified
+
+  let totalSize: number | undefined
+  if (contentRange) {
+    const match = /\/(\d+)$/.exec(contentRange)
+    if (match) {
+      totalSize = Number.parseInt(match[1], 10)
+    }
+  } else if (response.ContentLength != null) {
+    totalSize = Number(response.ContentLength)
+  }
+
+  return {
+    stream,
+    contentLength: contentLength ?? undefined,
+    contentType,
+    contentRange,
+    etag,
+    lastModified,
+    totalSize,
+  }
 }
 
 export function extractKeyFromUrl(url: string) {

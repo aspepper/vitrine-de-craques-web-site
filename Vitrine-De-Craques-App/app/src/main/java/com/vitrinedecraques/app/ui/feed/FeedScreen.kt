@@ -883,23 +883,22 @@ private fun FeedActionsPanel(
     isMuted: Boolean,
     onToggleSound: () -> Unit,
     modifier: Modifier = Modifier,
-) { 
+) {
     val avatarUrl = video.user?.profile?.avatarUrl ?: video.user?.image
-    Row(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .then(modifier),
-        horizontalArrangement = Arrangement.End,
-        verticalAlignment = Alignment.Bottom
+        contentAlignment = Alignment.BottomEnd
     ) {
         Column(
             modifier = Modifier
                 .navigationBarsPadding()
                 .padding(end = 12.dp, bottom = 20.dp),
-            horizontalAlignment = Alignment.End
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
-                horizontalAlignment = Alignment.End,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 FeedActionButton(
@@ -1010,8 +1009,7 @@ private fun FeedActionButton(
             style = MaterialTheme.typography.labelSmall,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
+            textAlign = TextAlign.Center
         )
     }
 }

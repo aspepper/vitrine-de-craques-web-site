@@ -6,6 +6,7 @@ import {
   extractKeyFromUrl,
   getFileStreamByKey,
   getStorageDriver,
+  isStorageFileNotFoundError,
   normalizeStorageKey,
 } from '@/lib/storage'
 
@@ -84,6 +85,10 @@ export async function GET(request: NextRequest) {
       headers,
     })
   } catch (error) {
+    if (isStorageFileNotFoundError(error)) {
+      return NextResponse.json({ message: 'Vídeo não encontrado.' }, { status: 404 })
+    }
+
     if ((error as { code?: string }).code === 'ERR_INVALID_RANGE') {
       return NextResponse.json({ message: 'Faixa solicitada inválida.' }, { status: 416 })
     }

@@ -6,10 +6,94 @@ import { Readable } from 'node:stream'
 import {
   DeleteObjectCommand,
   GetObjectCommand,
+  GetObjectCommandOutput,
   PutObjectCommand,
   S3Client,
 } from '@aws-sdk/client-s3'
 import { BlobServiceClient, ContainerClient } from '@azure/storage-blob'
+
+export class StorageFileNotFoundError extends Error {
+  constructor(message: string, options?: { cause?: unknown }) {
+    super(message)
+    this.name = 'StorageFileNotFoundError'
+
+    if (options && 'cause' in options) {
+      ;(this as { cause?: unknown }).cause = options.cause
+    }
+  }
+}
+
+export function isStorageFileNotFoundError(
+  error: unknown,
+): error is StorageFileNotFoundError {
+  return error instanceof StorageFileNotFoundError
+}
+
+function createNotFoundError(key: string, cause?: unknown) {
+  return new StorageFileNotFoundError(`Storage object not found: ${key}`, { cause })
+}
+
+function looksLikeNotFoundError(error: unknown) {
+  if (!error || typeof error !== 'object') {
+    return false
+  }
+
+  const code = (error as { code?: string }).code
+  if (typeof code === 'string') {
+    const normalized = code.toUpperCase()
+    if (
+      normalized === 'ENOENT' ||
+      normalized === 'BLOBNOTFOUND' ||
+      normalized === 'RESOURCENOTFOUND' ||
+      normalized === 'NOTFOUND' ||
+      normalized === 'NOSUCHKEY'
+    ) {
+      return true
+    }
+  }
+
+  const name = (error as { name?: string }).name
+  if (typeof name === 'string') {
+    const normalized = name.toUpperCase()
+    if (normalized === 'NOSUCHKEY' || normalized === 'NOTFOUND') {
+      return true
+    }
+  }
+
+  const statusCode = (error as { statusCode?: number }).statusCode
+  if (statusCode === 404) {
+    return true
+  }
+
+  const detailsCode = (error as { details?: { errorCode?: string } }).details?.errorCode
+  if (typeof detailsCode === 'string') {
+    const normalized = detailsCode.toUpperCase()
+    if (normalized === 'BLOBNOTFOUND' || normalized === 'RESOURCENOTFOUND') {
+      return true
+    }
+  }
+
+  const metadataStatus = (error as { $metadata?: { httpStatusCode?: number } }).$metadata
+    ?.httpStatusCode
+  if (metadataStatus === 404) {
+    return true
+  }
+
+  const responseStatus = (error as { $response?: { statusCode?: number } }).$response?.statusCode
+  if (responseStatus === 404) {
+    return true
+  }
+
+  return false
+}
+
+function rethrowIfNotFound(error: unknown, key: string): never {
+  if (looksLikeNotFoundError(error)) {
+    throw createNotFoundError(key, error)
+  }
+
+  throw error instanceof Error ? error : new Error(String(error))
+}
 
 const storageEnv = {
   driver: process.env.STORAGE_DRIVER,
@@ -383,7 +467,18 @@ export async function getFileStreamByKey({
 
   if (driver === 'local') {
     const filePath = resolveFilePath(normalizedKey)
-    const stats = await fs.stat(filePath)
+    let stats: Awaited<ReturnType<typeof fs.stat>>
+
+    try {
+      stats = await fs.stat(filePath)
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException)?.code === 'ENOENT') {
+        throw createNotFoundError(normalizedKey, error)
+      }
+
+      throw error
+    }
+
     const fileSize = stats.size
 
     if (range) {
@@ -416,49 +511,54 @@ export async function getFileStreamByKey({
     const container = await ensureAzureContainerClient()
     const blob = container.getBlockBlobClient(normalizedKey)
 
-    if (range) {
-      const properties = await blob.getProperties()
-      const fileSize = properties.contentLength
+    try {
+      if (range) {
+        const properties = await blob.getProperties()
+        const fileSize = properties.contentLength
 
-      if (fileSize == null) {
-        throw new Error('Unable to determine blob size for range request')
+        if (fileSize == null) {
+          throw new Error('Unable to determine blob size for range request')
+        }
+
+        const parsed = parseRangeHeader(range, Number(fileSize))
+        if (!parsed) {
+          throw Object.assign(new Error('Invalid range'), { code: 'ERR_INVALID_RANGE' })
+        }
+
+        const { start, end } = parsed
+        const count = end - start + 1
+        const response = await blob.download(start, count)
+        const stream = ensureNodeReadable(response.readableStreamBody)
+        const contentLength = response.contentLength ?? count
+        const totalSize = Number(fileSize)
+
+        return {
+          stream,
+          contentLength,
+          contentType: response.contentType ?? properties.contentType ?? undefined,
+          contentRange:
+            response.contentRange ?? `bytes ${start}-${start + contentLength - 1}/${totalSize}`,
+          etag: response.etag ?? properties.etag ?? undefined,
+          lastModified: response.lastModified ?? properties.lastModified ?? undefined,
+          totalSize,
+        }
       }
 
-      const parsed = parseRangeHeader(range, Number(fileSize))
-      if (!parsed) {
-        throw Object.assign(new Error('Invalid range'), { code: 'ERR_INVALID_RANGE' })
-      }
-
-      const { start, end } = parsed
-      const count = end - start + 1
-      const response = await blob.download(start, count)
+      const response = await blob.download()
       const stream = ensureNodeReadable(response.readableStreamBody)
-      const contentLength = response.contentLength ?? count
-      const totalSize = Number(fileSize)
 
       return {
         stream,
-        contentLength,
-        contentType: response.contentType ?? properties.contentType ?? undefined,
-        contentRange:
-          response.contentRange ?? `bytes ${start}-${start + contentLength - 1}/${totalSize}`,
-        etag: response.etag ?? properties.etag ?? undefined,
-        lastModified: response.lastModified ?? properties.lastModified ?? undefined,
-        totalSize,
+        contentLength: response.contentLength ?? undefined,
+        contentType: response.contentType ?? undefined,
+        contentRange: response.contentRange ?? undefined,
+        etag: response.etag ?? undefined,
+        lastModified: response.lastModified ?? undefined,
+        totalSize: response.contentLength ?? undefined,
       }
-    }
-
-    const response = await blob.download()
-    const stream = ensureNodeReadable(response.readableStreamBody)
-
-    return {
-      stream,
-      contentLength: response.contentLength ?? undefined,
-      contentType: response.contentType ?? undefined,
-      contentRange: response.contentRange ?? undefined,
-      etag: response.etag ?? undefined,
-      lastModified: response.lastModified ?? undefined,
-      totalSize: response.contentLength ?? undefined,
+    } catch (error) {
+      rethrowIfNotFound(error, normalizedKey)
+      throw error
     }
   }
 
@@ -467,13 +567,20 @@ export async function getFileStreamByKey({
   }
 
   const client = ensureS3Client()
-  const response = await client.send(
-    new GetObjectCommand({
-      Bucket: storageEnv.bucket,
-      Key: normalizedKey,
-      Range: range,
-    }),
-  )
+  let response: GetObjectCommandOutput
+
+  try {
+    response = await client.send(
+      new GetObjectCommand({
+        Bucket: storageEnv.bucket,
+        Key: normalizedKey,
+        Range: range,
+      }),
+    )
+  } catch (error) {
+    rethrowIfNotFound(error, normalizedKey)
+    throw error
+  }
 
   const stream = ensureNodeReadable(response.Body)
   const contentLength = response.ContentLength ?? undefined

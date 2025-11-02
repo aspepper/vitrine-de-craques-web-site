@@ -132,9 +132,10 @@ class NextApiService(
 
     private fun resolveVideoUrls(video: FeedVideo, baseUrl: HttpUrl, origin: HttpUrl): FeedVideo {
         val resolvedVideoUrl = resolveUrl(video.videoUrl, baseUrl, origin) ?: video.videoUrl
-        val sanitizedVideoUrl = resolvedVideoUrl
+        val proxiedVideoUrl = buildProxiedVideoUrlIfNeeded(resolvedVideoUrl, origin)
+        val sanitizedVideoUrl = proxiedVideoUrl
             .takeIf { isLikelyValidVideoUrl(it) }
-            ?: fallbackVideoUrlFor(video.id, resolvedVideoUrl)
+            ?: fallbackVideoUrlFor(video.id, proxiedVideoUrl)
         val resolvedThumbnail = resolveUrl(video.thumbnailUrl, baseUrl, origin)
         val resolvedUser = video.user?.let { resolveUser(it, baseUrl, origin) }
 
@@ -192,6 +193,39 @@ class NextApiService(
             return false
         }
         return true
+    }
+
+    private fun buildProxiedVideoUrlIfNeeded(originalUrl: String, origin: HttpUrl): String {
+        val originalHttpUrl = originalUrl.toHttpUrlOrNull() ?: return originalUrl
+        if (isSameOrigin(originalHttpUrl, origin)) {
+            val normalizedPath = originalHttpUrl.encodedPath.trimStart('/')
+            if (normalizedPath.startsWith("api/videos/proxy")) {
+                return originalUrl
+            }
+            return originalUrl
+        }
+
+        return origin.newBuilder()
+            .addPathSegment("api")
+            .addPathSegment("videos")
+            .addPathSegment("proxy")
+            .addQueryParameter("url", originalUrl)
+            .build()
+            .toString()
+    }
+
+    private fun isSameOrigin(a: HttpUrl, b: HttpUrl): Boolean {
+        val sameHost = a.host.equals(b.host, ignoreCase = true)
+        if (!sameHost) {
+            return false
+        }
+
+        val sameScheme = a.scheme.equals(b.scheme, ignoreCase = true)
+        if (!sameScheme) {
+            return false
+        }
+
+        return a.port == b.port
     }
 
     private fun fallbackVideoUrlFor(videoId: String, original: String): String {

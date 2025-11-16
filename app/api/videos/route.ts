@@ -12,7 +12,7 @@ import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
 import { buildVideoWhere } from '@/lib/video-filter-where'
 import { parseVideoFilters } from '@/lib/video-filters'
-import { deleteFileByUrl, extractKeyFromUrl, uploadFile } from '@/lib/storage'
+import { deleteFileByUrl, extractKeyFromUrl, getPublicUrlForKey, uploadFile } from '@/lib/storage'
 import ffmpeg from 'fluent-ffmpeg'
 import sharp from 'sharp'
 
@@ -139,6 +139,29 @@ async function thumbnailExists(thumbnailUrl: string | null) {
   }
 }
 
+function rewriteStorageUrl(url: string | null | undefined) {
+  if (!url) {
+    return url ?? null
+  }
+
+  const [withoutQuery] = url.split(/[?#]/)
+  if (withoutQuery.toLowerCase().includes('/api/videos/proxy')) {
+    return url
+  }
+
+  const key = extractKeyFromUrl(url)
+  if (!key) {
+    return url
+  }
+
+  try {
+    return getPublicUrlForKey(key)
+  } catch (error) {
+    console.warn(`Failed to rewrite storage URL for key ${key}`, error)
+    return url
+  }
+}
+
 async function readVideoFile(videoUrl: string) {
   const [withoutQuery] = videoUrl.split(/[?#]/)
   if (!withoutQuery) {
@@ -198,6 +221,45 @@ async function ensureVideoThumbnail<T extends { id: string; videoUrl: string; th
   }
 }
 
+function rewriteVideoAssetUrls<T extends { videoUrl: string; thumbnailUrl: string | null }>(video: T): T {
+  const rewrittenVideoUrl = rewriteStorageUrl(video.videoUrl) ?? video.videoUrl
+  const rewrittenThumbnailUrl = rewriteStorageUrl(video.thumbnailUrl) ?? video.thumbnailUrl
+
+  if (rewrittenVideoUrl === video.videoUrl && rewrittenThumbnailUrl === video.thumbnailUrl) {
+    return video
+  }
+
+  return {
+    ...video,
+    videoUrl: rewrittenVideoUrl,
+    thumbnailUrl: rewrittenThumbnailUrl,
+  }
+}
+
+async function ensureVideoPlaybackUrl<T extends { id: string; videoUrl: string }>(video: T): Promise<T> {
+  const normalizedUrl = rewriteStorageUrl(video.videoUrl) ?? video.videoUrl
+  const [normalizedWithoutQuery] = normalizedUrl.split(/[?#]/)
+  if (normalizedWithoutQuery.toLowerCase().includes('/api/videos/proxy')) {
+    return { ...video, videoUrl: normalizedUrl }
+  }
+
+  if (await remoteFileExists(normalizedUrl)) {
+    if (normalizedUrl === video.videoUrl) {
+      return video
+    }
+
+    return { ...video, videoUrl: normalizedUrl }
+  }
+
+  const key = extractKeyFromUrl(normalizedUrl) ?? extractKeyFromUrl(video.videoUrl)
+  if (key) {
+    console.warn(`Falling back to proxy URL for video ${video.id}`)
+    return { ...video, videoUrl: `/api/videos/proxy?url=${encodeURIComponent(key)}` }
+  }
+
+  return { ...video, videoUrl: normalizedUrl }
+}
+
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
@@ -234,7 +296,10 @@ export async function GET(req: NextRequest) {
     const videosWithThumbnails: typeof videos = []
 
     for (const video of videos) {
-      videosWithThumbnails.push(await ensureVideoThumbnail(video))
+      const withThumbnail = await ensureVideoThumbnail(video)
+      const rewrittenAssets = rewriteVideoAssetUrls(withThumbnail)
+      const playableVideo = await ensureVideoPlaybackUrl(rewrittenAssets)
+      videosWithThumbnails.push(playableVideo)
     }
 
     return NextResponse.json(videosWithThumbnails)

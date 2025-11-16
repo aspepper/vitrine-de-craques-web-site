@@ -2,6 +2,7 @@ package com.vitrinedecraques.app.data.auth
 
 import android.content.Context
 import android.util.Log
+import com.vitrinedecraques.app.data.network.DefaultApiBaseUrlResolver
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.network.StoredCookie
 import kotlinx.coroutines.flow.Flow
@@ -64,7 +65,9 @@ private object AuthDataStoreMapper {
 
 class AuthRepository(
     private val context: Context,
-    private val service: AuthApiService = AuthApiService(),
+    private val service: AuthApiService = AuthApiService(
+        apiBaseUrlResolver = DefaultApiBaseUrlResolver.getInstance(context)
+    ),
 ) {
     val authState: Flow<AuthData> = context.authDataStore.data
         .catch { throwable ->

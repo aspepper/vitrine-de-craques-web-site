@@ -1,6 +1,5 @@
 package com.vitrinedecraques.app.data
 
-import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.model.FeedUser
 import com.vitrinedecraques.app.data.model.FeedUserProfile
 import com.vitrinedecraques.app.data.model.FeedVideo
@@ -24,24 +23,18 @@ import android.util.Log
 private const val TAG = "NextApiService"
 
 class NextApiService(
+    private val apiBaseUrlResolver: ApiBaseUrlResolver,
     private val client: OkHttpClient = HttpClientProvider.client,
     private val json: Json = Json {
         ignoreUnknownKeys = true
         isLenient = true
     },
-    private val baseUrl: String = BuildConfig.API_BASE_URL,
 ) {
     private val fallbackVideoUrls = listOf(
         "https://storage.googleapis.com/coverr-main/mp4/Footboys.mp4",
         "https://storage.googleapis.com/coverr-main/mp4/Mountains.mp4",
         "https://storage.googleapis.com/coverr-main/mp4/Beach.mp4"
     )
-
-    private val apiBaseUrl: HttpUrl = baseUrl.trim().takeIf { it.isNotEmpty() }
-        ?.toHttpUrlOrNull()
-        ?.newBuilder()
-        ?.build()
-        ?: throw IllegalStateException("API_BASE_URL inválida: $baseUrl")
 
     suspend fun fetchVideos(skip: Int, take: Int): List<FeedVideo> = withContext(Dispatchers.IO) {
         val effectiveBaseUrl = resolvedBaseUrl()
@@ -51,14 +44,14 @@ class NextApiService(
             ?.addQueryParameter("skip", skip.toString())
             ?.addQueryParameter("take", take.toString())
             ?.build()
-            ?: throw IllegalStateException("API_BASE_URL inválida: $baseUrl")
+            ?: throw IllegalStateException("Base URL inválida para Next API")
 
         val request = Request.Builder()
             .url(httpUrl)
             .get()
             .build()
 
-        Log.i(TAG, "Fetching videos from: $httpUrl")
+        Log.i(TAG, "GET /api/videos resolvedUrl=$httpUrl skip=$skip take=$take")
 
         execute(request).map { resolveVideoUrls(it, effectiveBaseUrl, origin) }
     }
@@ -193,7 +186,7 @@ class NextApiService(
             ?: trimmed
     }
 
-    private suspend fun resolvedBaseUrl(): HttpUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+    private suspend fun resolvedBaseUrl(): HttpUrl = apiBaseUrlResolver.resolveBaseUrl()
 
     private fun HttpUrl.toOrigin(): HttpUrl = newBuilder()
         .encodedPath("/")

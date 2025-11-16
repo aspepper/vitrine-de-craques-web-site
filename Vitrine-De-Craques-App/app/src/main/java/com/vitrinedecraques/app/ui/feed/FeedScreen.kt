@@ -62,10 +62,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -99,6 +99,8 @@ import com.vitrinedecraques.app.ui.profile.ProfileVideo
 import com.vitrinedecraques.app.ui.theme.BrandRed
 import com.vitrinedecraques.app.ui.theme.BrandSand
 import com.vitrinedecraques.app.ui.upload.UploadVideoScreen
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -112,17 +114,16 @@ import androidx.media3.ui.PlayerView
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.text.Normalizer
 import java.util.Calendar
 import java.util.Locale
-import com.vitrinedecraques.app.data.network.ApiBaseUrlResolver
+import kotlin.math.abs
+import com.vitrinedecraques.app.data.network.DefaultApiBaseUrlResolver
 import com.vitrinedecraques.app.data.network.HttpClientProvider
-import kotlinx.serialization.json.Json
 
 private val BottomNavigationHeight = 96.dp
 
@@ -135,7 +136,11 @@ fun FeedScreen(
     val uiState by viewModel.uiState.collectAsState()
     val pagerState = rememberPagerState(initialPage = 0) { uiState.videos.size.coerceAtLeast(1) }
     val hasVideos = uiState.videos.isNotEmpty()
-    val profileService = remember { NextApiService() }
+    val context = LocalContext.current
+    val apiBaseUrlResolver = remember(context.applicationContext) {
+        DefaultApiBaseUrlResolver.getInstance(context.applicationContext)
+    }
+    val profileService = remember(apiBaseUrlResolver) { NextApiService(apiBaseUrlResolver) }
     var profileUiState by remember { mutableStateOf(ProfileUiState(isLoading = uiState.isLoading)) }
     val profileVideo = uiState.lastViewedVideoId?.let { id ->
         uiState.videos.firstOrNull { it.id == id }
@@ -238,6 +243,7 @@ fun FeedScreen(
 
                             hasVideos -> {
                                 val currentPage = pagerState.currentPage
+                                val currentPageOffsetFraction = pagerState.currentPageOffsetFraction
                                 VerticalPager(
                                     state = pagerState,
                                     modifier = Modifier.fillMaxSize(),
@@ -245,9 +251,11 @@ fun FeedScreen(
                                     key = { index -> uiState.videos[index].id },
                                 ) { page ->
                                     val video = uiState.videos[page]
+                                    val isActivePage = page == currentPage &&
+                                        abs(currentPageOffsetFraction) < 0.1f
                                     FeedVideoCard(
                                         video = video,
-                                        isActive = page == currentPage,
+                                        isActive = isActivePage,
                                         onMenuClick = {
                                             coroutineScope.launch { drawerState.open() }
                                         }
@@ -499,6 +507,7 @@ private fun FeedVideoCard(
             .setAllowCrossProtocolRedirects(true)
             .setConnectTimeoutMs(30_000)
             .setReadTimeoutMs(30_000)
+            .setDefaultRequestProperties(emptyMap())
     }
     val mediaSourceFactory = remember(video.id) {
         DefaultMediaSourceFactory(DefaultDataSource.Factory(context, httpDataSourceFactory))
@@ -510,7 +519,15 @@ private fun FeedVideoCard(
             .build()
             .apply {
                 repeatMode = Player.REPEAT_MODE_ONE
-                playWhenReady = isActive
+                playWhenReady = false
+                setAudioAttributes(
+                    AudioAttributes.Builder()
+                        .setUsage(C.USAGE_MEDIA)
+                        .setContentType(C.CONTENT_TYPE_MOVIE)
+                        .build(),
+                    true
+                )
+                setHandleAudioBecomingNoisy(true)
             }
     }
     val mutedState by rememberUpdatedState(isMuted)
@@ -521,7 +538,8 @@ private fun FeedVideoCard(
     DisposableEffect(exoPlayer) {
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
-                if (playbackState == Player.STATE_READY && isActiveState) {
+                if (playbackState == Player.STATE_READY && isActiveState && playbackErrorState == null) {
+                    exoPlayer.volume = if (mutedState) 0f else 1f
                     exoPlayer.playWhenReady = true
                     exoPlayer.play()
                 }
@@ -544,6 +562,8 @@ private fun FeedVideoCard(
         exoPlayer.addListener(listener)
         onDispose {
             exoPlayer.removeListener(listener)
+            exoPlayer.playWhenReady = false
+            exoPlayer.stop()
             exoPlayer.release()
         }
     }
@@ -553,42 +573,45 @@ private fun FeedVideoCard(
         if (video.videoUrl.isBlank()) {
             exoPlayer.playWhenReady = false
             playbackError = "Vídeo indisponível."
-        } else {
-            val cookieHeader = buildCookieHeaderFor(video.videoUrl)
-            val appOriginHttpUrl = appOrigin?.toHttpUrlOrNull()
-            val userAgent = "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)"
-            val requestProperties = mutableMapOf<String, String>().apply {
-                put("Accept", "*/*")
-                if (!cookieHeader.isNullOrEmpty()) {
-                    put("Cookie", cookieHeader)
-                }
+            return@LaunchedEffect
+        }
 
-                val videoHttpUrl = video.videoUrl.toHttpUrlOrNull()
-                if (videoHttpUrl != null && appOriginHttpUrl != null) {
-                    val videoHost = videoHttpUrl.host
-                    val originHost = appOriginHttpUrl.host
-                    val isSameHost = videoHost.equals(originHost, ignoreCase = true)
-                    val isSameParentDomain =
-                        videoHost.endsWith(".$originHost", ignoreCase = true) ||
-                            originHost.endsWith(".$videoHost", ignoreCase = true)
-
-                    if (isSameHost || isSameParentDomain) {
-                        val referer = appOriginHttpUrl.toString()
-                        put("Referer", referer)
-                        put("Origin", referer.trimEnd('/'))
-                    }
-                }
+        val cookieHeader = buildCookieHeaderFor(video.videoUrl)
+        val appOriginHttpUrl = appOrigin?.toHttpUrlOrNull()
+        val userAgent = "VitrineDeCraquesApp/${BuildConfig.VERSION_NAME} (Android)"
+        val requestProperties = mutableMapOf<String, String>().apply {
+            put("Accept", "*/*")
+            put("User-Agent", userAgent)
+            if (!cookieHeader.isNullOrEmpty()) {
+                put("Cookie", cookieHeader)
             }
-            httpDataSourceFactory.setUserAgent(userAgent)
-            httpDataSourceFactory.setDefaultRequestProperties(emptyMap())
-            httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
-            exoPlayer.setMediaItem(MediaItem.fromUri(video.videoUrl))
-            exoPlayer.prepare()
-            if (isActiveState) {
-                exoPlayer.playWhenReady = true
-                // exoPlayer.play()
+
+            val videoHttpUrl = video.videoUrl.toHttpUrlOrNull()
+            if (videoHttpUrl != null && appOriginHttpUrl != null) {
+                val videoHost = videoHttpUrl.host
+                val originHost = appOriginHttpUrl.host
+                val isSameHost = videoHost.equals(originHost, ignoreCase = true)
+                val isSameParentDomain =
+                    videoHost.endsWith(".$originHost", ignoreCase = true) ||
+                        originHost.endsWith(".$videoHost", ignoreCase = true)
+
+                if (isSameHost || isSameParentDomain) {
+                    val referer = appOriginHttpUrl.toString()
+                    put("Referer", referer)
+                    put("Origin", referer.trimEnd('/'))
+                }
             }
         }
+        httpDataSourceFactory.setUserAgent(userAgent)
+        httpDataSourceFactory.setDefaultRequestProperties(emptyMap())
+        httpDataSourceFactory.setDefaultRequestProperties(requestProperties)
+        val mediaItem = MediaItem.Builder()
+            .setUri(video.videoUrl)
+            .setTag(requestProperties)
+            .build()
+        exoPlayer.playWhenReady = false
+        exoPlayer.setMediaItem(mediaItem)
+        exoPlayer.prepare()
     }
 
     DisposableEffect(lifecycleOwner, exoPlayer) {
@@ -617,21 +640,36 @@ private fun FeedVideoCard(
     }
 
     LaunchedEffect(isActive, playbackError, exoPlayer) {
-        if (isActive && playbackError == null) {
-            exoPlayer.playWhenReady = true
-            exoPlayer.volume = if (mutedState) 0f else 1f
-            // exoPlayer.prepare()
-            exoPlayer.play()
-        } else {
+        if (!isActive || playbackError != null) {
             exoPlayer.playWhenReady = false
             if (exoPlayer.playbackState != Player.STATE_IDLE) {
                 exoPlayer.pause()
             }
+            return@LaunchedEffect
         }
+
+        if (exoPlayer.playbackState == Player.STATE_IDLE) {
+            exoPlayer.prepare()
+        }
+        exoPlayer.volume = if (mutedState) 0f else 1f
+        exoPlayer.playWhenReady = true
+        exoPlayer.play()
     }
 
     LaunchedEffect(mutedState, exoPlayer) {
         exoPlayer.volume = if (mutedState) 0f else 1f
+    }
+
+    LaunchedEffect(exoPlayer, video.id) {
+        snapshotFlow {
+            Triple(exoPlayer.playbackState, isActiveState, playbackErrorState)
+        }.collect { (state, active, error) ->
+            if (state == Player.STATE_READY && active && error == null) {
+                exoPlayer.volume = if (mutedState) 0f else 1f
+                exoPlayer.playWhenReady = true
+                exoPlayer.play()
+            }
+        }
     }
 
     Box(
@@ -1043,28 +1081,25 @@ private fun HttpUrl.toCookieScope(): HttpUrl = newBuilder()
 
 @Composable
 private fun rememberResolvedAppOrigin(): String? {
+    val context = LocalContext.current
+    val resolver = remember(context.applicationContext) {
+        DefaultApiBaseUrlResolver.getInstance(context.applicationContext)
+    }
     val fallbackUrl = remember {
         BuildConfig.API_BASE_URL
             .trim()
             .takeIf { it.isNotEmpty() }
             ?.toHttpUrlOrNull()
     }
-    val defaultOrigin = remember(fallbackUrl) { fallbackUrl?.toOriginString() }
-    var origin by remember { mutableStateOf(defaultOrigin) }
-    val client = remember { HttpClientProvider.client }
-    val json = remember {
-        Json {
-            ignoreUnknownKeys = true
-            isLenient = true
-        }
+    val cachedOrigin = remember(resolver) { resolver.cachedBaseUrlOrNull()?.toOriginString() }
+    var origin by remember(fallbackUrl, cachedOrigin) {
+        mutableStateOf(cachedOrigin ?: fallbackUrl?.toOriginString())
     }
 
-    LaunchedEffect(client, json, fallbackUrl) {
-        if (fallbackUrl == null) return@LaunchedEffect
-        val resolved = withContext(Dispatchers.IO) {
-            runCatching { ApiBaseUrlResolver.resolve(client, json, fallbackUrl) }.getOrNull()
-        }
-        val resolvedOrigin = resolved?.toOriginString()
+    LaunchedEffect(resolver) {
+        val resolvedOrigin = runCatching { resolver.resolveBaseUrl() }
+            .getOrNull()
+            ?.toOriginString()
         if (resolvedOrigin != null && resolvedOrigin != origin) {
             origin = resolvedOrigin
         }

@@ -1,7 +1,6 @@
 package com.vitrinedecraques.app.data.auth
 
 import android.util.Log
-import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.network.ApiBaseUrlResolver
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import com.vitrinedecraques.app.data.network.SESSION_COOKIE_PREFIXES
@@ -13,7 +12,6 @@ import kotlinx.serialization.json.Json
 import okhttp3.Cookie
 import okhttp3.FormBody
 import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
@@ -24,18 +22,13 @@ private val COOKIE_DOMAIN_REGEX = Regex("(?i)domain=([^;]+)")
 private const val TAG = "AuthApiService"
 
 class AuthApiService(
+    private val apiBaseUrlResolver: ApiBaseUrlResolver,
     private val client: OkHttpClient = HttpClientProvider.client,
     private val json: Json = Json { ignoreUnknownKeys = true; isLenient = true },
-    baseUrl: String = BuildConfig.API_BASE_URL,
 ) {
-    val apiBaseUrl: HttpUrl = baseUrl.trim().takeIf { it.isNotEmpty() }
-        ?.toHttpUrlOrNull()
-        ?.newBuilder()
-        ?.build()
-        ?: throw IllegalStateException("API_BASE_URL inválida: $baseUrl")
 
     suspend fun login(email: String, password: String): AuthLoginResult = withContext(Dispatchers.IO) {
-        val baseUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+        val baseUrl = apiBaseUrlResolver.resolveBaseUrl()
         val siteOrigin = baseUrl.toOrigin()
 
         val cookiesBeforeLogin = HttpClientProvider.getSessionCookies(baseUrl)
@@ -112,7 +105,7 @@ class AuthApiService(
     }
 
     suspend fun fetchSession(baseUrl: HttpUrl? = null): SessionResponse = withContext(Dispatchers.IO) {
-        val resolvedBaseUrl = baseUrl ?: ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+        val resolvedBaseUrl = baseUrl ?: apiBaseUrlResolver.resolveBaseUrl()
         val sessionUrl = resolvedBaseUrl.newBuilder()
             .addPathSegment("api")
             .addPathSegment("auth")
@@ -210,7 +203,7 @@ class AuthApiService(
         return fallback
     }
 
-    suspend fun resolvedApiBaseUrl(): HttpUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+    suspend fun resolvedApiBaseUrl(): HttpUrl = apiBaseUrlResolver.resolveBaseUrl()
 }
 
 private fun logLoginResponseChain(response: okhttp3.Response) {

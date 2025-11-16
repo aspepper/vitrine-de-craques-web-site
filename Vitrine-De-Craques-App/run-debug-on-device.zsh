@@ -9,9 +9,52 @@ VARIANT="${VARIANT:-debug}"                      # debug | release | <flavor>Deb
 APP_ID="${APP_ID:-com.vitrinedecraques.app}"     # applicationId/namespace padrão
 MAIN_ACTIVITY="${MAIN_ACTIVITY:-}"               # vazio => auto-resolver a atividade LAUNCHER
 ADB_BIN="${ADB_BIN:-adb}"
+# --- ADB resolver (macOS Tahoe 26.x robustness) ---
+if ! command -v "$ADB_BIN" >/dev/null 2>&1; then
+  CANDIDATES=(
+    "$ANDROID_HOME/platform-tools/adb"
+    "$ANDROID_SDK_ROOT/platform-tools/adb"
+    "$HOME/Library/Android/sdk/platform-tools/adb"
+    "/opt/homebrew/bin/adb"
+    "/opt/homebrew/Caskroom/android-platform-tools/latest/platform-tools/adb"
+    "/usr/local/bin/adb"
+    "/usr/local/share/android-sdk/platform-tools/adb"
+  )
+  for c in "${CANDIDATES[@]}"; do
+    if [[ -x "$c" ]]; then
+      ADB_BIN="$c"
+      break
+    fi
+  done
+fi
+if ! command -v "$ADB_BIN" >/dev/null 2>&1; then
+  echo "[ERRO] adb não encontrado. Instale platform-tools e/ou exporte ANDROID_SDK_ROOT. Ex.:"
+  echo "       brew install --cask android-platform-tools"
+  exit 2
+fi
+ADB_BIN="$(command -v "$ADB_BIN")"
+echo "[INFO] Usando adb: $ADB_BIN"
 GRADLEW="${GRADLEW:-./gradlew}"
 LOG_DIR="${LOG_DIR:-./logs}"
 LOG_LEVEL_FILTER="${LOG_LEVEL_FILTER:-}"         # "package:mine" => --pid <pid> do APP_ID
+# --- Device detection ---
+if [[ "${WAIT_FOR_DEVICE:-1}" == "1" ]]; then
+  "$ADB_BIN" kill-server >/dev/null 2>&1 || true
+  "$ADB_BIN" start-server >/dev/null 2>&1 || true
+  "$ADB_BIN" wait-for-any-device || true
+fi
+DEVICES=$("$ADB_BIN" devices | awk 'NR>1 && $2!="" {print $1":"$2}')
+USB_DEV=$(echo "$DEVICES" | awk -F: '$2=="device"{print $1; exit}')
+STATE=$(echo "$DEVICES" | awk -F: 'NR==1{print $2}')
+if [[ -z "$USB_DEV" ]]; then
+  echo "[ERRO] Nenhum dispositivo em estado 'device'. Saídas:"
+  "$ADB_BIN" devices
+  echo "[DICA] Verifique: USB debugging ON, autorização ('Allow USB debugging?'), cabo/porta, e execute:"
+  echo "      $ADB_BIN kill-server && $ADB_BIN start-server"
+  exit 3
+fi
+ADB_TGT=(-s "$USB_DEV")
+echo "[INFO] Dispositivo: $USB_DEV (state=$STATE)"
 WAIT_FOR_DEVICE="${WAIT_FOR_DEVICE:-1}"          # aguardar dispositivo (1=yes, 0=no)
 
 # Ex.: export ANDROID_SERIAL="emulator-5554" para escolher um device específico
@@ -98,7 +141,7 @@ pick_device() {
 }
 
 wait_for_device_if_needed() {
-  if [[ "$WAIT_FOR_DEVICE" -eq 1 ]]; then
+  if [[ "${WAIT_FOR_DEVICE:-1}" -eq 1 ]]; then
     log "Aguardando dispositivo ficar pronto..."
     $ADB_BIN wait-for-device
   fi
@@ -127,12 +170,12 @@ install_apk() {
     local apk
     apk=$(find "$PWD/${MODULE}/build/outputs/apk/${VARIANT}" -type f -name "*.apk" | head -n1 || true)
     [[ -n "$apk" ]] || die "APK não encontrado para variante '${VARIANT}'. Rode o assemble primeiro."
-    $ADB_BIN install -r "$apk" |& tee -a "$BUILD_LOG"
+    $ADB_BIN ${ADB_TGT[@]} install -r "$apk" |& tee -a "$BUILD_LOG"
   fi
 }
 
 resolve_launcher_component() {
-  $ADB_BIN shell cmd package resolve-activity --brief "$APP_ID" 2>/dev/null | tail -n1 | tr -d '\r'
+  $ADB_BIN ${ADB_TGT[@]} shell cmd package resolve-activity --brief "$APP_ID" 2>/dev/null | tail -n1 | tr -d '\r'
 }
 
 launch_app() {
@@ -146,7 +189,7 @@ launch_app() {
       log "Atividade detectada: $component"
     else
       echo "[WARN] Não foi possível resolver via cmd package. Tentando iniciar com monkey..." | tee -a "$BUILD_LOG"
-      if $ADB_BIN shell monkey -p "$APP_ID" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1; then
+      if $ADB_BIN ${ADB_TGT[@]} shell monkey -p "$APP_ID" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1; then
         log "App iniciado via monkey."
         return
       else
@@ -158,9 +201,9 @@ launch_app() {
   fi
 
   log "Abrindo atividade: $component"
-  if ! $ADB_BIN shell am start -n "$component" >/dev/null 2>&1; then
+  if ! $ADB_BIN ${ADB_TGT[@]} shell am start -n "$component" >/dev/null 2>&1; then
     echo "[WARN] Falha ao iniciar via 'am start -n'. Tentando fallback com monkey..." | tee -a "$BUILD_LOG"
-    $ADB_BIN shell monkey -p "$APP_ID" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1 || \
+    $ADB_BIN ${ADB_TGT[@]} shell monkey -p "$APP_ID" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1 || \
       die "Falha ao iniciar o app (am/monkey)."
   fi
 }
@@ -172,9 +215,9 @@ resolve_pid_for_package() {
   local sleep_s="0.3"
   local pid=""
   for ((i=1; i<=tries; i++)); do
-    pid="$($ADB_BIN shell pidof -s "$pkg" 2>/dev/null | tr -d '\r')"
+    pid="$($ADB_BIN ${ADB_TGT[@]} shell pidof -s "$pkg" 2>/dev/null | tr -d '\r')"
     if [[ -z "$pid" ]]; then
-      pid="$($ADB_BIN shell 'ps -A | grep -w '"$pkg"' | awk "{print \$2}"' 2>/dev/null | tr -d '\r')"
+      pid="$($ADB_BIN ${ADB_TGT[@]} shell 'ps -A | grep -w '"$pkg"' | awk "{print \$2}"' 2>/dev/null | tr -d '\r')"
     fi
     if [[ -n "$pid" ]]; then
       echo "$pid"
@@ -187,7 +230,7 @@ resolve_pid_for_package() {
 
 # Dump único de eventos do sistema (para capturar o start inicial e possíveis crashes)
 append_system_events_snapshot() {
-  $ADB_BIN logcat -d -v time -b all | \
+  $ADB_BIN ${ADB_TGT[@]} logcat -d -v time -b all | \
     grep -E "$APP_ID|ActivityManager|ActivityTaskManager|AndroidRuntime" || true
 }
 
@@ -196,7 +239,7 @@ append_system_events_snapshot() {
 # - Senão, usa filtro literal (formato do logcat).
 start_logcat() {
   echo "[INFO] Limpando logcat..." | tee -a "$BUILD_LOG"
-  $ADB_BIN logcat -c 2>/dev/null || true
+  $ADB_BIN ${ADB_TGT[@]} logcat -c 2>/dev/null || true
 
   local filter="$LOG_LEVEL_FILTER"
   local mode="raw"
@@ -206,10 +249,10 @@ start_logcat() {
   echo "[INFO] Gravando logcat em: $RUNTIME_LOG" | tee -a "$BUILD_LOG"
 
   # Tenta usar UID (pega todos os processos do app)
-  local app_uid="$($ADB_BIN shell dumpsys package "$pkg" | sed -n 's/.*userId=\([0-9]\+\).*/\1/p' | tr -d '\r')"
+  local app_uid="$($ADB_BIN ${ADB_TGT[@]} shell dumpsys package "$pkg" | sed -n 's/.*userId=\([0-9]\+\).*/\1/p' | tr -d '\r')"
   if [[ -n "$app_uid" ]]; then
     echo "[INFO] Usando filtro por UID=$app_uid (mais estável que PID)" | tee -a "$BUILD_LOG"
-    $ADB_BIN logcat --uid "$app_uid" -v time '*:I' 2>/dev/null | tee -a "$RUNTIME_LOG" &
+    $ADB_BIN ${ADB_TGT[@]} logcat --uid "$app_uid" -v time '*:I' 2>/dev/null | tee -a "$RUNTIME_LOG" &
     wait
     return
   fi
@@ -222,15 +265,15 @@ start_logcat() {
   fi
 
   # Snapshot de eventos do sistema para contexto (não bloqueia execução principal)
-  ($ADB_BIN logcat -d -v time -b all 2>/dev/null | grep -E "$pkg|ActivityManager|ActivityTaskManager|AndroidRuntime" > "$RUNTIME_SYS_LOG" 2>/dev/null || true) &
+  ($ADB_BIN ${ADB_TGT[@]} logcat -d -v time -b all 2>/dev/null | grep -E "$pkg|ActivityManager|ActivityTaskManager|AndroidRuntime" > "$RUNTIME_SYS_LOG" 2>/dev/null || true) &
 
   while true; do
     echo "[INFO] Conectando logcat com --pid=$pid ..." | tee -a "$BUILD_LOG"
-    $ADB_BIN logcat --pid "$pid" -v time '*:I' 2>/dev/null | tee -a "$RUNTIME_LOG" &
+    $ADB_BIN ${ADB_TGT[@]} logcat --pid "$pid" -v time '*:I' 2>/dev/null | tee -a "$RUNTIME_LOG" &
     logcat_pid=$!
 
     # Mantém enquanto /proc/<pid> existir
-    while $ADB_BIN shell "ls -d /proc/$pid >/dev/null 2>&1"; do
+    while $ADB_BIN ${ADB_TGT[@]} shell "ls -d /proc/$pid >/dev/null 2>&1"; do
       sleep 0.5
     done
     echo "[WARN] Processo $pid finalizou. Procurando novo PID..." | tee -a "$BUILD_LOG"
@@ -245,6 +288,13 @@ start_logcat() {
       break
     fi
   done
+
+# Fallback final: sem --uid/--pid (ROM antiga). Filtra por package no grep.
+if [[ ! -s "$RUNTIME_LOG" ]]; then
+  echo "[WARN] Fallback grep por pacote (ROM sem suporte a --uid/--pid)"
+  $ADB_BIN ${ADB_TGT[@]} logcat -v time '*:I' 2>/dev/null | grep -E "$APP_ID|AndroidRuntime|ActivityManager" | tee -a "$RUNTIME_LOG"
+fi
+
 }
 
 # ----------------------------

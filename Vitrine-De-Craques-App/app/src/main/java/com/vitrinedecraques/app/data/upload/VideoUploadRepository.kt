@@ -2,7 +2,6 @@ package com.vitrinedecraques.app.data.upload
 
 import android.content.ContentResolver
 import android.net.Uri
-import com.vitrinedecraques.app.BuildConfig
 import com.vitrinedecraques.app.data.network.ApiBaseUrlResolver
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 import java.io.IOException
@@ -12,8 +11,6 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -26,24 +23,17 @@ private const val SUCCESS_STATUS_RANGE_START = 200
 private const val SUCCESS_STATUS_RANGE_END = 299
 
 class VideoUploadRepository @JvmOverloads constructor(
+    private val apiBaseUrlResolver: ApiBaseUrlResolver,
     private val client: OkHttpClient = HttpClientProvider.client,
     private val json: Json = Json {
         ignoreUnknownKeys = true
         isLenient = true
     },
-    baseUrl: String = BuildConfig.API_BASE_URL,
 ) {
-    private val apiBaseUrl: HttpUrl = baseUrl
-        .trim()
-        .takeIf { it.isNotEmpty() }
-        ?.toHttpUrlOrNull()
-        ?.newBuilder()
-        ?.build()
-        ?: throw IllegalStateException("API_BASE_URL inválida: $baseUrl")
 
     suspend fun uploadVideo(contentResolver: ContentResolver, request: VideoUploadRequest) {
         return withContext(Dispatchers.IO) {
-            val effectiveBaseUrl = ApiBaseUrlResolver.resolve(client, json, apiBaseUrl)
+            val effectiveBaseUrl = apiBaseUrlResolver.resolveBaseUrl()
             val httpUrl = effectiveBaseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("videos")

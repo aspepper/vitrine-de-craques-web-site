@@ -5,6 +5,7 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.vitrinedecraques.app.data.network.DefaultApiBaseUrlResolver
 import com.vitrinedecraques.app.data.upload.VideoUploadRepository
 import com.vitrinedecraques.app.data.upload.VideoUploadRequest
 import java.io.IOException
@@ -27,7 +28,9 @@ private const val SUCCESS_MESSAGE = "Seu vídeo foi enviado! Entrará no ar assi
 
 class UploadVideoViewModel @JvmOverloads constructor(
     application: Application,
-    private val repository: VideoUploadRepository = VideoUploadRepository(),
+    private val repository: VideoUploadRepository = VideoUploadRepository(
+        apiBaseUrlResolver = DefaultApiBaseUrlResolver.getInstance(application.applicationContext)
+    ),
 ) : AndroidViewModel(application) {
 
     private val _uiState = MutableStateFlow(UploadVideoUiState())

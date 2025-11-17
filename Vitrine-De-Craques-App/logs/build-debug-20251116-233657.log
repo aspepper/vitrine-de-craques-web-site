@@ -1,5 +1,4 @@
 [INFO] Iniciando build (variant=debug, task=:app:assembleDebug)
-Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
 > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
@@ -39,21 +38,21 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :app:writeDebugSigningConfigVersions UP-TO-DATE
 
 > Task :app:compileDebugKotlin
-w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:526:43 'static field CONTENT_TYPE_MOVIE: Int' is deprecated. Deprecated in Java.
-w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:536:26 'val LocalLifecycleOwner: ProvidableCompositionLocal<LifecycleOwner>' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.
-w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:1178:39 'val Icons.Outlined.Article: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Outlined.Article.
+w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:532:43 'static field CONTENT_TYPE_MOVIE: Int' is deprecated. Deprecated in Java.
+w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:542:26 'val LocalLifecycleOwner: ProvidableCompositionLocal<LifecycleOwner>' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.
+w: file:///Users/alexpimenta/Projects/vitrine-de-craques-plataforma-web/Vitrine-De-Craques-App/app/src/main/java/com/vitrinedecraques/app/ui/feed/FeedScreen.kt:1214:39 'val Icons.Outlined.Article: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Outlined.Article.
 
 > Task :app:compileDebugJavaWithJavac UP-TO-DATE
-> Task :app:processDebugJavaRes
-> Task :app:mergeDebugJavaResource
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
 > Task :app:dexBuilderDebug
 > Task :app:mergeProjectDexDebug
 > Task :app:packageDebug
 > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
 > Task :app:assembleDebug
 
-BUILD SUCCESSFUL in 1m 32s
-38 actionable tasks: 6 executed, 32 up-to-date
+BUILD SUCCESSFUL in 2m 11s
+38 actionable tasks: 4 executed, 34 up-to-date
 > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
@@ -102,10 +101,10 @@ BUILD SUCCESSFUL in 1m 32s
 Installing APK 'app-debug.apk' on 'Redmi 8 - 10' for :app:debug
 Installed on 1 device.
 
-BUILD SUCCESSFUL in 8s
+BUILD SUCCESSFUL in 9s
 39 actionable tasks: 1 executed, 38 up-to-date
 [INFO] Limpando logcat...
-[INFO] Gravando logcat em: ./logs/run-debug-20251116-213945.log
+[INFO] Gravando logcat em: ./logs/run-debug-20251116-233657.log
 [INFO] Resolvendo PID para pacote 'com.vitrinedecraques.app'...
-[INFO] Conectando logcat com --pid=15368 ...
-[WARN] Processo 15368 finalizou. Procurando novo PID...
+[INFO] Conectando logcat com --pid=23737 ...
+[WARN] Processo 23737 finalizou. Procurando novo PID...

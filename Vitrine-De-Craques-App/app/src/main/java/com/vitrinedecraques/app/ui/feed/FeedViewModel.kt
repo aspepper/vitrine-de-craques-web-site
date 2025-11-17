@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitrinedecraques.app.data.FeedCache
 import com.vitrinedecraques.app.data.NextApiService
+import com.vitrinedecraques.app.data.network.DefaultApiBaseUrlResolver
 import com.vitrinedecraques.app.data.model.FeedVideo
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +25,9 @@ data class FeedUiState(
 
 class FeedViewModel @JvmOverloads constructor(
     application: Application,
-    private val service: NextApiService = NextApiService(),
+    private val service: NextApiService = NextApiService(
+        apiBaseUrlResolver = DefaultApiBaseUrlResolver.getInstance(application.applicationContext)
+    ),
     private val cache: FeedCache = FeedCache(application)
 ) : AndroidViewModel(application) {
 

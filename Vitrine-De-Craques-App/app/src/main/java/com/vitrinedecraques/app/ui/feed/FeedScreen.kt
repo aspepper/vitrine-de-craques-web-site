@@ -246,6 +246,11 @@ fun FeedScreen(
                             hasVideos -> {
                                 val currentPage = pagerState.currentPage
                                 val currentPageOffsetFraction = pagerState.currentPageOffsetFraction
+                                Log.i(
+                                    "FeedScreen",
+                                    "pagerState.currentPage=$currentPage offset=$currentPageOffsetFraction " +
+                                        "videos=${uiState.videos.size}"
+                                )
                                 VerticalPager(
                                     state = pagerState,
                                     modifier = Modifier.fillMaxSize(),
@@ -255,6 +260,10 @@ fun FeedScreen(
                                     val video = uiState.videos[page]
                                     val isActivePage = page == currentPage &&
                                         abs(currentPageOffsetFraction) < 0.1f
+                                    Log.i(
+                                        "FeedScreen",
+                                        "page=$page isActivePage=$isActivePage videoId=${video.id}"
+                                    )
                                     FeedVideoCard(
                                         video = video,
                                         isActive = isActivePage,
@@ -540,13 +549,17 @@ private fun FeedVideoCard(
     val isActiveState by rememberUpdatedState(isActive)
     val playbackErrorState by rememberUpdatedState(playbackError)
     val lifecycleOwner = LocalLifecycleOwner.current
+    var isLifecycleStarted by remember(lifecycleOwner) {
+        mutableStateOf(lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED))
+    }
+    val lifecycleStartedState by rememberUpdatedState(isLifecycleStarted)
 
     DisposableEffect(exoPlayer) {
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
                 Log.i(
                     FEED_VIDEO_TAG,
-                    "onPlaybackStateChanged videoId=${video.id} state=$playbackState " +
+                    "onPlaybackStateChanged videoId=${video.id} state=${playbackState.toPlaybackStateString()} " +
                         "isActive=$isActiveState playWhenReady=${exoPlayer.playWhenReady}"
                 )
             }
@@ -633,20 +646,20 @@ private fun FeedVideoCard(
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
                 Lifecycle.Event.ON_START -> {
+                    isLifecycleStarted = true
                     if (isActiveState && playbackErrorState == null) {
                         Log.i(
                             FEED_VIDEO_TAG,
-                            "Lifecycle ON_START videoId=${video.id} requesting play"
+                            "Lifecycle ON_START videoId=${video.id} resumed state=${exoPlayer.playbackState.toPlaybackStateString()}"
                         )
-                        exoPlayer.playWhenReady = true
                         if (exoPlayer.playbackState == Player.STATE_IDLE) {
                             exoPlayer.prepare()
                         }
-                        exoPlayer.play()
                     }
                 }
 
                 Lifecycle.Event.ON_STOP, Lifecycle.Event.ON_PAUSE -> {
+                    isLifecycleStarted = false
                     Log.i(
                         FEED_VIDEO_TAG,
                         "Lifecycle $event videoId=${video.id} pausing"
@@ -667,7 +680,7 @@ private fun FeedVideoCard(
         Log.i(
             FEED_VIDEO_TAG,
             "ActiveStateChanged videoId=${video.id} shouldPlay=${shouldPlay} " +
-                "playbackState=${exoPlayer.playbackState}"
+                "playbackState=${exoPlayer.playbackState.toPlaybackStateString()}"
         )
         if (!shouldPlay) {
             exoPlayer.playWhenReady = false
@@ -693,14 +706,26 @@ private fun FeedVideoCard(
 
     LaunchedEffect(exoPlayer, video.id) {
         snapshotFlow {
-            Triple(exoPlayer.playbackState, isActiveState, playbackErrorState)
-        }.collect { (state, active, error) ->
+            FeedPlaybackSnapshot(
+                state = exoPlayer.playbackState,
+                isActive = isActiveState,
+                error = playbackErrorState,
+                isLifecycleStarted = lifecycleStartedState
+            )
+        }.collect { snapshot ->
+            val stateLabel = snapshot.state.toPlaybackStateString()
             Log.i(
                 FEED_VIDEO_TAG,
-                "snapshotFlow videoId=${video.id} state=${state} active=${active} " +
-                    "error=${error} playWhenReady=${exoPlayer.playWhenReady}"
+                "snapshotFlow videoId=${video.id} state=${stateLabel} active=${snapshot.isActive} " +
+                    "lifecycleStarted=${snapshot.isLifecycleStarted} error=${snapshot.error} " +
+                    "playWhenReady=${exoPlayer.playWhenReady}"
             )
-            if (state == Player.STATE_READY && active && error == null) {
+            if (
+                snapshot.state == Player.STATE_READY &&
+                snapshot.isActive &&
+                snapshot.error == null &&
+                snapshot.isLifecycleStarted
+            ) {
                 exoPlayer.volume = if (mutedState) 0f else 1f
                 exoPlayer.playWhenReady = true
                 exoPlayer.play()
@@ -869,6 +894,21 @@ private fun FeedTopBar(
 
         NotificationBellButton(onClick = onNotificationsClick)
     }
+}
+
+private data class FeedPlaybackSnapshot(
+    val state: Int,
+    val isActive: Boolean,
+    val error: String?,
+    val isLifecycleStarted: Boolean,
+)
+
+private fun Int.toPlaybackStateString(): String = when (this) {
+    Player.STATE_BUFFERING -> "STATE_BUFFERING"
+    Player.STATE_ENDED -> "STATE_ENDED"
+    Player.STATE_IDLE -> "STATE_IDLE"
+    Player.STATE_READY -> "STATE_READY"
+    else -> "STATE_UNKNOWN($this)"
 }
 
 @Composable

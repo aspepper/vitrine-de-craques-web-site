@@ -2,6 +2,7 @@ package com.vitrinedecraques.app.ui.feed
 
 import android.graphics.BitmapFactory
 import android.util.Base64
+import android.util.Log
 import android.view.View
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
@@ -126,6 +127,7 @@ import com.vitrinedecraques.app.data.network.DefaultApiBaseUrlResolver
 import com.vitrinedecraques.app.data.network.HttpClientProvider
 
 private val BottomNavigationHeight = 96.dp
+private const val FEED_VIDEO_TAG = "FeedVideoCard"
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -500,6 +502,10 @@ private fun FeedVideoCard(
     onMenuClick: () -> Unit,
 ) {
     val context = LocalContext.current
+    Log.i(
+        FEED_VIDEO_TAG,
+        "Compose FeedVideoCard videoId=${video.id} isActive=$isActive videoUrl=${video.videoUrl}"
+    )
     var isMuted by remember { mutableStateOf(true) }
     var playbackError by remember(video.id) { mutableStateOf<String?>(null) }
     val httpDataSourceFactory = remember(video.id) {
@@ -538,13 +544,18 @@ private fun FeedVideoCard(
     DisposableEffect(exoPlayer) {
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
-                if (playbackState == Player.STATE_READY && isActiveState && playbackErrorState == null) {
-                    exoPlayer.volume = if (mutedState) 0f else 1f
-                    exoPlayer.playWhenReady = true
-                    exoPlayer.play()
-                }
+                Log.i(
+                    FEED_VIDEO_TAG,
+                    "onPlaybackStateChanged videoId=${video.id} state=$playbackState " +
+                        "isActive=$isActiveState playWhenReady=${exoPlayer.playWhenReady}"
+                )
             }
             override fun onPlayerError(error: PlaybackException) {
+                Log.e(
+                    FEED_VIDEO_TAG,
+                    "onPlayerError videoId=${video.id} message=${error.message}",
+                    error
+                )
                 exoPlayer.playWhenReady = false
                 val message = when (val cause = error.cause) {
                     is HttpDataSource.InvalidResponseCodeException -> {
@@ -569,6 +580,10 @@ private fun FeedVideoCard(
     }
 
     LaunchedEffect(video.id, video.videoUrl, exoPlayer) {
+        Log.i(
+            FEED_VIDEO_TAG,
+            "Preparing media for videoId=${video.id} url=${video.videoUrl}"
+        )
         playbackError = null
         if (video.videoUrl.isBlank()) {
             exoPlayer.playWhenReady = false
@@ -619,6 +634,10 @@ private fun FeedVideoCard(
             when (event) {
                 Lifecycle.Event.ON_START -> {
                     if (isActiveState && playbackErrorState == null) {
+                        Log.i(
+                            FEED_VIDEO_TAG,
+                            "Lifecycle ON_START videoId=${video.id} requesting play"
+                        )
                         exoPlayer.playWhenReady = true
                         if (exoPlayer.playbackState == Player.STATE_IDLE) {
                             exoPlayer.prepare()
@@ -628,6 +647,10 @@ private fun FeedVideoCard(
                 }
 
                 Lifecycle.Event.ON_STOP, Lifecycle.Event.ON_PAUSE -> {
+                    Log.i(
+                        FEED_VIDEO_TAG,
+                        "Lifecycle $event videoId=${video.id} pausing"
+                    )
                     exoPlayer.playWhenReady = false
                     exoPlayer.pause()
                 }
@@ -640,7 +663,13 @@ private fun FeedVideoCard(
     }
 
     LaunchedEffect(isActive, playbackError, exoPlayer) {
-        if (!isActive || playbackError != null) {
+        val shouldPlay = isActive && playbackError == null
+        Log.i(
+            FEED_VIDEO_TAG,
+            "ActiveStateChanged videoId=${video.id} shouldPlay=${shouldPlay} " +
+                "playbackState=${exoPlayer.playbackState}"
+        )
+        if (!shouldPlay) {
             exoPlayer.playWhenReady = false
             if (exoPlayer.playbackState != Player.STATE_IDLE) {
                 exoPlayer.pause()
@@ -649,11 +678,13 @@ private fun FeedVideoCard(
         }
 
         if (exoPlayer.playbackState == Player.STATE_IDLE) {
+            Log.i(
+                FEED_VIDEO_TAG,
+                "Preparing from ActiveState videoId=${video.id}"
+            )
             exoPlayer.prepare()
         }
         exoPlayer.volume = if (mutedState) 0f else 1f
-        exoPlayer.playWhenReady = true
-        exoPlayer.play()
     }
 
     LaunchedEffect(mutedState, exoPlayer) {
@@ -664,6 +695,11 @@ private fun FeedVideoCard(
         snapshotFlow {
             Triple(exoPlayer.playbackState, isActiveState, playbackErrorState)
         }.collect { (state, active, error) ->
+            Log.i(
+                FEED_VIDEO_TAG,
+                "snapshotFlow videoId=${video.id} state=${state} active=${active} " +
+                    "error=${error} playWhenReady=${exoPlayer.playWhenReady}"
+            )
             if (state == Player.STATE_READY && active && error == null) {
                 exoPlayer.volume = if (mutedState) 0f else 1f
                 exoPlayer.playWhenReady = true

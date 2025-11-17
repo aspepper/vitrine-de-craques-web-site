@@ -1,0 +1,254 @@
+--------- beginning of main
+11-16 23:39:24.608 I/Perf    (23737): Connecting to perf service.
+11-16 23:39:24.743 I/FeatureParser(23737): can't find olive.xml in assets/device_features/,it may be in /system/etc/device_features
+--------- beginning of system
+11-16 23:39:24.791 W/Looper  (23737): Slow Looper main: Long Msg: seq=2 plan=23:39:19.586  late=1ms wall=5200ms running=0ms h=android.app.ActivityThread$H w=110
+11-16 23:39:24.802 E/Perf    (23737): Fail to get file list com.vitrinedecraques.app
+11-16 23:39:24.803 E/Perf    (23737): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+11-16 23:39:24.803 E/Perf    (23737): Fail to get file list com.vitrinedecraques.app
+11-16 23:39:24.803 E/Perf    (23737): getFolderSize() : Exception_1 = java.lang.NullPointerException: Attempt to get length of null array
+11-16 23:39:25.255 W/Looper  (23737): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5187ms late (wall=463ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.LaunchActivityItem] lifecycleRequest=android.app.servertransaction.ResumeActivityItem }) because of 1 msg, msg 1 took 5200ms (seq=2 late=1ms h=android.app.ActivityThread$H w=110)
+11-16 23:39:25.256 W/Looper  (23737): Slow Looper main: Activity com.vitrinedecraques.app/.MainActivity is 5648ms late (wall=0ms running=0ms ClientTransaction{ callbacks=[android.app.servertransaction.TopResumedActivityChangeItem] }) because of 2 msg, msg 1 took 5200ms (seq=2 late=1ms h=android.app.ActivityThread$H w=110), msg 2 took 463ms (seq=3 late=5187ms h=android.app.ActivityThread$H w=159)
+11-16 23:39:25.256 I/Choreographer(23737): Skipped 31 frames!  The application may be doing too much work on its main thread.
+11-16 23:39:26.402 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-16 23:39:26.403 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-16 23:39:26.403 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-16 23:39:26.404 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, linking, allowed)
+11-16 23:39:26.408 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:39:26.410 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->objectFieldOffset(Ljava/lang/reflect/Field;)J (greylist,core-platform-api, linking, allowed)
+11-16 23:39:26.411 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:39:26.412 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-16 23:39:26.412 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, linking, allowed)
+11-16 23:39:26.415 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, linking, allowed)
+11-16 23:39:26.418 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, linking, allowed)
+11-16 23:39:26.420 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->allocateInstance(Ljava/lang/Class;)Ljava/lang/Object; (greylist, linking, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->peekLong(JZ)J (greylist, reflection, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->pokeLong(JJZ)V (greylist, reflection, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->pokeInt(JIZ)V (greylist, reflection, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->peekInt(JZ)I (greylist, reflection, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->pokeByte(JB)V (greylist, reflection, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->peekByte(J)B (greylist, reflection, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->pokeByteArray(J[BII)V (greylist, reflection, allowed)
+11-16 23:39:26.428 W/nedecraques.ap(23737): Accessing hidden method Llibcore/io/Memory;->peekByteArray(J[BII)V (greylist, reflection, allowed)
+11-16 23:39:26.429 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->arrayBaseOffset(Ljava/lang/Class;)I (greylist,core-platform-api, linking, allowed)
+11-16 23:39:26.429 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->arrayIndexScale(Ljava/lang/Class;)I (greylist, linking, allowed)
+11-16 23:39:26.429 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-16 23:39:26.430 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, reflection, allowed)
+11-16 23:39:26.430 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, reflection, allowed)
+11-16 23:39:26.430 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getLong(Ljava/lang/Object;J)J (greylist,core-platform-api, reflection, allowed)
+11-16 23:39:26.430 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putLong(Ljava/lang/Object;JJ)V (greylist, reflection, allowed)
+11-16 23:39:26.430 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, reflection, allowed)
+11-16 23:39:26.431 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, reflection, allowed)
+11-16 23:39:26.431 W/nedecraques.ap(23737): Accessing hidden field Ljava/nio/Buffer;->address:J (greylist, reflection, allowed)
+11-16 23:39:26.439 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:39:26.608 W/nedecraques.ap(23737): Accessing hidden method Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl; (greylist, reflection, allowed)
+11-16 23:39:26.608 W/nedecraques.ap(23737): Accessing hidden field Landroid/view/View$AttachInfo;->mVisibleInsets:Landroid/graphics/Rect; (greylist, reflection, allowed)
+11-16 23:39:26.608 W/nedecraques.ap(23737): Accessing hidden field Landroid/view/ViewRootImpl;->mAttachInfo:Landroid/view/View$AttachInfo; (greylist, reflection, allowed)
+11-16 23:39:26.693 I/AdrenoGLES(23737): QUALCOMM build                   : 9d44e36, Ie3bb699d95
+11-16 23:39:26.693 I/AdrenoGLES(23737): Build Date                       : 09/29/20
+11-16 23:39:26.693 I/AdrenoGLES(23737): OpenGL ES Shader Compiler Version: EV031.27.05.02
+11-16 23:39:26.693 I/AdrenoGLES(23737): Local Branch                     : 
+11-16 23:39:26.693 I/AdrenoGLES(23737): Remote Branch                    : refs/tags/AU_LINUX_ANDROID_LA.UM.8.6.2.R1.10.00.00.537.053
+11-16 23:39:26.693 I/AdrenoGLES(23737): Remote Branch                    : NONE
+11-16 23:39:26.693 I/AdrenoGLES(23737): Reconstruct Branch               : NOTHING
+11-16 23:39:26.693 I/AdrenoGLES(23737): Build Config                     : S L 8.0.10 AArch64
+11-16 23:39:26.721 I/AdrenoGLES(23737): PFP: 0x005ff112, ME: 0x005ff066
+11-16 23:39:26.819 W/Gralloc3(23737): mapper 3.x is not supported
+11-16 23:39:26.973 I/OpenGLRenderer(23737): Davey! duration=2233ms; Flags=1, IntendedVsync=386933169070309, Vsync=386933685736955, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=386933687773385, AnimationStart=386933687880364, PerformTraversalsStart=386933688215364, DrawStart=386935214995572, SyncQueued=386935245099634, SyncStart=386935245586353, IssueDrawCommandsStart=386935245713332, SwapBuffers=386935398391249, FrameCompleted=386935402689322, DequeueBufferDuration=180000, QueueBufferDuration=2797000, 
+11-16 23:39:26.976 W/Looper  (23737): Slow Looper main: Long Msg: seq=7 plan=23:39:24.739  late=517ms wall=1718ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+11-16 23:39:26.977 W/Looper  (23737): Slow Looper main: doFrame is 517ms late because of 5 msg, msg 1 took 5200ms (seq=2 late=1ms h=android.app.ActivityThread$H w=110), msg 2 took 463ms (seq=3 late=5187ms h=android.app.ActivityThread$H w=159)
+11-16 23:39:27.026 I/Choreographer(23737): Skipped 96 frames!  The application may be doing too much work on its main thread.
+11-16 23:39:27.034 W/Looper  (23737): Slow Looper main: doFrame is 1602ms late because of 5 msg, msg 1 took 1718ms (seq=7 late=517ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+11-16 23:39:27.037 I/OpenGLRenderer(23737): Davey! duration=1612ms; Flags=0, IntendedVsync=386933854100744, Vsync=386935454100680, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=386935457271353, AnimationStart=386935457345988, PerformTraversalsStart=386935457352342, DrawStart=386935461444790, SyncQueued=386935462918488, SyncStart=386935463439426, IssueDrawCommandsStart=386935463525884, SwapBuffers=386935465258592, FrameCompleted=386935467482030, DequeueBufferDuration=84000, QueueBufferDuration=1388000, 
+11-16 23:39:27.087 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-16 23:39:27.087 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:39:27.088 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-16 23:39:27.088 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-16 23:39:27.107 I/HttpClientProvider(23737): updateSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-16 23:39:27.210 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-16 23:39:27.210 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:39:27.210 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-16 23:39:27.211 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-16 23:39:27.992 I/OpenGLRenderer(23737): Davey! duration=863ms; Flags=0, IntendedVsync=386935558311646, Vsync=386935558311646, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=386935559051717, AnimationStart=386935559058488, PerformTraversalsStart=386936086389165, DrawStart=386936086707967, SyncQueued=386936418911717, SyncStart=386936419416457, IssueDrawCommandsStart=386936419710155, SwapBuffers=386936420868592, FrameCompleted=386936422058384, DequeueBufferDuration=141000, QueueBufferDuration=386000, 
+11-16 23:39:28.015 I/NextApiService(23737): GET /api/videos resolvedUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos?skip=0&take=6 skip=0 take=6
+11-16 23:39:28.256 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmg27edkl0001mysrysqyg6e8 isActive=true videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fpub-11c79f639e314f208bdf80d01ef7056c.r2.dev%2Fuploads%2Fvideos%2F94e141d7-f485-4fe2-8d64-4d3ea64f119d-Mixed_race_boy_202509270835_mu512.mp4
+11-16 23:39:28.358 I/ExoPlayerImpl(23737): Init 4422dd5 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-16 23:39:28.446 W/nedecraques.ap(23737): Accessing hidden method Landroid/media/AudioTrack;->getLatency()I (greylist, reflection, allowed)
+11-16 23:39:28.786 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 4 lines
+11-16 23:39:28.821 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 5 lines
+11-16 23:39:28.853 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 8 lines
+11-16 23:39:28.968 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 16 lines
+11-16 23:39:29.106 I/FeedVideoCard(23737): Lifecycle ON_START videoId=cmg27edkl0001mysrysqyg6e8 requesting play
+11-16 23:39:29.119 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmg27edkl0001mysrysqyg6e8 state=4 isActive=true playWhenReady=true
+11-16 23:39:29.199 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmg0pk9200001o4sr34c1huse isActive=false videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fpub-11c79f639e314f208bdf80d01ef7056c.r2.dev%2Fuploads%2Fvideos%2Fa708ff12-3851-41bf-92bd-93523ed2fb79-16yearold_boy_scoring_202509260643_fntyn.mp4
+11-16 23:39:29.203 I/ExoPlayerImpl(23737): Init 41e36ba [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-16 23:39:29.335 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 25 lines
+11-16 23:39:29.337 W/Gralloc3(23737): allocator 3.x is not supported
+11-16 23:39:29.374 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 14 lines
+11-16 23:39:29.592 I/nedecraques.ap(23737): NativeAlloc concurrent copying GC freed 53302(3843KB) AllocSpace objects, 30(3528KB) LOS objects, 66% free, 6330KB/18MB, paused 136us total 126.147ms
+11-16 23:39:29.678 W/Looper  (23737): Slow Looper main: Long Msg: seq=40 plan=23:39:27.997  late=125ms wall=1554ms running=0ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver
+11-16 23:39:29.678 I/OpenGLRenderer(23737): Davey! duration=1681ms; Flags=0, IntendedVsync=386936427113420, Vsync=386936543780082, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=386936552959738, AnimationStart=386936553039842, PerformTraversalsStart=386936666698488, DrawStart=386936667028071, SyncQueued=386938104942446, SyncStart=386938105440206, IssueDrawCommandsStart=386938106652758, SwapBuffers=386938107907029, FrameCompleted=386938108906248, DequeueBufferDuration=379000, QueueBufferDuration=409000, 
+11-16 23:39:29.740 I/NextApiService(23737): Fetching profile details from: https://nice-hill-01a3a1010.2.azurestaticapps.net/api/atletas/cmfyh0u0b0002nassr4s60ds1
+11-16 23:39:29.741 I/FeedVideoCard(23737): Preparing media for videoId=cmg27edkl0001mysrysqyg6e8 url=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fpub-11c79f639e314f208bdf80d01ef7056c.r2.dev%2Fuploads%2Fvideos%2F94e141d7-f485-4fe2-8d64-4d3ea64f119d-Mixed_race_boy_202509270835_mu512.mp4
+11-16 23:39:29.745 I/HttpClientProvider(23737): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-16 23:39:29.767 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmg27edkl0001mysrysqyg6e8 state=2 isActive=true playWhenReady=false
+11-16 23:39:29.768 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmg27edkl0001mysrysqyg6e8 shouldPlay=true playbackState=2
+11-16 23:39:29.771 I/FeedVideoCard(23737): snapshotFlow videoId=cmg27edkl0001mysrysqyg6e8 state=2 active=true error=null playWhenReady=false
+11-16 23:39:29.773 I/FeedVideoCard(23737): Preparing media for videoId=cmg0pk9200001o4sr34c1huse url=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fpub-11c79f639e314f208bdf80d01ef7056c.r2.dev%2Fuploads%2Fvideos%2Fa708ff12-3851-41bf-92bd-93523ed2fb79-16yearold_boy_scoring_202509260643_fntyn.mp4
+11-16 23:39:29.777 I/HttpClientProvider(23737): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-16 23:39:29.786 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmg0pk9200001o4sr34c1huse state=2 isActive=false playWhenReady=false
+11-16 23:39:29.786 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmg0pk9200001o4sr34c1huse shouldPlay=false playbackState=2
+11-16 23:39:29.788 I/FeedVideoCard(23737): snapshotFlow videoId=cmg0pk9200001o4sr34c1huse state=2 active=false error=null playWhenReady=false
+11-16 23:39:29.795 I/Choreographer(23737): Skipped 99 frames!  The application may be doing too much work on its main thread.
+11-16 23:39:29.825 I/DpmTcmClient(23737): RegisterTcmMonitor from: $Proxy0
+11-16 23:39:29.867 W/Looper  (23737): Slow Looper main: doFrame is 1665ms late because of 11 msg, msg 1 took 1554ms (seq=40 late=125ms h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver), msg 7 took 114ms (seq=46 late=1557ms h=android.os.Handler c=androidx.compose.ui.platform.AndroidUiDispatcher$dispatchCallback$1)
+11-16 23:39:30.101 I/OpenGLRenderer(23737): Davey! duration=1970ms; Flags=1, IntendedVsync=386936560771538, Vsync=386938210771472, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=386938226363331, AnimationStart=386938226491664, PerformTraversalsStart=386938262614425, DrawStart=386938281435727, SyncQueued=386938295132081, SyncStart=386938295863852, IssueDrawCommandsStart=386938296839112, SwapBuffers=386938530440883, FrameCompleted=386938531860154, DequeueBufferDuration=281000, QueueBufferDuration=363000, 
+11-16 23:39:32.665 I/nedecraques.ap(23737): ProcessProfilingInfo new_methods=15162 is saved saved_to_disk=1 resolve_classes_delay=8000
+11-16 23:39:59.285 I/NextApiService(23737): Fetching profile details from: https://nice-hill-01a3a1010.2.azurestaticapps.net/api/atletas/cmfyh0u0b0002nassr4s60ds1
+11-16 23:40:36.263 W/VideoCapabilities(23737): Unsupported mime video/divx
+11-16 23:40:36.264 W/VideoCapabilities(23737): Unsupported mime video/divx4
+11-16 23:40:36.290 W/Utils   (23737): could not parse long range '146-132'
+11-16 23:40:36.299 I/VideoCapabilities(23737): Unsupported profile 4 for video/mp4v-es
+11-16 23:40:36.458 I/OMXClient(23737): IOmx service obtained
+11-16 23:40:36.769 I/MediaCodec(23737): [OMX.qcom.video.decoder.avc] setting surface generation to 24306689
+11-16 23:40:36.772 I/ExtendedACodec(23737): setupVideoDecoder()
+11-16 23:40:36.779 I/ExtendedACodec(23737): Decoder will be in frame by frame mode
+11-16 23:40:36.798 I/OMXClient(23737): IOmx service obtained
+11-16 23:40:36.815 I/MediaCodec(23737): [OMX.qcom.video.decoder.avc] setting surface generation to 24306690
+11-16 23:40:36.817 I/ExtendedACodec(23737): setupVideoDecoder()
+11-16 23:40:36.824 I/ExtendedACodec(23737): Decoder will be in frame by frame mode
+11-16 23:40:36.832 I/OMXClient(23737): IOmx service obtained
+11-16 23:40:36.836 I/ACodec  (23737): codec does not support config priority (err -2147483648)
+11-16 23:40:36.837 I/ACodec  (23737): codec does not support config priority (err -2147483648)
+11-16 23:40:36.837 I/ACodec  (23737): codec does not support config operating rate (err -2147483648)
+11-16 23:40:36.838 W/ExtendedACodec(23737): Failed to get extension for extradata parameter
+11-16 23:40:36.867 I/OMXClient(23737): IOmx service obtained
+11-16 23:40:36.871 I/ACodec  (23737): codec does not support config priority (err -2147483648)
+11-16 23:40:36.872 I/ACodec  (23737): codec does not support config priority (err -2147483648)
+11-16 23:40:36.872 I/ACodec  (23737): codec does not support config operating rate (err -2147483648)
+11-16 23:40:36.873 W/ExtendedACodec(23737): Failed to get extension for extradata parameter
+11-16 23:40:39.517 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmg0pk9200001o4sr34c1huse state=3 isActive=false playWhenReady=false
+11-16 23:40:50.431 I/nedecraques.ap(23737): Background concurrent copying GC freed 9499(665KB) AllocSpace objects, 4(172KB) LOS objects, 50% free, 17MB/35MB, paused 82us total 132.737ms
+11-16 23:40:58.872 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmg27edkl0001mysrysqyg6e8 state=3 isActive=true playWhenReady=false
+11-16 23:41:09.175 I/nedecraques.ap(23737): Background concurrent copying GC freed 1701(230KB) AllocSpace objects, 0(0B) LOS objects, 40% free, 35MB/59MB, paused 66us total 117.742ms
+11-16 23:41:33.077 I/nedecraques.ap(23737): Background concurrent copying GC freed 7086(387KB) AllocSpace objects, 0(0B) LOS objects, 28% free, 59MB/83MB, paused 102us total 148.314ms
+11-16 23:44:22.446 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmfu7bzq6001nojheleiwimyk isActive=false videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fexample.com%2Fvideo1.mp4
+11-16 23:44:22.449 I/ExoPlayerImpl(23737): Init ab9764b [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-16 23:44:22.532 I/nedecraques.ap(23737): Background concurrent copying GC freed 5558(423KB) AllocSpace objects, 1(68KB) LOS objects, 22% free, 82MB/106MB, paused 95us total 115.270ms
+11-16 23:44:22.637 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 41 lines
+11-16 23:44:22.771 I/FeedVideoCard(23737): Preparing media for videoId=cmfu7bzq6001nojheleiwimyk url=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fexample.com%2Fvideo1.mp4
+11-16 23:44:22.773 I/HttpClientProvider(23737): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-16 23:44:22.779 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmfu7bzq6001nojheleiwimyk state=2 isActive=false playWhenReady=false
+11-16 23:44:22.780 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmfu7bzq6001nojheleiwimyk shouldPlay=false playbackState=2
+11-16 23:44:22.781 I/FeedVideoCard(23737): snapshotFlow videoId=cmfu7bzq6001nojheleiwimyk state=2 active=false error=null playWhenReady=false
+11-16 23:44:22.855 W/InputEventReceiver(23737): App Input: 401ms before dispatchInputEvent (MotionEvent: event_seq=12, seq=31342, action=ACTION_UP)
+11-16 23:44:22.891 W/Looper  (23737): Slow Looper main: doFrame is 431ms late because of 3 msg, msg 1 took 434ms (seq=4008 h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver)
+11-16 23:44:22.918 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmg27edkl0001mysrysqyg6e8 isActive=false videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fpub-11c79f639e314f208bdf80d01ef7056c.r2.dev%2Fuploads%2Fvideos%2F94e141d7-f485-4fe2-8d64-4d3ea64f119d-Mixed_race_boy_202509270835_mu512.mp4
+11-16 23:44:22.932 I/FeedVideoCard(23737): snapshotFlow videoId=cmg27edkl0001mysrysqyg6e8 state=3 active=false error=null playWhenReady=false
+11-16 23:44:22.933 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmg27edkl0001mysrysqyg6e8 shouldPlay=false playbackState=3
+11-16 23:44:22.981 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-16 23:44:22.981 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:44:22.981 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-16 23:44:22.981 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-16 23:44:22.981 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:44:23.046 I/NextApiService(23737): Fetching profile details from: https://nice-hill-01a3a1010.2.azurestaticapps.net/api/atletas/cmfu7bwgx0014ojhe3eyonoc1
+11-16 23:44:23.053 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmg0pk9200001o4sr34c1huse isActive=true videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fpub-11c79f639e314f208bdf80d01ef7056c.r2.dev%2Fuploads%2Fvideos%2Fa708ff12-3851-41bf-92bd-93523ed2fb79-16yearold_boy_scoring_202509260643_fntyn.mp4
+11-16 23:44:23.061 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getInt(Ljava/lang/Object;J)I (greylist, linking, allowed)
+11-16 23:44:23.061 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-16 23:44:23.061 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putObject(Ljava/lang/Object;JLjava/lang/Object;)V (greylist, linking, allowed)
+11-16 23:44:23.068 I/FeedVideoCard(23737): snapshotFlow videoId=cmg0pk9200001o4sr34c1huse state=3 active=true error=null playWhenReady=false
+11-16 23:44:23.074 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmg0pk9200001o4sr34c1huse shouldPlay=true playbackState=3
+11-16 23:44:23.077 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->getObject(Ljava/lang/Object;J)Ljava/lang/Object; (greylist, linking, allowed)
+11-16 23:44:23.083 W/nedecraques.ap(23737): Accessing hidden method Lsun/misc/Unsafe;->putInt(Ljava/lang/Object;JI)V (greylist, linking, allowed)
+11-16 23:44:23.287 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmfu7bzq7001oojhef0gtkm9t isActive=false videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fexample.com%2Fvideo2.mp4
+11-16 23:44:23.290 W/AudioTrack(23737): getTimestamp_l(176): retrograde timestamp time corrected, 387231706787490 < 387231709369886
+11-16 23:44:23.290 I/ExoPlayerImpl(23737): Init e455c51 [AndroidXMedia3/1.4.1] [olive, Redmi 8, Xiaomi, 29]
+11-16 23:44:23.355 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 5 lines
+11-16 23:44:23.427 I/chatty  (23737): uid=11417(com.vitrinedecraques.app) identical 32 lines
+11-16 23:44:23.485 I/FeedVideoCard(23737): Preparing media for videoId=cmfu7bzq7001oojhef0gtkm9t url=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fexample.com%2Fvideo2.mp4
+11-16 23:44:23.487 I/HttpClientProvider(23737): getSessionCookies host=nice-hill-01a3a1010.2.azurestaticapps.net -> ${cookie.name}@${cookie.domain}${cookie.path}
+11-16 23:44:23.495 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmfu7bzq7001oojhef0gtkm9t state=2 isActive=false playWhenReady=false
+11-16 23:44:23.495 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmfu7bzq7001oojhef0gtkm9t shouldPlay=false playbackState=2
+11-16 23:44:23.496 I/FeedVideoCard(23737): snapshotFlow videoId=cmfu7bzq7001oojhef0gtkm9t state=2 active=false error=null playWhenReady=false
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737): Playback error
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):   androidx.media3.exoplayer.ExoPlaybackException: Source error
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at android.os.Handler.dispatchMessage(Handler.java:103)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at android.os.Looper.loop(Looper.java:223)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at android.os.HandlerThread.run(HandlerThread.java:67)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):   Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 404
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+11-16 23:44:29.350 E/ExoPlayerImplInternal(23737):       at java.lang.Thread.run(Thread.java:919)
+11-16 23:44:29.359 E/FeedVideoCard(23737): onPlayerError videoId=cmfu7bzq6001nojheleiwimyk message=Source error
+11-16 23:44:29.359 E/FeedVideoCard(23737): androidx.media3.exoplayer.ExoPlaybackException: Source error
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at android.os.Handler.dispatchMessage(Handler.java:103)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at android.os.Looper.loop(Looper.java:223)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at android.os.HandlerThread.run(HandlerThread.java:67)
+11-16 23:44:29.359 E/FeedVideoCard(23737): Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 404
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+11-16 23:44:29.359 E/FeedVideoCard(23737): 	at java.lang.Thread.run(Thread.java:919)
+11-16 23:44:29.362 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmfu7bzq6001nojheleiwimyk state=1 isActive=false playWhenReady=false
+11-16 23:44:29.367 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmfu7bzq6001nojheleiwimyk isActive=false videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fexample.com%2Fvideo1.mp4
+11-16 23:44:29.411 I/FeedVideoCard(23737): snapshotFlow videoId=cmfu7bzq6001nojheleiwimyk state=1 active=false error=Vídeo não encontrado ou indisponível. playWhenReady=false
+11-16 23:44:29.411 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmfu7bzq6001nojheleiwimyk shouldPlay=false playbackState=1
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737): Playback error
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):   androidx.media3.exoplayer.ExoPlaybackException: Source error
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at android.os.Handler.dispatchMessage(Handler.java:103)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at android.os.Looper.loop(Looper.java:223)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at android.os.HandlerThread.run(HandlerThread.java:67)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):   Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 404
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+11-16 23:44:31.230 E/ExoPlayerImplInternal(23737):       at java.lang.Thread.run(Thread.java:919)
+11-16 23:44:31.238 E/FeedVideoCard(23737): onPlayerError videoId=cmfu7bzq7001oojhef0gtkm9t message=Source error
+11-16 23:44:31.238 E/FeedVideoCard(23737): androidx.media3.exoplayer.ExoPlaybackException: Source error
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:736)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:708)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at android.os.Handler.dispatchMessage(Handler.java:103)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at android.os.Looper.loop(Looper.java:223)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at android.os.HandlerThread.run(HandlerThread.java:67)
+11-16 23:44:31.238 E/FeedVideoCard(23737): Caused by: androidx.media3.datasource.HttpDataSource$InvalidResponseCodeException: Response code: 404
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at androidx.media3.datasource.DefaultHttpDataSource.open(DefaultHttpDataSource.java:397)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at androidx.media3.datasource.DefaultDataSource.open(DefaultDataSource.java:275)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at androidx.media3.datasource.StatsDataSource.open(StatsDataSource.java:86)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.source.ProgressiveMediaPeriod$ExtractingLoadable.load(ProgressiveMediaPeriod.java:1045)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at androidx.media3.exoplayer.upstream.Loader$LoadTask.run(Loader.java:421)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+11-16 23:44:31.238 E/FeedVideoCard(23737): 	at java.lang.Thread.run(Thread.java:919)
+11-16 23:44:31.241 I/FeedVideoCard(23737): onPlaybackStateChanged videoId=cmfu7bzq7001oojhef0gtkm9t state=1 isActive=false playWhenReady=false
+11-16 23:44:31.255 I/FeedVideoCard(23737): Compose FeedVideoCard videoId=cmfu7bzq7001oojhef0gtkm9t isActive=false videoUrl=https://nice-hill-01a3a1010.2.azurestaticapps.net/api/videos/proxy?url=https%3A%2F%2Fexample.com%2Fvideo2.mp4
+11-16 23:44:31.293 I/FeedVideoCard(23737): snapshotFlow videoId=cmfu7bzq7001oojhef0gtkm9t state=1 active=false error=Vídeo não encontrado ou indisponível. playWhenReady=false
+11-16 23:44:31.294 I/FeedVideoCard(23737): ActiveStateChanged videoId=cmfu7bzq7001oojhef0gtkm9t shouldPlay=false playbackState=1
+11-16 23:44:38.699 I/FeedVideoCard(23737): Lifecycle ON_PAUSE videoId=cmfu7bzq7001oojhef0gtkm9t pausing
+11-16 23:44:38.699 I/FeedVideoCard(23737): Lifecycle ON_PAUSE videoId=cmfu7bzq6001nojheleiwimyk pausing
+11-16 23:44:38.699 I/FeedVideoCard(23737): Lifecycle ON_PAUSE videoId=cmg0pk9200001o4sr34c1huse pausing
+11-16 23:44:38.700 I/FeedVideoCard(23737): Lifecycle ON_PAUSE videoId=cmg27edkl0001mysrysqyg6e8 pausing
+11-16 23:44:39.171 I/MediaCodec(23737): [OMX.qcom.video.decoder.avc] setting surface generation to 24306691
+11-16 23:44:39.196 I/MediaCodec(23737): [OMX.qcom.video.decoder.avc] setting surface generation to 24306692
+11-16 23:44:39.239 I/FeedVideoCard(23737): Lifecycle ON_STOP videoId=cmfu7bzq7001oojhef0gtkm9t pausing
+11-16 23:44:39.239 I/FeedVideoCard(23737): Lifecycle ON_STOP videoId=cmfu7bzq6001nojheleiwimyk pausing
+11-16 23:44:39.239 I/FeedVideoCard(23737): Lifecycle ON_STOP videoId=cmg0pk9200001o4sr34c1huse pausing
+11-16 23:44:39.240 I/FeedVideoCard(23737): Lifecycle ON_STOP videoId=cmg27edkl0001mysrysqyg6e8 pausing

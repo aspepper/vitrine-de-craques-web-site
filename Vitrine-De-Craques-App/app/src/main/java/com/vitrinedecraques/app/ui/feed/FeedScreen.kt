@@ -517,6 +517,11 @@ private fun FeedVideoCard(
     )
     var isMuted by remember { mutableStateOf(true) }
     var playbackError by remember(video.id) { mutableStateOf<String?>(null) }
+    var playbackState by remember(video.id) {
+        mutableStateOf(Player.STATE_IDLE)
+    }
+    val playbackStateState by rememberUpdatedState(playbackState)
+
     val httpDataSourceFactory = remember(video.id) {
         DefaultHttpDataSource.Factory()
             .setAllowCrossProtocolRedirects(true)
@@ -557,6 +562,9 @@ private fun FeedVideoCard(
     DisposableEffect(exoPlayer) {
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
+                playbackStateState
+                playbackState = playbackState
+
                 Log.i(
                     FEED_VIDEO_TAG,
                     "onPlaybackStateChanged videoId=${video.id} state=${playbackState.toPlaybackStateString()} " +
@@ -675,12 +683,12 @@ private fun FeedVideoCard(
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    LaunchedEffect(isActive, playbackError, exoPlayer) {
-        val shouldPlay = isActive && playbackError == null
+    LaunchedEffect(isActive, playbackError, lifecycleStartedState, exoPlayer) {
+        val shouldPlay = isActive && playbackError == null && lifecycleStartedState
         Log.i(
             FEED_VIDEO_TAG,
             "ActiveStateChanged videoId=${video.id} shouldPlay=${shouldPlay} " +
-                "playbackState=${exoPlayer.playbackState.toPlaybackStateString()}"
+                "playbackState=${playbackStateState.toPlaybackStateString()}"
         )
         if (!shouldPlay) {
             exoPlayer.playWhenReady = false
@@ -697,43 +705,16 @@ private fun FeedVideoCard(
             )
             exoPlayer.prepare()
         }
+
         exoPlayer.volume = if (mutedState) 0f else 1f
+        exoPlayer.playWhenReady = true
     }
 
     LaunchedEffect(mutedState, exoPlayer) {
         exoPlayer.volume = if (mutedState) 0f else 1f
     }
 
-    LaunchedEffect(exoPlayer, video.id) {
-        snapshotFlow {
-            FeedPlaybackSnapshot(
-                state = exoPlayer.playbackState,
-                isActive = isActiveState,
-                error = playbackErrorState,
-                isLifecycleStarted = lifecycleStartedState
-            )
-        }.collect { snapshot ->
-            val stateLabel = snapshot.state.toPlaybackStateString()
-            Log.i(
-                FEED_VIDEO_TAG,
-                "snapshotFlow videoId=${video.id} state=${stateLabel} active=${snapshot.isActive} " +
-                    "lifecycleStarted=${snapshot.isLifecycleStarted} error=${snapshot.error} " +
-                    "playWhenReady=${exoPlayer.playWhenReady}"
-            )
-            if (
-                snapshot.state == Player.STATE_READY &&
-                snapshot.isActive &&
-                snapshot.error == null &&
-                snapshot.isLifecycleStarted
-            ) {
-                exoPlayer.volume = if (mutedState) 0f else 1f
-                exoPlayer.playWhenReady = true
-                exoPlayer.play()
-            }
-        }
-    }
-
-    Box(
+        Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {

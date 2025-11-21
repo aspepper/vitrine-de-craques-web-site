@@ -1,0 +1,47 @@
+1
+00:00:00,000 --> 00:00:05,000
+NARRAÇÃO 1: escreva aqui a frase correspondente a esta imagem (Video-Promocional/scene1.png).
+
+2
+00:00:05,000 --> 00:00:10,000
+NARRAÇÃO 2: escreva aqui a frase correspondente a esta imagem (Video-Promocional/scene2.png).
+
+3
+00:00:10,000 --> 00:00:15,000
+NARRAÇÃO 3: escreva aqui a frase correspondente a esta imagem (Video-Promocional/scene3.png).
+
+4
+00:00:15,000 --> 00:00:20,000
+NARRAÇÃO 4: escreva aqui a frase correspondente a esta imagem (Video-Promocional/scene4.png).
+
+5
+00:00:20,000 --> 00:00:25,000
+NARRAÇÃO 5: escreva aqui a frase correspondente a esta imagem (Video-Promocional/scene5.png).
+
+6
+00:00:25,000 --> 00:00:30,000
+NARRAÇÃO 6: escreva aqui a frase correspondente a esta imagem (Video-Promocional/scene6.png).
+
+7
+00:00:30,000 --> 00:00:35,000
+NARRAÇÃO 7: escreva aqui a frase correspondente a esta imagem (__MACOSX/Video-Promocional/._scene1.png).
+
+8
+00:00:35,000 --> 00:00:40,000
+NARRAÇÃO 8: escreva aqui a frase correspondente a esta imagem (__MACOSX/Video-Promocional/._scene2.png).
+
+9
+00:00:40,000 --> 00:00:45,000
+NARRAÇÃO 9: escreva aqui a frase correspondente a esta imagem (__MACOSX/Video-Promocional/._scene3.png).
+
+10
+00:00:45,000 --> 00:00:50,000
+NARRAÇÃO 10: escreva aqui a frase correspondente a esta imagem (__MACOSX/Video-Promocional/._scene4.png).
+
+11
+00:00:50,000 --> 00:00:55,000
+NARRAÇÃO 11: escreva aqui a frase correspondente a esta imagem (__MACOSX/Video-Promocional/._scene5.png).
+
+12
+00:00:55,000 --> 00:01:00,000
+NARRAÇÃO 12: escreva aqui a frase correspondente a esta imagem (__MACOSX/Video-Promocional/._scene6.png).

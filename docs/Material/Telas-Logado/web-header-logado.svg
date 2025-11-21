@@ -1,0 +1,20 @@
+
+    <svg width="1440" height="136">
+      <rect width="1440" height="136" fill="#FFFFFF"/>
+      <rect width="1440" height="136" fill="none" stroke="#E5E7EB"/>
+      <rect x="32" y="52" width="120" height="32" rx="8" fill="#F1F5F9"/>
+      <g transform="translate(1200, 52)">
+        <rect width="40" height="32" rx="8" fill="#F0FDF4" stroke="#22C55E"/>
+        <path d="M20 22 v-12 M20 10 l-6 6 M20 10 l6 6" stroke="#16A34A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g transform="translate(1256, 50)">
+        <circle cx="18" cy="18" r="18" fill="#E2E8F0"/>
+        <circle cx="18" cy="14" r="6" fill="#CBD5E1"/>
+        <path d="M4 30 c4 -8 24 -8 28 0 Z" fill="#CBD5E1"/>
+      </g>
+      <g transform="translate(1312, 52)">
+        <rect width="40" height="32" rx="8" fill="#FEF2F2" stroke="#EF4444"/>
+        <path d="M14 10 h8 v12 h-8 M18 16 h-10 M10 12 l-4 4 l4 4" stroke="#B91C1C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+    

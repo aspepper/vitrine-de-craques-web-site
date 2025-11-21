@@ -1,0 +1,13 @@
+﻿shot_index,filename,width,height,orientation,duration_sec,motion_type,start_scale,end_scale,start_pos_x,start_pos_y,end_pos_x,end_pos_y,overlay_text
+1,Video-Promocional/scene1.png,1536.0,1024.0,landscape,5.0,zoom_in,1.0,1.05,0.5,0.5,0.5,0.5,
+2,Video-Promocional/scene2.png,1536.0,1024.0,landscape,5.0,zoom_out,1.0,0.95,0.5,0.5,0.5,0.5,
+3,Video-Promocional/scene3.png,1536.0,1024.0,landscape,5.0,pan_left,1.0,1.02,1.0,0.5,0.0,0.5,
+4,Video-Promocional/scene4.png,1536.0,1024.0,landscape,5.0,pan_right,1.0,1.02,0.0,0.5,1.0,0.5,
+5,Video-Promocional/scene5.png,1536.0,1024.0,landscape,5.0,pan_up,1.0,1.02,0.5,1.0,0.5,0.0,
+6,Video-Promocional/scene6.png,1536.0,1024.0,landscape,5.0,pan_down,1.0,1.02,0.5,0.0,0.5,1.0,
+7,__MACOSX/Video-Promocional/._scene1.png,,,portrait,5.0,zoom_in,1.0,1.05,0.5,0.5,0.5,0.5,
+8,__MACOSX/Video-Promocional/._scene2.png,,,portrait,5.0,zoom_out,1.0,0.95,0.5,0.5,0.5,0.5,
+9,__MACOSX/Video-Promocional/._scene3.png,,,portrait,5.0,pan_left,1.0,1.02,1.0,0.5,0.0,0.5,
+10,__MACOSX/Video-Promocional/._scene4.png,,,portrait,5.0,pan_right,1.0,1.02,0.0,0.5,1.0,0.5,
+11,__MACOSX/Video-Promocional/._scene5.png,,,portrait,5.0,pan_up,1.0,1.02,0.5,1.0,0.5,0.0,
+12,__MACOSX/Video-Promocional/._scene6.png,,,portrait,5.0,pan_down,1.0,1.02,0.5,0.0,0.5,1.0,

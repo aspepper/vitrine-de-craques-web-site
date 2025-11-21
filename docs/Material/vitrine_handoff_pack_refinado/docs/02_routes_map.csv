@@ -1,0 +1,42 @@
+route,frame_name,node_id,requires_auth
+/upload-de-v-deos,Upload de Vídeos,69:3031,false
+/upload-de-v-deo,Upload de Vídeo,69:2826,false
+/frame-35,Frame 35,65:2700,false
+/atletas,Atletas,5:90,false
+/perfil,Perfil,5:459,false
+/privacidade,Privacidade,5:599,false
+/sobre,Sobre,65:2771,false
+/confederacao-detalhe,Confederacao Detalhe,5:578,false
+/clube-detalhe,Clube Detalhe,5:664,false
+/clubes-grid,Clubes Grid,5:498,false
+/torcida-grid,Torcida Grid,5:974,false
+/atleta-perfil,Atleta Perfil,5:1053,false
+/agente-perfil,Agente Perfil,5:1086,false
+/agentes-grid,Agentes Grid,5:1114,false
+/,Home,19:370,false
+/frame-4,Frame 4,19:727,false
+/frame-3,Frame 3,19:684,false
+/header-padr-o,Header Padrão,56:549,false
+/escolha-perfil,Escolha Perfil,58:959,false
+/cadastro-imprensa-jornalista-blogueiro,Cadastro Imprensa (Jornalista/Blogueiro),58:1191,false
+/frame,Frame,88:7289,false
+/cadastro-torcedor,Cadastro Torcedor,59:1886,false
+/cadastro-de-documentos-necess-rios-para-pais-e-respons-veis,Cadastro de Documentos necessários para pais e responsáveis,58:1524,false
+/cadastro-respons-vel,Cadastro Responsável,71:3977,false
+/,Home - Logado,74:4421,false
+/cadastro-atleta-18,Cadastro atleta 18+,58:1296,false
+/cadastro-de-agentes-licenciados,Cadastro de Agentes Licenciados,58:1628,false
+/login,Login,73:4273,false
+/cadastro-clube,Cadastro Clube,88:5681,false
+/social-oauth,Social OAuth,152:3377,false
+/feeds,Feeds,158:20692,false
+/noticia-detalhe,Noticia Detalhe,164:22103,false
+/noticias,Noticias,164:22341,false
+/games-lista,Games Lista,164:22619,false
+/game-detalhe,Game Detalhe,167:22954,false
+/confederacoes,Confederacoes,188:23251,false
+/ui-kit,ui-kit,221:2060,false
+/user-flows,user-flows,221:2145,false
+/footer-padr-o,Footer Padrão,88:6910,false
+/header-padr-o-logado,Header Padrão Logado,112:1576,false
+/estados-skeleton,Estados Skeleton,221:2242,false

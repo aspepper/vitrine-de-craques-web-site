@@ -1,0 +1,339 @@
+
+Design a modern, colorful, and mobile-first website for “Vitrine de Craques”, a football talent discovery platform for kids and teenagers (ages 14–22). The site should have a joyful, youthful look, inspired by social media platforms like TikTok and Instagram. Include a vibrant home page with a dynamic feed showing 5-second football video clips posted by young players. There should be a fun mascot called “Tico” integrated into the design to guide users or show tips. Create clear sections for: Player Rankings, Top Videos, Club/Scout Area, and Fan Zone (where users can like, comment, and share videos). Use bold typography, energetic colors, and intuitive UX for teens and football fans. Website, features: Fans, Agents and Agents, Football Clubs, News, Profile, Guardian Area (father or mother), etc.
+
+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
+
+
+Pr0gr4m4d0r@413xP1m3n74
+
+
+Crie um site moderno, colorido e responsivo, mobile-first para a "Vitrine de Craques", uma plataforma de descoberta de talentos do futebol para crianças e adolescentes (de 14 a 22 anos). O site deve ter um visual alegre e jovial, inspirado em plataformas de mídia social como TikTok e Instagram. o projeto deve ter as seguintes páginas:
+
+- "Home"- Página vibrante e moderna onde serão mostrados um banner apontando para um vídeo no youtube que poderá ser dado o play aqui mesmo com instruções e propaganda. 
+- "Feeds" – Página para o feed de vídeos postados igual ao Tiktok, com os vídeos de até 10 segundos, com rolagem na parte vertical apenas nos vídeos.
+- "Atletas" – Página com a foto e descrição de atletas cadastrados que poderá ser clicado e acessar uma página que mostrará o perfil do atleta, com foto, como se fosse uma figurinha de album da copa, informações e vídeos postados. Essa página deve ser parecida com uma página de album de figurinhas da copa, com título "Time Vitrine de Craques". Poderá fazer filtro por nome, idade, cidade, estado, etc. 
+- "Torcida" – Página que, a princípio, terá fotos de torcedores de vários times. Como a página de Atletas com o título Torcida, poderá ser feito busca por nome, time e cidade.
+- "Agentes"- (Seria para Agentes de Futebol, Empresários e Olheiros) - Página com a lista (com foto) com agentes de futebol e olheiros com seu nome, como se fosse album de futebol com o título "Time de Agentes de Futebol, Empresários e Olheiros".
+- "Clubes de Futebol" - Página com todos os clubes brasileiros e do mundo, apenas brasões e nome. Ao clicar em um clube, abrir página com contar sua história desde sua fundação, campeonatos ganhos, melhores jogadores da história, maiores goleadas, nomes das torcidas organizadas e vagas disponíveis. Na primeira página, poderá ter a lista de times apenas do estado de SP, mas poderá ser feito filtro por Estado, País. Está página de detalhes em si pode ter o espaço para todas essas informações, e os dados deverão vir de um banco de dados. Precisa ser realizado pesquisa na Web para obter dados destes clubes, brasões e fotos dos estádios. E para cada clube, 
+- "Noticias" - Página onde será mostrado as ultimas notícias imputadas na base de dados, modele a página para um ar de imprensa. Quando o usuário clicar em uma notícia, vai para os detalhes desta notícia.
+- "Games" - Página serão mostrados dicas de games, notícias de lançamentos, alguns destaques de artigos de personalidades em games. Ao clicar em um destaque ou item ir para a página de destalhes, ou com as dicas completas, ou com a notícia na integra ou no artigo do destaque.
+- "Confederações" - Página Mostrará o logo de todas as confereções de futebol pelo mundo, com a FIFA sendo a primeira, e informações de cada conferederação além de de comunicações oficiais das entidades.
+- Página "Sobre", terá infoprmações sobre a nossa empresa, o instituto Vitrine de Craques etc. Tudo sobre o Vitrine de Craques.
+- "Privacidade" - Página mostrará nossa política de privacidade e termos de uso, etc...
+- "Perfil" - Página aqui será mostrado o perfil do usuário cadastrado, sua foto, nome completo, perfmitirá editar dados, ver todos os vídeos postados no caso de responsável do atleta ou atleta, ou artigos e notícias postadas, ou dicas de games no caso de jornalista se ele tiver habilitado para postar notícias ou dicas de games, interações com outros usuários e avisos de comunicação da plataforma com este usuário. Quando o usuário for um Agente, Empresário ou Olheiro, mostrará também todos os atletas que ele tem interesse, ou que já está atrelado a ele e o histórico de tudo o que aconteceu até o momento com este atleta, ficha técnica, e observações. Essa mesma página será apresentada quando um usuário clicar em outro pelas páginas Atletas, Torcida e Agentes.
+
+No cabeçario, deve mostrar Login ou Registrar, no caso de não estar logado, e se tiver um link para perfil e ícones de mensagem (e se ouver mostrar uma bolinha vermelha sobre o icone da mensagem). Para usuários com perfil de atletas e responsáveis colocar um ícone para subir vídeos (que vai para a página de upload). Para usuários com perfil de Imprensa, mostrar um ícone para postar novo artigo.
+
+No Rodapé endereço, contatos, e ícones de todas as redes sociais do vitrine de craques.
+
+Upload de Vídeos – Página com área para arrastar um vídeo ou clicar e abrir o diálogo para upload da máquina do usuário, caixa de texto para título e outra para descrição, um botão para analisar direitos autoriais e ferramenta para cortar 10 segundos de vídeo.
+
+
+
+
+
+
+
+ATUE COMO: Engenheiro(a) full-stack sênior, focado em UX mobile-first, acessibilidade (WCAG 2.2 AA), performance e entregáveis prontos para rodar.
+
+OBJETIVO: Gerar um website completo, colorido e responsivo, mobile-first, para a plataforma **Vitrine de Craques** (descoberta de talentos do futebol 14–22 anos), com estética alegre/jovial inspirada em TikTok/Instagram.
+
+STACK/ARQUITETURA (exija estes itens no projeto gerado):
+- Next.js 14 (App Router) + TypeScript.
+- Tailwind CSS com design tokens via CSS variables; dark mode `class`.
+- shadcn/ui + Radix (acessível) para botões, inputs, dropdowns, dialog, sheet, badge, card.
+- next-auth (e-mail/senha em memória para demo) com perfis/roles: "athlete", "guardian", "agent", "press", "fan", "admin".
+- Estado: React Server Components + React Query para chamadas de API.
+- Banco: Prisma + SQLite para demo (com seeds). Organize entidades: User, Profile, Video, Article, Club, Agent, Athlete, Fan, Confederation, Notification, Message, Interest, TeamHistory.
+- Vídeo: `<video>` HTML5 com autoplay/loop/mute, **IntersectionObserver** para play/pause quando entra/sai do viewport. Suporte a vídeos verticais 9:16.
+- Upload: dropzone (react-dropzone) + ffmpeg.wasm para corte de **10 segundos** client-side; “Analisar direitos autorais” como stub (retornar estados Fake: “ok”, “possível violação”, “bloqueado”).
+- Qualidade de código: ESLint + Prettier + TS strict. Testes: Vitest + React Testing Library (mín. 3 testes UI) e Playwright e2e (mín. 1 fluxo do feed).
+
+BRANDING / DESIGN TOKENS:
+Crie `app/globals.css` com:
+:root {
+  --bg:#F8FAFC; --surface:#FFFFFF; --text:#0B0F10;
+  --primary:#16A34A; --on-primary:#FFFFFF;
+  --secondary:#0EA5E9; --on-secondary:#0B0F10;
+  --accent:#F59E0B; --on-accent:#0B0F10;
+  --info:#06B6D4; --success:#22C55E; --warning:#F59E0B; --error:#E11D48;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#0B0F10; --surface:#111827; --text:#F3F4F6;
+    --primary:#22C55E; --on-primary:#0B0F10;
+    --secondary:#38BDF8; --on-secondary:#0B0F10;
+    --accent:#FBBF24; --on-accent:#0B0F10;
+  }
+}
+Integre as tokens ao Tailwind (cores custom via `:root`) e aplique tipografia legível, espaçamentos generosos, cards com cantos 2xl e sombras suaves.
+
+NAVEGAÇÃO / LAYOUT:
+- Header fixo (mobile) com logo, busca, e à direita:
+  - Se anônimo: "Login" e "Registrar".
+  - Se logado: avatar (link Perfil), ícone Mensagens com badge vermelho (contador de não lidas), e:
+    - Para athlete/guardian: ícone “Subir Vídeo”.
+    - Para press: ícone “Novo Artigo”.
+- Menu primário: Home, Feeds, Atletas, Torcida, Agentes, Clubes, Notícias, Games, Confederações, Sobre, Privacidade, Perfil.
+- Footer: endereço, contatos, ícones de todas as redes sociais.
+- Skeletons para carregamento; estados vazios amigáveis.
+
+PÁGINAS E CRITÉRIOS DE ACEITAÇÃO (crie rotas, UI e APIs/handlers):
+
+1) / (Home)
+- Hero com banner e **player YouTube incorporado** (botão play). Campo para texto de propaganda e instruções rápidas.
+- Cards de destaques: últimos vídeos, atletas em alta, notícias recentes.
+- CTA para registro e upload (se atleta/responsável).
+- SEO: título, descrição e OG tags.
+
+2) /feeds
+- Feed vertical estilo TikTok: apenas **scroll no contêiner de vídeo** (body não rola enquanto um vídeo está em foco).
+- Vídeos de até 10s, autoplay quando 70% visível, pause fora do viewport; “curtir”, “comentar”, “compartilhar”, “denunciar”.
+- Paginação/infinite scroll com React Query; debounce de 300ms entre loads.
+- Teste e2e: validar autoplay/pause e mudança de foco entre vídeos.
+
+3) /atletas
+- Grid responsivo com foto/nome/idade/cidade/estado; filtros por nome, idade, cidade, estado (query params persistentes).
+- Clique abre `/atletas/[slug]`.
+
+   /atletas/[slug] (Perfil do atleta)
+   - Layout “figurinha de álbum da copa”: moldura estilizada, nome, posição, idade, altura, cidade/estado, bio curta.
+   - Carrossel dos vídeos do atleta.
+   - Se o visitante é agent/press: botão “Manifestar Interesse” (stub).
+   - Título de sessão: **“Time Vitrine de Craques”**.
+
+4) /torcida
+- Similar a /atletas, mas listando torcedores com foto, time e cidade. Filtros por nome, time, cidade. Detalhe básico do torcedor (/torcida/[slug]) opcional.
+
+5) /agentes
+- Álbum de “Agentes/Empresários/Olheiros” com foto/nome/estado/contatos básicos. Título: **“Time de Agentes de Futebol, Empresários e Olheiros”**.
+- Detalhe `/agentes/[slug]` com bio curta e lista de atletas de interesse (stub).
+
+6) /clubes
+- Grade com brasão + nome. Filtro por Estado e País (por padrão, listar SP).
+- Clique abre `/clubes/[slug]` (Detalhe do clube) com **seções vazadas** (preparadas para dados vindos do banco): fundação, títulos, melhores jogadores, maiores goleadas, torcidas organizadas, vagas disponíveis, fotos de estádio.
+- Implementar **esquema Prisma** para Club e ClubFact. Criar **rotas API** e seeds de exemplo; exibir placeholders/skeletons onde não houver dados.
+- (Importante): Não inventar dados. Deixar um script `scripts/seed-clubs.ts` com estrutura para futura ingestão via fontes públicas (comentado).
+
+7) /noticias
+- Página “ar de imprensa”: lista com badge de categoria, título, resumo, data, autor.
+- Clique abre `/noticias/[slug]` com o artigo completo (Markdown suportado).
+
+8) /games
+- Dicas de games, lançamentos, destaques de artigos de personalidades. Cards com imagem, tag, título, CTA. Detalhe `/games/[slug]`.
+
+9) /confederacoes
+- Logos (placeholders) e cards de confederações; **FIFA primeiro**. Página de detalhe `/confederacoes/[slug]` com infos e comunicações oficiais (stub). Aviso sobre marca/logos oficiais (não gerar logos reais, usar placeholders neutros).
+
+10) /sobre
+- Informações sobre a empresa e o Instituto Vitrine de Craques, missão/visão/valores, contato e links.
+
+11) /privacidade
+- Política de privacidade e termos de uso (conteúdo exemplo em Markdown).
+
+12) /perfil
+- Perfil do usuário logado: foto, nome, edição de dados, abas condicionais por role:
+  - athlete/guardian: vídeos postados, métricas básicas.
+  - press: artigos/notícias; botão “Novo Artigo”.
+  - agent: atletas de interesse/atrelados, ficha técnica, observações e histórico (stub).
+  - mensagens e notificações com badge para não lidas.
+
+13) /upload
+- Dropzone para vídeo (arrastar/soltar ou selecionar), campos Título e Descrição.
+- Botão “Analisar direitos autorais” (stub) + indicador de status.
+- Ferramenta para **cortar 10s** (ffmpeg.wasm): selecionar intervalo, preview e “Salvar”.
+- Após upload/corte, salvar no banco (SQLite demo) e redirecionar para `/feeds`.
+
+ACESSIBILIDADE & UX:
+- Navegação 100% por teclado, foco visível, `aria-*` nos componentes interativos.
+- Contraste mínimo AA; respeitar `prefers-reduced-motion`.
+- Textos alternativos em imagens e avatares (`alt`).
+
+PERFORMANCE:
+- Imagens otimizadas (next/image), lazy loading em media pesada, divisionamento em rotas, metadados estáticos onde possível.
+- Lighthouse alvo ≥ 90 em Performance/Accessibility/Best Practices/SEO no build de produção.
+
+ENTREGÁVEIS:
+1) Projeto multi-arquivo. Formato de saída **obrigatório**: para cada arquivo, prefixe com uma linha `--- <caminho/arquivo> ---` e depois o conteúdo. Exemplos principais a gerar:
+   - `package.json`, `next.config.mjs`, `tailwind.config.ts`, `postcss.config.mjs`, `tsconfig.json`
+   - `app/layout.tsx`, `app/globals.css`, `app/page.tsx` (Home) e pastas/rotas para **todas** as páginas descritas
+   - Componentes: `components/Header.tsx`, `Footer.tsx`, `VideoFeed.tsx`, `AlbumCard.tsx`, `Filters.tsx`, `UploadDropzone.tsx`, `YouTubePlayer.tsx`, `NotificationBell.tsx`, etc.
+   - Prisma: `prisma/schema.prisma`, `prisma/seed.ts`
+   - APIs: `/app/api/*` para vídeos, atletas, clubes, notícias, games, confederações, uploads, mensagens, notificações.
+   - Testes: `/tests/ui/*.test.tsx` + `/tests/e2e/*.spec.ts`.
+   - `README.md` com instruções (instalar deps, `prisma migrate`, `prisma db seed`, `npm run dev`).
+
+2) Popular seeds com 8–12 registros por entidade chave (dados fictícios coerentes PT-BR; **não** usar marcas/logos reais).
+
+3) No `README.md`, incluir “Limites e Próximos Passos”: onde plugar dados reais dos clubes, como trocar os placeholders de logos/estádios por mídias de repositórios compatíveis (e.g., Wikimedia Commons) e cuidados de direitos autorais.
+
+VALIDAÇÃO FINAL:
+- Gere todos os arquivos sem “trechos omitidos”.
+- O projeto deve iniciar com `npm install && npx prisma migrate dev && npx prisma db seed && npm run dev`.
+- Inclua prints de exemplos de uso dos componentes principais na Home.
+- Inclua, no local de imagens, imagens placeholders
+
+Saída agora.
+
+
+
+
+
+=============================== Web Design IA ==================================
+
+
+
+Um website moderno, colorido e responsivo, com estética alegre/jovial inspirada em TikTok/Instagram, priorizando vídeos verticais e interação social. Tom: motivador, inclusivo, divertido e confiável com textos em Português brasileiro.
+
+PÚBLICOS/ROLES (considerar nas permissões/contexto de UI)
+- athlete (atleta), guardian (responsável), agent (agente/olheiro/empresário), press (imprensa), fan (torcida), admin.
+- Idioma: PT-BR. Microcopy curto e claro, acessível.
+
+REFERÊNCIAS ESTÉTICAS
+- TikTok/Instagram (feed vertical de vídeo, CTA claros, ícones simples).
+- Cartões com cantos grandes (radius 2xl), sombras suaves, fundos claros com acentos vibrantes.
+- Motion sutil, respeitando prefers-reduced-motion.
+
+UI KIT — TOKENS E TIPOGRAFIA
+Defina tokens de design e aplique nas telas. Usar esta paleta (light/dark). Não alterar valores:
+Light
+:root {
+  --bg:#F8FAFC; --surface:#FFFFFF; --text:#0B0F10;
+  --primary:#16A34A; --on-primary:#FFFFFF;
+  --secondary:#0EA5E9; --on-secondary:#0B0F10;
+  --accent:#F59E0B; --on-accent:#0B0F10;
+  --info:#06B6D4; --success:#22C55E; --warning:#F59E0B; --error:#E11D48;
+}
+Dark
+:root {
+  --bg:#0B0F10; --surface:#111827; --text:#F3F4F6;
+  --primary:#22C55E; --on-primary:#0B0F10;
+  --secondary:#38BDF8; --on-secondary:#0B0F10;
+  --accent:#FBBF24; --on-accent:#0B0F10;
+}
+• Tipografia: família sans moderna (ex.: Inter/Equivalent). Escala: 12/14/16/18/20/24/32/40/56. Line-heights confortáveis. 
+• Espaçamentos generosos (4/8/12/16/24/32/48). 
+• Estados: hover, focus, active, disabled, loading, skeleton. 
+• Ícones: estilo linear consistente.
+
+COMPONENTES (seguir padrões acessíveis tipo Radix/shadcn, mas em linguagem de design)
+Buttons (solid/outline/ghost), Inputs, Textarea, Select, Dropdown, Dialog/Modal, Sheet/Drawer, Badge, Card, Avatar, Tabs, Tooltip, Toast, Pagination, Empty State, Skeleton, Notification Bell (com badge vermelho), Video Player Card (com overlay de ações), Upload Dropzone, YouTube Player embed, Filtros (pílulas + campos), Chips de categoria, Carrossel, Contadores, Breadcrumbs.
+
+NAVEGAÇÃO E LAYOUT
+Header fixo (mobile) com logo, busca; à direita:
+- Anônimo: “Login” e “Registrar”.
+- Logado: avatar (Perfil), ícone Mensagens (badge não lidas), e:
+  • athlete/guardian: ícone “Subir Vídeo”.
+  • press: ícone “Novo Artigo”.
+Menu primário: Home, Feeds, Atletas, Torcida, Agentes, Clubes, Notícias, Games, Confederações, Sobre, Privacidade, Perfil.
+Footer: endereço, contatos, ícones de redes sociais.
+Skeletons no carregamento; estados vazios amigáveis com CTA.
+
+PÁGINAS (GERAR TELAS HI-FI + WIREFRAMES + MICROCOPY)
+1) Home (/)
+- Hero com banner e player YouTube incorporado (botão play). Texto breve de propaganda e instruções rápidas.
+- Cards de destaques: últimos vídeos, atletas em alta, notícias recentes.
+- CTA para registro e upload (se atleta/responsável).
+- SEO: área para título/descrição/OG (como notas de handoff).
+
+2) Feeds (/feeds)
+- Feed vertical estilo TikTok dentro de um contêiner de vídeo (o body não rola quando um vídeo está em foco).
+- Vídeos até 10s; visualmente indique autoplay quando ≥70% visível e pause fora do viewport.
+- Ações: curtir, comentar, compartilhar, denunciar.
+- Padrão de paginação/infinite scroll com debounce de 300ms (nota de interação).
+- Critério: mudança clara de foco entre vídeos.
+
+3) Atletas (/atletas)
+- Grid responsivo com foto, nome, idade, cidade/estado; filtros por nome/idade/cidade/estado (persistem na UI).
+- Card abre /atletas/[slug].
+  Perfil do atleta (/atletas/[slug]):
+  • Layout “figurinha de álbum da copa”: moldura estilizada, nome, posição, idade, altura, cidade/estado, bio curta.
+  • Carrossel dos vídeos do atleta.
+  • Para agent/press: botão “Manifestar Interesse” (stub).
+  • Título de seção: “Time Vitrine de Craques”.
+
+4) Torcida (/torcida)
+- Semelhante a /atletas, listando torcedores (foto, time, cidade). Detalhe /torcida/[slug] opcional.
+
+5) Agentes (/agentes)
+- Álbum com foto/nome/estado/contatos básicos. Título: “Time de Agentes de Futebol, Empresários e Olheiros”.
+- Detalhe /agentes/[slug] com bio curta e lista de atletas de interesse (stub).
+
+6) Clubes (/clubes)
+- Grade com brasão (placeholder) + nome. Filtros por Estado e País (padrão SP).
+- Detalhe /clubes/[slug] com seções “vazadas” (placeholders de dados): fundação, títulos, melhores jogadores, maiores goleadas, torcidas organizadas, vagas, fotos de estádio.
+- Importante: **não inventar dados/logo**. Usar placeholders neutros e aviso sobre marcas oficiais.
+- Nota de handoff: prever estrutura para futura ingestão de dados (sem realizar).
+
+7) Notícias (/noticias)
+- Lista “ar de imprensa”: badge de categoria, título, resumo, data, autor.
+- Detalhe /noticias/[slug] com artigo (Markdown suportado — nota de handoff).
+
+8) Games (/games)
+- Dicas, lançamentos e destaques: cards com imagem, tag, título, CTA. Detalhe /games/[slug].
+
+9) Confederações (/confederacoes)
+- Logos/placeholders e cards; **FIFA primeiro**. Detalhe /confederacoes/[slug] com infos e comunicados (stub). Aviso: sem logos reais.
+
+10) Sobre (/sobre)
+- Empresa/Instituto Vitrine de Craques: missão, visão, valores, contato, links.
+
+11) Privacidade (/privacidade)
+- Política de privacidade e termos (conteúdo exemplo Markdown).
+
+12) Perfil (/perfil)
+- Perfil do usuário logado: foto, nome, edição de dados; abas por role:
+  • athlete/guardian: vídeos postados, métricas básicas.
+  • press: artigos/notícias; “Novo Artigo”.
+  • agent: atletas de interesse/atrelados, ficha técnica, observações e histórico (stub).
+  • mensagens e notificações com badge.
+
+13) Upload (/upload)
+- Dropzone para vídeo (arrastar/soltar ou selecionar), campos Título e Descrição.
+- Botão “Analisar direitos autorais” (stub) com 3 estados: “ok”, “possível violação”, “bloqueado”.
+- Ferramenta para corte de 10s (UI de seleção de intervalo, preview, “Salvar”).
+- Após upload/corte, feedback de sucesso e caminho para /feeds.
+
+COMPORTAMENTOS-CHAVE (ESPEC DE INTERAÇÃO)
+- Vídeo: autoplay/pause por visibilidade (simular conceito de IntersectionObserver na especificação).
+- Header fixo mobile; busca expansível; badges de notificação vermelhos.
+- Estados: loading (skeleton), vazio (mensagem + CTA), erro (mensagem + ação de retry).
+- Acessibilidade: navegação 100% por teclado; foco visível; aria-*; contraste AA; respeitar prefers-reduced-motion; textos alternativos em imagens/avatares.
+
+PERFORMANCE (GUIAS VISUAIS E NOTAS)
+- Usar imagens otimizadas e lazy loading em media pesada; fragmentar jornadas longas em telas/rotas; metadados estáticos onde possível.
+- Meta alvo Lighthouse (como nota de qualidade): ≥ 90 em Performance/Acessibilidade/Boas Práticas/SEO (não executar, apenas orientar).
+
+MICROCOPY (PT-BR)
+- Forneça exemplos de microcopy para: login/registro, CTAs de upload, interações do feed (curtir/comentar/compartilhar/denunciar), estados vazios, mensagens de erro e sucesso, e rótulos de filtros.
+
+ENTREGÁVEIS (FORMATO DE SAÍDA)
+1) Sitemap + user flows principais (ex.: Descobrir → Assistir → Curtir/Comentar → Registrar → Upload).
+2) Wireframes mobile-first (low-fi) e variações desktop para todas as páginas-chave listadas.
+3) Telas hi-fi (mobile e desktop) para: Home, Feeds, Atletas (grid e perfil), Torcida (grid), Agentes (grid e perfil), Clubes (grid e detalhe), Notícias (lista e detalhe), Games (lista e detalhe), Confederações (lista e detalhe), Sobre, Privacidade, Perfil, Upload, Login/Registro.
+4) UI Kit completo: tokens (cores/typography/spacing/radius/shadows), componentes com estados/variantes, grids, guidelines de motion.
+5) Prototipagem interativa das jornadas críticas (especialmente Feed e Upload).
+6) Handoff: notas para dev mapeando componentes a padrões shadcn/Radix e anotando pré-requisitos de implementação (ex.: feed com autoplay por visibilidade, filtros persistentes).
+7) Restrições de marca: não usar logos/selos oficiais (FIFA/clubes). Empregar placeholders e aviso legal.
+
+CONSIDERAÇÕES DE DEV (NOTAS DE HANDOFF, NÃO GERAR CÓDIGO)
+- O time usará Next.js 14 (App Router) + TypeScript, Tailwind com tokens via :root (dark mode por classe), libs de UI no padrão shadcn/Radix, autenticação multi-perfil, e armazenamento demo (SQLite/Prisma).
+- O design deve antecipar: 
+  • Feed vertical com autoplay/pause por visibilidade (~70%).
+  • Upload com corte de 10s (fluxo e UI dedicados).
+  • Estados da análise de direitos (“ok”, “possível violação”, “bloqueado”).
+  • Testabilidade (componentes/fluxos claros, separáveis).
+- Não entregar código. Entregar especificações, assets e protótipo.
+
+CRITÉRIOS DE QUALIDADE
+- Consistência visual (tokens), legibilidade, foco em vídeo vertical 9:16, CTAs claros.
+- Acessibilidade AA e navegação por teclado funcional nos protótipos.
+- Cobertura de estados (loading/vazio/erro) com skeletons e mensagens.
+- Microcopy sucinta e localizada (PT-BR).
+
+SAÍDA ESPERADA
+Forneça: (a) resumo do conceito, (b) sitemap e flows, (c) wireframes, (d) UI kit + tokens, (e) telas hi-fi mobile/desktop, (f) protótipo interativo, (g) notas de handoff para dev.
+
+
+Preciso também de um footer largo de altura, de preferëncia preto ou verde cor de gramado, com Links rápidos (principais páginas do site quando deslogado), 
+

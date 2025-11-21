@@ -1,0 +1,42 @@
+{
+  "color": {
+    "brand": {
+      "value": "#111827"
+    },
+    "accent": {
+      "value": "#6B7280"
+    },
+    "bg": {
+      "value": "#FFFFFF"
+    },
+    "fg": {
+      "value": "#000000"
+    },
+    "muted": {
+      "value": "#9AA4B2"
+    },
+    "border": {
+      "value": "#2A2F3A"
+    }
+  },
+  "typography": {
+    "font_family_sans": {
+      "value": "Inter, ui-sans-serif, system-ui"
+    },
+    "h1": {
+      "size": "2.25rem",
+      "lineHeight": "2.5rem",
+      "weight": 700
+    },
+    "h2": {
+      "size": "1.875rem",
+      "lineHeight": "2.25rem",
+      "weight": 700
+    },
+    "body": {
+      "size": "1rem",
+      "lineHeight": "1.5rem",
+      "weight": 400
+    }
+  }
+}

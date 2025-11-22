@@ -4,10 +4,18 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'docs/**'
+      - 'Vitrine-De-Craques-App/**'
+      - 'Vitrine-De-Craques-App0-iOS/**'
   pull_request:
     types: [synchronize]
     branches:
       - main
+    paths-ignore:
+      - 'docs/**'
+      - 'Vitrine-De-Craques-App/**'
+      - 'Vitrine-De-Craques-App0-iOS/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }} 

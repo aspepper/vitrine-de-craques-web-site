@@ -1,0 +1,76 @@
+﻿2025-11-22T16:36:38.1517532Z ##[group]Run actions/checkout@v4
+2025-11-22T16:36:38.1518086Z with:
+2025-11-22T16:36:38.1518288Z   submodules: false
+2025-11-22T16:36:38.1518490Z   lfs: false
+2025-11-22T16:36:38.1518731Z   repository: aspepper/vitrine-de-craques-web-site
+2025-11-22T16:36:38.1519215Z   token: ***
+2025-11-22T16:36:38.1519412Z   ssh-strict: true
+2025-11-22T16:36:38.1519610Z   ssh-user: git
+2025-11-22T16:36:38.1519834Z   persist-credentials: true
+2025-11-22T16:36:38.1520072Z   clean: true
+2025-11-22T16:36:38.1520273Z   sparse-checkout-cone-mode: true
+2025-11-22T16:36:38.1520513Z   fetch-depth: 1
+2025-11-22T16:36:38.1520710Z   fetch-tags: false
+2025-11-22T16:36:38.1520903Z   show-progress: true
+2025-11-22T16:36:38.1521115Z   set-safe-directory: true
+2025-11-22T16:36:38.1522007Z env:
+2025-11-22T16:36:38.1522791Z   DATABASE_URL: ***
+2025-11-22T16:36:38.1523117Z   NEXTAUTH_URL: ***
+2025-11-22T16:36:38.1523416Z   NEXTAUTH_SECRET: ***
+2025-11-22T16:36:38.1523626Z   AUTH_TRUST_HOST: true
+2025-11-22T16:36:38.1523825Z ##[endgroup]
+2025-11-22T16:36:38.2672338Z Syncing repository: aspepper/vitrine-de-craques-web-site
+2025-11-22T16:36:38.2674172Z ##[group]Getting Git version info
+2025-11-22T16:36:38.2675014Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-22T16:36:38.2676239Z [command]/usr/bin/git version
+2025-11-22T16:36:38.2695717Z git version 2.51.2
+2025-11-22T16:36:38.2726793Z ##[endgroup]
+2025-11-22T16:36:38.2740209Z Temporarily overriding HOME='/home/runner/work/_temp/e9bcb19c-7c69-435e-8ccf-11b14d078a80' before making global git config changes
+2025-11-22T16:36:38.2743769Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-22T16:36:38.2759012Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-22T16:36:38.2796989Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-22T16:36:38.2801652Z ##[group]Initializing the repository
+2025-11-22T16:36:38.2807228Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-22T16:36:38.2902928Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-11-22T16:36:38.2904623Z hint: is subject to change. To configure the initial branch name to use in all
+2025-11-22T16:36:38.2909548Z hint: of your new repositories, which will suppress this warning, call:
+2025-11-22T16:36:38.2910202Z hint:
+2025-11-22T16:36:38.2910710Z hint: 	git config --global init.defaultBranch <name>
+2025-11-22T16:36:38.2914072Z hint:
+2025-11-22T16:36:38.2914683Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-11-22T16:36:38.2915592Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-11-22T16:36:38.2916275Z hint:
+2025-11-22T16:36:38.2916607Z hint: 	git branch -m <name>
+2025-11-22T16:36:38.2916985Z hint:
+2025-11-22T16:36:38.2917537Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-11-22T16:36:38.2918751Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-11-22T16:36:38.2925847Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-22T16:36:38.3068415Z ##[endgroup]
+2025-11-22T16:36:38.3069236Z ##[group]Disabling automatic garbage collection
+2025-11-22T16:36:38.3075994Z [command]/usr/bin/git config --local gc.auto 0
+2025-11-22T16:36:38.3107596Z ##[endgroup]
+2025-11-22T16:36:38.3108590Z ##[group]Setting up auth
+2025-11-22T16:36:38.3115573Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-22T16:36:38.3148190Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-22T16:36:38.3482482Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-22T16:36:38.3515521Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-22T16:36:38.3752229Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-11-22T16:36:38.3793649Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-11-22T16:36:38.4042471Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-11-22T16:36:38.4083312Z ##[endgroup]
+2025-11-22T16:36:38.4084371Z ##[group]Fetching the repository
+2025-11-22T16:36:38.4094468Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +28201ddbc590615edf16612b14b1ee4dd9a5678d:refs/remotes/origin/main
+2025-11-22T16:36:43.8587884Z From https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-22T16:36:43.8589367Z  * [new ref]         28201ddbc590615edf16612b14b1ee4dd9a5678d -> origin/main
+2025-11-22T16:36:43.8624014Z ##[endgroup]
+2025-11-22T16:36:43.8626805Z ##[group]Determining the checkout info
+2025-11-22T16:36:43.8627590Z ##[endgroup]
+2025-11-22T16:36:43.8633269Z [command]/usr/bin/git sparse-checkout disable
+2025-11-22T16:36:43.8674924Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-11-22T16:36:43.8703489Z ##[group]Checking out the ref
+2025-11-22T16:36:43.8709789Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-11-22T16:36:44.7447838Z Switched to a new branch 'main'
+2025-11-22T16:36:44.7451614Z branch 'main' set up to track 'origin/main'.
+2025-11-22T16:36:44.7548789Z ##[endgroup]
+2025-11-22T16:36:44.7593765Z [command]/usr/bin/git log -1 --format=%H
+2025-11-22T16:36:44.7617667Z 28201ddbc590615edf16612b14b1ee4dd9a5678d

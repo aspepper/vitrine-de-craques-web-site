@@ -63,7 +63,26 @@ jobs:
           if [ -d public ]; then
             cp -R public deploy/public
           fi
-          npm prune --omit=dev --prefix deploy
+          # Remova artefatos que não são necessários para a execução em produção
+          # e que aumentam o pacote do Functions acima do limite permitido (250MB).
+          rm -rf \
+            deploy/.git \
+            deploy/.github \
+            deploy/.husky \
+            deploy/.vscode \
+            deploy/.next/cache \
+            deploy/app \
+            deploy/components \
+            deploy/docs \
+            deploy/lib \
+            deploy/scripts \
+            deploy/styles \
+            deploy/tests \
+            deploy/tests-e2e \
+            deploy/types \
+            deploy/under-construction \
+            deploy/Vitrine-De-Craques-App \
+            deploy/Vitrine-De-Craques-App-iOS
           ./scripts/prune-deploy-artifact.sh deploy
 
       # (Opcional de diagnóstico: ver Node & Prisma)

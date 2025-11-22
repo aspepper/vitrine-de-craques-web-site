@@ -56,6 +56,9 @@ jobs:
           cp -R .next/static/. deploy/.next/static
           cp package.json deploy/package.json
           cp next.config.mjs deploy/next.config.mjs
+          if [ -f staticwebapp.config.json ]; then
+            cp staticwebapp.config.json deploy/staticwebapp.config.json
+          fi
           cp -R prisma deploy/prisma
           if [ -d public ]; then
             cp -R public deploy/public

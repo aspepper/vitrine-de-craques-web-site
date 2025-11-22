@@ -1,0 +1,82 @@
+﻿2025-11-22T17:40:38.0519631Z ##[group]Run Azure/static-web-apps-deploy@v1
+2025-11-22T17:40:38.0519948Z with:
+2025-11-22T17:40:38.0520624Z   azure_static_web_apps_api_token: ***
+2025-11-22T17:40:38.0521019Z   repo_token: ***
+2025-11-22T17:40:38.0521226Z   action: upload
+2025-11-22T17:40:38.0521683Z   app_location: deploy
+2025-11-22T17:40:38.0521906Z   skip_app_build: true
+2025-11-22T17:40:38.0522112Z   skip_api_build: true
+2025-11-22T17:40:38.0522316Z   is_static_export: false
+2025-11-22T17:40:38.0522528Z env:
+2025-11-22T17:40:38.0523199Z   DATABASE_URL: ***
+2025-11-22T17:40:38.0523511Z   NEXTAUTH_URL: ***
+2025-11-22T17:40:38.0523803Z   NEXTAUTH_SECRET: ***
+2025-11-22T17:40:38.0524026Z   AUTH_TRUST_HOST: true
+2025-11-22T17:40:38.0524236Z ##[endgroup]
+2025-11-22T17:40:38.0676213Z ##[command]/usr/bin/docker run --name c64bb86ffb4efd0ada4ff8988371c6d6f1948b_962dbf --label c64bb8 --workdir /github/workspace --rm -e "DATABASE_URL" -e "NEXTAUTH_URL" -e "NEXTAUTH_SECRET" -e "AUTH_TRUST_HOST" -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_SKIP_API_BUILD" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site":"/github/workspace" c64bb8:6ffb4efd0ada4ff8988371c6d6f1948b
+2025-11-22T17:40:38.9163545Z DeploymentId: 7837fb8b-49a9-4f5c-b131-c98a3992528f
+2025-11-22T17:40:38.9165141Z 
+2025-11-22T17:40:39.0186562Z [37mTry to validate location at: '/github/workspace/deploy'.[0m
+2025-11-22T17:40:39.0200905Z [37mApp Directory Location: 'deploy' was found.[0m
+2025-11-22T17:40:39.0203913Z [37mTry to validate location at: '/github/workspace/swa-db-connections'.[0m
+2025-11-22T17:40:39.0205794Z [37mLooking for event info[0m
+2025-11-22T17:40:39.5367682Z [37mSkipping step to build /github/workspace/deploy with Oryx[0m
+2025-11-22T17:40:39.5532161Z [37mDetected the following framework: Next.js[0m
+2025-11-22T17:40:39.5533855Z [37mTry to validate location at: '/github/workspace/deploy/.next'.[0m
+2025-11-22T17:40:39.6185033Z [37mUsing 'staticwebapp.config.json' file for configuration information, 'routes.json' will be ignored.[0m
+2025-11-22T17:40:39.7602542Z [33m[WARNING] For Next.js apps, staticwebapp.config.json features are not fully supported yet![0m
+2025-11-22T17:40:39.7623067Z [37mPlease note: For Next.js applications if skip_api_build=true, Static Web Apps will not remove dev dependencies or add the sharp package by default. If you want these optimizations, kindly add them to your custom build steps before passing skip_app_build=true[0m
+2025-11-22T17:40:39.7654913Z [37mRepackaged Next.js app to deploy on the backend.[0m
+2025-11-22T17:40:39.7665250Z [37mSkipping step to build /github/workspace/deploy with Oryx[0m
+2025-11-22T17:40:39.7669284Z [33mWeb App Runtime Information. OS: linux, node version: 20[0m
+2025-11-22T17:40:40.2696899Z [37mZipping Api Artifacts[0m
+2025-11-22T17:40:46.6274279Z [37mDone Zipping Api Artifacts[0m
+2025-11-22T17:40:47.3832627Z [37mZipping App Artifacts[0m
+2025-11-22T17:40:48.4927036Z [37mDone Zipping App Artifacts[0m
+2025-11-22T17:40:48.4927814Z [37mUploading build artifacts.[0m
+2025-11-22T17:40:50.4507272Z [32mFinished Upload. Polling on deployment.[0m
+2025-11-22T17:40:50.5764563Z [37mStatus: InProgress. Time: 0.1232188(s)[0m
+2025-11-22T17:41:05.6962735Z [37mStatus: InProgress. Time: 15.2454775(s)[0m
+2025-11-22T17:41:20.8698351Z [37mStatus: InProgress. Time: 30.4189033(s)[0m
+2025-11-22T17:41:36.0020507Z [37mStatus: InProgress. Time: 45.5510594(s)[0m
+2025-11-22T17:41:51.1745258Z [37mStatus: InProgress. Time: 60.7234484(s)[0m
+2025-11-22T17:42:06.8266932Z [37mStatus: InProgress. Time: 76.375612(s)[0m
+2025-11-22T17:42:21.9885335Z [37mStatus: InProgress. Time: 91.5378166(s)[0m
+2025-11-22T17:42:37.1262137Z [37mStatus: InProgress. Time: 106.6754055(s)[0m
+2025-11-22T17:42:52.2631844Z [37mStatus: InProgress. Time: 121.8121971(s)[0m
+2025-11-22T17:43:07.4229031Z [37mStatus: InProgress. Time: 136.9720521(s)[0m
+2025-11-22T17:43:22.5414658Z [37mStatus: InProgress. Time: 152.0905182(s)[0m
+2025-11-22T17:43:37.7980878Z [37mStatus: InProgress. Time: 167.346993(s)[0m
+2025-11-22T17:43:52.9220429Z [37mStatus: InProgress. Time: 182.4707136(s)[0m
+2025-11-22T17:44:08.1389817Z [37mStatus: InProgress. Time: 197.6879738(s)[0m
+2025-11-22T17:44:23.3772199Z [37mStatus: InProgress. Time: 212.9259606(s)[0m
+2025-11-22T17:44:38.5627700Z [37mStatus: InProgress. Time: 228.1119053(s)[0m
+2025-11-22T17:44:53.7237942Z [37mStatus: InProgress. Time: 243.2726654(s)[0m
+2025-11-22T17:45:11.5901003Z [37mStatus: InProgress. Time: 261.1389581(s)[0m
+2025-11-22T17:45:26.8367273Z [37mStatus: InProgress. Time: 276.3859783(s)[0m
+2025-11-22T17:45:42.1831653Z [37mStatus: InProgress. Time: 291.7321201(s)[0m
+2025-11-22T17:45:57.3609107Z [37mStatus: InProgress. Time: 306.9100293(s)[0m
+2025-11-22T17:46:12.4839028Z [37mStatus: InProgress. Time: 322.0327268(s)[0m
+2025-11-22T17:46:29.2270134Z [37mStatus: InProgress. Time: 338.7759186(s)[0m
+2025-11-22T17:46:44.4327745Z [37mStatus: InProgress. Time: 353.9816871(s)[0m
+2025-11-22T17:46:59.6442941Z [37mStatus: InProgress. Time: 369.1921112(s)[0m
+2025-11-22T17:47:14.7759597Z [37mStatus: InProgress. Time: 384.3250459(s)[0m
+2025-11-22T17:47:29.9625591Z [37mStatus: InProgress. Time: 399.5117811(s)[0m
+2025-11-22T17:47:45.1380067Z [37mStatus: InProgress. Time: 414.6871426(s)[0m
+2025-11-22T17:48:00.2761872Z [37mStatus: InProgress. Time: 429.8253704(s)[0m
+2025-11-22T17:48:15.4206787Z [37mStatus: InProgress. Time: 444.9696309(s)[0m
+2025-11-22T17:48:30.5426191Z [37mStatus: InProgress. Time: 460.0916531(s)[0m
+2025-11-22T17:48:45.6503821Z [37mStatus: InProgress. Time: 475.1996079(s)[0m
+2025-11-22T17:49:01.4841827Z [37mStatus: InProgress. Time: 491.0334662(s)[0m
+2025-11-22T17:49:16.5852892Z [37mStatus: InProgress. Time: 506.134506(s)[0m
+2025-11-22T17:49:31.6915131Z [37mStatus: InProgress. Time: 521.2408063(s)[0m
+2025-11-22T17:49:46.8255469Z [37mStatus: InProgress. Time: 536.3747656(s)[0m
+2025-11-22T17:50:01.9592427Z [37mStatus: InProgress. Time: 551.508454(s)[0m
+2025-11-22T17:50:17.4048375Z [37mStatus: InProgress. Time: 566.9539788(s)[0m
+2025-11-22T17:50:32.6170168Z [37mStatus: Failed. Time: 582.1660847(s)[0m
+2025-11-22T17:50:32.6172479Z [31mDeployment Failed :([0m
+2025-11-22T17:50:32.6173780Z [31mDeployment Failure Reason: Web app warm up timed out. Please try again later.[0m
+2025-11-22T17:50:32.6388384Z [37m[0m
+2025-11-22T17:50:32.6391678Z [33mFor further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/[0m
+2025-11-22T17:50:32.6393465Z [33mIf you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/[0m
+2025-11-22T17:50:32.6394076Z [33mExiting[0m

@@ -103,8 +103,8 @@ jobs:
           skip_api_build: true
           output_location: "" # artefato standalone já está no diretório configurado
           ###### End of Repository/Build Configurations ######
-          is_static_export: false
-          # (variáveis expostas ao tempo de execução já devem estar configuradas diretamente no Azure)
+        env: # Add environment variables here
+          IS_STATIC_EXPORT: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

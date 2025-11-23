@@ -54,6 +54,12 @@ if [ -d "$TARGET_DIR/node_modules" ]; then
   find "$TARGET_DIR/node_modules" -type f \( -name '*.map' -o -name '*.d.ts.map' \) -delete
 fi
 
+# Remove build-time caches that are not required at runtime.
+if [ -d "$TARGET_DIR/.next/cache" ]; then
+  echo "Removing Next.js build cache..."
+  rm -rf "$TARGET_DIR/.next/cache"
+fi
+
 # Remove any empty directories left behind by the pruning steps.
 find "$TARGET_DIR" -type d -empty -delete
 

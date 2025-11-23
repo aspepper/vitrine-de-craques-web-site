@@ -1,0 +1,30 @@
+﻿2025-11-23T14:49:14.6981796Z ##[group]Run actions/setup-node@v4
+2025-11-23T14:49:14.6982262Z with:
+2025-11-23T14:49:14.6982448Z   node-version: 20
+2025-11-23T14:49:14.6982646Z   cache: npm
+2025-11-23T14:49:14.6982824Z   always-auth: false
+2025-11-23T14:49:14.6983022Z   check-latest: false
+2025-11-23T14:49:14.6983348Z   token: ***
+2025-11-23T14:49:14.6983523Z env:
+2025-11-23T14:49:14.6984201Z   DATABASE_URL: ***
+2025-11-23T14:49:14.6984502Z   NEXTAUTH_URL: ***
+2025-11-23T14:49:14.6984787Z   NEXTAUTH_SECRET: ***
+2025-11-23T14:49:14.6984993Z   AUTH_TRUST_HOST: true
+2025-11-23T14:49:14.6985192Z ##[endgroup]
+2025-11-23T14:49:14.8805693Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-11-23T14:49:14.8814494Z ##[group]Environment details
+2025-11-23T14:49:17.1301438Z node: v20.19.5
+2025-11-23T14:49:17.1302294Z npm: 10.8.2
+2025-11-23T14:49:17.1303502Z yarn: 1.22.22
+2025-11-23T14:49:17.1304822Z ##[endgroup]
+2025-11-23T14:49:17.1343109Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
+2025-11-23T14:49:17.4528376Z /home/runner/.npm
+2025-11-23T14:49:17.8023608Z Cache hit for: node-cache-Linux-x64-npm-7a37f00dbb49b213ff9469b7d87cb9481db306262f95e4f112cc6aec83ba8a27
+2025-11-23T14:49:19.1116900Z Received 0 of 256886524 (0.0%), 0.0 MBs/sec
+2025-11-23T14:49:20.1097085Z Received 113246208 of 256886524 (44.1%), 54.0 MBs/sec
+2025-11-23T14:49:21.1075739Z Received 230686720 of 256886524 (89.8%), 73.3 MBs/sec
+2025-11-23T14:49:21.3578643Z Received 256886524 of 256886524 (100.0%), 75.3 MBs/sec
+2025-11-23T14:49:21.3582679Z Cache Size: ~245 MB (256886524 B)
+2025-11-23T14:49:21.3783692Z [command]/usr/bin/tar -xf /home/runner/work/_temp/34265f8b-0e8b-4b4d-b68b-63f76ccab5f1/cache.tzst -P -C /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site --use-compress-program unzstd
+2025-11-23T14:49:22.1892633Z Cache restored successfully
+2025-11-23T14:49:22.2392048Z Cache restored from key: node-cache-Linux-x64-npm-7a37f00dbb49b213ff9469b7d87cb9481db306262f95e4f112cc6aec83ba8a27

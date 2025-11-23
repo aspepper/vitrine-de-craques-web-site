@@ -60,7 +60,6 @@ jobs:
           if [ -d public ]; then
             cp -R public deploy/public
           fi
-          npm prune --omit=dev --prefix deploy
           ./scripts/prune-deploy-artifact.sh deploy
 
       # (Opcional de diagnóstico: ver Node & Prisma)

@@ -51,11 +51,22 @@ jobs:
         run: |
           rm -rf deploy
           mkdir -p deploy
-          cp -R .next/standalone/. deploy/
+          # Copy only the runtime pieces from the standalone build output
+          cp -R .next/standalone/.next deploy/.next
+          cp -R .next/standalone/node_modules deploy/node_modules
+          cp .next/standalone/package.json deploy/package.json
+          if [ -f .next/standalone/server.js ]; then
+            cp .next/standalone/server.js deploy/server.js
+          fi
+          if [ -f .next/standalone/server.js.nft.json ]; then
+            cp .next/standalone/server.js.nft.json deploy/server.js.nft.json
+          fi
+
           mkdir -p deploy/.next/static
           cp -R .next/static/. deploy/.next/static
-          cp package.json deploy/package.json
+
           cp next.config.mjs deploy/next.config.mjs
+          cp staticwebapp.config.json deploy/staticwebapp.config.json
           cp -R prisma deploy/prisma
           if [ -d public ]; then
             cp -R public deploy/public

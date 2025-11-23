@@ -4,18 +4,10 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'docs/**'
-      - 'Vitrine-De-Craques-App/**'
-      - 'Vitrine-De-Craques-App0-iOS/**'
   pull_request:
     types: [synchronize]
     branches:
       - main
-    paths-ignore:
-      - 'docs/**'
-      - 'Vitrine-De-Craques-App/**'
-      - 'Vitrine-De-Craques-App0-iOS/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }} 
@@ -64,33 +56,11 @@ jobs:
           cp -R .next/static/. deploy/.next/static
           cp package.json deploy/package.json
           cp next.config.mjs deploy/next.config.mjs
-          if [ -f staticwebapp.config.json ]; then
-            cp staticwebapp.config.json deploy/staticwebapp.config.json
-          fi
           cp -R prisma deploy/prisma
           if [ -d public ]; then
             cp -R public deploy/public
           fi
-          # Remova artefatos que não são necessários para a execução em produção
-          # e que aumentam o pacote do Functions acima do limite permitido (250MB).
-          rm -rf \
-            deploy/.git \
-            deploy/.github \
-            deploy/.husky \
-            deploy/.vscode \
-            deploy/.next/cache \
-            deploy/app \
-            deploy/components \
-            deploy/docs \
-            deploy/lib \
-            deploy/scripts \
-            deploy/styles \
-            deploy/tests \
-            deploy/tests-e2e \
-            deploy/types \
-            deploy/under-construction \
-            deploy/Vitrine-De-Craques-App \
-            deploy/Vitrine-De-Craques-App-iOS
+          npm prune --omit=dev --prefix deploy
           ./scripts/prune-deploy-artifact.sh deploy
 
       # (Opcional de diagnóstico: ver Node & Prisma)

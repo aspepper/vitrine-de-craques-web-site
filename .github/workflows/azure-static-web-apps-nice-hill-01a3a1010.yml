@@ -101,8 +101,6 @@ jobs:
           api_location: "" # Next.js SSR bundle já está contido no artefato principal
           output_location: "" # artefato standalone já está no diretório configurado
           ###### End of Repository/Build Configurations ######
-        env: # Add environment variables here
-          IS_STATIC_EXPORT: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

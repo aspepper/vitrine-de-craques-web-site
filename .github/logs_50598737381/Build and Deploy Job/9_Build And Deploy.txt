@@ -1,0 +1,338 @@
+﻿2025-11-23T23:01:51.4922543Z ##[group]Run Azure/static-web-apps-deploy@v1
+2025-11-23T23:01:51.4922857Z with:
+2025-11-23T23:01:51.4923562Z   azure_static_web_apps_api_token: ***
+2025-11-23T23:01:51.4923939Z   repo_token: ***
+2025-11-23T23:01:51.4924138Z   action: upload
+2025-11-23T23:01:51.4924325Z   app_location: /
+2025-11-23T23:01:51.4924509Z env:
+2025-11-23T23:01:51.4925129Z   DATABASE_URL: ***
+2025-11-23T23:01:51.4925433Z   NEXTAUTH_URL: ***
+2025-11-23T23:01:51.4925718Z   NEXTAUTH_SECRET: ***
+2025-11-23T23:01:51.4925923Z   AUTH_TRUST_HOST: true
+2025-11-23T23:01:51.4926131Z   IS_STATIC_EXPORT: true
+2025-11-23T23:01:51.4926333Z ##[endgroup]
+2025-11-23T23:01:51.5023903Z ##[command]/usr/bin/docker run --name cfe7285c030a7d7f4fc89a3dbb17e0119cbd_0bafc8 --label 00cfe7 --workdir /github/workspace --rm -e "DATABASE_URL" -e "NEXTAUTH_URL" -e "NEXTAUTH_SECRET" -e "AUTH_TRUST_HOST" -e "IS_STATIC_EXPORT" -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_SKIP_API_BUILD" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site":"/github/workspace" 00cfe7:285c030a7d7f4fc89a3dbb17e0119cbd
+2025-11-23T23:01:52.7172654Z DeploymentId: 831df3b0-98da-4499-934f-67eba3439a12
+2025-11-23T23:01:52.7174709Z 
+2025-11-23T23:01:52.8191636Z [37mTry to validate location at: '/github/workspace'.[0m
+2025-11-23T23:01:52.8209773Z [37mApp Directory Location: '/' was found.[0m
+2025-11-23T23:01:52.8224106Z [37mTry to validate location at: '/github/workspace/swa-db-connections'.[0m
+2025-11-23T23:01:52.8237834Z [37mLooking for event info[0m
+2025-11-23T23:01:53.2479388Z [37mStarting to build app with Oryx[0m
+2025-11-23T23:01:53.2484112Z [33mAzure Static Web Apps utilizes Oryx to build both static applications and Azure Functions. You can find more details on Oryx here: https://github.com/microsoft/Oryx[0m
+2025-11-23T23:01:53.2486860Z [37m---Oryx build logs---[0m
+2025-11-23T23:01:53.2487331Z [37m[0m
+2025-11-23T23:01:53.2487668Z [37m[0m
+2025-11-23T23:01:53.6034592Z [37mOperation performed by Microsoft Oryx, https://github.com/Microsoft/Oryx[0m
+2025-11-23T23:01:53.6045880Z [37mYou can report issues at https://github.com/Microsoft/Oryx/issues[0m
+2025-11-23T23:01:53.6051484Z [37m[0m
+2025-11-23T23:01:53.6055354Z [37mOryx Version: 0.2.20250107.1+ef3fb2f9c490a4fbb1f76b5746cd4ba2ff0409f4, Commit: ef3fb2f9c490a4fbb1f76b5746cd4ba2ff0409f4, ReleaseTagName: 20250107.1[0m
+2025-11-23T23:01:53.6056997Z [37m[0m
+2025-11-23T23:01:53.6057591Z [37mBuild Operation ID: bb35f2bd15f91b71[0m
+2025-11-23T23:01:53.6058551Z [37mOS Type           : bullseye[0m
+2025-11-23T23:01:53.6059325Z [37mImage Type        : githubactions[0m
+2025-11-23T23:01:53.6059873Z [37m[0m
+2025-11-23T23:01:53.6165038Z [37mDetecting platforms...[0m
+2025-11-23T23:01:55.8503772Z [37mDetected following platforms:[0m
+2025-11-23T23:01:55.8511185Z [37m  nodejs: 20.19.5[0m
+2025-11-23T23:01:55.8511821Z [37m  python: 3.11.14[0m
+2025-11-23T23:01:55.8512354Z [37m  php: 8.0.30[0m
+2025-11-23T23:01:55.8546279Z [37mVersion '20.19.5' of platform 'nodejs' is not installed. Generating script to install it...[0m
+2025-11-23T23:01:55.8570294Z [37mVersion '3.11.14' of platform 'python' is not installed. Generating script to install it...[0m
+2025-11-23T23:01:55.8585744Z [37mVersion '8.0.30' of platform 'php' is not installed. Generating script to install it...[0m
+2025-11-23T23:01:55.9035185Z [37mDetected the following frameworks: Typescript,Next.js[0m
+2025-11-23T23:01:55.9838962Z [37m[0m
+2025-11-23T23:01:55.9963497Z [37m[0m
+2025-11-23T23:01:55.9964177Z [37mSource directory     : /github/workspace[0m
+2025-11-23T23:01:55.9965554Z [37mDestination directory: /bin/staticsites/831df3b0-98da-4499-934f-67eba3439a12-swa-oryx/app[0m
+2025-11-23T23:01:55.9968867Z [37m[0m
+2025-11-23T23:01:55.9994365Z [37m[0m
+2025-11-23T23:01:55.9995541Z [37mDownloading and extracting 'nodejs' version '20.19.5' to '/tmp/oryx/platforms/nodejs/20.19.5'...[0m
+2025-11-23T23:01:56.0042266Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-23T23:01:56.2910403Z [37mDownloaded in 0 sec(s).[0m
+2025-11-23T23:01:56.2912629Z [37mVerifying checksum...[0m
+2025-11-23T23:01:56.2980988Z [37mExtracting contents...[0m
+2025-11-23T23:01:57.7602499Z [37mperforming sha512 checksum for: nodejs...[0m
+2025-11-23T23:01:57.9375858Z [37mDone in 2 sec(s).[0m
+2025-11-23T23:01:57.9376486Z [37m[0m
+2025-11-23T23:01:57.9409182Z [37m[0m
+2025-11-23T23:01:57.9410728Z [37mDownloading and extracting 'python' version '3.11.14' to '/tmp/oryx/platforms/python/3.11.14'...[0m
+2025-11-23T23:01:57.9448777Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-23T23:01:58.4977143Z [37mDownloaded in 1 sec(s).[0m
+2025-11-23T23:01:58.5009095Z [37mVerifying checksum...[0m
+2025-11-23T23:01:58.5086459Z [37mExtracting contents...[0m
+2025-11-23T23:02:01.2356573Z [37mperforming sha512 checksum for: python...[0m
+2025-11-23T23:02:01.5927040Z [37mDone in 4 sec(s).[0m
+2025-11-23T23:02:01.5929443Z [37m[0m
+2025-11-23T23:02:01.5992099Z [37mimage detector file exists, platform is python..[0m
+2025-11-23T23:02:01.5997763Z [37mOS detector file exists, OS is bullseye..[0m
+2025-11-23T23:02:01.6011390Z [37m[0m
+2025-11-23T23:02:01.6017856Z [37mDownloading and extracting 'php' version '8.0.30' to '/tmp/oryx/platforms/php/8.0.30'...[0m
+2025-11-23T23:02:01.6062058Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-23T23:02:01.7379134Z [37mDownloaded in 0 sec(s).[0m
+2025-11-23T23:02:01.7383147Z [37mVerifying checksum...[0m
+2025-11-23T23:02:01.7463417Z [37mExtracting contents...[0m
+2025-11-23T23:02:02.1161542Z [37mperforming sha512 checksum for: php...[0m
+2025-11-23T23:02:02.1582854Z [37mDone in 1 sec(s).[0m
+2025-11-23T23:02:02.1590009Z [37m[0m
+2025-11-23T23:02:02.1616408Z [37m[0m
+2025-11-23T23:02:02.1622984Z [37mDownloading and extracting 'php-composer' version '2.6.2' to '/tmp/oryx/platforms/php-composer/2.6.2'...[0m
+2025-11-23T23:02:02.1657531Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-23T23:02:02.1970547Z [37mDownloaded in 0 sec(s).[0m
+2025-11-23T23:02:02.1991427Z [37mVerifying checksum...[0m
+2025-11-23T23:02:02.2072330Z [37mExtracting contents...[0m
+2025-11-23T23:02:02.2270521Z [37mperforming sha512 checksum for: php-composer...[0m
+2025-11-23T23:02:02.2348025Z [37mDone in 0 sec(s).[0m
+2025-11-23T23:02:02.2351318Z [37m[0m
+2025-11-23T23:02:02.3295563Z [37mRemoving existing manifest file[0m
+2025-11-23T23:02:02.3333184Z [37mCreating directory for command manifest file if it does not exist[0m
+2025-11-23T23:02:02.3432970Z [37mCreating a manifest file...[0m
+2025-11-23T23:02:02.3453890Z [37mNode Build Command Manifest file created.[0m
+2025-11-23T23:02:02.3467745Z [37m[0m
+2025-11-23T23:02:02.3469133Z [37mFound npm version spec to follow in package.json: '>=9'[0m
+2025-11-23T23:02:02.3470733Z [37mUpdating version of npm installed to meet the above version spec.[0m
+2025-11-23T23:02:05.8505568Z [37m[0m
+2025-11-23T23:02:05.8509000Z [37mremoved 19 packages, and changed 117 packages in 3s[0m
+2025-11-23T23:02:05.8509893Z [37m[0m
+2025-11-23T23:02:05.8529618Z [37m25 packages are looking for funding[0m
+2025-11-23T23:02:05.8531949Z [37m  run `npm fund` for details[0m
+2025-11-23T23:02:05.8700761Z [37m[0m
+2025-11-23T23:02:05.8701414Z [37m[0m
+2025-11-23T23:02:05.8702000Z [37mUsing Node version:[0m
+2025-11-23T23:02:05.8791923Z [37mv20.19.5[0m
+2025-11-23T23:02:05.8814013Z [37m[0m
+2025-11-23T23:02:05.8816244Z [37mUsing Npm version:[0m
+2025-11-23T23:02:05.9801476Z [37m11.6.3[0m
+2025-11-23T23:02:06.5326833Z [37m[0m
+2025-11-23T23:02:06.5330812Z [37mRunning 'npm install'...[0m
+2025-11-23T23:02:06.5331474Z [37m[0m
+2025-11-23T23:02:14.2854845Z [37m[0m
+2025-11-23T23:02:14.2855641Z [37m> vitrine-de-craques-web-site@0.1.0 postinstall[0m
+2025-11-23T23:02:14.2856353Z [37m> npx prisma generate[0m
+2025-11-23T23:02:14.2856781Z [37m[0m
+2025-11-23T23:02:17.0410770Z [37mPrisma schema loaded from prisma/schema.prisma[0m
+2025-11-23T23:02:18.2717255Z [37m[0m
+2025-11-23T23:02:18.2751278Z [37m✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 635ms[0m
+2025-11-23T23:02:18.2752125Z [37m[0m
+2025-11-23T23:02:18.2753026Z [37mStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)[0m
+2025-11-23T23:02:18.2753775Z [37m[0m
+2025-11-23T23:02:18.2754570Z [37mTip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints[0m
+2025-11-23T23:02:18.2755228Z [37m[0m
+2025-11-23T23:02:18.3241104Z [37m[0m
+2025-11-23T23:02:18.3242072Z [37m> vitrine-de-craques-web-site@0.1.0 prepare[0m
+2025-11-23T23:02:18.3243601Z [37m> husky install[0m
+2025-11-23T23:02:18.3243993Z [37m[0m
+2025-11-23T23:02:18.3713513Z [37mhusky - Git hooks installed[0m
+2025-11-23T23:02:18.3849450Z [37m[0m
+2025-11-23T23:02:18.3850529Z [37mremoved 7 packages, and audited 826 packages in 12s[0m
+2025-11-23T23:02:18.3863783Z [37m[0m
+2025-11-23T23:02:18.3864404Z [37m192 packages are looking for funding[0m
+2025-11-23T23:02:18.3865097Z [37m  run `npm fund` for details[0m
+2025-11-23T23:02:18.4702246Z [37m[0m
+2025-11-23T23:02:18.4703870Z [37m6 vulnerabilities (3 moderate, 3 high)[0m
+2025-11-23T23:02:18.4712873Z [37m[0m
+2025-11-23T23:02:18.4716468Z [37mTo address issues that do not require attention, run:[0m
+2025-11-23T23:02:18.4728660Z [37m  npm audit fix[0m
+2025-11-23T23:02:18.4729275Z [37m[0m
+2025-11-23T23:02:18.4729959Z [37mTo address all issues (including breaking changes), run:[0m
+2025-11-23T23:02:18.4730710Z [37m  npm audit fix --force[0m
+2025-11-23T23:02:18.4731154Z [37m[0m
+2025-11-23T23:02:18.4731621Z [37mRun `npm audit` for details.[0m
+2025-11-23T23:02:18.5112238Z [37m[0m
+2025-11-23T23:02:18.5113170Z [37mRunning 'npm run build'...[0m
+2025-11-23T23:02:18.5114027Z [37m[0m
+2025-11-23T23:02:18.6772292Z [37m[0m
+2025-11-23T23:02:18.6777837Z [37m> vitrine-de-craques-web-site@0.1.0 build[0m
+2025-11-23T23:02:18.6783172Z [37m> npx prisma generate && next build[0m
+2025-11-23T23:02:18.6788429Z [37m[0m
+2025-11-23T23:02:20.6503298Z [37mPrisma schema loaded from prisma/schema.prisma[0m
+2025-11-23T23:02:22.0312194Z [31m┌─────────────────────────────────────────────────────────┐[0m
+2025-11-23T23:02:22.0325377Z [31m│  Update available 6.16.2 -> 7.0.0                       │[0m
+2025-11-23T23:02:22.0339289Z [31m│                                                         │[0m
+2025-11-23T23:02:22.0342303Z [31m│  This is a major update - please follow the guide at    │[0m
+2025-11-23T23:02:22.0343563Z [31m│  https://pris.ly/d/major-version-upgrade                │[0m
+2025-11-23T23:02:22.0344395Z [31m│                                                         │[0m
+2025-11-23T23:02:22.0345185Z [31m│  Run the following to update                            │[0m
+2025-11-23T23:02:22.0346033Z [31m│    npm i --save-dev prisma@latest                       │[0m
+2025-11-23T23:02:22.0346863Z [31m│    npm i @prisma/client@latest                          │[0m
+2025-11-23T23:02:22.0347711Z [31m└─────────────────────────────────────────────────────────┘[0m
+2025-11-23T23:02:22.0348195Z [37m[0m
+2025-11-23T23:02:22.0371340Z [37m✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 698ms[0m
+2025-11-23T23:02:22.0372045Z [37m[0m
+2025-11-23T23:02:22.0372917Z [37mStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)[0m
+2025-11-23T23:02:22.0373643Z [37m[0m
+2025-11-23T23:02:22.0374412Z [37mTip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints[0m
+2025-11-23T23:02:22.0375064Z [37m[0m
+2025-11-23T23:02:22.8586219Z [37m  ▲ Next.js 14.2.33[0m
+2025-11-23T23:02:22.8589164Z [37m[0m
+2025-11-23T23:02:23.4114675Z [37m   Creating an optimized production build ...[0m
+2025-11-23T23:03:02.4439993Z [31m ⚠ Compiled with warnings[0m
+2025-11-23T23:03:02.4440565Z [31m[0m
+2025-11-23T23:03:02.4441186Z [31m./node_modules/@ffmpeg-installer/ffmpeg/index.js[0m
+2025-11-23T23:03:02.4442165Z [31mCritical dependency: the request of a dependency is an expression[0m
+2025-11-23T23:03:02.4442863Z [31m[0m
+2025-11-23T23:03:02.4443355Z [31mImport trace for requested module:[0m
+2025-11-23T23:03:02.4444089Z [31m./node_modules/@ffmpeg-installer/ffmpeg/index.js[0m
+2025-11-23T23:03:02.4444734Z [31m./app/api/videos/route.ts[0m
+2025-11-23T23:03:02.4445161Z [31m[0m
+2025-11-23T23:03:02.4445761Z [31m./node_modules/fluent-ffmpeg/lib/options/misc.js[0m
+2025-11-23T23:03:02.4446697Z [31mCritical dependency: the request of a dependency is an expression[0m
+2025-11-23T23:03:02.4447333Z [31m[0m
+2025-11-23T23:03:02.4447800Z [31mImport trace for requested module:[0m
+2025-11-23T23:03:02.4448718Z [31m./node_modules/fluent-ffmpeg/lib/options/misc.js[0m
+2025-11-23T23:03:02.4449513Z [31m./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js[0m
+2025-11-23T23:03:02.4450228Z [31m./node_modules/fluent-ffmpeg/index.js[0m
+2025-11-23T23:03:02.4450812Z [31m./app/api/videos/route.ts[0m
+2025-11-23T23:03:02.4451231Z [31m[0m
+2025-11-23T23:03:17.2114227Z [37m ✓ Compiled successfully[0m
+2025-11-23T23:03:17.2150351Z [37m   Linting and checking validity of types ...[0m
+2025-11-23T23:03:37.7530575Z [37m   Collecting page data ...[0m
+2025-11-23T23:03:38.7414756Z [31mFFmpeg installer package not available. Falling back to system ffmpeg binary. O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.[0m
+2025-11-23T23:03:40.8835664Z [37m   Generating static pages (0/57) ...[0m
+2025-11-23T23:03:42.1304323Z [37m   Generating static pages (14/57) [0m
+2025-11-23T23:03:44.4994968Z [37m   Generating static pages (28/57) [0m
+2025-11-23T23:03:45.5496249Z [37m   Generating static pages (42/57) [0m
+2025-11-23T23:03:46.4791337Z [37m ✓ Generating static pages (57/57)[0m
+2025-11-23T23:03:47.3411563Z [37m   Finalizing page optimization ...[0m
+2025-11-23T23:03:47.3415970Z [37m   Collecting build traces ...[0m
+2025-11-23T23:04:09.4324125Z [37m[0m
+2025-11-23T23:04:09.4442780Z [37mRoute (app)                                      Size     First Load JS[0m
+2025-11-23T23:04:09.4459044Z [37m┌ ƒ /                                            1.33 kB         103 kB[0m
+2025-11-23T23:04:09.4461056Z [37m├ ƒ /_not-found                                  876 B          88.2 kB[0m
+2025-11-23T23:04:09.4462419Z [37m├ ƒ /administrator                               155 B          87.5 kB[0m
+2025-11-23T23:04:09.4463517Z [37m├ ƒ /administrator/clubes                        6.28 kB         117 kB[0m
+2025-11-23T23:04:09.4465024Z [37m├ ƒ /administrator/users                         5.58 kB         111 kB[0m
+2025-11-23T23:04:09.4466200Z [37m├ ƒ /administrator/videos                        5.33 kB         110 kB[0m
+2025-11-23T23:04:09.4467687Z [37m├ ƒ /agentes                                     2.7 kB         98.7 kB[0m
+2025-11-23T23:04:09.4470313Z [37m├ ƒ /agentes/[id]                                1.73 kB         117 kB[0m
+2025-11-23T23:04:09.4471269Z [37m├ ƒ /api/admin/clubes                            0 B                0 B[0m
+2025-11-23T23:04:09.4472227Z [37m├ ƒ /api/admin/clubes/[id]                       0 B                0 B[0m
+2025-11-23T23:04:09.4473120Z [37m├ ƒ /api/admin/summary                           0 B                0 B[0m
+2025-11-23T23:04:09.4473982Z [37m├ ƒ /api/admin/users                             0 B                0 B[0m
+2025-11-23T23:04:09.4474925Z [37m├ ƒ /api/admin/users/[userId]/block              0 B                0 B[0m
+2025-11-23T23:04:09.4475869Z [37m├ ƒ /api/admin/videos                            0 B                0 B[0m
+2025-11-23T23:04:09.4476793Z [37m├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B[0m
+2025-11-23T23:04:09.4477779Z [37m├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B[0m
+2025-11-23T23:04:09.4478914Z [37m├ ƒ /api/agentes                                 0 B                0 B[0m
+2025-11-23T23:04:09.4479742Z [37m├ ƒ /api/agentes/[id]                            0 B                0 B[0m
+2025-11-23T23:04:09.4480644Z [37m├ ƒ /api/atletas                                 0 B                0 B[0m
+2025-11-23T23:04:09.4481437Z [37m├ ƒ /api/atletas/[id]                            0 B                0 B[0m
+2025-11-23T23:04:09.4482226Z [37m├ ƒ /api/auth/[...nextauth]                      0 B                0 B[0m
+2025-11-23T23:04:09.4483203Z [37m├ ƒ /api/blocks/[targetUserId]                   0 B                0 B[0m
+2025-11-23T23:04:09.4484161Z [37m├ ƒ /api/clubes                                  0 B                0 B[0m
+2025-11-23T23:04:09.4485062Z [37m├ ƒ /api/clubes/[slug]                           0 B                0 B[0m
+2025-11-23T23:04:09.4486004Z [37m├ ƒ /api/confederacoes                           0 B                0 B[0m
+2025-11-23T23:04:09.4486987Z [37m├ ƒ /api/confederacoes/[slug]                    0 B                0 B[0m
+2025-11-23T23:04:09.4487938Z [37m├ ƒ /api/db-check                                0 B                0 B[0m
+2025-11-23T23:04:09.4488979Z [37m├ ƒ /api/env                                     0 B                0 B[0m
+2025-11-23T23:04:09.4489915Z [37m├ ƒ /api/follows/[targetUserId]                  0 B                0 B[0m
+2025-11-23T23:04:09.4490860Z [37m├ ƒ /api/games                                   0 B                0 B[0m
+2025-11-23T23:04:09.4491761Z [37m├ ƒ /api/games/[slug]                            0 B                0 B[0m
+2025-11-23T23:04:09.4492698Z [37m├ ƒ /api/games/[slug]/comments                   0 B                0 B[0m
+2025-11-23T23:04:09.4493669Z [37m├ ƒ /api/games/[slug]/engagement                 0 B                0 B[0m
+2025-11-23T23:04:09.4494628Z [37m├ ƒ /api/health                                  0 B                0 B[0m
+2025-11-23T23:04:09.4495521Z [37m├ ƒ /api/messages                                0 B                0 B[0m
+2025-11-23T23:04:09.4496419Z [37m├ ƒ /api/messages/unread-count                   0 B                0 B[0m
+2025-11-23T23:04:09.4497275Z [37m├ ƒ /api/news                                    0 B                0 B[0m
+2025-11-23T23:04:09.4498077Z [37m├ ƒ /api/news/[id]                               0 B                0 B[0m
+2025-11-23T23:04:09.4499079Z [37m├ ƒ /api/news/cover                              0 B                0 B[0m
+2025-11-23T23:04:09.4499934Z [37m├ ƒ /api/noticias                                0 B                0 B[0m
+2025-11-23T23:04:09.4501060Z [37m├ ƒ /api/noticias/[slug]                         0 B                0 B[0m
+2025-11-23T23:04:09.4502160Z [37m├ ƒ /api/noticias/[slug]/comments                0 B                0 B[0m
+2025-11-23T23:04:09.4503123Z [37m├ ƒ /api/noticias/[slug]/engagement              0 B                0 B[0m
+2025-11-23T23:04:09.4504025Z [37m├ ƒ /api/pg-check                                0 B                0 B[0m
+2025-11-23T23:04:09.4504860Z [37m├ ƒ /api/profile                                 0 B                0 B[0m
+2025-11-23T23:04:09.4505724Z [37m├ ƒ /api/profile/avatar                          0 B                0 B[0m
+2025-11-23T23:04:09.4506653Z [37m├ ƒ /api/profile/personal-info                   0 B                0 B[0m
+2025-11-23T23:04:09.4507554Z [37m├ ƒ /api/register                                0 B                0 B[0m
+2025-11-23T23:04:09.4508735Z [37m├ ƒ /api/register/atleta-18                      0 B                0 B[0m
+2025-11-23T23:04:09.4509660Z [37m├ ƒ /api/register/clube                          0 B                0 B[0m
+2025-11-23T23:04:09.4510596Z [37m├ ƒ /api/register/de-agentes-licenciados         0 B                0 B[0m
+2025-11-23T23:04:09.4511595Z [37m├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B[0m
+2025-11-23T23:04:09.4512614Z [37m├ ƒ /api/register/responsavel                    0 B                0 B[0m
+2025-11-23T23:04:09.4513651Z [37m├ ƒ /api/register/responsavel/documents          0 B                0 B[0m
+2025-11-23T23:04:09.4514696Z [37m├ ƒ /api/register/torcedor                       0 B                0 B[0m
+2025-11-23T23:04:09.4515622Z [37m├ ○ /api/times                                   0 B                0 B[0m
+2025-11-23T23:04:09.4516487Z [37m├ ƒ /api/videos                                  0 B                0 B[0m
+2025-11-23T23:04:09.4517362Z [37m├ ƒ /api/videos/[id]                             0 B                0 B[0m
+2025-11-23T23:04:09.4518286Z [37m├ ƒ /api/videos/[id]/appeal                      0 B                0 B[0m
+2025-11-23T23:04:09.4519988Z [37m├ ƒ /api/videos/[id]/comments                    0 B                0 B[0m
+2025-11-23T23:04:09.4520976Z [37m├ ƒ /api/videos/proxy                            0 B                0 B[0m
+2025-11-23T23:04:09.4521930Z [37m├ ƒ /arquibancada                                4.47 kB        98.6 kB[0m
+2025-11-23T23:04:09.4522806Z [37m├ ƒ /atletas                                     4.48 kB         107 kB[0m
+2025-11-23T23:04:09.4523663Z [37m├ ƒ /atletas/[id]                                6.98 kB         136 kB[0m
+2025-11-23T23:04:09.4524523Z [37m├ ƒ /cadastro                                    2.21 kB         129 kB[0m
+2025-11-23T23:04:09.4525399Z [37m├ ƒ /cadastro/[slug]                             2.92 kB         121 kB[0m
+2025-11-23T23:04:09.4526331Z [37m├ ƒ /cadastro/atleta-18                          3.78 kB         136 kB[0m
+2025-11-23T23:04:09.4527262Z [37m├ ƒ /cadastro/clube                              3.91 kB         137 kB[0m
+2025-11-23T23:04:09.4528604Z [37m├ ƒ /cadastro/de-agentes-licenciados             3.91 kB         137 kB[0m
+2025-11-23T23:04:09.4529707Z [37m├ ƒ /cadastro/imprensa-jornalistablogueiro       4.07 kB         137 kB[0m
+2025-11-23T23:04:09.4530742Z [37m├ ƒ /cadastro/responsavel                        4.1 kB          137 kB[0m
+2025-11-23T23:04:09.4531735Z [37m├ ƒ /cadastro/responsavel/uploads                3.57 kB         136 kB[0m
+2025-11-23T23:04:09.4532676Z [37m├ ƒ /cadastro/sucesso                            155 B          87.5 kB[0m
+2025-11-23T23:04:09.4533565Z [37m├ ƒ /cadastro/torcedor                           5.05 kB         146 kB[0m
+2025-11-23T23:04:09.4534416Z [37m├ ƒ /clubes                                      2.8 kB          111 kB[0m
+2025-11-23T23:04:09.4535284Z [37m├ ƒ /clubes/[slug]                               194 B           101 kB[0m
+2025-11-23T23:04:09.4536141Z [37m├ ƒ /confederacoes                               194 B           101 kB[0m
+2025-11-23T23:04:09.4537070Z [37m├ ƒ /confederacoes/[slug]                        194 B           101 kB[0m
+2025-11-23T23:04:09.4538107Z [37m├ ƒ /feed                                        14.6 kB         143 kB[0m
+2025-11-23T23:04:09.4539026Z [37m├ ƒ /games                                       582 B           121 kB[0m
+2025-11-23T23:04:09.4539822Z [37m├ ƒ /games/[slug]                                210 B           128 kB[0m
+2025-11-23T23:04:09.4540619Z [37m├ ○ /icon                                        0 B                0 B[0m
+2025-11-23T23:04:09.4541403Z [37m├ ƒ /login                                       3.64 kB         145 kB[0m
+2025-11-23T23:04:09.4542193Z [37m├ ƒ /noticias                                    588 B           121 kB[0m
+2025-11-23T23:04:09.4543025Z [37m├ ƒ /noticias/[slug]                             616 B           128 kB[0m
+2025-11-23T23:04:09.4543833Z [37m├ ƒ /perfil                                      26.9 kB         170 kB[0m
+2025-11-23T23:04:09.4544651Z [37m├ ƒ /perfis/[id]                                 1.73 kB         117 kB[0m
+2025-11-23T23:04:09.4545463Z [37m├ ƒ /player/[id]                                 9.1 kB          127 kB[0m
+2025-11-23T23:04:09.4546279Z [37m├ ƒ /privacidade                                 189 B          96.2 kB[0m
+2025-11-23T23:04:09.4547183Z [37m├ ƒ /registrar-escolha-perfil                    189 B          96.2 kB[0m
+2025-11-23T23:04:09.4548025Z [37m├ ƒ /sobre                                       189 B          96.2 kB[0m
+2025-11-23T23:04:09.4548948Z [37m├ ƒ /torcida                                     155 B          87.5 kB[0m
+2025-11-23T23:04:09.4549762Z [37m└ ƒ /upload                                      9.94 kB         113 kB[0m
+2025-11-23T23:04:09.4550532Z [37m+ First Load JS shared by all                    87.3 kB[0m
+2025-11-23T23:04:09.4551328Z [37m  ├ chunks/2117-14ae4ae7e705def5.js              31.7 kB[0m
+2025-11-23T23:04:09.4552166Z [37m  ├ chunks/fd9d1056-34631afcb5c7f147.js          53.6 kB[0m
+2025-11-23T23:04:09.4553008Z [37m  └ other shared chunks (total)                  1.97 kB[0m
+2025-11-23T23:04:09.4553544Z [37m[0m
+2025-11-23T23:04:09.4553853Z [37m[0m
+2025-11-23T23:04:09.4554454Z [37mƒ Middleware                                     48.3 kB[0m
+2025-11-23T23:04:09.4554970Z [37m[0m
+2025-11-23T23:04:09.4555514Z [37m○  (Static)   prerendered as static content[0m
+2025-11-23T23:04:09.4556213Z [37mƒ  (Dynamic)  server-rendered on demand[0m
+2025-11-23T23:04:09.4556688Z [37m[0m
+2025-11-23T23:04:09.4915189Z [37m[0m
+2025-11-23T23:04:09.4917463Z [37m> vitrine-de-craques-web-site@0.1.0 postbuild[0m
+2025-11-23T23:04:09.4918734Z [37m> node scripts/copy-prisma-artifacts.js[0m
+2025-11-23T23:04:09.4919483Z [37m[0m
+2025-11-23T23:04:09.6145008Z [37m[copy-prisma-artifacts] Copied Prisma artifacts to /github/workspace/.next/standalone/node_modules/.prisma/client[0m
+2025-11-23T23:04:09.6156426Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/.prisma/client[0m
+2025-11-23T23:04:09.6161665Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/chunks/.prisma/client[0m
+2025-11-23T23:04:09.7225840Z [37m[copy-prisma-artifacts] Copied Prisma artifacts to /github/workspace/.next/standalone/node_modules/@prisma/client[0m
+2025-11-23T23:04:09.7230987Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/@prisma/client[0m
+2025-11-23T23:04:09.7232554Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/chunks/@prisma/client[0m
+2025-11-23T23:04:09.7358809Z [37mPreparing output...[0m
+2025-11-23T23:04:09.7360062Z [37m[0m
+2025-11-23T23:04:09.7362048Z [37mCopying files to destination directory '/bin/staticsites/831df3b0-98da-4499-934f-67eba3439a12-swa-oryx/app'...[0m
+2025-11-23T23:04:35.5382495Z [37mDone in 26 sec(s).[0m
+2025-11-23T23:04:35.5416939Z [37m[0m
+2025-11-23T23:04:35.5419663Z [37mRemoving existing manifest file[0m
+2025-11-23T23:04:35.5436444Z [37mCreating a manifest file...[0m
+2025-11-23T23:04:35.5446346Z [37mManifest file created.[0m
+2025-11-23T23:04:35.5451274Z [37mCopying .ostype to manifest output directory.[0m
+2025-11-23T23:04:35.5488231Z [37m[0m
+2025-11-23T23:04:35.5492045Z [37mDone in 160 sec(s).[0m
+2025-11-23T23:04:35.6179852Z [37m[0m
+2025-11-23T23:04:35.6181447Z [37m[0m
+2025-11-23T23:04:35.6181928Z [37m---End of Oryx build logs---[0m
+2025-11-23T23:04:35.6210828Z [37mTry to validate location at: '/bin/staticsites/831df3b0-98da-4499-934f-67eba3439a12-swa-oryx/app/.next'.[0m
+2025-11-23T23:04:35.6214237Z [37mOryx has determined that the app build artifacts are in the '.next' directory. If this is incorrect please specify the app artifact location.[0m
+2025-11-23T23:04:35.6215572Z [37mFinished building app with Oryx[0m
+2025-11-23T23:04:35.7886657Z [31mFailed to find a default file in the app artifacts folder (.next). Valid default files: index.html,Index.html.[0m
+2025-11-23T23:04:35.7889457Z [31mIf your application contains purely static content, please verify that the variable 'app_location' in your workflow file points to the root of your application.[0m
+2025-11-23T23:04:35.7892897Z [31mIf your application requires build steps, please validate that a default file exists in the build output directory.[0m
+2025-11-23T23:04:35.7893942Z [31m[0m
+2025-11-23T23:04:35.8796710Z [37m[0m
+2025-11-23T23:04:35.8799337Z [33mFor further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/[0m
+2025-11-23T23:04:35.8802848Z [33mIf you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/[0m
+2025-11-23T23:04:35.8803805Z [33mExiting[0m

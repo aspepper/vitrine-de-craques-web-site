@@ -33,7 +33,15 @@ jobs:
           # em pipeline separado), desativamos a sincronização automática aqui.
           submodules: false
           lfs: false
-          
+          # Mantemos o checkout enxuto para evitar que pastas irrelevantes (mobile e docs)
+          # aumentem o tempo de preparação/empacotamento do deploy.
+          sparse-checkout: |
+            /*
+            !/Vitrine-De-Craques-App/
+            !/Vitrine-De-Craques-App-iOS/
+            !/docs/
+          sparse-checkout-cone: false
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:

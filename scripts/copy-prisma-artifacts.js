@@ -1,51 +1,37 @@
-const { cpSync, existsSync, mkdirSync, rmSync } = require('node:fs')
-const { dirname, join } = require('node:path')
+const { cpSync, existsSync, mkdirSync, rmSync, symlinkSync } = require('node:fs')
+const { dirname, join, relative } = require('node:path')
 
 const projectRoot = process.cwd()
 
 const pathsToCopy = [
   {
     source: join(projectRoot, 'node_modules', '.prisma', 'client'),
-    targets: [
-      join(
-        projectRoot,
-        '.next',
-        'standalone',
-        'node_modules',
-        '.prisma',
-        'client',
-      ),
+    copyTarget: join(
+      projectRoot,
+      '.next',
+      'standalone',
+      'node_modules',
+      '.prisma',
+      'client',
+    ),
+    linkTargets: [
       join(projectRoot, '.next', 'server', '.prisma', 'client'),
-      join(
-        projectRoot,
-        '.next',
-        'server',
-        'chunks',
-        '.prisma',
-        'client',
-      ),
+      join(projectRoot, '.next', 'server', 'chunks', '.prisma', 'client'),
     ],
   },
   {
     source: join(projectRoot, 'node_modules', '@prisma', 'client'),
-    targets: [
-      join(
-        projectRoot,
-        '.next',
-        'standalone',
-        'node_modules',
-        '@prisma',
-        'client',
-      ),
+    copyTarget: join(
+      projectRoot,
+      '.next',
+      'standalone',
+      'node_modules',
+      '@prisma',
+      'client',
+    ),
+    linkTargets: [
       join(projectRoot, '.next', 'server', '@prisma', 'client'),
-      join(
-        projectRoot,
-        '.next',
-        'server',
-        'chunks',
-        '@prisma',
-        'client',
-      ),
+      join(projectRoot, '.next', 'server', 'chunks', '@prisma', 'client'),
     ],
   },
 ]
@@ -60,22 +46,32 @@ function ensureDirectory(path) {
 function copyPrismaAssets() {
   let copiedSomething = false
 
-  for (const { source, targets } of pathsToCopy) {
+  for (const { source, copyTarget, linkTargets } of pathsToCopy) {
     if (!existsSync(source)) {
       console.warn(`[copy-prisma-artifacts] Source path not found: ${source}`)
       continue
     }
 
-    for (const target of targets) {
+    if (existsSync(copyTarget)) {
+      rmSync(copyTarget, { recursive: true, force: true })
+    }
+
+    ensureDirectory(copyTarget)
+
+    cpSync(source, copyTarget, { recursive: true })
+    copiedSomething = true
+    console.log(`[copy-prisma-artifacts] Copied Prisma artifacts to ${copyTarget}`)
+
+    for (const target of linkTargets) {
       if (existsSync(target)) {
         rmSync(target, { recursive: true, force: true })
       }
 
       ensureDirectory(target)
 
-      cpSync(source, target, { recursive: true })
-      copiedSomething = true
-      console.log(`[copy-prisma-artifacts] Copied Prisma artifacts to ${target}`)
+      const relativeSource = relative(dirname(target), copyTarget)
+      symlinkSync(relativeSource, target, 'junction')
+      console.log(`[copy-prisma-artifacts] Linked Prisma artifacts to ${target}`)
     }
   }
 

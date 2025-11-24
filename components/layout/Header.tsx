@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState, type ReactNode } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { LogOut, Menu, Moon, Sun, Upload, UserRound, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
+import { SafeImage } from '@/components/media/SafeMedia'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -195,7 +195,7 @@ export function Header() {
       <nav className="container mx-auto flex h-14 items-center gap-4 md:h-16">
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-12 w-14">
-            <Image
+            <SafeImage
               src="/brand/logo.png"
               alt="Vitrine de Craques"
               fill

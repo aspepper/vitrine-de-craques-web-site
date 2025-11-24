@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import { SafeImage } from "@/components/media/SafeMedia"
 import Link from "next/link"
 import { useMemo, useState } from "react"
 import { Film, Heart, PenSquare, Trash2 } from "lucide-react"
@@ -224,7 +224,7 @@ function VideoManagerCard({ item, onUpdate, onDelete }: VideoManagerCardProps) {
     <article className="flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/70 bg-white/95 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.5)] dark:border-white/10 dark:bg-slate-900/80 dark:shadow-[0_36px_90px_-48px_rgba(2,6,23,0.85)]">
       <div className="relative aspect-video w-full overflow-hidden bg-slate-900/60">
         {item.thumbnailUrl ? (
-          <Image
+          <SafeImage
             src={item.thumbnailUrl}
             alt={item.title}
             fill

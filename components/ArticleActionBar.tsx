@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
+import { SafeImage } from "@/components/media/SafeMedia";
 import { cn } from "@/lib/utils";
 
 export type ArticleActionType = "news" | "game";
@@ -497,7 +497,7 @@ function ArticleActionButton({
         )}
       >
         <span className="sr-only">{label}</span>
-        <Image src={iconSrc} alt="" width={24} height={24} />
+        <SafeImage src={iconSrc} alt="" width={24} height={24} />
       </button>
       <span className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
         {count}

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SafeImage } from '@/components/media/SafeMedia'
 import Link from 'next/link'
 
 export function Footer() {
@@ -15,7 +15,7 @@ export function Footer() {
         {/* Marca + CTA */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
-            <Image
+            <SafeImage
               src="/brand/logo.svg"
               alt="Vitrine de Craques"
               width={48}
@@ -76,7 +76,7 @@ export function Footer() {
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
               aria-label="Instagram"
             >
-              <Image src="/icons/icon-instagram.svg" alt="" width={18} height={18} />
+              <SafeImage src="/icons/icon-instagram.svg" alt="" width={18} height={18} />
             </Link>
             <Link
               href="https://www.tiktok.com/@vitrinedecraquesoficial"
@@ -85,7 +85,7 @@ export function Footer() {
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
               aria-label="TikTok"
             >
-              <Image src="/icons/icon-tiktok.svg" alt="" width={18} height={18} />
+              <SafeImage src="/icons/icon-tiktok.svg" alt="" width={18} height={18} />
             </Link>
             <Link
               href="https://www.youtube.com/@vitrinedecraques621"
@@ -94,7 +94,7 @@ export function Footer() {
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
               aria-label="YouTube"
             >
-              <Image src="/icons/icon-youtube.svg" alt="" width={20} height={20} />
+              <SafeImage src="/icons/icon-youtube.svg" alt="" width={20} height={20} />
             </Link>
             <Link
               href="https://x.com/VCraques"
@@ -103,7 +103,7 @@ export function Footer() {
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
               aria-label="X"
             >
-              <Image src="/icons/icon-x.svg" alt="" width={18} height={18} />
+              <SafeImage src="/icons/icon-x.svg" alt="" width={18} height={18} />
             </Link>
             <Link
               href="https://www.facebook.com/profile.php?id=100069873766577"
@@ -112,7 +112,7 @@ export function Footer() {
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
               aria-label="Facebook"
             >
-              <Image src="/icons/icon-facebook.svg" alt="" width={16} height={16} />
+              <SafeImage src="/icons/icon-facebook.svg" alt="" width={16} height={16} />
             </Link>
             <Link
               href="https://www.linkedin.com/in/vitrine-de-craques-oficial-284695181/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
@@ -121,7 +121,7 @@ export function Footer() {
               className="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/20 transition"
               aria-label="LinkedIn"
             >
-              <Image src="/icons/icon-linkedin.svg" alt="" width={18} height={18} />
+              <SafeImage src="/icons/icon-linkedin.svg" alt="" width={18} height={18} />
             </Link>
           </div>
         </div>

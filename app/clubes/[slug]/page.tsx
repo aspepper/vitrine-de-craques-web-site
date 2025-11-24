@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/media/SafeMedia";
 import Link from "next/link";
 
 function formatDate(input: string | null) {
@@ -47,7 +47,12 @@ export default async function ClubeDetalhePage({ params }: PageProps) {
           <div className="flex flex-col gap-8 rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-[0_32px_96px_-64px_rgba(15,23,42,0.35)] md:flex-row md:items-center">
             {club.crestUrl ? (
               <div className="relative h-28 w-28 overflow-hidden rounded-3xl border border-slate-200 shadow-lg">
-                <Image src={club.crestUrl} alt={club.name} fill className="object-cover" />
+                <SafeImage
+                  src={club.crestUrl}
+                  alt={club.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
             ) : (
               <div className="flex h-28 w-28 items-center justify-center rounded-3xl bg-slate-900 text-3xl font-semibold text-white">

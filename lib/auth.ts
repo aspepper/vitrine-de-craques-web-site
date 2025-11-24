@@ -1,5 +1,5 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { NextAuthOptions } from "next-auth";
+import { LoggerInstance, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
@@ -8,6 +8,7 @@ import AppleProvider from "next-auth/providers/apple";
 import bcrypt from "bcryptjs";
 
 import prisma from "@/lib/db";
+import { logError } from "@/lib/error";
 
 const providers: NextAuthOptions["providers"] = [
   CredentialsProvider({
@@ -100,6 +101,29 @@ if (process.env.APPLE_CLIENT_ID && process.env.APPLE_CLIENT_SECRET) {
     })
   )
 }
+
+const logger: LoggerInstance = {
+  error(code, metadata) {
+    logError(new Error(String(code)), "NEXTAUTH_ERROR", {
+      scope: "NextAuthLogger",
+      code,
+      metadata,
+    }).catch((loggingError) => {
+      console.error("Falha ao registrar erro do NextAuth", loggingError);
+    });
+  },
+  warn(code) {
+    logError(new Error(String(code)), "NEXTAUTH_WARN", {
+      scope: "NextAuthLogger",
+      code,
+    }).catch((loggingError) => {
+      console.error("Falha ao registrar aviso do NextAuth", loggingError);
+    });
+  },
+  debug(code, metadata) {
+    console.debug("[NextAuth]", code, metadata);
+  },
+};
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -195,5 +219,6 @@ export const authOptions: NextAuthOptions = {
       })
     },
   },
+  logger,
   secret: process.env.NEXTAUTH_SECRET,
 };

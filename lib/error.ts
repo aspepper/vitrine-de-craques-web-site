@@ -45,6 +45,55 @@ function truncate(value: string, maxLength = MAX_LOG_VALUE_LENGTH): string {
   return `${value.slice(0, maxLength)}…`;
 }
 
+function extractErrorDetails(original: unknown, normalized: Error) {
+  const details: Record<string, unknown> = {
+    errorName: normalized.name,
+    errorMessage: normalized.message,
+  };
+
+  if (normalized.stack) {
+    details.errorStack = truncate(normalized.stack);
+  }
+
+  const cause = (normalized as Error & { cause?: unknown }).cause;
+  if (cause) {
+    details.errorCause = safeStringify(cause);
+  }
+
+  if (
+    typeof original === "object" &&
+    original !== null &&
+    "code" in original &&
+    typeof (original as { code?: unknown }).code !== "undefined"
+  ) {
+    details.errorCode = safeStringify((original as { code?: unknown }).code);
+  }
+
+  if (
+    typeof original === "object" &&
+    original !== null &&
+    "status" in original &&
+    typeof (original as { status?: unknown }).status !== "undefined"
+  ) {
+    details.errorStatus = safeStringify(
+      (original as { status?: unknown }).status,
+    );
+  }
+
+  if (
+    typeof original === "object" &&
+    original !== null &&
+    "statusCode" in original &&
+    typeof (original as { statusCode?: unknown }).statusCode !== "undefined"
+  ) {
+    details.errorStatusCode = safeStringify(
+      (original as { statusCode?: unknown }).statusCode,
+    );
+  }
+
+  return details satisfies ErrorMetadata;
+}
+
 function safeStringify(value: unknown, maxLength = MAX_LOG_VALUE_LENGTH): string {
   if (typeof value === "string") {
     return truncate(value, maxLength);
@@ -202,7 +251,8 @@ export async function logError(
   const timestamp = new Date().toISOString();
   const normalizedError = ensureError(error);
   const runtimeMetadata = buildRuntimeMetadata();
-  const mergedMetadata = { ...runtimeMetadata, ...metadata };
+  const errorDetails = extractErrorDetails(error, normalizedError);
+  const mergedMetadata = { ...runtimeMetadata, ...errorDetails, ...metadata };
   const telemetryProperties = buildTelemetryProperties(
     context,
     errorId,

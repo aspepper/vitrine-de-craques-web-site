@@ -1,0 +1,30 @@
+﻿2025-11-24T02:11:41.6607108Z ##[group]Run actions/setup-node@v4
+2025-11-24T02:11:41.6607408Z with:
+2025-11-24T02:11:41.6607597Z   node-version: 20
+2025-11-24T02:11:41.6607795Z   cache: npm
+2025-11-24T02:11:41.6607971Z   always-auth: false
+2025-11-24T02:11:41.6608175Z   check-latest: false
+2025-11-24T02:11:41.6608552Z   token: ***
+2025-11-24T02:11:41.6608728Z env:
+2025-11-24T02:11:41.6609591Z   DATABASE_URL: ***
+2025-11-24T02:11:41.6609909Z   NEXTAUTH_URL: ***
+2025-11-24T02:11:41.6610201Z   NEXTAUTH_SECRET: ***
+2025-11-24T02:11:41.6610402Z   AUTH_TRUST_HOST: true
+2025-11-24T02:11:41.6610594Z ##[endgroup]
+2025-11-24T02:11:41.8473151Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-11-24T02:11:41.8480072Z ##[group]Environment details
+2025-11-24T02:11:42.3526557Z node: v20.19.5
+2025-11-24T02:11:42.3530518Z npm: 10.8.2
+2025-11-24T02:11:42.3530861Z yarn: 1.22.22
+2025-11-24T02:11:42.3532589Z ##[endgroup]
+2025-11-24T02:11:42.3553948Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
+2025-11-24T02:11:42.4782350Z /home/runner/.npm
+2025-11-24T02:11:42.8570415Z Cache hit for: node-cache-Linux-x64-npm-7a37f00dbb49b213ff9469b7d87cb9481db306262f95e4f112cc6aec83ba8a27
+2025-11-24T02:11:44.1547018Z Received 4194304 of 256886524 (1.6%), 4.0 MBs/sec
+2025-11-24T02:11:45.2509764Z Received 134217728 of 256886524 (52.2%), 61.2 MBs/sec
+2025-11-24T02:11:46.2462077Z Received 234881024 of 256886524 (91.4%), 72.5 MBs/sec
+2025-11-24T02:11:46.5910957Z Received 256886524 of 256886524 (100.0%), 71.3 MBs/sec
+2025-11-24T02:11:46.5914561Z Cache Size: ~245 MB (256886524 B)
+2025-11-24T02:11:46.6011517Z [command]/usr/bin/tar -xf /home/runner/work/_temp/80c9e755-2a0b-4676-b1dd-7c708f66898c/cache.tzst -P -C /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site --use-compress-program unzstd
+2025-11-24T02:11:47.4597525Z Cache restored successfully
+2025-11-24T02:11:47.5090381Z Cache restored from key: node-cache-Linux-x64-npm-7a37f00dbb49b213ff9469b7d87cb9481db306262f95e4f112cc6aec83ba8a27

@@ -18,6 +18,8 @@ export type SampleVideo = {
   }[];
 };
 
+const DEFAULT_AVATAR = "/place-holder-image-error.png";
+
 export const sampleVideos: SampleVideo[] = [
   {
     id: "sample-video-1",
@@ -30,7 +32,7 @@ export const sampleVideos: SampleVideo[] = [
       {
         id: "agent-sample-1",
         name: "Agente Especialista",
-        avatarUrl: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=160&q=80&fm=webp",
+        avatarUrl: DEFAULT_AVATAR,
       },
       {
         id: "agent-sample-2",
@@ -41,8 +43,7 @@ export const sampleVideos: SampleVideo[] = [
       {
         id: "comment-sample-1",
         authorName: "Marina Campos",
-        authorAvatarUrl:
-          "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=160&q=80&fm=webp",
+        authorAvatarUrl: DEFAULT_AVATAR,
         content:
           "Excelente controle de bola nos espaços curtos. Gostaria de ver mais lances sob pressão para a próxima avaliação.",
         createdAt: "2024-05-18T14:20:00.000Z",
@@ -66,15 +67,14 @@ export const sampleVideos: SampleVideo[] = [
       {
         id: "agent-sample-3",
         name: "Ana Beatriz",
-        avatarUrl: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=160&q=80&fm=webp",
+        avatarUrl: DEFAULT_AVATAR,
       },
     ],
     comments: [
       {
         id: "comment-sample-3",
         authorName: "Carlos Eduardo",
-        authorAvatarUrl:
-          "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=160&q=80&fm=webp",
+        authorAvatarUrl: DEFAULT_AVATAR,
         content: "Boa leitura de jogo, principalmente na inversão para o lateral direito.",
         createdAt: "2024-04-22T18:45:00.000Z",
       },

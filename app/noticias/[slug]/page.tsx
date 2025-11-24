@@ -150,7 +150,7 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
   }
 
   const heroImage = ensureImage(
-    article.coverImage ?? "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1920&q=80&fm=webp",
+    article.coverImage ?? "/stadium.jpg",
     article.slug,
     "news-hero"
   );

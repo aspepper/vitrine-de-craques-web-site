@@ -1,0 +1,5 @@
+2025-11-24T01:41:11.6380000Z Requested labels: ubuntu-latest
+2025-11-24T01:41:11.6380000Z Job defined at: aspepper/vitrine-de-craques-web-site/.github/workflows/azure-static-web-apps-nice-hill-01a3a1010.yml@refs/heads/main
+2025-11-24T01:41:11.6380000Z Waiting for a runner to pick up this job...
+2025-11-24T01:41:11.6460000Z Job is about to start running on the hosted runner: GitHub Actions 1000000518
+2025-11-24T01:41:11.6460000Z Job is waiting for a hosted runner to come online.

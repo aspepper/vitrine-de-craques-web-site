@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/media/SafeMedia";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import { getServerSession } from "next-auth";
@@ -165,7 +165,13 @@ export default async function FeedPage({
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 overflow-hidden rounded-full border border-slate-200 bg-white dark:border-white/20 dark:bg-transparent">
-                  <Image src="/brand/logo.svg" alt="Vitrine de Craques" width={48} height={48} className="h-full w-full object-cover p-2" />
+                  <SafeImage
+                    src="/brand/logo.svg"
+                    alt="Vitrine de Craques"
+                    width={48}
+                    height={48}
+                    className="h-full w-full object-cover p-2"
+                  />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">Vitrine de Craques</p>

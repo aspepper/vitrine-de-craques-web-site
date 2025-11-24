@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+
+import { SafeImage } from "@/components/media/SafeMedia";
 
 import type { Role } from "@prisma/client";
 
@@ -190,7 +191,7 @@ export function FeedClient({
             onClick={handleConsumeNewVideos}
             className="flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-500/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200"
           >
-            <Image
+            <SafeImage
               src="/icons/icon-new-content.svg"
               alt="Novos vídeos disponíveis"
               width={20}

@@ -1,8 +1,8 @@
 "use client"
 
-import Image from "next/image"
 import { signIn } from "next-auth/react"
 
+import { SafeImage } from "@/components/media/SafeMedia"
 import { Button } from "@/components/ui/button"
 
 const providers = [
@@ -27,7 +27,7 @@ export function SocialAuth() {
             onClick={() => signIn(provider.id)}
             type="button"
           >
-            <Image
+            <SafeImage
               src={provider.icon}
               alt={provider.name}
               width={24}

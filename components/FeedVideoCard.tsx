@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -9,6 +8,7 @@ import { X } from "lucide-react";
 
 import type { Role } from "@prisma/client";
 
+import { SafeImage, SafeVideo } from "@/components/media/SafeMedia";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -697,7 +697,7 @@ export function FeedVideoCard({
           aria-pressed={active}
           title={alt}
         >
-          <Image src={iconSrc} alt={alt} width={28} height={28} />
+          <SafeImage src={iconSrc} alt={alt} width={28} height={28} />
         </button>
         {count ? (
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80">
@@ -716,7 +716,7 @@ export function FeedVideoCard({
           className,
         )}
       >
-      <video
+      <SafeVideo
         ref={ref}
         src={video.videoUrl}
         poster={video.thumbnailUrl || undefined}
@@ -725,6 +725,7 @@ export function FeedVideoCard({
         muted={isMuted}
         playsInline
         preload="metadata"
+        fallbackAlt={video.title}
       />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black via-black/40 to-transparent" />
       {showOverlayActions && (

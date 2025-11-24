@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { SafeImage } from '@/components/media/SafeMedia'
 import { useCallback, useMemo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -409,7 +409,7 @@ export function ClubManagementClient({ initialData, confederations }: ClubManage
               </div>
               {club.crestUrl ? (
                 <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-border/60">
-                  <Image src={club.crestUrl} alt={club.name} fill className="object-cover" />
+                  <SafeImage src={club.crestUrl} alt={club.name} fill className="object-cover" />
                 </div>
               ) : (
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">

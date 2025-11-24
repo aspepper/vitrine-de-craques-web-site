@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
-import Image from 'next/image'
+
+import { SafeImage } from '@/components/media/SafeMedia'
 import { Button } from '@/components/ui/button'
 
 export interface FigmaNode {
@@ -82,7 +83,7 @@ export function figmaToReact(
     const { width = 0, height = 0 } = node.absoluteBoundingBox || {}
     const src = `/${node.name}.png`
     return (
-      <Image
+      <SafeImage
         src={src}
         alt={node.name}
         width={width}

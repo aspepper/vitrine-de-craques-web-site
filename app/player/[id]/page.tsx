@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { CommentItemType, VideoBlockAppealStatus, VideoVisibilityStatus } from "@prisma/client";
 
+import { SafeVideo } from "@/components/media/SafeMedia";
 import { PlayerBackLink } from "@/components/player/BackLink";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -317,12 +318,13 @@ export default async function PlayerPage({ params }: { params: { id: string } })
           <div className="flex flex-col gap-12 lg:flex-row">
             <div className="mx-auto w-full max-w-sm flex-shrink-0">
               <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[36px] border border-border/70 bg-black shadow-[0_32px_96px_-48px_rgba(15,23,42,0.75)]">
-                <video
+                <SafeVideo
                   key={video.id}
                   src={video.videoUrl}
                   controls
                   playsInline
                   className="h-full w-full object-cover"
+                  fallbackAlt={video.title}
                 />
               </div>
             </div>

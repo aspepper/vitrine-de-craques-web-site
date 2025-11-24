@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent } from "./ui/card";
-import Image from "next/image";
+
+import { SafeImage } from "@/components/media/SafeMedia";
 
 interface Video {
   id: string;
@@ -19,11 +20,11 @@ export function VideoCard({ video }: VideoCardProps) {
       <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
         <CardContent className="p-0">
           <div className="relative aspect-video">
-            <Image 
-              src={video.thumbnailUrl} 
+            <SafeImage
+              src={video.thumbnailUrl}
               alt={`Thumbnail para ${video.title}`}
-              layout="fill"
-              objectFit="cover"
+              fill
+              className="object-cover"
             />
           </div>
           <div className="p-4">

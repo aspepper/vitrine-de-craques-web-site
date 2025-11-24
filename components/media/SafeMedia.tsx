@@ -65,7 +65,7 @@ export const SafeVideo = forwardRef<HTMLVideoElement | null, SafeVideoProps>(
       typeof poster === "string" ? poster : undefined,
     );
 
-    useImperativeHandle<HTMLVideoElement | null>(
+    useImperativeHandle<HTMLVideoElement | null, HTMLVideoElement | null>(
       forwardedRef,
       () => videoRef.current,
     );

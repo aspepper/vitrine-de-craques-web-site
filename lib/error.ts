@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 
-import { telemetryClient } from "./app-insights";
+import { telemetryClient, telemetryEnabled } from "./app-insights";
 
 type ErrorMetadata = Record<string, unknown>;
 
@@ -161,6 +161,8 @@ function buildRuntimeMetadata() {
         process.env.VERCEL_DEPLOYMENT_ID ??
         process.env.DEPLOYMENT_ID ??
         null,
+      siteName: process.env.WEBSITE_SITE_NAME ?? null,
+      hostname: process.env.WEBSITE_HOSTNAME ?? process.env.HOSTNAME ?? null,
     },
     configuration: {
       databaseUrlConfigured: Boolean(process.env.DATABASE_URL),
@@ -169,6 +171,7 @@ function buildRuntimeMetadata() {
       appInsightsConfigured: connectionStringKeys.some(
         (key) => Boolean(process.env[key]),
       ),
+      telemetryEnabled,
     },
   } satisfies ErrorMetadata;
 }
@@ -229,6 +232,17 @@ async function buildRequestMetadata(request: Request) {
     method: request.method,
     url: request.url,
   };
+
+  try {
+    const parsedUrl = new URL(request.url);
+    metadata.pathname = parsedUrl.pathname;
+    metadata.search = parsedUrl.search;
+    if (parsedUrl.searchParams.size > 0) {
+      metadata.searchParams = Object.fromEntries(parsedUrl.searchParams.entries());
+    }
+  } catch (error) {
+    metadata.urlParseError = safeStringify(error);
+  }
 
   if (Object.keys(headers).length > 0) {
     metadata.headers = headers;

@@ -12,6 +12,12 @@ const connectionString = [
   .map((key) => process.env[key])
   .find((value): value is string => Boolean(value))
 
+if (!connectionString) {
+  console.warn(
+    '[Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente',
+  )
+}
+
 if (connectionString) {
   try {
     const appInsights = (
@@ -25,12 +31,25 @@ if (connectionString) {
       .setAutoCollectDependencies(true)
       .setAutoCollectPerformance(true, true)
       .setUseDiskRetryCaching(true)
+      .setSendLiveMetrics(true)
       .start()
 
     client = appInsights.defaultClient
+
+    const cloudRoleName =
+      process.env.WEBSITE_SITE_NAME || process.env.HOSTNAME || 'vitrine-de-craques'
+    client.context.tags[appInsights.defaultClient.context.keys.cloudRole] =
+      cloudRoleName
+
+    console.info('[Telemetry] Application Insights inicializado', {
+      connectionStringProvider: connectionString?.split('=')[0] ?? 'unknown',
+      runtime: process.env.NEXT_RUNTIME ?? 'node',
+      role: cloudRoleName,
+    })
   } catch (error) {
     console.warn('Application Insights could not be initialized.', error)
   }
 }
 
 export const telemetryClient = client
+export const telemetryEnabled = Boolean(client)

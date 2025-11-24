@@ -1,0 +1,71 @@
+﻿2025-11-24T18:38:41.6290328Z ##[group]Run rm -rf deploy
+2025-11-24T18:38:41.6290650Z [36;1mrm -rf deploy[0m
+2025-11-24T18:38:41.6290871Z [36;1mmkdir -p deploy[0m
+2025-11-24T18:38:41.6291200Z [36;1m# Copy only the runtime pieces from the standalone build output[0m
+2025-11-24T18:38:41.6291595Z [36;1mcp -R .next/standalone/.next deploy/.next[0m
+2025-11-24T18:38:41.6291961Z [36;1mcp -R .next/standalone/node_modules deploy/node_modules[0m
+2025-11-24T18:38:41.6292359Z [36;1mcp .next/standalone/package.json deploy/package.json[0m
+2025-11-24T18:38:41.6292730Z [36;1mif [ -f .next/standalone/server.js ]; then[0m
+2025-11-24T18:38:41.6293055Z [36;1m  cp .next/standalone/server.js deploy/server.js[0m
+2025-11-24T18:38:41.6293334Z [36;1mfi[0m
+2025-11-24T18:38:41.6293584Z [36;1mif [ -f .next/standalone/server.js.nft.json ]; then[0m
+2025-11-24T18:38:41.6293983Z [36;1m  cp .next/standalone/server.js.nft.json deploy/server.js.nft.json[0m
+2025-11-24T18:38:41.6294323Z [36;1mfi[0m
+2025-11-24T18:38:41.6294489Z [36;1m[0m
+2025-11-24T18:38:41.6294710Z [36;1mmkdir -p deploy/.next/static[0m
+2025-11-24T18:38:41.6294998Z [36;1mcp -R .next/static/. deploy/.next/static[0m
+2025-11-24T18:38:41.6295509Z [36;1m[0m
+2025-11-24T18:38:41.6295801Z [36;1mcp next.config.mjs deploy/next.config.mjs[0m
+2025-11-24T18:38:41.6296188Z [36;1mcp staticwebapp.config.json deploy/staticwebapp.config.json[0m
+2025-11-24T18:38:41.6296548Z [36;1mcp -R prisma deploy/prisma[0m
+2025-11-24T18:38:41.6296801Z [36;1mif [ -d public ]; then[0m
+2025-11-24T18:38:41.6297045Z [36;1m  cp -R public deploy/public[0m
+2025-11-24T18:38:41.6297283Z [36;1mfi[0m
+2025-11-24T18:38:41.6297505Z [36;1m./scripts/prune-deploy-artifact.sh deploy[0m
+2025-11-24T18:38:41.6329741Z shell: /usr/bin/bash -e {0}
+2025-11-24T18:38:41.6329987Z env:
+2025-11-24T18:38:41.6330707Z   DATABASE_URL: ***
+2025-11-24T18:38:41.6331047Z   NEXTAUTH_URL: ***
+2025-11-24T18:38:41.6331348Z   NEXTAUTH_SECRET: ***
+2025-11-24T18:38:41.6331556Z   AUTH_TRUST_HOST: true
+2025-11-24T18:38:41.6331753Z ##[endgroup]
+2025-11-24T18:38:42.2884805Z Pruning unused Prisma runtime binaries...
+2025-11-24T18:38:42.2910952Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.js
+2025-11-24T18:38:42.2918028Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.mjs
+2025-11-24T18:38:42.2919215Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.wasm-base64.js
+2025-11-24T18:38:42.2920465Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb.wasm-base64.mjs
+2025-11-24T18:38:42.2941152Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.wasm-base64.mjs
+2025-11-24T18:38:42.2942236Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.mjs
+2025-11-24T18:38:42.2943522Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.js
+2025-11-24T18:38:42.2944528Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.mysql.wasm-base64.js
+2025-11-24T18:38:42.2969140Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.wasm-base64.js
+2025-11-24T18:38:42.2970523Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.mjs
+2025-11-24T18:38:42.2971794Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.js
+2025-11-24T18:38:42.2978158Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlite.wasm-base64.mjs
+2025-11-24T18:38:42.2998341Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.wasm-base64.js
+2025-11-24T18:38:42.3000026Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.wasm-base64.mjs
+2025-11-24T18:38:42.3001453Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.mjs
+2025-11-24T18:38:42.3002756Z deploy/node_modules/@prisma/client/runtime/query_engine_bg.sqlserver.js
+2025-11-24T18:38:42.3027139Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.js
+2025-11-24T18:38:42.3028654Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.mjs
+2025-11-24T18:38:42.3029860Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.wasm-base64.mjs
+2025-11-24T18:38:42.3031382Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb.wasm-base64.js
+2025-11-24T18:38:42.3054906Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.js
+2025-11-24T18:38:42.3056847Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.wasm-base64.mjs
+2025-11-24T18:38:42.3059136Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.mjs
+2025-11-24T18:38:42.3060213Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.mysql.wasm-base64.js
+2025-11-24T18:38:42.3081464Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.mjs
+2025-11-24T18:38:42.3082928Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.js
+2025-11-24T18:38:42.3085470Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.wasm-base64.mjs
+2025-11-24T18:38:42.3086637Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlite.wasm-base64.js
+2025-11-24T18:38:42.3108615Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.wasm-base64.mjs
+2025-11-24T18:38:42.3110651Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.wasm-base64.js
+2025-11-24T18:38:42.3111771Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.mjs
+2025-11-24T18:38:42.3112766Z deploy/node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver.js
+2025-11-24T18:38:42.3115108Z Removing unused Prisma client engines...
+2025-11-24T18:38:42.3209274Z deploy/node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node
+2025-11-24T18:38:42.3210741Z deploy/node_modules/.prisma/client/libquery_engine-darwin.dylib.node
+2025-11-24T18:38:42.3211621Z Cleaning up optional sharp binaries...
+2025-11-24T18:38:42.3258154Z Deleting dependency source maps...
+2025-11-24T18:38:42.3533575Z Removing Next.js build cache...
+2025-11-24T18:38:42.3738522Z Pruning finished.

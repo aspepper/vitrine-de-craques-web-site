@@ -1,0 +1,176 @@
+﻿2025-11-24T18:36:54.4884398Z ##[group]Run npm run build
+2025-11-24T18:36:54.4884701Z [36;1mnpm run build[0m
+2025-11-24T18:36:54.4949839Z shell: /usr/bin/bash -e {0}
+2025-11-24T18:36:54.4950088Z env:
+2025-11-24T18:36:54.4950860Z   DATABASE_URL: ***
+2025-11-24T18:36:54.4951187Z   NEXTAUTH_URL: ***
+2025-11-24T18:36:54.4951498Z   NEXTAUTH_SECRET: ***
+2025-11-24T18:36:54.4951717Z   AUTH_TRUST_HOST: true
+2025-11-24T18:36:54.4951923Z ##[endgroup]
+2025-11-24T18:36:54.6083085Z 
+2025-11-24T18:36:54.6084799Z > vitrine-de-craques-web-site@0.1.0 build
+2025-11-24T18:36:54.6085728Z > npx prisma generate && next build
+2025-11-24T18:36:54.6086043Z 
+2025-11-24T18:36:55.9453142Z Prisma schema loaded from prisma/schema.prisma
+2025-11-24T18:36:56.8628850Z 
+2025-11-24T18:36:56.8632812Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 397ms
+2025-11-24T18:36:56.8634466Z 
+2025-11-24T18:36:56.8636288Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-11-24T18:36:56.8638862Z 
+2025-11-24T18:36:56.8639730Z Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+2025-11-24T18:36:56.8640474Z 
+2025-11-24T18:36:57.3935730Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-11-24T18:36:57.4067639Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-11-24T18:36:57.4078216Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-11-24T18:36:57.4079753Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-11-24T18:36:57.4080824Z https://nextjs.org/telemetry
+2025-11-24T18:36:57.4081132Z 
+2025-11-24T18:36:57.4676520Z   ▲ Next.js 14.2.33
+2025-11-24T18:36:57.4676989Z 
+2025-11-24T18:36:57.5298070Z    Creating an optimized production build ...
+2025-11-24T18:37:37.9763131Z  ⚠ Compiled with warnings
+2025-11-24T18:37:37.9766050Z 
+2025-11-24T18:37:37.9766531Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-24T18:37:37.9767418Z Critical dependency: the request of a dependency is an expression
+2025-11-24T18:37:37.9767841Z 
+2025-11-24T18:37:37.9768087Z Import trace for requested module:
+2025-11-24T18:37:37.9768626Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-24T18:37:37.9769096Z ./app/api/videos/route.ts
+2025-11-24T18:37:37.9769320Z 
+2025-11-24T18:37:37.9769603Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-24T18:37:37.9770352Z Critical dependency: the request of a dependency is an expression
+2025-11-24T18:37:37.9770804Z 
+2025-11-24T18:37:37.9771027Z Import trace for requested module:
+2025-11-24T18:37:37.9771608Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-24T18:37:37.9772267Z ./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js
+2025-11-24T18:37:37.9772844Z ./node_modules/fluent-ffmpeg/index.js
+2025-11-24T18:37:37.9773311Z ./app/api/videos/route.ts
+2025-11-24T18:37:37.9773552Z 
+2025-11-24T18:37:52.9135203Z  ✓ Compiled successfully
+2025-11-24T18:37:52.9149110Z    Linting and checking validity of types ...
+2025-11-24T18:38:11.7247106Z    Collecting page data ...
+2025-11-24T18:38:12.6697978Z FFmpeg installer package not available. Falling back to system ffmpeg binary. O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.
+2025-11-24T18:38:14.7766766Z    Generating static pages (0/58) ...
+2025-11-24T18:38:15.9471865Z    Generating static pages (14/58) 
+2025-11-24T18:38:18.8048049Z    Generating static pages (28/58) 
+2025-11-24T18:38:19.4810592Z    Generating static pages (43/58) 
+2025-11-24T18:38:20.4784369Z  ✓ Generating static pages (58/58)
+2025-11-24T18:38:21.4323326Z    Finalizing page optimization ...
+2025-11-24T18:38:21.4325709Z    Collecting build traces ...
+2025-11-24T18:38:41.3199768Z 
+2025-11-24T18:38:41.3293440Z Route (app)                                      Size     First Load JS
+2025-11-24T18:38:41.3296657Z ┌ ƒ /                                            1.83 kB         110 kB
+2025-11-24T18:38:41.3299831Z ├ ƒ /_not-found                                  876 B          88.2 kB
+2025-11-24T18:38:41.3300832Z ├ ƒ /administrator                               155 B          87.5 kB
+2025-11-24T18:38:41.3307527Z ├ ƒ /administrator/clubes                        6.46 kB         117 kB
+2025-11-24T18:38:41.3308872Z ├ ƒ /administrator/users                         5.68 kB         111 kB
+2025-11-24T18:38:41.3309760Z ├ ƒ /administrator/videos                        5.24 kB         111 kB
+2025-11-24T18:38:41.3310618Z ├ ƒ /agentes                                     2.7 kB         98.7 kB
+2025-11-24T18:38:41.3311409Z ├ ƒ /agentes/[id]                                1.84 kB         117 kB
+2025-11-24T18:38:41.3312199Z ├ ƒ /api/admin/clubes                            0 B                0 B
+2025-11-24T18:38:41.3313030Z ├ ƒ /api/admin/clubes/[id]                       0 B                0 B
+2025-11-24T18:38:41.3313917Z ├ ƒ /api/admin/summary                           0 B                0 B
+2025-11-24T18:38:41.3314788Z ├ ƒ /api/admin/users                             0 B                0 B
+2025-11-24T18:38:41.3315847Z ├ ƒ /api/admin/users/[userId]/block              0 B                0 B
+2025-11-24T18:38:41.3316711Z ├ ƒ /api/admin/videos                            0 B                0 B
+2025-11-24T18:38:41.3317626Z ├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B
+2025-11-24T18:38:41.3318525Z ├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B
+2025-11-24T18:38:41.3319386Z ├ ƒ /api/agentes                                 0 B                0 B
+2025-11-24T18:38:41.3320159Z ├ ƒ /api/agentes/[id]                            0 B                0 B
+2025-11-24T18:38:41.3320898Z ├ ƒ /api/atletas                                 0 B                0 B
+2025-11-24T18:38:41.3321667Z ├ ƒ /api/atletas/[id]                            0 B                0 B
+2025-11-24T18:38:41.3322756Z ├ ƒ /api/auth/[...nextauth]                      0 B                0 B
+2025-11-24T18:38:41.3323638Z ├ ƒ /api/blocks/[targetUserId]                   0 B                0 B
+2025-11-24T18:38:41.3324405Z ├ ƒ /api/clubes                                  0 B                0 B
+2025-11-24T18:38:41.3325186Z ├ ƒ /api/clubes/[slug]                           0 B                0 B
+2025-11-24T18:38:41.3326276Z ├ ƒ /api/confederacoes                           0 B                0 B
+2025-11-24T18:38:41.3327116Z ├ ƒ /api/confederacoes/[slug]                    0 B                0 B
+2025-11-24T18:38:41.3328379Z ├ ƒ /api/db-check                                0 B                0 B
+2025-11-24T18:38:41.3329070Z ├ ƒ /api/env                                     0 B                0 B
+2025-11-24T18:38:41.3329782Z ├ ƒ /api/errors                                  0 B                0 B
+2025-11-24T18:38:41.3330641Z ├ ƒ /api/follows/[targetUserId]                  0 B                0 B
+2025-11-24T18:38:41.3331482Z ├ ƒ /api/games                                   0 B                0 B
+2025-11-24T18:38:41.3332310Z ├ ƒ /api/games/[slug]                            0 B                0 B
+2025-11-24T18:38:41.3333180Z ├ ƒ /api/games/[slug]/comments                   0 B                0 B
+2025-11-24T18:38:41.3334077Z ├ ƒ /api/games/[slug]/engagement                 0 B                0 B
+2025-11-24T18:38:41.3334941Z ├ ƒ /api/health                                  0 B                0 B
+2025-11-24T18:38:41.3335953Z ├ ƒ /api/messages                                0 B                0 B
+2025-11-24T18:38:41.3336826Z ├ ƒ /api/messages/unread-count                   0 B                0 B
+2025-11-24T18:38:41.3337682Z ├ ƒ /api/news                                    0 B                0 B
+2025-11-24T18:38:41.3338465Z ├ ƒ /api/news/[id]                               0 B                0 B
+2025-11-24T18:38:41.3339283Z ├ ƒ /api/news/cover                              0 B                0 B
+2025-11-24T18:38:41.3340114Z ├ ƒ /api/noticias                                0 B                0 B
+2025-11-24T18:38:41.3341254Z ├ ƒ /api/noticias/[slug]                         0 B                0 B
+2025-11-24T18:38:41.3342181Z ├ ƒ /api/noticias/[slug]/comments                0 B                0 B
+2025-11-24T18:38:41.3343090Z ├ ƒ /api/noticias/[slug]/engagement              0 B                0 B
+2025-11-24T18:38:41.3343948Z ├ ƒ /api/pg-check                                0 B                0 B
+2025-11-24T18:38:41.3344747Z ├ ƒ /api/profile                                 0 B                0 B
+2025-11-24T18:38:41.3345844Z ├ ƒ /api/profile/avatar                          0 B                0 B
+2025-11-24T18:38:41.3346716Z ├ ƒ /api/profile/personal-info                   0 B                0 B
+2025-11-24T18:38:41.3347544Z ├ ƒ /api/register                                0 B                0 B
+2025-11-24T18:38:41.3348367Z ├ ƒ /api/register/atleta-18                      0 B                0 B
+2025-11-24T18:38:41.3349190Z ├ ƒ /api/register/clube                          0 B                0 B
+2025-11-24T18:38:41.3350072Z ├ ƒ /api/register/de-agentes-licenciados         0 B                0 B
+2025-11-24T18:38:41.3351019Z ├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B
+2025-11-24T18:38:41.3351970Z ├ ƒ /api/register/responsavel                    0 B                0 B
+2025-11-24T18:38:41.3352890Z ├ ƒ /api/register/responsavel/documents          0 B                0 B
+2025-11-24T18:38:41.3353820Z ├ ƒ /api/register/torcedor                       0 B                0 B
+2025-11-24T18:38:41.3354658Z ├ ○ /api/times                                   0 B                0 B
+2025-11-24T18:38:41.3356229Z ├ ƒ /api/videos                                  0 B                0 B
+2025-11-24T18:38:41.3357039Z ├ ƒ /api/videos/[id]                             0 B                0 B
+2025-11-24T18:38:41.3357850Z ├ ƒ /api/videos/[id]/appeal                      0 B                0 B
+2025-11-24T18:38:41.3358709Z ├ ƒ /api/videos/[id]/comments                    0 B                0 B
+2025-11-24T18:38:41.3359790Z ├ ƒ /api/videos/proxy                            0 B                0 B
+2025-11-24T18:38:41.3360676Z ├ ƒ /arquibancada                                4.49 kB        98.6 kB
+2025-11-24T18:38:41.3361510Z ├ ƒ /atletas                                     4.5 kB          107 kB
+2025-11-24T18:38:41.3362315Z ├ ƒ /atletas/[id]                                5.24 kB         138 kB
+2025-11-24T18:38:41.3363125Z ├ ƒ /cadastro                                    2.21 kB         129 kB
+2025-11-24T18:38:41.3363927Z ├ ƒ /cadastro/[slug]                             2.92 kB         121 kB
+2025-11-24T18:38:41.3364758Z ├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB
+2025-11-24T18:38:41.3365797Z ├ ƒ /cadastro/clube                              4.04 kB         137 kB
+2025-11-24T18:38:41.3366732Z ├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB
+2025-11-24T18:38:41.3367730Z ├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB
+2025-11-24T18:38:41.3368730Z ├ ƒ /cadastro/responsavel                        4.23 kB         137 kB
+2025-11-24T18:38:41.3369689Z ├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB
+2025-11-24T18:38:41.3370563Z ├ ƒ /cadastro/sucesso                            155 B          87.5 kB
+2025-11-24T18:38:41.3371431Z ├ ƒ /cadastro/torcedor                           5.13 kB         147 kB
+2025-11-24T18:38:41.3372282Z ├ ƒ /clubes                                      3.35 kB         111 kB
+2025-11-24T18:38:41.3373086Z ├ ƒ /clubes/[slug]                               807 B           109 kB
+2025-11-24T18:38:41.3373938Z ├ ƒ /confederacoes                               807 B           109 kB
+2025-11-24T18:38:41.3374828Z ├ ƒ /confederacoes/[slug]                        807 B           109 kB
+2025-11-24T18:38:41.3375883Z ├ ƒ /feed                                        12.2 kB         145 kB
+2025-11-24T18:38:41.3376640Z ├ ƒ /games                                       197 B           121 kB
+2025-11-24T18:38:41.3377644Z ├ ƒ /games/[slug]                                211 B           128 kB
+2025-11-24T18:38:41.3378431Z ├ ○ /icon                                        0 B                0 B
+2025-11-24T18:38:41.3379207Z ├ ƒ /login                                       3.73 kB         145 kB
+2025-11-24T18:38:41.3380011Z ├ ƒ /noticias                                    203 B           121 kB
+2025-11-24T18:38:41.3380825Z ├ ƒ /noticias/[slug]                             614 B           129 kB
+2025-11-24T18:38:41.3381603Z ├ ƒ /perfil                                      27.3 kB         171 kB
+2025-11-24T18:38:41.3382365Z ├ ƒ /perfis/[id]                                 1.84 kB         117 kB
+2025-11-24T18:38:41.3383123Z ├ ƒ /player/[id]                                 9.15 kB         127 kB
+2025-11-24T18:38:41.3383894Z ├ ƒ /privacidade                                 188 B          96.2 kB
+2025-11-24T18:38:41.3384766Z ├ ƒ /registrar-escolha-perfil                    188 B          96.2 kB
+2025-11-24T18:38:41.3385923Z ├ ƒ /sobre                                       188 B          96.2 kB
+2025-11-24T18:38:41.3386700Z ├ ƒ /torcida                                     155 B          87.5 kB
+2025-11-24T18:38:41.3387435Z └ ƒ /upload                                      10.4 kB         119 kB
+2025-11-24T18:38:41.3388081Z + First Load JS shared by all                    87.3 kB
+2025-11-24T18:38:41.3388762Z   ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB
+2025-11-24T18:38:41.3389449Z   ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB
+2025-11-24T18:38:41.3390096Z   └ other shared chunks (total)                  1.97 kB
+2025-11-24T18:38:41.3390432Z 
+2025-11-24T18:38:41.3390442Z 
+2025-11-24T18:38:41.3390816Z ƒ Middleware                                     48.3 kB
+2025-11-24T18:38:41.3391133Z 
+2025-11-24T18:38:41.3391459Z ○  (Static)   prerendered as static content
+2025-11-24T18:38:41.3392036Z ƒ  (Dynamic)  server-rendered on demand
+2025-11-24T18:38:41.3392317Z 
+2025-11-24T18:38:41.3719422Z 
+2025-11-24T18:38:41.3720723Z > vitrine-de-craques-web-site@0.1.0 postbuild
+2025-11-24T18:38:41.3721419Z > node scripts/copy-prisma-artifacts.js
+2025-11-24T18:38:41.3721754Z 
+2025-11-24T18:38:41.4912810Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/.prisma/client
+2025-11-24T18:38:41.4920691Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/.prisma/client
+2025-11-24T18:38:41.4924987Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/.prisma/client
+2025-11-24T18:38:41.6163800Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/@prisma/client
+2025-11-24T18:38:41.6168149Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/@prisma/client
+2025-11-24T18:38:41.6170437Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/@prisma/client

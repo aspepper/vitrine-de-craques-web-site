@@ -5,6 +5,14 @@ import { telemetryClient } from "./app-insights";
 
 type ErrorMetadata = Record<string, unknown>;
 
+const connectionStringKeys = [
+  "APPINSIGHTS_CONNECTION_STRING",
+  "APPLICATIONINSIGHTS_CONNECTION_STRING",
+  "APPINSIGHTS_INSTRUMENTATIONKEY",
+  "APPLICATIONINSIGHTS_INSTRUMENTATIONKEY",
+  "APPLICATIONINSIGHTS_INSTRUMENTATION_KEY",
+];
+
 export interface LoggedError {
   errorId: string;
   context: string;
@@ -91,6 +99,31 @@ function buildTraceMessage(
   return `${timestamp} | ${truncate(baseMessage, 512)}`;
 }
 
+function buildRuntimeMetadata() {
+  return {
+    runtime: {
+      nodeVersion: process.version,
+      platform: process.platform,
+      arch: process.arch,
+      nextRuntime: process.env.NEXT_RUNTIME ?? null,
+      environment: process.env.NODE_ENV ?? null,
+      deploymentId:
+        process.env.WEBSITE_INSTANCE_ID ??
+        process.env.VERCEL_DEPLOYMENT_ID ??
+        process.env.DEPLOYMENT_ID ??
+        null,
+    },
+    configuration: {
+      databaseUrlConfigured: Boolean(process.env.DATABASE_URL),
+      nextAuthUrlConfigured: Boolean(process.env.NEXTAUTH_URL),
+      nextAuthSecretConfigured: Boolean(process.env.NEXTAUTH_SECRET),
+      appInsightsConfigured: connectionStringKeys.some(
+        (key) => Boolean(process.env[key]),
+      ),
+    },
+  } satisfies ErrorMetadata;
+}
+
 async function readRequestBody(request: Request): Promise<unknown | undefined> {
   const method = request.method.toUpperCase();
   if (method === "GET" || method === "HEAD") {
@@ -168,10 +201,12 @@ export async function logError(
   const errorId = randomUUID();
   const timestamp = new Date().toISOString();
   const normalizedError = ensureError(error);
+  const runtimeMetadata = buildRuntimeMetadata();
+  const mergedMetadata = { ...runtimeMetadata, ...metadata };
   const telemetryProperties = buildTelemetryProperties(
     context,
     errorId,
-    metadata,
+    mergedMetadata,
   );
 
   try {
@@ -182,8 +217,8 @@ export async function logError(
     if (normalizedError.stack) {
       console.error("Stack:", normalizedError.stack);
     }
-    if (Object.keys(metadata).length > 0) {
-      console.error("Metadados:", metadata);
+    if (Object.keys(mergedMetadata).length > 0) {
+      console.error("Metadados:", mergedMetadata);
     }
     if (!(error instanceof Error)) {
       console.error("Erro original:", error);

@@ -47,7 +47,7 @@ export type SafeVideoProps = VideoHTMLAttributes<HTMLVideoElement> & {
   fallbackAlt?: string;
 };
 
-export const SafeVideo = forwardRef<HTMLVideoElement, SafeVideoProps>(
+export const SafeVideo = forwardRef<HTMLVideoElement | null, SafeVideoProps>(
   function SafeVideo(
     {
       className,

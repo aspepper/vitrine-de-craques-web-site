@@ -81,6 +81,16 @@ function buildTelemetryProperties(
   return properties;
 }
 
+function buildTraceMessage(
+  context: string,
+  errorId: string,
+  timestamp: string,
+  normalizedError: Error,
+): string {
+  const baseMessage = `${context} (${errorId}) - ${normalizedError.name}: ${normalizedError.message}`;
+  return `${timestamp} | ${truncate(baseMessage, 512)}`;
+}
+
 async function readRequestBody(request: Request): Promise<unknown | undefined> {
   const method = request.method.toUpperCase();
   if (method === "GET" || method === "HEAD") {
@@ -158,6 +168,11 @@ export async function logError(
   const errorId = randomUUID();
   const timestamp = new Date().toISOString();
   const normalizedError = ensureError(error);
+  const telemetryProperties = buildTelemetryProperties(
+    context,
+    errorId,
+    metadata,
+  );
 
   try {
     console.error(`===== ERRO ${context} (${errorId}) =====`);
@@ -185,7 +200,12 @@ export async function logError(
     try {
       telemetryClient.trackException({
         exception: normalizedError,
-        properties: buildTelemetryProperties(context, errorId, metadata),
+        properties: telemetryProperties,
+      });
+      telemetryClient.trackTrace({
+        message: buildTraceMessage(context, errorId, timestamp, normalizedError),
+        severity: 3, // Error
+        properties: telemetryProperties,
       });
       await flushTelemetry();
     } catch (telemetryError) {

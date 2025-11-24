@@ -1,7 +1,7 @@
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
+import { SafeImage } from "@/components/media/SafeMedia"
 import prisma from "@/lib/db"
 import { normalizeConfederationLogoUrl } from "@/lib/confederations"
 
@@ -103,7 +103,13 @@ export default async function ConfederacaoDetalhePage({ params }: PageProps) {
               <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-[28px] bg-muted ring-1 ring-inset ring-border/70">
                 {confed.logoUrl ? (
                   <div className="relative h-20 w-20">
-                    <Image src={confed.logoUrl} alt={`Logotipo de ${confed.name}`} fill sizes="80px" className="object-contain" />
+                    <SafeImage
+                      src={confed.logoUrl}
+                      alt={`Logotipo de ${confed.name}`}
+                      fill
+                      sizes="80px"
+                      className="object-contain"
+                    />
                   </div>
                 ) : (
                   <span className="text-xl font-semibold text-foreground">{acronym}</span>

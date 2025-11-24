@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
+import { SafeImage } from "@/components/media/SafeMedia";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -537,7 +537,7 @@ function ActionButton({
       )}
     >
       <span className="flex h-6 w-6 items-center justify-center">
-        <Image src={iconSrc} alt="" width={20} height={20} />
+        <SafeImage src={iconSrc} alt="" width={20} height={20} />
       </span>
       <span>{label}</span>
       {counter ? (

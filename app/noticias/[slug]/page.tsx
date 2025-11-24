@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CommentItemType } from "@prisma/client";
 
+import { SafeImage } from "@/components/media/SafeMedia";
 import { NewsArticleInteractive } from "@/components/news/NewsArticleInteractive";
 import prisma from "@/lib/db";
 import { ensureImage } from "@/lib/ensureImage";
@@ -188,7 +188,13 @@ export default async function NoticiaDetalhePage({ params }: PageProps) {
             </header>
 
             <div className="relative h-[420px] w-full overflow-hidden rounded-[32px] bg-foreground/80 shadow-lg">
-              <Image src={heroImage} alt={article.title} fill className="object-cover" priority />
+              <SafeImage
+                src={heroImage}
+                alt={article.title}
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
 
             <NewsArticleInteractive

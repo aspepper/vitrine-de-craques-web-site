@@ -1,7 +1,8 @@
 "use client"
 
 import { useCallback, useMemo, useRef, useState } from "react"
-import Image from "next/image"
+
+import { SafeImage } from "@/components/media/SafeMedia"
 import { ImageIcon, Loader2, Trash2, UploadCloud } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -125,7 +126,7 @@ export function NewsCoverImageField({ id, name, defaultValue }: NewsCoverImageFi
         <div className="relative overflow-hidden rounded-xl border border-dashed border-slate-300 bg-white/60 dark:border-slate-600 dark:bg-slate-950/60">
           <div className="relative aspect-[16/9] w-full">
             {previewUrl ? (
-              <Image
+              <SafeImage
                 src={previewUrl}
                 alt="Pré-visualização da imagem de capa"
                 fill

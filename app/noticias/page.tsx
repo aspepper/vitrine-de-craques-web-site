@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 
+import { SafeImage } from "@/components/media/SafeMedia";
 import { ArticleActionBar } from "@/components/ArticleActionBar";
 import { Button } from "@/components/ui/button";
 import { ensureImage } from "@/lib/ensureImage";
@@ -158,7 +158,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
                   <div className="space-y-5">
                     <div className="flex items-start gap-4">
                       <div className="relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-3xl bg-foreground/90 shadow-lg">
-                        <Image
+                        <SafeImage
                           src={coverImage}
                           alt={news.title}
                           fill

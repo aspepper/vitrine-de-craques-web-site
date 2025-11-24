@@ -1,6 +1,6 @@
-import Image from "next/image"
 import Link from "next/link"
 
+import { SafeImage } from "@/components/media/SafeMedia"
 import { Button } from "@/components/ui/button"
 import prisma from "@/lib/db"
 import { normalizeConfederationLogoUrl } from "@/lib/confederations"
@@ -133,7 +133,7 @@ export default async function ConfederacoesPage({ searchParams }: PageProps) {
                     <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[24px] bg-muted ring-1 ring-inset ring-border/70">
                       {confed.logoUrl ? (
                         <div className="relative h-16 w-16">
-                          <Image
+                          <SafeImage
                             src={confed.logoUrl}
                             alt={`Logotipo de ${confed.name}`}
                             fill

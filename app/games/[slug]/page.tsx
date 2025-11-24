@@ -101,7 +101,7 @@ export default async function GameDetalhePage({ params }: PageProps) {
 
   const heroImage = ensureImage(
     game.coverImage ??
-      "https://images.unsplash.com/photo-1511519984179-62e3b6aa3a36?auto=format&fit=crop&w=1600&q=80&fm=webp",
+      "/stadium.jpg",
     game.slug,
     "cover-image"
   )

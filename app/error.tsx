@@ -3,8 +3,39 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+type ErrorProps = { error: Error & { digest?: string }; reset: () => void }
+
+export default function Error({ error, reset }: ErrorProps) {
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const controller = new AbortController()
+    const { signal } = controller
+
+    const payload = {
+      message: error?.message,
+      stack: error?.stack,
+      digest: error?.digest,
+      pathname,
+      url: typeof window !== 'undefined' ? window.location.href : undefined,
+      referrer: typeof document !== 'undefined' ? document.referrer : undefined,
+      userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : undefined,
+    }
+
+    fetch('/api/errors', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal,
+    }).catch((loggingError) => {
+      console.error('Falha ao registrar erro no servidor', loggingError)
+    })
+
+    return () => controller.abort()
+  }, [error, pathname])
+
   useEffect(() => {
     console.error(error)
   }, [error])

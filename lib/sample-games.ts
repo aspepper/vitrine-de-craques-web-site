@@ -37,7 +37,7 @@ export const sampleGames: SampleGameItem[] = [
       "Descubra como um desenvolvedor da Atari escondeu seu nome dentro de Adventure, abrindo caminho para a cultura dos easter eggs nos jogos modernos.",
     content:
       "Enquanto revisava clássicos do Atari 2600, o Blog do Controle Retro mergulhou na história de Warren Robinett e de sua ousadia ao esconder a sala secreta em Adventure. O objetivo era garantir reconhecimento em uma época em que a Atari não creditava os criadores.\n\nO blogueiro resgatou imagens das revistas especializadas da década de 1980 que revelaram o segredo ao público e comparou a prática com os easter eggs contemporâneos em séries como Assassin's Creed e The Legend of Zelda. O texto ainda traz dicas de jogos independentes atuais que mantêm a tradição dos segredos para fãs atentos.",
-    coverImage: PLACEHOLDER_COVER
+    coverImage: PLACEHOLDER_COVER,
     date: "2024-07-10T15:30:00.000Z",
     author: journalist,
   },
@@ -50,7 +50,7 @@ export const sampleGames: SampleGameItem[] = [
       "Em visita ao estúdio Sabotage, blogueiro brasileiro revela artes conceituais inéditas e planos de expansão do RPG inspirado em Chrono Trigger.",
     content:
       "O Diário do Game Pass foi recebido pelo time da Sabotage em Quebec e ouviu detalhes sobre a atualização planejada para Sea of Stars em 2025. Entre as novidades estão um modo roguelite cooperativo e novas canções compostas por Yasunori Mitsuda.\n\nO artigo também detalha como o estúdio utiliza um quadro de referência com cenas icônicas de jogos clássicos para guiar a paleta de cores e a iluminação. Ao final, há recomendações de soundtracks para ouvir durante a exploração e entrevistas com fãs brasileiros que criam mods cosméticos para o título.",
-    coverImage: PLACEHOLDER_COVER
+    coverImage: PLACEHOLDER_COVER,
     date: "2024-07-05T18:00:00.000Z",
     author: journalist,
   },
@@ -63,7 +63,7 @@ export const sampleGames: SampleGameItem[] = [
       "Colecionadores contam histórias inusitadas de glamours raros, mascotes escondidos e quests sazonais que desapareceram de Eorzea.",
     content:
       "O Blog Save Point reuniu relatos de jogadores veteranos de Final Fantasy XIV para mapear itens que sumiram com o passar das expansões. Há menções ao Cascavel de Safira, uma montaria vista apenas durante o beta fechado de A Realm Reborn, e às roupas temáticas do evento Lightning Strikes.\n\nAlém disso, o blogueiro ouviu moderadores de comunidades independentes que documentam relíquias digitais e ofereceu um passo a passo para transformar screenshots em cartões colecionáveis impressos com realidade aumentada.",
-    coverImage: PLACEHOLDER_COVER
+    coverImage: PLACEHOLDER_COVER,
     date: "2024-07-02T21:10:00.000Z",
     author: journalist,
   },
@@ -76,7 +76,7 @@ export const sampleGames: SampleGameItem[] = [
       "Durante evento fechado, Team Cherry mostrou rascunhos jogáveis com habilidades descartadas e criaturas que podem reaparecer como conteúdo bônus.",
     content:
       "O Checkpoint Indie acompanhou uma apresentação da Team Cherry e teve acesso a protótipos de Hollow Knight: Silksong desenvolvidos entre 2019 e 2021. Os registros incluem um gancho de seda utilizado para atravessar abismos e um sistema de alquimia que permitiria personalizar agulhas com venenos.\n\nSegundo o estúdio, parte das ideias pode ser reaproveitada em um diário digital liberado após o lançamento. O blogueiro aproveitou para listar artes conceituais favoritas e sugerir desafios para speedrunners inspirados no novo bestiário.",
-    coverImage: PLACEHOLDER_COVER
+    coverImage: PLACEHOLDER_COVER,
     date: "2024-06-28T12:45:00.000Z",
     author: journalist,
   },
@@ -89,7 +89,7 @@ export const sampleGames: SampleGameItem[] = [
       "Colecionador brasileiro mostra bastidores da reforma de máquinas clássicas e ensina como preservar placas e componentes antigos.",
     content:
       "O Guia do Arcade visitou o laboratório de um restaurador no Rio de Janeiro que comprou gabinetes de Metal Slug X e de Out Run em um leilão europeu. O processo inclui o envio das placas para especialistas em eletrônica e o uso de impressoras 3D para reconstruir peças quebradas.\n\nO post traz uma checklist para quem deseja iniciar coleções domésticas, além de um glossário com termos técnicos e links para comunidades que ajudam a encontrar ROMs legais e kits de iluminação LED.",
-    coverImage: PLACEHOLDER_COVER
+    coverImage: PLACEHOLDER_COVER,
     date: "2024-06-22T10:00:00.000Z",
     author: journalist,
   },
@@ -102,7 +102,7 @@ export const sampleGames: SampleGameItem[] = [
       "Modo experimental permite capturar replays com câmera drone em tempestades e compartilha filtros usados pela Playground Games para trailers.",
     content:
       "O Blog XP Speed participou de um ensaio técnico em parceria com a Playground Games e pôde experimentar um modo foto ainda em desenvolvimento. Entre os recursos estão o ajuste fino de partículas de poeira e a possibilidade de sincronizar o nascer do sol com a trilha sonora dinâmica.\n\nA matéria também traz comentários de fotógrafos virtuais sobre como a comunidade pode usar os replays para treinar inteligência artificial que reconhece estilos de pilotagem. Há ainda um tutorial para exportar as capturas em formato RAW e editá-las no celular.",
-    coverImage: PLACEHOLDER_COVER
+    coverImage: PLACEHOLDER_COVER,
     date: "2024-06-18T23:30:00.000Z",
     author: journalist,
   },

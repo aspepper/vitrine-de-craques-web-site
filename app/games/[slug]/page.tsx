@@ -1,8 +1,8 @@
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { CommentItemType } from "@prisma/client"
 
+import { SafeImage } from "@/components/media/SafeMedia"
 import { ArticleInteractive } from "@/components/articles/ArticleInteractive"
 import { ensureImage } from "@/lib/ensureImage"
 import { sampleGames } from "@/lib/sample-games"
@@ -147,7 +147,7 @@ export default async function GameDetalhePage({ params }: PageProps) {
 
           <article className="space-y-10">
             <div className="relative overflow-hidden rounded-3xl bg-foreground shadow-xl transition-colors">
-              <Image
+              <SafeImage
                 src={heroImage}
                 alt={game.title ?? "Imagem do jogo"}
                 width={1600}

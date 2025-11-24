@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { SafeVideo } from "@/components/media/SafeMedia";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -174,12 +175,13 @@ export function UploadForm() {
             )}
           >
             {videoPreviewUrl ? (
-              <video
+              <SafeVideo
                 key={videoPreviewUrl}
                 src={videoPreviewUrl}
                 controls
                 playsInline
                 className="h-full w-full object-cover"
+                fallbackAlt="Pré-visualização do vídeo"
               />
             ) : (
               <button

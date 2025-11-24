@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/media/SafeMedia";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
@@ -182,7 +182,7 @@ function AthleteVideoCard({ video, author }: { video: AthleteVideo; author?: str
     >
       <div className="relative aspect-video w-full overflow-hidden">
         {video.thumbnailUrl ? (
-          <Image
+          <SafeImage
             src={video.thumbnailUrl}
             alt={video.title}
             fill

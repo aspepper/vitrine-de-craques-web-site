@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
+import { SafeImage } from '@/components/media/SafeMedia'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import ApiError from '@/components/ApiError'
@@ -243,7 +243,7 @@ export default async function HomePage() {
     <div className="relative min-h-screen font-heading">
         {/* BACKGROUND otimizado */}
         <div className="pointer-events-none absolute inset-0 -z-10 md:fixed">
-          <Image
+          <SafeImage
             src="/stadium.jpg" // ou stadium@1920.webp
             alt=""
             fill
@@ -459,7 +459,7 @@ export default async function HomePage() {
                       >
                       <Card className="overflow-hidden rounded-2xl border border-white/30 bg-white/90 shadow-[0_24px_72px_-44px_rgba(15,23,42,0.75)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_32px_84px_-40px_rgba(15,23,42,0.85)]">
                         <div className="relative h-40 overflow-hidden">
-                          <Image
+                          <SafeImage
                             src={thumbnail}
                             alt={video.title}
                             fill
@@ -534,7 +534,7 @@ export default async function HomePage() {
                     >
                       <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/30 bg-white/90 shadow-[0_28px_72px_-44px_rgba(15,23,42,0.75)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_88px_-40px_rgba(15,23,42,0.85)]">
                         <div className="relative h-32 w-full">
-                          <Image
+                          <SafeImage
                             src={cover}
                             alt={news.title}
                             fill
@@ -603,7 +603,7 @@ export default async function HomePage() {
                     >
                       <Card className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/30 bg-white text-slate-900 shadow-[0_28px_72px_-44px_rgba(15,23,42,0.55)] transition duration-200 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_36px_88px_-40px_rgba(15,23,42,0.6)]">
                         <div className="relative h-32 w-full">
-                          <Image
+                          <SafeImage
                             src={cover}
                             alt={game.title ?? 'Imagem do jogo'}
                             fill

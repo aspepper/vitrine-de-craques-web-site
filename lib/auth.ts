@@ -112,11 +112,10 @@ const logger: LoggerInstance = {
       console.error("Falha ao registrar erro do NextAuth", loggingError);
     });
   },
-  warn(code, metadata) {
+  warn(code) {
     logError(new Error(String(code)), "NEXTAUTH_WARN", {
       scope: "NextAuthLogger",
       code,
-      metadata,
     }).catch((loggingError) => {
       console.error("Falha ao registrar aviso do NextAuth", loggingError);
     });

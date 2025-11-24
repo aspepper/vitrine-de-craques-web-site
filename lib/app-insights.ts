@@ -24,12 +24,17 @@ if (connectionString) {
       eval('require') as (moduleName: string) => unknown
     )('applicationinsights') as typeof import('applicationinsights')
 
+    const connectionStringProvider =
+      connectionString?.split('=')[0] ?? 'unknown'
+
     appInsights
       .setup(connectionString)
+      .setAutoDependencyCorrelation(true)
       .setAutoCollectConsole(true, true)
       .setAutoCollectExceptions(true)
       .setAutoCollectDependencies(true)
       .setAutoCollectPerformance(true, true)
+      .setAutoCollectRequests(true)
       .setUseDiskRetryCaching(true)
       .setSendLiveMetrics(true)
       .start()
@@ -42,9 +47,11 @@ if (connectionString) {
       cloudRoleName
 
     console.info('[Telemetry] Application Insights inicializado', {
-      connectionStringProvider: connectionString?.split('=')[0] ?? 'unknown',
+      connectionStringProvider,
       runtime: process.env.NEXT_RUNTIME ?? 'node',
       role: cloudRoleName,
+      requestAutoCollection: true,
+      dependencyCorrelation: true,
     })
   } catch (error) {
     console.warn('Application Insights could not be initialized.', error)

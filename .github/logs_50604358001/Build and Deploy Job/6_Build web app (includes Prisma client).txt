@@ -1,0 +1,64 @@
+﻿2025-11-24T02:01:00.7421381Z ##[group]Run npm run build
+2025-11-24T02:01:00.7421686Z [36;1mnpm run build[0m
+2025-11-24T02:01:00.7479373Z shell: /usr/bin/bash -e {0}
+2025-11-24T02:01:00.7479620Z env:
+2025-11-24T02:01:00.7480421Z   DATABASE_URL: ***
+2025-11-24T02:01:00.7480756Z   NEXTAUTH_URL: ***
+2025-11-24T02:01:00.7481080Z   NEXTAUTH_SECRET: ***
+2025-11-24T02:01:00.7481311Z   AUTH_TRUST_HOST: true
+2025-11-24T02:01:00.7481515Z ##[endgroup]
+2025-11-24T02:01:00.8634327Z 
+2025-11-24T02:01:00.8636429Z > vitrine-de-craques-web-site@0.1.0 build
+2025-11-24T02:01:00.8637936Z > npx prisma generate && next build
+2025-11-24T02:01:00.8639422Z 
+2025-11-24T02:01:02.2444593Z Prisma schema loaded from prisma/schema.prisma
+2025-11-24T02:01:03.1938319Z 
+2025-11-24T02:01:03.1939548Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 421ms
+2025-11-24T02:01:03.1940157Z 
+2025-11-24T02:01:03.1940770Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-11-24T02:01:03.1941392Z 
+2025-11-24T02:01:03.1942270Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-11-24T02:01:03.1943049Z 
+2025-11-24T02:01:03.7436657Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-11-24T02:01:03.7558687Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-11-24T02:01:03.7561681Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-11-24T02:01:03.7563054Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-11-24T02:01:03.7564048Z https://nextjs.org/telemetry
+2025-11-24T02:01:03.7564359Z 
+2025-11-24T02:01:03.8151621Z   ▲ Next.js 14.2.33
+2025-11-24T02:01:03.8156719Z 
+2025-11-24T02:01:03.8940163Z    Creating an optimized production build ...
+2025-11-24T02:01:46.4169846Z  ⚠ Compiled with warnings
+2025-11-24T02:01:46.4170238Z 
+2025-11-24T02:01:46.4170676Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-24T02:01:46.4171492Z Critical dependency: the request of a dependency is an expression
+2025-11-24T02:01:46.4171927Z 
+2025-11-24T02:01:46.4172144Z Import trace for requested module:
+2025-11-24T02:01:46.4172739Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-24T02:01:46.4173238Z ./app/api/videos/route.ts
+2025-11-24T02:01:46.4173465Z 
+2025-11-24T02:01:46.4173754Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-24T02:01:46.4174502Z Critical dependency: the request of a dependency is an expression
+2025-11-24T02:01:46.4174929Z 
+2025-11-24T02:01:46.4175155Z Import trace for requested module:
+2025-11-24T02:01:46.4175737Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-24T02:01:46.4176393Z ./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js
+2025-11-24T02:01:46.4176970Z ./node_modules/fluent-ffmpeg/index.js
+2025-11-24T02:01:46.4177454Z ./app/api/videos/route.ts
+2025-11-24T02:01:46.4177693Z 
+2025-11-24T02:02:01.5385023Z  ✓ Compiled successfully
+2025-11-24T02:02:01.5394360Z    Linting and checking validity of types ...
+2025-11-24T02:02:20.5498917Z Failed to compile.
+2025-11-24T02:02:20.5502282Z 
+2025-11-24T02:02:20.5503277Z ./components/media/SafeMedia.tsx:68:25
+2025-11-24T02:02:20.5506550Z Type error: Expected 2 type arguments, but got 1.
+2025-11-24T02:02:20.5507932Z 
+2025-11-24T02:02:20.5512347Z [0m [90m 66 |[39m     )[33m;[39m[0m
+2025-11-24T02:02:20.5512903Z [0m [90m 67 |[39m[0m
+2025-11-24T02:02:20.5514405Z [0m[31m[1m>[22m[39m[90m 68 |[39m     useImperativeHandle[33m<[39m[33mHTMLVideoElement[39m [33m|[39m [36mnull[39m[33m>[39m([0m
+2025-11-24T02:02:20.5515381Z [0m [90m    |[39m                         [31m[1m^[22m[39m[0m
+2025-11-24T02:02:20.5515995Z [0m [90m 69 |[39m       forwardedRef[33m,[39m[0m
+2025-11-24T02:02:20.5516703Z [0m [90m 70 |[39m       () [33m=>[39m videoRef[33m.[39mcurrent[33m,[39m[0m
+2025-11-24T02:02:20.5517350Z [0m [90m 71 |[39m     )[33m;[39m[0m
+2025-11-24T02:02:20.6205386Z Next.js build worker exited with code: 1 and signal: null
+2025-11-24T02:02:20.6372254Z ##[error]Process completed with exit code 1.

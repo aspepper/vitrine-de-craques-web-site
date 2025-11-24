@@ -21,6 +21,10 @@ if (connectionString) {
     appInsights
       .setup(connectionString)
       .setAutoCollectConsole(true, true)
+      .setAutoCollectExceptions(true)
+      .setAutoCollectDependencies(true)
+      .setAutoCollectPerformance(true, true)
+      .setUseDiskRetryCaching(true)
       .start()
 
     client = appInsights.defaultClient

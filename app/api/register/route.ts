@@ -4,6 +4,10 @@ import { z } from 'zod'
 import prisma from '@/lib/db'
 import { logApiError, errorResponse } from '@/lib/error'
 
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 const registerSchema = z.object({
   name: z.string().min(1),
   email: z.string().email(),

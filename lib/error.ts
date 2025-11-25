@@ -109,18 +109,29 @@ function safeStringify(value: unknown, maxLength = MAX_LOG_VALUE_LENGTH): string
   }
 }
 
-async function flushTelemetry() {
+async function flushTelemetry(timeoutMs = 1500) {
   const client = telemetryClient;
   if (!client) {
     return;
   }
 
-  await new Promise<void>((resolve) => {
-    client.flush({
-      isAppCrashing: false,
-      callback: () => resolve(),
-    });
-  });
+  // Resilient flush with timeout for serverless environments
+  await Promise.race([
+    new Promise<void>((resolve) => {
+      client.flush({
+        isAppCrashing: false,
+        callback: () => resolve(),
+      });
+    }),
+    new Promise<void>((resolve) => {
+      setTimeout(() => {
+        console.warn(
+          `[Telemetry] Flush timeout após ${timeoutMs}ms - telemetria pode não ter sido enviada completamente`,
+        );
+        resolve();
+      }, timeoutMs);
+    }),
+  ]);
 }
 
 function buildTelemetryProperties(
@@ -344,4 +355,66 @@ export async function errorResponse(
     },
     { status: 500 },
   );
+}
+
+/**
+ * Log a custom metric to Application Insights.
+ * Safe to call even if telemetry is not enabled - will silently return.
+ * @param name - The name of the metric
+ * @param value - The numeric value of the metric
+ * @param properties - Optional properties to attach to the metric
+ */
+export async function logMetric(
+  name: string,
+  value: number,
+  properties: Record<string, string> = {},
+): Promise<void> {
+  if (!telemetryClient) {
+    return;
+  }
+
+  try {
+    telemetryClient.trackMetric({
+      name,
+      value,
+      properties,
+    });
+    await flushTelemetry();
+  } catch (error) {
+    console.warn(
+      `[Telemetry] Falha ao enviar métrica '${name}':`,
+      error instanceof Error ? error.message : error,
+    );
+  }
+}
+
+/**
+ * Log a trace message to Application Insights.
+ * Safe to call even if telemetry is not enabled - will silently return.
+ * @param message - The trace message
+ * @param severity - Severity level (0=Verbose, 1=Information, 2=Warning, 3=Error, 4=Critical)
+ * @param properties - Optional properties to attach to the trace
+ */
+export async function logTrace(
+  message: string,
+  severity: 0 | 1 | 2 | 3 | 4 = 1,
+  properties: Record<string, string> = {},
+): Promise<void> {
+  if (!telemetryClient) {
+    return;
+  }
+
+  try {
+    telemetryClient.trackTrace({
+      message,
+      severity,
+      properties,
+    });
+    await flushTelemetry();
+  } catch (error) {
+    console.warn(
+      `[Telemetry] Falha ao enviar trace:`,
+      error instanceof Error ? error.message : error,
+    );
+  }
 }

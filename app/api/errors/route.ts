@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server'
 
 import { logApiError } from '@/lib/error'
 
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 function buildErrorFromPayload(payload: Record<string, unknown>) {
   const message = typeof payload.message === 'string' ? payload.message : 'Erro desconhecido no cliente'
   const error = new Error(message)

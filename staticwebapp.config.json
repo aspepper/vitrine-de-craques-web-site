@@ -3,11 +3,8 @@
     "apiRuntime": "node:20"
   },
   "responseOverrides": {
-    "404": {
-      "rewrite": "/not-found"
-    },
-    "500": {
-      "rewrite": "/erro"
+    "NotFound": {
+      "rewrite": "/404"
     }
   }
 }

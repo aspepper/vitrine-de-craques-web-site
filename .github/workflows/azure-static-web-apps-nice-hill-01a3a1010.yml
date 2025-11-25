@@ -33,14 +33,6 @@ jobs:
           # em pipeline separado), desativamos a sincronização automática aqui.
           submodules: false
           lfs: false
-          # Mantemos o checkout enxuto para evitar que pastas irrelevantes (mobile e docs)
-          # aumentem o tempo de preparação/empacotamento do deploy.
-          sparse-checkout: |
-            *
-            !Vitrine-De-Craques-App/
-            !Vitrine-De-Craques-App-iOS/
-            !docs/
-          sparse-checkout-cone-mode: false
 
       - name: Build And Deploy
         if: github.event_name == 'push'
@@ -52,11 +44,16 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: ".next" # Built app content directory
-          skip_app_build: false # Use Oryx to build the Next.js app
+          app_location: "/"
+          api_location: ""
+          output_location: ".next"
+          skip_app_build: false
           ###### End of Repository/Build Configurations ######
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          AUTH_TRUST_HOST: 'true'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

@@ -33,59 +33,6 @@ jobs:
           # em pipeline separado), desativamos a sincronização automática aqui.
           submodules: false
           lfs: false
-          # Mantemos o checkout enxuto para evitar que pastas irrelevantes (mobile e docs)
-          # aumentem o tempo de preparação/empacotamento do deploy.
-          sparse-checkout: |
-            *
-            !Vitrine-De-Craques-App/
-            !Vitrine-De-Craques-App-iOS/
-            !docs/
-          sparse-checkout-cone-mode: false
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      # Nota: este workflow trata apenas do app web Next.js; o app_mobile é construído em pipeline separado.
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build web app (includes Prisma client)
-        run: npm run build
-        
-      - name: Prepare standalone artifact for deployment
-        run: |
-          rm -rf deploy
-          mkdir -p deploy
-          # Copy only the runtime pieces from the standalone build output
-          cp -R .next/standalone/.next deploy/.next
-          cp -R .next/standalone/node_modules deploy/node_modules
-          cp .next/standalone/package.json deploy/package.json
-          if [ -f .next/standalone/server.js ]; then
-            cp .next/standalone/server.js deploy/server.js
-          fi
-          if [ -f .next/standalone/server.js.nft.json ]; then
-            cp .next/standalone/server.js.nft.json deploy/server.js.nft.json
-          fi
-
-          mkdir -p deploy/.next/static
-          cp -R .next/static/. deploy/.next/static
-
-          cp next.config.mjs deploy/next.config.mjs
-          cp staticwebapp.config.json deploy/staticwebapp.config.json
-          cp -R prisma deploy/prisma
-          if [ -d public ]; then
-            cp -R public deploy/public
-          fi
-          ./scripts/prune-deploy-artifact.sh deploy
-
-      # (Opcional de diagnóstico: ver Node & Prisma)
-      - name: Diagnostics
-        run: |
-          node -v
-          npx prisma -v
 
       - name: Build And Deploy
         if: github.event_name == 'push'
@@ -97,11 +44,16 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "deploy" # artefato pré-montado (standalone) gerado nas etapas anteriores
+          app_location: "/"
           api_location: ""
-          output_location: "" # não é necessário quando skip_app_build = true
-          skip_app_build: true # evita rebuild via Oryx e usa o pacote pronto em deploy/
+          output_location: ".next"
+          skip_app_build: false
           ###### End of Repository/Build Configurations ######
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          AUTH_TRUST_HOST: 'true'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

@@ -126,7 +126,7 @@ async function flushTelemetry(timeoutMs = 1500) {
     new Promise<void>((resolve) => {
       setTimeout(() => {
         console.warn(
-          `[Telemetry] Flush timeout após ${timeoutMs}ms - telemetria pode não ter sido enviada completamente`,
+          `[Telemetry] Flush timeout after ${timeoutMs}ms - telemetry may not have been fully sent`,
         );
         resolve();
       }, timeoutMs);
@@ -363,11 +363,13 @@ export async function errorResponse(
  * @param name - The name of the metric
  * @param value - The numeric value of the metric
  * @param properties - Optional properties to attach to the metric
+ * @param flush - Whether to flush telemetry immediately (default: true for serverless compatibility)
  */
 export async function logMetric(
   name: string,
   value: number,
   properties: Record<string, string> = {},
+  flush = true,
 ): Promise<void> {
   if (!telemetryClient) {
     return;
@@ -379,10 +381,12 @@ export async function logMetric(
       value,
       properties,
     });
-    await flushTelemetry();
+    if (flush) {
+      await flushTelemetry();
+    }
   } catch (error) {
     console.warn(
-      `[Telemetry] Falha ao enviar métrica '${name}':`,
+      `[Telemetry] Failed to send metric '${name}':`,
       error instanceof Error ? error.message : error,
     );
   }
@@ -394,11 +398,13 @@ export async function logMetric(
  * @param message - The trace message
  * @param severity - Severity level (0=Verbose, 1=Information, 2=Warning, 3=Error, 4=Critical)
  * @param properties - Optional properties to attach to the trace
+ * @param flush - Whether to flush telemetry immediately (default: true for serverless compatibility)
  */
 export async function logTrace(
   message: string,
   severity: 0 | 1 | 2 | 3 | 4 = 1,
   properties: Record<string, string> = {},
+  flush = true,
 ): Promise<void> {
   if (!telemetryClient) {
     return;
@@ -410,10 +416,12 @@ export async function logTrace(
       severity,
       properties,
     });
-    await flushTelemetry();
+    if (flush) {
+      await flushTelemetry();
+    }
   } catch (error) {
     console.warn(
-      `[Telemetry] Falha ao enviar trace:`,
+      `[Telemetry] Failed to send trace:`,
       error instanceof Error ? error.message : error,
     );
   }

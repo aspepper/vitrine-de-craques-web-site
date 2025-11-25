@@ -40,7 +40,7 @@ if (connectionString) {
     // This helps diagnose issues with telemetry not being sent
     if (isDebugEnabled) {
       appInsights.Configuration.setInternalLogging(true, true)
-      console.info('[Telemetry] Internal logging habilitado para diagnóstico')
+      console.info('[Telemetry] Internal logging enabled for diagnostics')
     }
 
     appInsights

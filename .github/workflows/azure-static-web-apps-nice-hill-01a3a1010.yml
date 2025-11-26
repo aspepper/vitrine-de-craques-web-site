@@ -87,6 +87,12 @@ jobs:
           node -v
           npx prisma -v
 
+      - name: Enable detailed logs
+        run: |
+          echo "SWA_RUNTIME_LOGGING__LOGGING__LOG_LEVEL=debug" >> $GITHUB_ENV
+          echo "SWA_RUNTIME_LOGGING__APP__DEBUG=true" >> $GITHUB_ENV
+          echo "SWA_RUNTIME_LOGGING__HOSTING__DEBUG=true" >> $GITHUB_ENV
+          
       - name: Build And Deploy
         if: github.event_name == 'push'
         id: builddeploy

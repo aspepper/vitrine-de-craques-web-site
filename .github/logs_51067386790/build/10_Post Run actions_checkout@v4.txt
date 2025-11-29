@@ -1,0 +1,10 @@
+﻿2025-11-29T23:31:24.1717550Z Post job cleanup.
+2025-11-29T23:31:24.2675492Z [command]/usr/bin/git version
+2025-11-29T23:31:24.2715860Z git version 2.51.2
+2025-11-29T23:31:24.2762546Z Temporarily overriding HOME='/home/runner/work/_temp/0a906116-51a3-4b05-81bd-16d49a8ac46e' before making global git config changes
+2025-11-29T23:31:24.2766108Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-29T23:31:24.2779521Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-29T23:31:24.2815933Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-29T23:31:24.2853161Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-29T23:31:24.3083779Z fatal: No url found for submodule path 'Vitrine-De-Craques-App-iOS/Vitrine-De-Craques-App-iOS' in .gitmodules
+2025-11-29T23:31:24.3117190Z ##[warning]The process '/usr/bin/git' failed with exit code 128

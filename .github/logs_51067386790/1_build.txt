@@ -1,0 +1,433 @@
+﻿2025-11-29T23:28:40.3906620Z Current runner version: '2.329.0'
+2025-11-29T23:28:40.3942559Z ##[group]Runner Image Provisioner
+2025-11-29T23:28:40.3943874Z Hosted Compute Agent
+2025-11-29T23:28:40.3944815Z Version: 20251016.436
+2025-11-29T23:28:40.3945894Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-29T23:28:40.3947143Z Build Date: 2025-10-15T20:44:12Z
+2025-11-29T23:28:40.3948088Z ##[endgroup]
+2025-11-29T23:28:40.3948981Z ##[group]Operating System
+2025-11-29T23:28:40.3949957Z Ubuntu
+2025-11-29T23:28:40.3950658Z 24.04.3
+2025-11-29T23:28:40.3951487Z LTS
+2025-11-29T23:28:40.3952437Z ##[endgroup]
+2025-11-29T23:28:40.3953256Z ##[group]Runner Image
+2025-11-29T23:28:40.3954072Z Image: ubuntu-24.04
+2025-11-29T23:28:40.3955200Z Version: 20251112.124.1
+2025-11-29T23:28:40.3957045Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251112.124/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-29T23:28:40.3959887Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251112.124
+2025-11-29T23:28:40.3961650Z ##[endgroup]
+2025-11-29T23:28:40.3963773Z ##[group]GITHUB_TOKEN Permissions
+2025-11-29T23:28:40.3966441Z Contents: read
+2025-11-29T23:28:40.3967338Z Metadata: read
+2025-11-29T23:28:40.3968304Z ##[endgroup]
+2025-11-29T23:28:40.3971286Z Secret source: Actions
+2025-11-29T23:28:40.3972638Z Prepare workflow directory
+2025-11-29T23:28:40.4634036Z Prepare all required actions
+2025-11-29T23:28:40.4691166Z Getting action download info
+2025-11-29T23:28:41.0018932Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-11-29T23:28:41.5569256Z Download action repository 'actions/setup-node@v3' (SHA:3235b876344d2a9aa001b8d1453c930bba69e610)
+2025-11-29T23:28:41.7039837Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-11-29T23:28:41.9141363Z Complete job name: build
+2025-11-29T23:28:41.9816623Z ##[group]Run actions/checkout@v4
+2025-11-29T23:28:41.9817543Z with:
+2025-11-29T23:28:41.9818081Z   repository: aspepper/vitrine-de-craques-web-site
+2025-11-29T23:28:41.9818923Z   token: ***
+2025-11-29T23:28:41.9819356Z   ssh-strict: true
+2025-11-29T23:28:41.9819800Z   ssh-user: git
+2025-11-29T23:28:41.9820251Z   persist-credentials: true
+2025-11-29T23:28:41.9820747Z   clean: true
+2025-11-29T23:28:41.9821218Z   sparse-checkout-cone-mode: true
+2025-11-29T23:28:41.9821753Z   fetch-depth: 1
+2025-11-29T23:28:41.9822622Z   fetch-tags: false
+2025-11-29T23:28:41.9823117Z   show-progress: true
+2025-11-29T23:28:41.9823575Z   lfs: false
+2025-11-29T23:28:41.9823986Z   submodules: false
+2025-11-29T23:28:41.9824452Z   set-safe-directory: true
+2025-11-29T23:28:41.9825265Z ##[endgroup]
+2025-11-29T23:28:42.0998283Z Syncing repository: aspepper/vitrine-de-craques-web-site
+2025-11-29T23:28:42.1001859Z ##[group]Getting Git version info
+2025-11-29T23:28:42.1004210Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-29T23:28:42.1006911Z [command]/usr/bin/git version
+2025-11-29T23:28:42.1076919Z git version 2.51.2
+2025-11-29T23:28:42.1109770Z ##[endgroup]
+2025-11-29T23:28:42.1126059Z Temporarily overriding HOME='/home/runner/work/_temp/aaa2c67a-1990-47fb-9c27-3b294b16c6a8' before making global git config changes
+2025-11-29T23:28:42.1129539Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-29T23:28:42.1146923Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-29T23:28:42.1189697Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-29T23:28:42.1193688Z ##[group]Initializing the repository
+2025-11-29T23:28:42.1199411Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-29T23:28:42.1311743Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-11-29T23:28:42.1314815Z hint: is subject to change. To configure the initial branch name to use in all
+2025-11-29T23:28:42.1317305Z hint: of your new repositories, which will suppress this warning, call:
+2025-11-29T23:28:42.1320903Z hint:
+2025-11-29T23:28:42.1322916Z hint: 	git config --global init.defaultBranch <name>
+2025-11-29T23:28:42.1324337Z hint:
+2025-11-29T23:28:42.1330307Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-11-29T23:28:42.1332440Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-11-29T23:28:42.1333864Z hint:
+2025-11-29T23:28:42.1334591Z hint: 	git branch -m <name>
+2025-11-29T23:28:42.1335417Z hint:
+2025-11-29T23:28:42.1336523Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-11-29T23:28:42.1338907Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-11-29T23:28:42.1342926Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-29T23:28:42.1376897Z ##[endgroup]
+2025-11-29T23:28:42.1378927Z ##[group]Disabling automatic garbage collection
+2025-11-29T23:28:42.1380879Z [command]/usr/bin/git config --local gc.auto 0
+2025-11-29T23:28:42.1417931Z ##[endgroup]
+2025-11-29T23:28:42.1419776Z ##[group]Setting up auth
+2025-11-29T23:28:42.1424825Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-29T23:28:42.1460852Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-29T23:28:42.1837521Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-29T23:28:42.1875102Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-29T23:28:42.2103940Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-11-29T23:28:42.2138358Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-11-29T23:28:42.2381853Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-11-29T23:28:42.2417547Z ##[endgroup]
+2025-11-29T23:28:42.2420284Z ##[group]Fetching the repository
+2025-11-29T23:28:42.2428569Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3d0671f6609faceb88cbae37ecb7989e97663565:refs/remotes/origin/main
+2025-11-29T23:28:48.3414532Z From https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-29T23:28:48.3417744Z  * [new ref]         3d0671f6609faceb88cbae37ecb7989e97663565 -> origin/main
+2025-11-29T23:28:48.3453248Z ##[endgroup]
+2025-11-29T23:28:48.3454845Z ##[group]Determining the checkout info
+2025-11-29T23:28:48.3456594Z ##[endgroup]
+2025-11-29T23:28:48.3461249Z [command]/usr/bin/git sparse-checkout disable
+2025-11-29T23:28:48.3507468Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-11-29T23:28:48.3540110Z ##[group]Checking out the ref
+2025-11-29T23:28:48.3544055Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-11-29T23:28:49.1963468Z Switched to a new branch 'main'
+2025-11-29T23:28:49.1984553Z branch 'main' set up to track 'origin/main'.
+2025-11-29T23:28:49.2083367Z ##[endgroup]
+2025-11-29T23:28:49.2135447Z [command]/usr/bin/git log -1 --format=%H
+2025-11-29T23:28:49.2157753Z 3d0671f6609faceb88cbae37ecb7989e97663565
+2025-11-29T23:28:49.2392784Z ##[group]Run actions/setup-node@v3
+2025-11-29T23:28:49.2393104Z with:
+2025-11-29T23:28:49.2393288Z   node-version: 20.x
+2025-11-29T23:28:49.2393490Z   always-auth: false
+2025-11-29T23:28:49.2393699Z   check-latest: false
+2025-11-29T23:28:49.2394044Z   token: ***
+2025-11-29T23:28:49.2394226Z ##[endgroup]
+2025-11-29T23:28:49.8374525Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-11-29T23:28:49.8382356Z ##[group]Environment details
+2025-11-29T23:28:52.2960667Z node: v20.19.5
+2025-11-29T23:28:52.2961662Z npm: 10.8.2
+2025-11-29T23:28:52.2967224Z yarn: 1.22.22
+2025-11-29T23:28:52.2969326Z ##[endgroup]
+2025-11-29T23:28:52.3081268Z ##[group]Run npm install
+2025-11-29T23:28:52.3081580Z [36;1mnpm install[0m
+2025-11-29T23:28:52.3081854Z [36;1mnpm run build --if-present[0m
+2025-11-29T23:28:52.3082584Z [36;1mnpm run test --if-present[0m
+2025-11-29T23:28:52.3127885Z shell: /usr/bin/bash -e {0}
+2025-11-29T23:28:52.3128159Z ##[endgroup]
+2025-11-29T23:28:57.4605742Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-11-29T23:28:58.4227849Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-11-29T23:29:01.0060621Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2025-11-29T23:29:01.0478206Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2025-11-29T23:29:02.4343792Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-11-29T23:29:08.8728809Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2025-11-29T23:29:14.1545257Z npm warn deprecated fluent-ffmpeg@2.1.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2025-11-29T23:29:27.4819311Z 
+2025-11-29T23:29:27.4820198Z > vitrine-de-craques-web-site@0.1.0 postinstall
+2025-11-29T23:29:27.4820847Z > npx prisma generate
+2025-11-29T23:29:27.4821115Z 
+2025-11-29T23:29:28.8358319Z Prisma schema loaded from prisma/schema.prisma
+2025-11-29T23:29:29.8260514Z ┌─────────────────────────────────────────────────────────┐
+2025-11-29T23:29:29.8261541Z │  Update available 6.16.2 -> 7.0.1                       │
+2025-11-29T23:29:29.8262727Z │                                                         │
+2025-11-29T23:29:29.8263596Z │  This is a major update - please follow the guide at    │
+2025-11-29T23:29:29.8264597Z │  https://pris.ly/d/major-version-upgrade                │
+2025-11-29T23:29:29.8265402Z │                                                         │
+2025-11-29T23:29:29.8266134Z │  Run the following to update                            │
+2025-11-29T23:29:29.8266994Z │    npm i --save-dev prisma@latest                       │
+2025-11-29T23:29:29.8267766Z │    npm i @prisma/client@latest                          │
+2025-11-29T23:29:29.8268548Z └─────────────────────────────────────────────────────────┘
+2025-11-29T23:29:29.8276757Z 
+2025-11-29T23:29:29.8278681Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 464ms
+2025-11-29T23:29:29.8279521Z 
+2025-11-29T23:29:29.8293805Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-11-29T23:29:29.8295089Z 
+2025-11-29T23:29:29.8296185Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-11-29T23:29:29.8296912Z 
+2025-11-29T23:29:29.8610603Z 
+2025-11-29T23:29:29.8613081Z > vitrine-de-craques-web-site@0.1.0 prepare
+2025-11-29T23:29:29.8625996Z > husky install
+2025-11-29T23:29:29.8626472Z 
+2025-11-29T23:29:29.9143520Z husky - Git hooks installed
+2025-11-29T23:29:29.9347547Z 
+2025-11-29T23:29:29.9353403Z added 873 packages, and audited 874 packages in 38s
+2025-11-29T23:29:29.9420688Z 
+2025-11-29T23:29:29.9421278Z 195 packages are looking for funding
+2025-11-29T23:29:29.9422240Z   run `npm fund` for details
+2025-11-29T23:29:30.0202857Z 
+2025-11-29T23:29:30.0203499Z 6 vulnerabilities (3 low, 3 high)
+2025-11-29T23:29:30.0203873Z 
+2025-11-29T23:29:30.0204235Z To address issues that do not require attention, run:
+2025-11-29T23:29:30.0204781Z   npm audit fix
+2025-11-29T23:29:30.0204974Z 
+2025-11-29T23:29:30.0206057Z To address all issues (including breaking changes), run:
+2025-11-29T23:29:30.0206637Z   npm audit fix --force
+2025-11-29T23:29:30.0206886Z 
+2025-11-29T23:29:30.0207088Z Run `npm audit` for details.
+2025-11-29T23:29:30.1885752Z 
+2025-11-29T23:29:30.1890664Z > vitrine-de-craques-web-site@0.1.0 build
+2025-11-29T23:29:30.1894790Z > npx prisma generate && next build
+2025-11-29T23:29:30.1897300Z 
+2025-11-29T23:29:31.5011348Z Prisma schema loaded from prisma/schema.prisma
+2025-11-29T23:29:32.4305044Z 
+2025-11-29T23:29:32.4306167Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 399ms
+2025-11-29T23:29:32.4306716Z 
+2025-11-29T23:29:32.4307267Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-11-29T23:29:32.4333512Z 
+2025-11-29T23:29:32.4334437Z Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+2025-11-29T23:29:32.4335144Z 
+2025-11-29T23:29:32.9801500Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-11-29T23:29:32.9923013Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-11-29T23:29:32.9924370Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-11-29T23:29:32.9925798Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-11-29T23:29:32.9926841Z https://nextjs.org/telemetry
+2025-11-29T23:29:32.9927163Z 
+2025-11-29T23:29:33.0518410Z   ▲ Next.js 14.2.33
+2025-11-29T23:29:33.0518675Z 
+2025-11-29T23:29:33.1263336Z    Creating an optimized production build ...
+2025-11-29T23:30:14.3780474Z  ⚠ Compiled with warnings
+2025-11-29T23:30:14.3780810Z 
+2025-11-29T23:30:14.3801057Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-29T23:30:14.3813642Z Critical dependency: the request of a dependency is an expression
+2025-11-29T23:30:14.3829325Z 
+2025-11-29T23:30:14.3829632Z Import trace for requested module:
+2025-11-29T23:30:14.3830236Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-29T23:30:14.3830759Z ./app/api/videos/route.ts
+2025-11-29T23:30:14.3830988Z 
+2025-11-29T23:30:14.3831304Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-29T23:30:14.3832210Z Critical dependency: the request of a dependency is an expression
+2025-11-29T23:30:14.3832652Z 
+2025-11-29T23:30:14.3832879Z Import trace for requested module:
+2025-11-29T23:30:14.3833426Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-29T23:30:14.3834117Z ./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js
+2025-11-29T23:30:14.3834673Z ./node_modules/fluent-ffmpeg/index.js
+2025-11-29T23:30:14.3835131Z ./app/api/videos/route.ts
+2025-11-29T23:30:14.3835359Z 
+2025-11-29T23:30:29.3608532Z  ✓ Compiled successfully
+2025-11-29T23:30:29.3616633Z    Linting and checking validity of types ...
+2025-11-29T23:30:48.2853637Z    Collecting page data ...
+2025-11-29T23:30:48.8671709Z [Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente
+2025-11-29T23:30:49.2425824Z FFmpeg installer package not available. Falling back to system ffmpeg binary. O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.
+2025-11-29T23:30:51.4243370Z    Generating static pages (0/58) ...
+2025-11-29T23:30:52.5894927Z    Generating static pages (14/58) 
+2025-11-29T23:30:54.6824036Z    Generating static pages (28/58) 
+2025-11-29T23:30:55.8042849Z    Generating static pages (43/58) 
+2025-11-29T23:30:56.6822857Z  ✓ Generating static pages (58/58)
+2025-11-29T23:30:57.6022441Z    Finalizing page optimization ...
+2025-11-29T23:30:57.6030377Z    Collecting build traces ...
+2025-11-29T23:31:18.0035630Z 
+2025-11-29T23:31:18.0130477Z Route (app)                                      Size     First Load JS
+2025-11-29T23:31:18.0132218Z ┌ ƒ /                                            1.83 kB         110 kB
+2025-11-29T23:31:18.0134754Z ├ ƒ /_not-found                                  876 B          88.2 kB
+2025-11-29T23:31:18.0135535Z ├ ƒ /administrator                               155 B          87.5 kB
+2025-11-29T23:31:18.0141873Z ├ ƒ /administrator/clubes                        6.46 kB         117 kB
+2025-11-29T23:31:18.0147997Z ├ ƒ /administrator/users                         5.68 kB         111 kB
+2025-11-29T23:31:18.0149087Z ├ ƒ /administrator/videos                        5.24 kB         111 kB
+2025-11-29T23:31:18.0150073Z ├ ƒ /agentes                                     2.7 kB         98.7 kB
+2025-11-29T23:31:18.0150989Z ├ ƒ /agentes/[id]                                1.84 kB         117 kB
+2025-11-29T23:31:18.0152173Z ├ ƒ /api/admin/clubes                            0 B                0 B
+2025-11-29T23:31:18.0153208Z ├ ƒ /api/admin/clubes/[id]                       0 B                0 B
+2025-11-29T23:31:18.0154159Z ├ ƒ /api/admin/summary                           0 B                0 B
+2025-11-29T23:31:18.0155096Z ├ ƒ /api/admin/users                             0 B                0 B
+2025-11-29T23:31:18.0156053Z ├ ƒ /api/admin/users/[userId]/block              0 B                0 B
+2025-11-29T23:31:18.0156993Z ├ ƒ /api/admin/videos                            0 B                0 B
+2025-11-29T23:31:18.0157932Z ├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B
+2025-11-29T23:31:18.0159042Z ├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B
+2025-11-29T23:31:18.0160005Z ├ ƒ /api/agentes                                 0 B                0 B
+2025-11-29T23:31:18.0160866Z ├ ƒ /api/agentes/[id]                            0 B                0 B
+2025-11-29T23:31:18.0161746Z ├ ƒ /api/atletas                                 0 B                0 B
+2025-11-29T23:31:18.0162945Z ├ ƒ /api/atletas/[id]                            0 B                0 B
+2025-11-29T23:31:18.0163833Z ├ ƒ /api/auth/[...nextauth]                      0 B                0 B
+2025-11-29T23:31:18.0164798Z ├ ƒ /api/blocks/[targetUserId]                   0 B                0 B
+2025-11-29T23:31:18.0165690Z ├ ƒ /api/clubes                                  0 B                0 B
+2025-11-29T23:31:18.0166597Z ├ ƒ /api/clubes/[slug]                           0 B                0 B
+2025-11-29T23:31:18.0167494Z ├ ƒ /api/confederacoes                           0 B                0 B
+2025-11-29T23:31:18.0168411Z ├ ƒ /api/confederacoes/[slug]                    0 B                0 B
+2025-11-29T23:31:18.0169326Z ├ ƒ /api/db-check                                0 B                0 B
+2025-11-29T23:31:18.0170239Z ├ ƒ /api/env                                     0 B                0 B
+2025-11-29T23:31:18.0171144Z ├ ƒ /api/errors                                  0 B                0 B
+2025-11-29T23:31:18.0172373Z ├ ƒ /api/follows/[targetUserId]                  0 B                0 B
+2025-11-29T23:31:18.0173389Z ├ ƒ /api/games                                   0 B                0 B
+2025-11-29T23:31:18.0175058Z ├ ƒ /api/games/[slug]                            0 B                0 B
+2025-11-29T23:31:18.0175943Z ├ ƒ /api/games/[slug]/comments                   0 B                0 B
+2025-11-29T23:31:18.0176820Z ├ ƒ /api/games/[slug]/engagement                 0 B                0 B
+2025-11-29T23:31:18.0177631Z ├ ƒ /api/health                                  0 B                0 B
+2025-11-29T23:31:18.0178442Z ├ ƒ /api/messages                                0 B                0 B
+2025-11-29T23:31:18.0179294Z ├ ƒ /api/messages/unread-count                   0 B                0 B
+2025-11-29T23:31:18.0180143Z ├ ƒ /api/news                                    0 B                0 B
+2025-11-29T23:31:18.0180877Z ├ ƒ /api/news/[id]                               0 B                0 B
+2025-11-29T23:31:18.0181700Z ├ ƒ /api/news/cover                              0 B                0 B
+2025-11-29T23:31:18.0182814Z ├ ƒ /api/noticias                                0 B                0 B
+2025-11-29T23:31:18.0183681Z ├ ƒ /api/noticias/[slug]                         0 B                0 B
+2025-11-29T23:31:18.0184746Z ├ ƒ /api/noticias/[slug]/comments                0 B                0 B
+2025-11-29T23:31:18.0185743Z ├ ƒ /api/noticias/[slug]/engagement              0 B                0 B
+2025-11-29T23:31:18.0186558Z ├ ƒ /api/pg-check                                0 B                0 B
+2025-11-29T23:31:18.0187365Z ├ ƒ /api/profile                                 0 B                0 B
+2025-11-29T23:31:18.0188121Z ├ ƒ /api/profile/avatar                          0 B                0 B
+2025-11-29T23:31:18.0188988Z ├ ƒ /api/profile/personal-info                   0 B                0 B
+2025-11-29T23:31:18.0189792Z ├ ƒ /api/register                                0 B                0 B
+2025-11-29T23:31:18.0190589Z ├ ƒ /api/register/atleta-18                      0 B                0 B
+2025-11-29T23:31:18.0191438Z ├ ƒ /api/register/clube                          0 B                0 B
+2025-11-29T23:31:18.0192783Z ├ ƒ /api/register/de-agentes-licenciados         0 B                0 B
+2025-11-29T23:31:18.0193670Z ├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B
+2025-11-29T23:31:18.0194610Z ├ ƒ /api/register/responsavel                    0 B                0 B
+2025-11-29T23:31:18.0195549Z ├ ƒ /api/register/responsavel/documents          0 B                0 B
+2025-11-29T23:31:18.0196443Z ├ ƒ /api/register/torcedor                       0 B                0 B
+2025-11-29T23:31:18.0197246Z ├ ƒ /api/times                                   0 B                0 B
+2025-11-29T23:31:18.0198009Z ├ ƒ /api/videos                                  0 B                0 B
+2025-11-29T23:31:18.0198801Z ├ ƒ /api/videos/[id]                             0 B                0 B
+2025-11-29T23:31:18.0199621Z ├ ƒ /api/videos/[id]/appeal                      0 B                0 B
+2025-11-29T23:31:18.0200446Z ├ ƒ /api/videos/[id]/comments                    0 B                0 B
+2025-11-29T23:31:18.0201279Z ├ ƒ /api/videos/proxy                            0 B                0 B
+2025-11-29T23:31:18.0202305Z ├ ƒ /arquibancada                                4.49 kB        98.6 kB
+2025-11-29T23:31:18.0203131Z ├ ƒ /atletas                                     4.5 kB          107 kB
+2025-11-29T23:31:18.0204038Z ├ ƒ /atletas/[id]                                5.24 kB         138 kB
+2025-11-29T23:31:18.0204891Z ├ ƒ /cadastro                                    2.21 kB         129 kB
+2025-11-29T23:31:18.0205730Z ├ ƒ /cadastro/[slug]                             2.92 kB         121 kB
+2025-11-29T23:31:18.0206611Z ├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB
+2025-11-29T23:31:18.0207447Z ├ ƒ /cadastro/clube                              4.04 kB         137 kB
+2025-11-29T23:31:18.0208315Z ├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB
+2025-11-29T23:31:18.0209226Z ├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB
+2025-11-29T23:31:18.0210130Z ├ ƒ /cadastro/responsavel                        4.23 kB         137 kB
+2025-11-29T23:31:18.0211020Z ├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB
+2025-11-29T23:31:18.0211871Z ├ ƒ /cadastro/sucesso                            155 B          87.5 kB
+2025-11-29T23:31:18.0212873Z ├ ƒ /cadastro/torcedor                           5.13 kB         147 kB
+2025-11-29T23:31:18.0213673Z ├ ƒ /clubes                                      3.35 kB         111 kB
+2025-11-29T23:31:18.0214407Z ├ ƒ /clubes/[slug]                               807 B           109 kB
+2025-11-29T23:31:18.0215180Z ├ ƒ /confederacoes                               807 B           109 kB
+2025-11-29T23:31:18.0215987Z ├ ƒ /confederacoes/[slug]                        807 B           109 kB
+2025-11-29T23:31:18.0216750Z ├ ƒ /feed                                        12.2 kB         145 kB
+2025-11-29T23:31:18.0217447Z ├ ƒ /games                                       197 B           121 kB
+2025-11-29T23:31:18.0218176Z ├ ƒ /games/[slug]                                211 B           128 kB
+2025-11-29T23:31:18.0219110Z ├ ○ /icon                                        0 B                0 B
+2025-11-29T23:31:18.0219835Z ├ ƒ /login                                       3.73 kB         145 kB
+2025-11-29T23:31:18.0220727Z ├ ƒ /noticias                                    203 B           121 kB
+2025-11-29T23:31:18.0221524Z ├ ƒ /noticias/[slug]                             614 B           129 kB
+2025-11-29T23:31:18.0222574Z ├ ƒ /perfil                                      27.3 kB         171 kB
+2025-11-29T23:31:18.0223450Z ├ ƒ /perfis/[id]                                 1.84 kB         117 kB
+2025-11-29T23:31:18.0224330Z ├ ƒ /player/[id]                                 9.15 kB         127 kB
+2025-11-29T23:31:18.0225232Z ├ ƒ /privacidade                                 188 B          96.2 kB
+2025-11-29T23:31:18.0226259Z ├ ƒ /registrar-escolha-perfil                    188 B          96.2 kB
+2025-11-29T23:31:18.0227260Z ├ ƒ /sobre                                       188 B          96.2 kB
+2025-11-29T23:31:18.0228095Z ├ ƒ /torcida                                     155 B          87.5 kB
+2025-11-29T23:31:18.0228859Z └ ƒ /upload                                      10.4 kB         119 kB
+2025-11-29T23:31:18.0229552Z + First Load JS shared by all                    87.3 kB
+2025-11-29T23:31:18.0230292Z   ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB
+2025-11-29T23:31:18.0230995Z   ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB
+2025-11-29T23:31:18.0231687Z   └ other shared chunks (total)                  1.97 kB
+2025-11-29T23:31:18.0232352Z 
+2025-11-29T23:31:18.0232361Z 
+2025-11-29T23:31:18.0232776Z ƒ Middleware                                     48.3 kB
+2025-11-29T23:31:18.0233127Z 
+2025-11-29T23:31:18.0233466Z ○  (Static)   prerendered as static content
+2025-11-29T23:31:18.0234089Z ƒ  (Dynamic)  server-rendered on demand
+2025-11-29T23:31:18.0234391Z 
+2025-11-29T23:31:18.0505642Z 
+2025-11-29T23:31:18.0506741Z > vitrine-de-craques-web-site@0.1.0 postbuild
+2025-11-29T23:31:18.0507931Z > node scripts/copy-prisma-artifacts.js
+2025-11-29T23:31:18.0508422Z 
+2025-11-29T23:31:18.1698867Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/.prisma/client
+2025-11-29T23:31:18.1707960Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/.prisma/client
+2025-11-29T23:31:18.1712411Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/.prisma/client
+2025-11-29T23:31:18.2699066Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/@prisma/client
+2025-11-29T23:31:18.2701763Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/@prisma/client
+2025-11-29T23:31:18.2704649Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/@prisma/client
+2025-11-29T23:31:18.3897120Z 
+2025-11-29T23:31:18.3897755Z > vitrine-de-craques-web-site@0.1.0 test
+2025-11-29T23:31:18.3898299Z > vitest
+2025-11-29T23:31:18.3898488Z 
+2025-11-29T23:31:18.7322731Z 
+2025-11-29T23:31:18.7338356Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site[39m
+2025-11-29T23:31:18.7343115Z 
+2025-11-29T23:31:23.3836204Z  [32m✓[39m tests/example.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+2025-11-29T23:31:24.0223301Z  [32m✓[39m .next/standalone/tests/example.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+2025-11-29T23:31:24.0448150Z 
+2025-11-29T23:31:24.0449497Z [31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2025-11-29T23:31:24.0450003Z 
+2025-11-29T23:31:24.0451450Z [41m[1m FAIL [22m[49m .next/standalone/tests-e2e/example.spec.ts[2m [ .next/standalone/tests-e2e/example.spec.ts ][22m
+2025-11-29T23:31:24.0472705Z [31m[1mError[22m: Playwright Test did not expect test() to be called here.
+2025-11-29T23:31:24.0473998Z Most common reasons include:
+2025-11-29T23:31:24.0474831Z - You are calling test() in a configuration file.
+2025-11-29T23:31:24.0478743Z - You are calling test() in a file that is imported by the configuration file.
+2025-11-29T23:31:24.0480846Z - You have two different versions of @playwright/test. This usually happens
+2025-11-29T23:31:24.0482444Z   when one of the dependencies in your package.json depends on @playwright/test.[39m
+2025-11-29T23:31:24.0488425Z [90m [2m❯[22m TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:[2m74:13[22m[39m
+2025-11-29T23:31:24.0494702Z [90m [2m❯[22m TestTypeImpl._createTest node_modules/playwright/lib/common/testType.js:[2m87:24[22m[39m
+2025-11-29T23:31:24.0503234Z [90m [2m❯[22m node_modules/playwright/lib/transform/transform.js:[2m275:12[22m[39m
+2025-11-29T23:31:24.0504670Z [36m [2m❯[22m .next/standalone/tests-e2e/example.spec.ts:[2m3:1[22m[39m
+2025-11-29T23:31:24.0544356Z     [90m  1| [39m[35mimport[39m { test[33m,[39m expect } [35mfrom[39m [32m'@playwright/test'[39m[33m;[39m
+2025-11-29T23:31:24.0546621Z     [90m  2| [39m
+2025-11-29T23:31:24.0548656Z     [90m  3| [39m[34mtest[39m([32m'has title'[39m[33m,[39m [35masync[39m ({ page }) [33m=>[39m {
+2025-11-29T23:31:24.0550842Z     [90m   | [39m[31m^[39m
+2025-11-29T23:31:24.0562724Z     [90m  4| [39m  [35mawait[39m page[33m.[39m[34mgoto[39m([32m'/'[39m)[33m;[39m
+2025-11-29T23:31:24.0563596Z     [90m  5| [39m
+2025-11-29T23:31:24.0564345Z 
+2025-11-29T23:31:24.0565089Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+2025-11-29T23:31:24.0578419Z 
+2025-11-29T23:31:24.0579501Z [41m[1m FAIL [22m[49m .next/standalone/tests-e2e/upload.spec.ts[2m [ .next/standalone/tests-e2e/upload.spec.ts ][22m
+2025-11-29T23:31:24.0580979Z [31m[1mError[22m: Playwright Test did not expect test() to be called here.
+2025-11-29T23:31:24.0581702Z Most common reasons include:
+2025-11-29T23:31:24.0582522Z - You are calling test() in a configuration file.
+2025-11-29T23:31:24.0583427Z - You are calling test() in a file that is imported by the configuration file.
+2025-11-29T23:31:24.0584448Z - You have two different versions of @playwright/test. This usually happens
+2025-11-29T23:31:24.0585638Z   when one of the dependencies in your package.json depends on @playwright/test.[39m
+2025-11-29T23:31:24.0587194Z [90m [2m❯[22m TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:[2m74:13[22m[39m
+2025-11-29T23:31:24.0588853Z [90m [2m❯[22m TestTypeImpl._createTest node_modules/playwright/lib/common/testType.js:[2m87:24[22m[39m
+2025-11-29T23:31:24.0590319Z [90m [2m❯[22m node_modules/playwright/lib/transform/transform.js:[2m275:12[22m[39m
+2025-11-29T23:31:24.0591492Z [36m [2m❯[22m .next/standalone/tests-e2e/upload.spec.ts:[2m6:1[22m[39m
+2025-11-29T23:31:24.0620170Z     [90m  4| [39m[35mconst[39m [33mUSER_PASSWORD[39m [33m=[39m [32m'password'[39m[33m;[39m
+2025-11-29T23:31:24.0621060Z     [90m  5| [39m
+2025-11-29T23:31:24.0642845Z     [90m  6| [39mtest('redirects to login when accessing upload while logged out', asyn…
+2025-11-29T23:31:24.0643765Z     [90m   | [39m[31m^[39m
+2025-11-29T23:31:24.0644731Z     [90m  7| [39m  [35mawait[39m page[33m.[39m[34mgoto[39m([32m'/upload'[39m)[33m;[39m
+2025-11-29T23:31:24.0646053Z     [90m  8| [39m  [35mawait[39m [34mexpect[39m(page)[33m.[39m[34mtoHaveURL[39m([36m/\/login$/[39m)[33m;[39m
+2025-11-29T23:31:24.0646698Z 
+2025-11-29T23:31:24.0647185Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+2025-11-29T23:31:24.0647552Z 
+2025-11-29T23:31:24.0647584Z 
+2025-11-29T23:31:24.0648392Z [2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m2 passed[39m[22m[90m (4)[39m
+2025-11-29T23:31:24.0649914Z [2m      Tests [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2025-11-29T23:31:24.0650642Z [2m   Start at [22m 23:31:18
+2025-11-29T23:31:24.0652841Z [2m   Duration [22m 5.31s[2m (transform 54ms, setup 0ms, collect 24ms, tests 4ms, environment 1.79s, prepare 268ms)[22m
+2025-11-29T23:31:24.0653975Z 
+2025-11-29T23:31:24.0660859Z 
+2025-11-29T23:31:24.0721790Z ##[error]Error: Playwright Test did not expect test() to be called here.
+Most common reasons include:
+- You are calling test() in a configuration file.
+- You are calling test() in a file that is imported by the configuration file.
+- You have two different versions of @playwright/test. This usually happens
+  when one of the dependencies in your package.json depends on @playwright/test.
+ ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
+ ❯ TestTypeImpl._createTest node_modules/playwright/lib/common/testType.js:87:24
+ ❯ node_modules/playwright/lib/transform/transform.js:275:12
+ ❯ .next/standalone/tests-e2e/example.spec.ts:3:1
+
+
+2025-11-29T23:31:24.0750947Z 
+2025-11-29T23:31:24.0771609Z ##[error]Error: Playwright Test did not expect test() to be called here.
+Most common reasons include:
+- You are calling test() in a configuration file.
+- You are calling test() in a file that is imported by the configuration file.
+- You have two different versions of @playwright/test. This usually happens
+  when one of the dependencies in your package.json depends on @playwright/test.
+ ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
+ ❯ TestTypeImpl._createTest node_modules/playwright/lib/common/testType.js:87:24
+ ❯ node_modules/playwright/lib/transform/transform.js:275:12
+ ❯ .next/standalone/tests-e2e/upload.spec.ts:6:1
+
+
+2025-11-29T23:31:24.1626170Z ##[error]Process completed with exit code 1.
+2025-11-29T23:31:24.1717559Z Post job cleanup.
+2025-11-29T23:31:24.2675532Z [command]/usr/bin/git version
+2025-11-29T23:31:24.2715876Z git version 2.51.2
+2025-11-29T23:31:24.2762563Z Temporarily overriding HOME='/home/runner/work/_temp/0a906116-51a3-4b05-81bd-16d49a8ac46e' before making global git config changes
+2025-11-29T23:31:24.2766123Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-29T23:31:24.2779537Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-29T23:31:24.2815949Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-29T23:31:24.2853176Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-29T23:31:24.3083915Z fatal: No url found for submodule path 'Vitrine-De-Craques-App-iOS/Vitrine-De-Craques-App-iOS' in .gitmodules
+2025-11-29T23:31:24.3117207Z ##[warning]The process '/usr/bin/git' failed with exit code 128
+2025-11-29T23:31:24.3211267Z Cleaning up orphan processes

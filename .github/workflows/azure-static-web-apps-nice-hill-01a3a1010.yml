@@ -51,9 +51,6 @@ jobs:
       # Nota: este workflow trata apenas do app web Next.js; o app_mobile é construído em pipeline separado.
       - name: Install dependencies
         run: npm ci
-
-      - name: Build web app (includes Prisma client)
-        run: npm run build
         
       - name: Prepare standalone artifact for deployment
         run: |
@@ -106,7 +103,6 @@ jobs:
           app_location: "deploy" # artefato pré-montado (standalone) gerado nas etapas anteriores
           api_location: ""
           output_location: "" # não é necessário quando skip_app_build = true
-          skip_app_build: true # evita rebuild via Oryx e usa o pacote pronto em deploy/
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

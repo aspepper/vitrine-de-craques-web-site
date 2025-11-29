@@ -10,7 +10,7 @@
     "dev": "npm run generate && next dev",
     "build": "npx prisma generate && next build",
     "postbuild": "node scripts/copy-prisma-artifacts.js",
-    "start": "next start",
+    "start": "node .next/standalone/server.js",
     "lint": "next lint",
     "format": "prettier --write .",
     "test": "vitest",

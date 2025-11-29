@@ -1,0 +1,58 @@
+﻿2025-11-29T20:59:31.3669703Z ##[group]Run npm ci
+2025-11-29T20:59:31.3669989Z [36;1mnpm ci[0m
+2025-11-29T20:59:31.3714993Z shell: /usr/bin/bash -e {0}
+2025-11-29T20:59:31.3715259Z env:
+2025-11-29T20:59:31.3716083Z   DATABASE_URL: ***
+2025-11-29T20:59:31.3716412Z   NEXTAUTH_URL: ***
+2025-11-29T20:59:31.3716709Z   NEXTAUTH_SECRET: ***
+2025-11-29T20:59:31.3716917Z   AUTH_TRUST_HOST: true
+2025-11-29T20:59:31.3717120Z ##[endgroup]
+2025-11-29T20:59:40.2329288Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-11-29T20:59:40.6577168Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2025-11-29T20:59:40.6889393Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-11-29T20:59:40.8992348Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2025-11-29T20:59:40.9063590Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-11-29T20:59:45.5524766Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2025-11-29T20:59:50.4205004Z npm warn deprecated fluent-ffmpeg@2.1.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2025-11-29T21:00:00.9962837Z 
+2025-11-29T21:00:00.9965456Z > vitrine-de-craques-web-site@0.1.0 postinstall
+2025-11-29T21:00:00.9970896Z > npx prisma generate
+2025-11-29T21:00:00.9971165Z 
+2025-11-29T21:00:02.3675241Z Prisma schema loaded from prisma/schema.prisma
+2025-11-29T21:00:03.3116401Z ┌─────────────────────────────────────────────────────────┐
+2025-11-29T21:00:03.3117395Z │  Update available 6.16.2 -> 7.0.1                       │
+2025-11-29T21:00:03.3118200Z │                                                         │
+2025-11-29T21:00:03.3119111Z │  This is a major update - please follow the guide at    │
+2025-11-29T21:00:03.3119976Z │  https://pris.ly/d/major-version-upgrade                │
+2025-11-29T21:00:03.3120777Z │                                                         │
+2025-11-29T21:00:03.3121506Z │  Run the following to update                            │
+2025-11-29T21:00:03.3122319Z │    npm i --save-dev prisma@latest                       │
+2025-11-29T21:00:03.3123288Z │    npm i @prisma/client@latest                          │
+2025-11-29T21:00:03.3124139Z └─────────────────────────────────────────────────────────┘
+2025-11-29T21:00:03.3129787Z 
+2025-11-29T21:00:03.3134224Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 426ms
+2025-11-29T21:00:03.3138464Z 
+2025-11-29T21:00:03.3142722Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-11-29T21:00:03.3147408Z 
+2025-11-29T21:00:03.3152158Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-11-29T21:00:03.3157292Z 
+2025-11-29T21:00:03.3462666Z 
+2025-11-29T21:00:03.3464927Z > vitrine-de-craques-web-site@0.1.0 prepare
+2025-11-29T21:00:03.3465830Z > husky install
+2025-11-29T21:00:03.3471118Z 
+2025-11-29T21:00:03.4065251Z husky - Git hooks installed
+2025-11-29T21:00:03.4258493Z 
+2025-11-29T21:00:03.4259426Z added 873 packages, and audited 874 packages in 32s
+2025-11-29T21:00:03.4260107Z 
+2025-11-29T21:00:03.4261367Z 195 packages are looking for funding
+2025-11-29T21:00:03.4262329Z   run `npm fund` for details
+2025-11-29T21:00:03.4852557Z 
+2025-11-29T21:00:03.4853823Z 6 vulnerabilities (3 low, 3 high)
+2025-11-29T21:00:03.4854438Z 
+2025-11-29T21:00:03.4855155Z To address issues that do not require attention, run:
+2025-11-29T21:00:03.4856709Z   npm audit fix
+2025-11-29T21:00:03.4856961Z 
+2025-11-29T21:00:03.4857393Z To address all issues (including breaking changes), run:
+2025-11-29T21:00:03.4858021Z   npm audit fix --force
+2025-11-29T21:00:03.4858288Z 
+2025-11-29T21:00:03.4858512Z Run `npm audit` for details.

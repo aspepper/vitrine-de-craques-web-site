@@ -1,0 +1,24 @@
+﻿2025-11-29T20:47:54.7279231Z ##[group]Run node -v
+2025-11-29T20:47:54.7279496Z [36;1mnode -v[0m
+2025-11-29T20:47:54.7279708Z [36;1mnpx prisma -v[0m
+2025-11-29T20:47:54.7315105Z shell: /usr/bin/bash -e {0}
+2025-11-29T20:47:54.7315343Z env:
+2025-11-29T20:47:54.7316119Z   DATABASE_URL: ***
+2025-11-29T20:47:54.7316458Z   NEXTAUTH_URL: ***
+2025-11-29T20:47:54.7316760Z   NEXTAUTH_SECRET: ***
+2025-11-29T20:47:54.7316974Z   AUTH_TRUST_HOST: true
+2025-11-29T20:47:54.7317187Z ##[endgroup]
+2025-11-29T20:47:54.7397348Z v20.19.5
+2025-11-29T20:47:56.5027265Z Prisma schema loaded from prisma/schema.prisma
+2025-11-29T20:47:56.5067532Z prisma                  : 6.16.2
+2025-11-29T20:47:56.5069398Z @prisma/client          : 6.16.2
+2025-11-29T20:47:56.5070264Z Computed binaryTarget   : debian-openssl-3.0.x
+2025-11-29T20:47:56.5071063Z Operating System        : linux
+2025-11-29T20:47:56.5071496Z Architecture            : x64
+2025-11-29T20:47:56.5071933Z Node.js                 : v20.19.5
+2025-11-29T20:47:56.5072376Z TypeScript              : 5.9.3
+2025-11-29T20:47:56.5073971Z Query Engine (Node-API) : libquery-engine 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/libquery_engine-debian-openssl-3.0.x.so.node)
+2025-11-29T20:47:56.5075620Z PSL                     : @prisma/prisma-schema-wasm 6.16.0-7.1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+2025-11-29T20:47:56.5077331Z Schema Engine           : schema-engine-cli 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/schema-engine-debian-openssl-3.0.x)
+2025-11-29T20:47:56.5078851Z Default Engines Hash    : 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+2025-11-29T20:47:56.5079593Z Studio                  : 0.511.0

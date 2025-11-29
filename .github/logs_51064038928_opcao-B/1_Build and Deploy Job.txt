@@ -1,0 +1,1326 @@
+﻿2025-11-29T20:58:46.0898619Z Current runner version: '2.329.0'
+2025-11-29T20:58:46.0974260Z ##[group]Runner Image Provisioner
+2025-11-29T20:58:46.0975817Z Hosted Compute Agent
+2025-11-29T20:58:46.0976749Z Version: 20251016.436
+2025-11-29T20:58:46.0977717Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-29T20:58:46.0978983Z Build Date: 2025-10-15T20:44:12Z
+2025-11-29T20:58:46.0979993Z ##[endgroup]
+2025-11-29T20:58:46.0980943Z ##[group]Operating System
+2025-11-29T20:58:46.0981927Z Ubuntu
+2025-11-29T20:58:46.0982707Z 24.04.3
+2025-11-29T20:58:46.1003837Z LTS
+2025-11-29T20:58:46.1004780Z ##[endgroup]
+2025-11-29T20:58:46.1005741Z ##[group]Runner Image
+2025-11-29T20:58:46.1006741Z Image: ubuntu-24.04
+2025-11-29T20:58:46.1007727Z Version: 20251112.124.1
+2025-11-29T20:58:46.1009754Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251112.124/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-29T20:58:46.1012702Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251112.124
+2025-11-29T20:58:46.1015413Z ##[endgroup]
+2025-11-29T20:58:46.1017365Z ##[group]GITHUB_TOKEN Permissions
+2025-11-29T20:58:46.1020044Z Contents: read
+2025-11-29T20:58:46.1021117Z Metadata: read
+2025-11-29T20:58:46.1022178Z Packages: read
+2025-11-29T20:58:46.1023368Z ##[endgroup]
+2025-11-29T20:58:46.1026722Z Secret source: Actions
+2025-11-29T20:58:46.1028377Z Prepare workflow directory
+2025-11-29T20:58:46.2441045Z Prepare all required actions
+2025-11-29T20:58:46.2558638Z Getting action download info
+2025-11-29T20:58:46.5612289Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
+2025-11-29T20:58:46.6605005Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2025-11-29T20:58:46.7564558Z Download action repository 'Azure/static-web-apps-deploy@v1' (SHA:4d27395796ac319302594769cfe812bd207490b1)
+2025-11-29T20:58:47.0351279Z Complete job name: Build and Deploy Job
+2025-11-29T20:58:47.0748592Z ##[group]Build container for action use: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile'.
+2025-11-29T20:58:47.0800459Z ##[command]/usr/bin/docker build -t 1aa292:3d7078f56560458db1262ab0dc8ee991 -f "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile" "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1"
+2025-11-29T20:58:49.7717504Z #0 building with "default" instance using docker driver
+2025-11-29T20:58:49.7719314Z 
+2025-11-29T20:58:49.7720479Z #1 [internal] load build definition from Dockerfile
+2025-11-29T20:58:49.7722152Z #1 transferring dockerfile: 160B done
+2025-11-29T20:58:49.7724030Z #1 DONE 0.0s
+2025-11-29T20:58:49.7725319Z 
+2025-11-29T20:58:49.7726937Z #2 [internal] load metadata for mcr.microsoft.com/appsvc/staticappsclient:stable
+2025-11-29T20:58:49.7728848Z #2 DONE 0.1s
+2025-11-29T20:58:49.8972468Z 
+2025-11-29T20:58:49.8976270Z #3 [internal] load .dockerignore
+2025-11-29T20:58:49.8977817Z #3 transferring context: 2B done
+2025-11-29T20:58:49.8978976Z #3 DONE 0.0s
+2025-11-29T20:58:49.8979528Z 
+2025-11-29T20:58:49.8980018Z #4 [internal] load build context
+2025-11-29T20:58:49.8982389Z #4 transferring context: 107B done
+2025-11-29T20:58:49.8987073Z #4 DONE 0.0s
+2025-11-29T20:58:49.8987704Z 
+2025-11-29T20:58:49.8989643Z #5 [1/2] FROM mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2
+2025-11-29T20:58:49.9004914Z #5 resolve mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2 done
+2025-11-29T20:58:49.9009405Z #5 sha256:1df8e0748f30e89b0c0477edfc706fc39242e1d6008433c0494113de267e7ca8 15.34kB / 15.34kB done
+2025-11-29T20:58:49.9014809Z #5 sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2 2.88kB / 2.88kB done
+2025-11-29T20:58:49.9024426Z #5 sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 9.44MB / 15.56MB 0.1s
+2025-11-29T20:58:49.9028751Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 9.57MB / 54.75MB 0.1s
+2025-11-29T20:58:49.9033891Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 14.68MB / 53.74MB 0.1s
+2025-11-29T20:58:50.0965829Z #5 sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 15.56MB / 15.56MB 0.2s done
+2025-11-29T20:58:50.0990597Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 44.18MB / 54.75MB 0.3s
+2025-11-29T20:58:50.0994869Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 53.74MB / 53.74MB 0.3s
+2025-11-29T20:58:50.0998875Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 20.09MB / 197.07MB 0.3s
+2025-11-29T20:58:50.2013694Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 54.75MB / 54.75MB 0.4s
+2025-11-29T20:58:50.2015879Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 53.74MB / 53.74MB 0.3s done
+2025-11-29T20:58:50.2017263Z #5 extracting sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58
+2025-11-29T20:58:50.2045963Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 2.93MB / 24.46MB 0.4s
+2025-11-29T20:58:50.2047190Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.3s done
+2025-11-29T20:58:50.3967610Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 54.75MB / 54.75MB 0.5s done
+2025-11-29T20:58:50.3969073Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 65.01MB / 197.07MB 0.6s
+2025-11-29T20:58:50.3970385Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 24.46MB / 24.46MB 0.6s
+2025-11-29T20:58:50.5008786Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 92.64MB / 197.07MB 0.7s
+2025-11-29T20:58:50.5011183Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 24.46MB / 24.46MB 0.6s done
+2025-11-29T20:58:50.5015318Z #5 sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd 115.52kB / 115.52kB 0.7s done
+2025-11-29T20:58:50.5028251Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 11.53MB / 72.99MB 0.7s
+2025-11-29T20:58:50.5029526Z #5 sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 0B / 1.16MB 0.7s
+2025-11-29T20:58:50.5030856Z #5 sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a 1.56MB / 1.56MB 0.6s done
+2025-11-29T20:58:50.6016557Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 106.67MB / 197.07MB 0.8s
+2025-11-29T20:58:50.6024265Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 36.06MB / 72.99MB 0.8s
+2025-11-29T20:58:50.6034789Z #5 sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 1.16MB / 1.16MB 0.7s done
+2025-11-29T20:58:50.6040062Z #5 sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55 637.94kB / 637.94kB 0.8s done
+2025-11-29T20:58:50.6042100Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 0B / 35.20MB 0.8s
+2025-11-29T20:58:50.7032698Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 122.68MB / 197.07MB 0.9s
+2025-11-29T20:58:50.7036460Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 52.43MB / 72.99MB 0.9s
+2025-11-29T20:58:50.7037628Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 11.53MB / 35.20MB 0.9s
+2025-11-29T20:58:50.8436524Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 138.31MB / 197.07MB 1.0s
+2025-11-29T20:58:50.8438394Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 63.96MB / 72.99MB 1.0s
+2025-11-29T20:58:50.8439965Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 26.42MB / 35.20MB 1.0s
+2025-11-29T20:58:50.9963538Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 193.99MB / 197.07MB 1.2s
+2025-11-29T20:58:50.9964900Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 72.99MB / 72.99MB 1.2s
+2025-11-29T20:58:50.9966613Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 35.20MB / 35.20MB 1.1s done
+2025-11-29T20:58:51.3654007Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 72.99MB / 72.99MB 1.5s done
+2025-11-29T20:58:51.3658375Z #5 sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d 168B / 168B 1.5s
+2025-11-29T20:58:52.0947100Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 197.07MB / 197.07MB 2.3s done
+2025-11-29T20:58:52.0951201Z #5 sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d 168B / 168B 2.3s done
+2025-11-29T20:58:52.0952267Z #5 sha256:8023cb51985fccd3faa4be6340cdc75b72240277850569aa974767dda5176159 168B / 168B 2.3s done
+2025-11-29T20:58:52.0953550Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 6.48MB / 118.65MB 2.3s
+2025-11-29T20:58:52.2767479Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 36.43MB / 118.65MB 2.4s
+2025-11-29T20:58:52.3875797Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 67.20MB / 118.65MB 2.5s
+2025-11-29T20:58:52.4970112Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 118.65MB / 118.65MB 2.7s
+2025-11-29T20:58:52.7938797Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 118.65MB / 118.65MB 2.9s done
+2025-11-29T20:58:54.1611108Z #5 extracting sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 4.0s done
+2025-11-29T20:58:54.2930928Z #5 extracting sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 0.1s
+2025-11-29T20:58:54.7471292Z #5 extracting sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 0.4s done
+2025-11-29T20:58:55.3869006Z #5 extracting sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230
+2025-11-29T20:58:57.6179989Z #5 extracting sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 2.1s done
+2025-11-29T20:58:58.1509527Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88
+2025-11-29T20:59:03.2501352Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 5.1s
+2025-11-29T20:59:03.4251749Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 5.3s done
+2025-11-29T20:59:05.8919101Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
+2025-11-29T20:59:06.0953966Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+2025-11-29T20:59:06.0960194Z #5 extracting sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 0.1s
+2025-11-29T20:59:06.8509040Z #5 extracting sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 0.8s done
+2025-11-29T20:59:06.8514018Z #5 extracting sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a
+2025-11-29T20:59:07.1022342Z #5 extracting sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a 0.1s done
+2025-11-29T20:59:07.1027808Z #5 extracting sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 0.1s
+2025-11-29T20:59:08.2910984Z #5 extracting sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 1.1s done
+2025-11-29T20:59:08.8502915Z #5 extracting sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd
+2025-11-29T20:59:08.9705893Z #5 extracting sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd done
+2025-11-29T20:59:08.9711030Z #5 extracting sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 0.1s done
+2025-11-29T20:59:08.9712213Z #5 extracting sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55 0.0s done
+2025-11-29T20:59:09.0935705Z #5 extracting sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 0.1s
+2025-11-29T20:59:09.5415932Z #5 extracting sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 0.5s done
+2025-11-29T20:59:09.5417408Z #5 extracting sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d
+2025-11-29T20:59:09.7315384Z #5 extracting sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d done
+2025-11-29T20:59:09.7323049Z #5 extracting sha256:8023cb51985fccd3faa4be6340cdc75b72240277850569aa974767dda5176159 done
+2025-11-29T20:59:09.7327005Z #5 extracting sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 0.1s
+2025-11-29T20:59:13.3407545Z #5 extracting sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 3.6s done
+2025-11-29T20:59:14.6532433Z #5 DONE 24.9s
+2025-11-29T20:59:14.8244435Z 
+2025-11-29T20:59:14.8245060Z #6 [2/2] COPY entrypoint.sh /entrypoint.sh
+2025-11-29T20:59:14.8245569Z #6 DONE 0.0s
+2025-11-29T20:59:14.8245761Z 
+2025-11-29T20:59:14.8245904Z #7 exporting to image
+2025-11-29T20:59:14.8246273Z #7 exporting layers
+2025-11-29T20:59:15.9752687Z #7 exporting layers 1.3s done
+2025-11-29T20:59:15.9943913Z #7 writing image sha256:1687d86abd8cc56ad5afc6d47d007accd5f0347e98a3f9e8032f56a8054c10f2 done
+2025-11-29T20:59:15.9944901Z #7 naming to docker.io/library/1aa292:3d7078f56560458db1262ab0dc8ee991 done
+2025-11-29T20:59:15.9964156Z #7 DONE 1.3s
+2025-11-29T20:59:16.0018721Z ##[endgroup]
+2025-11-29T20:59:16.0290145Z ##[group]Run actions/checkout@v3
+2025-11-29T20:59:16.0290681Z with:
+2025-11-29T20:59:16.0290877Z   submodules: false
+2025-11-29T20:59:16.0291082Z   lfs: false
+2025-11-29T20:59:16.0291488Z   sparse-checkout: *
+!Vitrine-De-Craques-App/
+!Vitrine-De-Craques-App-iOS/
+!docs/
+
+2025-11-29T20:59:16.0291900Z   sparse-checkout-cone-mode: false
+2025-11-29T20:59:16.0292195Z   repository: aspepper/vitrine-de-craques-web-site
+2025-11-29T20:59:16.0292634Z   token: ***
+2025-11-29T20:59:16.0292816Z   ssh-strict: true
+2025-11-29T20:59:16.0293031Z   persist-credentials: true
+2025-11-29T20:59:16.0293614Z   clean: true
+2025-11-29T20:59:16.0293798Z   fetch-depth: 1
+2025-11-29T20:59:16.0293981Z   fetch-tags: false
+2025-11-29T20:59:16.0294182Z   set-safe-directory: true
+2025-11-29T20:59:16.0294844Z env:
+2025-11-29T20:59:16.0295570Z   DATABASE_URL: ***
+2025-11-29T20:59:16.0295905Z   NEXTAUTH_URL: ***
+2025-11-29T20:59:16.0296188Z   NEXTAUTH_SECRET: ***
+2025-11-29T20:59:16.0296393Z   AUTH_TRUST_HOST: true
+2025-11-29T20:59:16.0296629Z ##[endgroup]
+2025-11-29T20:59:16.1224736Z Syncing repository: aspepper/vitrine-de-craques-web-site
+2025-11-29T20:59:16.1226778Z ##[group]Getting Git version info
+2025-11-29T20:59:16.1227699Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-29T20:59:16.1228879Z [command]/usr/bin/git version
+2025-11-29T20:59:16.1239138Z git version 2.51.2
+2025-11-29T20:59:16.1269802Z ##[endgroup]
+2025-11-29T20:59:16.1286147Z Temporarily overriding HOME='/home/runner/work/_temp/566d2c11-6ee3-4899-af08-7f0be8dd6a13' before making global git config changes
+2025-11-29T20:59:16.1287527Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-29T20:59:16.1289454Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-29T20:59:16.1324551Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-29T20:59:16.1329230Z ##[group]Initializing the repository
+2025-11-29T20:59:16.1333685Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-29T20:59:16.1435215Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-11-29T20:59:16.1436694Z hint: is subject to change. To configure the initial branch name to use in all
+2025-11-29T20:59:16.1439597Z hint: of your new repositories, which will suppress this warning, call:
+2025-11-29T20:59:16.1440207Z hint:
+2025-11-29T20:59:16.1440625Z hint: 	git config --global init.defaultBranch <name>
+2025-11-29T20:59:16.1441155Z hint:
+2025-11-29T20:59:16.1444980Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-11-29T20:59:16.1446220Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-11-29T20:59:16.1447213Z hint:
+2025-11-29T20:59:16.1447584Z hint: 	git branch -m <name>
+2025-11-29T20:59:16.1448000Z hint:
+2025-11-29T20:59:16.1448559Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-11-29T20:59:16.1449758Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-11-29T20:59:16.1453713Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-29T20:59:16.1531440Z ##[endgroup]
+2025-11-29T20:59:16.1532132Z ##[group]Disabling automatic garbage collection
+2025-11-29T20:59:16.1533040Z [command]/usr/bin/git config --local gc.auto 0
+2025-11-29T20:59:16.1563749Z ##[endgroup]
+2025-11-29T20:59:16.1564794Z ##[group]Setting up auth
+2025-11-29T20:59:16.1569954Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-29T20:59:16.1600685Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-29T20:59:16.1926920Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-29T20:59:16.1956450Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-29T20:59:16.2188726Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-11-29T20:59:16.2223998Z ##[endgroup]
+2025-11-29T20:59:16.2225112Z ##[group]Fetching the repository
+2025-11-29T20:59:16.2234915Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --filter=blob:none --depth=1 origin +7626b6592385594a4fe89d7eb99665baf60f1319:refs/remotes/origin/main
+2025-11-29T20:59:16.3650329Z remote: Enumerating objects: 202, done.        
+2025-11-29T20:59:16.3655079Z remote: Counting objects:   0% (1/202)        
+2025-11-29T20:59:16.3655760Z remote: Counting objects:   1% (3/202)        
+2025-11-29T20:59:16.3656290Z remote: Counting objects:   2% (5/202)        
+2025-11-29T20:59:16.3656795Z remote: Counting objects:   3% (7/202)        
+2025-11-29T20:59:16.3657309Z remote: Counting objects:   4% (9/202)        
+2025-11-29T20:59:16.3657874Z remote: Counting objects:   5% (11/202)        
+2025-11-29T20:59:16.3658439Z remote: Counting objects:   6% (13/202)        
+2025-11-29T20:59:16.3658968Z remote: Counting objects:   7% (15/202)        
+2025-11-29T20:59:16.3659527Z remote: Counting objects:   8% (17/202)        
+2025-11-29T20:59:16.3660050Z remote: Counting objects:   9% (19/202)        
+2025-11-29T20:59:16.3660573Z remote: Counting objects:  10% (21/202)        
+2025-11-29T20:59:16.3661088Z remote: Counting objects:  11% (23/202)        
+2025-11-29T20:59:16.3661661Z remote: Counting objects:  12% (25/202)        
+2025-11-29T20:59:16.3662186Z remote: Counting objects:  13% (27/202)        
+2025-11-29T20:59:16.3662672Z remote: Counting objects:  14% (29/202)        
+2025-11-29T20:59:16.3663362Z remote: Counting objects:  15% (31/202)        
+2025-11-29T20:59:16.3663900Z remote: Counting objects:  16% (33/202)        
+2025-11-29T20:59:16.3664409Z remote: Counting objects:  17% (35/202)        
+2025-11-29T20:59:16.3664898Z remote: Counting objects:  18% (37/202)        
+2025-11-29T20:59:16.3665415Z remote: Counting objects:  19% (39/202)        
+2025-11-29T20:59:16.3665937Z remote: Counting objects:  20% (41/202)        
+2025-11-29T20:59:16.3666426Z remote: Counting objects:  21% (43/202)        
+2025-11-29T20:59:16.3666912Z remote: Counting objects:  22% (45/202)        
+2025-11-29T20:59:16.3667394Z remote: Counting objects:  23% (47/202)        
+2025-11-29T20:59:16.3667885Z remote: Counting objects:  24% (49/202)        
+2025-11-29T20:59:16.3668661Z remote: Counting objects:  25% (51/202)        
+2025-11-29T20:59:16.3669160Z remote: Counting objects:  26% (53/202)        
+2025-11-29T20:59:16.3669647Z remote: Counting objects:  27% (55/202)        
+2025-11-29T20:59:16.3670164Z remote: Counting objects:  28% (57/202)        
+2025-11-29T20:59:16.3670605Z remote: Counting objects:  29% (59/202)        
+2025-11-29T20:59:16.3670890Z remote: Counting objects:  30% (61/202)        
+2025-11-29T20:59:16.3671184Z remote: Counting objects:  31% (63/202)        
+2025-11-29T20:59:16.3671458Z remote: Counting objects:  32% (65/202)        
+2025-11-29T20:59:16.3671725Z remote: Counting objects:  33% (67/202)        
+2025-11-29T20:59:16.3671995Z remote: Counting objects:  34% (69/202)        
+2025-11-29T20:59:16.3672264Z remote: Counting objects:  35% (71/202)        
+2025-11-29T20:59:16.3672530Z remote: Counting objects:  36% (73/202)        
+2025-11-29T20:59:16.3672793Z remote: Counting objects:  37% (75/202)        
+2025-11-29T20:59:16.3673230Z remote: Counting objects:  38% (77/202)        
+2025-11-29T20:59:16.3673621Z remote: Counting objects:  39% (79/202)        
+2025-11-29T20:59:16.3673898Z remote: Counting objects:  40% (81/202)        
+2025-11-29T20:59:16.3674327Z remote: Counting objects:  41% (83/202)        
+2025-11-29T20:59:16.3674611Z remote: Counting objects:  42% (85/202)        
+2025-11-29T20:59:16.3674885Z remote: Counting objects:  43% (87/202)        
+2025-11-29T20:59:16.3675154Z remote: Counting objects:  44% (89/202)        
+2025-11-29T20:59:16.3675422Z remote: Counting objects:  45% (91/202)        
+2025-11-29T20:59:16.3675808Z remote: Counting objects:  46% (93/202)        
+2025-11-29T20:59:16.3676323Z remote: Counting objects:  47% (95/202)        
+2025-11-29T20:59:16.3676862Z remote: Counting objects:  48% (97/202)        
+2025-11-29T20:59:16.3677382Z remote: Counting objects:  49% (99/202)        
+2025-11-29T20:59:16.3677896Z remote: Counting objects:  50% (101/202)        
+2025-11-29T20:59:16.3678394Z remote: Counting objects:  51% (104/202)        
+2025-11-29T20:59:16.3678881Z remote: Counting objects:  52% (106/202)        
+2025-11-29T20:59:16.3679375Z remote: Counting objects:  53% (108/202)        
+2025-11-29T20:59:16.3679875Z remote: Counting objects:  54% (110/202)        
+2025-11-29T20:59:16.3680363Z remote: Counting objects:  55% (112/202)        
+2025-11-29T20:59:16.3680857Z remote: Counting objects:  56% (114/202)        
+2025-11-29T20:59:16.3681319Z remote: Counting objects:  57% (116/202)        
+2025-11-29T20:59:16.3681709Z remote: Counting objects:  58% (118/202)        
+2025-11-29T20:59:16.3682176Z remote: Counting objects:  59% (120/202)        
+2025-11-29T20:59:16.3682724Z remote: Counting objects:  60% (122/202)        
+2025-11-29T20:59:16.3683430Z remote: Counting objects:  61% (124/202)        
+2025-11-29T20:59:16.3683954Z remote: Counting objects:  62% (126/202)        
+2025-11-29T20:59:16.3684461Z remote: Counting objects:  63% (128/202)        
+2025-11-29T20:59:16.3684991Z remote: Counting objects:  64% (130/202)        
+2025-11-29T20:59:16.3685508Z remote: Counting objects:  65% (132/202)        
+2025-11-29T20:59:16.3686065Z remote: Counting objects:  66% (134/202)        
+2025-11-29T20:59:16.3686637Z remote: Counting objects:  67% (136/202)        
+2025-11-29T20:59:16.3687169Z remote: Counting objects:  68% (138/202)        
+2025-11-29T20:59:16.3687690Z remote: Counting objects:  69% (140/202)        
+2025-11-29T20:59:16.3688204Z remote: Counting objects:  70% (142/202)        
+2025-11-29T20:59:16.3688709Z remote: Counting objects:  71% (144/202)        
+2025-11-29T20:59:16.3689219Z remote: Counting objects:  72% (146/202)        
+2025-11-29T20:59:16.3689770Z remote: Counting objects:  73% (148/202)        
+2025-11-29T20:59:16.3690264Z remote: Counting objects:  74% (150/202)        
+2025-11-29T20:59:16.3690761Z remote: Counting objects:  75% (152/202)        
+2025-11-29T20:59:16.3691227Z remote: Counting objects:  76% (154/202)        
+2025-11-29T20:59:16.3691707Z remote: Counting objects:  77% (156/202)        
+2025-11-29T20:59:16.3692476Z remote: Counting objects:  78% (158/202)        
+2025-11-29T20:59:16.3692980Z remote: Counting objects:  79% (160/202)        
+2025-11-29T20:59:16.3693808Z remote: Counting objects:  80% (162/202)        
+2025-11-29T20:59:16.3694341Z remote: Counting objects:  81% (164/202)        
+2025-11-29T20:59:16.3694827Z remote: Counting objects:  82% (166/202)        
+2025-11-29T20:59:16.3695340Z remote: Counting objects:  83% (168/202)        
+2025-11-29T20:59:16.3695834Z remote: Counting objects:  84% (170/202)        
+2025-11-29T20:59:16.3696329Z remote: Counting objects:  85% (172/202)        
+2025-11-29T20:59:16.3696821Z remote: Counting objects:  86% (174/202)        
+2025-11-29T20:59:16.3697315Z remote: Counting objects:  87% (176/202)        
+2025-11-29T20:59:16.3787186Z remote: Counting objects:  88% (178/202)        
+2025-11-29T20:59:16.3787973Z remote: Counting objects:  89% (180/202)        
+2025-11-29T20:59:16.3788479Z remote: Counting objects:  90% (182/202)        
+2025-11-29T20:59:16.3789118Z remote: Counting objects:  91% (184/202)        
+2025-11-29T20:59:16.3789762Z remote: Counting objects:  92% (186/202)        
+2025-11-29T20:59:16.3790334Z remote: Counting objects:  93% (188/202)        
+2025-11-29T20:59:16.3791038Z remote: Counting objects:  94% (190/202)        
+2025-11-29T20:59:16.3791550Z remote: Counting objects:  95% (192/202)        
+2025-11-29T20:59:16.3792052Z remote: Counting objects:  96% (194/202)        
+2025-11-29T20:59:16.3792517Z remote: Counting objects:  97% (196/202)        
+2025-11-29T20:59:16.3792975Z remote: Counting objects:  98% (198/202)        
+2025-11-29T20:59:16.3793843Z remote: Counting objects:  99% (200/202)        
+2025-11-29T20:59:16.3794364Z remote: Counting objects: 100% (202/202)        
+2025-11-29T20:59:16.3794895Z remote: Counting objects: 100% (202/202), done.        
+2025-11-29T20:59:16.3795583Z remote: Compressing objects:   0% (1/111)        
+2025-11-29T20:59:16.3796170Z remote: Compressing objects:   1% (2/111)        
+2025-11-29T20:59:16.3796700Z remote: Compressing objects:   2% (3/111)        
+2025-11-29T20:59:16.3797248Z remote: Compressing objects:   3% (4/111)        
+2025-11-29T20:59:16.3797796Z remote: Compressing objects:   4% (5/111)        
+2025-11-29T20:59:16.3798374Z remote: Compressing objects:   5% (6/111)        
+2025-11-29T20:59:16.3798946Z remote: Compressing objects:   6% (7/111)        
+2025-11-29T20:59:16.3799481Z remote: Compressing objects:   7% (8/111)        
+2025-11-29T20:59:16.3800029Z remote: Compressing objects:   8% (9/111)        
+2025-11-29T20:59:16.3800569Z remote: Compressing objects:   9% (10/111)        
+2025-11-29T20:59:16.3801108Z remote: Compressing objects:  10% (12/111)        
+2025-11-29T20:59:16.3801674Z remote: Compressing objects:  11% (13/111)        
+2025-11-29T20:59:16.3802219Z remote: Compressing objects:  12% (14/111)        
+2025-11-29T20:59:16.3802765Z remote: Compressing objects:  13% (15/111)        
+2025-11-29T20:59:16.3803809Z remote: Compressing objects:  14% (16/111)        
+2025-11-29T20:59:16.3804462Z remote: Compressing objects:  15% (17/111)        
+2025-11-29T20:59:16.3805004Z remote: Compressing objects:  16% (18/111)        
+2025-11-29T20:59:16.3805545Z remote: Compressing objects:  17% (19/111)        
+2025-11-29T20:59:16.3806129Z remote: Compressing objects:  18% (20/111)        
+2025-11-29T20:59:16.3806691Z remote: Compressing objects:  19% (22/111)        
+2025-11-29T20:59:16.3807239Z remote: Compressing objects:  20% (23/111)        
+2025-11-29T20:59:16.3807790Z remote: Compressing objects:  21% (24/111)        
+2025-11-29T20:59:16.3808381Z remote: Compressing objects:  22% (25/111)        
+2025-11-29T20:59:16.3808919Z remote: Compressing objects:  23% (26/111)        
+2025-11-29T20:59:16.3809463Z remote: Compressing objects:  24% (27/111)        
+2025-11-29T20:59:16.3809983Z remote: Compressing objects:  25% (28/111)        
+2025-11-29T20:59:16.3810516Z remote: Compressing objects:  26% (29/111)        
+2025-11-29T20:59:16.3810838Z remote: Compressing objects:  27% (30/111)        
+2025-11-29T20:59:16.3812514Z remote: Compressing objects:  28% (32/111)        
+2025-11-29T20:59:16.3813017Z remote: Compressing objects:  29% (33/111)        
+2025-11-29T20:59:16.3814207Z remote: Compressing objects:  30% (34/111)        
+2025-11-29T20:59:16.3814874Z remote: Compressing objects:  31% (35/111)        
+2025-11-29T20:59:16.3815448Z remote: Compressing objects:  32% (36/111)        
+2025-11-29T20:59:16.3815936Z remote: Compressing objects:  33% (37/111)        
+2025-11-29T20:59:16.3816480Z remote: Compressing objects:  34% (38/111)        
+2025-11-29T20:59:16.3816948Z remote: Compressing objects:  35% (39/111)        
+2025-11-29T20:59:16.3817237Z remote: Compressing objects:  36% (40/111)        
+2025-11-29T20:59:16.3817726Z remote: Compressing objects:  37% (42/111)        
+2025-11-29T20:59:16.3818024Z remote: Compressing objects:  38% (43/111)        
+2025-11-29T20:59:16.3818568Z remote: Compressing objects:  39% (44/111)        
+2025-11-29T20:59:16.3819021Z remote: Compressing objects:  40% (45/111)        
+2025-11-29T20:59:16.3819320Z remote: Compressing objects:  41% (46/111)        
+2025-11-29T20:59:16.3819603Z remote: Compressing objects:  42% (47/111)        
+2025-11-29T20:59:16.3820048Z remote: Compressing objects:  43% (48/111)        
+2025-11-29T20:59:16.3820348Z remote: Compressing objects:  44% (49/111)        
+2025-11-29T20:59:16.3820805Z remote: Compressing objects:  45% (50/111)        
+2025-11-29T20:59:16.3821298Z remote: Compressing objects:  46% (52/111)        
+2025-11-29T20:59:16.3821591Z remote: Compressing objects:  47% (53/111)        
+2025-11-29T20:59:16.3822057Z remote: Compressing objects:  48% (54/111)        
+2025-11-29T20:59:16.3822408Z remote: Compressing objects:  49% (55/111)        
+2025-11-29T20:59:16.3822948Z remote: Compressing objects:  50% (56/111)        
+2025-11-29T20:59:16.3823701Z remote: Compressing objects:  51% (57/111)        
+2025-11-29T20:59:16.3824232Z remote: Compressing objects:  52% (58/111)        
+2025-11-29T20:59:16.3824767Z remote: Compressing objects:  53% (59/111)        
+2025-11-29T20:59:16.3825316Z remote: Compressing objects:  54% (60/111)        
+2025-11-29T20:59:16.3825841Z remote: Compressing objects:  55% (62/111)        
+2025-11-29T20:59:16.3826379Z remote: Compressing objects:  56% (63/111)        
+2025-11-29T20:59:16.3826903Z remote: Compressing objects:  57% (64/111)        
+2025-11-29T20:59:16.3827418Z remote: Compressing objects:  58% (65/111)        
+2025-11-29T20:59:16.3827933Z remote: Compressing objects:  59% (66/111)        
+2025-11-29T20:59:16.3828449Z remote: Compressing objects:  60% (67/111)        
+2025-11-29T20:59:16.3828955Z remote: Compressing objects:  61% (68/111)        
+2025-11-29T20:59:16.3829487Z remote: Compressing objects:  62% (69/111)        
+2025-11-29T20:59:16.3830043Z remote: Compressing objects:  63% (70/111)        
+2025-11-29T20:59:16.3830529Z remote: Compressing objects:  64% (72/111)        
+2025-11-29T20:59:16.3830984Z remote: Compressing objects:  65% (73/111)        
+2025-11-29T20:59:16.3831284Z remote: Compressing objects:  66% (74/111)        
+2025-11-29T20:59:16.3831578Z remote: Compressing objects:  67% (75/111)        
+2025-11-29T20:59:16.3831861Z remote: Compressing objects:  68% (76/111)        
+2025-11-29T20:59:16.3832146Z remote: Compressing objects:  69% (77/111)        
+2025-11-29T20:59:16.3832435Z remote: Compressing objects:  70% (78/111)        
+2025-11-29T20:59:16.3832720Z remote: Compressing objects:  71% (79/111)        
+2025-11-29T20:59:16.3833407Z remote: Compressing objects:  72% (80/111)        
+2025-11-29T20:59:16.3833978Z remote: Compressing objects:  73% (82/111)        
+2025-11-29T20:59:16.3834518Z remote: Compressing objects:  74% (83/111)        
+2025-11-29T20:59:16.3835049Z remote: Compressing objects:  75% (84/111)        
+2025-11-29T20:59:16.3835568Z remote: Compressing objects:  76% (85/111)        
+2025-11-29T20:59:16.3836097Z remote: Compressing objects:  77% (86/111)        
+2025-11-29T20:59:16.3836639Z remote: Compressing objects:  78% (87/111)        
+2025-11-29T20:59:16.3837431Z remote: Compressing objects:  79% (88/111)        
+2025-11-29T20:59:16.3837986Z remote: Compressing objects:  80% (89/111)        
+2025-11-29T20:59:16.3838526Z remote: Compressing objects:  81% (90/111)        
+2025-11-29T20:59:16.3839059Z remote: Compressing objects:  82% (92/111)        
+2025-11-29T20:59:16.3839577Z remote: Compressing objects:  83% (93/111)        
+2025-11-29T20:59:16.3840088Z remote: Compressing objects:  84% (94/111)        
+2025-11-29T20:59:16.3840607Z remote: Compressing objects:  85% (95/111)        
+2025-11-29T20:59:16.3841125Z remote: Compressing objects:  86% (96/111)        
+2025-11-29T20:59:16.3841632Z remote: Compressing objects:  87% (97/111)        
+2025-11-29T20:59:16.3842151Z remote: Compressing objects:  88% (98/111)        
+2025-11-29T20:59:16.3842687Z remote: Compressing objects:  89% (99/111)        
+2025-11-29T20:59:16.3843537Z remote: Compressing objects:  90% (100/111)        
+2025-11-29T20:59:16.3844667Z remote: Compressing objects:  91% (102/111)        
+2025-11-29T20:59:16.3845253Z remote: Compressing objects:  92% (103/111)        
+2025-11-29T20:59:16.3845778Z remote: Compressing objects:  93% (104/111)        
+2025-11-29T20:59:16.3846512Z remote: Compressing objects:  94% (105/111)        
+2025-11-29T20:59:16.3847052Z remote: Compressing objects:  95% (106/111)        
+2025-11-29T20:59:16.3847569Z remote: Compressing objects:  96% (107/111)        
+2025-11-29T20:59:16.3848069Z remote: Compressing objects:  97% (108/111)        
+2025-11-29T20:59:16.3848480Z remote: Compressing objects:  98% (109/111)        
+2025-11-29T20:59:16.3848928Z remote: Compressing objects:  99% (110/111)        
+2025-11-29T20:59:16.3849454Z remote: Compressing objects: 100% (111/111)        
+2025-11-29T20:59:16.3850024Z remote: Compressing objects: 100% (111/111), done.        
+2025-11-29T20:59:16.3850771Z remote: Total 202 (delta 0), reused 146 (delta 0), pack-reused 0 (from 0)        
+2025-11-29T20:59:16.3851525Z Receiving objects:   0% (1/202)
+2025-11-29T20:59:16.3851948Z Receiving objects:   1% (3/202)
+2025-11-29T20:59:16.3852368Z Receiving objects:   2% (5/202)
+2025-11-29T20:59:16.3852770Z Receiving objects:   3% (7/202)
+2025-11-29T20:59:16.3853387Z Receiving objects:   4% (9/202)
+2025-11-29T20:59:16.3853828Z Receiving objects:   5% (11/202)
+2025-11-29T20:59:16.3854246Z Receiving objects:   6% (13/202)
+2025-11-29T20:59:16.3854641Z Receiving objects:   7% (15/202)
+2025-11-29T20:59:16.3855038Z Receiving objects:   8% (17/202)
+2025-11-29T20:59:16.3855433Z Receiving objects:   9% (19/202)
+2025-11-29T20:59:16.3855820Z Receiving objects:  10% (21/202)
+2025-11-29T20:59:16.3856184Z Receiving objects:  11% (23/202)
+2025-11-29T20:59:16.3856551Z Receiving objects:  12% (25/202)
+2025-11-29T20:59:16.3856948Z Receiving objects:  13% (27/202)
+2025-11-29T20:59:16.3857343Z Receiving objects:  14% (29/202)
+2025-11-29T20:59:16.3857748Z Receiving objects:  15% (31/202)
+2025-11-29T20:59:16.3858152Z Receiving objects:  16% (33/202)
+2025-11-29T20:59:16.3858564Z Receiving objects:  17% (35/202)
+2025-11-29T20:59:16.3858979Z Receiving objects:  18% (37/202)
+2025-11-29T20:59:16.3859433Z Receiving objects:  19% (39/202)
+2025-11-29T20:59:16.3859856Z Receiving objects:  20% (41/202)
+2025-11-29T20:59:16.3860257Z Receiving objects:  21% (43/202)
+2025-11-29T20:59:16.3860666Z Receiving objects:  22% (45/202)
+2025-11-29T20:59:16.3861067Z Receiving objects:  23% (47/202)
+2025-11-29T20:59:16.3861475Z Receiving objects:  24% (49/202)
+2025-11-29T20:59:16.3861867Z Receiving objects:  25% (51/202)
+2025-11-29T20:59:16.3862271Z Receiving objects:  26% (53/202)
+2025-11-29T20:59:16.3862695Z Receiving objects:  27% (55/202)
+2025-11-29T20:59:16.3863014Z Receiving objects:  28% (57/202)
+2025-11-29T20:59:16.3863617Z Receiving objects:  29% (59/202)
+2025-11-29T20:59:16.3863867Z Receiving objects:  30% (61/202)
+2025-11-29T20:59:16.3864096Z Receiving objects:  31% (63/202)
+2025-11-29T20:59:16.3864320Z Receiving objects:  32% (65/202)
+2025-11-29T20:59:16.3864540Z Receiving objects:  33% (67/202)
+2025-11-29T20:59:16.3864760Z Receiving objects:  34% (69/202)
+2025-11-29T20:59:16.3865421Z Receiving objects:  35% (71/202)
+2025-11-29T20:59:16.3865842Z Receiving objects:  36% (73/202)
+2025-11-29T20:59:16.3866260Z Receiving objects:  37% (75/202)
+2025-11-29T20:59:16.3866695Z Receiving objects:  38% (77/202)
+2025-11-29T20:59:16.3867105Z Receiving objects:  39% (79/202)
+2025-11-29T20:59:16.3867511Z Receiving objects:  40% (81/202)
+2025-11-29T20:59:16.3867929Z Receiving objects:  41% (83/202)
+2025-11-29T20:59:16.3868337Z Receiving objects:  42% (85/202)
+2025-11-29T20:59:16.3868748Z Receiving objects:  43% (87/202)
+2025-11-29T20:59:16.3869144Z Receiving objects:  44% (89/202)
+2025-11-29T20:59:16.3869546Z Receiving objects:  45% (91/202)
+2025-11-29T20:59:16.3869952Z Receiving objects:  46% (93/202)
+2025-11-29T20:59:16.3870676Z Receiving objects:  47% (95/202)
+2025-11-29T20:59:16.3871224Z Receiving objects:  48% (97/202)
+2025-11-29T20:59:16.3871637Z Receiving objects:  49% (99/202)
+2025-11-29T20:59:16.3872056Z Receiving objects:  50% (101/202)
+2025-11-29T20:59:16.3872485Z Receiving objects:  51% (104/202)
+2025-11-29T20:59:16.3872895Z Receiving objects:  52% (106/202)
+2025-11-29T20:59:16.3873522Z Receiving objects:  53% (108/202)
+2025-11-29T20:59:16.3874146Z Receiving objects:  54% (110/202)
+2025-11-29T20:59:16.3874583Z Receiving objects:  55% (112/202)
+2025-11-29T20:59:16.3874988Z Receiving objects:  56% (114/202)
+2025-11-29T20:59:16.3875396Z Receiving objects:  57% (116/202)
+2025-11-29T20:59:16.3875798Z Receiving objects:  58% (118/202)
+2025-11-29T20:59:16.3876202Z Receiving objects:  59% (120/202)
+2025-11-29T20:59:16.3876605Z Receiving objects:  60% (122/202)
+2025-11-29T20:59:16.3876994Z Receiving objects:  61% (124/202)
+2025-11-29T20:59:16.3877421Z Receiving objects:  62% (126/202)
+2025-11-29T20:59:16.3877841Z Receiving objects:  63% (128/202)
+2025-11-29T20:59:16.3878252Z Receiving objects:  64% (130/202)
+2025-11-29T20:59:16.3878737Z Receiving objects:  65% (132/202)
+2025-11-29T20:59:16.3879175Z Receiving objects:  66% (134/202)
+2025-11-29T20:59:16.3879567Z Receiving objects:  67% (136/202)
+2025-11-29T20:59:16.3879951Z Receiving objects:  68% (138/202)
+2025-11-29T20:59:16.3880339Z Receiving objects:  69% (140/202)
+2025-11-29T20:59:16.3880729Z Receiving objects:  70% (142/202)
+2025-11-29T20:59:16.3881153Z Receiving objects:  71% (144/202)
+2025-11-29T20:59:16.3881579Z Receiving objects:  72% (146/202)
+2025-11-29T20:59:16.3881994Z Receiving objects:  73% (148/202)
+2025-11-29T20:59:16.3882448Z Receiving objects:  74% (150/202)
+2025-11-29T20:59:16.3882846Z Receiving objects:  75% (152/202)
+2025-11-29T20:59:16.3883558Z Receiving objects:  76% (154/202)
+2025-11-29T20:59:16.3883991Z Receiving objects:  77% (156/202)
+2025-11-29T20:59:16.3884444Z Receiving objects:  78% (158/202)
+2025-11-29T20:59:16.3884895Z Receiving objects:  79% (160/202)
+2025-11-29T20:59:16.3885322Z Receiving objects:  80% (162/202)
+2025-11-29T20:59:16.3885747Z Receiving objects:  81% (164/202)
+2025-11-29T20:59:16.3886136Z Receiving objects:  82% (166/202)
+2025-11-29T20:59:16.3886540Z Receiving objects:  83% (168/202)
+2025-11-29T20:59:16.3886965Z Receiving objects:  84% (170/202)
+2025-11-29T20:59:16.3887391Z Receiving objects:  85% (172/202)
+2025-11-29T20:59:16.3887794Z Receiving objects:  86% (174/202)
+2025-11-29T20:59:16.3888211Z Receiving objects:  87% (176/202)
+2025-11-29T20:59:16.3888574Z Receiving objects:  88% (178/202)
+2025-11-29T20:59:16.3888956Z Receiving objects:  89% (180/202)
+2025-11-29T20:59:16.3889371Z Receiving objects:  90% (182/202)
+2025-11-29T20:59:16.3889788Z Receiving objects:  91% (184/202)
+2025-11-29T20:59:16.3890286Z Receiving objects:  92% (186/202)
+2025-11-29T20:59:16.3890713Z Receiving objects:  93% (188/202)
+2025-11-29T20:59:16.3891137Z Receiving objects:  94% (190/202)
+2025-11-29T20:59:16.3891561Z Receiving objects:  95% (192/202)
+2025-11-29T20:59:16.3892011Z Receiving objects:  96% (194/202)
+2025-11-29T20:59:16.3892461Z Receiving objects:  97% (196/202)
+2025-11-29T20:59:16.3892890Z Receiving objects:  98% (198/202)
+2025-11-29T20:59:16.3895830Z Receiving objects:  99% (200/202)
+2025-11-29T20:59:16.3896768Z Receiving objects: 100% (202/202)
+2025-11-29T20:59:16.3897322Z Receiving objects: 100% (202/202), 32.20 KiB | 4.60 MiB/s, done.
+2025-11-29T20:59:16.3898939Z From https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-29T20:59:16.3899693Z  * [new ref]         7626b6592385594a4fe89d7eb99665baf60f1319 -> origin/main
+2025-11-29T20:59:16.3901327Z ##[endgroup]
+2025-11-29T20:59:16.3901848Z ##[group]Determining the checkout info
+2025-11-29T20:59:16.3902473Z ##[endgroup]
+2025-11-29T20:59:16.3903003Z ##[group]Setting up sparse checkout
+2025-11-29T20:59:16.3903823Z [command]/usr/bin/git config core.sparseCheckout true
+2025-11-29T20:59:16.3932856Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2025-11-29T20:59:16.3952363Z .git/info/sparse-checkout
+2025-11-29T20:59:16.3963907Z ##[endgroup]
+2025-11-29T20:59:16.3965599Z ##[group]Checking out the ref
+2025-11-29T20:59:16.3968456Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-11-29T20:59:26.8024319Z Updating files:   0% (1/678)
+2025-11-29T20:59:26.8029216Z Updating files:   1% (7/678)
+2025-11-29T20:59:26.8034552Z Updating files:   2% (14/678)
+2025-11-29T20:59:26.8040995Z Updating files:   3% (21/678)
+2025-11-29T20:59:26.8071885Z Updating files:   4% (28/678)
+2025-11-29T20:59:26.8072365Z Updating files:   5% (34/678)
+2025-11-29T20:59:26.8072795Z Updating files:   6% (41/678)
+2025-11-29T20:59:26.8078818Z Updating files:   7% (48/678)
+2025-11-29T20:59:26.8084401Z Updating files:   8% (55/678)
+2025-11-29T20:59:26.8087792Z Updating files:   9% (62/678)
+2025-11-29T20:59:26.8095320Z Updating files:  10% (68/678)
+2025-11-29T20:59:26.8098623Z Updating files:  11% (75/678)
+2025-11-29T20:59:26.8102451Z Updating files:  12% (82/678)
+2025-11-29T20:59:26.8107911Z Updating files:  13% (89/678)
+2025-11-29T20:59:26.8136973Z Updating files:  14% (95/678)
+2025-11-29T20:59:26.8164297Z Updating files:  15% (102/678)
+2025-11-29T20:59:26.8165944Z Updating files:  16% (109/678)
+2025-11-29T20:59:26.8167775Z Updating files:  17% (116/678)
+2025-11-29T20:59:26.8169445Z Updating files:  18% (123/678)
+2025-11-29T20:59:26.8177508Z Updating files:  19% (129/678)
+2025-11-29T20:59:26.8183567Z Updating files:  20% (136/678)
+2025-11-29T20:59:26.8189587Z Updating files:  21% (143/678)
+2025-11-29T20:59:26.8195798Z Updating files:  22% (150/678)
+2025-11-29T20:59:26.8202496Z Updating files:  23% (156/678)
+2025-11-29T20:59:26.8208066Z Updating files:  24% (163/678)
+2025-11-29T20:59:26.8214030Z Updating files:  25% (170/678)
+2025-11-29T20:59:26.8220463Z Updating files:  26% (177/678)
+2025-11-29T20:59:26.8228154Z Updating files:  27% (184/678)
+2025-11-29T20:59:26.8236529Z Updating files:  28% (190/678)
+2025-11-29T20:59:26.8258239Z Updating files:  29% (197/678)
+2025-11-29T20:59:26.8259348Z Updating files:  30% (204/678)
+2025-11-29T20:59:26.8266189Z Updating files:  31% (211/678)
+2025-11-29T20:59:26.8280070Z Updating files:  32% (217/678)
+2025-11-29T20:59:26.8282737Z Updating files:  33% (224/678)
+2025-11-29T20:59:26.8287856Z Updating files:  34% (231/678)
+2025-11-29T20:59:26.8294782Z Updating files:  35% (238/678)
+2025-11-29T20:59:26.8300681Z Updating files:  36% (245/678)
+2025-11-29T20:59:26.8308421Z Updating files:  37% (251/678)
+2025-11-29T20:59:26.8311905Z Updating files:  38% (258/678)
+2025-11-29T20:59:26.8400323Z Updating files:  39% (265/678)
+2025-11-29T20:59:26.8648909Z Updating files:  40% (272/678)
+2025-11-29T20:59:26.8661539Z Updating files:  41% (278/678)
+2025-11-29T20:59:27.0086657Z Updating files:  42% (285/678)
+2025-11-29T20:59:27.0278209Z Updating files:  43% (292/678)
+2025-11-29T20:59:27.0417496Z Updating files:  44% (299/678)
+2025-11-29T20:59:27.0736494Z Updating files:  45% (306/678)
+2025-11-29T20:59:27.1030666Z Updating files:  46% (312/678)
+2025-11-29T20:59:27.1271479Z Updating files:  47% (319/678)
+2025-11-29T20:59:27.1367467Z Updating files:  48% (326/678)
+2025-11-29T20:59:27.1428625Z Updating files:  49% (333/678)
+2025-11-29T20:59:27.1473411Z Updating files:  50% (339/678)
+2025-11-29T20:59:27.1579922Z Updating files:  51% (346/678)
+2025-11-29T20:59:27.1725721Z Updating files:  52% (353/678)
+2025-11-29T20:59:27.1748704Z Updating files:  53% (360/678)
+2025-11-29T20:59:27.1759204Z Updating files:  54% (367/678)
+2025-11-29T20:59:27.2402818Z Updating files:  55% (373/678)
+2025-11-29T20:59:27.3426557Z Updating files:  56% (380/678)
+2025-11-29T20:59:27.3571362Z Updating files:  57% (387/678)
+2025-11-29T20:59:27.3929620Z Updating files:  58% (394/678)
+2025-11-29T20:59:27.4038004Z Updating files:  59% (401/678)
+2025-11-29T20:59:27.4072641Z Updating files:  59% (405/678)
+2025-11-29T20:59:27.4123769Z Updating files:  60% (407/678)
+2025-11-29T20:59:27.4162692Z Updating files:  61% (414/678)
+2025-11-29T20:59:27.4212254Z Updating files:  62% (421/678)
+2025-11-29T20:59:27.4378339Z Updating files:  63% (428/678)
+2025-11-29T20:59:27.4657940Z Updating files:  64% (434/678)
+2025-11-29T20:59:27.4663929Z Updating files:  65% (441/678)
+2025-11-29T20:59:27.4668973Z Updating files:  66% (448/678)
+2025-11-29T20:59:27.4762863Z Updating files:  67% (455/678)
+2025-11-29T20:59:27.4841162Z Updating files:  68% (462/678)
+2025-11-29T20:59:27.4845427Z Updating files:  69% (468/678)
+2025-11-29T20:59:27.4849992Z Updating files:  70% (475/678)
+2025-11-29T20:59:27.4881361Z Updating files:  71% (482/678)
+2025-11-29T20:59:27.4928021Z Updating files:  72% (489/678)
+2025-11-29T20:59:27.5038746Z Updating files:  73% (495/678)
+2025-11-29T20:59:27.5234512Z Updating files:  74% (502/678)
+2025-11-29T20:59:27.5320365Z Updating files:  75% (509/678)
+2025-11-29T20:59:27.5344050Z Updating files:  76% (516/678)
+2025-11-29T20:59:27.5362009Z Updating files:  77% (523/678)
+2025-11-29T20:59:27.5380945Z Updating files:  78% (529/678)
+2025-11-29T20:59:27.5406027Z Updating files:  79% (536/678)
+2025-11-29T20:59:27.5439684Z Updating files:  80% (543/678)
+2025-11-29T20:59:27.5443826Z Updating files:  81% (550/678)
+2025-11-29T20:59:27.5447925Z Updating files:  82% (556/678)
+2025-11-29T20:59:27.5453583Z Updating files:  83% (563/678)
+2025-11-29T20:59:27.5458555Z Updating files:  84% (570/678)
+2025-11-29T20:59:27.5482269Z Updating files:  85% (577/678)
+2025-11-29T20:59:27.5487243Z Updating files:  86% (584/678)
+2025-11-29T20:59:27.5493388Z Updating files:  87% (590/678)
+2025-11-29T20:59:27.5500270Z Updating files:  88% (597/678)
+2025-11-29T20:59:27.5503475Z Updating files:  89% (604/678)
+2025-11-29T20:59:27.5506239Z Updating files:  90% (611/678)
+2025-11-29T20:59:27.5509692Z Updating files:  91% (617/678)
+2025-11-29T20:59:27.5513919Z Updating files:  92% (624/678)
+2025-11-29T20:59:27.5517679Z Updating files:  93% (631/678)
+2025-11-29T20:59:27.5521407Z Updating files:  94% (638/678)
+2025-11-29T20:59:27.5524126Z Updating files:  95% (645/678)
+2025-11-29T20:59:27.6274681Z Updating files:  96% (651/678)
+2025-11-29T20:59:27.6379107Z Updating files:  97% (658/678)
+2025-11-29T20:59:27.6383807Z Updating files:  98% (665/678)
+2025-11-29T20:59:27.6388031Z Updating files:  99% (672/678)
+2025-11-29T20:59:27.6389263Z Updating files: 100% (678/678)
+2025-11-29T20:59:27.6390899Z Updating files: 100% (678/678), done.
+2025-11-29T20:59:27.6412392Z Switched to a new branch 'main'
+2025-11-29T20:59:27.6416449Z branch 'main' set up to track 'origin/main'.
+2025-11-29T20:59:27.6513943Z ##[endgroup]
+2025-11-29T20:59:27.6562960Z [command]/usr/bin/git log -1 --format='%H'
+2025-11-29T20:59:27.6577279Z '7626b6592385594a4fe89d7eb99665baf60f1319'
+2025-11-29T20:59:27.6785937Z ##[group]Run actions/setup-node@v4
+2025-11-29T20:59:27.6786339Z with:
+2025-11-29T20:59:27.6786526Z   node-version: 20
+2025-11-29T20:59:27.6786719Z   cache: npm
+2025-11-29T20:59:27.6786894Z   always-auth: false
+2025-11-29T20:59:27.6787096Z   check-latest: false
+2025-11-29T20:59:27.6787418Z   token: ***
+2025-11-29T20:59:27.6787597Z env:
+2025-11-29T20:59:27.6788272Z   DATABASE_URL: ***
+2025-11-29T20:59:27.6788572Z   NEXTAUTH_URL: ***
+2025-11-29T20:59:27.6788866Z   NEXTAUTH_SECRET: ***
+2025-11-29T20:59:27.6789073Z   AUTH_TRUST_HOST: true
+2025-11-29T20:59:27.6789263Z ##[endgroup]
+2025-11-29T20:59:27.8574557Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-11-29T20:59:27.8579649Z ##[group]Environment details
+2025-11-29T20:59:28.2912768Z node: v20.19.5
+2025-11-29T20:59:28.2924055Z npm: 10.8.2
+2025-11-29T20:59:28.2924613Z yarn: 1.22.22
+2025-11-29T20:59:28.2925648Z ##[endgroup]
+2025-11-29T20:59:28.2960428Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
+2025-11-29T20:59:28.4637981Z /home/runner/.npm
+2025-11-29T20:59:28.6214538Z Cache hit for: node-cache-Linux-x64-npm-6574f81d381dd57c6cba17200816d822ae309cedcb08a1b37f655a2f539a3200
+2025-11-29T20:59:29.6970731Z Received 167772160 of 257897609 (65.1%), 157.8 MBs/sec
+2025-11-29T20:59:30.1789255Z Received 257897609 of 257897609 (100.0%), 163.9 MBs/sec
+2025-11-29T20:59:30.1791278Z Cache Size: ~246 MB (257897609 B)
+2025-11-29T20:59:30.1855914Z [command]/usr/bin/tar -xf /home/runner/work/_temp/76981811-e672-4894-a565-068aab1e2350/cache.tzst -P -C /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site --use-compress-program unzstd
+2025-11-29T20:59:31.2970586Z Cache restored successfully
+2025-11-29T20:59:31.3472775Z Cache restored from key: node-cache-Linux-x64-npm-6574f81d381dd57c6cba17200816d822ae309cedcb08a1b37f655a2f539a3200
+2025-11-29T20:59:31.3669713Z ##[group]Run npm ci
+2025-11-29T20:59:31.3669992Z [36;1mnpm ci[0m
+2025-11-29T20:59:31.3715004Z shell: /usr/bin/bash -e {0}
+2025-11-29T20:59:31.3715262Z env:
+2025-11-29T20:59:31.3716086Z   DATABASE_URL: ***
+2025-11-29T20:59:31.3716415Z   NEXTAUTH_URL: ***
+2025-11-29T20:59:31.3716712Z   NEXTAUTH_SECRET: ***
+2025-11-29T20:59:31.3716919Z   AUTH_TRUST_HOST: true
+2025-11-29T20:59:31.3717122Z ##[endgroup]
+2025-11-29T20:59:40.2329337Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-11-29T20:59:40.6577208Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2025-11-29T20:59:40.6889414Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-11-29T20:59:40.8992496Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2025-11-29T20:59:40.9063605Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-11-29T20:59:45.5524809Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2025-11-29T20:59:50.4205047Z npm warn deprecated fluent-ffmpeg@2.1.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2025-11-29T21:00:00.9962886Z 
+2025-11-29T21:00:00.9965468Z > vitrine-de-craques-web-site@0.1.0 postinstall
+2025-11-29T21:00:00.9970910Z > npx prisma generate
+2025-11-29T21:00:00.9971170Z 
+2025-11-29T21:00:02.3675286Z Prisma schema loaded from prisma/schema.prisma
+2025-11-29T21:00:03.3116445Z ┌─────────────────────────────────────────────────────────┐
+2025-11-29T21:00:03.3117401Z │  Update available 6.16.2 -> 7.0.1                       │
+2025-11-29T21:00:03.3118204Z │                                                         │
+2025-11-29T21:00:03.3119140Z │  This is a major update - please follow the guide at    │
+2025-11-29T21:00:03.3119981Z │  https://pris.ly/d/major-version-upgrade                │
+2025-11-29T21:00:03.3120782Z │                                                         │
+2025-11-29T21:00:03.3121511Z │  Run the following to update                            │
+2025-11-29T21:00:03.3122325Z │    npm i --save-dev prisma@latest                       │
+2025-11-29T21:00:03.3123295Z │    npm i @prisma/client@latest                          │
+2025-11-29T21:00:03.3124146Z └─────────────────────────────────────────────────────────┘
+2025-11-29T21:00:03.3129802Z 
+2025-11-29T21:00:03.3134236Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 426ms
+2025-11-29T21:00:03.3138477Z 
+2025-11-29T21:00:03.3142732Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-11-29T21:00:03.3147421Z 
+2025-11-29T21:00:03.3152277Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-11-29T21:00:03.3157305Z 
+2025-11-29T21:00:03.3462697Z 
+2025-11-29T21:00:03.3464945Z > vitrine-de-craques-web-site@0.1.0 prepare
+2025-11-29T21:00:03.3465835Z > husky install
+2025-11-29T21:00:03.3471131Z 
+2025-11-29T21:00:03.4065298Z husky - Git hooks installed
+2025-11-29T21:00:03.4258522Z 
+2025-11-29T21:00:03.4259434Z added 873 packages, and audited 874 packages in 32s
+2025-11-29T21:00:03.4260113Z 
+2025-11-29T21:00:03.4261382Z 195 packages are looking for funding
+2025-11-29T21:00:03.4262338Z   run `npm fund` for details
+2025-11-29T21:00:03.4852572Z 
+2025-11-29T21:00:03.4853837Z 6 vulnerabilities (3 low, 3 high)
+2025-11-29T21:00:03.4854446Z 
+2025-11-29T21:00:03.4855164Z To address issues that do not require attention, run:
+2025-11-29T21:00:03.4856721Z   npm audit fix
+2025-11-29T21:00:03.4856967Z 
+2025-11-29T21:00:03.4857400Z To address all issues (including breaking changes), run:
+2025-11-29T21:00:03.4858029Z   npm audit fix --force
+2025-11-29T21:00:03.4858295Z 
+2025-11-29T21:00:03.4858895Z Run `npm audit` for details.
+2025-11-29T21:00:03.5987030Z ##[group]Run npm run build
+2025-11-29T21:00:03.5987474Z [36;1mnpm run build[0m
+2025-11-29T21:00:03.6066726Z shell: /usr/bin/bash -e {0}
+2025-11-29T21:00:03.6066980Z env:
+2025-11-29T21:00:03.6067773Z   DATABASE_URL: ***
+2025-11-29T21:00:03.6068113Z   NEXTAUTH_URL: ***
+2025-11-29T21:00:03.6068432Z   NEXTAUTH_SECRET: ***
+2025-11-29T21:00:03.6068643Z   AUTH_TRUST_HOST: true
+2025-11-29T21:00:03.6068857Z ##[endgroup]
+2025-11-29T21:00:03.7222951Z 
+2025-11-29T21:00:03.7225614Z > vitrine-de-craques-web-site@0.1.0 build
+2025-11-29T21:00:03.7231743Z > npx prisma generate && next build
+2025-11-29T21:00:03.7232100Z 
+2025-11-29T21:00:05.0859987Z Prisma schema loaded from prisma/schema.prisma
+2025-11-29T21:00:05.9865152Z 
+2025-11-29T21:00:05.9867415Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 391ms
+2025-11-29T21:00:05.9871795Z 
+2025-11-29T21:00:05.9873451Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-11-29T21:00:05.9874360Z 
+2025-11-29T21:00:05.9875390Z Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+2025-11-29T21:00:05.9876739Z 
+2025-11-29T21:00:06.5286401Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-11-29T21:00:06.5362663Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-11-29T21:00:06.5366632Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-11-29T21:00:06.5370531Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-11-29T21:00:06.5374743Z https://nextjs.org/telemetry
+2025-11-29T21:00:06.5379867Z 
+2025-11-29T21:00:06.6008028Z   ▲ Next.js 14.2.33
+2025-11-29T21:00:06.6009297Z 
+2025-11-29T21:00:06.6719447Z    Creating an optimized production build ...
+2025-11-29T21:00:47.3937532Z  ⚠ Compiled with warnings
+2025-11-29T21:00:47.3941300Z 
+2025-11-29T21:00:47.3945060Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-29T21:00:47.3949481Z Critical dependency: the request of a dependency is an expression
+2025-11-29T21:00:47.3960020Z 
+2025-11-29T21:00:47.3962895Z Import trace for requested module:
+2025-11-29T21:00:47.3963954Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-11-29T21:00:47.3964756Z ./app/api/videos/route.ts
+2025-11-29T21:00:47.3965254Z 
+2025-11-29T21:00:47.3986886Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-29T21:00:47.3987715Z Critical dependency: the request of a dependency is an expression
+2025-11-29T21:00:47.3988165Z 
+2025-11-29T21:00:47.3988412Z Import trace for requested module:
+2025-11-29T21:00:47.3988998Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-11-29T21:00:47.3989986Z ./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js
+2025-11-29T21:00:47.3990579Z ./node_modules/fluent-ffmpeg/index.js
+2025-11-29T21:00:47.3991040Z ./app/api/videos/route.ts
+2025-11-29T21:00:47.3991281Z 
+2025-11-29T21:01:02.3639549Z  ✓ Compiled successfully
+2025-11-29T21:01:02.3647243Z    Linting and checking validity of types ...
+2025-11-29T21:01:21.5959785Z    Collecting page data ...
+2025-11-29T21:01:22.1860587Z [Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente
+2025-11-29T21:01:22.5720081Z FFmpeg installer package not available. Falling back to system ffmpeg binary. O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.
+2025-11-29T21:01:24.8234428Z    Generating static pages (0/58) ...
+2025-11-29T21:01:25.9646613Z    Generating static pages (14/58) 
+2025-11-29T21:01:28.5717393Z    Generating static pages (28/58) 
+2025-11-29T21:01:28.9551548Z    Generating static pages (43/58) 
+2025-11-29T21:01:29.5225282Z  ✓ Generating static pages (58/58)
+2025-11-29T21:01:30.5007046Z    Finalizing page optimization ...
+2025-11-29T21:01:30.5010333Z    Collecting build traces ...
+2025-11-29T21:01:39.9113430Z 
+2025-11-29T21:01:39.9209948Z Route (app)                                      Size     First Load JS
+2025-11-29T21:01:39.9211520Z ┌ ƒ /                                            1.83 kB         110 kB
+2025-11-29T21:01:39.9215266Z ├ ƒ /_not-found                                  876 B          88.2 kB
+2025-11-29T21:01:39.9216132Z ├ ƒ /administrator                               155 B          87.5 kB
+2025-11-29T21:01:39.9220614Z ├ ƒ /administrator/clubes                        6.46 kB         117 kB
+2025-11-29T21:01:39.9221698Z ├ ƒ /administrator/users                         5.68 kB         111 kB
+2025-11-29T21:01:39.9223498Z ├ ƒ /administrator/videos                        5.24 kB         111 kB
+2025-11-29T21:01:39.9224430Z ├ ƒ /agentes                                     2.7 kB         98.7 kB
+2025-11-29T21:01:39.9225349Z ├ ƒ /agentes/[id]                                1.84 kB         117 kB
+2025-11-29T21:01:39.9226240Z ├ ƒ /api/admin/clubes                            0 B                0 B
+2025-11-29T21:01:39.9227122Z ├ ƒ /api/admin/clubes/[id]                       0 B                0 B
+2025-11-29T21:01:39.9227692Z ├ ƒ /api/admin/summary                           0 B                0 B
+2025-11-29T21:01:39.9228217Z ├ ƒ /api/admin/users                             0 B                0 B
+2025-11-29T21:01:39.9228737Z ├ ƒ /api/admin/users/[userId]/block              0 B                0 B
+2025-11-29T21:01:39.9229241Z ├ ƒ /api/admin/videos                            0 B                0 B
+2025-11-29T21:01:39.9229761Z ├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B
+2025-11-29T21:01:39.9230299Z ├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B
+2025-11-29T21:01:39.9230789Z ├ ƒ /api/agentes                                 0 B                0 B
+2025-11-29T21:01:39.9231279Z ├ ƒ /api/agentes/[id]                            0 B                0 B
+2025-11-29T21:01:39.9231754Z ├ ƒ /api/atletas                                 0 B                0 B
+2025-11-29T21:01:39.9232222Z ├ ƒ /api/atletas/[id]                            0 B                0 B
+2025-11-29T21:01:39.9232700Z ├ ƒ /api/auth/[...nextauth]                      0 B                0 B
+2025-11-29T21:01:39.9233496Z ├ ƒ /api/blocks/[targetUserId]                   0 B                0 B
+2025-11-29T21:01:39.9234196Z ├ ƒ /api/clubes                                  0 B                0 B
+2025-11-29T21:01:39.9234684Z ├ ƒ /api/clubes/[slug]                           0 B                0 B
+2025-11-29T21:01:39.9235180Z ├ ƒ /api/confederacoes                           0 B                0 B
+2025-11-29T21:01:39.9235683Z ├ ƒ /api/confederacoes/[slug]                    0 B                0 B
+2025-11-29T21:01:39.9236167Z ├ ƒ /api/db-check                                0 B                0 B
+2025-11-29T21:01:39.9236921Z ├ ƒ /api/env                                     0 B                0 B
+2025-11-29T21:01:39.9237415Z ├ ƒ /api/errors                                  0 B                0 B
+2025-11-29T21:01:39.9237921Z ├ ƒ /api/follows/[targetUserId]                  0 B                0 B
+2025-11-29T21:01:39.9238411Z ├ ƒ /api/games                                   0 B                0 B
+2025-11-29T21:01:39.9238884Z ├ ƒ /api/games/[slug]                            0 B                0 B
+2025-11-29T21:01:39.9239376Z ├ ƒ /api/games/[slug]/comments                   0 B                0 B
+2025-11-29T21:01:39.9239881Z ├ ƒ /api/games/[slug]/engagement                 0 B                0 B
+2025-11-29T21:01:39.9240358Z ├ ƒ /api/health                                  0 B                0 B
+2025-11-29T21:01:39.9240832Z ├ ƒ /api/messages                                0 B                0 B
+2025-11-29T21:01:39.9241330Z ├ ƒ /api/messages/unread-count                   0 B                0 B
+2025-11-29T21:01:39.9241835Z ├ ƒ /api/news                                    0 B                0 B
+2025-11-29T21:01:39.9242288Z ├ ƒ /api/news/[id]                               0 B                0 B
+2025-11-29T21:01:39.9242972Z ├ ƒ /api/news/cover                              0 B                0 B
+2025-11-29T21:01:39.9246268Z ├ ƒ /api/noticias                                0 B                0 B
+2025-11-29T21:01:39.9247165Z ├ ƒ /api/noticias/[slug]                         0 B                0 B
+2025-11-29T21:01:39.9248090Z ├ ƒ /api/noticias/[slug]/comments                0 B                0 B
+2025-11-29T21:01:39.9248997Z ├ ƒ /api/noticias/[slug]/engagement              0 B                0 B
+2025-11-29T21:01:39.9249902Z ├ ƒ /api/pg-check                                0 B                0 B
+2025-11-29T21:01:39.9250717Z ├ ƒ /api/profile                                 0 B                0 B
+2025-11-29T21:01:39.9251555Z ├ ƒ /api/profile/avatar                          0 B                0 B
+2025-11-29T21:01:39.9252484Z ├ ƒ /api/profile/personal-info                   0 B                0 B
+2025-11-29T21:01:39.9253598Z ├ ƒ /api/register                                0 B                0 B
+2025-11-29T21:01:39.9254410Z ├ ƒ /api/register/atleta-18                      0 B                0 B
+2025-11-29T21:01:39.9255267Z ├ ƒ /api/register/clube                          0 B                0 B
+2025-11-29T21:01:39.9256128Z ├ ƒ /api/register/de-agentes-licenciados         0 B                0 B
+2025-11-29T21:01:39.9257084Z ├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B
+2025-11-29T21:01:39.9257950Z ├ ƒ /api/register/responsavel                    0 B                0 B
+2025-11-29T21:01:39.9258862Z ├ ƒ /api/register/responsavel/documents          0 B                0 B
+2025-11-29T21:01:39.9259712Z ├ ƒ /api/register/torcedor                       0 B                0 B
+2025-11-29T21:01:39.9260538Z ├ ○ /api/times                                   0 B                0 B
+2025-11-29T21:01:39.9261656Z ├ ƒ /api/videos                                  0 B                0 B
+2025-11-29T21:01:39.9262402Z ├ ƒ /api/videos/[id]                             0 B                0 B
+2025-11-29T21:01:39.9263367Z ├ ƒ /api/videos/[id]/appeal                      0 B                0 B
+2025-11-29T21:01:39.9264249Z ├ ƒ /api/videos/[id]/comments                    0 B                0 B
+2025-11-29T21:01:39.9265149Z ├ ƒ /api/videos/proxy                            0 B                0 B
+2025-11-29T21:01:39.9266022Z ├ ƒ /arquibancada                                4.49 kB        98.6 kB
+2025-11-29T21:01:39.9266850Z ├ ƒ /atletas                                     4.5 kB          107 kB
+2025-11-29T21:01:39.9267659Z ├ ƒ /atletas/[id]                                5.24 kB         138 kB
+2025-11-29T21:01:39.9268465Z ├ ƒ /cadastro                                    2.21 kB         129 kB
+2025-11-29T21:01:39.9269292Z ├ ƒ /cadastro/[slug]                             2.92 kB         121 kB
+2025-11-29T21:01:39.9270414Z ├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB
+2025-11-29T21:01:39.9271306Z ├ ƒ /cadastro/clube                              4.04 kB         137 kB
+2025-11-29T21:01:39.9272233Z ├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB
+2025-11-29T21:01:39.9273369Z ├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB
+2025-11-29T21:01:39.9274345Z ├ ƒ /cadastro/responsavel                        4.23 kB         137 kB
+2025-11-29T21:01:39.9275292Z ├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB
+2025-11-29T21:01:39.9276238Z ├ ƒ /cadastro/sucesso                            155 B          87.5 kB
+2025-11-29T21:01:39.9277115Z ├ ƒ /cadastro/torcedor                           5.13 kB         147 kB
+2025-11-29T21:01:39.9277916Z ├ ƒ /clubes                                      3.35 kB         111 kB
+2025-11-29T21:01:39.9278699Z ├ ƒ /clubes/[slug]                               807 B           109 kB
+2025-11-29T21:01:39.9279489Z ├ ƒ /confederacoes                               807 B           109 kB
+2025-11-29T21:01:39.9280333Z ├ ƒ /confederacoes/[slug]                        807 B           109 kB
+2025-11-29T21:01:39.9281300Z ├ ƒ /feed                                        12.2 kB         145 kB
+2025-11-29T21:01:39.9282050Z ├ ƒ /games                                       197 B           121 kB
+2025-11-29T21:01:39.9282814Z ├ ƒ /games/[slug]                                211 B           128 kB
+2025-11-29T21:01:39.9283796Z ├ ○ /icon                                        0 B                0 B
+2025-11-29T21:01:39.9284537Z ├ ƒ /login                                       3.73 kB         145 kB
+2025-11-29T21:01:39.9285303Z ├ ƒ /noticias                                    203 B           121 kB
+2025-11-29T21:01:39.9286083Z ├ ƒ /noticias/[slug]                             614 B           129 kB
+2025-11-29T21:01:39.9286861Z ├ ƒ /perfil                                      27.3 kB         171 kB
+2025-11-29T21:01:39.9287625Z ├ ƒ /perfis/[id]                                 1.84 kB         117 kB
+2025-11-29T21:01:39.9288406Z ├ ƒ /player/[id]                                 9.15 kB         127 kB
+2025-11-29T21:01:39.9289208Z ├ ƒ /privacidade                                 188 B          96.2 kB
+2025-11-29T21:01:39.9290092Z ├ ƒ /registrar-escolha-perfil                    188 B          96.2 kB
+2025-11-29T21:01:39.9290918Z ├ ƒ /sobre                                       188 B          96.2 kB
+2025-11-29T21:01:39.9291678Z ├ ƒ /torcida                                     155 B          87.5 kB
+2025-11-29T21:01:39.9292444Z └ ƒ /upload                                      10.4 kB         119 kB
+2025-11-29T21:01:39.9293432Z + First Load JS shared by all                    87.3 kB
+2025-11-29T21:01:39.9294186Z   ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB
+2025-11-29T21:01:39.9294901Z   ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB
+2025-11-29T21:01:39.9295592Z   └ other shared chunks (total)                  1.97 kB
+2025-11-29T21:01:39.9295966Z 
+2025-11-29T21:01:39.9295976Z 
+2025-11-29T21:01:39.9296374Z ƒ Middleware                                     48.3 kB
+2025-11-29T21:01:39.9296722Z 
+2025-11-29T21:01:39.9297084Z ○  (Static)   prerendered as static content
+2025-11-29T21:01:39.9297727Z ƒ  (Dynamic)  server-rendered on demand
+2025-11-29T21:01:39.9298040Z 
+2025-11-29T21:01:39.9672369Z 
+2025-11-29T21:01:39.9674393Z > vitrine-de-craques-web-site@0.1.0 postbuild
+2025-11-29T21:01:39.9675137Z > node scripts/copy-prisma-artifacts.js
+2025-11-29T21:01:39.9675496Z 
+2025-11-29T21:01:40.0734968Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/.prisma/client
+2025-11-29T21:01:40.0743467Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/.prisma/client
+2025-11-29T21:01:40.0746822Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/.prisma/client
+2025-11-29T21:01:40.3946241Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/@prisma/client
+2025-11-29T21:01:40.3949522Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/@prisma/client
+2025-11-29T21:01:40.3951681Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/@prisma/client
+2025-11-29T21:01:40.4066818Z ##[group]Run node -v
+2025-11-29T21:01:40.4067082Z [36;1mnode -v[0m
+2025-11-29T21:01:40.4067289Z [36;1mnpx prisma -v[0m
+2025-11-29T21:01:40.4101077Z shell: /usr/bin/bash -e {0}
+2025-11-29T21:01:40.4101316Z env:
+2025-11-29T21:01:40.4102194Z   DATABASE_URL: ***
+2025-11-29T21:01:40.4102537Z   NEXTAUTH_URL: ***
+2025-11-29T21:01:40.4102843Z   NEXTAUTH_SECRET: ***
+2025-11-29T21:01:40.4103294Z   AUTH_TRUST_HOST: true
+2025-11-29T21:01:40.4103584Z ##[endgroup]
+2025-11-29T21:01:40.4182643Z v20.19.5
+2025-11-29T21:01:42.2027967Z Prisma schema loaded from prisma/schema.prisma
+2025-11-29T21:01:42.2066011Z prisma                  : 6.16.2
+2025-11-29T21:01:42.2067112Z @prisma/client          : 6.16.2
+2025-11-29T21:01:42.2068106Z Computed binaryTarget   : debian-openssl-3.0.x
+2025-11-29T21:01:42.2069971Z Operating System        : linux
+2025-11-29T21:01:42.2071594Z Architecture            : x64
+2025-11-29T21:01:42.2072093Z Node.js                 : v20.19.5
+2025-11-29T21:01:42.2072696Z TypeScript              : 5.9.3
+2025-11-29T21:01:42.2074398Z Query Engine (Node-API) : libquery-engine 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/libquery_engine-debian-openssl-3.0.x.so.node)
+2025-11-29T21:01:42.2076099Z PSL                     : @prisma/prisma-schema-wasm 6.16.0-7.1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+2025-11-29T21:01:42.2079015Z Schema Engine           : schema-engine-cli 1c57fdcd7e44b29b9313256c76699e91c3ac3c43 (at node_modules/@prisma/engines/schema-engine-debian-openssl-3.0.x)
+2025-11-29T21:01:42.2080370Z Default Engines Hash    : 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+2025-11-29T21:01:42.2080990Z Studio                  : 0.511.0
+2025-11-29T21:01:42.2353786Z ##[group]Run echo "SWA_RUNTIME_LOGGING__LOGGING__LOG_LEVEL=debug" >> $GITHUB_ENV
+2025-11-29T21:01:42.2354720Z [36;1mecho "SWA_RUNTIME_LOGGING__LOGGING__LOG_LEVEL=debug" >> $GITHUB_ENV[0m
+2025-11-29T21:01:42.2355197Z [36;1mecho "SWA_RUNTIME_LOGGING__APP__DEBUG=true" >> $GITHUB_ENV[0m
+2025-11-29T21:01:42.2355607Z [36;1mecho "SWA_RUNTIME_LOGGING__HOSTING__DEBUG=true" >> $GITHUB_ENV[0m
+2025-11-29T21:01:42.2388942Z shell: /usr/bin/bash -e {0}
+2025-11-29T21:01:42.2389177Z env:
+2025-11-29T21:01:42.2389934Z   DATABASE_URL: ***
+2025-11-29T21:01:42.2390258Z   NEXTAUTH_URL: ***
+2025-11-29T21:01:42.2390594Z   NEXTAUTH_SECRET: ***
+2025-11-29T21:01:42.2390802Z   AUTH_TRUST_HOST: true
+2025-11-29T21:01:42.2391023Z ##[endgroup]
+2025-11-29T21:01:42.2496241Z ##[group]Run Azure/static-web-apps-deploy@v1
+2025-11-29T21:01:42.2496540Z with:
+2025-11-29T21:01:42.2497177Z   azure_static_web_apps_api_token: ***
+2025-11-29T21:01:42.2497536Z   repo_token: ***
+2025-11-29T21:01:42.2497737Z   action: upload
+2025-11-29T21:01:42.2497932Z   app_location: /
+2025-11-29T21:01:42.2498121Z env:
+2025-11-29T21:01:42.2498740Z   DATABASE_URL: ***
+2025-11-29T21:01:42.2499053Z   NEXTAUTH_URL: ***
+2025-11-29T21:01:42.2499346Z   NEXTAUTH_SECRET: ***
+2025-11-29T21:01:42.2499550Z   AUTH_TRUST_HOST: true
+2025-11-29T21:01:42.2499786Z   SWA_RUNTIME_LOGGING__LOGGING__LOG_LEVEL: debug
+2025-11-29T21:01:42.2500072Z   SWA_RUNTIME_LOGGING__APP__DEBUG: true
+2025-11-29T21:01:42.2500342Z   SWA_RUNTIME_LOGGING__HOSTING__DEBUG: true
+2025-11-29T21:01:42.2500592Z ##[endgroup]
+2025-11-29T21:01:42.2595105Z ##[command]/usr/bin/docker run --name aa2923d7078f56560458db1262ab0dc8ee991_6708c1 --label 1aa292 --workdir /github/workspace --rm -e "DATABASE_URL" -e "NEXTAUTH_URL" -e "NEXTAUTH_SECRET" -e "AUTH_TRUST_HOST" -e "SWA_RUNTIME_LOGGING__LOGGING__LOG_LEVEL" -e "SWA_RUNTIME_LOGGING__APP__DEBUG" -e "SWA_RUNTIME_LOGGING__HOSTING__DEBUG" -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_SKIP_API_BUILD" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp":"/github/runner_temp" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site":"/github/workspace" 1aa292:3d7078f56560458db1262ab0dc8ee991
+2025-11-29T21:01:42.9159816Z DeploymentId: f7c34ffc-4ecc-4bd7-ac87-f4d34a82f367
+2025-11-29T21:01:42.9162460Z 
+2025-11-29T21:01:43.0598812Z [37mTry to validate location at: '/github/workspace'.[0m
+2025-11-29T21:01:43.0611502Z [37mApp Directory Location: '/' was found.[0m
+2025-11-29T21:01:43.0614330Z [37mTry to validate location at: '/github/workspace/swa-db-connections'.[0m
+2025-11-29T21:01:43.0616573Z [37mLooking for event info[0m
+2025-11-29T21:01:43.6401929Z [37mStarting to build app with Oryx[0m
+2025-11-29T21:01:43.6411514Z [33mAzure Static Web Apps utilizes Oryx to build both static applications and Azure Functions. You can find more details on Oryx here: https://github.com/microsoft/Oryx[0m
+2025-11-29T21:01:43.6413008Z [37m---Oryx build logs---[0m
+2025-11-29T21:01:43.6413922Z [37m[0m
+2025-11-29T21:01:43.6414273Z [37m[0m
+2025-11-29T21:01:43.9922252Z [37mOperation performed by Microsoft Oryx, https://github.com/Microsoft/Oryx[0m
+2025-11-29T21:01:43.9923867Z [37mYou can report issues at https://github.com/Microsoft/Oryx/issues[0m
+2025-11-29T21:01:43.9924604Z [37m[0m
+2025-11-29T21:01:43.9926266Z [37mOryx Version: 0.2.20250107.1+ef3fb2f9c490a4fbb1f76b5746cd4ba2ff0409f4, Commit: ef3fb2f9c490a4fbb1f76b5746cd4ba2ff0409f4, ReleaseTagName: 20250107.1[0m
+2025-11-29T21:01:43.9927543Z [37m[0m
+2025-11-29T21:01:43.9928110Z [37mBuild Operation ID: 372906ed19ebc2fc[0m
+2025-11-29T21:01:43.9928778Z [37mOS Type           : bullseye[0m
+2025-11-29T21:01:43.9929510Z [37mImage Type        : githubactions[0m
+2025-11-29T21:01:43.9930055Z [37m[0m
+2025-11-29T21:01:44.0041344Z [37mDetecting platforms...[0m
+2025-11-29T21:01:46.3132068Z [37mDetected following platforms:[0m
+2025-11-29T21:01:46.3132828Z [37m  nodejs: 20.19.5[0m
+2025-11-29T21:01:46.3133615Z [37m  python: 3.11.14[0m
+2025-11-29T21:01:46.3134110Z [37m  php: 8.0.30[0m
+2025-11-29T21:01:46.3174893Z [37mVersion '20.19.5' of platform 'nodejs' is not installed. Generating script to install it...[0m
+2025-11-29T21:01:46.3184003Z [37mVersion '3.11.14' of platform 'python' is not installed. Generating script to install it...[0m
+2025-11-29T21:01:46.3200039Z [37mVersion '8.0.30' of platform 'php' is not installed. Generating script to install it...[0m
+2025-11-29T21:01:46.3645572Z [37mDetected the following frameworks: Typescript,Next.js[0m
+2025-11-29T21:01:46.4458931Z [37m[0m
+2025-11-29T21:01:46.4564860Z [37m[0m
+2025-11-29T21:01:46.4580835Z [37mSource directory     : /github/workspace[0m
+2025-11-29T21:01:46.4582691Z [37mDestination directory: /bin/staticsites/f7c34ffc-4ecc-4bd7-ac87-f4d34a82f367-swa-oryx/app[0m
+2025-11-29T21:01:46.4583903Z [37m[0m
+2025-11-29T21:01:46.4604530Z [37m[0m
+2025-11-29T21:01:46.4611100Z [37mDownloading and extracting 'nodejs' version '20.19.5' to '/tmp/oryx/platforms/nodejs/20.19.5'...[0m
+2025-11-29T21:01:46.4668234Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-29T21:01:46.8832390Z [37mDownloaded in 0 sec(s).[0m
+2025-11-29T21:01:46.8833490Z [37mVerifying checksum...[0m
+2025-11-29T21:01:46.8919226Z [37mExtracting contents...[0m
+2025-11-29T21:01:48.3315979Z [37mperforming sha512 checksum for: nodejs...[0m
+2025-11-29T21:01:48.4764505Z [37mDone in 2 sec(s).[0m
+2025-11-29T21:01:48.4765481Z [37m[0m
+2025-11-29T21:01:48.4799950Z [37m[0m
+2025-11-29T21:01:48.4808001Z [37mDownloading and extracting 'python' version '3.11.14' to '/tmp/oryx/platforms/python/3.11.14'...[0m
+2025-11-29T21:01:48.4838161Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-29T21:01:49.0441374Z [37mDownloaded in 1 sec(s).[0m
+2025-11-29T21:01:49.0442030Z [37mVerifying checksum...[0m
+2025-11-29T21:01:49.0532495Z [37mExtracting contents...[0m
+2025-11-29T21:01:51.7593980Z [37mperforming sha512 checksum for: python...[0m
+2025-11-29T21:01:52.1236755Z [37mDone in 4 sec(s).[0m
+2025-11-29T21:01:52.1237361Z [37m[0m
+2025-11-29T21:01:52.1304418Z [37mimage detector file exists, platform is python..[0m
+2025-11-29T21:01:52.1310416Z [37mOS detector file exists, OS is bullseye..[0m
+2025-11-29T21:01:52.1331006Z [37m[0m
+2025-11-29T21:01:52.1332182Z [37mDownloading and extracting 'php' version '8.0.30' to '/tmp/oryx/platforms/php/8.0.30'...[0m
+2025-11-29T21:01:52.1359379Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-29T21:01:52.3340125Z [37mDownloaded in 0 sec(s).[0m
+2025-11-29T21:01:52.3358426Z [37mVerifying checksum...[0m
+2025-11-29T21:01:52.3438748Z [37mExtracting contents...[0m
+2025-11-29T21:01:52.7216582Z [37mperforming sha512 checksum for: php...[0m
+2025-11-29T21:01:52.7632561Z [37mDone in 0 sec(s).[0m
+2025-11-29T21:01:52.7633733Z [37m[0m
+2025-11-29T21:01:52.7674893Z [37m[0m
+2025-11-29T21:01:52.7678181Z [37mDownloading and extracting 'php-composer' version '2.6.2' to '/tmp/oryx/platforms/php-composer/2.6.2'...[0m
+2025-11-29T21:01:52.7715329Z [37mDetected image debian flavor: bullseye.[0m
+2025-11-29T21:01:52.8331641Z [37mDownloaded in 0 sec(s).[0m
+2025-11-29T21:01:52.8383671Z [37mVerifying checksum...[0m
+2025-11-29T21:01:52.8385147Z [37mExtracting contents...[0m
+2025-11-29T21:01:52.8561204Z [37mperforming sha512 checksum for: php-composer...[0m
+2025-11-29T21:01:52.8608892Z [37mDone in 0 sec(s).[0m
+2025-11-29T21:01:52.8616494Z [37m[0m
+2025-11-29T21:01:52.9640671Z [37mRemoving existing manifest file[0m
+2025-11-29T21:01:52.9662616Z [37mCreating directory for command manifest file if it does not exist[0m
+2025-11-29T21:01:52.9716277Z [37mCreating a manifest file...[0m
+2025-11-29T21:01:52.9717709Z [37mNode Build Command Manifest file created.[0m
+2025-11-29T21:01:52.9719691Z [37m[0m
+2025-11-29T21:01:52.9720506Z [37mFound npm version spec to follow in package.json: '>=9'[0m
+2025-11-29T21:01:52.9721686Z [37mUpdating version of npm installed to meet the above version spec.[0m
+2025-11-29T21:01:56.3664613Z [37m[0m
+2025-11-29T21:01:56.3665831Z [37mremoved 45 packages, and changed 107 packages in 3s[0m
+2025-11-29T21:01:56.3667935Z [37m[0m
+2025-11-29T21:01:56.3668570Z [37m16 packages are looking for funding[0m
+2025-11-29T21:01:56.3669307Z [37m  run `npm fund` for details[0m
+2025-11-29T21:01:56.3836593Z [37m[0m
+2025-11-29T21:01:56.3853721Z [37m[0m
+2025-11-29T21:01:56.3854469Z [37mUsing Node version:[0m
+2025-11-29T21:01:56.3871778Z [37mv20.19.5[0m
+2025-11-29T21:01:56.3885425Z [37m[0m
+2025-11-29T21:01:56.3894191Z [37mUsing Npm version:[0m
+2025-11-29T21:01:56.4885343Z [37m11.6.4[0m
+2025-11-29T21:01:56.9556117Z [37m[0m
+2025-11-29T21:01:56.9557555Z [37mRunning 'npm install'...[0m
+2025-11-29T21:01:56.9558050Z [37m[0m
+2025-11-29T21:02:04.0721570Z [37m[0m
+2025-11-29T21:02:04.0725152Z [37m> vitrine-de-craques-web-site@0.1.0 postinstall[0m
+2025-11-29T21:02:04.0729419Z [37m> npx prisma generate[0m
+2025-11-29T21:02:04.0732135Z [37m[0m
+2025-11-29T21:02:06.9402991Z [37mPrisma schema loaded from prisma/schema.prisma[0m
+2025-11-29T21:02:08.2912410Z [37m[0m
+2025-11-29T21:02:08.2918881Z [37m✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 709ms[0m
+2025-11-29T21:02:08.2920157Z [37m[0m
+2025-11-29T21:02:08.2921419Z [37mStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)[0m
+2025-11-29T21:02:08.2923483Z [37m[0m
+2025-11-29T21:02:08.2925090Z [37mTip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate[0m
+2025-11-29T21:02:08.2926160Z [37m[0m
+2025-11-29T21:02:08.3315141Z [37m[0m
+2025-11-29T21:02:08.3327749Z [37m> vitrine-de-craques-web-site@0.1.0 prepare[0m
+2025-11-29T21:02:08.3328373Z [37m> husky install[0m
+2025-11-29T21:02:08.3328763Z [37m[0m
+2025-11-29T21:02:08.3807263Z [37mhusky - Git hooks installed[0m
+2025-11-29T21:02:08.3975301Z [37m[0m
+2025-11-29T21:02:08.3977250Z [37mremoved 7 packages, and audited 867 packages in 11s[0m
+2025-11-29T21:02:08.3977854Z [37m[0m
+2025-11-29T21:02:08.3978383Z [37m192 packages are looking for funding[0m
+2025-11-29T21:02:08.3979073Z [37m  run `npm fund` for details[0m
+2025-11-29T21:02:08.4807046Z [37m[0m
+2025-11-29T21:02:08.4827596Z [37m3 high severity vulnerabilities[0m
+2025-11-29T21:02:08.4828611Z [37m[0m
+2025-11-29T21:02:08.4830734Z [37mTo address all issues (including breaking changes), run:[0m
+2025-11-29T21:02:08.4831607Z [37m  npm audit fix --force[0m
+2025-11-29T21:02:08.4832392Z [37m[0m
+2025-11-29T21:02:08.4854660Z [37mRun `npm audit` for details.[0m
+2025-11-29T21:02:08.5182978Z [37m[0m
+2025-11-29T21:02:08.5216971Z [37mRunning 'npm run build'...[0m
+2025-11-29T21:02:08.5241536Z [37m[0m
+2025-11-29T21:02:08.7115580Z [37m[0m
+2025-11-29T21:02:08.7116758Z [37m> vitrine-de-craques-web-site@0.1.0 build[0m
+2025-11-29T21:02:08.7117817Z [37m> npx prisma generate && next build[0m
+2025-11-29T21:02:08.7118665Z [37m[0m
+2025-11-29T21:02:10.7368320Z [37mPrisma schema loaded from prisma/schema.prisma[0m
+2025-11-29T21:02:11.5915671Z [31m┌─────────────────────────────────────────────────────────┐[0m
+2025-11-29T21:02:11.5920154Z [31m│  Update available 6.16.2 -> 7.0.1                       │[0m
+2025-11-29T21:02:11.5921064Z [31m│                                                         │[0m
+2025-11-29T21:02:11.5940573Z [31m│  This is a major update - please follow the guide at    │[0m
+2025-11-29T21:02:11.5941552Z [31m│  https://pris.ly/d/major-version-upgrade                │[0m
+2025-11-29T21:02:11.5942385Z [31m│                                                         │[0m
+2025-11-29T21:02:11.5943412Z [31m│  Run the following to update                            │[0m
+2025-11-29T21:02:11.5944301Z [31m│    npm i --save-dev prisma@latest                       │[0m
+2025-11-29T21:02:11.5945151Z [31m│    npm i @prisma/client@latest                          │[0m
+2025-11-29T21:02:11.5945990Z [31m└─────────────────────────────────────────────────────────┘[0m
+2025-11-29T21:02:11.5946474Z [37m[0m
+2025-11-29T21:02:11.5947278Z [37m✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 430ms[0m
+2025-11-29T21:02:11.5948306Z [37m[0m
+2025-11-29T21:02:11.5949194Z [37mStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)[0m
+2025-11-29T21:02:11.5949933Z [37m[0m
+2025-11-29T21:02:11.5950729Z [37mTip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints[0m
+2025-11-29T21:02:11.5951397Z [37m[0m
+2025-11-29T21:02:12.2041872Z [37m  ▲ Next.js 14.2.33[0m
+2025-11-29T21:02:12.2054301Z [37m[0m
+2025-11-29T21:02:12.3506391Z [37m   Creating an optimized production build ...[0m
+2025-11-29T21:02:50.8674690Z [31m ⚠ Compiled with warnings[0m
+2025-11-29T21:02:50.8684754Z [31m[0m
+2025-11-29T21:02:50.8685604Z [31m./node_modules/@ffmpeg-installer/ffmpeg/index.js[0m
+2025-11-29T21:02:50.8686741Z [31mCritical dependency: the request of a dependency is an expression[0m
+2025-11-29T21:02:50.8687523Z [31m[0m
+2025-11-29T21:02:50.8688162Z [31mImport trace for requested module:[0m
+2025-11-29T21:02:50.8689051Z [31m./node_modules/@ffmpeg-installer/ffmpeg/index.js[0m
+2025-11-29T21:02:50.8689907Z [31m./app/api/videos/route.ts[0m
+2025-11-29T21:02:50.8690470Z [31m[0m
+2025-11-29T21:02:50.8691194Z [31m./node_modules/fluent-ffmpeg/lib/options/misc.js[0m
+2025-11-29T21:02:50.8692319Z [31mCritical dependency: the request of a dependency is an expression[0m
+2025-11-29T21:02:50.8693295Z [31m[0m
+2025-11-29T21:02:50.8693969Z [31mImport trace for requested module:[0m
+2025-11-29T21:02:50.8694896Z [31m./node_modules/fluent-ffmpeg/lib/options/misc.js[0m
+2025-11-29T21:02:50.8695927Z [31m./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js[0m
+2025-11-29T21:02:50.8696879Z [31m./node_modules/fluent-ffmpeg/index.js[0m
+2025-11-29T21:02:50.8697667Z [31m./app/api/videos/route.ts[0m
+2025-11-29T21:02:50.8698260Z [31m[0m
+2025-11-29T21:03:05.9906640Z [37m ✓ Compiled successfully[0m
+2025-11-29T21:03:05.9921845Z [37m   Linting and checking validity of types ...[0m
+2025-11-29T21:03:26.5381204Z [37m   Collecting page data ...[0m
+2025-11-29T21:03:27.1145490Z [31m[Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente[0m
+2025-11-29T21:03:27.4962235Z [31mFFmpeg installer package not available. Falling back to system ffmpeg binary. O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.[0m
+2025-11-29T21:03:29.7277889Z [37m   Generating static pages (0/58) ...[0m
+2025-11-29T21:03:30.8733358Z [37m   Generating static pages (14/58) [0m
+2025-11-29T21:03:32.9532924Z [37m   Generating static pages (28/58) [0m
+2025-11-29T21:03:33.8493622Z [37m   Generating static pages (43/58) [0m
+2025-11-29T21:03:34.3408504Z [37m ✓ Generating static pages (58/58)[0m
+2025-11-29T21:03:34.9482213Z [37m   Finalizing page optimization ...[0m
+2025-11-29T21:03:34.9485295Z [37m   Collecting build traces ...[0m
+2025-11-29T21:03:44.7230233Z [37m[0m
+2025-11-29T21:03:44.7420283Z [37mRoute (app)                                      Size     First Load JS[0m
+2025-11-29T21:03:44.7428203Z [37m┌ ƒ /                                            1.83 kB         110 kB[0m
+2025-11-29T21:03:44.7430943Z [37m├ ƒ /_not-found                                  876 B          88.2 kB[0m
+2025-11-29T21:03:44.7448487Z [37m├ ƒ /administrator                               155 B          87.5 kB[0m
+2025-11-29T21:03:44.7449528Z [37m├ ƒ /administrator/clubes                        6.46 kB         117 kB[0m
+2025-11-29T21:03:44.7450590Z [37m├ ƒ /administrator/users                         5.68 kB         111 kB[0m
+2025-11-29T21:03:44.7451601Z [37m├ ƒ /administrator/videos                        5.24 kB         111 kB[0m
+2025-11-29T21:03:44.7452563Z [37m├ ƒ /agentes                                     2.7 kB         98.7 kB[0m
+2025-11-29T21:03:44.7459767Z [37m├ ƒ /agentes/[id]                                1.84 kB         117 kB[0m
+2025-11-29T21:03:44.7460865Z [37m├ ƒ /api/admin/clubes                            0 B                0 B[0m
+2025-11-29T21:03:44.7462187Z [37m├ ƒ /api/admin/clubes/[id]                       0 B                0 B[0m
+2025-11-29T21:03:44.7473418Z [37m├ ƒ /api/admin/summary                           0 B                0 B[0m
+2025-11-29T21:03:44.7474583Z [37m├ ƒ /api/admin/users                             0 B                0 B[0m
+2025-11-29T21:03:44.7475614Z [37m├ ƒ /api/admin/users/[userId]/block              0 B                0 B[0m
+2025-11-29T21:03:44.7476622Z [37m├ ƒ /api/admin/videos                            0 B                0 B[0m
+2025-11-29T21:03:44.7477644Z [37m├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B[0m
+2025-11-29T21:03:44.7478809Z [37m├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B[0m
+2025-11-29T21:03:44.7479792Z [37m├ ƒ /api/agentes                                 0 B                0 B[0m
+2025-11-29T21:03:44.7480721Z [37m├ ƒ /api/agentes/[id]                            0 B                0 B[0m
+2025-11-29T21:03:44.7481674Z [37m├ ƒ /api/atletas                                 0 B                0 B[0m
+2025-11-29T21:03:44.7482604Z [37m├ ƒ /api/atletas/[id]                            0 B                0 B[0m
+2025-11-29T21:03:44.7483848Z [37m├ ƒ /api/auth/[...nextauth]                      0 B                0 B[0m
+2025-11-29T21:03:44.7484837Z [37m├ ƒ /api/blocks/[targetUserId]                   0 B                0 B[0m
+2025-11-29T21:03:44.7485795Z [37m├ ƒ /api/clubes                                  0 B                0 B[0m
+2025-11-29T21:03:44.7486791Z [37m├ ƒ /api/clubes/[slug]                           0 B                0 B[0m
+2025-11-29T21:03:44.7487733Z [37m├ ƒ /api/confederacoes                           0 B                0 B[0m
+2025-11-29T21:03:44.7488726Z [37m├ ƒ /api/confederacoes/[slug]                    0 B                0 B[0m
+2025-11-29T21:03:44.7489658Z [37m├ ƒ /api/db-check                                0 B                0 B[0m
+2025-11-29T21:03:44.7490513Z [37m├ ƒ /api/env                                     0 B                0 B[0m
+2025-11-29T21:03:44.7491401Z [37m├ ƒ /api/errors                                  0 B                0 B[0m
+2025-11-29T21:03:44.7492350Z [37m├ ƒ /api/follows/[targetUserId]                  0 B                0 B[0m
+2025-11-29T21:03:44.7493482Z [37m├ ƒ /api/games                                   0 B                0 B[0m
+2025-11-29T21:03:44.7494387Z [37m├ ƒ /api/games/[slug]                            0 B                0 B[0m
+2025-11-29T21:03:44.7495334Z [37m├ ƒ /api/games/[slug]/comments                   0 B                0 B[0m
+2025-11-29T21:03:44.7496323Z [37m├ ƒ /api/games/[slug]/engagement                 0 B                0 B[0m
+2025-11-29T21:03:44.7497275Z [37m├ ƒ /api/health                                  0 B                0 B[0m
+2025-11-29T21:03:44.7498176Z [37m├ ƒ /api/messages                                0 B                0 B[0m
+2025-11-29T21:03:44.7499137Z [37m├ ƒ /api/messages/unread-count                   0 B                0 B[0m
+2025-11-29T21:03:44.7500327Z [37m├ ƒ /api/news                                    0 B                0 B[0m
+2025-11-29T21:03:44.7501242Z [37m├ ƒ /api/news/[id]                               0 B                0 B[0m
+2025-11-29T21:03:44.7502152Z [37m├ ƒ /api/news/cover                              0 B                0 B[0m
+2025-11-29T21:03:44.7505494Z [37m├ ƒ /api/noticias                                0 B                0 B[0m
+2025-11-29T21:03:44.7506565Z [37m├ ƒ /api/noticias/[slug]                         0 B                0 B[0m
+2025-11-29T21:03:44.7507561Z [37m├ ƒ /api/noticias/[slug]/comments                0 B                0 B[0m
+2025-11-29T21:03:44.7508586Z [37m├ ƒ /api/noticias/[slug]/engagement              0 B                0 B[0m
+2025-11-29T21:03:44.7509536Z [37m├ ƒ /api/pg-check                                0 B                0 B[0m
+2025-11-29T21:03:44.7510430Z [37m├ ƒ /api/profile                                 0 B                0 B[0m
+2025-11-29T21:03:44.7511375Z [37m├ ƒ /api/profile/avatar                          0 B                0 B[0m
+2025-11-29T21:03:44.7512626Z [37m├ ƒ /api/profile/personal-info                   0 B                0 B[0m
+2025-11-29T21:03:44.7513930Z [37m├ ƒ /api/register                                0 B                0 B[0m
+2025-11-29T21:03:44.7514899Z [37m├ ƒ /api/register/atleta-18                      0 B                0 B[0m
+2025-11-29T21:03:44.7515872Z [37m├ ƒ /api/register/clube                          0 B                0 B[0m
+2025-11-29T21:03:44.7516869Z [37m├ ƒ /api/register/de-agentes-licenciados         0 B                0 B[0m
+2025-11-29T21:03:44.7517935Z [37m├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B[0m
+2025-11-29T21:03:44.7518969Z [37m├ ƒ /api/register/responsavel                    0 B                0 B[0m
+2025-11-29T21:03:44.7519989Z [37m├ ƒ /api/register/responsavel/documents          0 B                0 B[0m
+2025-11-29T21:03:44.7520990Z [37m├ ƒ /api/register/torcedor                       0 B                0 B[0m
+2025-11-29T21:03:44.7521961Z [37m├ ○ /api/times                                   0 B                0 B[0m
+2025-11-29T21:03:44.7522841Z [37m├ ƒ /api/videos                                  0 B                0 B[0m
+2025-11-29T21:03:44.7523945Z [37m├ ƒ /api/videos/[id]                             0 B                0 B[0m
+2025-11-29T21:03:44.7524955Z [37m├ ƒ /api/videos/[id]/appeal                      0 B                0 B[0m
+2025-11-29T21:03:44.7525898Z [37m├ ƒ /api/videos/[id]/comments                    0 B                0 B[0m
+2025-11-29T21:03:44.7526808Z [37m├ ƒ /api/videos/proxy                            0 B                0 B[0m
+2025-11-29T21:03:44.7527717Z [37m├ ƒ /arquibancada                                4.49 kB        98.6 kB[0m
+2025-11-29T21:03:44.7528614Z [37m├ ƒ /atletas                                     4.5 kB          107 kB[0m
+2025-11-29T21:03:44.7529475Z [37m├ ƒ /atletas/[id]                                5.24 kB         138 kB[0m
+2025-11-29T21:03:44.7530336Z [37m├ ƒ /cadastro                                    2.21 kB         129 kB[0m
+2025-11-29T21:03:44.7531232Z [37m├ ƒ /cadastro/[slug]                             2.92 kB         121 kB[0m
+2025-11-29T21:03:44.7532175Z [37m├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB[0m
+2025-11-29T21:03:44.7533386Z [37m├ ƒ /cadastro/clube                              4.03 kB         137 kB[0m
+2025-11-29T21:03:44.7534360Z [37m├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB[0m
+2025-11-29T21:03:44.7535447Z [37m├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB[0m
+2025-11-29T21:03:44.7536496Z [37m├ ƒ /cadastro/responsavel                        4.23 kB         137 kB[0m
+2025-11-29T21:03:44.7537544Z [37m├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB[0m
+2025-11-29T21:03:44.7538624Z [37m├ ƒ /cadastro/sucesso                            155 B          87.5 kB[0m
+2025-11-29T21:03:44.7540065Z [37m├ ƒ /cadastro/torcedor                           5.13 kB         147 kB[0m
+2025-11-29T21:03:44.7541483Z [37m├ ƒ /clubes                                      3.35 kB         111 kB[0m
+2025-11-29T21:03:44.7542350Z [37m├ ƒ /clubes/[slug]                               807 B           109 kB[0m
+2025-11-29T21:03:44.7543685Z [37m├ ƒ /confederacoes                               807 B           109 kB[0m
+2025-11-29T21:03:44.7544710Z [37m├ ƒ /confederacoes/[slug]                        807 B           109 kB[0m
+2025-11-29T21:03:44.7545643Z [37m├ ƒ /feed                                        12.2 kB         145 kB[0m
+2025-11-29T21:03:44.7549897Z [37m├ ƒ /games                                       197 B           121 kB[0m
+2025-11-29T21:03:44.7550848Z [37m├ ƒ /games/[slug]                                211 B           128 kB[0m
+2025-11-29T21:03:44.7551679Z [37m├ ○ /icon                                        0 B                0 B[0m
+2025-11-29T21:03:44.7552521Z [37m├ ƒ /login                                       3.73 kB         145 kB[0m
+2025-11-29T21:03:44.7553615Z [37m├ ƒ /noticias                                    204 B           121 kB[0m
+2025-11-29T21:03:44.7554506Z [37m├ ƒ /noticias/[slug]                             614 B           129 kB[0m
+2025-11-29T21:03:44.7555401Z [37m├ ƒ /perfil                                      27.3 kB         171 kB[0m
+2025-11-29T21:03:44.7556272Z [37m├ ƒ /perfis/[id]                                 1.84 kB         117 kB[0m
+2025-11-29T21:03:44.7557131Z [37m├ ƒ /player/[id]                                 9.15 kB         127 kB[0m
+2025-11-29T21:03:44.7558010Z [37m├ ƒ /privacidade                                 189 B          96.2 kB[0m
+2025-11-29T21:03:44.7558908Z [37m├ ƒ /registrar-escolha-perfil                    189 B          96.2 kB[0m
+2025-11-29T21:03:44.7559736Z [37m├ ƒ /sobre                                       189 B          96.2 kB[0m
+2025-11-29T21:03:44.7560528Z [37m├ ƒ /torcida                                     155 B          87.5 kB[0m
+2025-11-29T21:03:44.7561354Z [37m└ ƒ /upload                                      10.4 kB         119 kB[0m
+2025-11-29T21:03:44.7562178Z [37m+ First Load JS shared by all                    87.3 kB[0m
+2025-11-29T21:03:44.7562928Z [37m  ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB[0m
+2025-11-29T21:03:44.7564124Z [37m  ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB[0m
+2025-11-29T21:03:44.7564909Z [37m  └ other shared chunks (total)                  1.97 kB[0m
+2025-11-29T21:03:44.7565400Z [37m[0m
+2025-11-29T21:03:44.7565690Z [37m[0m
+2025-11-29T21:03:44.7566256Z [37mƒ Middleware                                     48.3 kB[0m
+2025-11-29T21:03:44.7567069Z [37m[0m
+2025-11-29T21:03:44.7567559Z [37m○  (Static)   prerendered as static content[0m
+2025-11-29T21:03:44.7568175Z [37mƒ  (Dynamic)  server-rendered on demand[0m
+2025-11-29T21:03:44.7568638Z [37m[0m
+2025-11-29T21:03:44.7949847Z [37m[0m
+2025-11-29T21:03:44.7952455Z [37m> vitrine-de-craques-web-site@0.1.0 postbuild[0m
+2025-11-29T21:03:44.7959365Z [37m> node scripts/copy-prisma-artifacts.js[0m
+2025-11-29T21:03:44.7959964Z [37m[0m
+2025-11-29T21:03:44.9015534Z [37m[copy-prisma-artifacts] Copied Prisma artifacts to /github/workspace/.next/standalone/node_modules/.prisma/client[0m
+2025-11-29T21:03:44.9051482Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/.prisma/client[0m
+2025-11-29T21:03:44.9057830Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/chunks/.prisma/client[0m
+2025-11-29T21:03:45.1407110Z [37m[copy-prisma-artifacts] Copied Prisma artifacts to /github/workspace/.next/standalone/node_modules/@prisma/client[0m
+2025-11-29T21:03:45.1418082Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/@prisma/client[0m
+2025-11-29T21:03:45.1422286Z [37m[copy-prisma-artifacts] Linked Prisma artifacts to /github/workspace/.next/server/chunks/@prisma/client[0m
+2025-11-29T21:03:45.3446596Z [37mPreparing output...[0m
+2025-11-29T21:03:45.3452120Z [37m[0m
+2025-11-29T21:03:45.3453303Z [37mCopying files to destination directory '/bin/staticsites/f7c34ffc-4ecc-4bd7-ac87-f4d34a82f367-swa-oryx/app'...[0m
+2025-11-29T21:03:58.1610180Z [37mDone in 13 sec(s).[0m
+2025-11-29T21:03:58.1645954Z [37m[0m
+2025-11-29T21:03:58.1660384Z [37mRemoving existing manifest file[0m
+2025-11-29T21:03:58.1674277Z [37mCreating a manifest file...[0m
+2025-11-29T21:03:58.1688602Z [37mManifest file created.[0m
+2025-11-29T21:03:58.1689386Z [37mCopying .ostype to manifest output directory.[0m
+2025-11-29T21:03:58.1720064Z [37m[0m
+2025-11-29T21:03:58.1720501Z [37mDone in 132 sec(s).[0m
+2025-11-29T21:03:58.2221207Z [37m[0m
+2025-11-29T21:03:58.2222906Z [37m[0m
+2025-11-29T21:03:58.2223674Z [37m---End of Oryx build logs---[0m
+2025-11-29T21:03:58.2256048Z [37mTry to validate location at: '/bin/staticsites/f7c34ffc-4ecc-4bd7-ac87-f4d34a82f367-swa-oryx/app/.next'.[0m
+2025-11-29T21:03:58.2258779Z [37mOryx has determined that the app build artifacts are in the '.next' directory. If this is incorrect please specify the app artifact location.[0m
+2025-11-29T21:03:58.2261246Z [37mFinished building app with Oryx[0m
+2025-11-29T21:03:58.4446999Z [37mUsing 'staticwebapp.config.json' file for configuration information, 'routes.json' will be ignored.[0m
+2025-11-29T21:03:58.5825348Z [33m[WARNING] For Next.js apps, staticwebapp.config.json features are not fully supported yet![0m
+2025-11-29T21:03:58.5844615Z [37mDetected standalone folder, so using it for deployment.[0m
+2025-11-29T21:03:58.6288277Z [37mRepackaged Next.js app to deploy on the backend.[0m
+2025-11-29T21:03:58.6289937Z [37mSkipping step to build /bin/staticsites/f7c34ffc-4ecc-4bd7-ac87-f4d34a82f367-swa-oryx/app/.next/standalone with Oryx[0m
+2025-11-29T21:03:58.6291355Z [33mWeb App Runtime Information. OS: linux, node version: 20[0m
+2025-11-29T21:03:59.0193823Z [37mZipping Api Artifacts[0m
+2025-11-29T21:04:08.5270746Z [37mDone Zipping Api Artifacts[0m
+2025-11-29T21:04:13.8735573Z [37mZipping App Artifacts[0m
+2025-11-29T21:04:14.7919782Z [37mDone Zipping App Artifacts[0m
+2025-11-29T21:04:14.7920555Z [37mUploading build artifacts.[0m
+2025-11-29T21:04:17.0433693Z [32mFinished Upload. Polling on deployment.[0m
+2025-11-29T21:04:17.5454669Z [37mStatus: InProgress. Time: 0.5016123(s)[0m
+2025-11-29T21:04:32.9772364Z [37mStatus: InProgress. Time: 15.9336816(s)[0m
+2025-11-29T21:04:49.0217187Z [37mStatus: InProgress. Time: 31.9781331(s)[0m
+2025-11-29T21:05:04.1646473Z [37mStatus: InProgress. Time: 47.1210609(s)[0m
+2025-11-29T21:05:19.3170509Z [37mStatus: InProgress. Time: 62.2730914(s)[0m
+2025-11-29T21:05:34.4538231Z [37mStatus: InProgress. Time: 77.4102997(s)[0m
+2025-11-29T21:05:49.6287406Z [37mStatus: InProgress. Time: 92.5851127(s)[0m
+2025-11-29T21:06:04.7716786Z [37mStatus: InProgress. Time: 107.7283452(s)[0m
+2025-11-29T21:06:19.9612100Z [37mStatus: InProgress. Time: 122.9175437(s)[0m
+2025-11-29T21:06:35.2339496Z [37mStatus: InProgress. Time: 138.1902433(s)[0m
+2025-11-29T21:06:50.4056419Z [37mStatus: InProgress. Time: 153.3620396(s)[0m
+2025-11-29T21:07:05.5665325Z [37mStatus: InProgress. Time: 168.5228542(s)[0m
+2025-11-29T21:07:20.7047076Z [37mStatus: InProgress. Time: 183.6613683(s)[0m
+2025-11-29T21:07:35.8519487Z [37mStatus: InProgress. Time: 198.8084515(s)[0m
+2025-11-29T21:07:50.9921032Z [37mStatus: InProgress. Time: 213.9484698(s)[0m
+2025-11-29T21:08:06.1295556Z [37mStatus: InProgress. Time: 229.0859591(s)[0m
+2025-11-29T21:08:21.2804496Z [37mStatus: InProgress. Time: 244.2368947(s)[0m
+2025-11-29T21:08:36.4279154Z [37mStatus: InProgress. Time: 259.3842988(s)[0m
+2025-11-29T21:08:52.3390789Z [37mStatus: InProgress. Time: 275.2956133(s)[0m
+2025-11-29T21:09:07.4879148Z [37mStatus: InProgress. Time: 290.444239(s)[0m
+2025-11-29T21:09:22.6280991Z [37mStatus: InProgress. Time: 305.5843383(s)[0m
+2025-11-29T21:09:37.8088924Z [37mStatus: InProgress. Time: 320.7653147(s)[0m
+2025-11-29T21:09:52.9565656Z [37mStatus: InProgress. Time: 335.9108995(s)[0m
+2025-11-29T21:10:09.5409264Z [37mStatus: InProgress. Time: 352.4971649(s)[0m
+2025-11-29T21:10:24.6826804Z [37mStatus: InProgress. Time: 367.6389603(s)[0m
+2025-11-29T21:10:39.8146759Z [37mStatus: InProgress. Time: 382.771062(s)[0m
+2025-11-29T21:10:54.9497282Z [37mStatus: InProgress. Time: 397.9061873(s)[0m
+2025-11-29T21:11:10.1016283Z [37mStatus: InProgress. Time: 413.0580319(s)[0m
+2025-11-29T21:11:25.2270326Z [37mStatus: InProgress. Time: 428.1835319(s)[0m
+2025-11-29T21:11:40.3623681Z [37mStatus: InProgress. Time: 443.3187877(s)[0m
+2025-11-29T21:11:55.5024351Z [37mStatus: InProgress. Time: 458.4588386(s)[0m
+2025-11-29T21:12:10.7164409Z [37mStatus: InProgress. Time: 473.6732162(s)[0m
+2025-11-29T21:12:25.8622572Z [37mStatus: InProgress. Time: 488.8189371(s)[0m
+2025-11-29T21:12:41.0020000Z [37mStatus: InProgress. Time: 503.9587526(s)[0m
+2025-11-29T21:12:56.1635845Z [37mStatus: InProgress. Time: 519.1201147(s)[0m
+2025-11-29T21:13:11.4729362Z [37mStatus: InProgress. Time: 534.4296229(s)[0m
+2025-11-29T21:13:26.6948217Z [37mStatus: InProgress. Time: 549.6513691(s)[0m
+2025-11-29T21:13:41.8559120Z [37mStatus: InProgress. Time: 564.8124069(s)[0m
+2025-11-29T21:13:57.0139837Z [37mStatus: Failed. Time: 579.9705182(s)[0m
+2025-11-29T21:13:57.0154080Z [31mDeployment Failed :([0m
+2025-11-29T21:13:57.0155108Z [31mDeployment Failure Reason: Web app warm up timed out. Please try again later.[0m
+2025-11-29T21:13:57.0542448Z [37m[0m
+2025-11-29T21:13:57.0544698Z [33mFor further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/[0m
+2025-11-29T21:13:57.0546970Z [33mIf you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/[0m
+2025-11-29T21:13:57.0547996Z [33mExiting[0m
+2025-11-29T21:13:59.7085752Z Post job cleanup.
+2025-11-29T21:13:59.7858132Z [command]/usr/bin/git version
+2025-11-29T21:13:59.7899532Z git version 2.51.2
+2025-11-29T21:13:59.7948006Z Temporarily overriding HOME='/home/runner/work/_temp/5201605f-5208-4d0e-bce1-944604702343' before making global git config changes
+2025-11-29T21:13:59.7950494Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-29T21:13:59.7953684Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-29T21:13:59.7987490Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-29T21:13:59.8075367Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-29T21:13:59.8438261Z fatal: No url found for submodule path 'Vitrine-De-Craques-App-iOS/Vitrine-De-Craques-App-iOS' in .gitmodules
+2025-11-29T21:13:59.8471587Z ##[warning]The process '/usr/bin/git' failed with exit code 128
+2025-11-29T21:13:59.8565456Z Cleaning up orphan processes

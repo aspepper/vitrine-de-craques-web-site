@@ -1,6 +1,6 @@
-import { existsSync } from 'node:fs'
-import { join } from 'node:path'
-import { spawn } from 'node:child_process'
+const { existsSync } = require('node:fs')
+const { join } = require('node:path')
+const { spawn, spawnSync } = require('node:child_process')
 
 const cwd = process.cwd()
 const port = process.env.PORT ?? '3000'
@@ -9,13 +9,32 @@ const hostname = process.env.HOSTNAME ?? '0.0.0.0'
 const standaloneEntry = join(cwd, '.next', 'standalone', 'server.js')
 const nextBinary = join(cwd, 'node_modules', '.bin', 'next')
 
-const useStandalone = existsSync(standaloneEntry)
+let useStandalone = existsSync(standaloneEntry)
+
+if (!useStandalone) {
+  console.warn(
+    '[start] .next/standalone/server.js not found. Running `npm run build` to generate it...',
+  )
+
+  const buildResult = spawnSync('npm', ['run', 'build'], {
+    cwd,
+    stdio: 'inherit',
+    env: { ...process.env, PORT: port, HOSTNAME: hostname },
+  })
+
+  if (buildResult.status !== 0) {
+    console.error('[start] Build failed. See logs above for details.')
+    process.exit(buildResult.status ?? 1)
+  }
+
+  useStandalone = existsSync(standaloneEntry)
+}
 
 if (useStandalone) {
   console.log('[start] Found standalone build output. Launching server.js')
 } else {
   console.warn(
-    '[start] .next/standalone/server.js not found. Falling back to `next start`.',
+    '[start] Standalone output still missing after build. Falling back to `next start`.',
   )
 }
 

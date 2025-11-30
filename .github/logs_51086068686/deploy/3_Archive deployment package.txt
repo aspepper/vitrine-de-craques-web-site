@@ -1,8 +1,0 @@
-﻿2025-11-30T12:58:45.0903267Z ##[group]Run zip -r node-app.zip node-app
-2025-11-30T12:58:45.0903697Z [36;1mzip -r node-app.zip node-app[0m
-2025-11-30T12:58:45.0938084Z shell: /usr/bin/bash -e {0}
-2025-11-30T12:58:45.0938427Z ##[endgroup]
-2025-11-30T12:58:45.1769976Z 	zip warning: name not matched: node-app
-2025-11-30T12:58:45.1770488Z 
-2025-11-30T12:58:45.1770922Z zip error: Nothing to do! (try: zip -r node-app.zip . -i node-app)
-2025-11-30T12:58:45.1794356Z ##[error]Process completed with exit code 12.

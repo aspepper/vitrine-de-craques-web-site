@@ -13,6 +13,7 @@ const prismaEnginePaths = prismaEngineCandidates.filter((enginePath) =>
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   experimental: {
     serverComponentsExternalPackages: [
       '@prisma/client',

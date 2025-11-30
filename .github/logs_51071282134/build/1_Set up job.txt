@@ -1,0 +1,30 @@
+﻿2025-11-30T02:20:07.1312565Z Current runner version: '2.329.0'
+2025-11-30T02:20:07.1345544Z ##[group]Runner Image Provisioner
+2025-11-30T02:20:07.1347062Z Hosted Compute Agent
+2025-11-30T02:20:07.1348027Z Version: 20251016.436
+2025-11-30T02:20:07.1349064Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-30T02:20:07.1350180Z Build Date: 2025-10-15T20:44:12Z
+2025-11-30T02:20:07.1351143Z ##[endgroup]
+2025-11-30T02:20:07.1352087Z ##[group]Operating System
+2025-11-30T02:20:07.1352936Z Ubuntu
+2025-11-30T02:20:07.1353645Z 24.04.3
+2025-11-30T02:20:07.1354314Z LTS
+2025-11-30T02:20:07.1355135Z ##[endgroup]
+2025-11-30T02:20:07.1355879Z ##[group]Runner Image
+2025-11-30T02:20:07.1356928Z Image: ubuntu-24.04
+2025-11-30T02:20:07.1357795Z Version: 20251112.124.1
+2025-11-30T02:20:07.1359583Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251112.124/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-30T02:20:07.1362025Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251112.124
+2025-11-30T02:20:07.1363834Z ##[endgroup]
+2025-11-30T02:20:07.1365705Z ##[group]GITHUB_TOKEN Permissions
+2025-11-30T02:20:07.1368273Z Contents: read
+2025-11-30T02:20:07.1369188Z Metadata: read
+2025-11-30T02:20:07.1369963Z ##[endgroup]
+2025-11-30T02:20:07.1373149Z Secret source: Actions
+2025-11-30T02:20:07.1374787Z Prepare workflow directory
+2025-11-30T02:20:07.1822210Z Prepare all required actions
+2025-11-30T02:20:07.1926986Z Getting action download info
+2025-11-30T02:20:07.5870287Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-11-30T02:20:07.8928638Z Download action repository 'actions/setup-node@v3' (SHA:3235b876344d2a9aa001b8d1453c930bba69e610)
+2025-11-30T02:20:07.9950630Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-11-30T02:20:08.1986987Z Complete job name: build

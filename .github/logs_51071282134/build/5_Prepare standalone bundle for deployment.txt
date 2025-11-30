@@ -1,0 +1,8 @@
+﻿2025-11-30T02:22:41.5166762Z ##[group]Run mkdir -p azure-dist/.next
+2025-11-30T02:22:41.5167131Z [36;1mmkdir -p azure-dist/.next[0m
+2025-11-30T02:22:41.5167669Z [36;1mcp -r .next/standalone azure-dist/.next/standalone[0m
+2025-11-30T02:22:41.5168001Z [36;1mcp -r .next/static azure-dist/.next/static[0m
+2025-11-30T02:22:41.5168300Z [36;1mcp -r public azure-dist/public[0m
+2025-11-30T02:22:41.5168609Z [36;1mcp package.json package-lock.json azure-dist/[0m
+2025-11-30T02:22:41.5202665Z shell: /usr/bin/bash -e {0}
+2025-11-30T02:22:41.5202904Z ##[endgroup]

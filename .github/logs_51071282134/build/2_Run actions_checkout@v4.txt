@@ -1,0 +1,71 @@
+﻿2025-11-30T02:20:08.2628775Z ##[group]Run actions/checkout@v4
+2025-11-30T02:20:08.2629589Z with:
+2025-11-30T02:20:08.2630054Z   repository: aspepper/vitrine-de-craques-web-site
+2025-11-30T02:20:08.2630814Z   token: ***
+2025-11-30T02:20:08.2631191Z   ssh-strict: true
+2025-11-30T02:20:08.2631583Z   ssh-user: git
+2025-11-30T02:20:08.2631968Z   persist-credentials: true
+2025-11-30T02:20:08.2632411Z   clean: true
+2025-11-30T02:20:08.2632805Z   sparse-checkout-cone-mode: true
+2025-11-30T02:20:08.2633275Z   fetch-depth: 1
+2025-11-30T02:20:08.2633648Z   fetch-tags: false
+2025-11-30T02:20:08.2634053Z   show-progress: true
+2025-11-30T02:20:08.2634439Z   lfs: false
+2025-11-30T02:20:08.2634825Z   submodules: false
+2025-11-30T02:20:08.2635228Z   set-safe-directory: true
+2025-11-30T02:20:08.2635842Z ##[endgroup]
+2025-11-30T02:20:08.3813543Z Syncing repository: aspepper/vitrine-de-craques-web-site
+2025-11-30T02:20:08.3816103Z ##[group]Getting Git version info
+2025-11-30T02:20:08.3817518Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-30T02:20:08.3818793Z [command]/usr/bin/git version
+2025-11-30T02:20:08.3915010Z git version 2.51.2
+2025-11-30T02:20:08.3945177Z ##[endgroup]
+2025-11-30T02:20:08.3964620Z Temporarily overriding HOME='/home/runner/work/_temp/69457688-9eda-427a-b1d9-76efcee42dde' before making global git config changes
+2025-11-30T02:20:08.3968656Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-30T02:20:08.3987429Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-30T02:20:08.4029006Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-11-30T02:20:08.4034644Z ##[group]Initializing the repository
+2025-11-30T02:20:08.4040059Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-30T02:20:08.4171875Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-11-30T02:20:08.4174257Z hint: is subject to change. To configure the initial branch name to use in all
+2025-11-30T02:20:08.4176073Z hint: of your new repositories, which will suppress this warning, call:
+2025-11-30T02:20:08.4178010Z hint:
+2025-11-30T02:20:08.4180032Z hint: 	git config --global init.defaultBranch <name>
+2025-11-30T02:20:08.4181382Z hint:
+2025-11-30T02:20:08.4182400Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-11-30T02:20:08.4185172Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-11-30T02:20:08.4186694Z hint:
+2025-11-30T02:20:08.4187358Z hint: 	git branch -m <name>
+2025-11-30T02:20:08.4188084Z hint:
+2025-11-30T02:20:08.4189088Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-11-30T02:20:08.4192287Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-11-30T02:20:08.4197292Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-30T02:20:08.4236494Z ##[endgroup]
+2025-11-30T02:20:08.4237892Z ##[group]Disabling automatic garbage collection
+2025-11-30T02:20:08.4240545Z [command]/usr/bin/git config --local gc.auto 0
+2025-11-30T02:20:08.4275645Z ##[endgroup]
+2025-11-30T02:20:08.4276970Z ##[group]Setting up auth
+2025-11-30T02:20:08.4282245Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-30T02:20:08.4317700Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-30T02:20:08.4727124Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-30T02:20:08.4761757Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-30T02:20:08.5007493Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-11-30T02:20:08.5054784Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-11-30T02:20:08.5301081Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-11-30T02:20:08.5340953Z ##[endgroup]
+2025-11-30T02:20:08.5342809Z ##[group]Fetching the repository
+2025-11-30T02:20:08.5352140Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +375373095f70ced52bd02e63013d1fea970efbb2:refs/remotes/origin/main
+2025-11-30T02:20:14.0408517Z From https://github.com/aspepper/vitrine-de-craques-web-site
+2025-11-30T02:20:14.0409978Z  * [new ref]         375373095f70ced52bd02e63013d1fea970efbb2 -> origin/main
+2025-11-30T02:20:14.0440612Z ##[endgroup]
+2025-11-30T02:20:14.0441551Z ##[group]Determining the checkout info
+2025-11-30T02:20:14.0443180Z ##[endgroup]
+2025-11-30T02:20:14.0449660Z [command]/usr/bin/git sparse-checkout disable
+2025-11-30T02:20:14.0492951Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-11-30T02:20:14.0525193Z ##[group]Checking out the ref
+2025-11-30T02:20:14.0527247Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-11-30T02:20:14.8808753Z Switched to a new branch 'main'
+2025-11-30T02:20:14.8811135Z branch 'main' set up to track 'origin/main'.
+2025-11-30T02:20:14.8902036Z ##[endgroup]
+2025-11-30T02:20:14.8944224Z [command]/usr/bin/git log -1 --format=%H
+2025-11-30T02:20:14.8967174Z 375373095f70ced52bd02e63013d1fea970efbb2

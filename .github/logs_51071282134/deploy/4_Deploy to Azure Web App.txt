@@ -1,8 +1,0 @@
-﻿2025-11-30T02:23:11.2814853Z ##[group]Run azure/webapps-deploy@v3
-2025-11-30T02:23:11.2815366Z with:
-2025-11-30T02:23:11.2815703Z   app-name: VitrineDeCraquesWeb
-2025-11-30T02:23:11.2816107Z   slot-name: Production
-2025-11-30T02:23:11.2816451Z   package: node-app
-2025-11-30T02:23:11.2816784Z ##[endgroup]
-2025-11-30T02:23:13.4847769Z Validating SPN Linux Web App inputs...
-2025-11-30T02:23:13.4879565Z ##[error]Deployment Failed, Error: No package found with specified pattern: node-app

@@ -1,0 +1,57 @@
+﻿2025-11-30T12:58:36.9952643Z Current runner version: '2.329.0'
+2025-11-30T12:58:36.9985968Z ##[group]Runner Image Provisioner
+2025-11-30T12:58:36.9987449Z Hosted Compute Agent
+2025-11-30T12:58:36.9988450Z Version: 20251016.436
+2025-11-30T12:58:36.9989495Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-30T12:58:36.9990789Z Build Date: 2025-10-15T20:44:12Z
+2025-11-30T12:58:36.9991750Z ##[endgroup]
+2025-11-30T12:58:36.9992905Z ##[group]Operating System
+2025-11-30T12:58:36.9993897Z Ubuntu
+2025-11-30T12:58:36.9994651Z 24.04.3
+2025-11-30T12:58:36.9995400Z LTS
+2025-11-30T12:58:36.9996294Z ##[endgroup]
+2025-11-30T12:58:36.9997118Z ##[group]Runner Image
+2025-11-30T12:58:36.9998142Z Image: ubuntu-24.04
+2025-11-30T12:58:36.9999248Z Version: 20251112.124.1
+2025-11-30T12:58:37.0001142Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251112.124/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-30T12:58:37.0004323Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251112.124
+2025-11-30T12:58:37.0006895Z ##[endgroup]
+2025-11-30T12:58:37.0008763Z ##[group]GITHUB_TOKEN Permissions
+2025-11-30T12:58:37.0011489Z Contents: read
+2025-11-30T12:58:37.0012747Z Metadata: read
+2025-11-30T12:58:37.0013642Z ##[endgroup]
+2025-11-30T12:58:37.0016495Z Secret source: Actions
+2025-11-30T12:58:37.0017709Z Prepare workflow directory
+2025-11-30T12:58:37.0676569Z Prepare all required actions
+2025-11-30T12:58:37.0734631Z Getting action download info
+2025-11-30T12:58:37.5186176Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+2025-11-30T12:58:38.2108552Z Download action repository 'azure/login@v2' (SHA:a457da9ea143d694b1b9c7c869ebb04ebe844ef5)
+2025-11-30T12:58:38.6550995Z Download action repository 'azure/webapps-deploy@v3' (SHA:657f0700ea5214d56a0400d8ac5e8023c963d25d)
+2025-11-30T12:58:42.0713231Z Complete job name: deploy
+2025-11-30T12:58:42.1363235Z ##[group]Run actions/download-artifact@v4
+2025-11-30T12:58:42.1363954Z with:
+2025-11-30T12:58:42.1364348Z   name: node-app
+2025-11-30T12:58:42.1364785Z   merge-multiple: false
+2025-11-30T12:58:42.1365221Z   repository: aspepper/vitrine-de-craques-web-site
+2025-11-30T12:58:42.1365722Z   run-id: 19799202514
+2025-11-30T12:58:42.1366287Z ##[endgroup]
+2025-11-30T12:58:42.3598596Z Downloading single artifact
+2025-11-30T12:58:42.6408877Z Preparing to download the following artifacts:
+2025-11-30T12:58:42.6410949Z - node-app (ID: 4716983796, Size: 26019111, Expected Digest: sha256:16f77e9cc0a3b44caf39c046ba3aff5ed4dc265e9158b9599345636fda2c531c)
+2025-11-30T12:58:42.8263818Z Redirecting to blob download url: https://productionresultssa3.blob.core.windows.net/actions-results/cc61068e-eac2-434b-90d8-23d7cab613a9/workflow-job-run-c47fd921-6905-5288-b212-a0abcbda6561/artifacts/236bf3d06418ac7275c91e12343cfbf289a60ef44239b89d4056c5a20b2ba55d.zip
+2025-11-30T12:58:42.8266311Z Starting download of artifact to: /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-11-30T12:58:43.1710812Z (node:1820) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2025-11-30T12:58:43.1713967Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2025-11-30T12:58:45.0676136Z SHA256 digest of downloaded artifact is 16f77e9cc0a3b44caf39c046ba3aff5ed4dc265e9158b9599345636fda2c531c
+2025-11-30T12:58:45.0678016Z Artifact download completed successfully.
+2025-11-30T12:58:45.0678818Z Total of 1 artifact(s) downloaded
+2025-11-30T12:58:45.0683918Z Download artifact has finished successfully
+2025-11-30T12:58:45.0903285Z ##[group]Run zip -r node-app.zip node-app
+2025-11-30T12:58:45.0903702Z [36;1mzip -r node-app.zip node-app[0m
+2025-11-30T12:58:45.0938107Z shell: /usr/bin/bash -e {0}
+2025-11-30T12:58:45.0938431Z ##[endgroup]
+2025-11-30T12:58:45.1770002Z 	zip warning: name not matched: node-app
+2025-11-30T12:58:45.1770497Z 
+2025-11-30T12:58:45.1770930Z zip error: Nothing to do! (try: zip -r node-app.zip . -i node-app)
+2025-11-30T12:58:45.1794375Z ##[error]Process completed with exit code 12.
+2025-11-30T12:58:45.1860819Z Cleaning up orphan processes

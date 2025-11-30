@@ -30,7 +30,6 @@ const nextConfig = {
       ],
     },
   },
-  output: 'standalone',
   reactStrictMode: true,
   images: {
     // Desabilitar a otimização server-side evita que falhas de download externas

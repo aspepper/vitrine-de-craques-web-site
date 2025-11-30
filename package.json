@@ -10,7 +10,7 @@
     "dev": "npm run generate && next dev",
     "build": "npx prisma generate && next build",
     "postbuild": "node scripts/copy-prisma-artifacts.js",
-    "start": "node scripts/start.js",
+    "start": "HOSTNAME=${HOSTNAME:-0.0.0.0} PORT=${PORT:-3000} node scripts/start.js",
     "lint": "next lint",
     "format": "prettier --write .",
     "test": "vitest",

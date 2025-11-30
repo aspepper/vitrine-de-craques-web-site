@@ -1,3 +1,0 @@
-﻿2025-11-30T01:32:57.6853456Z Post job cleanup.
-2025-11-30T01:32:57.7250957Z Clearing azure cli accounts from the local cache.
-2025-11-30T01:32:57.7267945Z [command]/usr/bin/az account clear

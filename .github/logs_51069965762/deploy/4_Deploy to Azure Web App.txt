@@ -1,0 +1,36 @@
+﻿2025-11-30T01:28:10.9287549Z ##[group]Run azure/webapps-deploy@v3
+2025-11-30T01:28:10.9287977Z with:
+2025-11-30T01:28:10.9288266Z   app-name: VitrineDeCraquesWeb
+2025-11-30T01:28:10.9288625Z   slot-name: Production
+2025-11-30T01:28:10.9288942Z   package: .
+2025-11-30T01:28:10.9289528Z ##[endgroup]
+2025-11-30T01:28:13.1561088Z Validating SPN Linux Web App inputs...
+2025-11-30T01:28:13.1582006Z Predeployment Step Started
+2025-11-30T01:28:14.1254077Z Deployment Step Started
+2025-11-30T01:28:14.1255296Z Starting deployment for web app...
+2025-11-30T01:29:11.7073186Z Package deployment using OneDeploy initiated.
+2025-11-30T01:32:56.5485332Z {
+2025-11-30T01:32:56.5488540Z   id: 'c20847d9-cc24-4db0-b93b-96db438b530d',
+2025-11-30T01:32:56.5489049Z   status: 4,
+2025-11-30T01:32:56.5495839Z   status_text: '',
+2025-11-30T01:32:56.5496377Z   author_email: 'N/A',
+2025-11-30T01:32:56.5496776Z   author: 'N/A',
+2025-11-30T01:32:56.5502224Z   deployer: 'OneDeploy',
+2025-11-30T01:32:56.5502873Z   message: 'OneDeploy',
+2025-11-30T01:32:56.5505137Z   progress: '',
+2025-11-30T01:32:56.5505655Z   received_time: '2025-11-30T01:30:50.9896304Z',
+2025-11-30T01:32:56.5506148Z   start_time: '2025-11-30T01:30:52.2838202Z',
+2025-11-30T01:32:56.5506603Z   end_time: '2025-11-30T01:32:52.0714125Z',
+2025-11-30T01:32:56.5507109Z   last_success_end_time: '2025-11-30T01:32:52.0714125Z',
+2025-11-30T01:32:56.5507608Z   complete: true,
+2025-11-30T01:32:56.5507947Z   active: true,
+2025-11-30T01:32:56.5508267Z   is_temp: false,
+2025-11-30T01:32:56.5508595Z   is_readonly: true,
+2025-11-30T01:32:56.5509885Z   url: 'https://vitrinedecraquesweb-cyc6dfatafcrfmhd.scm.centralus-01.azurewebsites.net/api/deployments/c20847d9-cc24-4db0-b93b-96db438b530d',
+2025-11-30T01:32:56.5511829Z   log_url: 'https://vitrinedecraquesweb-cyc6dfatafcrfmhd.scm.centralus-01.azurewebsites.net/api/deployments/c20847d9-cc24-4db0-b93b-96db438b530d/log',
+2025-11-30T01:32:56.5512985Z   site_name: 'vitrinedecraquesweb',
+2025-11-30T01:32:56.5513476Z   build_summary: { errors: [], warnings: [] }
+2025-11-30T01:32:56.5513944Z }
+2025-11-30T01:32:56.6778106Z Deploy logs can be viewed at https://vitrinedecraquesweb-cyc6dfatafcrfmhd.scm.centralus-01.azurewebsites.net/api/deployments/c20847d9-cc24-4db0-b93b-96db438b530d/log
+2025-11-30T01:32:56.6780745Z Successfully deployed web package to App Service.
+2025-11-30T01:32:57.6677425Z App Service Application URL: https://vitrinedecraquesweb-cyc6dfatafcrfmhd.centralus-01.azurewebsites.net

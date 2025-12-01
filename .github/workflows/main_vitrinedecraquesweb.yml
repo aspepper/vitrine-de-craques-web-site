@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - VitrineDeCraquesWeb
+name: Deploy Vitrine de Craques Web
 
 on:
   push:
@@ -8,12 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Build Next.js Standalone
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -22,15 +23,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Next.js standalone
+      - name: Build Next.js
         run: npm run build
 
-      - name: Prepare bundle for Azure
+      - name: Prepare artifact for Azure
         run: |
           mkdir -p azure-dist
+          
+          echo "Copying standalone..."
           cp -r .next/standalone azure-dist/
+
+          echo "Copying static assets..."
+          mkdir -p azure-dist/.next
           cp -r .next/static azure-dist/.next/static
+
+          echo "Copying public folder..."
           cp -r public azure-dist/public
+
+          echo "Copying package.json and lock..."
           cp package.json azure-dist/
           cp package-lock.json azure-dist/
 
@@ -41,15 +51,16 @@ jobs:
           path: azure-dist
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
+    name: Deploy to Azure Web App
 
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: next-build
-          path: .
+          path: ./deploy-dist
 
       - name: Azure Login
         uses: azure/login@v2
@@ -58,9 +69,8 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_01417AF951D145B88C5BBE81B95E69BE }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DDB3B84521A4C4092E73E3E9417D990 }}
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'VitrineDeCraquesWeb'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: .
+          app-name: 'vitrine-de-craques'
+          package: ./deploy-dist

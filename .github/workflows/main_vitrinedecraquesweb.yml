@@ -29,7 +29,7 @@ jobs:
       - name: Prepare artifact for Azure
         run: |
           mkdir -p azure-dist
-          
+
           echo "Copying standalone..."
           cp -r .next/standalone azure-dist/
 
@@ -39,10 +39,6 @@ jobs:
 
           echo "Copying public folder..."
           cp -r public azure-dist/public
-
-          echo "Copying package.json and lock..."
-          cp package.json azure-dist/
-          cp package-lock.json azure-dist/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -78,3 +74,4 @@ jobs:
           app-name: 'VitrineDeCraquesWeb'
           slot-name: 'Production'
           package: ./deploy-dist
+          startup-command: 'node .next/standalone/server.js'

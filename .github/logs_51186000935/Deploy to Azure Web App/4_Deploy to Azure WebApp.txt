@@ -1,7 +1,0 @@
-﻿2025-12-01T21:33:07.0178803Z ##[group]Run azure/webapps-deploy@v2
-2025-12-01T21:33:07.0179309Z with:
-2025-12-01T21:33:07.0179640Z   app-name: vitrine-de-craques
-2025-12-01T21:33:07.0180063Z   slot-name: Production
-2025-12-01T21:33:07.0180446Z   package: ./deploy-dist
-2025-12-01T21:33:07.0180819Z ##[endgroup]
-2025-12-01T21:33:08.9695797Z ##[error]Deployment Failed, Error: Resource vitrine-de-craques of type Microsoft.Web/Sites doesn't exist.

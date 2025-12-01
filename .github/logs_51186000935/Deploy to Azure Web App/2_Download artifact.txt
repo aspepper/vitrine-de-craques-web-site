@@ -1,0 +1,19 @@
+﻿2025-12-01T21:32:52.0620683Z ##[group]Run actions/download-artifact@v4
+2025-12-01T21:32:52.0621373Z with:
+2025-12-01T21:32:52.0621651Z   name: next-build
+2025-12-01T21:32:52.0621912Z   path: ./deploy-dist
+2025-12-01T21:32:52.0622189Z   merge-multiple: false
+2025-12-01T21:32:52.0622501Z   repository: aspepper/vitrine-de-craques-web-site
+2025-12-01T21:32:52.0622847Z   run-id: 19838152046
+2025-12-01T21:32:52.0623261Z ##[endgroup]
+2025-12-01T21:32:52.2877266Z Downloading single artifact
+2025-12-01T21:32:52.4203557Z Preparing to download the following artifacts:
+2025-12-01T21:32:52.4205663Z - next-build (ID: 4730148026, Size: 350991556, Expected Digest: sha256:ab54fec2f22d1bbf396af874d75d9bc9feba89ac389b68043c97268020e9fbc8)
+2025-12-01T21:32:52.5124063Z Redirecting to blob download url: https://productionresultssa15.blob.core.windows.net/actions-results/830ed6e5-486f-48e9-8413-ead6ab99ad54/workflow-job-run-391063fa-13f8-5519-939e-c1f5457d51f2/artifacts/1c9fddc89c6061e0a9c3a70ebc213416e95726c9c1fffecf1cd1cde196d7be1c.zip
+2025-12-01T21:32:52.5127060Z Starting download of artifact to: /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/deploy-dist
+2025-12-01T21:32:52.6523601Z (node:1821) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2025-12-01T21:32:52.6526121Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2025-12-01T21:33:00.6511698Z SHA256 digest of downloaded artifact is ab54fec2f22d1bbf396af874d75d9bc9feba89ac389b68043c97268020e9fbc8
+2025-12-01T21:33:00.6513044Z Artifact download completed successfully.
+2025-12-01T21:33:00.6515015Z Total of 1 artifact(s) downloaded
+2025-12-01T21:33:00.6523404Z Download artifact has finished successfully

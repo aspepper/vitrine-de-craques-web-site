@@ -1,0 +1,24 @@
+﻿2025-12-01T21:29:44.5262237Z ##[group]Run actions/setup-node@v4
+2025-12-01T21:29:44.5262572Z with:
+2025-12-01T21:29:44.5262760Z   node-version: 20
+2025-12-01T21:29:44.5262942Z   cache: npm
+2025-12-01T21:29:44.5263120Z   always-auth: false
+2025-12-01T21:29:44.5263323Z   check-latest: false
+2025-12-01T21:29:44.5264220Z   token: ***
+2025-12-01T21:29:44.5264971Z ##[endgroup]
+2025-12-01T21:29:44.7158747Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-12-01T21:29:44.7165994Z ##[group]Environment details
+2025-12-01T21:29:45.1862689Z node: v20.19.5
+2025-12-01T21:29:45.1867842Z npm: 10.8.2
+2025-12-01T21:29:45.1872106Z yarn: 1.22.22
+2025-12-01T21:29:45.1877454Z ##[endgroup]
+2025-12-01T21:29:45.1892537Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
+2025-12-01T21:29:45.3765337Z /home/runner/.npm
+2025-12-01T21:29:45.6989343Z Cache hit for: node-cache-Linux-x64-npm-7bffd5658946da9ba2fd57eceb64f1504d5ec754bb1b17535ffa45a56909273a
+2025-12-01T21:29:46.9416169Z Received 25165824 of 257898045 (9.8%), 23.9 MBs/sec
+2025-12-01T21:29:47.9407984Z Received 134217728 of 257898045 (52.0%), 63.8 MBs/sec
+2025-12-01T21:29:48.9391699Z Received 257898045 of 257898045 (100.0%), 81.9 MBs/sec
+2025-12-01T21:29:48.9392906Z Cache Size: ~246 MB (257898045 B)
+2025-12-01T21:29:48.9522306Z [command]/usr/bin/tar -xf /home/runner/work/_temp/903a461b-5fb0-4c46-9273-59edc8ba203e/cache.tzst -P -C /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site --use-compress-program unzstd
+2025-12-01T21:29:49.7298525Z Cache restored successfully
+2025-12-01T21:29:49.7809471Z Cache restored from key: node-cache-Linux-x64-npm-7bffd5658946da9ba2fd57eceb64f1504d5ec754bb1b17535ffa45a56909273a

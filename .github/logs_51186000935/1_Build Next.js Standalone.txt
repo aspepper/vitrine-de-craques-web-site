@@ -1,0 +1,442 @@
+﻿2025-12-01T21:29:34.5620495Z Current runner version: '2.329.0'
+2025-12-01T21:29:34.5674405Z ##[group]Runner Image Provisioner
+2025-12-01T21:29:34.5675767Z Hosted Compute Agent
+2025-12-01T21:29:34.5676625Z Version: 20251016.436
+2025-12-01T21:29:34.5677790Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-12-01T21:29:34.5679015Z Build Date: 2025-10-15T20:44:12Z
+2025-12-01T21:29:34.5680033Z ##[endgroup]
+2025-12-01T21:29:34.5681054Z ##[group]Operating System
+2025-12-01T21:29:34.5682002Z Ubuntu
+2025-12-01T21:29:34.5682795Z 24.04.3
+2025-12-01T21:29:34.5683946Z LTS
+2025-12-01T21:29:34.5684706Z ##[endgroup]
+2025-12-01T21:29:34.5685542Z ##[group]Runner Image
+2025-12-01T21:29:34.5686666Z Image: ubuntu-24.04
+2025-12-01T21:29:34.5687805Z Version: 20251112.124.1
+2025-12-01T21:29:34.5689588Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251112.124/images/ubuntu/Ubuntu2404-Readme.md
+2025-12-01T21:29:34.5692482Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251112.124
+2025-12-01T21:29:34.5694626Z ##[endgroup]
+2025-12-01T21:29:34.5696620Z ##[group]GITHUB_TOKEN Permissions
+2025-12-01T21:29:34.5699487Z Contents: read
+2025-12-01T21:29:34.5700439Z Metadata: read
+2025-12-01T21:29:34.5701218Z Packages: read
+2025-12-01T21:29:34.5702021Z ##[endgroup]
+2025-12-01T21:29:34.5705346Z Secret source: Actions
+2025-12-01T21:29:34.5706944Z Prepare workflow directory
+2025-12-01T21:29:34.6288494Z Prepare all required actions
+2025-12-01T21:29:34.6378568Z Getting action download info
+2025-12-01T21:29:35.1061652Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-12-01T21:29:36.0796429Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2025-12-01T21:29:36.1823094Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-12-01T21:29:36.4098700Z Complete job name: Build Next.js Standalone
+2025-12-01T21:29:36.4867342Z ##[group]Run actions/checkout@v4
+2025-12-01T21:29:36.4868361Z with:
+2025-12-01T21:29:36.4868931Z   repository: aspepper/vitrine-de-craques-web-site
+2025-12-01T21:29:36.4869871Z   token: ***
+2025-12-01T21:29:36.4870330Z   ssh-strict: true
+2025-12-01T21:29:36.4870809Z   ssh-user: git
+2025-12-01T21:29:36.4871278Z   persist-credentials: true
+2025-12-01T21:29:36.4871806Z   clean: true
+2025-12-01T21:29:36.4872293Z   sparse-checkout-cone-mode: true
+2025-12-01T21:29:36.4872870Z   fetch-depth: 1
+2025-12-01T21:29:36.4873358Z   fetch-tags: false
+2025-12-01T21:29:36.4874033Z   show-progress: true
+2025-12-01T21:29:36.4874542Z   lfs: false
+2025-12-01T21:29:36.4874987Z   submodules: false
+2025-12-01T21:29:36.4875477Z   set-safe-directory: true
+2025-12-01T21:29:36.4876263Z ##[endgroup]
+2025-12-01T21:29:36.6902421Z Syncing repository: aspepper/vitrine-de-craques-web-site
+2025-12-01T21:29:36.6906663Z ##[group]Getting Git version info
+2025-12-01T21:29:36.6908731Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-12-01T21:29:36.6911415Z [command]/usr/bin/git version
+2025-12-01T21:29:36.6912493Z git version 2.51.2
+2025-12-01T21:29:36.6916037Z ##[endgroup]
+2025-12-01T21:29:36.6922913Z Temporarily overriding HOME='/home/runner/work/_temp/d1c26f23-0899-4b07-b076-2867b7904059' before making global git config changes
+2025-12-01T21:29:36.6925894Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-01T21:29:36.6928674Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-12-01T21:29:36.6932742Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-12-01T21:29:36.6935464Z ##[group]Initializing the repository
+2025-12-01T21:29:36.6937138Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-12-01T21:29:36.6939193Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-12-01T21:29:36.6941280Z hint: is subject to change. To configure the initial branch name to use in all
+2025-12-01T21:29:36.6942875Z hint: of your new repositories, which will suppress this warning, call:
+2025-12-01T21:29:36.6944410Z hint:
+2025-12-01T21:29:36.6945268Z hint: 	git config --global init.defaultBranch <name>
+2025-12-01T21:29:36.6946315Z hint:
+2025-12-01T21:29:36.6947369Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-12-01T21:29:36.6949199Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-12-01T21:29:36.6950612Z hint:
+2025-12-01T21:29:36.6951364Z hint: 	git branch -m <name>
+2025-12-01T21:29:36.6952243Z hint:
+2025-12-01T21:29:36.6953288Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-12-01T21:29:36.6955907Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-12-01T21:29:36.6961034Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
+2025-12-01T21:29:36.6966458Z ##[endgroup]
+2025-12-01T21:29:36.6969201Z ##[group]Disabling automatic garbage collection
+2025-12-01T21:29:36.6970450Z [command]/usr/bin/git config --local gc.auto 0
+2025-12-01T21:29:36.6973461Z ##[endgroup]
+2025-12-01T21:29:36.6975279Z ##[group]Setting up auth
+2025-12-01T21:29:36.6977284Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-01T21:29:36.6986739Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-01T21:29:36.7386834Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-01T21:29:36.7428219Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-01T21:29:36.7713556Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-01T21:29:36.7753586Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-01T21:29:36.8036258Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-12-01T21:29:36.8082484Z ##[endgroup]
+2025-12-01T21:29:36.8085830Z ##[group]Fetching the repository
+2025-12-01T21:29:36.8096292Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +afa1dcf40822324b783f8bbb13fec34463271276:refs/remotes/origin/main
+2025-12-01T21:29:43.6202009Z From https://github.com/aspepper/vitrine-de-craques-web-site
+2025-12-01T21:29:43.6208196Z  * [new ref]         afa1dcf40822324b783f8bbb13fec34463271276 -> origin/main
+2025-12-01T21:29:43.6245396Z ##[endgroup]
+2025-12-01T21:29:43.6246378Z ##[group]Determining the checkout info
+2025-12-01T21:29:43.6247641Z ##[endgroup]
+2025-12-01T21:29:43.6252465Z [command]/usr/bin/git sparse-checkout disable
+2025-12-01T21:29:43.6305030Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-12-01T21:29:43.6341234Z ##[group]Checking out the ref
+2025-12-01T21:29:43.6346749Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-12-01T21:29:44.4818935Z Switched to a new branch 'main'
+2025-12-01T21:29:44.4833470Z branch 'main' set up to track 'origin/main'.
+2025-12-01T21:29:44.4920313Z ##[endgroup]
+2025-12-01T21:29:44.4972252Z [command]/usr/bin/git log -1 --format=%H
+2025-12-01T21:29:44.4999733Z afa1dcf40822324b783f8bbb13fec34463271276
+2025-12-01T21:29:44.5262268Z ##[group]Run actions/setup-node@v4
+2025-12-01T21:29:44.5262577Z with:
+2025-12-01T21:29:44.5262764Z   node-version: 20
+2025-12-01T21:29:44.5262946Z   cache: npm
+2025-12-01T21:29:44.5263123Z   always-auth: false
+2025-12-01T21:29:44.5263334Z   check-latest: false
+2025-12-01T21:29:44.5264229Z   token: ***
+2025-12-01T21:29:44.5264978Z ##[endgroup]
+2025-12-01T21:29:44.7158787Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-12-01T21:29:44.7166014Z ##[group]Environment details
+2025-12-01T21:29:45.1862732Z node: v20.19.5
+2025-12-01T21:29:45.1867856Z npm: 10.8.2
+2025-12-01T21:29:45.1872119Z yarn: 1.22.22
+2025-12-01T21:29:45.1877467Z ##[endgroup]
+2025-12-01T21:29:45.1892551Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
+2025-12-01T21:29:45.3765381Z /home/runner/.npm
+2025-12-01T21:29:45.6989372Z Cache hit for: node-cache-Linux-x64-npm-7bffd5658946da9ba2fd57eceb64f1504d5ec754bb1b17535ffa45a56909273a
+2025-12-01T21:29:46.9416350Z Received 25165824 of 257898045 (9.8%), 23.9 MBs/sec
+2025-12-01T21:29:47.9408025Z Received 134217728 of 257898045 (52.0%), 63.8 MBs/sec
+2025-12-01T21:29:48.9391747Z Received 257898045 of 257898045 (100.0%), 81.9 MBs/sec
+2025-12-01T21:29:48.9392916Z Cache Size: ~246 MB (257898045 B)
+2025-12-01T21:29:48.9522356Z [command]/usr/bin/tar -xf /home/runner/work/_temp/903a461b-5fb0-4c46-9273-59edc8ba203e/cache.tzst -P -C /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site --use-compress-program unzstd
+2025-12-01T21:29:49.7298569Z Cache restored successfully
+2025-12-01T21:29:49.7809503Z Cache restored from key: node-cache-Linux-x64-npm-7bffd5658946da9ba2fd57eceb64f1504d5ec754bb1b17535ffa45a56909273a
+2025-12-01T21:29:49.8010417Z ##[group]Run npm ci
+2025-12-01T21:29:49.8010729Z [36;1mnpm ci[0m
+2025-12-01T21:29:49.8059813Z shell: /usr/bin/bash -e {0}
+2025-12-01T21:29:49.8060133Z ##[endgroup]
+2025-12-01T21:29:57.3218905Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-12-01T21:29:57.5535949Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2025-12-01T21:29:57.5755526Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-12-01T21:29:57.9547052Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2025-12-01T21:29:57.9652506Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-12-01T21:30:04.3464114Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2025-12-01T21:30:04.6562239Z npm warn deprecated fluent-ffmpeg@2.1.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2025-12-01T21:30:15.9633363Z 
+2025-12-01T21:30:15.9634678Z > vitrine-de-craques-web-site@0.1.0 postinstall
+2025-12-01T21:30:15.9635633Z > npx prisma generate
+2025-12-01T21:30:15.9654717Z 
+2025-12-01T21:30:17.4392387Z Prisma schema loaded from prisma/schema.prisma
+2025-12-01T21:30:18.5334922Z ┌─────────────────────────────────────────────────────────┐
+2025-12-01T21:30:18.5335352Z 
+2025-12-01T21:30:18.5336048Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 469ms
+2025-12-01T21:30:18.5336566Z 
+2025-12-01T21:30:18.5337125Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-12-01T21:30:18.5337632Z 
+2025-12-01T21:30:18.5338094Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+2025-12-01T21:30:18.5338566Z 
+2025-12-01T21:30:18.5339464Z │  Update available 6.16.2 -> 7.0.1                       │
+2025-12-01T21:30:18.5340239Z │                                                         │
+2025-12-01T21:30:18.5341044Z │  This is a major update - please follow the guide at    │
+2025-12-01T21:30:18.5342029Z │  https://pris.ly/d/major-version-upgrade                │
+2025-12-01T21:30:18.5361197Z │                                                         │
+2025-12-01T21:30:18.5362075Z │  Run the following to update                            │
+2025-12-01T21:30:18.5362969Z │    npm i --save-dev prisma@latest                       │
+2025-12-01T21:30:18.5364802Z │    npm i @prisma/client@latest                          │
+2025-12-01T21:30:18.5365685Z └─────────────────────────────────────────────────────────┘
+2025-12-01T21:30:18.5850842Z 
+2025-12-01T21:30:18.5860519Z added 873 packages, and audited 874 packages in 29s
+2025-12-01T21:30:18.5861409Z 
+2025-12-01T21:30:18.5862101Z 195 packages are looking for funding
+2025-12-01T21:30:18.5862790Z   run `npm fund` for details
+2025-12-01T21:30:18.6476144Z 
+2025-12-01T21:30:18.6477211Z 6 vulnerabilities (3 low, 3 high)
+2025-12-01T21:30:18.6477912Z 
+2025-12-01T21:30:18.6478552Z To address issues that do not require attention, run:
+2025-12-01T21:30:18.6479525Z   npm audit fix
+2025-12-01T21:30:18.6479963Z 
+2025-12-01T21:30:18.6486505Z To address all issues (including breaking changes), run:
+2025-12-01T21:30:18.6487151Z   npm audit fix --force
+2025-12-01T21:30:18.6487387Z 
+2025-12-01T21:30:18.6487594Z Run `npm audit` for details.
+2025-12-01T21:30:18.7677605Z ##[group]Run npm run build
+2025-12-01T21:30:18.7677878Z [36;1mnpm run build[0m
+2025-12-01T21:30:18.7710587Z shell: /usr/bin/bash -e {0}
+2025-12-01T21:30:18.7710820Z ##[endgroup]
+2025-12-01T21:30:18.8917922Z 
+2025-12-01T21:30:18.8919772Z > vitrine-de-craques-web-site@0.1.0 build
+2025-12-01T21:30:18.8921476Z > npx prisma generate && next build
+2025-12-01T21:30:18.8922550Z 
+2025-12-01T21:30:20.3613398Z Prisma schema loaded from prisma/schema.prisma
+2025-12-01T21:30:21.3719588Z 
+2025-12-01T21:30:21.3720930Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 421ms
+2025-12-01T21:30:21.3721474Z 
+2025-12-01T21:30:21.3722092Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-12-01T21:30:21.3722599Z 
+2025-12-01T21:30:21.3723340Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-12-01T21:30:21.3724220Z 
+2025-12-01T21:30:21.9410086Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-12-01T21:30:21.9501321Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-12-01T21:30:21.9505085Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-12-01T21:30:21.9506847Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-12-01T21:30:21.9508759Z https://nextjs.org/telemetry
+2025-12-01T21:30:21.9509039Z 
+2025-12-01T21:30:22.0137454Z   ▲ Next.js 14.2.33
+2025-12-01T21:30:22.0144305Z 
+2025-12-01T21:30:22.0818860Z    Creating an optimized production build ...
+2025-12-01T21:31:08.0537294Z  ⚠ Compiled with warnings
+2025-12-01T21:31:08.0537602Z 
+2025-12-01T21:31:08.0538128Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-12-01T21:31:08.0538903Z Critical dependency: the request of a dependency is an expression
+2025-12-01T21:31:08.0554287Z 
+2025-12-01T21:31:08.0554665Z Import trace for requested module:
+2025-12-01T21:31:08.0555285Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-12-01T21:31:08.0555816Z ./app/api/videos/route.ts
+2025-12-01T21:31:08.0556048Z 
+2025-12-01T21:31:08.0556334Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-12-01T21:31:08.0557099Z Critical dependency: the request of a dependency is an expression
+2025-12-01T21:31:08.0557546Z 
+2025-12-01T21:31:08.0557770Z Import trace for requested module:
+2025-12-01T21:31:08.0558337Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-12-01T21:31:08.0558964Z ./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js
+2025-12-01T21:31:08.0559521Z ./node_modules/fluent-ffmpeg/index.js
+2025-12-01T21:31:08.0559969Z ./app/api/videos/route.ts
+2025-12-01T21:31:08.0560198Z 
+2025-12-01T21:31:24.7286427Z  ✓ Compiled successfully
+2025-12-01T21:31:24.7294548Z    Linting and checking validity of types ...
+2025-12-01T21:31:45.1385403Z    Collecting page data ...
+2025-12-01T21:31:45.7800075Z [Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente
+2025-12-01T21:31:46.1965672Z FFmpeg installer package not available. Falling back to system ffmpeg binary. O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.
+2025-12-01T21:31:48.5835689Z    Generating static pages (0/58) ...
+2025-12-01T21:31:49.8783985Z    Generating static pages (14/58) 
+2025-12-01T21:31:52.1905656Z    Generating static pages (28/58) 
+2025-12-01T21:31:53.4377814Z    Generating static pages (43/58) 
+2025-12-01T21:31:54.3823022Z  ✓ Generating static pages (58/58)
+2025-12-01T21:31:55.5037919Z    Finalizing page optimization ...
+2025-12-01T21:31:55.5038833Z    Collecting build traces ...
+2025-12-01T21:32:17.9763110Z 
+2025-12-01T21:32:17.9866817Z Route (app)                                      Size     First Load JS
+2025-12-01T21:32:17.9869380Z ┌ ƒ /                                            1.83 kB         110 kB
+2025-12-01T21:32:17.9872284Z ├ ƒ /_not-found                                  876 B          88.2 kB
+2025-12-01T21:32:17.9873217Z ├ ƒ /administrator                               155 B          87.5 kB
+2025-12-01T21:32:17.9874418Z ├ ƒ /administrator/clubes                        6.46 kB         117 kB
+2025-12-01T21:32:17.9875336Z ├ ƒ /administrator/users                         5.68 kB         111 kB
+2025-12-01T21:32:17.9876173Z ├ ƒ /administrator/videos                        5.24 kB         111 kB
+2025-12-01T21:32:17.9876982Z ├ ƒ /agentes                                     2.7 kB         98.7 kB
+2025-12-01T21:32:17.9877722Z ├ ƒ /agentes/[id]                                1.84 kB         117 kB
+2025-12-01T21:32:17.9878500Z ├ ƒ /api/admin/clubes                            0 B                0 B
+2025-12-01T21:32:17.9879394Z ├ ƒ /api/admin/clubes/[id]                       0 B                0 B
+2025-12-01T21:32:17.9880432Z ├ ƒ /api/admin/summary                           0 B                0 B
+2025-12-01T21:32:17.9881274Z ├ ƒ /api/admin/users                             0 B                0 B
+2025-12-01T21:32:17.9882062Z ├ ƒ /api/admin/users/[userId]/block              0 B                0 B
+2025-12-01T21:32:17.9882820Z ├ ƒ /api/admin/videos                            0 B                0 B
+2025-12-01T21:32:17.9883921Z ├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B
+2025-12-01T21:32:17.9884980Z ├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B
+2025-12-01T21:32:17.9885920Z ├ ƒ /api/agentes                                 0 B                0 B
+2025-12-01T21:32:17.9886803Z ├ ƒ /api/agentes/[id]                            0 B                0 B
+2025-12-01T21:32:17.9887696Z ├ ƒ /api/atletas                                 0 B                0 B
+2025-12-01T21:32:17.9888599Z ├ ƒ /api/atletas/[id]                            0 B                0 B
+2025-12-01T21:32:17.9889532Z ├ ƒ /api/auth/[...nextauth]                      0 B                0 B
+2025-12-01T21:32:17.9890552Z ├ ƒ /api/blocks/[targetUserId]                   0 B                0 B
+2025-12-01T21:32:17.9891486Z ├ ƒ /api/clubes                                  0 B                0 B
+2025-12-01T21:32:17.9892265Z ├ ƒ /api/clubes/[slug]                           0 B                0 B
+2025-12-01T21:32:17.9893097Z ├ ƒ /api/confederacoes                           0 B                0 B
+2025-12-01T21:32:17.9894287Z ├ ƒ /api/confederacoes/[slug]                    0 B                0 B
+2025-12-01T21:32:17.9895169Z ├ ƒ /api/db-check                                0 B                0 B
+2025-12-01T21:32:17.9895936Z ├ ƒ /api/env                                     0 B                0 B
+2025-12-01T21:32:17.9896729Z ├ ƒ /api/errors                                  0 B                0 B
+2025-12-01T21:32:17.9897557Z ├ ƒ /api/follows/[targetUserId]                  0 B                0 B
+2025-12-01T21:32:17.9898398Z ├ ƒ /api/games                                   0 B                0 B
+2025-12-01T21:32:17.9899169Z ├ ƒ /api/games/[slug]                            0 B                0 B
+2025-12-01T21:32:17.9900251Z ├ ƒ /api/games/[slug]/comments                   0 B                0 B
+2025-12-01T21:32:17.9901069Z ├ ƒ /api/games/[slug]/engagement                 0 B                0 B
+2025-12-01T21:32:17.9901816Z ├ ƒ /api/health                                  0 B                0 B
+2025-12-01T21:32:17.9902635Z ├ ƒ /api/messages                                0 B                0 B
+2025-12-01T21:32:17.9903421Z ├ ƒ /api/messages/unread-count                   0 B                0 B
+2025-12-01T21:32:17.9904425Z ├ ƒ /api/news                                    0 B                0 B
+2025-12-01T21:32:17.9905210Z ├ ƒ /api/news/[id]                               0 B                0 B
+2025-12-01T21:32:17.9905997Z ├ ƒ /api/news/cover                              0 B                0 B
+2025-12-01T21:32:17.9906760Z ├ ƒ /api/noticias                                0 B                0 B
+2025-12-01T21:32:17.9907843Z ├ ƒ /api/noticias/[slug]                         0 B                0 B
+2025-12-01T21:32:17.9908677Z ├ ƒ /api/noticias/[slug]/comments                0 B                0 B
+2025-12-01T21:32:17.9909570Z ├ ƒ /api/noticias/[slug]/engagement              0 B                0 B
+2025-12-01T21:32:17.9910380Z ├ ƒ /api/pg-check                                0 B                0 B
+2025-12-01T21:32:17.9911135Z ├ ƒ /api/profile                                 0 B                0 B
+2025-12-01T21:32:17.9911865Z ├ ƒ /api/profile/avatar                          0 B                0 B
+2025-12-01T21:32:17.9912703Z ├ ƒ /api/profile/personal-info                   0 B                0 B
+2025-12-01T21:32:17.9913491Z ├ ƒ /api/register                                0 B                0 B
+2025-12-01T21:32:17.9914634Z ├ ƒ /api/register/atleta-18                      0 B                0 B
+2025-12-01T21:32:17.9915379Z ├ ƒ /api/register/clube                          0 B                0 B
+2025-12-01T21:32:17.9916247Z ├ ƒ /api/register/de-agentes-licenciados         0 B                0 B
+2025-12-01T21:32:17.9917117Z ├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B
+2025-12-01T21:32:17.9917978Z ├ ƒ /api/register/responsavel                    0 B                0 B
+2025-12-01T21:32:17.9918847Z ├ ƒ /api/register/responsavel/documents          0 B                0 B
+2025-12-01T21:32:17.9919700Z ├ ƒ /api/register/torcedor                       0 B                0 B
+2025-12-01T21:32:17.9920402Z ├ ƒ /api/times                                   0 B                0 B
+2025-12-01T21:32:17.9921054Z ├ ƒ /api/videos                                  0 B                0 B
+2025-12-01T21:32:17.9921718Z ├ ƒ /api/videos/[id]                             0 B                0 B
+2025-12-01T21:32:17.9922526Z ├ ƒ /api/videos/[id]/appeal                      0 B                0 B
+2025-12-01T21:32:17.9923384Z ├ ƒ /api/videos/[id]/comments                    0 B                0 B
+2025-12-01T21:32:17.9924441Z ├ ƒ /api/videos/proxy                            0 B                0 B
+2025-12-01T21:32:17.9925285Z ├ ƒ /arquibancada                                4.49 kB        98.6 kB
+2025-12-01T21:32:17.9926098Z ├ ƒ /atletas                                     4.5 kB          107 kB
+2025-12-01T21:32:17.9927076Z ├ ƒ /atletas/[id]                                5.24 kB         138 kB
+2025-12-01T21:32:17.9927892Z ├ ƒ /cadastro                                    2.21 kB         129 kB
+2025-12-01T21:32:17.9928659Z ├ ƒ /cadastro/[slug]                             2.92 kB         121 kB
+2025-12-01T21:32:17.9929482Z ├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB
+2025-12-01T21:32:17.9930326Z ├ ƒ /cadastro/clube                              4.04 kB         137 kB
+2025-12-01T21:32:17.9931196Z ├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB
+2025-12-01T21:32:17.9932143Z ├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB
+2025-12-01T21:32:17.9933081Z ├ ƒ /cadastro/responsavel                        4.23 kB         137 kB
+2025-12-01T21:32:17.9934190Z ├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB
+2025-12-01T21:32:17.9935432Z ├ ƒ /cadastro/sucesso                            155 B          87.5 kB
+2025-12-01T21:32:17.9936289Z ├ ƒ /cadastro/torcedor                           5.13 kB         147 kB
+2025-12-01T21:32:17.9937068Z ├ ƒ /clubes                                      3.35 kB         111 kB
+2025-12-01T21:32:17.9937802Z ├ ƒ /clubes/[slug]                               807 B           109 kB
+2025-12-01T21:32:17.9938557Z ├ ƒ /confederacoes                               807 B           109 kB
+2025-12-01T21:32:17.9939348Z ├ ƒ /confederacoes/[slug]                        807 B           109 kB
+2025-12-01T21:32:17.9940277Z ├ ƒ /feed                                        12.2 kB         145 kB
+2025-12-01T21:32:17.9940977Z ├ ƒ /games                                       197 B           121 kB
+2025-12-01T21:32:17.9941941Z ├ ƒ /games/[slug]                                211 B           128 kB
+2025-12-01T21:32:17.9942722Z ├ ○ /icon                                        0 B                0 B
+2025-12-01T21:32:17.9943453Z ├ ƒ /login                                       3.73 kB         145 kB
+2025-12-01T21:32:17.9944417Z ├ ƒ /noticias                                    203 B           121 kB
+2025-12-01T21:32:17.9945181Z ├ ƒ /noticias/[slug]                             614 B           129 kB
+2025-12-01T21:32:17.9945914Z ├ ƒ /perfil                                      27.3 kB         171 kB
+2025-12-01T21:32:17.9946647Z ├ ƒ /perfis/[id]                                 1.84 kB         117 kB
+2025-12-01T21:32:17.9947347Z ├ ƒ /player/[id]                                 9.15 kB         127 kB
+2025-12-01T21:32:17.9948086Z ├ ƒ /privacidade                                 188 B          96.2 kB
+2025-12-01T21:32:17.9948898Z ├ ƒ /registrar-escolha-perfil                    188 B          96.2 kB
+2025-12-01T21:32:17.9949709Z ├ ƒ /sobre                                       188 B          96.2 kB
+2025-12-01T21:32:17.9950412Z ├ ƒ /torcida                                     155 B          87.5 kB
+2025-12-01T21:32:17.9951139Z └ ƒ /upload                                      10.4 kB         119 kB
+2025-12-01T21:32:17.9951771Z + First Load JS shared by all                    87.3 kB
+2025-12-01T21:32:17.9952441Z   ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB
+2025-12-01T21:32:17.9953080Z   ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB
+2025-12-01T21:32:17.9953916Z   └ other shared chunks (total)                  1.97 kB
+2025-12-01T21:32:17.9954248Z 
+2025-12-01T21:32:17.9954257Z 
+2025-12-01T21:32:17.9954614Z ƒ Middleware                                     48.3 kB
+2025-12-01T21:32:17.9954915Z 
+2025-12-01T21:32:17.9955207Z ○  (Static)   prerendered as static content
+2025-12-01T21:32:17.9955755Z ƒ  (Dynamic)  server-rendered on demand
+2025-12-01T21:32:17.9956014Z 
+2025-12-01T21:32:18.0350248Z 
+2025-12-01T21:32:18.0351534Z > vitrine-de-craques-web-site@0.1.0 postbuild
+2025-12-01T21:32:18.0352223Z > node scripts/copy-prisma-artifacts.js
+2025-12-01T21:32:18.0352552Z 
+2025-12-01T21:32:18.1605115Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/.prisma/client
+2025-12-01T21:32:18.1614835Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/.prisma/client
+2025-12-01T21:32:18.1618551Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/.prisma/client
+2025-12-01T21:32:18.2636265Z [copy-prisma-artifacts] Copied Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/standalone/node_modules/@prisma/client
+2025-12-01T21:32:18.2640032Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/@prisma/client
+2025-12-01T21:32:18.2642695Z [copy-prisma-artifacts] Linked Prisma artifacts to /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.next/server/chunks/@prisma/client
+2025-12-01T21:32:18.2771956Z ##[group]Run mkdir -p azure-dist
+2025-12-01T21:32:18.2772296Z [36;1mmkdir -p azure-dist[0m
+2025-12-01T21:32:18.2772517Z [36;1m[0m
+2025-12-01T21:32:18.2772707Z [36;1mecho "Copying standalone..."[0m
+2025-12-01T21:32:18.2772989Z [36;1mcp -r .next/standalone azure-dist/[0m
+2025-12-01T21:32:18.2773239Z [36;1m[0m
+2025-12-01T21:32:18.2773418Z [36;1mecho "Copying static assets..."[0m
+2025-12-01T21:32:18.2773965Z [36;1mmkdir -p azure-dist/.next[0m
+2025-12-01T21:32:18.2774427Z [36;1mcp -r .next/static azure-dist/.next/static[0m
+2025-12-01T21:32:18.2774700Z [36;1m[0m
+2025-12-01T21:32:18.2774882Z [36;1mecho "Copying public folder..."[0m
+2025-12-01T21:32:18.2775179Z [36;1mcp -r public azure-dist/public[0m
+2025-12-01T21:32:18.2775413Z [36;1m[0m
+2025-12-01T21:32:18.2775612Z [36;1mecho "Copying package.json and lock..."[0m
+2025-12-01T21:32:18.2775887Z [36;1mcp package.json azure-dist/[0m
+2025-12-01T21:32:18.2776158Z [36;1mcp package-lock.json azure-dist/[0m
+2025-12-01T21:32:18.2809451Z shell: /usr/bin/bash -e {0}
+2025-12-01T21:32:18.2809693Z ##[endgroup]
+2025-12-01T21:32:18.2884693Z Copying standalone...
+2025-12-01T21:32:19.1630448Z Copying static assets...
+2025-12-01T21:32:19.1727890Z Copying public folder...
+2025-12-01T21:32:19.1951978Z Copying package.json and lock...
+2025-12-01T21:32:19.2090705Z ##[group]Run actions/upload-artifact@v4
+2025-12-01T21:32:19.2091209Z with:
+2025-12-01T21:32:19.2091560Z   name: next-build
+2025-12-01T21:32:19.2091908Z   path: azure-dist
+2025-12-01T21:32:19.2092256Z   if-no-files-found: warn
+2025-12-01T21:32:19.2092769Z   compression-level: 6
+2025-12-01T21:32:19.2093113Z   overwrite: false
+2025-12-01T21:32:19.2093426Z   include-hidden-files: false
+2025-12-01T21:32:19.2094092Z ##[endgroup]
+2025-12-01T21:32:20.4695111Z With the provided path, there will be 4006 files uploaded
+2025-12-01T21:32:20.4702459Z Artifact name is valid!
+2025-12-01T21:32:20.4704170Z Root directory input is valid!
+2025-12-01T21:32:20.7901589Z Beginning upload of artifact content to blob storage
+2025-12-01T21:32:22.1389633Z Uploaded bytes 8388608
+2025-12-01T21:32:22.6803047Z Uploaded bytes 16777216
+2025-12-01T21:32:22.7628589Z Uploaded bytes 25165824
+2025-12-01T21:32:22.7810782Z Uploaded bytes 33554432
+2025-12-01T21:32:23.0429574Z Uploaded bytes 41943040
+2025-12-01T21:32:23.2891360Z Uploaded bytes 50331648
+2025-12-01T21:32:23.5055150Z Uploaded bytes 58720256
+2025-12-01T21:32:23.7665145Z Uploaded bytes 67108864
+2025-12-01T21:32:23.9855429Z Uploaded bytes 75497472
+2025-12-01T21:32:24.2259355Z Uploaded bytes 83886080
+2025-12-01T21:32:24.4851282Z Uploaded bytes 92274688
+2025-12-01T21:32:24.8678050Z Uploaded bytes 100663296
+2025-12-01T21:32:25.1245576Z Uploaded bytes 109051904
+2025-12-01T21:32:25.5305150Z Uploaded bytes 117440512
+2025-12-01T21:32:25.8601038Z Uploaded bytes 125829120
+2025-12-01T21:32:26.1518855Z Uploaded bytes 134217728
+2025-12-01T21:32:26.4851451Z Uploaded bytes 142606336
+2025-12-01T21:32:26.8362954Z Uploaded bytes 150994944
+2025-12-01T21:32:27.3185371Z Uploaded bytes 159383552
+2025-12-01T21:32:28.0768247Z Uploaded bytes 167772160
+2025-12-01T21:32:28.4724518Z Uploaded bytes 176160768
+2025-12-01T21:32:28.7707807Z Uploaded bytes 184549376
+2025-12-01T21:32:29.0805069Z Uploaded bytes 192937984
+2025-12-01T21:32:29.7797000Z Uploaded bytes 201326592
+2025-12-01T21:32:30.0992124Z Uploaded bytes 209715200
+2025-12-01T21:32:30.5036644Z Uploaded bytes 218103808
+2025-12-01T21:32:30.9206575Z Uploaded bytes 226492416
+2025-12-01T21:32:31.1737513Z Uploaded bytes 234881024
+2025-12-01T21:32:31.6204557Z Uploaded bytes 243269632
+2025-12-01T21:32:32.0712861Z Uploaded bytes 251658240
+2025-12-01T21:32:32.2134507Z Uploaded bytes 260046848
+2025-12-01T21:32:32.6708566Z Uploaded bytes 268435456
+2025-12-01T21:32:33.2231728Z Uploaded bytes 276824064
+2025-12-01T21:32:33.8380386Z Uploaded bytes 285212672
+2025-12-01T21:32:34.6747419Z Uploaded bytes 293601280
+2025-12-01T21:32:35.3857051Z Uploaded bytes 301989888
+2025-12-01T21:32:36.1166128Z Uploaded bytes 310378496
+2025-12-01T21:32:38.2358557Z Uploaded bytes 318767104
+2025-12-01T21:32:39.2928421Z Uploaded bytes 327155712
+2025-12-01T21:32:39.8129311Z Uploaded bytes 335544320
+2025-12-01T21:32:39.8267292Z Uploaded bytes 343932928
+2025-12-01T21:32:40.0155415Z Uploaded bytes 350991556
+2025-12-01T21:32:40.0767058Z Finished uploading artifact content to blob storage!
+2025-12-01T21:32:40.0772721Z SHA256 digest of uploaded artifact zip is ab54fec2f22d1bbf396af874d75d9bc9feba89ac389b68043c97268020e9fbc8
+2025-12-01T21:32:40.0775190Z Finalizing artifact upload
+2025-12-01T21:32:40.3432135Z Artifact next-build.zip successfully finalized. Artifact ID 4730148026
+2025-12-01T21:32:40.3435712Z Artifact next-build has been successfully uploaded! Final size is 350991556 bytes. Artifact ID is 4730148026
+2025-12-01T21:32:40.3441652Z Artifact download URL: https://github.com/aspepper/vitrine-de-craques-web-site/actions/runs/19838152046/artifacts/4730148026
+2025-12-01T21:32:40.3729339Z Post job cleanup.
+2025-12-01T21:32:40.5546954Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-7bffd5658946da9ba2fd57eceb64f1504d5ec754bb1b17535ffa45a56909273a, not saving cache.
+2025-12-01T21:32:40.5655973Z Post job cleanup.
+2025-12-01T21:32:40.6660687Z [command]/usr/bin/git version
+2025-12-01T21:32:40.6703499Z git version 2.51.2
+2025-12-01T21:32:40.6754009Z Temporarily overriding HOME='/home/runner/work/_temp/743fd415-7d13-429b-807c-eb7c7de4f09a' before making global git config changes
+2025-12-01T21:32:40.6755747Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-01T21:32:40.6762073Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-12-01T21:32:40.6816215Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-01T21:32:40.6854854Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-01T21:32:40.7096460Z fatal: No url found for submodule path 'Vitrine-De-Craques-App-iOS/Vitrine-De-Craques-App-iOS' in .gitmodules
+2025-12-01T21:32:40.7149316Z ##[warning]The process '/usr/bin/git' failed with exit code 128
+2025-12-01T21:32:40.7240666Z Cleaning up orphan processes

@@ -1,80 +1,65 @@
-name: Deploy Vitrine de Craques Web
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - VitrineDeCraquesWeb
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build Next.js Standalone
+    permissions:
+      contents: read #This is required for actions/checkout
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '20.x'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Next.js
-        run: npm run build
-
-      - name: Prepare artifact for Azure
+      - name: npm install, build, and test
         run: |
-          mkdir -p azure-dist
-          
-          echo "Copying standalone..."
-          cp -r .next/standalone azure-dist/
+          npm install
+          npm run build --if-present
+          npm run test --if-present
 
-          echo "Copying static assets..."
-          mkdir -p azure-dist/.next
-          cp -r .next/static azure-dist/.next/static
-
-          echo "Copying public folder..."
-          cp -r public azure-dist/public
-
-          echo "Copying package.json and lock..."
-          cp package.json azure-dist/
-          cp package-lock.json azure-dist/
-
-      - name: Upload artifact
+      - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: next-build
-          path: azure-dist
+          name: node-app
+          path: .
 
   deploy:
-    needs: build
     runs-on: ubuntu-latest
-    name: Deploy to Azure Web App
+    needs: build
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
 
     steps:
-      - name: Download artifact
+      - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: next-build
-          path: ./deploy-dist
-
-      - name: Azure Login
+          name: node-app
+      
+      - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4F614D4735474B28AD4DEFBDE931C36C }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_01417AF951D145B88C5BBE81B95E69BE }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DDB3B84521A4C4092E73E3E9417D990 }}
 
-      - name: Deploy to Azure WebApp
-        uses: azure/webapps-deploy@v2
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'vitrine-de-craques'
+          app-name: 'VitrineDeCraquesWeb'
           slot-name: 'Production'
-          package: ./deploy-dist
+          package: .
+          

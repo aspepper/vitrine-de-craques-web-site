@@ -72,6 +72,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'VitrineDeCraquesWeb'
-          slot-name: 'Production'
           package: ./deploy-dist
           startup-command: 'node .next/standalone/server.js'

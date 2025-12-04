@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy Node.js app to Azure Web App - VitrineDeCraquesWeb
 
 on:
@@ -13,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +19,25 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
+          cache: 'npm' # Habilita cache para ser mais rápido
+
+      # ADICIONADO: Instalação das dependências
+      - name: Install dependencies
+        run: npm ci
+
+      # ADICIONADO: Gera o cliente do Prisma (necessário antes do build)
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      # ADICIONADO: Faz o build do Next.js (cria a pasta .next/standalone)
+      - name: Build
+        run: npm run build
+
+      # ADICIONADO: Remove node_modules dev para o arquivo ficar menor
+      # Como usamos standalone, o node_modules raiz não é tão crítico, 
+      # mas ajuda a limpar o zip se não estiver usando standalone corretamente.
+      - name: Prune production dependencies
+        run: npm prune --production
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -33,8 +49,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - name: Download artifact from build job
@@ -49,6 +65,13 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BA57F9EF5EE9489285A5A9146292AD4A }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8F2525338E9B49C8B0458A58B5BB40ED }}
 
+      # NOVO PASSO: Parar o App Service para liberar os arquivos (Evita erro 409)
+      - name: Stop Azure Web App
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az webapp stop --name VitrineDeCraquesWeb --resource-group VitrineDeCraques
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -56,4 +79,10 @@ jobs:
           app-name: 'VitrineDeCraquesWeb'
           slot-name: 'Production'
           package: .
-          
+
+      # NOVO PASSO: Iniciar o App Service novamente
+      - name: Start Azure Web App
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az webapp start --name VitrineDeCraquesWeb --resource-group VitrineDeCraques

@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: false # Ignora submodulos para evitar o erro do projeto iOS
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
@@ -36,8 +38,6 @@ jobs:
           cp -r public .next/standalone/public
           cp -r .next/static .next/standalone/.next/static
 
-      # AQUI MUDA: Em vez de upload-artifact, já fazemos o login e deploy direto
-      
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -45,23 +45,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BA57F9EF5EE9489285A5A9146292AD4A }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8F2525338E9B49C8B0458A58B5BB40ED }}
 
-      - name: Stop Azure Web App
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az webapp stop --name VitrineDeCraquesWeb --resource-group VitrineDeCraques
-
+      # REMOVIDO: Comandos Stop/Start que causavam erro de permissão.
+      
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'VitrineDeCraquesWeb'
           slot-name: 'Production'
-          # Aponta direto para a pasta gerada, sem precisar baixar zip
           package: .next/standalone
-
-      - name: Start Azure Web App
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az webapp start --name VitrineDeCraquesWeb --resource-group VitrineDeCraques

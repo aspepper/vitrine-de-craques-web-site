@@ -19,31 +19,31 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-          cache: 'npm' # Habilita cache para ser mais rápido
+          cache: 'npm'
 
-      # ADICIONADO: Instalação das dependências
       - name: Install dependencies
         run: npm ci
 
-      # ADICIONADO: Gera o cliente do Prisma (necessário antes do build)
       - name: Generate Prisma Client
         run: npx prisma generate
 
-      # ADICIONADO: Faz o build do Next.js (cria a pasta .next/standalone)
       - name: Build
         run: npm run build
 
-      # ADICIONADO: Remove node_modules dev para o arquivo ficar menor
-      # Como usamos standalone, o node_modules raiz não é tão crítico, 
-      # mas ajuda a limpar o zip se não estiver usando standalone corretamente.
-      - name: Prune production dependencies
-        run: npm prune --production
+      # PASSO NOVO: Prepara apenas os arquivos necessários para o deploy
+      # Isso cria um pacote MUITO menor, resolvendo seu problema de cota.
+      - name: Prepare Standalone Package
+        run: |
+          # O Next.js cria o executável em .next/standalone
+          # Precisamos copiar a pasta 'public' e '.next/static' para lá para as imagens e CSS funcionarem
+          cp -r public .next/standalone/public
+          cp -r .next/static .next/standalone/.next/static
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: .next/standalone # Envia APENAS a versão leve compilada
 
   deploy:
     runs-on: ubuntu-latest
@@ -65,7 +65,6 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BA57F9EF5EE9489285A5A9146292AD4A }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8F2525338E9B49C8B0458A58B5BB40ED }}
 
-      # NOVO PASSO: Parar o App Service para liberar os arquivos (Evita erro 409)
       - name: Stop Azure Web App
         uses: azure/CLI@v1
         with:
@@ -80,7 +79,6 @@ jobs:
           slot-name: 'Production'
           package: .
 
-      # NOVO PASSO: Iniciar o App Service novamente
       - name: Start Azure Web App
         uses: azure/CLI@v1
         with:

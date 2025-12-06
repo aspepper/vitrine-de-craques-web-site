@@ -21,7 +21,6 @@ jobs:
           lfs: false
           fetch-depth: 1
           sparse-checkout: |
-            .
             !docs
             !logs
             !Vitrine-De-Craques-App

@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
 import { promises as fs } from 'node:fs'
-import os from 'node:os'
 import path from 'node:path'
-
-// REMOVIDO: import ffmpeg from 'fluent-ffmpeg' (Isso causava o crash)
-// REMOVIDO: imports globais do instalador
 
 import { getServerSession } from 'next-auth'
 
@@ -14,100 +10,7 @@ import prisma from '@/lib/db'
 import { errorResponse } from '@/lib/error'
 import { buildVideoWhere } from '@/lib/video-filter-where'
 import { parseVideoFilters } from '@/lib/video-filters'
-import { deleteFileByUrl, extractKeyFromUrl, getPublicUrlForKey, uploadFile } from '@/lib/storage'
-import sharp from 'sharp'
-
-// Função auxiliar para carregar o FFmpeg apenas quando necessário
-async function loadFFmpeg() {
-  try {
-    // Importação dinâmica: só carrega se a função for chamada
-    const ffmpegModule = await import('fluent-ffmpeg')
-    const ffmpeg = ffmpegModule.default
-
-    // Tenta configurar o path
-    let ffmpegPath = process.env.FFMPEG_PATH
-    if (!ffmpegPath) {
-      try {
-        const installer = await import('@ffmpeg-installer/ffmpeg')
-        ffmpegPath = installer.default.path
-      } catch (e) {
-        // Ignora erro do installer se não existir
-      }
-    }
-
-    if (ffmpegPath) {
-      ffmpeg.setFfmpegPath(ffmpegPath)
-    }
-
-    return ffmpeg
-  } catch (error) {
-    console.warn('FFmpeg module not found (provavelmente removido para deploy serverless).')
-    return null
-  }
-}
-
-async function generateThumbnailFromVideo(videoBuffer: Buffer, originalName?: string) {
-  // 1. Tenta carregar o FFmpeg dinamicamente
-  const ffmpeg = await loadFFmpeg()
-  
-  if (!ffmpeg) {
-    throw new Error('FFmpeg indisponível neste ambiente.')
-  }
-
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'video-thumb-'))
-  const extension = originalName ? path.extname(originalName) : ''
-  const inputPath = path.join(tmpDir, `input${extension || '.mp4'}`)
-  const outputPath = path.join(tmpDir, 'frame.jpg')
-
-  try {
-    await fs.writeFile(inputPath, videoBuffer)
-
-    await new Promise<void>((resolve, reject) => {
-      ffmpeg(inputPath)
-        .seekInput(0.5)
-        .frames(1)
-        .outputOptions(['-qscale:v', '2'])
-        .output(outputPath)
-        .on('end', () => resolve())
-        .on('error', (error: Error) => reject(error))
-        .run()
-    })
-
-    const frameBuffer = await fs.readFile(outputPath)
-    const image = sharp(frameBuffer)
-    const metadata = await image.metadata()
-    const width = metadata.width ?? 0
-    const height = metadata.height ?? 0
-
-    if (!width || !height) {
-      return frameBuffer
-    }
-
-    const targetRatio = 16 / 9
-    let cropWidth = width
-    let cropHeight = Math.round(cropWidth / targetRatio)
-
-    if (cropHeight > height) {
-      cropHeight = height
-      cropWidth = Math.round(cropHeight * targetRatio)
-    }
-
-    const left = Math.max(0, Math.floor((width - cropWidth) / 2))
-    const top = Math.max(0, Math.floor((height - cropHeight) / 2))
-
-    return await image
-      .extract({ left, top, width: cropWidth, height: cropHeight })
-      .toFormat('jpeg')
-      .toBuffer()
-  } finally {
-    // Limpeza garantida mesmo se der erro
-    try {
-        await fs.rm(tmpDir, { recursive: true, force: true })
-    } catch (e) {
-        console.error("Erro ao limpar temp dir", e)
-    }
-  }
-}
+import { extractKeyFromUrl, getPublicUrlForKey, uploadFile } from '@/lib/storage'
 
 async function remoteFileExists(url: string) {
   try {
@@ -175,30 +78,6 @@ function rewriteStorageUrl(url: string | null | undefined) {
   }
 }
 
-async function readVideoFile(videoUrl: string) {
-  const [withoutQuery] = videoUrl.split(/[?#]/)
-  if (!withoutQuery) {
-    throw new Error('Invalid video URL')
-  }
-
-  if (withoutQuery.startsWith('http://') || withoutQuery.startsWith('https://')) {
-    const response = await fetch(withoutQuery)
-    if (!response.ok) {
-      throw new Error(
-        `Failed to download video for thumbnail regeneration (${response.status} ${response.statusText})`,
-      )
-    }
-
-    const arrayBuffer = await response.arrayBuffer()
-    return Buffer.from(arrayBuffer)
-  }
-
-  const key = extractKeyFromUrl(videoUrl) ?? withoutQuery.replace(/^\/+/, '')
-  const filePath = path.join(process.cwd(), 'public', key)
-
-  return fs.readFile(filePath)
-}
-
 async function ensureVideoThumbnail<T extends { id: string; videoUrl: string; thumbnailUrl: string | null }>(
   video: T,
 ): Promise<T> {
@@ -206,36 +85,8 @@ async function ensureVideoThumbnail<T extends { id: string; videoUrl: string; th
     return video
   }
 
-  try {
-    const videoBuffer = await readVideoFile(video.videoUrl)
-    const [withoutQuery] = video.videoUrl.split(/[?#]/)
-    const originalName = withoutQuery ? path.basename(withoutQuery) : undefined
-    
-    // Aqui já está protegido pelo try/catch global desta função, se falhar o FFmpeg, cai no catch abaixo
-    const generatedThumbnail = await generateThumbnailFromVideo(videoBuffer, originalName)
-    
-    const thumbName = `${randomUUID()}.jpg`
-    const thumbKey = `uploads/thumbnails/${thumbName}`
-    const { url } = await uploadFile({
-      key: thumbKey,
-      data: generatedThumbnail,
-      contentType: 'image/jpeg',
-      cacheControl: 'public, max-age=31536000, immutable',
-    })
-
-    await deleteFileByUrl(video.thumbnailUrl)
-
-    await prisma.video.update({
-      where: { id: video.id },
-      data: { thumbnailUrl: url },
-    })
-
-    return { ...video, thumbnailUrl: url }
-  } catch (error) {
-    // Loga o erro mas não trava a execução, retorna o vídeo sem thumbnail nova
-    console.error(`Failed to regenerate thumbnail for video ${video.id} (FFmpeg missing?)`, error)
-    return video
-  }
+  console.warn(`Thumbnail ausente para o vídeo ${video.id}; geração automática desabilitada.`)
+  return video
 }
 
 function rewriteVideoAssetUrls<T extends { videoUrl: string; thumbnailUrl: string | null }>(video: T): T {
@@ -343,16 +194,6 @@ export async function POST(req: NextRequest) {
     }
 
     const videoBytes = Buffer.from(await videoFile.arrayBuffer())
-    let generatedThumbnail: Buffer | null = null
-
-    if (!thumbFile) {
-      try {
-        // Tenta gerar, se falhar (sem ffmpeg), apenas ignora e generatedThumbnail fica null
-        generatedThumbnail = await generateThumbnailFromVideo(videoBytes, videoFile.name)
-      } catch (error) {
-        console.error('Failed to generate thumbnail from video (ignoring)', error)
-      }
-    }
 
     const videoName = `${randomUUID()}-${videoFile.name}`
     const videoKey = `uploads/videos/${videoName}`
@@ -372,16 +213,6 @@ export async function POST(req: NextRequest) {
         key: thumbKey,
         data: thumbBytes,
         contentType: thumbFile.type,
-        cacheControl: 'public, max-age=31536000, immutable',
-      })
-      thumbnailUrl = url
-    } else if (generatedThumbnail) {
-      const thumbName = `${randomUUID()}.jpg`
-      const thumbKey = `uploads/thumbnails/${thumbName}`
-      const { url } = await uploadFile({
-        key: thumbKey,
-        data: generatedThumbnail,
-        contentType: 'image/jpeg',
         cacheControl: 'public, max-age=31536000, immutable',
       })
       thumbnailUrl = url

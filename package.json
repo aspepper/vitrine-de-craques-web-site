@@ -8,20 +8,18 @@
   },
   "scripts": {
     "dev": "npm run generate && next dev",
-    "build": "npx prisma generate && next build",
-    "postbuild": "node scripts/copy-prisma-artifacts.js",
-    "start": "node .next/standalone/server.js",
+    "build": "prisma generate && next build",
+    "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:e2e": "playwright test",
-    "db:push": "npx prisma db push",
-    "db:seed": "ts-node --project tsconfig.seed.json prisma/seed.ts",
-    "postinstall": "npx prisma generate",
-    "generate": "npx prisma generate",
-    "deploy": "npx prisma migrate deploy",
-    "figma:routes": "node scripts/update-figma-route-manifest.js"
+    "figma:routes": "node scripts/update-figma-route-manifest.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",

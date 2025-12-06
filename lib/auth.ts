@@ -1,3 +1,5 @@
+import { createHash } from "crypto";
+
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { LoggerInstance, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -9,6 +11,53 @@ import bcrypt from "bcryptjs";
 
 import prisma from "@/lib/db";
 import { logError } from "@/lib/error";
+
+const resolvedSecret = (() => {
+  const explicitSecret =
+    process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET ?? process.env.JWT_SECRET;
+
+  if (explicitSecret) {
+    return explicitSecret;
+  }
+
+  const fallbackSeed =
+    process.env.WEBSITE_HOSTNAME || process.env.HOSTNAME || "vitrine-de-craques";
+
+  console.warn(
+    "[Auth] NEXTAUTH_SECRET ausente. Usando fallback derivado do host. Configure NEXTAUTH_SECRET nas variáveis de ambiente para produção.",
+    { fallbackSeed },
+  );
+
+  return createHash("sha256").update(fallbackSeed).digest("hex");
+})();
+
+const resolvedUrl = (() => {
+  const configuredUrl = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL;
+
+  if (configuredUrl) {
+    return configuredUrl;
+  }
+
+  const host = process.env.WEBSITE_HOSTNAME || process.env.HOSTNAME;
+  if (host) {
+    const inferredUrl = host.startsWith("http") ? host : `https://${host}`;
+    console.warn(
+      "[Auth] NEXTAUTH_URL ausente. Inferindo a partir do host. Configure NEXTAUTH_URL para corresponder ao domínio público.",
+      { inferredUrl },
+    );
+    return inferredUrl;
+  }
+
+  const localUrl = "http://localhost:3000";
+  console.warn(
+    "[Auth] NEXTAUTH_URL ausente. Recuando para localhost. Configure NEXTAUTH_URL para o domínio de produção.",
+    { localUrl },
+  );
+  return localUrl;
+})();
+
+process.env.NEXTAUTH_SECRET ||= resolvedSecret;
+process.env.NEXTAUTH_URL ||= resolvedUrl;
 
 const providers: NextAuthOptions["providers"] = [
   CredentialsProvider({
@@ -128,6 +177,8 @@ const logger: LoggerInstance = {
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers,
+  secret: resolvedSecret,
+  trustHost: true,
   session: {
     strategy: "jwt",
   },

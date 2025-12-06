@@ -1,0 +1,29 @@
+﻿2025-12-06T15:24:52.4041427Z ##[group]Run rm -rf deploy
+2025-12-06T15:24:52.4041785Z [36;1mrm -rf deploy[0m
+2025-12-06T15:24:52.4041991Z [36;1mmkdir -p deploy[0m
+2025-12-06T15:24:52.4042178Z [36;1m[0m
+2025-12-06T15:24:52.4042457Z [36;1m# Copia a versão standalone otimizada pelo Next.js[0m
+2025-12-06T15:24:52.4042797Z [36;1mcp -R .next/standalone/. deploy/[0m
+2025-12-06T15:24:52.4043055Z [36;1mmkdir -p deploy/.next/static[0m
+2025-12-06T15:24:52.4043508Z [36;1mcp -R .next/static/. deploy/.next/static[0m
+2025-12-06T15:24:52.4043756Z [36;1m[0m
+2025-12-06T15:24:52.4043922Z [36;1m# Copia arquivos essenciais[0m
+2025-12-06T15:24:52.4044187Z [36;1mcp package.json deploy/package.json[0m
+2025-12-06T15:24:52.4044477Z [36;1mcp next.config.mjs deploy/next.config.mjs[0m
+2025-12-06T15:24:52.4044747Z [36;1mcp -R prisma deploy/prisma[0m
+2025-12-06T15:24:52.4044984Z [36;1mif [ -d public ]; then[0m
+2025-12-06T15:24:52.4045210Z [36;1m  cp -R public deploy/public[0m
+2025-12-06T15:24:52.4045421Z [36;1mfi[0m
+2025-12-06T15:24:52.4045606Z [36;1m[0m
+2025-12-06T15:24:52.4045841Z [36;1m# 4. LIMPEZA CRÍTICA: Remove o FFmpeg para caber nos 250MB[0m
+2025-12-06T15:24:52.4046551Z [36;1m# Isso é necessário pois o Azure SWA Free não suporta binários pesados[0m
+2025-12-06T15:24:52.4046974Z [36;1mecho "Removendo pacotes pesados para caber no limite..."[0m
+2025-12-06T15:24:52.4047336Z [36;1mrm -rf deploy/node_modules/@ffmpeg-installer[0m
+2025-12-06T15:24:52.4047641Z [36;1mrm -rf deploy/node_modules/fluent-ffmpeg[0m
+2025-12-06T15:24:52.4047894Z [36;1m[0m
+2025-12-06T15:24:52.4048250Z [36;1m# Opcional: Remover Prisma Engines não utilizadas (Next Standalone geralmente já faz, mas garante)[0m
+2025-12-06T15:24:52.4048740Z [36;1mrm -rf deploy/node_modules/@prisma/engines/*windows*[0m
+2025-12-06T15:24:52.4049081Z [36;1mrm -rf deploy/node_modules/@prisma/engines/*darwin*[0m
+2025-12-06T15:24:52.4101421Z shell: /usr/bin/bash -e {0}
+2025-12-06T15:24:52.4101728Z ##[endgroup]
+2025-12-06T15:24:52.8631481Z Removendo pacotes pesados para caber no limite...

@@ -1,0 +1,171 @@
+﻿2025-12-06T15:23:04.3513826Z ##[group]Run npm run build
+2025-12-06T15:23:04.3514134Z [36;1mnpm run build[0m
+2025-12-06T15:23:04.3546577Z shell: /usr/bin/bash -e {0}
+2025-12-06T15:23:04.3546810Z ##[endgroup]
+2025-12-06T15:23:04.4721845Z 
+2025-12-06T15:23:04.4723001Z > vitrine-de-craques-web-site@0.1.0 build
+2025-12-06T15:23:04.4724210Z > prisma generate && next build
+2025-12-06T15:23:04.4724824Z 
+2025-12-06T15:23:05.6270147Z Prisma schema loaded from prisma/schema.prisma
+2025-12-06T15:23:06.5993525Z 
+2025-12-06T15:23:06.5995906Z ┌─────────────────────────────────────────────────────────┐
+2025-12-06T15:23:06.5997265Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 418ms
+2025-12-06T15:23:06.5997846Z 
+2025-12-06T15:23:06.5998692Z │  Update available 6.16.2 -> 7.1.0                       │
+2025-12-06T15:23:06.5999610Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-12-06T15:23:06.6000170Z 
+2025-12-06T15:23:06.6001027Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-12-06T15:23:06.6001780Z 
+2025-12-06T15:23:06.6004404Z │                                                         │
+2025-12-06T15:23:06.6007433Z │  This is a major update - please follow the guide at    │
+2025-12-06T15:23:06.6010135Z │  https://pris.ly/d/major-version-upgrade                │
+2025-12-06T15:23:06.6020325Z │                                                         │
+2025-12-06T15:23:06.6021109Z │  Run the following to update                            │
+2025-12-06T15:23:06.6021952Z │    npm i --save-dev prisma@latest                       │
+2025-12-06T15:23:06.6023361Z │    npm i @prisma/client@latest                          │
+2025-12-06T15:23:06.6024242Z └─────────────────────────────────────────────────────────┘
+2025-12-06T15:23:07.1478221Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-12-06T15:23:07.1564086Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-12-06T15:23:07.1567739Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-12-06T15:23:07.1569125Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-12-06T15:23:07.1570040Z https://nextjs.org/telemetry
+2025-12-06T15:23:07.1570311Z 
+2025-12-06T15:23:07.2163212Z   ▲ Next.js 14.2.33
+2025-12-06T15:23:07.2171231Z 
+2025-12-06T15:23:07.2804571Z    Creating an optimized production build ...
+2025-12-06T15:23:49.7563795Z  ⚠ Compiled with warnings
+2025-12-06T15:23:49.7565293Z 
+2025-12-06T15:23:49.7566987Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-12-06T15:23:49.7568760Z Critical dependency: the request of a dependency is an expression
+2025-12-06T15:23:49.7570146Z 
+2025-12-06T15:23:49.7571403Z Import trace for requested module:
+2025-12-06T15:23:49.7573501Z ./node_modules/@ffmpeg-installer/ffmpeg/index.js
+2025-12-06T15:23:49.7575185Z ./app/api/videos/route.ts
+2025-12-06T15:23:49.7576743Z 
+2025-12-06T15:23:49.7579782Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-12-06T15:23:49.7588808Z Critical dependency: the request of a dependency is an expression
+2025-12-06T15:23:49.7590318Z 
+2025-12-06T15:23:49.7591592Z Import trace for requested module:
+2025-12-06T15:23:49.7593201Z ./node_modules/fluent-ffmpeg/lib/options/misc.js
+2025-12-06T15:23:49.7594872Z ./node_modules/fluent-ffmpeg/lib/fluent-ffmpeg.js
+2025-12-06T15:23:49.7596684Z ./node_modules/fluent-ffmpeg/index.js
+2025-12-06T15:23:49.7598159Z ./app/api/videos/route.ts
+2025-12-06T15:23:49.7599408Z 
+2025-12-06T15:24:05.2506742Z  ✓ Compiled successfully
+2025-12-06T15:24:05.2512242Z    Linting and checking validity of types ...
+2025-12-06T15:24:24.5269701Z    Collecting page data ...
+2025-12-06T15:24:25.1054900Z [Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente
+2025-12-06T15:24:27.6837600Z    Generating static pages (0/58) ...
+2025-12-06T15:24:28.8090234Z    Generating static pages (14/58) 
+2025-12-06T15:24:30.9155311Z    Generating static pages (28/58) 
+2025-12-06T15:24:32.0535452Z    Generating static pages (43/58) 
+2025-12-06T15:24:32.9771951Z  ✓ Generating static pages (58/58)
+2025-12-06T15:24:33.8585030Z    Finalizing page optimization ...
+2025-12-06T15:24:33.8585739Z    Collecting build traces ...
+2025-12-06T15:24:52.3531011Z 
+2025-12-06T15:24:52.3628534Z Route (app)                                      Size     First Load JS
+2025-12-06T15:24:52.3636925Z ┌ ƒ /                                            1.83 kB         110 kB
+2025-12-06T15:24:52.3638560Z ├ ƒ /_not-found                                  876 B          88.2 kB
+2025-12-06T15:24:52.3639485Z ├ ƒ /administrator                               155 B          87.5 kB
+2025-12-06T15:24:52.3640367Z ├ ƒ /administrator/clubes                        6.46 kB         117 kB
+2025-12-06T15:24:52.3641287Z ├ ƒ /administrator/users                         5.68 kB         111 kB
+2025-12-06T15:24:52.3642257Z ├ ƒ /administrator/videos                        5.24 kB         111 kB
+2025-12-06T15:24:52.3643083Z ├ ƒ /agentes                                     2.7 kB         98.7 kB
+2025-12-06T15:24:52.3643860Z ├ ƒ /agentes/[id]                                1.84 kB         117 kB
+2025-12-06T15:24:52.3646699Z ├ ƒ /api/admin/clubes                            0 B                0 B
+2025-12-06T15:24:52.3647921Z ├ ƒ /api/admin/clubes/[id]                       0 B                0 B
+2025-12-06T15:24:52.3648761Z ├ ƒ /api/admin/summary                           0 B                0 B
+2025-12-06T15:24:52.3649561Z ├ ƒ /api/admin/users                             0 B                0 B
+2025-12-06T15:24:52.3650381Z ├ ƒ /api/admin/users/[userId]/block              0 B                0 B
+2025-12-06T15:24:52.3651211Z ├ ƒ /api/admin/videos                            0 B                0 B
+2025-12-06T15:24:52.3652054Z ├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B
+2025-12-06T15:24:52.3652955Z ├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B
+2025-12-06T15:24:52.3653715Z ├ ƒ /api/agentes                                 0 B                0 B
+2025-12-06T15:24:52.3654404Z ├ ƒ /api/agentes/[id]                            0 B                0 B
+2025-12-06T15:24:52.3655148Z ├ ƒ /api/atletas                                 0 B                0 B
+2025-12-06T15:24:52.3655882Z ├ ƒ /api/atletas/[id]                            0 B                0 B
+2025-12-06T15:24:52.3656877Z ├ ƒ /api/auth/[...nextauth]                      0 B                0 B
+2025-12-06T15:24:52.3657620Z ├ ƒ /api/blocks/[targetUserId]                   0 B                0 B
+2025-12-06T15:24:52.3658405Z ├ ƒ /api/clubes                                  0 B                0 B
+2025-12-06T15:24:52.3659121Z ├ ƒ /api/clubes/[slug]                           0 B                0 B
+2025-12-06T15:24:52.3659877Z ├ ƒ /api/confederacoes                           0 B                0 B
+2025-12-06T15:24:52.3662787Z ├ ƒ /api/confederacoes/[slug]                    0 B                0 B
+2025-12-06T15:24:52.3663644Z ├ ƒ /api/db-check                                0 B                0 B
+2025-12-06T15:24:52.3664403Z ├ ƒ /api/env                                     0 B                0 B
+2025-12-06T15:24:52.3665146Z ├ ƒ /api/errors                                  0 B                0 B
+2025-12-06T15:24:52.3665965Z ├ ƒ /api/follows/[targetUserId]                  0 B                0 B
+2025-12-06T15:24:52.3667016Z ├ ƒ /api/games                                   0 B                0 B
+2025-12-06T15:24:52.3667789Z ├ ƒ /api/games/[slug]                            0 B                0 B
+2025-12-06T15:24:52.3668605Z ├ ƒ /api/games/[slug]/comments                   0 B                0 B
+2025-12-06T15:24:52.3669437Z ├ ƒ /api/games/[slug]/engagement                 0 B                0 B
+2025-12-06T15:24:52.3670231Z ├ ƒ /api/health                                  0 B                0 B
+2025-12-06T15:24:52.3671021Z ├ ƒ /api/messages                                0 B                0 B
+2025-12-06T15:24:52.3672111Z ├ ƒ /api/messages/unread-count                   0 B                0 B
+2025-12-06T15:24:52.3672913Z ├ ƒ /api/news                                    0 B                0 B
+2025-12-06T15:24:52.3673661Z ├ ƒ /api/news/[id]                               0 B                0 B
+2025-12-06T15:24:52.3674454Z ├ ƒ /api/news/cover                              0 B                0 B
+2025-12-06T15:24:52.3675286Z ├ ƒ /api/noticias                                0 B                0 B
+2025-12-06T15:24:52.3676253Z ├ ƒ /api/noticias/[slug]                         0 B                0 B
+2025-12-06T15:24:52.3677123Z ├ ƒ /api/noticias/[slug]/comments                0 B                0 B
+2025-12-06T15:24:52.3677962Z ├ ƒ /api/noticias/[slug]/engagement              0 B                0 B
+2025-12-06T15:24:52.3678747Z ├ ƒ /api/pg-check                                0 B                0 B
+2025-12-06T15:24:52.3679481Z ├ ƒ /api/profile                                 0 B                0 B
+2025-12-06T15:24:52.3680256Z ├ ƒ /api/profile/avatar                          0 B                0 B
+2025-12-06T15:24:52.3681072Z ├ ƒ /api/profile/personal-info                   0 B                0 B
+2025-12-06T15:24:52.3681862Z ├ ƒ /api/register                                0 B                0 B
+2025-12-06T15:24:52.3682647Z ├ ƒ /api/register/atleta-18                      0 B                0 B
+2025-12-06T15:24:52.3683443Z ├ ƒ /api/register/clube                          0 B                0 B
+2025-12-06T15:24:52.3684285Z ├ ƒ /api/register/de-agentes-licenciados         0 B                0 B
+2025-12-06T15:24:52.3685176Z ├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B
+2025-12-06T15:24:52.3686578Z ├ ƒ /api/register/responsavel                    0 B                0 B
+2025-12-06T15:24:52.3687519Z ├ ƒ /api/register/responsavel/documents          0 B                0 B
+2025-12-06T15:24:52.3688417Z ├ ƒ /api/register/torcedor                       0 B                0 B
+2025-12-06T15:24:52.3689172Z ├ ƒ /api/times                                   0 B                0 B
+2025-12-06T15:24:52.3689867Z ├ ƒ /api/videos                                  0 B                0 B
+2025-12-06T15:24:52.3690605Z ├ ƒ /api/videos/[id]                             0 B                0 B
+2025-12-06T15:24:52.3691354Z ├ ƒ /api/videos/[id]/appeal                      0 B                0 B
+2025-12-06T15:24:52.3692141Z ├ ƒ /api/videos/[id]/comments                    0 B                0 B
+2025-12-06T15:24:52.3692901Z ├ ƒ /api/videos/proxy                            0 B                0 B
+2025-12-06T15:24:52.3693736Z ├ ƒ /arquibancada                                4.49 kB        98.6 kB
+2025-12-06T15:24:52.3694518Z ├ ƒ /atletas                                     4.5 kB          107 kB
+2025-12-06T15:24:52.3695272Z ├ ƒ /atletas/[id]                                5.24 kB         138 kB
+2025-12-06T15:24:52.3696532Z ├ ƒ /cadastro                                    2.21 kB         129 kB
+2025-12-06T15:24:52.3697355Z ├ ƒ /cadastro/[slug]                             2.92 kB         121 kB
+2025-12-06T15:24:52.3698173Z ├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB
+2025-12-06T15:24:52.3699000Z ├ ƒ /cadastro/clube                              4.04 kB         137 kB
+2025-12-06T15:24:52.3699865Z ├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB
+2025-12-06T15:24:52.3700806Z ├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB
+2025-12-06T15:24:52.3701724Z ├ ƒ /cadastro/responsavel                        4.23 kB         137 kB
+2025-12-06T15:24:52.3702618Z ├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB
+2025-12-06T15:24:52.3703504Z ├ ƒ /cadastro/sucesso                            155 B          87.5 kB
+2025-12-06T15:24:52.3704341Z ├ ƒ /cadastro/torcedor                           5.13 kB         147 kB
+2025-12-06T15:24:52.3705142Z ├ ƒ /clubes                                      3.35 kB         111 kB
+2025-12-06T15:24:52.3706437Z ├ ƒ /clubes/[slug]                               807 B           109 kB
+2025-12-06T15:24:52.3707263Z ├ ƒ /confederacoes                               807 B           109 kB
+2025-12-06T15:24:52.3708104Z ├ ƒ /confederacoes/[slug]                        807 B           109 kB
+2025-12-06T15:24:52.3708883Z ├ ƒ /feed                                        12.2 kB         145 kB
+2025-12-06T15:24:52.3709599Z ├ ƒ /games                                       197 B           121 kB
+2025-12-06T15:24:52.3710337Z ├ ƒ /games/[slug]                                211 B           128 kB
+2025-12-06T15:24:52.3711068Z ├ ○ /icon                                        0 B                0 B
+2025-12-06T15:24:52.3711789Z ├ ƒ /login                                       3.73 kB         145 kB
+2025-12-06T15:24:52.3712506Z ├ ƒ /noticias                                    203 B           121 kB
+2025-12-06T15:24:52.3713265Z ├ ƒ /noticias/[slug]                             614 B           129 kB
+2025-12-06T15:24:52.3714011Z ├ ƒ /perfil                                      27.3 kB         171 kB
+2025-12-06T15:24:52.3714728Z ├ ƒ /perfis/[id]                                 1.84 kB         117 kB
+2025-12-06T15:24:52.3715439Z ├ ƒ /player/[id]                                 9.15 kB         127 kB
+2025-12-06T15:24:52.3716372Z ├ ƒ /privacidade                                 188 B          96.2 kB
+2025-12-06T15:24:52.3717197Z ├ ƒ /registrar-escolha-perfil                    188 B          96.2 kB
+2025-12-06T15:24:52.3717941Z ├ ƒ /sobre                                       188 B          96.2 kB
+2025-12-06T15:24:52.3718639Z ├ ƒ /torcida                                     155 B          87.5 kB
+2025-12-06T15:24:52.3719340Z └ ƒ /upload                                      10.4 kB         119 kB
+2025-12-06T15:24:52.3719929Z + First Load JS shared by all                    87.3 kB
+2025-12-06T15:24:52.3720561Z   ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB
+2025-12-06T15:24:52.3721191Z   ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB
+2025-12-06T15:24:52.3721826Z   └ other shared chunks (total)                  1.97 kB
+2025-12-06T15:24:52.3722140Z 
+2025-12-06T15:24:52.3722151Z 
+2025-12-06T15:24:52.3722512Z ƒ Middleware                                     48.3 kB
+2025-12-06T15:24:52.3722815Z 
+2025-12-06T15:24:52.3723114Z ○  (Static)   prerendered as static content
+2025-12-06T15:24:52.3723674Z ƒ  (Dynamic)  server-rendered on demand
+2025-12-06T15:24:52.3723932Z 

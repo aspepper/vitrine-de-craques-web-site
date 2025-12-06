@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: false
           lfs: false
           # Define o modo cone como falso para permitir padrões de caminho manuais
           sparse-checkout-cone-mode: false

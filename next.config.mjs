@@ -31,7 +31,7 @@ const nextConfig = {
     outputFileTracingExcludes: {
       '*': [
         'node_modules/@ffmpeg-installer/**/*',
-        'node_modules/fluent-ffmpeg/**/*'
+        'node_modules/fluent-ffmpeg/**/*',
       ],
     },
   },

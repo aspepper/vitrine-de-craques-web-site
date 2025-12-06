@@ -28,6 +28,11 @@ const nextConfig = {
         './node_modules/applicationinsights/**',
         './prisma/**',
       ],
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/@ffmpeg-installer/**/*',
+        'node_modules/fluent-ffmpeg/**/*'
+      ],
     },
   },
   reactStrictMode: true,

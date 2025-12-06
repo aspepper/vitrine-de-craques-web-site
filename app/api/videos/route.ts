@@ -3,7 +3,9 @@ import { randomUUID } from 'node:crypto'
 import { promises as fs } from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { createRequire } from 'node:module'
+
+// REMOVIDO: import ffmpeg from 'fluent-ffmpeg' (Isso causava o crash)
+// REMOVIDO: imports globais do instalador
 
 import { getServerSession } from 'next-auth'
 
@@ -13,39 +15,45 @@ import { errorResponse } from '@/lib/error'
 import { buildVideoWhere } from '@/lib/video-filter-where'
 import { parseVideoFilters } from '@/lib/video-filters'
 import { deleteFileByUrl, extractKeyFromUrl, getPublicUrlForKey, uploadFile } from '@/lib/storage'
-import ffmpeg from 'fluent-ffmpeg'
 import sharp from 'sharp'
 
-const require = createRequire(import.meta.url)
-
-let ffmpegBinaryPath = process.env.FFMPEG_PATH
-
-if (!ffmpegBinaryPath) {
+// Função auxiliar para carregar o FFmpeg apenas quando necessário
+async function loadFFmpeg() {
   try {
-    const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg') as { path: string }
-    ffmpegBinaryPath = ffmpegInstaller.path
-  } catch (error) {
-    const nodeError = error as NodeJS.ErrnoException
-    const details =
-      nodeError?.code === 'MODULE_NOT_FOUND'
-        ?
-            'O pacote opcional @ffmpeg-installer/ffmpeg não foi instalado para esta plataforma. '
-        +
-            'Certifique-se de ter o FFmpeg disponível no sistema ou defina a variável FFMPEG_PATH.'
-        : 'Não foi possível carregar o instalador do FFmpeg.'
+    // Importação dinâmica: só carrega se a função for chamada
+    const ffmpegModule = await import('fluent-ffmpeg')
+    const ffmpeg = ffmpegModule.default
 
-    console.warn(
-      'FFmpeg installer package not available. Falling back to system ffmpeg binary.',
-      details,
-    )
+    // Tenta configurar o path
+    let ffmpegPath = process.env.FFMPEG_PATH
+    if (!ffmpegPath) {
+      try {
+        const installer = await import('@ffmpeg-installer/ffmpeg')
+        ffmpegPath = installer.default.path
+      } catch (e) {
+        // Ignora erro do installer se não existir
+      }
+    }
+
+    if (ffmpegPath) {
+      ffmpeg.setFfmpegPath(ffmpegPath)
+    }
+
+    return ffmpeg
+  } catch (error) {
+    console.warn('FFmpeg module not found (provavelmente removido para deploy serverless).')
+    return null
   }
 }
 
-if (ffmpegBinaryPath) {
-  ffmpeg.setFfmpegPath(ffmpegBinaryPath)
-}
-
 async function generateThumbnailFromVideo(videoBuffer: Buffer, originalName?: string) {
+  // 1. Tenta carregar o FFmpeg dinamicamente
+  const ffmpeg = await loadFFmpeg()
+  
+  if (!ffmpeg) {
+    throw new Error('FFmpeg indisponível neste ambiente.')
+  }
+
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'video-thumb-'))
   const extension = originalName ? path.extname(originalName) : ''
   const inputPath = path.join(tmpDir, `input${extension || '.mp4'}`)
@@ -92,7 +100,12 @@ async function generateThumbnailFromVideo(videoBuffer: Buffer, originalName?: st
       .toFormat('jpeg')
       .toBuffer()
   } finally {
-    await fs.rm(tmpDir, { recursive: true, force: true })
+    // Limpeza garantida mesmo se der erro
+    try {
+        await fs.rm(tmpDir, { recursive: true, force: true })
+    } catch (e) {
+        console.error("Erro ao limpar temp dir", e)
+    }
   }
 }
 
@@ -197,7 +210,10 @@ async function ensureVideoThumbnail<T extends { id: string; videoUrl: string; th
     const videoBuffer = await readVideoFile(video.videoUrl)
     const [withoutQuery] = video.videoUrl.split(/[?#]/)
     const originalName = withoutQuery ? path.basename(withoutQuery) : undefined
+    
+    // Aqui já está protegido pelo try/catch global desta função, se falhar o FFmpeg, cai no catch abaixo
     const generatedThumbnail = await generateThumbnailFromVideo(videoBuffer, originalName)
+    
     const thumbName = `${randomUUID()}.jpg`
     const thumbKey = `uploads/thumbnails/${thumbName}`
     const { url } = await uploadFile({
@@ -216,7 +232,8 @@ async function ensureVideoThumbnail<T extends { id: string; videoUrl: string; th
 
     return { ...video, thumbnailUrl: url }
   } catch (error) {
-    console.error(`Failed to regenerate thumbnail for video ${video.id}`, error)
+    // Loga o erro mas não trava a execução, retorna o vídeo sem thumbnail nova
+    console.error(`Failed to regenerate thumbnail for video ${video.id} (FFmpeg missing?)`, error)
     return video
   }
 }
@@ -330,9 +347,10 @@ export async function POST(req: NextRequest) {
 
     if (!thumbFile) {
       try {
+        // Tenta gerar, se falhar (sem ffmpeg), apenas ignora e generatedThumbnail fica null
         generatedThumbnail = await generateThumbnailFromVideo(videoBytes, videoFile.name)
       } catch (error) {
-        console.error('Failed to generate thumbnail from video', error)
+        console.error('Failed to generate thumbnail from video (ignoring)', error)
       }
     }
 

@@ -5,47 +5,27 @@ on:
     branches:
       - main
   pull_request:
-    types: [synchronize]
+    types: [opened, synchronize, reopened, closed]
     branches:
       - main
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }} 
-  cancel-in-progress: true # Define se outros workflows em andamento são cancelados ou não
 
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-      AUTH_TRUST_HOST: 'true'
-
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
           submodules: false
           lfs: false
-          # Define o modo cone como falso para permitir padrões de caminho manuais
-          sparse-checkout-cone-mode: false
-          # Especifica os caminhos a serem incluídos.
-          # Tudo o mais será ignorado.
-          sparse-checkout: |
-            docs/
-            logs/
-            Vitrine-De-Craques-App/
-            Vitrine-De-Craques-App-iOS/
-
+          
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      # Build do app web Next.js (após gerar o APK em modo release).
       - name: Install dependencies
         run: npm ci
 
@@ -74,11 +54,6 @@ jobs:
           node -v
           npx prisma -v
 
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -90,12 +65,20 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "" # Built app content directory - optional
+          skip_app_build: true
+          skip_api_build: true
+          output_location: "" # artefato standalone já está no diretório configurado
           ###### End of Repository/Build Configurations ######
+          is_static_export: false
 
-      #### - name: Close Pull Request
-      ####   id: closepullrequest
-      ####   uses: Azure/static-web-apps-deploy@v1
-      ####   with:
-      ####     azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810 }}
-      ####     action: "close"
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810 }}
+          action: "close"

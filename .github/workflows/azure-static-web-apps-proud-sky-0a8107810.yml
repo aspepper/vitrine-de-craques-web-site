@@ -59,10 +59,13 @@ jobs:
         run: |
           rm -rf deploy
           mkdir -p deploy
-          # Copy only the runtime pieces from the standalone build output
+
+          # Copia a estrutura base do standalone
           cp -R .next/standalone/.next deploy/.next
           cp -R .next/standalone/node_modules deploy/node_modules
           cp .next/standalone/package.json deploy/package.json
+
+          # Copia arquivos de configuração e servidor
           if [ -f .next/standalone/server.js ]; then
             cp .next/standalone/server.js deploy/server.js
           fi
@@ -76,9 +79,14 @@ jobs:
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
           cp -R prisma deploy/prisma
+          
           if [ -d public ]; then
             cp -R public deploy/public
           fi
+
+          echo "Forçando cópia do motor Prisma para Linux Musl (Alpine)..."
+          cp node_modules/@prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/@prisma/client/
+
           ./scripts/prune-deploy-artifact.sh deploy
 
       # (Opcional de diagnóstico: ver Node & Prisma)

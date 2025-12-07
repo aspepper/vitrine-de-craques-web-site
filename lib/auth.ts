@@ -178,7 +178,6 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers,
   secret: resolvedSecret,
-  trustHost: true,
   session: {
     strategy: "jwt",
   },
@@ -271,5 +270,4 @@ export const authOptions: NextAuthOptions = {
     },
   },
   logger,
-  secret: process.env.NEXTAUTH_SECRET,
 };

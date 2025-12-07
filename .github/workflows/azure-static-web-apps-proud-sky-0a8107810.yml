@@ -80,16 +80,27 @@ jobs:
           cp staticwebapp.config.json deploy/staticwebapp.config.json
           cp -R prisma deploy/prisma
 
-          if [ -d public ]; then
+          if [ -d public ]; the n
             cp -R public deploy/public
           fi
 
-          echo "Forçando cópia do motor Prisma para Linux Musl (Alpine)..."
-          mkdir -p deploy/node_modules/.prisma/client
-          cp node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/.prisma/client/
+          # 1. RODA A LIMPEZA PRIMEIRO
+          # Deixa o script remover o que for inútil para liberar espaço
+          if [ -f ./scripts/prune-deploy-artifact.sh ]; then
+            chmod +x ./scripts/prune-deploy-artifact.sh
+            ./scripts/prune-deploy-artifact.sh deploy
+          fi
 
-          ./scripts/prune-deploy-artifact.sh deploy
-
+          # 2. APLICA A CORREÇÃO DO PRISMA POR ÚLTIMO (GARANTIDO)
+          echo "Forçando cópia do motor Prisma (Alpine) PÓS-LIMPEZA..."
+          
+          # Cria o destino dentro de @prisma/client (local mais seguro para busca automática)
+          mkdir -p deploy/node_modules/@prisma/client
+          
+          # Copia o motor. 
+          # Nota: A origem geralmente é .prisma/client, mas copiamos para @prisma/client no destino para facilitar a vida do app.
+          cp node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/@prisma/client/
+          
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics
         run: |

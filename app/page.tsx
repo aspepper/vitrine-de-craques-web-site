@@ -344,7 +344,7 @@ export default async function HomePage() {
                 >
                   <iframe
                     className="absolute inset-0 h-full w-full"
-                    src="https://www.youtube.com/embed/z2WfHNucSXE"
+                    src="https://www.youtube.com/embed/tV_0l2LioQ4"
                     title="Vitrine de Craques — vídeo de apresentação"
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

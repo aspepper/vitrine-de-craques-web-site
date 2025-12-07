@@ -90,17 +90,19 @@ jobs:
             ./scripts/prune-deploy-artifact.sh deploy
           fi
 
-          # 2. GERAÇÃO E CÓPIA FORÇADA DO PRISMA (CORREÇÃO FINAL)
-          echo "--- INÍCIO DEBUG PRISMA ---"
+          # 2. GERAÇÃO E CÓPIA FORÇADA (COM LIMPEZA DE CACHE)
+          echo "--- INÍCIO CORREÇÃO PRISMA (FORCE DOWNLOAD) ---"
           
-          # Mostra o schema para confirmar se o binaryTargets está lá
-          cat prisma/schema.prisma
+          # 3. Deleta cache antigo para obrigar o download do motor Alpine
+          echo "Limpando cache do Prisma para forçar download..."
+          rm -rf node_modules/.prisma
+          rm -rf node_modules/@prisma/client
           
-          # FORÇA a geração dos binários novamente para garantir o download do engine 'musl'
-          # Isso garante que o arquivo exista mesmo que o build anterior tenha ignorado
+          # 4. Gera do zero (Isso vai demorar uns segundos baixando os engines)
+          echo "Gerando Prisma Client novamente..."
           npx prisma generate
           
-          # Lista o que foi gerado para conferência no log
+          # 5. Lista para provar que agora baixou os dois (debian e musl)
           echo "Arquivos gerados em .prisma/client:"
           ls -l node_modules/.prisma/client/
           
@@ -109,11 +111,11 @@ jobs:
           mkdir -p deploy/node_modules/.prisma/client
           mkdir -p deploy/node_modules/@prisma/client
           
-          # Copia o arquivo (agora ele TEM que existir)
+          # Copia o arquivo usando wildcard (agora ele vai existir!)
           cp node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/.prisma/client/
           cp node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/@prisma/client/
           
-          echo "--- FIM DEBUG PRISMA ---"
+          echo "--- FIM CORREÇÃO PRISMA ---"
 
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics

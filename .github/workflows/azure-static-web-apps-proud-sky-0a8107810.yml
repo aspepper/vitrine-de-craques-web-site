@@ -80,7 +80,7 @@ jobs:
           cp staticwebapp.config.json deploy/staticwebapp.config.json
           cp -R prisma deploy/prisma
 
-          if [ -d public ]; the n
+          if [ -d public ]; the
             cp -R public deploy/public
           fi
 
@@ -100,7 +100,7 @@ jobs:
           # Copia o motor. 
           # Nota: A origem geralmente é .prisma/client, mas copiamos para @prisma/client no destino para facilitar a vida do app.
           cp node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/@prisma/client/
-          
+
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics
         run: |

@@ -30,10 +30,6 @@ const nextConfig = {
         './prisma/**',
       ],
     },
-    outputFileTracingExcludes: {
-      '/': [
-      ],
-    },
   },
   reactStrictMode: true,
   images: {

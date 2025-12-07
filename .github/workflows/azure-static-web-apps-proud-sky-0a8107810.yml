@@ -79,13 +79,14 @@ jobs:
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
           cp -R prisma deploy/prisma
-          
+
           if [ -d public ]; then
             cp -R public deploy/public
           fi
 
           echo "Forçando cópia do motor Prisma para Linux Musl (Alpine)..."
-          cp node_modules/@prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/@prisma/client/
+          mkdir -p deploy/node_modules/.prisma/client
+          cp node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/.prisma/client/
 
           ./scripts/prune-deploy-artifact.sh deploy
 

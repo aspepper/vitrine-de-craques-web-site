@@ -84,23 +84,29 @@ jobs:
             cp -R public deploy/public
           fi
 
-          # 1. RODA A LIMPEZA PRIMEIRO
-          # Deixa o script remover o que for inútil para liberar espaço
           if [ -f ./scripts/prune-deploy-artifact.sh ]; then
             chmod +x ./scripts/prune-deploy-artifact.sh
             ./scripts/prune-deploy-artifact.sh deploy
           fi
 
-          # 2. APLICA A CORREÇÃO DO PRISMA POR ÚLTIMO (GARANTIDO)
-          echo "Forçando cópia do motor Prisma (Alpine) PÓS-LIMPEZA..."
+          # 2. APLICA A CORREÇÃO DO PRISMA POR ÚLTIMO
+          echo "Forçando cópia do motor Prisma (Alpine) usando Wildcard..."
           
-          # Cria o destino dentro de @prisma/client (local mais seguro para busca automática)
+          # Cria as pastas de destino (tanto a oculta .prisma quanto a pública @prisma)
+          mkdir -p deploy/node_modules/.prisma/client
           mkdir -p deploy/node_modules/@prisma/client
           
-          # Copia o motor. 
-          # Nota: A origem geralmente é .prisma/client, mas copiamos para @prisma/client no destino para facilitar a vida do app.
-          cp node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/@prisma/client/
+          # Copia QUALQUER arquivo de motor 'musl' que encontrar (independente da versão do OpenSSL)
+          # O comando 'cp' vai procurar na origem e jogar no destino
+          cp node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/.prisma/client/
+          
+          # Copia também para @prisma por segurança (algumas configs buscam aqui)
+          cp node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/@prisma/client/
 
+          # DEBUG: Mostra o que foi copiado para termos certeza no log
+          echo "Verificando arquivos copiados:"
+          ls -l deploy/node_modules/.prisma/client/
+          
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics
         run: |

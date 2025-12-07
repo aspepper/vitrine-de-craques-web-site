@@ -19,6 +19,7 @@ const nextConfig = {
       '@prisma/client',
       'prisma',
       'applicationinsights',
+      'sharp',
     ],
     outputFileTracingIncludes: {
       '/': [

@@ -80,7 +80,7 @@ jobs:
           cp staticwebapp.config.json deploy/staticwebapp.config.json
           cp -R prisma deploy/prisma
 
-          if [ -d public ]; the
+          if [ -d public ]; then
             cp -R public deploy/public
           fi
 
@@ -102,7 +102,7 @@ jobs:
           echo "Gerando Prisma Client novamente..."
           npx prisma generate
           
-          # 5. Lista para provar que agora baixou os dois (debian e musl)
+          # . Lista para provar que agora baixou os dois (debian e musl)
           echo "Arquivos gerados em .prisma/client:"
           ls -l node_modules/.prisma/client/
           

@@ -57,65 +57,39 @@ jobs:
         
       - name: Prepare standalone artifact for deployment
         run: |
+          # 1. GERAÇÃO: Garante que o motor Alpine (musl) seja baixado agora
+          echo "Gerando Prisma Client..."
+          npx prisma generate
+
+          # 2. PREPARAÇÃO: Cria a pasta de deploy limpa
           rm -rf deploy
           mkdir -p deploy
-
-          # Copia a estrutura base do standalone
-          cp -R .next/standalone/.next deploy/.next
-          cp -R .next/standalone/node_modules deploy/node_modules
-          cp .next/standalone/package.json deploy/package.json
-
-          # Copia arquivos de configuração e servidor
-          if [ -f .next/standalone/server.js ]; then
-            cp .next/standalone/server.js deploy/server.js
-          fi
-          if [ -f .next/standalone/server.js.nft.json ]; then
-            cp .next/standalone/server.js.nft.json deploy/server.js.nft.json
-          fi
-
-          mkdir -p deploy/.next/static
+          
+          # 3. CÓPIA DO NEXT.JS STANDALONE
+          cp -R .next/standalone/. deploy/
+          cp -R public deploy/public
           cp -R .next/static/. deploy/.next/static
-
+          
+          # Copia arquivos de configuração da raiz para a raiz do deploy
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
-          cp -R prisma deploy/prisma
-
-          if [ -d public ]; then
-            cp -R public deploy/public
-          fi
-
-          # 1. RODA A LIMPEZA PRIMEIRO
-          if [ -f ./scripts/prune-deploy-artifact.sh ]; then
-            chmod +x ./scripts/prune-deploy-artifact.sh
-            ./scripts/prune-deploy-artifact.sh deploy
-          fi
-
-          # 2. GERAÇÃO E CÓPIA FORÇADA (COM LIMPEZA DE CACHE)
-          echo "--- INÍCIO CORREÇÃO PRISMA (FORCE DOWNLOAD) ---"
           
-          # 3. Deleta cache antigo para obrigar o download do motor Alpine
-          echo "Limpando cache do Prisma para forçar download..."
-          rm -rf node_modules/.prisma
-          rm -rf node_modules/@prisma/client
-          
-          # 4. Gera do zero (Isso vai demorar uns segundos baixando os engines)
-          echo "Gerando Prisma Client novamente..."
-          npx prisma generate
-          
-          # . Lista para provar que agora baixou os dois (debian e musl)
-          echo "Arquivos gerados em .prisma/client:"
-          ls -l node_modules/.prisma/client/
-          
-          echo "Copiando motor para o deploy..."
-          # Cria as pastas de destino
+          # 4. CORREÇÃO DEFINITIVA DO PRISMA
+          # Criamos a pasta oculta .prisma dentro do node_modules do deploy
+          echo "Injetando motor Prisma (Alpine)..."
           mkdir -p deploy/node_modules/.prisma/client
+          
+          # Copia o motor 'musl' que foi gerado no passo 1 para o local onde o servidor espera
+          # Usamos 'cp -L' para seguir links simbólicos se houver
+          cp -L node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/.prisma/client/
+          
+          # Por segurança extrema, copiamos também para dentro de @prisma/client
           mkdir -p deploy/node_modules/@prisma/client
-          
-          # Copia o arquivo usando wildcard (agora ele vai existir!)
-          cp node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/.prisma/client/
-          cp node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/@prisma/client/
-          
-          echo "--- FIM CORREÇÃO PRISMA ---"
+          cp -L node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/@prisma/client/
+
+          # 5. VERIFICAÇÃO NO LOG
+          echo "Verificando se o motor está lá:"
+          ls -R deploy/node_modules/.prisma/client/
 
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics

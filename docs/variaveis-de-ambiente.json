@@ -1,0 +1,74 @@
+[
+  {
+    "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+    "value": "InstrumentationKey=37f4dc15-20e0-4e71-b692-45c9fa47c793;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=05bb5e20-53e3-453c-a695-a996686503ec"
+  },
+  {
+    "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+    "value": "~3"
+  },
+  {
+    "name": "AUTH_TRUST_HOST",
+    "value": "true"
+  },
+  {
+    "name": "DATABASE_URL",
+    "value": "postgresql://neondb_owner:npg_r9PtvAIGRh3g@ep-dry-bar-a8fyzj2o-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require"
+  },
+  {
+    "name": "DEMO_PASSWORD",
+    "value": "123456"
+  },
+  {
+    "name": "NEXT_PUBLIC_R2_BASE",
+    "value": "https://e41ff1f957e77c4e42f3e74a44ffdeec.r2.cloudflarestorage.com"
+  },
+  {
+    "name": "NEXT_PUBLIC_R2_BUCKET",
+    "value": "vitrine-uploads"
+  },
+  {
+    "name": "NEXT_PUBLIC_SHOW_ERRORS",
+    "value": "true"
+  },
+  {
+    "name": "NEXTAUTH_SECRET",
+    "value": "dZLF97LPviABk0iv5jwnJ3cK1k+29XTwC8XZcshEITw="
+  },
+  {
+    "name": "NEXTAUTH_URL",
+    "value": "https://proud-sky-0a8107810.3.azurestaticapps.net"
+  },
+  {
+    "name": "NODE_ENV",
+    "value": "production"
+  },
+  {
+    "name": "R2_ACCESS_KEY_ID",
+    "value": "812ae43555c72507a2d896e1c1b6125d"
+  },
+  {
+    "name": "R2_ACCOUNT_ID",
+    "value": "e41ff1f957e77c4e42f3e74a44ffdeec"
+  },
+  {
+    "name": "R2_BUCKET_NAME",
+    "value": "vitrine-uploads"
+  },
+  {
+    "name": "R2_PUBLIC_BASE_URL",
+    "value": "https://pub-11c79f639e314f208bdf80d01ef7056c.r2.dev"
+  },
+  {
+    "name": "R2_REGION",
+    "value": "auto"
+  },
+  {
+    "name": "R2_SECRET_ACCESS_KEY",
+    "value": "11bb14f58330686d0b23ade22c9077ea89dcc81db89bdcf8dcbac8cf9982eaee"
+  },
+  {
+    "name": "STORAGE_DRIVER",
+    "value": "r2"
+  }
+]

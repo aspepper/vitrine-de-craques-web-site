@@ -57,32 +57,51 @@ jobs:
         
       - name: Prepare standalone artifact for deployment
         run: |
-          echo "--- 1. CONFIRMAÇÃO DO SCHEMA NO AMBIENTE ---"
-          # Vamos ver se o GitHub está a ler o mesmo ficheiro que tu enviaste
-          cat prisma/schema.prisma
-
-          echo "--- 2. LIMPEZA E GERAÇÃO ---"
+          echo "--- 1. LIMPEZA E GERAÇÃO ---"
+          # Limpa para garantir frescor
           rm -rf node_modules/.prisma
           rm -rf node_modules/@prisma/client
           
-          echo "Gerando Prisma..."
+          # Gera os binários
           npx prisma generate
 
-          echo "--- 3. O QUE FOI GERADO? (MOMENTO DA VERDADE) ---"
-          # Lista recursiva completa para vermos onde o ficheiro foi parar
-          echo "Listando node_modules/.prisma/client:"
-          ls -R node_modules/.prisma/client/
+          echo "--- 2. PREPARAÇÃO DO PACOTE ---"
+          rm -rf deploy
+          mkdir -p deploy
           
-          echo "Listando node_modules/@prisma/client:"
-          ls -R node_modules/@prisma/client/
+          # Copia o App Next.js
+          cp -R .next/standalone/. deploy/
+          
+          if [ -d public ]; then cp -R public deploy/public; fi
+          mkdir -p deploy/.next/static
+          cp -R .next/static/. deploy/.next/static
+          
+          cp next.config.mjs deploy/next.config.mjs
+          cp staticwebapp.config.json deploy/staticwebapp.config.json
 
-          echo "--- 4. TESTE DE CÓPIA (DEBUG) ---"
-          # Tenta encontrar qualquer ficheiro com 'musl' no nome
-          find node_modules -name "*musl*"
+          echo "--- 3. CAÇA AO TESOURO (FIND & COPY) ---"
+          # Cria as pastas de destino
+          mkdir -p deploy/node_modules/.prisma/client
+          mkdir -p deploy/node_modules/@prisma/client
 
-          # Falha propositada para pararmos e lermos o log
-          echo "Fim do diagnóstico. Verifica o log acima!"
-          exit 1
+          # O comando FIND procura o arquivo em qualquer subpasta (excluindo a própria deploy)
+          # E salva o caminho encontrado na variável 'ENGINE_PATH'
+          ENGINE_PATH=$(find . -not -path "./deploy/*" -name "libquery_engine-linux-musl*.node" | head -n 1)
+          
+          if [ -z "$ENGINE_PATH" ]; then
+            echo "❌ ERRO CRÍTICO: O motor 'linux-musl' não foi encontrado em lugar nenhum!"
+            echo "Listando tudo em node_modules/.prisma para debug:"
+            ls -R node_modules/.prisma
+            exit 1
+          else
+            echo "✅ Motor encontrado em: $ENGINE_PATH"
+            echo "Copiando para o deploy..."
+            cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
+            cp "$ENGINE_PATH" deploy/node_modules/@prisma/client/
+            
+            echo "Sucesso! Conteúdo final do deploy:"
+            ls -l deploy/node_modules/.prisma/client/
+          fi
 
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics

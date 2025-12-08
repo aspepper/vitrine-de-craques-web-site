@@ -3,12 +3,12 @@
     "apiRuntime": "node:20"
   },
   "navigationFallback": {
-    "rewrite": "/api/server",
-    "exclude": ["/_next/static/*", "/images/*", "/assets/*", "/favicon.ico"]
+    "rewrite": "/",
+    "exclude": ["/api/*", "/_next/static/*", "/images/*", "/assets/*", "/favicon.ico"]
   },
   "responseOverrides": {
     "404": {
-      "rewrite": "/api/server"
+      "rewrite": "/"
     }
   }
 }

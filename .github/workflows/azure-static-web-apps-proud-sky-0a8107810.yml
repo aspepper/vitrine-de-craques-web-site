@@ -57,43 +57,32 @@ jobs:
         
       - name: Prepare standalone artifact for deployment
         run: |
-          echo "--- 1. LIMPEZA E GERAÇÃO DO PRISMA ---"
-          # Limpa cache antigo
+          echo "--- 1. CONFIRMAÇÃO DO SCHEMA NO AMBIENTE ---"
+          # Vamos ver se o GitHub está a ler o mesmo ficheiro que tu enviaste
+          cat prisma/schema.prisma
+
+          echo "--- 2. LIMPEZA E GERAÇÃO ---"
           rm -rf node_modules/.prisma
           rm -rf node_modules/@prisma/client
           
-          # Gera os binários (Vai baixar o musl/Alpine)
+          echo "Gerando Prisma..."
           npx prisma generate
 
-          echo "--- 2. PREPARAÇÃO DO DEPLOY ---"
-          rm -rf deploy
-          mkdir -p deploy
+          echo "--- 3. O QUE FOI GERADO? (MOMENTO DA VERDADE) ---"
+          # Lista recursiva completa para vermos onde o ficheiro foi parar
+          echo "Listando node_modules/.prisma/client:"
+          ls -R node_modules/.prisma/client/
           
-          # Copia estrutura do Next.js
-          cp -R .next/standalone/. deploy/
-          
-          if [ -d public ]; then cp -R public deploy/public; fi
-          mkdir -p deploy/.next/static
-          cp -R .next/static/. deploy/.next/static
-          
-          cp next.config.mjs deploy/next.config.mjs
-          cp staticwebapp.config.json deploy/staticwebapp.config.json
+          echo "Listando node_modules/@prisma/client:"
+          ls -R node_modules/@prisma/client/
 
-          echo "--- 3. CÓPIA DIRETA DO MOTOR (SEM BUSCA) ---"
-          # Cria diretórios de destino
-          mkdir -p deploy/node_modules/.prisma/client
-          mkdir -p deploy/node_modules/@prisma/client
-          
-          # Cópia explícita do arquivo que vimos no log
-          # Usamos o nome exato gerado pelo Prisma v6
-          echo "Copiando libquery_engine-linux-musl-openssl-3.0.x.so.node..."
-          
-          cp node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/.prisma/client/
-          cp node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node deploy/node_modules/@prisma/client/
+          echo "--- 4. TESTE DE CÓPIA (DEBUG) ---"
+          # Tenta encontrar qualquer ficheiro com 'musl' no nome
+          find node_modules -name "*musl*"
 
-          # Verificação final de sucesso
-          echo "Conteúdo final da pasta deploy:"
-          ls -l deploy/node_modules/.prisma/client/
+          # Falha propositada para pararmos e lermos o log
+          echo "Fim do diagnóstico. Verifica o log acima!"
+          exit 1
 
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics

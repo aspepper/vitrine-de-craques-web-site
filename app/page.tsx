@@ -195,7 +195,16 @@ async function loadLatestGames(): Promise<GameCardData[]> {
 
 export default async function HomePage() {
   const databaseConfigured = Boolean(process.env.DATABASE_URL)
-  const session = await getServerSession(authOptions)
+  let session: Awaited<ReturnType<typeof getServerSession>> = null
+
+  try {
+    session = await getServerSession(authOptions)
+  } catch (error) {
+    await logError(error, 'FALHA AO RECUPERAR SESSAO', {
+      scope: 'HomePage',
+    })
+  }
+
   const isAuthenticated = Boolean(session)
 
   let highlights: HighlightCardData[] = []

@@ -1,0 +1,29 @@
+﻿"timestamp [Brasília]",message,severityLevel,itemType,customDimensions,customMeasurements,"operation_Name","operation_Id","operation_ParentId","operation_SyntheticSource","session_Id","user_Id","user_AuthenticatedId","user_AccountId","application_Version","client_Type","client_Model","client_OS","client_IP","client_City","client_StateOrProvince","client_CountryOrRegion","client_Browser","cloud_RoleName","cloud_RoleInstance",appId,appName,iKey,sdkVersion,itemId,itemCount,"_ResourceId"
+"08/12/2025, 08:41:53.920","[Telemetry] Application Insights inicializado {
+  connectionStringProvider: 'InstrumentationKey',
+  runtime: 'nodejs',
+  role: 'vitrine-de-craques',
+  requestAutoCollection: true,
+  dependencyCorrelation: true
+}",1,trace,"{""_MS.ProcessedByMetricExtractors"":""(Name:'Traces', Ver:'1.1')""}",,,,,,,,,,"0.1.0",PC,,"Darwin 25.1.0","::","Sao Paulo","Sao Paulo",Brazil,,"vitrine-de-craques","Alexs-MacBook-Air.local","05bb5e20-53e3-453c-a695-a996686503ec","/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques","37f4dc15-20e0-4e71-b692-45c9fa47c793","uum_node:2.9.8","f34222bb-d42a-11f0-8728-6045bd2ec0e4",1,"/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques"
+"07/12/2025, 13:41:48.850","[Telemetry] Application Insights inicializado {
+  connectionStringProvider: 'InstrumentationKey',
+  runtime: 'nodejs',
+  role: 'vitrine-de-craques',
+  requestAutoCollection: true,
+  dependencyCorrelation: true
+}",1,trace,"{""_MS.ProcessedByMetricExtractors"":""(Name:'Traces', Ver:'1.1')""}",,,,,,,,,,"0.1.0",PC,,"Darwin 25.1.0","0.0.0.0","Sapucai-Mirim","Minas Gerais",Brazil,,"vitrine-de-craques","Alexs-MacBook-Air.local","05bb5e20-53e3-453c-a695-a996686503ec","/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques","37f4dc15-20e0-4e71-b692-45c9fa47c793","uum_node:2.9.8","b5650576-d38b-11f0-95c4-6045bd37cf3c",1,"/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques"
+"07/12/2025, 12:47:19.568","[Telemetry] Application Insights inicializado {
+  connectionStringProvider: 'InstrumentationKey',
+  runtime: 'nodejs',
+  role: 'vitrine-de-craques',
+  requestAutoCollection: true,
+  dependencyCorrelation: true
+}",1,trace,"{""_MS.ProcessedByMetricExtractors"":""(Name:'Traces', Ver:'1.1')""}",,,,,,,,,,"0.1.0",PC,,"Darwin 25.1.0","0.0.0.0","Sapucai-Mirim","Minas Gerais",Brazil,,"vitrine-de-craques","Alexs-MacBook-Air.local","05bb5e20-53e3-453c-a695-a996686503ec","/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques","37f4dc15-20e0-4e71-b692-45c9fa47c793","uum_node:2.9.8","130a18d0-d384-11f0-89f4-6045bd3380ad",1,"/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques"
+"07/12/2025, 11:26:17.005","[Telemetry] Application Insights inicializado {
+  connectionStringProvider: 'InstrumentationKey',
+  runtime: 'nodejs',
+  role: 'vitrine-de-craques',
+  requestAutoCollection: true,
+  dependencyCorrelation: true
+}",1,trace,"{""_MS.ProcessedByMetricExtractors"":""(Name:'Traces', Ver:'1.1')""}",,,,,,,,,,"0.1.0",PC,,"Darwin 25.1.0","0.0.0.0","Sapucai-Mirim","Minas Gerais",Brazil,,"vitrine-de-craques","Alexs-MacBook-Air.local","05bb5e20-53e3-453c-a695-a996686503ec","/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques","37f4dc15-20e0-4e71-b692-45c9fa47c793","uum_node:2.9.8","c2bdee2c-d378-11f0-95c4-00224847cd07",1,"/subscriptions/81322c01-ea8e-44cb-b347-06fc49f05b2d/resourcegroups/vittrinedecraques/providers/microsoft.insights/components/vitrinedecraques"

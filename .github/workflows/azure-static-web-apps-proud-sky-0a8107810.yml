@@ -57,21 +57,19 @@ jobs:
         
       - name: Prepare standalone artifact for deployment
         run: |
-          echo "--- 1. LIMPEZA E GERAÇÃO ---"
-          # Limpa para garantir frescor
+          echo "--- 1. LIMPEZA E GERAÇÃO (PRISMA) ---"
           rm -rf node_modules/.prisma
           rm -rf node_modules/@prisma/client
-          
-          # Gera os binários
           npx prisma generate
 
-          echo "--- 2. PREPARAÇÃO DO PACOTE ---"
+          echo "--- 2. MONTAGEM DO PACOTE ---"
           rm -rf deploy
           mkdir -p deploy
           
           # Copia o App Next.js
           cp -R .next/standalone/. deploy/
           
+          # Copia estáticos (Public)
           if [ -d public ]; then cp -R public deploy/public; fi
           mkdir -p deploy/.next/static
           cp -R .next/static/. deploy/.next/static
@@ -79,29 +77,47 @@ jobs:
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
 
-          echo "--- 3. CAÇA AO TESOURO (FIND & COPY) ---"
-          # Cria as pastas de destino
+          echo "--- 3. INJEÇÃO DO MOTOR PRISMA ---"
           mkdir -p deploy/node_modules/.prisma/client
           mkdir -p deploy/node_modules/@prisma/client
 
-          # O comando FIND procura o arquivo em qualquer subpasta (excluindo a própria deploy)
-          # E salva o caminho encontrado na variável 'ENGINE_PATH'
           ENGINE_PATH=$(find . -not -path "./deploy/*" -name "libquery_engine-linux-musl*.node" | head -n 1)
-          
           if [ -z "$ENGINE_PATH" ]; then
-            echo "❌ ERRO CRÍTICO: O motor 'linux-musl' não foi encontrado em lugar nenhum!"
-            echo "Listando tudo em node_modules/.prisma para debug:"
-            ls -R node_modules/.prisma
+            echo "❌ ERRO: Motor Alpine não encontrado!"
             exit 1
-          else
-            echo "✅ Motor encontrado em: $ENGINE_PATH"
-            echo "Copiando para o deploy..."
-            cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
-            cp "$ENGINE_PATH" deploy/node_modules/@prisma/client/
-            
-            echo "Sucesso! Conteúdo final do deploy:"
-            ls -l deploy/node_modules/.prisma/client/
           fi
+          cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
+          cp "$ENGINE_PATH" deploy/node_modules/@prisma/client/
+
+          echo "--- 4. DIETA DO PACOTE (LIMPEZA EXPLÍCITA) ---"
+          echo "Tamanho ANTES da limpeza:"
+          du -sh deploy
+          
+          # AÇÃO 0: REMOÇÃO EXPLÍCITA DAS PASTAS PESADAS (O QUE VOCÊ PEDIU)
+          # Removemos caso elas tenham sido copiadas via 'public' ou rastreamento
+          echo "Removendo pastas proibidas..."
+          rm -rf deploy/docs
+          rm -rf deploy/logs
+          rm -rf deploy/Vitrine-De-Craques-App
+          rm -rf deploy/Vitrine-De-Craques-App-iOS
+          
+          # AÇÃO 1: Remover Cache de Build
+          rm -rf deploy/.next/cache
+          
+          # AÇÃO 2: Remover Vídeos da pasta Public do servidor
+          find deploy/public -name "*.mp4" -delete
+          find deploy/public -name "*.mov" -delete
+          
+          # AÇÃO 3: Remover Mapas de Fonte e Lixo
+          find deploy -name "*.map" -delete
+          find deploy/node_modules -name "*darwin*" -delete
+          find deploy/node_modules -name "*windows*" -delete
+          
+          echo "Tamanho DEPOIS da limpeza:"
+          du -sh deploy
+          
+          # Debug: Mostrar os 10 arquivos mais pesados restantes
+          find deploy -type f -exec du -h {} + | sort -rh | head -n 10
 
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics

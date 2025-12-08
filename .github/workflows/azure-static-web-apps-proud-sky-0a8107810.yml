@@ -57,39 +57,53 @@ jobs:
         
       - name: Prepare standalone artifact for deployment
         run: |
-          # 1. GERAÇÃO: Garante que o motor Alpine (musl) seja baixado agora
-          echo "Gerando Prisma Client..."
+          echo "--- 1. LIMPEZA DE CACHE DO PRISMA ---"
+          # Apagamos as pastas geradas para obrigar o Prisma a baixar os binários do zero
+          rm -rf node_modules/.prisma
+          rm -rf node_modules/@prisma/client
+
+          echo "--- 2. GERAÇÃO FORÇADA ---"
+          # Agora o generate vai ler o schema.prisma e baixar o linux-musl obrigatoriamente
           npx prisma generate
 
-          # 2. PREPARAÇÃO: Cria a pasta de deploy limpa
+          # DEBUG: Lista o que foi gerado para termos prova no log
+          echo "Arquivos gerados:"
+          ls -la node_modules/.prisma/client/
+
+          echo "--- 3. PREPARAÇÃO DO DEPLOY ---"
           rm -rf deploy
           mkdir -p deploy
           
-          # 3. CÓPIA DO NEXT.JS STANDALONE
+          # Copia estrutura do Next.js Standalone
           cp -R .next/standalone/. deploy/
-          cp -R public deploy/public
+          
+          # Copia estáticos (com verificação para não falhar se não existir)
+          if [ -d public ]; then cp -R public deploy/public; fi
+          mkdir -p deploy/.next/static
           cp -R .next/static/. deploy/.next/static
           
-          # Copia arquivos de configuração da raiz para a raiz do deploy
+          # Configurações
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
-          
-          # 4. CORREÇÃO DEFINITIVA DO PRISMA
-          # Criamos a pasta oculta .prisma dentro do node_modules do deploy
-          echo "Injetando motor Prisma (Alpine)..."
-          mkdir -p deploy/node_modules/.prisma/client
-          
-          # Copia o motor 'musl' que foi gerado no passo 1 para o local onde o servidor espera
-          # Usamos 'cp -L' para seguir links simbólicos se houver
-          cp -L node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/.prisma/client/
-          
-          # Por segurança extrema, copiamos também para dentro de @prisma/client
-          mkdir -p deploy/node_modules/@prisma/client
-          cp -L node_modules/.prisma/client/*linux-musl*.node deploy/node_modules/@prisma/client/
 
-          # 5. VERIFICAÇÃO NO LOG
-          echo "Verificando se o motor está lá:"
-          ls -R deploy/node_modules/.prisma/client/
+          echo "--- 4. INJEÇÃO DO MOTOR (MÉTODO FIND) ---"
+          # Cria diretórios de destino
+          mkdir -p deploy/node_modules/.prisma/client
+          mkdir -p deploy/node_modules/@prisma/client
+          
+          # Usa 'find' para localizar o arquivo onde quer que ele esteja e copiar
+          # Isso resolve problemas de nomes ligeiramente diferentes
+          find node_modules -name "*linux-musl*.node" -exec cp -v {} deploy/node_modules/.prisma/client/ \;
+          find node_modules -name "*linux-musl*.node" -exec cp -v {} deploy/node_modules/@prisma/client/ \;
+
+          # VERIFICAÇÃO FINAL: Se a pasta estiver vazia, falha o build aqui mesmo para avisar
+          if [ -z "$(ls -A deploy/node_modules/.prisma/client/)" ]; then
+             echo "ERRO CRÍTICO: O motor do Prisma não foi copiado! Verifique se 'binaryTargets' está correto no schema.prisma."
+             exit 1
+          else
+             echo "SUCESSO: Motor Prisma copiado:"
+             ls -l deploy/node_modules/.prisma/client/
+          fi
 
       # (Opcional de diagnóstico: ver Node & Prisma)
       - name: Diagnostics

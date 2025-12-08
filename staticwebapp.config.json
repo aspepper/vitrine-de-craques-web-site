@@ -5,10 +5,5 @@
   "navigationFallback": {
     "rewrite": "/",
     "exclude": ["/api/*", "/_next/static/*", "/images/*", "/assets/*", "/favicon.ico"]
-  },
-  "responseOverrides": {
-    "404": {
-      "rewrite": "/"
-    }
   }
 }

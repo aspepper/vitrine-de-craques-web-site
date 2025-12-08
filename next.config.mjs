@@ -35,7 +35,7 @@ const nextConfig = {
   images: {
     // Desabilitar a otimização server-side evita que falhas de download externas
     // quebrem o build ou resultem em erros 500 na camada do SWA.
-    // unoptimized: true,
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

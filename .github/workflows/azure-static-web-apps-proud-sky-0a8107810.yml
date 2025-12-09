@@ -58,12 +58,11 @@ jobs:
           cp staticwebapp.config.json deploy/staticwebapp.config.json
 
           echo "--- 3. DEPENDÊNCIAS DE PRODUÇÃO NO ARTEFATO ---"
-          # O bundle standalone já traz apenas as dependências necessárias para execução.
-          # Executar "npm ci" aqui reinstala TODAS as dependências do projeto
-          # (incluindo as de desenvolvimento) dentro do artefato, inflando o pacote
-          # para ~1GB e fazendo o deploy do Azure Functions falhar.
-          # Apenas garantimos que não há dependências extras sem recriar node_modules.
-          npm prune --omit=dev --prefix deploy
+          # Reinstala apenas as dependências de produção usando o lockfile raiz
+          # para garantir um node_modules enxuto dentro do artefato.
+          cp package-lock.json deploy/package-lock.json
+          rm -rf deploy/node_modules
+          npm ci --omit=dev --ignore-scripts --prefix deploy
 
           echo "--- 4. OTIMIZAÇÃO DO ARTEFATO ---"
           # Mantemos os binários Debian do Prisma (compatíveis com o runner do SWA)

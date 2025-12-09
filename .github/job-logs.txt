@@ -1,936 +1,951 @@
-﻿2025-12-09T21:55:16.9090078Z ##[debug]Starting: Build and Deploy Job
-2025-12-09T21:55:16.9120121Z ##[debug]Cleaning runner temp folder: /home/runner/work/_temp
-2025-12-09T21:55:16.9270845Z ##[debug]Starting: Set up job
-2025-12-09T21:55:16.9272557Z Current runner version: '2.329.0'
-2025-12-09T21:55:16.9302187Z ##[group]Runner Image Provisioner
-2025-12-09T21:55:16.9303351Z Hosted Compute Agent
-2025-12-09T21:55:16.9304259Z Version: 20251124.448
-2025-12-09T21:55:16.9305258Z Commit: fda5086b43ec66ade217e5fcd18146c879571177
-2025-12-09T21:55:16.9306476Z Build Date: 2025-11-24T21:16:26Z
-2025-12-09T21:55:16.9307490Z ##[endgroup]
-2025-12-09T21:55:16.9308388Z ##[group]Operating System
-2025-12-09T21:55:16.9309652Z Ubuntu
-2025-12-09T21:55:16.9310397Z 24.04.3
-2025-12-09T21:55:16.9311306Z LTS
-2025-12-09T21:55:16.9312199Z ##[endgroup]
-2025-12-09T21:55:16.9312974Z ##[group]Runner Image
-2025-12-09T21:55:16.9314053Z Image: ubuntu-24.04
-2025-12-09T21:55:16.9314991Z Version: 20251126.144.1
-2025-12-09T21:55:16.9316771Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251126.144/images/ubuntu/Ubuntu2404-Readme.md
-2025-12-09T21:55:16.9320046Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251126.144
-2025-12-09T21:55:16.9321793Z ##[endgroup]
-2025-12-09T21:55:16.9323815Z ##[group]GITHUB_TOKEN Permissions
-2025-12-09T21:55:16.9326378Z Contents: read
-2025-12-09T21:55:16.9327362Z Metadata: read
-2025-12-09T21:55:16.9328239Z Packages: read
-2025-12-09T21:55:16.9329340Z ##[endgroup]
-2025-12-09T21:55:16.9332218Z Secret source: Actions
-2025-12-09T21:55:16.9333650Z ##[debug]Primary repository: aspepper/vitrine-de-craques-web-site
-2025-12-09T21:55:16.9335014Z Prepare workflow directory
-2025-12-09T21:55:16.9436135Z ##[debug]Creating pipeline directory: '/home/runner/work/vitrine-de-craques-web-site'
-2025-12-09T21:55:16.9442208Z ##[debug]Creating workspace directory: '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
-2025-12-09T21:55:16.9445405Z ##[debug]Update context data
-2025-12-09T21:55:16.9450796Z ##[debug]Evaluating job-level environment variables
-2025-12-09T21:55:16.9909547Z ##[debug]Evaluating job container
-2025-12-09T21:55:16.9914186Z ##[debug]Evaluating job service containers
-2025-12-09T21:55:16.9917861Z ##[debug]Evaluating job defaults
-2025-12-09T21:55:16.9994596Z Prepare all required actions
-2025-12-09T21:55:17.0066934Z Getting action download info
-2025-12-09T21:55:17.5666341Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
-2025-12-09T21:55:18.0427953Z ##[debug]Download 'https://api.github.com/repos/actions/checkout/tarball/34e114876b0b11c390a56381ad16ebd13914f8d5' to '/home/runner/work/_actions/_temp_e691ee7e-c7fa-4609-9190-0903f60d7e53/c32f1529-c15d-4235-82d3-650333a97d7c.tar.gz'
-2025-12-09T21:55:18.1256963Z ##[debug]Unwrap 'actions-checkout-34e1148' to '/home/runner/work/_actions/actions/checkout/v4'
-2025-12-09T21:55:18.1385422Z ##[debug]Archive '/home/runner/work/_actions/_temp_e691ee7e-c7fa-4609-9190-0903f60d7e53/c32f1529-c15d-4235-82d3-650333a97d7c.tar.gz' has been unzipped into '/home/runner/work/_actions/actions/checkout/v4'.
-2025-12-09T21:55:18.1489547Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
-2025-12-09T21:55:18.2059419Z ##[debug]Copied action archive '/opt/actionarchivecache/actions_setup-node/49933ea5288caeca8642d1e84afbd3f7d6820020.tar.gz' to '/home/runner/work/_actions/_temp_d0843f78-f32c-4d11-b8a1-07c4dd28827f/f167d6d7-6b9e-43b1-8fcc-065bc0a4feb7.tar.gz'
-2025-12-09T21:55:18.2661190Z ##[debug]Unwrap 'actions-setup-node-49933ea' to '/home/runner/work/_actions/actions/setup-node/v4'
-2025-12-09T21:55:18.2911679Z ##[debug]Archive '/home/runner/work/_actions/_temp_d0843f78-f32c-4d11-b8a1-07c4dd28827f/f167d6d7-6b9e-43b1-8fcc-065bc0a4feb7.tar.gz' has been unzipped into '/home/runner/work/_actions/actions/setup-node/v4'.
-2025-12-09T21:55:18.2975309Z Download action repository 'Azure/static-web-apps-deploy@v1' (SHA:4d27395796ac319302594769cfe812bd207490b1)
-2025-12-09T21:55:18.6610918Z ##[debug]Download 'https://api.github.com/repos/Azure/static-web-apps-deploy/tarball/4d27395796ac319302594769cfe812bd207490b1' to '/home/runner/work/_actions/_temp_158dd0bd-71b5-4a8c-83e2-c51c27fdfaa5/b3814387-055f-44a9-9540-0d9ca31f6f26.tar.gz'
-2025-12-09T21:55:18.6692340Z ##[debug]Unwrap 'Azure-static-web-apps-deploy-4d27395' to '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1'
-2025-12-09T21:55:18.6707498Z ##[debug]Archive '/home/runner/work/_actions/_temp_158dd0bd-71b5-4a8c-83e2-c51c27fdfaa5/b3814387-055f-44a9-9540-0d9ca31f6f26.tar.gz' has been unzipped into '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1'.
-2025-12-09T21:55:18.6732837Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/checkout/v4/action.yml'.
-2025-12-09T21:55:18.7446621Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/setup-node/v4/action.yml'.
-2025-12-09T21:55:18.7544084Z ##[debug]action.yml for action: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/action.yml'.
-2025-12-09T21:55:18.7621192Z ##[debug]Dockerfile for action: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile'.
-2025-12-09T21:55:18.7762443Z ##[debug]Set step '__actions_checkout' display name to: 'Run actions/checkout@v4'
-2025-12-09T21:55:18.7767146Z ##[debug]Set step '__actions_setup-node' display name to: 'Setup Node'
-2025-12-09T21:55:18.7770711Z ##[debug]Set step '__run' display name to: 'Install dependencies'
-2025-12-09T21:55:18.7773723Z ##[debug]Set step '__run_2' display name to: 'Build web app'
-2025-12-09T21:55:18.7777184Z ##[debug]Set step '__run_3' display name to: 'Prepare standalone artifact for deployment'
-2025-12-09T21:55:18.7781068Z ##[debug]Set step 'builddeploy' display name to: 'Build And Deploy'
-2025-12-09T21:55:18.7782678Z Complete job name: Build and Deploy Job
-2025-12-09T21:55:18.7844135Z ##[debug]Collect running processes for tracking orphan processes.
-2025-12-09T21:55:18.8035070Z ##[debug]Finishing: Set up job
-2025-12-09T21:55:18.8161573Z ##[debug]Evaluating condition for step: 'Build Azure/static-web-apps-deploy@v1'
-2025-12-09T21:55:18.8197477Z ##[debug]Evaluating: success()
-2025-12-09T21:55:18.8203589Z ##[debug]Evaluating success:
-2025-12-09T21:55:18.8219790Z ##[debug]=> true
-2025-12-09T21:55:18.8226747Z ##[debug]Result: true
-2025-12-09T21:55:18.8250261Z ##[debug]Starting: Build Azure/static-web-apps-deploy@v1
-2025-12-09T21:55:18.8272939Z ##[group]Build container for action use: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile'.
-2025-12-09T21:55:18.8328757Z ##[command]/usr/bin/docker build -t fe6baa:ae921f57c6754a748ddb707466b586a1 -f "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile" "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1"
-2025-12-09T21:55:19.4454658Z #0 building with "default" instance using docker driver
-2025-12-09T21:55:19.4456252Z 
-2025-12-09T21:55:19.4456953Z #1 [internal] load build definition from Dockerfile
-2025-12-09T21:55:19.4459202Z #1 transferring dockerfile: 160B done
-2025-12-09T21:55:19.4460317Z #1 DONE 0.0s
-2025-12-09T21:55:19.4460782Z 
-2025-12-09T21:55:19.4461750Z #2 [internal] load metadata for mcr.microsoft.com/appsvc/staticappsclient:stable
-2025-12-09T21:55:19.4463269Z #2 DONE 0.1s
-2025-12-09T21:55:19.5781977Z 
-2025-12-09T21:55:19.5785034Z #3 [internal] load .dockerignore
-2025-12-09T21:55:19.5786831Z #3 transferring context: 2B done
-2025-12-09T21:55:19.5788406Z #3 DONE 0.0s
-2025-12-09T21:55:19.5789308Z 
-2025-12-09T21:55:19.5789903Z #4 [internal] load build context
-2025-12-09T21:55:19.5791616Z #4 transferring context: 107B done
-2025-12-09T21:55:19.5793260Z #4 DONE 0.0s
-2025-12-09T21:55:19.5793965Z 
-2025-12-09T21:55:19.5797730Z #5 [1/2] FROM mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2
-2025-12-09T21:55:19.5831185Z #5 resolve mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2 done
-2025-12-09T21:55:19.5854591Z #5 sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2 2.88kB / 2.88kB done
-2025-12-09T21:55:19.5860678Z #5 sha256:1df8e0748f30e89b0c0477edfc706fc39242e1d6008433c0494113de267e7ca8 15.34kB / 15.34kB done
-2025-12-09T21:55:19.5885852Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 25.17MB / 53.74MB 0.1s
-2025-12-09T21:55:19.5902934Z #5 sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 10.49MB / 15.56MB 0.1s
-2025-12-09T21:55:19.5912756Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 6.29MB / 54.75MB 0.1s
-2025-12-09T21:55:19.7693347Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 53.74MB / 53.74MB 0.3s done
-2025-12-09T21:55:19.7728130Z #5 sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 15.56MB / 15.56MB 0.2s done
-2025-12-09T21:55:19.7733751Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 35.88MB / 54.75MB 0.3s
-2025-12-09T21:55:19.7738303Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 15.73MB / 197.07MB 0.3s
-2025-12-09T21:55:19.7744442Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.3s
-2025-12-09T21:55:19.8720425Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 49.28MB / 54.75MB 0.4s
-2025-12-09T21:55:19.8725237Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 31.46MB / 197.07MB 0.4s
-2025-12-09T21:55:19.8729634Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.3s done
-2025-12-09T21:55:19.8733425Z #5 extracting sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58
-2025-12-09T21:55:19.8737694Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 12.72MB / 24.46MB 0.4s
-2025-12-09T21:55:20.0683019Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 54.75MB / 54.75MB 0.6s
-2025-12-09T21:55:20.0688756Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 67.11MB / 197.07MB 0.6s
-2025-12-09T21:55:20.0694640Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 24.46MB / 24.46MB 0.6s
-2025-12-09T21:55:20.1709194Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 54.75MB / 54.75MB 0.6s done
-2025-12-09T21:55:20.1717365Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 95.56MB / 197.07MB 0.7s
-2025-12-09T21:55:20.1724341Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 24.46MB / 24.46MB 0.6s done
-2025-12-09T21:55:20.1729986Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 13.63MB / 72.99MB 0.7s
-2025-12-09T21:55:20.1734327Z #5 sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a 1.56MB / 1.56MB 0.6s done
-2025-12-09T21:55:20.1738852Z #5 sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd 115.52kB / 115.52kB 0.7s done
-2025-12-09T21:55:20.1744071Z #5 sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 0B / 1.16MB 0.7s
-2025-12-09T21:55:20.2747392Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 115.34MB / 197.07MB 0.8s
-2025-12-09T21:55:20.2783944Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 27.26MB / 72.99MB 0.8s
-2025-12-09T21:55:20.2791945Z #5 sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 1.16MB / 1.16MB 0.7s done
-2025-12-09T21:55:20.2797915Z #5 sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55 637.94kB / 637.94kB 0.8s done
-2025-12-09T21:55:20.4327346Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 128.05MB / 197.07MB 0.9s
-2025-12-09T21:55:20.4335196Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 42.99MB / 72.99MB 0.9s
-2025-12-09T21:55:20.5689796Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 155.19MB / 197.07MB 1.1s
-2025-12-09T21:55:20.5700446Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 70.41MB / 72.99MB 1.1s
-2025-12-09T21:55:20.5705598Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 21.02MB / 35.20MB 1.1s
-2025-12-09T21:55:20.6676434Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 183.50MB / 197.07MB 1.2s
-2025-12-09T21:55:20.6683852Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 35.20MB / 35.20MB 1.2s
-2025-12-09T21:55:20.8658019Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 197.07MB / 197.07MB 1.4s
-2025-12-09T21:55:21.7455333Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 197.07MB / 197.07MB 2.2s done
-2025-12-09T21:55:21.7457588Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 72.99MB / 72.99MB 2.2s done
-2025-12-09T21:55:21.7461062Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 35.20MB / 35.20MB 2.2s done
-2025-12-09T21:55:21.7465757Z #5 sha256:8023cb51985fccd3faa4be6340cdc75b72240277850569aa974767dda5176159 168B / 168B 2.2s done
-2025-12-09T21:55:21.7466972Z #5 sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d 168B / 168B 2.2s done
-2025-12-09T21:55:21.7468177Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 0B / 118.65MB 2.2s
-2025-12-09T21:55:21.8490304Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 25.17MB / 118.65MB 2.3s
-2025-12-09T21:55:21.9658753Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 93.32MB / 118.65MB 2.5s
-2025-12-09T21:55:22.0681756Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 118.65MB / 118.65MB 2.6s
-2025-12-09T21:55:22.5651970Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 118.65MB / 118.65MB 3.0s done
-2025-12-09T21:55:23.9828939Z #5 extracting sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 4.2s done
-2025-12-09T21:55:24.1714567Z #5 extracting sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 0.1s
-2025-12-09T21:55:24.6489466Z #5 extracting sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 0.4s done
-2025-12-09T21:55:26.4112765Z #5 extracting sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230
-2025-12-09T21:55:28.6195085Z #5 extracting sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 2.1s done
-2025-12-09T21:55:29.1238496Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88
-2025-12-09T21:55:34.2453780Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 5.1s
-2025-12-09T21:55:34.4151692Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 5.3s done
-2025-12-09T21:55:36.9266060Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
-2025-12-09T21:55:37.0827643Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
-2025-12-09T21:55:37.0832229Z #5 extracting sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 0.1s
-2025-12-09T21:55:37.8679050Z #5 extracting sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 0.8s done
-2025-12-09T21:55:37.8680863Z #5 extracting sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a
-2025-12-09T21:55:38.1246921Z #5 extracting sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a 0.1s done
-2025-12-09T21:55:38.1253343Z #5 extracting sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 0.1s
-2025-12-09T21:55:39.2971480Z #5 extracting sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 1.1s done
-2025-12-09T21:55:39.8257496Z #5 extracting sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd
-2025-12-09T21:55:39.9416202Z #5 extracting sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd done
-2025-12-09T21:55:39.9421745Z #5 extracting sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 0.1s done
-2025-12-09T21:55:39.9424869Z #5 extracting sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55
-2025-12-09T21:55:40.1112938Z #5 extracting sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55 0.0s done
-2025-12-09T21:55:40.1117522Z #5 extracting sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 0.1s
-2025-12-09T21:55:40.6178061Z #5 extracting sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 0.5s done
-2025-12-09T21:55:40.6179716Z #5 extracting sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d
-2025-12-09T21:55:40.7755567Z #5 extracting sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d done
-2025-12-09T21:55:40.7756602Z #5 extracting sha256:8023cb51985fccd3faa4be6340cdc75b72240277850569aa974767dda5176159 done
-2025-12-09T21:55:40.7757799Z #5 extracting sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 0.1s
-2025-12-09T21:55:44.4367125Z #5 extracting sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 3.6s done
-2025-12-09T21:55:45.7289119Z #5 DONE 26.3s
-2025-12-09T21:55:45.8994688Z 
-2025-12-09T21:55:45.9019399Z #6 [2/2] COPY entrypoint.sh /entrypoint.sh
-2025-12-09T21:55:45.9019998Z #6 DONE 0.0s
-2025-12-09T21:55:45.9020260Z 
-2025-12-09T21:55:45.9020548Z #7 exporting to image
-2025-12-09T21:55:45.9021014Z #7 exporting layers
-2025-12-09T21:55:47.0395117Z #7 exporting layers 1.3s done
-2025-12-09T21:55:47.0684584Z #7 writing image sha256:c75d4e1b77f66318e3c484a56210906392c6e20dc7123292de741267519e83a7 done
-2025-12-09T21:55:47.0685740Z #7 naming to docker.io/library/fe6baa:ae921f57c6754a748ddb707466b586a1 done
-2025-12-09T21:55:47.0687256Z #7 DONE 1.3s
-2025-12-09T21:55:47.0734048Z ##[endgroup]
-2025-12-09T21:55:47.0745042Z ##[debug]Finishing: Build Azure/static-web-apps-deploy@v1
-2025-12-09T21:55:47.0762770Z ##[debug]Evaluating condition for step: 'Run actions/checkout@v4'
-2025-12-09T21:55:47.0768211Z ##[debug]Evaluating: success()
-2025-12-09T21:55:47.0768946Z ##[debug]Evaluating success:
-2025-12-09T21:55:47.0769423Z ##[debug]=> true
-2025-12-09T21:55:47.0769841Z ##[debug]Result: true
-2025-12-09T21:55:47.0770802Z ##[debug]Starting: Run actions/checkout@v4
-2025-12-09T21:55:47.0832026Z ##[debug]Register post job cleanup for action: actions/checkout@v4
-2025-12-09T21:55:47.0903635Z ##[debug]Loading inputs
-2025-12-09T21:55:47.0924602Z ##[debug]Evaluating: github.repository
-2025-12-09T21:55:47.0925454Z ##[debug]Evaluating Index:
-2025-12-09T21:55:47.0927335Z ##[debug]..Evaluating github:
-2025-12-09T21:55:47.0928183Z ##[debug]..=> Object
-2025-12-09T21:55:47.0933577Z ##[debug]..Evaluating String:
-2025-12-09T21:55:47.0934321Z ##[debug]..=> 'repository'
-2025-12-09T21:55:47.0938492Z ##[debug]=> 'aspepper/vitrine-de-craques-web-site'
-2025-12-09T21:55:47.0940363Z ##[debug]Result: 'aspepper/vitrine-de-craques-web-site'
-2025-12-09T21:55:47.0942732Z ##[debug]Evaluating: github.token
-2025-12-09T21:55:47.0943017Z ##[debug]Evaluating Index:
-2025-12-09T21:55:47.0943259Z ##[debug]..Evaluating github:
-2025-12-09T21:55:47.0943505Z ##[debug]..=> Object
-2025-12-09T21:55:47.0943726Z ##[debug]..Evaluating String:
-2025-12-09T21:55:47.0943955Z ##[debug]..=> 'token'
-2025-12-09T21:55:47.0944688Z ##[debug]=> '***'
-2025-12-09T21:55:47.0945009Z ##[debug]Result: '***'
-2025-12-09T21:55:47.0953515Z ##[debug]Loading env
-2025-12-09T21:55:47.1010152Z ##[group]Run actions/checkout@v4
-2025-12-09T21:55:47.1010689Z with:
-2025-12-09T21:55:47.1010879Z   submodules: false
-2025-12-09T21:55:47.1011060Z   lfs: false
-2025-12-09T21:55:47.1011282Z   repository: aspepper/vitrine-de-craques-web-site
-2025-12-09T21:55:47.1011883Z   token: ***
-2025-12-09T21:55:47.1012114Z   ssh-strict: true
-2025-12-09T21:55:47.1012298Z   ssh-user: git
-2025-12-09T21:55:47.1012487Z   persist-credentials: true
-2025-12-09T21:55:47.1012694Z   clean: true
-2025-12-09T21:55:47.1012893Z   sparse-checkout-cone-mode: true
-2025-12-09T21:55:47.1013112Z   fetch-depth: 1
-2025-12-09T21:55:47.1013285Z   fetch-tags: false
-2025-12-09T21:55:47.1013657Z   show-progress: true
-2025-12-09T21:55:47.1013844Z   set-safe-directory: true
-2025-12-09T21:55:47.1014290Z ##[endgroup]
-2025-12-09T21:55:47.2013865Z ##[debug]GITHUB_WORKSPACE = '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
-2025-12-09T21:55:47.2015578Z ##[debug]qualified repository = 'aspepper/vitrine-de-craques-web-site'
-2025-12-09T21:55:47.2022303Z ##[debug]ref = 'refs/heads/main'
-2025-12-09T21:55:47.2023102Z ##[debug]commit = '5527daaf1ba373ab58c72f8bea2c93539f071e6d'
-2025-12-09T21:55:47.2027252Z ##[debug]clean = true
-2025-12-09T21:55:47.2031462Z ##[debug]filter = undefined
-2025-12-09T21:55:47.2032174Z ##[debug]fetch depth = 1
-2025-12-09T21:55:47.2032798Z ##[debug]fetch tags = false
-2025-12-09T21:55:47.2033443Z ##[debug]show progress = true
-2025-12-09T21:55:47.2034130Z ##[debug]lfs = false
-2025-12-09T21:55:47.2034790Z ##[debug]submodules = false
-2025-12-09T21:55:47.2035467Z ##[debug]recursive submodules = false
-2025-12-09T21:55:47.2036183Z ##[debug]GitHub Host URL = 
-2025-12-09T21:55:47.2037607Z ::add-matcher::/home/runner/work/_actions/actions/checkout/v4/dist/problem-matcher.json
-2025-12-09T21:55:47.2151858Z ##[debug]Added matchers: 'checkout-git'. Problem matchers scan action output for known warning or error strings and report these inline.
-2025-12-09T21:55:47.2157650Z Syncing repository: aspepper/vitrine-de-craques-web-site
-2025-12-09T21:55:47.2158820Z ::group::Getting Git version info
-2025-12-09T21:55:47.2159947Z ##[group]Getting Git version info
-2025-12-09T21:55:47.2160461Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
-2025-12-09T21:55:47.2161153Z ##[debug]Getting git version
-2025-12-09T21:55:47.2161399Z [command]/usr/bin/git version
-2025-12-09T21:55:47.2169204Z git version 2.52.0
-2025-12-09T21:55:47.2193255Z ##[debug]0
-2025-12-09T21:55:47.2195413Z ##[debug]git version 2.52.0
-2025-12-09T21:55:47.2195827Z ##[debug]
-2025-12-09T21:55:47.2196677Z ##[debug]Set git useragent to: git/2.52.0 (github-actions-checkout)
-2025-12-09T21:55:47.2199175Z ::endgroup::
-2025-12-09T21:55:47.2199549Z ##[endgroup]
-2025-12-09T21:55:47.2205363Z ::add-mask::***
-2025-12-09T21:55:47.2213998Z Temporarily overriding HOME='/home/runner/work/_temp/fa4ea045-7f90-4313-b817-48d8678d8c71' before making global git config changes
-2025-12-09T21:55:47.2216185Z Adding repository directory to the temporary git global config as a safe directory
-2025-12-09T21:55:47.2234501Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
-2025-12-09T21:55:47.2269595Z ##[debug]0
-2025-12-09T21:55:47.2271080Z ##[debug]
-2025-12-09T21:55:47.2275626Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
-2025-12-09T21:55:47.2280099Z ::group::Initializing the repository
-2025-12-09T21:55:47.2280605Z ##[group]Initializing the repository
-2025-12-09T21:55:47.2285112Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
-2025-12-09T21:55:47.2449961Z hint: Using 'master' as the name for the initial branch. This default branch name
-2025-12-09T21:55:47.2451724Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-2025-12-09T21:55:47.2452570Z hint: to use in all of your new repositories, which will suppress this warning,
-2025-12-09T21:55:47.2453188Z hint: call:
-2025-12-09T21:55:47.2453475Z hint:
-2025-12-09T21:55:47.2453906Z hint: 	git config --global init.defaultBranch <name>
-2025-12-09T21:55:47.2454419Z hint:
-2025-12-09T21:55:47.2455389Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2025-12-09T21:55:47.2456224Z hint: 'development'. The just-created branch can be renamed via this command:
-2025-12-09T21:55:47.2456819Z hint:
-2025-12-09T21:55:47.2457127Z hint: 	git branch -m <name>
-2025-12-09T21:55:47.2457477Z hint:
-2025-12-09T21:55:47.2457993Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2025-12-09T21:55:47.2459751Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
-2025-12-09T21:55:47.2463819Z ##[debug]0
-2025-12-09T21:55:47.2465817Z ##[debug]Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
-2025-12-09T21:55:47.2466718Z ##[debug]
-2025-12-09T21:55:47.2470564Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
-2025-12-09T21:55:47.2510222Z ##[debug]0
-2025-12-09T21:55:47.2512081Z ##[debug]
-2025-12-09T21:55:47.2512713Z ::endgroup::
-2025-12-09T21:55:47.2513018Z ##[endgroup]
-2025-12-09T21:55:47.2513642Z ::group::Disabling automatic garbage collection
-2025-12-09T21:55:47.2514156Z ##[group]Disabling automatic garbage collection
-2025-12-09T21:55:47.2518391Z [command]/usr/bin/git config --local gc.auto 0
-2025-12-09T21:55:47.2551688Z ##[debug]0
-2025-12-09T21:55:47.2553235Z ##[debug]
-2025-12-09T21:55:47.2553828Z ::endgroup::
-2025-12-09T21:55:47.2554229Z ##[endgroup]
-2025-12-09T21:55:47.2554855Z ::group::Setting up auth
-2025-12-09T21:55:47.2555238Z ##[group]Setting up auth
-2025-12-09T21:55:47.2561950Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2025-12-09T21:55:47.2590481Z ##[debug]1
-2025-12-09T21:55:47.2591968Z ##[debug]
-2025-12-09T21:55:47.2597000Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2025-12-09T21:55:47.2982014Z ##[debug]0
-2025-12-09T21:55:47.2983495Z ##[debug]
-2025-12-09T21:55:47.2989010Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2025-12-09T21:55:47.3014209Z ##[debug]1
-2025-12-09T21:55:47.3015600Z ##[debug]
-2025-12-09T21:55:47.3021208Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2025-12-09T21:55:47.3243704Z ##[debug]0
-2025-12-09T21:55:47.3245218Z ##[debug]
-2025-12-09T21:55:47.3251414Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2025-12-09T21:55:47.3276576Z ##[debug]1
-2025-12-09T21:55:47.3278059Z ##[debug]
-2025-12-09T21:55:47.3283032Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2025-12-09T21:55:47.3521490Z ##[debug]0
-2025-12-09T21:55:47.3522998Z ##[debug]
-2025-12-09T21:55:47.3530245Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2025-12-09T21:55:47.3557377Z ##[debug]0
-2025-12-09T21:55:47.3559173Z ##[debug]
-2025-12-09T21:55:47.3566214Z ::endgroup::
-2025-12-09T21:55:47.3566538Z ##[endgroup]
-2025-12-09T21:55:47.3568102Z ::group::Fetching the repository
-2025-12-09T21:55:47.3568769Z ##[group]Fetching the repository
-2025-12-09T21:55:47.3576212Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5527daaf1ba373ab58c72f8bea2c93539f071e6d:refs/remotes/origin/main
-2025-12-09T21:55:55.1245063Z From https://github.com/aspepper/vitrine-de-craques-web-site
-2025-12-09T21:55:55.1247305Z  * [new ref]         5527daaf1ba373ab58c72f8bea2c93539f071e6d -> origin/main
-2025-12-09T21:55:55.1272837Z ##[debug]0
-2025-12-09T21:55:55.1274833Z ##[debug]
-2025-12-09T21:55:55.1275348Z ::endgroup::
-2025-12-09T21:55:55.1357144Z ##[endgroup]
-2025-12-09T21:55:55.1357790Z ::group::Determining the checkout info
-2025-12-09T21:55:55.1358287Z ##[group]Determining the checkout info
-2025-12-09T21:55:55.1383301Z ::endgroup::
-2025-12-09T21:55:55.1383609Z ##[endgroup]
-2025-12-09T21:55:55.1384009Z [command]/usr/bin/git sparse-checkout disable
-2025-12-09T21:55:55.1384742Z ##[debug]0
-2025-12-09T21:55:55.1385236Z ##[debug]
-2025-12-09T21:55:55.1385744Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-2025-12-09T21:55:55.1386577Z ##[debug]0
-2025-12-09T21:55:55.1387318Z ##[debug]
-2025-12-09T21:55:55.1387818Z ::group::Checking out the ref
-2025-12-09T21:55:55.1388198Z ##[group]Checking out the ref
-2025-12-09T21:55:55.1389637Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-2025-12-09T21:55:56.0275201Z Switched to a new branch 'main'
-2025-12-09T21:55:56.0280986Z branch 'main' set up to track 'origin/main'.
-2025-12-09T21:55:56.0375354Z ##[debug]0
-2025-12-09T21:55:56.0375944Z ##[debug]branch 'main' set up to track 'origin/main'.
-2025-12-09T21:55:56.0376378Z ##[debug]
-2025-12-09T21:55:56.0380344Z ::endgroup::
-2025-12-09T21:55:56.0380649Z ##[endgroup]
-2025-12-09T21:55:56.0418172Z ##[debug]0
-2025-12-09T21:55:56.0422390Z ##[debug]commit 5527daaf1ba373ab58c72f8bea2c93539f071e6d
-2025-12-09T21:55:56.0422985Z ##[debug]Author: Alex Pimenta <aspepper@hotmail.com>
-2025-12-09T21:55:56.0423529Z ##[debug]Date:   Tue Dec 9 18:02:35 2025 -0300
-2025-12-09T21:55:56.0423936Z ##[debug]
-2025-12-09T21:55:56.0424509Z ##[debug]    Merge pull request #401 from aspepper/codex/investigar-erros-de-deploy-no-job-logs.txt
-2025-12-09T21:55:56.0425211Z ##[debug]    
-2025-12-09T21:55:56.0425584Z ##[debug]    Preserve Prisma musl engine for Azure runtime
-2025-12-09T21:55:56.0426024Z ##[debug]
-2025-12-09T21:55:56.0426399Z [command]/usr/bin/git log -1 --format=%H
-2025-12-09T21:55:56.0447026Z 5527daaf1ba373ab58c72f8bea2c93539f071e6d
-2025-12-09T21:55:56.0452655Z ##[debug]0
-2025-12-09T21:55:56.0455316Z ##[debug]5527daaf1ba373ab58c72f8bea2c93539f071e6d
-2025-12-09T21:55:56.0455774Z ##[debug]
-2025-12-09T21:55:56.0460380Z ##[debug]Unsetting HOME override
-2025-12-09T21:55:56.0470753Z ::remove-matcher owner=checkout-git::
-2025-12-09T21:55:56.0485494Z ##[debug]Removed matchers: 'checkout-git'
-2025-12-09T21:55:56.0532287Z ##[debug]Node Action run completed with exit code 0
-2025-12-09T21:55:56.0565941Z ##[debug]Save intra-action state isPost = true
-2025-12-09T21:55:56.0566379Z ##[debug]Save intra-action state setSafeDirectory = true
-2025-12-09T21:55:56.0566954Z ##[debug]Save intra-action state repositoryPath = /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
-2025-12-09T21:55:56.0570916Z ##[debug]Set output commit = 5527daaf1ba373ab58c72f8bea2c93539f071e6d
-2025-12-09T21:55:56.0571400Z ##[debug]Set output ref = refs/heads/main
-2025-12-09T21:55:56.0573000Z ##[debug]Finishing: Run actions/checkout@v4
-2025-12-09T21:55:56.0580975Z ##[debug]Evaluating condition for step: 'Setup Node'
-2025-12-09T21:55:56.0582724Z ##[debug]Evaluating: success()
-2025-12-09T21:55:56.0583075Z ##[debug]Evaluating success:
-2025-12-09T21:55:56.0583584Z ##[debug]=> true
-2025-12-09T21:55:56.0583917Z ##[debug]Result: true
-2025-12-09T21:55:56.0584442Z ##[debug]Starting: Setup Node
-2025-12-09T21:55:56.0612475Z ##[debug]Register post job cleanup for action: actions/setup-node@v4
-2025-12-09T21:55:56.0622825Z ##[debug]Loading inputs
-2025-12-09T21:55:56.0632301Z ##[debug]Evaluating: (((github.server_url == 'https://github.com') && github.token) || '')
-2025-12-09T21:55:56.0632780Z ##[debug]Evaluating Or:
-2025-12-09T21:55:56.0634661Z ##[debug]..Evaluating And:
-2025-12-09T21:55:56.0636439Z ##[debug]....Evaluating Equal:
-2025-12-09T21:55:56.0637463Z ##[debug]......Evaluating Index:
-2025-12-09T21:55:56.0637719Z ##[debug]........Evaluating github:
-2025-12-09T21:55:56.0638031Z ##[debug]........=> Object
-2025-12-09T21:55:56.0638407Z ##[debug]........Evaluating String:
-2025-12-09T21:55:56.0638871Z ##[debug]........=> 'server_url'
-2025-12-09T21:55:56.0639187Z ##[debug]......=> 'https://github.com'
-2025-12-09T21:55:56.0639495Z ##[debug]......Evaluating String:
-2025-12-09T21:55:56.0639745Z ##[debug]......=> 'https://github.com'
-2025-12-09T21:55:56.0643210Z ##[debug]....=> true
-2025-12-09T21:55:56.0643628Z ##[debug]....Evaluating Index:
-2025-12-09T21:55:56.0643883Z ##[debug]......Evaluating github:
-2025-12-09T21:55:56.0644136Z ##[debug]......=> Object
-2025-12-09T21:55:56.0644371Z ##[debug]......Evaluating String:
-2025-12-09T21:55:56.0644674Z ##[debug]......=> 'token'
-2025-12-09T21:55:56.0645189Z ##[debug]....=> '***'
-2025-12-09T21:55:56.0645778Z ##[debug]..=> '***'
-2025-12-09T21:55:56.0646309Z ##[debug]=> '***'
-2025-12-09T21:55:56.0650900Z ##[debug]Expanded: ((('https://github.com' == 'https://github.com') && '***') || '')
-2025-12-09T21:55:56.0651409Z ##[debug]Result: '***'
-2025-12-09T21:55:56.0653143Z ##[debug]Loading env
-2025-12-09T21:55:56.0657981Z ##[group]Run actions/setup-node@v4
-2025-12-09T21:55:56.0658208Z with:
-2025-12-09T21:55:56.0658373Z   node-version: 20
-2025-12-09T21:55:56.0658694Z   cache: npm
-2025-12-09T21:55:56.0658868Z   always-auth: false
-2025-12-09T21:55:56.0659052Z   check-latest: false
-2025-12-09T21:55:56.0659351Z   token: ***
-2025-12-09T21:55:56.0659525Z ##[endgroup]
-2025-12-09T21:55:56.2393031Z ##[debug]isExplicit: 
-2025-12-09T21:55:56.2393530Z ##[debug]explicit? false
-2025-12-09T21:55:56.2491108Z ##[debug]isExplicit: 20.19.6
-2025-12-09T21:55:56.2492744Z ##[debug]explicit? true
-2025-12-09T21:55:56.2543606Z ##[debug]isExplicit: 22.21.1
-2025-12-09T21:55:56.2544628Z ##[debug]explicit? true
-2025-12-09T21:55:56.2632199Z ##[debug]isExplicit: 24.11.1
-2025-12-09T21:55:56.2633978Z ##[debug]explicit? true
-2025-12-09T21:55:56.2731177Z ##[debug]evaluating 3 versions
-2025-12-09T21:55:56.2773140Z ##[debug]matched: 20.19.6
-2025-12-09T21:55:56.2779685Z ##[debug]checking cache: /opt/hostedtoolcache/node/20.19.6/x64
-2025-12-09T21:55:56.2784939Z ##[debug]Found tool in cache node 20.19.6 x64
-2025-12-09T21:55:56.2790390Z Found in cache @ /opt/hostedtoolcache/node/20.19.6/x64
-2025-12-09T21:55:56.2816936Z ::group::Environment details
-2025-12-09T21:55:56.2817367Z ##[group]Environment details
-2025-12-09T21:55:58.5638867Z node: v20.19.6
-2025-12-09T21:55:58.5639748Z npm: 10.8.2
-2025-12-09T21:55:58.5640876Z yarn: 1.22.22
-2025-12-09T21:55:58.5642184Z ::endgroup::
-2025-12-09T21:55:58.5642758Z ##[endgroup]
-2025-12-09T21:55:58.5670231Z [command]/opt/hostedtoolcache/node/20.19.6/x64/bin/npm config get cache
-2025-12-09T21:55:58.8375745Z /home/runner/.npm
-2025-12-09T21:55:58.8444930Z ##[debug]npm's cache folder "/home/runner/.npm" configured for the root directory
-2025-12-09T21:55:58.8452330Z ##[debug]followSymbolicLinks 'true'
-2025-12-09T21:55:58.8482284Z ##[debug]followSymbolicLinks 'true'
-2025-12-09T21:55:58.8484816Z ##[debug]implicitDescendants 'true'
-2025-12-09T21:55:58.8491690Z ##[debug]matchDirectories 'true'
-2025-12-09T21:55:58.8492759Z ##[debug]omitBrokenSymbolicLinks 'true'
-2025-12-09T21:55:58.8493502Z ##[debug]excludeHiddenFiles 'false'
-2025-12-09T21:55:58.8494734Z ##[debug]Search path '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/package-lock.json'
-2025-12-09T21:55:58.8499849Z ##[debug]/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/package-lock.json
-2025-12-09T21:55:58.8559702Z ##[debug]Found 1 files to hash.
-2025-12-09T21:55:58.8561615Z ##[debug]primary key is node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4
-2025-12-09T21:55:58.8564425Z ##[debug]Cache service version: v2
-2025-12-09T21:55:58.8566887Z ##[debug]Resolved Keys:
-2025-12-09T21:55:58.8569786Z ##[debug]["node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4"]
-2025-12-09T21:55:58.8573258Z ##[debug]Checking zstd --quiet --version
-2025-12-09T21:55:58.8653036Z ##[debug]1.5.7
-2025-12-09T21:55:58.8655805Z ##[debug]zstd version: 1.5.7
-2025-12-09T21:55:58.8679770Z ##[debug][Request] GetCacheEntryDownloadURL https://results-receiver.actions.githubusercontent.com/twirp/github.actions.results.api.v1.CacheService/GetCacheEntryDownloadURL
-2025-12-09T21:55:59.1762902Z ##[debug][Response] - 200
-2025-12-09T21:55:59.1764212Z ##[debug]Headers: {
-2025-12-09T21:55:59.1764562Z ##[debug]  "content-length": "54",
-2025-12-09T21:55:59.1764997Z ##[debug]  "content-type": "application/json",
-2025-12-09T21:55:59.1765481Z ##[debug]  "date": "Tue, 09 Dec 2025 21:55:59 GMT",
-2025-12-09T21:55:59.1766067Z ##[debug]  "x-github-backend": "Kubernetes",
-2025-12-09T21:55:59.1766659Z ##[debug]  "x-github-request-id": "2401:133DFD:3DD645C:471EFEE:69389AEF"
-2025-12-09T21:55:59.1767551Z ##[debug]}
-2025-12-09T21:55:59.1769515Z ##[debug]Body: {
-2025-12-09T21:55:59.1770431Z ##[debug]  "ok": false,
-2025-12-09T21:55:59.1770786Z ##[debug]  "signed_download_url": "",
-2025-12-09T21:55:59.1771190Z ##[debug]  "matched_key": ""
-2025-12-09T21:55:59.1771538Z ##[debug]}
-2025-12-09T21:55:59.1774502Z ##[debug]Cache not found for version 04d00cc68e25ee34fd8b04095d0a46a28244d98af53e6925e47ed311d487b1d6 of keys: node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4
-2025-12-09T21:55:59.1776035Z npm cache is not found
-2025-12-09T21:55:59.1794370Z ##[add-matcher]/home/runner/work/_actions/actions/setup-node/v4/.github/tsc.json
-2025-12-09T21:55:59.1815755Z ##[debug]Added matchers: 'tsc'. Problem matchers scan action output for known warning or error strings and report these inline.
-2025-12-09T21:55:59.1830574Z ##[add-matcher]/home/runner/work/_actions/actions/setup-node/v4/.github/eslint-stylish.json
-2025-12-09T21:55:59.1840967Z ##[debug]Added matchers: 'eslint-stylish'. Problem matchers scan action output for known warning or error strings and report these inline.
-2025-12-09T21:55:59.1842761Z ##[add-matcher]/home/runner/work/_actions/actions/setup-node/v4/.github/eslint-compact.json
-2025-12-09T21:55:59.1847132Z ##[debug]Added matchers: 'eslint-compact'. Problem matchers scan action output for known warning or error strings and report these inline.
-2025-12-09T21:55:59.1875484Z ##[debug]Node Action run completed with exit code 0
-2025-12-09T21:55:59.1878964Z ##[debug]Save intra-action state SETUP_NODE_CACHE_PACKAGE_MANAGER = npm
-2025-12-09T21:55:59.1879432Z ##[debug]Save intra-action state CACHE_PATHS = ["/home/runner/.npm"]
-2025-12-09T21:55:59.1880087Z ##[debug]Save intra-action state CACHE_KEY = node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4
-2025-12-09T21:55:59.1880997Z ##[debug]Set output node-version = v20.19.6
-2025-12-09T21:55:59.1881267Z ##[debug]Set output cache-hit = false
-2025-12-09T21:55:59.1881814Z ##[debug]Finishing: Setup Node
-2025-12-09T21:55:59.1887971Z ##[debug]Evaluating condition for step: 'Install dependencies'
-2025-12-09T21:55:59.1889943Z ##[debug]Evaluating: success()
-2025-12-09T21:55:59.1890322Z ##[debug]Evaluating success:
-2025-12-09T21:55:59.1890691Z ##[debug]=> true
-2025-12-09T21:55:59.1890991Z ##[debug]Result: true
-2025-12-09T21:55:59.1891484Z ##[debug]Starting: Install dependencies
-2025-12-09T21:55:59.1899742Z ##[debug]Loading inputs
-2025-12-09T21:55:59.1900555Z ##[debug]Loading env
-2025-12-09T21:55:59.1915938Z ##[group]Run npm ci
-2025-12-09T21:55:59.1916179Z [36;1mnpm ci[0m
-2025-12-09T21:55:59.1965170Z shell: /usr/bin/bash -e {0}
-2025-12-09T21:55:59.1965422Z ##[endgroup]
-2025-12-09T21:55:59.2016096Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/30e28fe3-dcb9-4d7f-9dea-c45b403a0b5e.sh
-2025-12-09T21:56:04.3691005Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-2025-12-09T21:56:05.6849892Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-2025-12-09T21:56:08.6560441Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
-2025-12-09T21:56:08.9383782Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
-2025-12-09T21:56:10.2959146Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-2025-12-09T21:56:15.4948376Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-2025-12-09T21:56:34.7251676Z 
-2025-12-09T21:56:34.7253287Z added 868 packages, and audited 869 packages in 35s
-2025-12-09T21:56:34.7253691Z 
-2025-12-09T21:56:34.7257885Z 195 packages are looking for funding
-2025-12-09T21:56:34.7258455Z   run `npm fund` for details
-2025-12-09T21:56:34.7807769Z 
-2025-12-09T21:56:34.7808811Z 6 vulnerabilities (3 low, 3 high)
-2025-12-09T21:56:34.7809844Z 
-2025-12-09T21:56:34.7810415Z To address issues that do not require attention, run:
-2025-12-09T21:56:34.7811963Z   npm audit fix
-2025-12-09T21:56:34.7812181Z 
-2025-12-09T21:56:34.7812576Z To address all issues (including breaking changes), run:
-2025-12-09T21:56:34.7813195Z   npm audit fix --force
-2025-12-09T21:56:34.7813446Z 
-2025-12-09T21:56:34.7813656Z Run `npm audit` for details.
-2025-12-09T21:56:34.8342678Z ##[debug]Finishing: Install dependencies
-2025-12-09T21:56:34.8351218Z ##[debug]Evaluating condition for step: 'Build web app'
-2025-12-09T21:56:34.8353576Z ##[debug]Evaluating: success()
-2025-12-09T21:56:34.8353955Z ##[debug]Evaluating success:
-2025-12-09T21:56:34.8354319Z ##[debug]=> true
-2025-12-09T21:56:34.8354648Z ##[debug]Result: true
-2025-12-09T21:56:34.8355190Z ##[debug]Starting: Build web app
-2025-12-09T21:56:34.8364748Z ##[debug]Loading inputs
-2025-12-09T21:56:34.8365957Z ##[debug]Loading env
-2025-12-09T21:56:34.8371569Z ##[group]Run npm run build
-2025-12-09T21:56:34.8371825Z [36;1mnpm run build[0m
-2025-12-09T21:56:34.8467298Z shell: /usr/bin/bash -e {0}
-2025-12-09T21:56:34.8467526Z ##[endgroup]
-2025-12-09T21:56:34.8499608Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/45845fa6-1c8a-4817-8fc7-920b15619c5f.sh
-2025-12-09T21:56:34.9660723Z 
-2025-12-09T21:56:34.9663224Z > vitrine-de-craques-web-site@0.1.0 build
-2025-12-09T21:56:34.9668400Z > prisma generate && next build
-2025-12-09T21:56:34.9668929Z 
-2025-12-09T21:56:36.0094609Z Prisma schema loaded from prisma/schema.prisma
-2025-12-09T21:56:37.0356446Z ┌─────────────────────────────────────────────────────────┐
-2025-12-09T21:56:37.0358494Z │  Update available 6.16.2 -> 7.1.0                       │
-2025-12-09T21:56:37.0359152Z 
-2025-12-09T21:56:37.0362302Z │                                                         │
-2025-12-09T21:56:37.0363295Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 474ms
-2025-12-09T21:56:37.0363820Z 
-2025-12-09T21:56:37.0364383Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-12-09T21:56:37.0364957Z 
-2025-12-09T21:56:37.0365432Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
-2025-12-09T21:56:37.0365886Z 
-2025-12-09T21:56:37.0366561Z │  This is a major update - please follow the guide at    │
-2025-12-09T21:56:37.0367513Z │  https://pris.ly/d/major-version-upgrade                │
-2025-12-09T21:56:37.0370441Z │                                                         │
-2025-12-09T21:56:37.0371221Z │  Run the following to update                            │
-2025-12-09T21:56:37.0372049Z │    npm i --save-dev prisma@latest                       │
-2025-12-09T21:56:37.0372794Z │    npm i @prisma/client@latest                          │
-2025-12-09T21:56:37.0373629Z └─────────────────────────────────────────────────────────┘
-2025-12-09T21:56:37.6024415Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
-2025-12-09T21:56:37.6094285Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
-2025-12-09T21:56:37.6097432Z This information is used to shape Next.js' roadmap and prioritize features.
-2025-12-09T21:56:37.6099073Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-2025-12-09T21:56:37.6100130Z https://nextjs.org/telemetry
-2025-12-09T21:56:37.6100422Z 
-2025-12-09T21:56:37.6700368Z   ▲ Next.js 14.2.33
-2025-12-09T21:56:37.6716405Z 
-2025-12-09T21:56:37.7443883Z    Creating an optimized production build ...
-2025-12-09T21:57:32.6298385Z  ✓ Compiled successfully
-2025-12-09T21:57:32.6307711Z    Linting and checking validity of types ...
-2025-12-09T21:57:51.5979077Z    Collecting page data ...
-2025-12-09T21:57:52.1760240Z [Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente
-2025-12-09T21:57:52.1776233Z [Auth] NEXTAUTH_SECRET ausente. Usando fallback derivado do host. Configure NEXTAUTH_SECRET nas variáveis de ambiente para produção. { fallbackSeed: 'vitrine-de-craques' }
-2025-12-09T21:57:52.1801257Z [Auth] NEXTAUTH_URL ausente. Recuando para localhost. Configure NEXTAUTH_URL para o domínio de produção. { localUrl: 'http://localhost:3000' }
-2025-12-09T21:57:54.7327888Z    Generating static pages (0/58) ...
-2025-12-09T21:57:55.7411648Z    Generating static pages (14/58) 
-2025-12-09T21:57:57.8596502Z    Generating static pages (28/58) 
-2025-12-09T21:57:58.9735927Z    Generating static pages (43/58) 
-2025-12-09T21:57:59.7951912Z  ✓ Generating static pages (58/58)
-2025-12-09T21:58:00.7709960Z    Finalizing page optimization ...
-2025-12-09T21:58:00.7710748Z    Collecting build traces ...
-2025-12-09T21:58:17.4506445Z 
-2025-12-09T21:58:17.4607156Z Route (app)                                      Size     First Load JS
-2025-12-09T21:58:17.4608887Z ┌ ƒ /                                            1.83 kB         110 kB
-2025-12-09T21:58:17.4612279Z ├ ƒ /_not-found                                  876 B          88.2 kB
-2025-12-09T21:58:17.4613292Z ├ ƒ /administrator                               155 B          87.5 kB
-2025-12-09T21:58:17.4614223Z ├ ƒ /administrator/clubes                        6.46 kB         117 kB
-2025-12-09T21:58:17.4615108Z ├ ƒ /administrator/users                         5.68 kB         111 kB
-2025-12-09T21:58:17.4616081Z ├ ƒ /administrator/videos                        5.24 kB         111 kB
-2025-12-09T21:58:17.4617046Z ├ ƒ /agentes                                     2.7 kB         98.7 kB
-2025-12-09T21:58:17.4617965Z ├ ƒ /agentes/[id]                                1.84 kB         117 kB
-2025-12-09T21:58:17.4621431Z ├ ƒ /api/admin/clubes                            0 B                0 B
-2025-12-09T21:58:17.4622305Z ├ ƒ /api/admin/clubes/[id]                       0 B                0 B
-2025-12-09T21:58:17.4623151Z ├ ƒ /api/admin/summary                           0 B                0 B
-2025-12-09T21:58:17.4623982Z ├ ƒ /api/admin/users                             0 B                0 B
-2025-12-09T21:58:17.4624858Z ├ ƒ /api/admin/users/[userId]/block              0 B                0 B
-2025-12-09T21:58:17.4625824Z ├ ƒ /api/admin/videos                            0 B                0 B
-2025-12-09T21:58:17.4626754Z ├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B
-2025-12-09T21:58:17.4627827Z ├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B
-2025-12-09T21:58:17.4629099Z ├ ƒ /api/agentes                                 0 B                0 B
-2025-12-09T21:58:17.4630070Z ├ ƒ /api/agentes/[id]                            0 B                0 B
-2025-12-09T21:58:17.4630969Z ├ ƒ /api/atletas                                 0 B                0 B
-2025-12-09T21:58:17.4631837Z ├ ƒ /api/atletas/[id]                            0 B                0 B
-2025-12-09T21:58:17.4632707Z ├ ƒ /api/auth/[...nextauth]                      0 B                0 B
-2025-12-09T21:58:17.4633677Z ├ ƒ /api/blocks/[targetUserId]                   0 B                0 B
-2025-12-09T21:58:17.4634564Z ├ ƒ /api/clubes                                  0 B                0 B
-2025-12-09T21:58:17.4635418Z ├ ƒ /api/clubes/[slug]                           0 B                0 B
-2025-12-09T21:58:17.4636327Z ├ ƒ /api/confederacoes                           0 B                0 B
-2025-12-09T21:58:17.4637237Z ├ ƒ /api/confederacoes/[slug]                    0 B                0 B
-2025-12-09T21:58:17.4638132Z ├ ƒ /api/db-check                                0 B                0 B
-2025-12-09T21:58:17.4639284Z ├ ƒ /api/env                                     0 B                0 B
-2025-12-09T21:58:17.4640495Z ├ ƒ /api/errors                                  0 B                0 B
-2025-12-09T21:58:17.4641492Z ├ ƒ /api/follows/[targetUserId]                  0 B                0 B
-2025-12-09T21:58:17.4642443Z ├ ƒ /api/games                                   0 B                0 B
-2025-12-09T21:58:17.4643381Z ├ ƒ /api/games/[slug]                            0 B                0 B
-2025-12-09T21:58:17.4644673Z ├ ƒ /api/games/[slug]/comments                   0 B                0 B
-2025-12-09T21:58:17.4647015Z ├ ƒ /api/games/[slug]/engagement                 0 B                0 B
-2025-12-09T21:58:17.4647853Z ├ ƒ /api/health                                  0 B                0 B
-2025-12-09T21:58:17.4648861Z ├ ƒ /api/messages                                0 B                0 B
-2025-12-09T21:58:17.4649770Z ├ ƒ /api/messages/unread-count                   0 B                0 B
-2025-12-09T21:58:17.4650993Z ├ ƒ /api/news                                    0 B                0 B
-2025-12-09T21:58:17.4651967Z ├ ƒ /api/news/[id]                               0 B                0 B
-2025-12-09T21:58:17.4652860Z ├ ƒ /api/news/cover                              0 B                0 B
-2025-12-09T21:58:17.4653778Z ├ ƒ /api/noticias                                0 B                0 B
-2025-12-09T21:58:17.4654688Z ├ ƒ /api/noticias/[slug]                         0 B                0 B
-2025-12-09T21:58:17.4655627Z ├ ƒ /api/noticias/[slug]/comments                0 B                0 B
-2025-12-09T21:58:17.4656582Z ├ ƒ /api/noticias/[slug]/engagement              0 B                0 B
-2025-12-09T21:58:17.4657513Z ├ ƒ /api/pg-check                                0 B                0 B
-2025-12-09T21:58:17.4658353Z ├ ƒ /api/profile                                 0 B                0 B
-2025-12-09T21:58:17.4662750Z ├ ƒ /api/profile/avatar                          0 B                0 B
-2025-12-09T21:58:17.4663754Z ├ ƒ /api/profile/personal-info                   0 B                0 B
-2025-12-09T21:58:17.4664700Z ├ ƒ /api/register                                0 B                0 B
-2025-12-09T21:58:17.4665643Z ├ ƒ /api/register/atleta-18                      0 B                0 B
-2025-12-09T21:58:17.4666613Z ├ ƒ /api/register/clube                          0 B                0 B
-2025-12-09T21:58:17.4667628Z ├ ƒ /api/register/de-agentes-licenciados         0 B                0 B
-2025-12-09T21:58:17.4671864Z ├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B
-2025-12-09T21:58:17.4672940Z ├ ƒ /api/register/responsavel                    0 B                0 B
-2025-12-09T21:58:17.4673902Z ├ ƒ /api/register/responsavel/documents          0 B                0 B
-2025-12-09T21:58:17.4674817Z ├ ƒ /api/register/torcedor                       0 B                0 B
-2025-12-09T21:58:17.4675591Z ├ ƒ /api/times                                   0 B                0 B
-2025-12-09T21:58:17.4676364Z ├ ƒ /api/videos                                  0 B                0 B
-2025-12-09T21:58:17.4677197Z ├ ƒ /api/videos/[id]                             0 B                0 B
-2025-12-09T21:58:17.4677986Z ├ ƒ /api/videos/[id]/appeal                      0 B                0 B
-2025-12-09T21:58:17.4679095Z ├ ƒ /api/videos/[id]/comments                    0 B                0 B
-2025-12-09T21:58:17.4679877Z ├ ƒ /api/videos/proxy                            0 B                0 B
-2025-12-09T21:58:17.4680668Z ├ ƒ /arquibancada                                4.49 kB        98.6 kB
-2025-12-09T21:58:17.4681409Z ├ ƒ /atletas                                     4.5 kB          107 kB
-2025-12-09T21:58:17.4682158Z ├ ƒ /atletas/[id]                                5.24 kB         138 kB
-2025-12-09T21:58:17.4682804Z ├ ƒ /cadastro                                    2.21 kB         129 kB
-2025-12-09T21:58:17.4683565Z ├ ƒ /cadastro/[slug]                             2.92 kB         121 kB
-2025-12-09T21:58:17.4684328Z ├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB
-2025-12-09T21:58:17.4685080Z ├ ƒ /cadastro/clube                              4.04 kB         137 kB
-2025-12-09T21:58:17.4686242Z ├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB
-2025-12-09T21:58:17.4687083Z ├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB
-2025-12-09T21:58:17.4687872Z ├ ƒ /cadastro/responsavel                        4.23 kB         137 kB
-2025-12-09T21:58:17.4688994Z ├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB
-2025-12-09T21:58:17.4690145Z ├ ƒ /cadastro/sucesso                            155 B          87.5 kB
-2025-12-09T21:58:17.4690970Z ├ ƒ /cadastro/torcedor                           5.13 kB         147 kB
-2025-12-09T21:58:17.4691757Z ├ ƒ /clubes                                      3.35 kB         111 kB
-2025-12-09T21:58:17.4692515Z ├ ƒ /clubes/[slug]                               807 B           109 kB
-2025-12-09T21:58:17.4693458Z ├ ƒ /confederacoes                               807 B           109 kB
-2025-12-09T21:58:17.4694299Z ├ ƒ /confederacoes/[slug]                        807 B           109 kB
-2025-12-09T21:58:17.4695064Z ├ ƒ /feed                                        12.2 kB         145 kB
-2025-12-09T21:58:17.4695773Z ├ ƒ /games                                       197 B           121 kB
-2025-12-09T21:58:17.4696507Z ├ ƒ /games/[slug]                                211 B           128 kB
-2025-12-09T21:58:17.4697237Z ├ ○ /icon                                        0 B                0 B
-2025-12-09T21:58:17.4697985Z ├ ƒ /login                                       3.73 kB         145 kB
-2025-12-09T21:58:17.4698878Z ├ ƒ /noticias                                    203 B           121 kB
-2025-12-09T21:58:17.4699666Z ├ ƒ /noticias/[slug]                             614 B           129 kB
-2025-12-09T21:58:17.4700458Z ├ ƒ /perfil                                      27.3 kB         171 kB
-2025-12-09T21:58:17.4701236Z ├ ƒ /perfis/[id]                                 1.84 kB         117 kB
-2025-12-09T21:58:17.4701979Z ├ ƒ /player/[id]                                 9.15 kB         127 kB
-2025-12-09T21:58:17.4702738Z ├ ƒ /privacidade                                 188 B          96.2 kB
-2025-12-09T21:58:17.4703556Z ├ ƒ /registrar-escolha-perfil                    188 B          96.2 kB
-2025-12-09T21:58:17.4704318Z ├ ƒ /sobre                                       188 B          96.2 kB
-2025-12-09T21:58:17.4705010Z ├ ƒ /torcida                                     155 B          87.5 kB
-2025-12-09T21:58:17.4705721Z └ ƒ /upload                                      10.4 kB         119 kB
-2025-12-09T21:58:17.4706318Z + First Load JS shared by all                    87.3 kB
-2025-12-09T21:58:17.4706954Z   ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB
-2025-12-09T21:58:17.4707572Z   ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB
-2025-12-09T21:58:17.4708255Z   └ other shared chunks (total)                  1.97 kB
-2025-12-09T21:58:17.4708693Z 
-2025-12-09T21:58:17.4708715Z 
-2025-12-09T21:58:17.4709075Z ƒ Middleware                                     48.3 kB
-2025-12-09T21:58:17.4709389Z 
-2025-12-09T21:58:17.4709689Z ○  (Static)   prerendered as static content
-2025-12-09T21:58:17.4710245Z ƒ  (Dynamic)  server-rendered on demand
-2025-12-09T21:58:17.4710512Z 
-2025-12-09T21:58:17.5106620Z ##[debug]Finishing: Build web app
-2025-12-09T21:58:17.5116863Z ##[debug]Evaluating condition for step: 'Prepare standalone artifact for deployment'
-2025-12-09T21:58:17.5119325Z ##[debug]Evaluating: success()
-2025-12-09T21:58:17.5119917Z ##[debug]Evaluating success:
-2025-12-09T21:58:17.5120635Z ##[debug]=> true
-2025-12-09T21:58:17.5121272Z ##[debug]Result: true
-2025-12-09T21:58:17.5122291Z ##[debug]Starting: Prepare standalone artifact for deployment
-2025-12-09T21:58:17.5134268Z ##[debug]Loading inputs
-2025-12-09T21:58:17.5135397Z ##[debug]Loading env
-2025-12-09T21:58:17.5141926Z ##[group]Run set -euo pipefail
-2025-12-09T21:58:17.5142397Z [36;1mset -euo pipefail[0m
-2025-12-09T21:58:17.5142762Z [36;1m[0m
-2025-12-09T21:58:17.5143141Z [36;1mecho "--- 1. REGERANDO CLIENTE PRISMA ---"[0m
-2025-12-09T21:58:17.5143647Z [36;1mnpx prisma generate[0m
-2025-12-09T21:58:17.5144060Z [36;1m[0m
-2025-12-09T21:58:17.5144395Z [36;1mecho "--- 2. MONTAGEM DO PACOTE ---"[0m
-2025-12-09T21:58:17.5144850Z [36;1mrm -rf deploy[0m
-2025-12-09T21:58:17.5145270Z [36;1mmkdir -p deploy[0m
-2025-12-09T21:58:17.5145618Z [36;1m[0m
-2025-12-09T21:58:17.5145933Z [36;1m# Copia o App Next.js[0m
-2025-12-09T21:58:17.5146357Z [36;1mcp -R .next/standalone/. deploy/[0m
-2025-12-09T21:58:17.5147044Z [36;1m[0m
-2025-12-09T21:58:17.5147503Z [36;1m# Copia estáticos (mas vamos limpar os pesados depois)[0m
-2025-12-09T21:58:17.5148227Z [36;1mif [ -d public ]; then cp -R public deploy/public; fi[0m
-2025-12-09T21:58:17.5149195Z [36;1mmkdir -p deploy/.next/static[0m
-2025-12-09T21:58:17.5149677Z [36;1mcp -R .next/static/. deploy/.next/static[0m
-2025-12-09T21:58:17.5150129Z [36;1m[0m
-2025-12-09T21:58:17.5150618Z [36;1mcp staticwebapp.config.json deploy/staticwebapp.config.json[0m
-2025-12-09T21:58:17.5151208Z [36;1m[0m
-2025-12-09T21:58:17.5151598Z [36;1mecho "--- 3. OTIMIZAÇÃO DO ARTEFATO ---"[0m
-2025-12-09T21:58:17.5152313Z [36;1m# Mantemos o node_modules já empacotado pelo output "standalone" do Next.js[0m
-2025-12-09T21:58:17.5153161Z [36;1m# (ele já contém apenas as dependências necessárias em produção).[0m
-2025-12-09T21:58:17.5175311Z [36;1m# Depois removemos metadados de repositório e realizamos a poda fina.[0m
-2025-12-09T21:58:17.5176118Z [36;1mrm -rf deploy/.git deploy/.github deploy/.husky deploy/.vscode[0m
-2025-12-09T21:58:17.5176626Z [36;1m[0m
-2025-12-09T21:58:17.5177098Z [36;1m# Mantemos os binários Debian do Prisma (compatíveis com o runner do SWA)[0m
-2025-12-09T21:58:17.5177645Z [36;1m# e removemos apenas arquivos grandes ou não usados.[0m
-2025-12-09T21:58:17.5178005Z [36;1mbash scripts/prune-deploy-artifact.sh deploy[0m
-2025-12-09T21:58:17.5178280Z [36;1m[0m
-2025-12-09T21:58:17.5178461Z [36;1mecho "--- 4. AÇÕES EXTRA ---"[0m
-2025-12-09T21:58:17.5178978Z [36;1m# Esvaziar pasta Public da FUNCTION[0m
-2025-12-09T21:58:17.5179420Z [36;1m# (Os arquivos estáticos já foram subidos para o CDN na etapa de build padrão)[0m
-2025-12-09T21:58:17.5179900Z [36;1m# A Function não precisa dos vídeos MP4/MOV, apenas o navegador precisa.[0m
-2025-12-09T21:58:17.5180294Z [36;1mfind deploy/public -name "*.mp4" -delete[0m
-2025-12-09T21:58:17.5180576Z [36;1mfind deploy/public -name "*.mov" -delete[0m
-2025-12-09T21:58:17.5180851Z [36;1mfind deploy/public -name "*.jpg" -delete[0m
-2025-12-09T21:58:17.5181121Z [36;1mfind deploy/public -name "*.png" -delete[0m
-2025-12-09T21:58:17.5181351Z [36;1m[0m
-2025-12-09T21:58:17.5181513Z [36;1m# Limpeza Geral[0m
-2025-12-09T21:58:17.5181718Z [36;1mrm -rf deploy/docs[0m
-2025-12-09T21:58:17.5181926Z [36;1mrm -rf deploy/logs[0m
-2025-12-09T21:58:17.5182157Z [36;1mrm -rf deploy/Vitrine-De-Craques-App[0m
-2025-12-09T21:58:17.5182446Z [36;1mrm -rf deploy/Vitrine-De-Craques-App-iOS[0m
-2025-12-09T21:58:17.5182683Z [36;1m[0m
-2025-12-09T21:58:17.5182866Z [36;1mecho "--- 5. RELATÓRIO FINAL ---"[0m
-2025-12-09T21:58:17.5183130Z [36;1mecho "Tamanho Total (Meta: < 100MB):"[0m
-2025-12-09T21:58:17.5183393Z [36;1mdu -sh deploy[0m
-2025-12-09T21:58:17.5183578Z [36;1m[0m
-2025-12-09T21:58:17.5184045Z [36;1mecho "Conteúdo de @next (bins presentes no artefato final):"[0m
-2025-12-09T21:58:17.5184467Z [36;1mls deploy/node_modules/@next || echo "Pasta @next não encontrada"[0m
-2025-12-09T21:58:17.5225245Z shell: /usr/bin/bash -e {0}
-2025-12-09T21:58:17.5225476Z ##[endgroup]
-2025-12-09T21:58:17.5257489Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/dd431f40-ac36-4f15-98a9-8aaa8ac42b48.sh
-2025-12-09T21:58:17.5279627Z --- 1. REGERANDO CLIENTE PRISMA ---
-2025-12-09T21:58:18.9009206Z Prisma schema loaded from prisma/schema.prisma
-2025-12-09T21:58:19.8508790Z 
-2025-12-09T21:58:19.8510036Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 405ms
-2025-12-09T21:58:19.8510600Z 
-2025-12-09T21:58:19.8511200Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-12-09T21:58:19.8511711Z 
-2025-12-09T21:58:19.8512130Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
-2025-12-09T21:58:19.8512557Z 
-2025-12-09T21:58:19.8791747Z --- 2. MONTAGEM DO PACOTE ---
-2025-12-09T21:58:21.0338175Z --- 3. OTIMIZAÇÃO DO ARTEFATO ---
-2025-12-09T21:58:21.0872924Z Pruning unused Prisma runtime binaries...
-2025-12-09T21:58:21.0984604Z Removing unused Prisma client engines...
-2025-12-09T21:58:21.1066647Z deploy/node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node
-2025-12-09T21:58:21.1076554Z deploy/node_modules/.prisma/client/libquery_engine-darwin.dylib.node
-2025-12-09T21:58:21.1077323Z Cleaning up optional sharp binaries...
-2025-12-09T21:58:21.1119950Z Removing development dependencies from deploy artifact...
-2025-12-09T21:58:21.1474511Z Deleting dependency source maps...
-2025-12-09T21:58:21.1585788Z Removing Next.js build cache...
-2025-12-09T21:58:21.1805894Z Pruning finished.
-2025-12-09T21:58:21.1809307Z --- 4. AÇÕES EXTRA ---
-2025-12-09T21:58:21.2746732Z --- 5. RELATÓRIO FINAL ---
-2025-12-09T21:58:21.2747567Z Tamanho Total (Meta: < 100MB):
-2025-12-09T21:58:21.2993929Z 112M	deploy
-2025-12-09T21:58:21.2996273Z Conteúdo de @next (bins presentes no artefato final):
-2025-12-09T21:58:21.3008138Z env
-2025-12-09T21:58:21.3021332Z ##[debug]Finishing: Prepare standalone artifact for deployment
-2025-12-09T21:58:21.3031908Z ##[debug]Evaluating condition for step: 'Build And Deploy'
-2025-12-09T21:58:21.3033466Z ##[debug]Evaluating: success()
-2025-12-09T21:58:21.3033815Z ##[debug]Evaluating success:
-2025-12-09T21:58:21.3034332Z ##[debug]=> true
-2025-12-09T21:58:21.3034644Z ##[debug]Result: true
-2025-12-09T21:58:21.3035133Z ##[debug]Starting: Build And Deploy
-2025-12-09T21:58:21.3063678Z ##[debug]Loading inputs
-2025-12-09T21:58:21.3066504Z ##[debug]Evaluating: secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810
-2025-12-09T21:58:21.3066928Z ##[debug]Evaluating Index:
-2025-12-09T21:58:21.3067144Z ##[debug]..Evaluating secrets:
-2025-12-09T21:58:21.3067402Z ##[debug]..=> Object
-2025-12-09T21:58:21.3067620Z ##[debug]..Evaluating String:
-2025-12-09T21:58:21.3067958Z ##[debug]..=> 'AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810'
-2025-12-09T21:58:21.3069329Z ##[debug]=> '***'
-2025-12-09T21:58:21.3069939Z ##[debug]Result: '***'
-2025-12-09T21:58:21.3070504Z ##[debug]Evaluating: secrets.GITHUB_TOKEN
-2025-12-09T21:58:21.3070802Z ##[debug]Evaluating Index:
-2025-12-09T21:58:21.3071029Z ##[debug]..Evaluating secrets:
-2025-12-09T21:58:21.3071278Z ##[debug]..=> Object
-2025-12-09T21:58:21.3071498Z ##[debug]..Evaluating String:
-2025-12-09T21:58:21.3071734Z ##[debug]..=> 'GITHUB_TOKEN'
-2025-12-09T21:58:21.3072127Z ##[debug]=> '***'
-2025-12-09T21:58:21.3072414Z ##[debug]Result: '***'
-2025-12-09T21:58:21.3075717Z ##[debug]Loading env
-2025-12-09T21:58:21.3082336Z ##[group]Run Azure/static-web-apps-deploy@v1
-2025-12-09T21:58:21.3082601Z with:
-2025-12-09T21:58:21.3083221Z   azure_static_web_apps_api_token: ***
-2025-12-09T21:58:21.3083564Z   repo_token: ***
-2025-12-09T21:58:21.3083740Z   action: upload
-2025-12-09T21:58:21.3083920Z   app_location: deploy
-2025-12-09T21:58:21.3084111Z   skip_app_build: true
-2025-12-09T21:58:21.3084300Z   skip_api_build: true
-2025-12-09T21:58:21.3084487Z ##[endgroup]
-2025-12-09T21:58:21.3179780Z ##[command]/usr/bin/docker run --name fe6baaae921f57c6754a748ddb707466b586a1_f7a00a --label fe6baa --workdir /github/workspace --rm -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_SKIP_API_BUILD" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_DEBUG" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp":"/github/runner_temp" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site":"/github/workspace" fe6baa:ae921f57c6754a748ddb707466b586a1
-2025-12-09T21:58:21.6804694Z DeploymentId: b4e15adc-9b44-45db-ba62-90509f96df17
-2025-12-09T21:58:21.6806259Z 
-2025-12-09T21:58:21.8064726Z [37mTry to validate location at: '/github/workspace/deploy'.[0m
-2025-12-09T21:58:21.8078347Z [37mApp Directory Location: 'deploy' was found.[0m
-2025-12-09T21:58:21.8080720Z [37mTry to validate location at: '/github/workspace/swa-db-connections'.[0m
-2025-12-09T21:58:21.8085501Z [37mLooking for event info[0m
-2025-12-09T21:58:22.4005068Z [37mSkipping step to build /github/workspace/deploy with Oryx[0m
-2025-12-09T21:58:22.4226296Z [37mDetected the following framework: Next.js[0m
-2025-12-09T21:58:22.4227952Z [37mTry to validate location at: '/github/workspace/deploy/.next'.[0m
-2025-12-09T21:58:22.4627124Z [37mUsing 'staticwebapp.config.json' file for configuration information, 'routes.json' will be ignored.[0m
-2025-12-09T21:58:22.5440251Z [33m[WARNING] For Next.js apps, staticwebapp.config.json features are not fully supported yet![0m
-2025-12-09T21:58:22.5459332Z [37mPlease note: For Next.js applications if skip_api_build=true, Static Web Apps will not remove dev dependencies or add the sharp package by default. If you want these optimizations, kindly add them to your custom build steps before passing skip_app_build=true[0m
-2025-12-09T21:58:22.5493601Z [37mRepackaged Next.js app to deploy on the backend.[0m
-2025-12-09T21:58:22.5504086Z [37mSkipping step to build /github/workspace/deploy with Oryx[0m
-2025-12-09T21:58:22.5508804Z [33mWeb App Runtime Information. OS: linux, node version: 20[0m
-2025-12-09T21:58:22.8951837Z [37mZipping Api Artifacts[0m
-2025-12-09T21:58:28.1072695Z [37mDone Zipping Api Artifacts[0m
-2025-12-09T21:58:28.8539070Z [37mZipping App Artifacts[0m
-2025-12-09T21:58:28.9318441Z [37mDone Zipping App Artifacts[0m
-2025-12-09T21:58:28.9321334Z [37mUploading build artifacts.[0m
-2025-12-09T21:58:30.9984271Z [32mFinished Upload. Polling on deployment.[0m
-2025-12-09T21:58:31.3119584Z [37mStatus: InProgress. Time: 0.3109649(s)[0m
-2025-12-09T21:58:46.5577504Z [37mStatus: InProgress. Time: 15.5593627(s)[0m
-2025-12-09T21:59:01.7140098Z [37mStatus: InProgress. Time: 30.7155506(s)[0m
-2025-12-09T21:59:16.9386927Z [37mStatus: InProgress. Time: 45.9402147(s)[0m
-2025-12-09T21:59:33.2596873Z [37mStatus: InProgress. Time: 62.2611088(s)[0m
-2025-12-09T21:59:48.4659200Z [37mStatus: InProgress. Time: 77.4662415(s)[0m
-2025-12-09T22:00:06.9319444Z [37mStatus: InProgress. Time: 95.9334153(s)[0m
-2025-12-09T22:00:22.1236083Z [37mStatus: InProgress. Time: 111.1244154(s)[0m
-2025-12-09T22:00:37.3583053Z [37mStatus: InProgress. Time: 126.3597627(s)[0m
-2025-12-09T22:00:52.5291588Z [37mStatus: InProgress. Time: 141.5307587(s)[0m
-2025-12-09T22:01:07.6879776Z [37mStatus: InProgress. Time: 156.6895097(s)[0m
-2025-12-09T22:01:22.8897643Z [37mStatus: InProgress. Time: 171.891234(s)[0m
-2025-12-09T22:01:38.0514298Z [37mStatus: InProgress. Time: 187.0528756(s)[0m
-2025-12-09T22:01:53.1915464Z [37mStatus: InProgress. Time: 202.1929404(s)[0m
-2025-12-09T22:02:08.3777600Z [37mStatus: InProgress. Time: 217.3792281(s)[0m
-2025-12-09T22:02:23.5486879Z [37mStatus: InProgress. Time: 232.5486067(s)[0m
-2025-12-09T22:02:38.6967290Z [37mStatus: InProgress. Time: 247.6984235(s)[0m
-2025-12-09T22:02:53.8353574Z [37mStatus: InProgress. Time: 262.8367802(s)[0m
-2025-12-09T22:03:09.0131988Z [37mStatus: InProgress. Time: 278.0146919(s)[0m
-2025-12-09T22:03:24.1750273Z [37mStatus: InProgress. Time: 293.1765092(s)[0m
-2025-12-09T22:03:39.3207365Z [37mStatus: InProgress. Time: 308.3222285(s)[0m
-2025-12-09T22:03:54.4981856Z [37mStatus: InProgress. Time: 323.4995965(s)[0m
-2025-12-09T22:04:09.6747712Z [37mStatus: InProgress. Time: 338.6763002(s)[0m
-2025-12-09T22:04:24.8127250Z [37mStatus: InProgress. Time: 353.814251(s)[0m
-2025-12-09T22:04:40.1039607Z [37mStatus: InProgress. Time: 369.1055214(s)[0m
-2025-12-09T22:04:55.2604184Z [37mStatus: InProgress. Time: 384.2618975(s)[0m
-2025-12-09T22:05:10.4491553Z [37mStatus: InProgress. Time: 399.4505595(s)[0m
-2025-12-09T22:05:25.6023828Z [37mStatus: InProgress. Time: 414.6037332(s)[0m
-2025-12-09T22:05:40.7356951Z [37mStatus: InProgress. Time: 429.7371994(s)[0m
-2025-12-09T22:05:55.8978462Z [37mStatus: InProgress. Time: 444.8992552(s)[0m
-2025-12-09T22:06:11.0531309Z [37mStatus: InProgress. Time: 460.0544863(s)[0m
-2025-12-09T22:06:26.2637033Z [37mStatus: InProgress. Time: 475.2643276(s)[0m
-2025-12-09T22:06:41.7135770Z [37mStatus: InProgress. Time: 490.7152411(s)[0m
-2025-12-09T22:06:56.9818772Z [37mStatus: InProgress. Time: 505.9832675(s)[0m
-2025-12-09T22:07:12.1889816Z [37mStatus: InProgress. Time: 521.1907793(s)[0m
-2025-12-09T22:07:27.4518849Z [37mStatus: InProgress. Time: 536.4535946(s)[0m
-2025-12-09T22:07:42.6029191Z [37mStatus: InProgress. Time: 551.6046693(s)[0m
-2025-12-09T22:07:57.9465343Z [37mStatus: InProgress. Time: 566.9479805(s)[0m
-2025-12-09T22:08:13.8321810Z [37mStatus: Failed. Time: 582.8335438(s)[0m
-2025-12-09T22:08:13.8329674Z [31mDeployment Failed :([0m
-2025-12-09T22:08:13.8330736Z [31mDeployment Failure Reason: Web app warm up timed out. Please try again later.[0m
-2025-12-09T22:08:13.8824047Z [37m[0m
-2025-12-09T22:08:13.8825492Z [33mFor further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/[0m
-2025-12-09T22:08:13.8827594Z [33mIf you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/[0m
-2025-12-09T22:08:13.8828491Z [33mExiting[0m
-2025-12-09T22:08:13.9869520Z ##[debug]Docker Action run completed with exit code 1
-2025-12-09T22:08:13.9874207Z ##[debug]Finishing: Build And Deploy
-2025-12-09T22:08:13.9883054Z ##[debug]Evaluating condition for step: 'Post Setup Node'
-2025-12-09T22:08:13.9884487Z ##[debug]Evaluating: success()
-2025-12-09T22:08:13.9884822Z ##[debug]Evaluating success:
-2025-12-09T22:08:13.9885167Z ##[debug]=> false
-2025-12-09T22:08:13.9885493Z ##[debug]Result: false
-2025-12-09T22:08:13.9890681Z ##[debug]Evaluating condition for step: 'Post Run actions/checkout@v4'
-2025-12-09T22:08:13.9892530Z ##[debug]Evaluating: always()
-2025-12-09T22:08:13.9892884Z ##[debug]Evaluating always:
-2025-12-09T22:08:13.9893619Z ##[debug]=> true
-2025-12-09T22:08:13.9893970Z ##[debug]Result: true
-2025-12-09T22:08:13.9894417Z ##[debug]Starting: Post Run actions/checkout@v4
-2025-12-09T22:08:13.9923876Z ##[debug]Loading inputs
-2025-12-09T22:08:13.9924957Z ##[debug]Evaluating: github.repository
-2025-12-09T22:08:13.9925248Z ##[debug]Evaluating Index:
-2025-12-09T22:08:13.9925469Z ##[debug]..Evaluating github:
-2025-12-09T22:08:13.9925718Z ##[debug]..=> Object
-2025-12-09T22:08:13.9925934Z ##[debug]..Evaluating String:
-2025-12-09T22:08:13.9926160Z ##[debug]..=> 'repository'
-2025-12-09T22:08:13.9926494Z ##[debug]=> 'aspepper/vitrine-de-craques-web-site'
-2025-12-09T22:08:13.9926838Z ##[debug]Result: 'aspepper/vitrine-de-craques-web-site'
-2025-12-09T22:08:13.9928107Z ##[debug]Evaluating: github.token
-2025-12-09T22:08:13.9928397Z ##[debug]Evaluating Index:
-2025-12-09T22:08:13.9928941Z ##[debug]..Evaluating github:
-2025-12-09T22:08:13.9929417Z ##[debug]..=> Object
-2025-12-09T22:08:13.9929636Z ##[debug]..Evaluating String:
-2025-12-09T22:08:13.9929845Z ##[debug]..=> 'token'
-2025-12-09T22:08:13.9930234Z ##[debug]=> '***'
-2025-12-09T22:08:13.9930527Z ##[debug]Result: '***'
-2025-12-09T22:08:13.9936793Z ##[debug]Loading env
-2025-12-09T22:08:13.9940666Z Post job cleanup.
-2025-12-09T22:08:14.0937050Z ##[debug]Getting git version
-2025-12-09T22:08:14.0952289Z [command]/usr/bin/git version
-2025-12-09T22:08:14.0992680Z git version 2.52.0
-2025-12-09T22:08:14.1016078Z ##[debug]0
-2025-12-09T22:08:14.1017071Z ##[debug]git version 2.52.0
-2025-12-09T22:08:14.1017445Z ##[debug]
-2025-12-09T22:08:14.1019523Z ##[debug]Set git useragent to: git/2.52.0 (github-actions-checkout)
-2025-12-09T22:08:14.1022948Z ::add-mask::***
-2025-12-09T22:08:14.1040711Z Temporarily overriding HOME='/home/runner/work/_temp/0dfe8968-cba3-4726-908c-97c6cda32ea2' before making global git config changes
-2025-12-09T22:08:14.1042779Z Adding repository directory to the temporary git global config as a safe directory
-2025-12-09T22:08:14.1047255Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
-2025-12-09T22:08:14.1082192Z ##[debug]0
-2025-12-09T22:08:14.1083696Z ##[debug]
-2025-12-09T22:08:14.1090588Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2025-12-09T22:08:14.1117838Z ##[debug]1
-2025-12-09T22:08:14.1119423Z ##[debug]
-2025-12-09T22:08:14.1125291Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2025-12-09T22:08:14.1421662Z ##[debug]0
-2025-12-09T22:08:14.1423473Z ##[debug]
-2025-12-09T22:08:14.1430448Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2025-12-09T22:08:14.1452932Z http.https://github.com/.extraheader
-2025-12-09T22:08:14.1460998Z ##[debug]0
-2025-12-09T22:08:14.1462574Z ##[debug]http.https://github.com/.extraheader
-2025-12-09T22:08:14.1463094Z ##[debug]
-2025-12-09T22:08:14.1467905Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
-2025-12-09T22:08:14.1494828Z ##[debug]0
-2025-12-09T22:08:14.1496243Z ##[debug]
-2025-12-09T22:08:14.1501708Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2025-12-09T22:08:14.1727522Z ##[debug]0
-2025-12-09T22:08:14.1729361Z ##[debug]
-2025-12-09T22:08:14.1734582Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2025-12-09T22:08:14.1761228Z ##[debug]1
-2025-12-09T22:08:14.1762752Z ##[debug]
-2025-12-09T22:08:14.1768429Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2025-12-09T22:08:14.1997363Z ##[debug]0
-2025-12-09T22:08:14.1999191Z ##[debug]
-2025-12-09T22:08:14.1999788Z ##[debug]Unsetting HOME override
-2025-12-09T22:08:14.2065480Z ##[debug]Node Action run completed with exit code 0
-2025-12-09T22:08:14.2067592Z ##[debug]Finishing: Post Run actions/checkout@v4
-2025-12-09T22:08:14.2108044Z ##[debug]Starting: Complete job
-2025-12-09T22:08:14.2109757Z Cleaning up orphan processes
-2025-12-09T22:08:14.2375253Z ##[debug]Finishing: Complete job
-2025-12-09T22:08:14.2404106Z ##[debug]Finishing: Build and Deploy Job
+﻿2025-12-09T22:38:55.9044698Z ##[debug]Starting: Build and Deploy Job
+2025-12-09T22:38:55.9100192Z ##[debug]Cleaning runner temp folder: /home/runner/work/_temp
+2025-12-09T22:38:55.9378306Z ##[debug]Starting: Set up job
+2025-12-09T22:38:55.9380214Z Current runner version: '2.329.0'
+2025-12-09T22:38:55.9449521Z ##[group]Runner Image Provisioner
+2025-12-09T22:38:55.9450767Z Hosted Compute Agent
+2025-12-09T22:38:55.9451703Z Version: 20251124.448
+2025-12-09T22:38:55.9452635Z Commit: fda5086b43ec66ade217e5fcd18146c879571177
+2025-12-09T22:38:55.9453874Z Build Date: 2025-11-24T21:16:26Z
+2025-12-09T22:38:55.9454825Z ##[endgroup]
+2025-12-09T22:38:55.9455585Z ##[group]Operating System
+2025-12-09T22:38:55.9456601Z Ubuntu
+2025-12-09T22:38:55.9457678Z 24.04.3
+2025-12-09T22:38:55.9458403Z LTS
+2025-12-09T22:38:55.9459320Z ##[endgroup]
+2025-12-09T22:38:55.9460132Z ##[group]Runner Image
+2025-12-09T22:38:55.9461036Z Image: ubuntu-24.04
+2025-12-09T22:38:55.9462046Z Version: 20251126.144.1
+2025-12-09T22:38:55.9463909Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251126.144/images/ubuntu/Ubuntu2404-Readme.md
+2025-12-09T22:38:55.9487340Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251126.144
+2025-12-09T22:38:55.9489022Z ##[endgroup]
+2025-12-09T22:38:55.9490906Z ##[group]GITHUB_TOKEN Permissions
+2025-12-09T22:38:55.9493359Z Contents: read
+2025-12-09T22:38:55.9494344Z Metadata: read
+2025-12-09T22:38:55.9495149Z Packages: read
+2025-12-09T22:38:55.9495977Z ##[endgroup]
+2025-12-09T22:38:55.9498902Z Secret source: Actions
+2025-12-09T22:38:55.9500659Z ##[debug]Primary repository: aspepper/vitrine-de-craques-web-site
+2025-12-09T22:38:55.9502006Z Prepare workflow directory
+2025-12-09T22:38:55.9659887Z ##[debug]Creating pipeline directory: '/home/runner/work/vitrine-de-craques-web-site'
+2025-12-09T22:38:55.9665468Z ##[debug]Creating workspace directory: '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-12-09T22:38:55.9668672Z ##[debug]Update context data
+2025-12-09T22:38:55.9673543Z ##[debug]Evaluating job-level environment variables
+2025-12-09T22:38:55.9992079Z ##[debug]Evaluating job container
+2025-12-09T22:38:55.9996481Z ##[debug]Evaluating job service containers
+2025-12-09T22:38:56.0000422Z ##[debug]Evaluating job defaults
+2025-12-09T22:38:56.0036373Z Prepare all required actions
+2025-12-09T22:38:56.0092092Z Getting action download info
+2025-12-09T22:38:56.4005353Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-12-09T22:38:56.6924955Z ##[debug]Download 'https://api.github.com/repos/actions/checkout/tarball/34e114876b0b11c390a56381ad16ebd13914f8d5' to '/home/runner/work/_actions/_temp_8da0433f-80c9-4b51-9edb-071e67f7a8af/934457e2-5ffc-4af9-a675-bdae71899027.tar.gz'
+2025-12-09T22:38:56.7827842Z ##[debug]Unwrap 'actions-checkout-34e1148' to '/home/runner/work/_actions/actions/checkout/v4'
+2025-12-09T22:38:56.7975205Z ##[debug]Archive '/home/runner/work/_actions/_temp_8da0433f-80c9-4b51-9edb-071e67f7a8af/934457e2-5ffc-4af9-a675-bdae71899027.tar.gz' has been unzipped into '/home/runner/work/_actions/actions/checkout/v4'.
+2025-12-09T22:38:56.8075657Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2025-12-09T22:38:56.8141330Z ##[debug]Copied action archive '/opt/actionarchivecache/actions_setup-node/49933ea5288caeca8642d1e84afbd3f7d6820020.tar.gz' to '/home/runner/work/_actions/_temp_33eed2e7-2e68-4966-b9a3-6c8a1d314221/c111b21e-b25a-4c74-9f6f-98cc728d4434.tar.gz'
+2025-12-09T22:38:56.8741225Z ##[debug]Unwrap 'actions-setup-node-49933ea' to '/home/runner/work/_actions/actions/setup-node/v4'
+2025-12-09T22:38:56.9020748Z ##[debug]Archive '/home/runner/work/_actions/_temp_33eed2e7-2e68-4966-b9a3-6c8a1d314221/c111b21e-b25a-4c74-9f6f-98cc728d4434.tar.gz' has been unzipped into '/home/runner/work/_actions/actions/setup-node/v4'.
+2025-12-09T22:38:56.9083374Z Download action repository 'Azure/static-web-apps-deploy@v1' (SHA:4d27395796ac319302594769cfe812bd207490b1)
+2025-12-09T22:38:57.2017514Z ##[debug]Download 'https://api.github.com/repos/Azure/static-web-apps-deploy/tarball/4d27395796ac319302594769cfe812bd207490b1' to '/home/runner/work/_actions/_temp_5f44e1bd-fa13-4711-94fd-5b7afeb66e70/8da16373-87ef-4a45-82d8-7470384890a6.tar.gz'
+2025-12-09T22:38:57.2135012Z ##[debug]Unwrap 'Azure-static-web-apps-deploy-4d27395' to '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1'
+2025-12-09T22:38:57.2153438Z ##[debug]Archive '/home/runner/work/_actions/_temp_5f44e1bd-fa13-4711-94fd-5b7afeb66e70/8da16373-87ef-4a45-82d8-7470384890a6.tar.gz' has been unzipped into '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1'.
+2025-12-09T22:38:57.2184353Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/checkout/v4/action.yml'.
+2025-12-09T22:38:57.2831020Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/setup-node/v4/action.yml'.
+2025-12-09T22:38:57.2891092Z ##[debug]action.yml for action: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/action.yml'.
+2025-12-09T22:38:57.2949008Z ##[debug]Dockerfile for action: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile'.
+2025-12-09T22:38:57.3061795Z ##[debug]Set step '__actions_checkout' display name to: 'Run actions/checkout@v4'
+2025-12-09T22:38:57.3064852Z ##[debug]Set step '__actions_setup-node' display name to: 'Setup Node'
+2025-12-09T22:38:57.3066853Z ##[debug]Set step '__run' display name to: 'Install dependencies'
+2025-12-09T22:38:57.3068628Z ##[debug]Set step '__run_2' display name to: 'Build web app'
+2025-12-09T22:38:57.3070429Z ##[debug]Set step '__run_3' display name to: 'Prepare standalone artifact for deployment'
+2025-12-09T22:38:57.3072183Z ##[debug]Set step 'builddeploy' display name to: 'Build And Deploy'
+2025-12-09T22:38:57.3072958Z Complete job name: Build and Deploy Job
+2025-12-09T22:38:57.3108279Z ##[debug]Collect running processes for tracking orphan processes.
+2025-12-09T22:38:57.3297363Z ##[debug]Finishing: Set up job
+2025-12-09T22:38:57.3412186Z ##[debug]Evaluating condition for step: 'Build Azure/static-web-apps-deploy@v1'
+2025-12-09T22:38:57.3449274Z ##[debug]Evaluating: success()
+2025-12-09T22:38:57.3454377Z ##[debug]Evaluating success:
+2025-12-09T22:38:57.3470344Z ##[debug]=> true
+2025-12-09T22:38:57.3477946Z ##[debug]Result: true
+2025-12-09T22:38:57.3501182Z ##[debug]Starting: Build Azure/static-web-apps-deploy@v1
+2025-12-09T22:38:57.3522015Z ##[group]Build container for action use: '/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile'.
+2025-12-09T22:38:57.3573247Z ##[command]/usr/bin/docker build -t 8178aa:79522f4206da4c36be6ed6aa4c40c191 -f "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1/Dockerfile" "/home/runner/work/_actions/Azure/static-web-apps-deploy/v1"
+2025-12-09T22:38:58.0228380Z #0 building with "default" instance using docker driver
+2025-12-09T22:38:58.0230110Z 
+2025-12-09T22:38:58.0230917Z #1 [internal] load build definition from Dockerfile
+2025-12-09T22:38:58.0233096Z #1 transferring dockerfile: 160B done
+2025-12-09T22:38:58.0234800Z #1 DONE 0.0s
+2025-12-09T22:38:58.0235624Z 
+2025-12-09T22:38:58.0237147Z #2 [internal] load metadata for mcr.microsoft.com/appsvc/staticappsclient:stable
+2025-12-09T22:38:58.0239792Z #2 DONE 0.1s
+2025-12-09T22:38:58.2083398Z 
+2025-12-09T22:38:58.2085833Z #3 [internal] load .dockerignore
+2025-12-09T22:38:58.2100191Z #3 transferring context: 2B done
+2025-12-09T22:38:58.2103398Z #3 DONE 0.0s
+2025-12-09T22:38:58.2104913Z 
+2025-12-09T22:38:58.2106914Z #4 [internal] load build context
+2025-12-09T22:38:58.2111320Z #4 transferring context: 107B done
+2025-12-09T22:38:58.2114224Z #4 DONE 0.0s
+2025-12-09T22:38:58.2114838Z 
+2025-12-09T22:38:58.2129525Z #5 [1/2] FROM mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2
+2025-12-09T22:38:58.2155123Z #5 resolve mcr.microsoft.com/appsvc/staticappsclient:stable@sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2 done
+2025-12-09T22:38:58.2161163Z #5 sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 7.34MB / 15.56MB 0.1s
+2025-12-09T22:38:58.2179644Z #5 sha256:3178a283e885dc45a0c7b4c6e9f728f0331ae7fb93de75db4181fa38651170f2 2.88kB / 2.88kB done
+2025-12-09T22:38:58.2186338Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 19.92MB / 53.74MB 0.1s
+2025-12-09T22:38:58.2206875Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 2.10MB / 54.75MB 0.1s
+2025-12-09T22:38:58.2214430Z #5 sha256:1df8e0748f30e89b0c0477edfc706fc39242e1d6008433c0494113de267e7ca8 15.34kB / 15.34kB done
+2025-12-09T22:38:58.4725926Z #5 sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 15.56MB / 15.56MB 0.2s done
+2025-12-09T22:38:58.4732239Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 53.74MB / 53.74MB 0.3s
+2025-12-09T22:38:58.4743292Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 37.09MB / 54.75MB 0.3s
+2025-12-09T22:38:58.4751334Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 19.92MB / 197.07MB 0.3s
+2025-12-09T22:38:58.4756404Z #5 sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 53.74MB / 53.74MB 0.3s done
+2025-12-09T22:38:58.4761530Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 54.75MB / 54.75MB 0.4s
+2025-12-09T22:38:58.4765892Z #5 extracting sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58
+2025-12-09T22:38:58.4770482Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 1.19MB / 24.46MB 0.4s
+2025-12-09T22:38:58.4775142Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.3s done
+2025-12-09T22:38:58.6430115Z #5 sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 54.75MB / 54.75MB 0.5s done
+2025-12-09T22:38:58.6435156Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 75.50MB / 197.07MB 0.6s
+2025-12-09T22:38:58.6441589Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 24.46MB / 24.46MB 0.6s
+2025-12-09T22:38:58.6445989Z #5 sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a 1.56MB / 1.56MB 0.6s
+2025-12-09T22:38:58.8490317Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 112.20MB / 197.07MB 0.8s
+2025-12-09T22:38:58.8499663Z #5 sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 24.46MB / 24.46MB 0.7s done
+2025-12-09T22:38:58.8503416Z #5 sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a 1.56MB / 1.56MB 0.7s done
+2025-12-09T22:38:58.8506213Z #5 sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd 115.52kB / 115.52kB 0.7s done
+2025-12-09T22:38:58.8509067Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 12.71MB / 72.99MB 0.8s
+2025-12-09T22:38:58.8512157Z #5 sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 1.16MB / 1.16MB 0.8s done
+2025-12-09T22:38:58.8514878Z #5 sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55 0B / 637.94kB 0.8s
+2025-12-09T22:38:58.9450961Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 132.12MB / 197.07MB 0.9s
+2025-12-09T22:38:58.9483871Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 28.31MB / 72.99MB 0.9s
+2025-12-09T22:38:58.9559934Z #5 sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55 637.94kB / 637.94kB 0.8s done
+2025-12-09T22:38:58.9563522Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 6.29MB / 35.20MB 0.9s
+2025-12-09T22:38:59.1402278Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 162.51MB / 197.07MB 1.1s
+2025-12-09T22:38:59.1411895Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 61.87MB / 72.99MB 1.1s
+2025-12-09T22:38:59.1415889Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 31.01MB / 35.20MB 1.1s
+2025-12-09T22:38:59.2782892Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 180.36MB / 197.07MB 1.2s
+2025-12-09T22:38:59.2784672Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 72.99MB / 72.99MB 1.2s
+2025-12-09T22:38:59.2786051Z #5 sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 35.20MB / 35.20MB 1.1s done
+2025-12-09T22:38:59.2787647Z #5 sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d 168B / 168B 1.2s done
+2025-12-09T22:38:59.4042572Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 197.07MB / 197.07MB 1.3s
+2025-12-09T22:38:59.4049464Z #5 sha256:8023cb51985fccd3faa4be6340cdc75b72240277850569aa974767dda5176159 168B / 168B 1.3s
+2025-12-09T22:39:00.4857903Z #5 sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 197.07MB / 197.07MB 2.3s done
+2025-12-09T22:39:00.4861601Z #5 sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 72.99MB / 72.99MB 2.0s done
+2025-12-09T22:39:00.4866058Z #5 sha256:8023cb51985fccd3faa4be6340cdc75b72240277850569aa974767dda5176159 168B / 168B 2.3s done
+2025-12-09T22:39:00.4873655Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 16.78MB / 118.65MB 2.4s
+2025-12-09T22:39:00.5911295Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 51.25MB / 118.65MB 2.5s
+2025-12-09T22:39:00.6946019Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 81.79MB / 118.65MB 2.6s
+2025-12-09T22:39:00.8392892Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 118.65MB / 118.65MB 2.8s
+2025-12-09T22:39:01.1755287Z #5 sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 118.65MB / 118.65MB 3.0s done
+2025-12-09T22:39:02.3188555Z #5 extracting sha256:5d6e107a26c2ffb6e234f04132358dea70a691a64c1152f984d2f2ba0e218c58 3.9s done
+2025-12-09T22:39:02.4521202Z #5 extracting sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 0.1s
+2025-12-09T22:39:02.9062335Z #5 extracting sha256:2377065f3b700cf1b5e391d26c572c8b91892dd44acd75deebdab5e403b23175 0.4s done
+2025-12-09T22:39:04.4315347Z #5 extracting sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230
+2025-12-09T22:39:06.6451212Z #5 extracting sha256:5ee26b7a209f9a26720207792b237af3e19c0efeed8695e1e630fcd0feef9230 2.1s done
+2025-12-09T22:39:07.1684107Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88
+2025-12-09T22:39:12.2977712Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 5.1s
+2025-12-09T22:39:12.5434277Z #5 extracting sha256:41c7cd6fb37363fd1ec16dad3463ecc5820eda12c418a82b4849604252d29b88 5.4s done
+2025-12-09T22:39:14.6508452Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
+2025-12-09T22:39:14.8059625Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+2025-12-09T22:39:14.8061111Z #5 extracting sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 0.1s
+2025-12-09T22:39:15.5593685Z #5 extracting sha256:aede74d79976f9d1be608a1286cdb2ca61aad25185440263691db6a0880adadd 0.8s done
+2025-12-09T22:39:15.5597724Z #5 extracting sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a
+2025-12-09T22:39:15.8200138Z #5 extracting sha256:c279a6399750ee20e802fb2c47da034ccee5eb4f3b89087f32618f10e8af074a 0.1s done
+2025-12-09T22:39:15.8201388Z #5 extracting sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 0.1s
+2025-12-09T22:39:16.9805174Z #5 extracting sha256:ec0af1da0a0576de654092a28624c0565c6d854216944f18159460338af43293 1.1s done
+2025-12-09T22:39:17.4973490Z #5 extracting sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd
+2025-12-09T22:39:17.6263278Z #5 extracting sha256:351447e6e3829fac25a761f87d07dc5bfc289f38908901d05fa53aaab54dbdcd done
+2025-12-09T22:39:17.6270292Z #5 extracting sha256:eec8099d3f58ba87e25216a07db18b5a0de40b6921ee61ea8ab9b4c29b53a12f 0.1s done
+2025-12-09T22:39:17.6274623Z #5 extracting sha256:cddc70a1cccef26d55fcf9242759c41404c305acea0b4c3a30961c99846a0a55 0.0s done
+2025-12-09T22:39:17.7589075Z #5 extracting sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 0.1s
+2025-12-09T22:39:18.2675547Z #5 extracting sha256:36312d7930e0666f8cfc7940823ac101235e873b7cbb8b20d9481fd404095767 0.5s done
+2025-12-09T22:39:18.2679970Z #5 extracting sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d
+2025-12-09T22:39:18.4487001Z #5 extracting sha256:4a1fde1690fe113870084a3224c66554fc9cbd2310abb9593b0244ec21f4b76d done
+2025-12-09T22:39:18.4488293Z #5 extracting sha256:8023cb51985fccd3faa4be6340cdc75b72240277850569aa974767dda5176159 done
+2025-12-09T22:39:18.4489456Z #5 extracting sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 0.1s
+2025-12-09T22:39:22.0596669Z #5 extracting sha256:4836a863d60df9ca0cedad0eb5e729c4a7f755449fbfbd6d4ea6443e64c990e0 3.6s done
+2025-12-09T22:39:23.3511430Z #5 DONE 25.3s
+2025-12-09T22:39:23.5253725Z 
+2025-12-09T22:39:23.5254448Z #6 [2/2] COPY entrypoint.sh /entrypoint.sh
+2025-12-09T22:39:23.5255374Z #6 DONE 0.0s
+2025-12-09T22:39:23.5257748Z 
+2025-12-09T22:39:23.5258185Z #7 exporting to image
+2025-12-09T22:39:23.5258647Z #7 exporting layers
+2025-12-09T22:39:24.6615105Z #7 exporting layers 1.3s done
+2025-12-09T22:39:24.6618308Z #7 writing image sha256:3deadc4996fa3555bff76ac80fccf55298a7498f8e219351bebfbf52e9482178
+2025-12-09T22:39:24.6808072Z #7 writing image sha256:3deadc4996fa3555bff76ac80fccf55298a7498f8e219351bebfbf52e9482178 done
+2025-12-09T22:39:24.6809001Z #7 naming to docker.io/library/8178aa:79522f4206da4c36be6ed6aa4c40c191 done
+2025-12-09T22:39:24.6809556Z #7 DONE 1.3s
+2025-12-09T22:39:24.6856057Z ##[endgroup]
+2025-12-09T22:39:24.6869566Z ##[debug]Finishing: Build Azure/static-web-apps-deploy@v1
+2025-12-09T22:39:24.6885873Z ##[debug]Evaluating condition for step: 'Run actions/checkout@v4'
+2025-12-09T22:39:24.6891555Z ##[debug]Evaluating: success()
+2025-12-09T22:39:24.6891925Z ##[debug]Evaluating success:
+2025-12-09T22:39:24.6892367Z ##[debug]=> true
+2025-12-09T22:39:24.6892783Z ##[debug]Result: true
+2025-12-09T22:39:24.6893599Z ##[debug]Starting: Run actions/checkout@v4
+2025-12-09T22:39:24.6952946Z ##[debug]Register post job cleanup for action: actions/checkout@v4
+2025-12-09T22:39:24.7022262Z ##[debug]Loading inputs
+2025-12-09T22:39:24.7042765Z ##[debug]Evaluating: github.repository
+2025-12-09T22:39:24.7043567Z ##[debug]Evaluating Index:
+2025-12-09T22:39:24.7045162Z ##[debug]..Evaluating github:
+2025-12-09T22:39:24.7045987Z ##[debug]..=> Object
+2025-12-09T22:39:24.7051509Z ##[debug]..Evaluating String:
+2025-12-09T22:39:24.7052160Z ##[debug]..=> 'repository'
+2025-12-09T22:39:24.7056199Z ##[debug]=> 'aspepper/vitrine-de-craques-web-site'
+2025-12-09T22:39:24.7057996Z ##[debug]Result: 'aspepper/vitrine-de-craques-web-site'
+2025-12-09T22:39:24.7060010Z ##[debug]Evaluating: github.token
+2025-12-09T22:39:24.7060278Z ##[debug]Evaluating Index:
+2025-12-09T22:39:24.7060504Z ##[debug]..Evaluating github:
+2025-12-09T22:39:24.7060742Z ##[debug]..=> Object
+2025-12-09T22:39:24.7060960Z ##[debug]..Evaluating String:
+2025-12-09T22:39:24.7061172Z ##[debug]..=> 'token'
+2025-12-09T22:39:24.7061836Z ##[debug]=> '***'
+2025-12-09T22:39:24.7062148Z ##[debug]Result: '***'
+2025-12-09T22:39:24.7070985Z ##[debug]Loading env
+2025-12-09T22:39:24.7126469Z ##[group]Run actions/checkout@v4
+2025-12-09T22:39:24.7127081Z with:
+2025-12-09T22:39:24.7127264Z   submodules: false
+2025-12-09T22:39:24.7127445Z   lfs: false
+2025-12-09T22:39:24.7127672Z   repository: aspepper/vitrine-de-craques-web-site
+2025-12-09T22:39:24.7128092Z   token: ***
+2025-12-09T22:39:24.7128262Z   ssh-strict: true
+2025-12-09T22:39:24.7128438Z   ssh-user: git
+2025-12-09T22:39:24.7128623Z   persist-credentials: true
+2025-12-09T22:39:24.7128837Z   clean: true
+2025-12-09T22:39:24.7129038Z   sparse-checkout-cone-mode: true
+2025-12-09T22:39:24.7129307Z   fetch-depth: 1
+2025-12-09T22:39:24.7129593Z   fetch-tags: false
+2025-12-09T22:39:24.7129772Z   show-progress: true
+2025-12-09T22:39:24.7129961Z   set-safe-directory: true
+2025-12-09T22:39:24.7130604Z ##[endgroup]
+2025-12-09T22:39:24.8129068Z ##[debug]GITHUB_WORKSPACE = '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-12-09T22:39:24.8130814Z ##[debug]qualified repository = 'aspepper/vitrine-de-craques-web-site'
+2025-12-09T22:39:24.8131738Z ##[debug]ref = 'refs/heads/main'
+2025-12-09T22:39:24.8132502Z ##[debug]commit = '47832d093efc4f4d70298c2fa2d485b395b3996a'
+2025-12-09T22:39:24.8133306Z ##[debug]clean = true
+2025-12-09T22:39:24.8133974Z ##[debug]filter = undefined
+2025-12-09T22:39:24.8134637Z ##[debug]fetch depth = 1
+2025-12-09T22:39:24.8135247Z ##[debug]fetch tags = false
+2025-12-09T22:39:24.8135818Z ##[debug]show progress = true
+2025-12-09T22:39:24.8136387Z ##[debug]lfs = false
+2025-12-09T22:39:24.8137227Z ##[debug]submodules = false
+2025-12-09T22:39:24.8137824Z ##[debug]recursive submodules = false
+2025-12-09T22:39:24.8138441Z ##[debug]GitHub Host URL = 
+2025-12-09T22:39:24.8142095Z ::add-matcher::/home/runner/work/_actions/actions/checkout/v4/dist/problem-matcher.json
+2025-12-09T22:39:24.8258814Z ##[debug]Added matchers: 'checkout-git'. Problem matchers scan action output for known warning or error strings and report these inline.
+2025-12-09T22:39:24.8264278Z Syncing repository: aspepper/vitrine-de-craques-web-site
+2025-12-09T22:39:24.8265880Z ::group::Getting Git version info
+2025-12-09T22:39:24.8267651Z ##[group]Getting Git version info
+2025-12-09T22:39:24.8268580Z Working directory is '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-12-09T22:39:24.8269737Z ##[debug]Getting git version
+2025-12-09T22:39:24.8270162Z [command]/usr/bin/git version
+2025-12-09T22:39:24.8282999Z git version 2.52.0
+2025-12-09T22:39:24.8306441Z ##[debug]0
+2025-12-09T22:39:24.8313555Z ##[debug]git version 2.52.0
+2025-12-09T22:39:24.8313959Z ##[debug]
+2025-12-09T22:39:24.8314708Z ##[debug]Set git useragent to: git/2.52.0 (github-actions-checkout)
+2025-12-09T22:39:24.8315602Z ::endgroup::
+2025-12-09T22:39:24.8315942Z ##[endgroup]
+2025-12-09T22:39:24.8320801Z ::add-mask::***
+2025-12-09T22:39:24.8327952Z Temporarily overriding HOME='/home/runner/work/_temp/8c87585f-2d3c-4596-86c4-40caa190ea6d' before making global git config changes
+2025-12-09T22:39:24.8331215Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-09T22:39:24.8345057Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-12-09T22:39:24.8382298Z ##[debug]0
+2025-12-09T22:39:24.8384504Z ##[debug]
+2025-12-09T22:39:24.8389197Z Deleting the contents of '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site'
+2025-12-09T22:39:24.8392204Z ::group::Initializing the repository
+2025-12-09T22:39:24.8392706Z ##[group]Initializing the repository
+2025-12-09T22:39:24.8397834Z [command]/usr/bin/git init /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-12-09T22:39:24.8523333Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-12-09T22:39:24.8524823Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2025-12-09T22:39:24.8531565Z hint: to use in all of your new repositories, which will suppress this warning,
+2025-12-09T22:39:24.8532631Z hint: call:
+2025-12-09T22:39:24.8534282Z hint:
+2025-12-09T22:39:24.8535244Z hint: 	git config --global init.defaultBranch <name>
+2025-12-09T22:39:24.8537322Z hint:
+2025-12-09T22:39:24.8540059Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-12-09T22:39:24.8540962Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-12-09T22:39:24.8541612Z hint:
+2025-12-09T22:39:24.8541955Z hint: 	git branch -m <name>
+2025-12-09T22:39:24.8542307Z hint:
+2025-12-09T22:39:24.8542836Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-12-09T22:39:24.8543968Z Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-12-09T22:39:24.8546211Z ##[debug]0
+2025-12-09T22:39:24.8551073Z ##[debug]Initialized empty Git repository in /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/.git/
+2025-12-09T22:39:24.8551974Z ##[debug]
+2025-12-09T22:39:24.8552619Z [command]/usr/bin/git remote add origin https://github.com/aspepper/vitrine-de-craques-web-site
+2025-12-09T22:39:24.8585469Z ##[debug]0
+2025-12-09T22:39:24.8586503Z ##[debug]
+2025-12-09T22:39:24.8588428Z ::endgroup::
+2025-12-09T22:39:24.8588712Z ##[endgroup]
+2025-12-09T22:39:24.8589346Z ::group::Disabling automatic garbage collection
+2025-12-09T22:39:24.8589850Z ##[group]Disabling automatic garbage collection
+2025-12-09T22:39:24.8594322Z [command]/usr/bin/git config --local gc.auto 0
+2025-12-09T22:39:24.8622660Z ##[debug]0
+2025-12-09T22:39:24.8624381Z ##[debug]
+2025-12-09T22:39:24.8624935Z ::endgroup::
+2025-12-09T22:39:24.8625234Z ##[endgroup]
+2025-12-09T22:39:24.8625832Z ::group::Setting up auth
+2025-12-09T22:39:24.8626212Z ##[group]Setting up auth
+2025-12-09T22:39:24.8631760Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-09T22:39:24.8657949Z ##[debug]1
+2025-12-09T22:39:24.8659374Z ##[debug]
+2025-12-09T22:39:24.8664592Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-09T22:39:24.9050546Z ##[debug]0
+2025-12-09T22:39:24.9052006Z ##[debug]
+2025-12-09T22:39:24.9057701Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-09T22:39:24.9083048Z ##[debug]1
+2025-12-09T22:39:24.9084426Z ##[debug]
+2025-12-09T22:39:24.9089452Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-09T22:39:24.9312196Z ##[debug]0
+2025-12-09T22:39:24.9313665Z ##[debug]
+2025-12-09T22:39:24.9319571Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-09T22:39:24.9345207Z ##[debug]1
+2025-12-09T22:39:24.9347313Z ##[debug]
+2025-12-09T22:39:24.9351715Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-09T22:39:24.9588244Z ##[debug]0
+2025-12-09T22:39:24.9589698Z ##[debug]
+2025-12-09T22:39:24.9596181Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-12-09T22:39:24.9622789Z ##[debug]0
+2025-12-09T22:39:24.9624601Z ##[debug]
+2025-12-09T22:39:24.9631961Z ::endgroup::
+2025-12-09T22:39:24.9632283Z ##[endgroup]
+2025-12-09T22:39:24.9634233Z ::group::Fetching the repository
+2025-12-09T22:39:24.9634680Z ##[group]Fetching the repository
+2025-12-09T22:39:24.9641750Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +47832d093efc4f4d70298c2fa2d485b395b3996a:refs/remotes/origin/main
+2025-12-09T22:39:32.2057338Z From https://github.com/aspepper/vitrine-de-craques-web-site
+2025-12-09T22:39:32.2059517Z  * [new ref]         47832d093efc4f4d70298c2fa2d485b395b3996a -> origin/main
+2025-12-09T22:39:32.2092439Z ##[debug]0
+2025-12-09T22:39:32.2097352Z ##[debug]
+2025-12-09T22:39:32.2098353Z ::endgroup::
+2025-12-09T22:39:32.2098645Z ##[endgroup]
+2025-12-09T22:39:32.2099704Z ::group::Determining the checkout info
+2025-12-09T22:39:32.2100146Z ##[group]Determining the checkout info
+2025-12-09T22:39:32.2100979Z ::endgroup::
+2025-12-09T22:39:32.2101266Z ##[endgroup]
+2025-12-09T22:39:32.2103436Z [command]/usr/bin/git sparse-checkout disable
+2025-12-09T22:39:32.2142704Z ##[debug]0
+2025-12-09T22:39:32.2143609Z ##[debug]
+2025-12-09T22:39:32.2149012Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-12-09T22:39:32.2261131Z ##[debug]0
+2025-12-09T22:39:32.2281630Z ##[debug]
+2025-12-09T22:39:32.2283363Z ::group::Checking out the ref
+2025-12-09T22:39:32.2283776Z ##[group]Checking out the ref
+2025-12-09T22:39:32.2284650Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-12-09T22:39:33.1077634Z Switched to a new branch 'main'
+2025-12-09T22:39:33.1079250Z branch 'main' set up to track 'origin/main'.
+2025-12-09T22:39:33.1178155Z ##[debug]0
+2025-12-09T22:39:33.1180116Z ##[debug]branch 'main' set up to track 'origin/main'.
+2025-12-09T22:39:33.1180577Z ##[debug]
+2025-12-09T22:39:33.1182287Z ::endgroup::
+2025-12-09T22:39:33.1182595Z ##[endgroup]
+2025-12-09T22:39:33.1223063Z ##[debug]0
+2025-12-09T22:39:33.1225283Z ##[debug]commit 47832d093efc4f4d70298c2fa2d485b395b3996a
+2025-12-09T22:39:33.1225840Z ##[debug]Author: aspepper <aspepper@hotmail.com>
+2025-12-09T22:39:33.1226431Z ##[debug]Date:   Tue Dec 9 19:38:49 2025 -0300
+2025-12-09T22:39:33.1227079Z ##[debug]
+2025-12-09T22:39:33.1227432Z ##[debug]    Correção de espaçamento de script
+2025-12-09T22:39:33.1227858Z ##[debug]
+2025-12-09T22:39:33.1230573Z [command]/usr/bin/git log -1 --format=%H
+2025-12-09T22:39:33.1255876Z 47832d093efc4f4d70298c2fa2d485b395b3996a
+2025-12-09T22:39:33.1261420Z ##[debug]0
+2025-12-09T22:39:33.1263023Z ##[debug]47832d093efc4f4d70298c2fa2d485b395b3996a
+2025-12-09T22:39:33.1263492Z ##[debug]
+2025-12-09T22:39:33.1268778Z ##[debug]Unsetting HOME override
+2025-12-09T22:39:33.1277754Z ::remove-matcher owner=checkout-git::
+2025-12-09T22:39:33.1293540Z ##[debug]Removed matchers: 'checkout-git'
+2025-12-09T22:39:33.1345994Z ##[debug]Node Action run completed with exit code 0
+2025-12-09T22:39:33.1379868Z ##[debug]Save intra-action state isPost = true
+2025-12-09T22:39:33.1380299Z ##[debug]Save intra-action state setSafeDirectory = true
+2025-12-09T22:39:33.1381112Z ##[debug]Save intra-action state repositoryPath = /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-12-09T22:39:33.1384758Z ##[debug]Set output commit = 47832d093efc4f4d70298c2fa2d485b395b3996a
+2025-12-09T22:39:33.1385241Z ##[debug]Set output ref = refs/heads/main
+2025-12-09T22:39:33.1386626Z ##[debug]Finishing: Run actions/checkout@v4
+2025-12-09T22:39:33.1394577Z ##[debug]Evaluating condition for step: 'Setup Node'
+2025-12-09T22:39:33.1396236Z ##[debug]Evaluating: success()
+2025-12-09T22:39:33.1396581Z ##[debug]Evaluating success:
+2025-12-09T22:39:33.1397311Z ##[debug]=> true
+2025-12-09T22:39:33.1397664Z ##[debug]Result: true
+2025-12-09T22:39:33.1398175Z ##[debug]Starting: Setup Node
+2025-12-09T22:39:33.1425798Z ##[debug]Register post job cleanup for action: actions/setup-node@v4
+2025-12-09T22:39:33.1436569Z ##[debug]Loading inputs
+2025-12-09T22:39:33.1445894Z ##[debug]Evaluating: (((github.server_url == 'https://github.com') && github.token) || '')
+2025-12-09T22:39:33.1446362Z ##[debug]Evaluating Or:
+2025-12-09T22:39:33.1448530Z ##[debug]..Evaluating And:
+2025-12-09T22:39:33.1450570Z ##[debug]....Evaluating Equal:
+2025-12-09T22:39:33.1451605Z ##[debug]......Evaluating Index:
+2025-12-09T22:39:33.1451857Z ##[debug]........Evaluating github:
+2025-12-09T22:39:33.1452205Z ##[debug]........=> Object
+2025-12-09T22:39:33.1452502Z ##[debug]........Evaluating String:
+2025-12-09T22:39:33.1452756Z ##[debug]........=> 'server_url'
+2025-12-09T22:39:33.1453052Z ##[debug]......=> 'https://github.com'
+2025-12-09T22:39:33.1453341Z ##[debug]......Evaluating String:
+2025-12-09T22:39:33.1453591Z ##[debug]......=> 'https://github.com'
+2025-12-09T22:39:33.1457379Z ##[debug]....=> true
+2025-12-09T22:39:33.1457903Z ##[debug]....Evaluating Index:
+2025-12-09T22:39:33.1458210Z ##[debug]......Evaluating github:
+2025-12-09T22:39:33.1458462Z ##[debug]......=> Object
+2025-12-09T22:39:33.1458702Z ##[debug]......Evaluating String:
+2025-12-09T22:39:33.1458939Z ##[debug]......=> 'token'
+2025-12-09T22:39:33.1459385Z ##[debug]....=> '***'
+2025-12-09T22:39:33.1459722Z ##[debug]..=> '***'
+2025-12-09T22:39:33.1460204Z ##[debug]=> '***'
+2025-12-09T22:39:33.1464746Z ##[debug]Expanded: ((('https://github.com' == 'https://github.com') && '***') || '')
+2025-12-09T22:39:33.1465256Z ##[debug]Result: '***'
+2025-12-09T22:39:33.1467375Z ##[debug]Loading env
+2025-12-09T22:39:33.1471951Z ##[group]Run actions/setup-node@v4
+2025-12-09T22:39:33.1472174Z with:
+2025-12-09T22:39:33.1472338Z   node-version: 20
+2025-12-09T22:39:33.1472516Z   cache: npm
+2025-12-09T22:39:33.1472679Z   always-auth: false
+2025-12-09T22:39:33.1472871Z   check-latest: false
+2025-12-09T22:39:33.1473167Z   token: ***
+2025-12-09T22:39:33.1473341Z ##[endgroup]
+2025-12-09T22:39:33.3186085Z ##[debug]isExplicit: 
+2025-12-09T22:39:33.3188326Z ##[debug]explicit? false
+2025-12-09T22:39:33.3208242Z ##[debug]isExplicit: 20.19.6
+2025-12-09T22:39:33.3209237Z ##[debug]explicit? true
+2025-12-09T22:39:33.3217519Z ##[debug]isExplicit: 22.21.1
+2025-12-09T22:39:33.3219181Z ##[debug]explicit? true
+2025-12-09T22:39:33.3227433Z ##[debug]isExplicit: 24.11.1
+2025-12-09T22:39:33.3228896Z ##[debug]explicit? true
+2025-12-09T22:39:33.3236516Z ##[debug]evaluating 3 versions
+2025-12-09T22:39:33.3261025Z ##[debug]matched: 20.19.6
+2025-12-09T22:39:33.3262856Z ##[debug]checking cache: /opt/hostedtoolcache/node/20.19.6/x64
+2025-12-09T22:39:33.3263782Z ##[debug]Found tool in cache node 20.19.6 x64
+2025-12-09T22:39:33.3264355Z Found in cache @ /opt/hostedtoolcache/node/20.19.6/x64
+2025-12-09T22:39:33.3269998Z ::group::Environment details
+2025-12-09T22:39:33.3270442Z ##[group]Environment details
+2025-12-09T22:39:33.7731600Z node: v20.19.6
+2025-12-09T22:39:33.7736248Z npm: 10.8.2
+2025-12-09T22:39:33.7737818Z yarn: 1.22.22
+2025-12-09T22:39:33.7739411Z ::endgroup::
+2025-12-09T22:39:33.7741091Z ##[endgroup]
+2025-12-09T22:39:33.7763175Z [command]/opt/hostedtoolcache/node/20.19.6/x64/bin/npm config get cache
+2025-12-09T22:39:33.9090270Z /home/runner/.npm
+2025-12-09T22:39:33.9156618Z ##[debug]npm's cache folder "/home/runner/.npm" configured for the root directory
+2025-12-09T22:39:33.9163751Z ##[debug]followSymbolicLinks 'true'
+2025-12-09T22:39:33.9201544Z ##[debug]followSymbolicLinks 'true'
+2025-12-09T22:39:33.9202481Z ##[debug]implicitDescendants 'true'
+2025-12-09T22:39:33.9203117Z ##[debug]matchDirectories 'true'
+2025-12-09T22:39:33.9204063Z ##[debug]omitBrokenSymbolicLinks 'true'
+2025-12-09T22:39:33.9204820Z ##[debug]excludeHiddenFiles 'false'
+2025-12-09T22:39:33.9205925Z ##[debug]Search path '/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/package-lock.json'
+2025-12-09T22:39:33.9213863Z ##[debug]/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site/package-lock.json
+2025-12-09T22:39:33.9274074Z ##[debug]Found 1 files to hash.
+2025-12-09T22:39:33.9275868Z ##[debug]primary key is node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4
+2025-12-09T22:39:33.9277736Z ##[debug]Cache service version: v2
+2025-12-09T22:39:33.9281393Z ##[debug]Resolved Keys:
+2025-12-09T22:39:33.9282450Z ##[debug]["node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4"]
+2025-12-09T22:39:33.9286320Z ##[debug]Checking zstd --quiet --version
+2025-12-09T22:39:33.9368486Z ##[debug]1.5.7
+2025-12-09T22:39:33.9372239Z ##[debug]zstd version: 1.5.7
+2025-12-09T22:39:33.9381640Z ##[debug][Request] GetCacheEntryDownloadURL https://results-receiver.actions.githubusercontent.com/twirp/github.actions.results.api.v1.CacheService/GetCacheEntryDownloadURL
+2025-12-09T22:39:34.0719571Z ##[debug][Response] - 200
+2025-12-09T22:39:34.0723662Z ##[debug]Headers: {
+2025-12-09T22:39:34.0724011Z ##[debug]  "content-length": "54",
+2025-12-09T22:39:34.0724473Z ##[debug]  "content-type": "application/json",
+2025-12-09T22:39:34.0724969Z ##[debug]  "date": "Tue, 09 Dec 2025 22:39:34 GMT",
+2025-12-09T22:39:34.0725454Z ##[debug]  "x-github-backend": "Kubernetes",
+2025-12-09T22:39:34.0726015Z ##[debug]  "x-github-request-id": "A400:1105D0:409916B:4A38605:6938A525"
+2025-12-09T22:39:34.0726543Z ##[debug]}
+2025-12-09T22:39:34.0727414Z ##[debug]Body: {
+2025-12-09T22:39:34.0727727Z ##[debug]  "ok": false,
+2025-12-09T22:39:34.0728094Z ##[debug]  "signed_download_url": "",
+2025-12-09T22:39:34.0728513Z ##[debug]  "matched_key": ""
+2025-12-09T22:39:34.0728862Z ##[debug]}
+2025-12-09T22:39:34.0743312Z ##[debug]Cache not found for version 04d00cc68e25ee34fd8b04095d0a46a28244d98af53e6925e47ed311d487b1d6 of keys: node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4
+2025-12-09T22:39:34.0744862Z npm cache is not found
+2025-12-09T22:39:34.0752495Z ##[add-matcher]/home/runner/work/_actions/actions/setup-node/v4/.github/tsc.json
+2025-12-09T22:39:34.0774164Z ##[debug]Added matchers: 'tsc'. Problem matchers scan action output for known warning or error strings and report these inline.
+2025-12-09T22:39:34.0775564Z ##[add-matcher]/home/runner/work/_actions/actions/setup-node/v4/.github/eslint-stylish.json
+2025-12-09T22:39:34.0784318Z ##[debug]Added matchers: 'eslint-stylish'. Problem matchers scan action output for known warning or error strings and report these inline.
+2025-12-09T22:39:34.0785767Z ##[add-matcher]/home/runner/work/_actions/actions/setup-node/v4/.github/eslint-compact.json
+2025-12-09T22:39:34.0789256Z ##[debug]Added matchers: 'eslint-compact'. Problem matchers scan action output for known warning or error strings and report these inline.
+2025-12-09T22:39:34.0821026Z ##[debug]Node Action run completed with exit code 0
+2025-12-09T22:39:34.0823917Z ##[debug]Save intra-action state SETUP_NODE_CACHE_PACKAGE_MANAGER = npm
+2025-12-09T22:39:34.0824363Z ##[debug]Save intra-action state CACHE_PATHS = ["/home/runner/.npm"]
+2025-12-09T22:39:34.0825014Z ##[debug]Save intra-action state CACHE_KEY = node-cache-Linux-x64-npm-8ffb6d43e84fd70de55e0e6c3c3ecc1bba738ff4bde8682707519eaebca8b5a4
+2025-12-09T22:39:34.0825838Z ##[debug]Set output node-version = v20.19.6
+2025-12-09T22:39:34.0826114Z ##[debug]Set output cache-hit = false
+2025-12-09T22:39:34.0827302Z ##[debug]Finishing: Setup Node
+2025-12-09T22:39:34.0833824Z ##[debug]Evaluating condition for step: 'Install dependencies'
+2025-12-09T22:39:34.0835389Z ##[debug]Evaluating: success()
+2025-12-09T22:39:34.0835756Z ##[debug]Evaluating success:
+2025-12-09T22:39:34.0836141Z ##[debug]=> true
+2025-12-09T22:39:34.0836438Z ##[debug]Result: true
+2025-12-09T22:39:34.0837328Z ##[debug]Starting: Install dependencies
+2025-12-09T22:39:34.0845497Z ##[debug]Loading inputs
+2025-12-09T22:39:34.0846287Z ##[debug]Loading env
+2025-12-09T22:39:34.0861304Z ##[group]Run npm ci
+2025-12-09T22:39:34.0861543Z [36;1mnpm ci[0m
+2025-12-09T22:39:34.0907075Z shell: /usr/bin/bash -e {0}
+2025-12-09T22:39:34.0907326Z ##[endgroup]
+2025-12-09T22:39:34.0959704Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/7658523f-4ade-4c08-afc7-1c4c060bbdcf.sh
+2025-12-09T22:39:38.1319314Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2025-12-09T22:39:39.0188170Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-12-09T22:39:41.4488138Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2025-12-09T22:39:41.4522224Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2025-12-09T22:39:42.6468316Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-12-09T22:39:48.6749591Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2025-12-09T22:40:06.9864254Z 
+2025-12-09T22:40:06.9873889Z added 868 packages, and audited 869 packages in 33s
+2025-12-09T22:40:06.9879066Z 
+2025-12-09T22:40:06.9879513Z 195 packages are looking for funding
+2025-12-09T22:40:06.9880078Z   run `npm fund` for details
+2025-12-09T22:40:07.0440113Z 
+2025-12-09T22:40:07.0444573Z 6 vulnerabilities (3 low, 3 high)
+2025-12-09T22:40:07.0446469Z 
+2025-12-09T22:40:07.0449847Z To address issues that do not require attention, run:
+2025-12-09T22:40:07.0450458Z   npm audit fix
+2025-12-09T22:40:07.0450664Z 
+2025-12-09T22:40:07.0451058Z To address all issues (including breaking changes), run:
+2025-12-09T22:40:07.0451636Z   npm audit fix --force
+2025-12-09T22:40:07.0452308Z 
+2025-12-09T22:40:07.0452528Z Run `npm audit` for details.
+2025-12-09T22:40:07.0974259Z ##[debug]Finishing: Install dependencies
+2025-12-09T22:40:07.0984491Z ##[debug]Evaluating condition for step: 'Build web app'
+2025-12-09T22:40:07.0986218Z ##[debug]Evaluating: success()
+2025-12-09T22:40:07.0986565Z ##[debug]Evaluating success:
+2025-12-09T22:40:07.0987463Z ##[debug]=> true
+2025-12-09T22:40:07.0987909Z ##[debug]Result: true
+2025-12-09T22:40:07.0988512Z ##[debug]Starting: Build web app
+2025-12-09T22:40:07.0996042Z ##[debug]Loading inputs
+2025-12-09T22:40:07.0997210Z ##[debug]Loading env
+2025-12-09T22:40:07.1001590Z ##[group]Run npm run build
+2025-12-09T22:40:07.1001823Z [36;1mnpm run build[0m
+2025-12-09T22:40:07.1044634Z shell: /usr/bin/bash -e {0}
+2025-12-09T22:40:07.1044872Z ##[endgroup]
+2025-12-09T22:40:07.1078284Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/02198817-a81d-49f0-a9af-b800003bead9.sh
+2025-12-09T22:40:07.2184996Z 
+2025-12-09T22:40:07.2186211Z > vitrine-de-craques-web-site@0.1.0 build
+2025-12-09T22:40:07.2187864Z > prisma generate && next build
+2025-12-09T22:40:07.2189402Z 
+2025-12-09T22:40:08.2921627Z Prisma schema loaded from prisma/schema.prisma
+2025-12-09T22:40:09.2392828Z ┌─────────────────────────────────────────────────────────┐
+2025-12-09T22:40:09.2394898Z │  Update available 6.16.2 -> 7.1.0                       │
+2025-12-09T22:40:09.2397168Z │                                                         │
+2025-12-09T22:40:09.2398955Z │  This is a major update - please follow the guide at    │
+2025-12-09T22:40:09.2400889Z │  https://pris.ly/d/major-version-upgrade                │
+2025-12-09T22:40:09.2403051Z │                                                         │
+2025-12-09T22:40:09.2403405Z 
+2025-12-09T22:40:09.2405566Z │  Run the following to update                            │
+2025-12-09T22:40:09.2406656Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 431ms
+2025-12-09T22:40:09.2409116Z │    npm i --save-dev prisma@latest                       │
+2025-12-09T22:40:09.2409545Z 
+2025-12-09T22:40:09.2411210Z │    npm i @prisma/client@latest                          │
+2025-12-09T22:40:09.2412178Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-12-09T22:40:09.2414510Z └─────────────────────────────────────────────────────────┘
+2025-12-09T22:40:09.2414874Z 
+2025-12-09T22:40:09.2417517Z Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-12-09T22:40:09.2419425Z 
+2025-12-09T22:40:09.7878453Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-12-09T22:40:09.7997089Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-12-09T22:40:09.8004801Z This information is used to shape Next.js' roadmap and prioritize features.
+2025-12-09T22:40:09.8010258Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-12-09T22:40:09.8013907Z https://nextjs.org/telemetry
+2025-12-09T22:40:09.8014209Z 
+2025-12-09T22:40:09.8588229Z   ▲ Next.js 14.2.33
+2025-12-09T22:40:09.8594768Z 
+2025-12-09T22:40:09.9225752Z    Creating an optimized production build ...
+2025-12-09T22:41:05.6567652Z  ✓ Compiled successfully
+2025-12-09T22:41:05.6579017Z    Linting and checking validity of types ...
+2025-12-09T22:41:24.3937391Z    Collecting page data ...
+2025-12-09T22:41:24.9908403Z [Telemetry] Application Insights desabilitado: nenhuma connection string encontrada nas variáveis de ambiente
+2025-12-09T22:41:24.9919930Z [Auth] NEXTAUTH_SECRET ausente. Usando fallback derivado do host. Configure NEXTAUTH_SECRET nas variáveis de ambiente para produção. { fallbackSeed: 'vitrine-de-craques' }
+2025-12-09T22:41:24.9940187Z [Auth] NEXTAUTH_URL ausente. Recuando para localhost. Configure NEXTAUTH_URL para o domínio de produção. { localUrl: 'http://localhost:3000' }
+2025-12-09T22:41:27.5498322Z    Generating static pages (0/58) ...
+2025-12-09T22:41:28.5697738Z    Generating static pages (14/58) 
+2025-12-09T22:41:30.1130826Z    Generating static pages (28/58) 
+2025-12-09T22:41:31.7644855Z    Generating static pages (43/58) 
+2025-12-09T22:41:32.4391088Z  ✓ Generating static pages (58/58)
+2025-12-09T22:41:33.5255348Z    Finalizing page optimization ...
+2025-12-09T22:41:33.5269701Z    Collecting build traces ...
+2025-12-09T22:41:49.2607415Z 
+2025-12-09T22:41:49.2707039Z Route (app)                                      Size     First Load JS
+2025-12-09T22:41:49.2710165Z ┌ ƒ /                                            1.83 kB         110 kB
+2025-12-09T22:41:49.2711076Z ├ ƒ /_not-found                                  876 B          88.2 kB
+2025-12-09T22:41:49.2712231Z ├ ƒ /administrator                               155 B          87.5 kB
+2025-12-09T22:41:49.2718902Z ├ ƒ /administrator/clubes                        6.46 kB         117 kB
+2025-12-09T22:41:49.2719824Z ├ ƒ /administrator/users                         5.68 kB         111 kB
+2025-12-09T22:41:49.2720903Z ├ ƒ /administrator/videos                        5.24 kB         111 kB
+2025-12-09T22:41:49.2721793Z ├ ƒ /agentes                                     2.7 kB         98.7 kB
+2025-12-09T22:41:49.2722558Z ├ ƒ /agentes/[id]                                1.84 kB         117 kB
+2025-12-09T22:41:49.2739105Z ├ ƒ /api/admin/clubes                            0 B                0 B
+2025-12-09T22:41:49.2739933Z ├ ƒ /api/admin/clubes/[id]                       0 B                0 B
+2025-12-09T22:41:49.2740710Z ├ ƒ /api/admin/summary                           0 B                0 B
+2025-12-09T22:41:49.2741470Z ├ ƒ /api/admin/users                             0 B                0 B
+2025-12-09T22:41:49.2742238Z ├ ƒ /api/admin/users/[userId]/block              0 B                0 B
+2025-12-09T22:41:49.2743062Z ├ ƒ /api/admin/videos                            0 B                0 B
+2025-12-09T22:41:49.2743966Z ├ ƒ /api/admin/videos/[videoId]/appeal-response  0 B                0 B
+2025-12-09T22:41:49.2744878Z ├ ƒ /api/admin/videos/[videoId]/block            0 B                0 B
+2025-12-09T22:41:49.2745729Z ├ ƒ /api/agentes                                 0 B                0 B
+2025-12-09T22:41:49.2746518Z ├ ƒ /api/agentes/[id]                            0 B                0 B
+2025-12-09T22:41:49.2747535Z ├ ƒ /api/atletas                                 0 B                0 B
+2025-12-09T22:41:49.2748291Z ├ ƒ /api/atletas/[id]                            0 B                0 B
+2025-12-09T22:41:49.2749110Z ├ ƒ /api/auth/[...nextauth]                      0 B                0 B
+2025-12-09T22:41:49.2749889Z ├ ƒ /api/blocks/[targetUserId]                   0 B                0 B
+2025-12-09T22:41:49.2750615Z ├ ƒ /api/clubes                                  0 B                0 B
+2025-12-09T22:41:49.2751349Z ├ ƒ /api/clubes/[slug]                           0 B                0 B
+2025-12-09T22:41:49.2752121Z ├ ƒ /api/confederacoes                           0 B                0 B
+2025-12-09T22:41:49.2752986Z ├ ƒ /api/confederacoes/[slug]                    0 B                0 B
+2025-12-09T22:41:49.2753712Z ├ ƒ /api/db-check                                0 B                0 B
+2025-12-09T22:41:49.2754432Z ├ ƒ /api/env                                     0 B                0 B
+2025-12-09T22:41:49.2755131Z ├ ƒ /api/errors                                  0 B                0 B
+2025-12-09T22:41:49.2755862Z ├ ƒ /api/follows/[targetUserId]                  0 B                0 B
+2025-12-09T22:41:49.2756616Z ├ ƒ /api/games                                   0 B                0 B
+2025-12-09T22:41:49.2767963Z ├ ƒ /api/games/[slug]                            0 B                0 B
+2025-12-09T22:41:49.2768854Z ├ ƒ /api/games/[slug]/comments                   0 B                0 B
+2025-12-09T22:41:49.2769734Z ├ ƒ /api/games/[slug]/engagement                 0 B                0 B
+2025-12-09T22:41:49.2770571Z ├ ƒ /api/health                                  0 B                0 B
+2025-12-09T22:41:49.2771742Z ├ ƒ /api/messages                                0 B                0 B
+2025-12-09T22:41:49.2772837Z ├ ƒ /api/messages/unread-count                   0 B                0 B
+2025-12-09T22:41:49.2773741Z ├ ƒ /api/news                                    0 B                0 B
+2025-12-09T22:41:49.2774469Z ├ ƒ /api/news/[id]                               0 B                0 B
+2025-12-09T22:41:49.2775211Z ├ ƒ /api/news/cover                              0 B                0 B
+2025-12-09T22:41:49.2775952Z ├ ƒ /api/noticias                                0 B                0 B
+2025-12-09T22:41:49.2776895Z ├ ƒ /api/noticias/[slug]                         0 B                0 B
+2025-12-09T22:41:49.2777741Z ├ ƒ /api/noticias/[slug]/comments                0 B                0 B
+2025-12-09T22:41:49.2778563Z ├ ƒ /api/noticias/[slug]/engagement              0 B                0 B
+2025-12-09T22:41:49.2779357Z ├ ƒ /api/pg-check                                0 B                0 B
+2025-12-09T22:41:49.2780143Z ├ ƒ /api/profile                                 0 B                0 B
+2025-12-09T22:41:49.2780938Z ├ ƒ /api/profile/avatar                          0 B                0 B
+2025-12-09T22:41:49.2781761Z ├ ƒ /api/profile/personal-info                   0 B                0 B
+2025-12-09T22:41:49.2782587Z ├ ƒ /api/register                                0 B                0 B
+2025-12-09T22:41:49.2783371Z ├ ƒ /api/register/atleta-18                      0 B                0 B
+2025-12-09T22:41:49.2784189Z ├ ƒ /api/register/clube                          0 B                0 B
+2025-12-09T22:41:49.2785029Z ├ ƒ /api/register/de-agentes-licenciados         0 B                0 B
+2025-12-09T22:41:49.2785932Z ├ ƒ /api/register/imprensa-jornalistablogueiro   0 B                0 B
+2025-12-09T22:41:49.2802983Z ├ ƒ /api/register/responsavel                    0 B                0 B
+2025-12-09T22:41:49.2803997Z ├ ƒ /api/register/responsavel/documents          0 B                0 B
+2025-12-09T22:41:49.2804981Z ├ ƒ /api/register/torcedor                       0 B                0 B
+2025-12-09T22:41:49.2805827Z ├ ƒ /api/times                                   0 B                0 B
+2025-12-09T22:41:49.2806614Z ├ ƒ /api/videos                                  0 B                0 B
+2025-12-09T22:41:49.2807800Z ├ ƒ /api/videos/[id]                             0 B                0 B
+2025-12-09T22:41:49.2808594Z ├ ƒ /api/videos/[id]/appeal                      0 B                0 B
+2025-12-09T22:41:49.2809454Z ├ ƒ /api/videos/[id]/comments                    0 B                0 B
+2025-12-09T22:41:49.2810312Z ├ ƒ /api/videos/proxy                            0 B                0 B
+2025-12-09T22:41:49.2811150Z ├ ƒ /arquibancada                                4.49 kB        98.6 kB
+2025-12-09T22:41:49.2811941Z ├ ƒ /atletas                                     4.5 kB          107 kB
+2025-12-09T22:41:49.2812709Z ├ ƒ /atletas/[id]                                5.24 kB         138 kB
+2025-12-09T22:41:49.2813472Z ├ ƒ /cadastro                                    2.21 kB         129 kB
+2025-12-09T22:41:49.2814206Z ├ ƒ /cadastro/[slug]                             2.92 kB         121 kB
+2025-12-09T22:41:49.2815013Z ├ ƒ /cadastro/atleta-18                          3.91 kB         137 kB
+2025-12-09T22:41:49.2815808Z ├ ƒ /cadastro/clube                              4.04 kB         137 kB
+2025-12-09T22:41:49.2816619Z ├ ƒ /cadastro/de-agentes-licenciados             4.04 kB         137 kB
+2025-12-09T22:41:49.2817669Z ├ ƒ /cadastro/imprensa-jornalistablogueiro       4.19 kB         137 kB
+2025-12-09T22:41:49.2818540Z ├ ƒ /cadastro/responsavel                        4.23 kB         137 kB
+2025-12-09T22:41:49.2819383Z ├ ƒ /cadastro/responsavel/uploads                3.69 kB         137 kB
+2025-12-09T22:41:49.2820210Z ├ ƒ /cadastro/sucesso                            155 B          87.5 kB
+2025-12-09T22:41:49.2821048Z ├ ƒ /cadastro/torcedor                           5.13 kB         147 kB
+2025-12-09T22:41:49.2821795Z ├ ƒ /clubes                                      3.35 kB         111 kB
+2025-12-09T22:41:49.2822727Z ├ ƒ /clubes/[slug]                               807 B           109 kB
+2025-12-09T22:41:49.2823615Z ├ ƒ /confederacoes                               807 B           109 kB
+2025-12-09T22:41:49.2824432Z ├ ƒ /confederacoes/[slug]                        807 B           109 kB
+2025-12-09T22:41:49.2825166Z ├ ƒ /feed                                        12.2 kB         145 kB
+2025-12-09T22:41:49.2825850Z ├ ƒ /games                                       197 B           121 kB
+2025-12-09T22:41:49.2826578Z ├ ƒ /games/[slug]                                211 B           128 kB
+2025-12-09T22:41:49.2827448Z ├ ○ /icon                                        0 B                0 B
+2025-12-09T22:41:49.2828156Z ├ ƒ /login                                       3.73 kB         145 kB
+2025-12-09T22:41:49.2828890Z ├ ƒ /noticias                                    203 B           121 kB
+2025-12-09T22:41:49.2829636Z ├ ƒ /noticias/[slug]                             614 B           129 kB
+2025-12-09T22:41:49.2830401Z ├ ƒ /perfil                                      27.3 kB         171 kB
+2025-12-09T22:41:49.2831144Z ├ ƒ /perfis/[id]                                 1.84 kB         117 kB
+2025-12-09T22:41:49.2831901Z ├ ƒ /player/[id]                                 9.15 kB         127 kB
+2025-12-09T22:41:49.2832638Z ├ ƒ /privacidade                                 188 B          96.2 kB
+2025-12-09T22:41:49.2833502Z ├ ƒ /registrar-escolha-perfil                    188 B          96.2 kB
+2025-12-09T22:41:49.2834330Z ├ ƒ /sobre                                       188 B          96.2 kB
+2025-12-09T22:41:49.2835068Z ├ ƒ /torcida                                     155 B          87.5 kB
+2025-12-09T22:41:49.2835812Z └ ƒ /upload                                      10.4 kB         119 kB
+2025-12-09T22:41:49.2836458Z + First Load JS shared by all                    87.3 kB
+2025-12-09T22:41:49.2837298Z   ├ chunks/2117-8600b608bfb46d0e.js              31.7 kB
+2025-12-09T22:41:49.2837953Z   ├ chunks/fd9d1056-55796e42a8a57fc6.js          53.6 kB
+2025-12-09T22:41:49.2838574Z   └ other shared chunks (total)                  1.97 kB
+2025-12-09T22:41:49.2838907Z 
+2025-12-09T22:41:49.2838917Z 
+2025-12-09T22:41:49.2839300Z ƒ Middleware                                     48.3 kB
+2025-12-09T22:41:49.2839627Z 
+2025-12-09T22:41:49.2839961Z ○  (Static)   prerendered as static content
+2025-12-09T22:41:49.2840547Z ƒ  (Dynamic)  server-rendered on demand
+2025-12-09T22:41:49.2840835Z 
+2025-12-09T22:41:49.3208626Z ##[debug]Finishing: Build web app
+2025-12-09T22:41:49.3222141Z ##[debug]Evaluating condition for step: 'Prepare standalone artifact for deployment'
+2025-12-09T22:41:49.3224226Z ##[debug]Evaluating: success()
+2025-12-09T22:41:49.3224800Z ##[debug]Evaluating success:
+2025-12-09T22:41:49.3225414Z ##[debug]=> true
+2025-12-09T22:41:49.3225971Z ##[debug]Result: true
+2025-12-09T22:41:49.3227266Z ##[debug]Starting: Prepare standalone artifact for deployment
+2025-12-09T22:41:49.3237896Z ##[debug]Loading inputs
+2025-12-09T22:41:49.3238703Z ##[debug]Loading env
+2025-12-09T22:41:49.3242350Z ##[group]Run set -euo pipefail
+2025-12-09T22:41:49.3242662Z [36;1mset -euo pipefail[0m
+2025-12-09T22:41:49.3242863Z [36;1m[0m
+2025-12-09T22:41:49.3243082Z [36;1mecho "--- 1. REGERANDO CLIENTE PRISMA ---"[0m
+2025-12-09T22:41:49.3243368Z [36;1mnpx prisma generate[0m
+2025-12-09T22:41:49.3243562Z [36;1m[0m
+2025-12-09T22:41:49.3243752Z [36;1mecho "--- 2. MONTAGEM DO PACOTE ---"[0m
+2025-12-09T22:41:49.3244001Z [36;1mrm -rf deploy[0m
+2025-12-09T22:41:49.3244238Z [36;1mmkdir -p deploy[0m
+2025-12-09T22:41:49.3244424Z [36;1m[0m
+2025-12-09T22:41:49.3244613Z [36;1m# Copia o App Next.js[0m
+2025-12-09T22:41:49.3244842Z [36;1mcp -R .next/standalone/. deploy/[0m
+2025-12-09T22:41:49.3245073Z [36;1m[0m
+2025-12-09T22:41:49.3245351Z [36;1m# Copia estáticos (mas vamos limpar os pesados depois)[0m
+2025-12-09T22:41:49.3245728Z [36;1mif [ -d public ]; then cp -R public deploy/public; fi[0m
+2025-12-09T22:41:49.3246193Z [36;1mmkdir -p deploy/.next/static[0m
+2025-12-09T22:41:49.3246466Z [36;1mcp -R .next/static/. deploy/.next/static[0m
+2025-12-09T22:41:49.3246921Z [36;1m[0m
+2025-12-09T22:41:49.3247343Z [36;1mcp staticwebapp.config.json deploy/staticwebapp.config.json[0m
+2025-12-09T22:41:49.3247666Z [36;1m[0m
+2025-12-09T22:41:49.3247901Z [36;1mecho "--- 2.1. Ajustando start script para standalone ---"[0m
+2025-12-09T22:41:49.3248197Z [36;1mnode <<'NODE'[0m
+2025-12-09T22:41:49.3248397Z [36;1mconst fs = require('fs');[0m
+2025-12-09T22:41:49.3248648Z [36;1mconst path = require('path');[0m
+2025-12-09T22:41:49.3248949Z [36;1mconst pkgPath = path.join('deploy', 'package.json');[0m
+2025-12-09T22:41:49.3249317Z [36;1mconst pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));[0m
+2025-12-09T22:41:49.3249610Z [36;1m[0m
+2025-12-09T22:41:49.3249768Z [36;1mpkg.scripts = {[0m
+2025-12-09T22:41:49.3249973Z [36;1m  ...pkg.scripts,[0m
+2025-12-09T22:41:49.3250179Z [36;1m  start: 'node server.js',[0m
+2025-12-09T22:41:49.3250397Z [36;1m};[0m
+2025-12-09T22:41:49.3250550Z [36;1m[0m
+2025-12-09T22:41:49.3250779Z [36;1mfs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));[0m
+2025-12-09T22:41:49.3251292Z [36;1mconsole.log('package.json atualizado com "start": "node server.js" para o artefato standalone');[0m
+2025-12-09T22:41:49.3251705Z [36;1mNODE[0m
+2025-12-09T22:41:49.3251860Z [36;1m[0m
+2025-12-09T22:41:49.3252066Z [36;1mecho "--- 3. OTIMIZAÇÃO DO ARTEFATO ---"[0m
+2025-12-09T22:41:49.3252461Z [36;1m# Mantemos o node_modules já empacotado pelo output "standalone" do Next.js[0m
+2025-12-09T22:41:49.3252932Z [36;1m# (ele já contém apenas as dependências necessárias em produção).[0m
+2025-12-09T22:41:49.3253356Z [36;1m# Depois removemos metadados de repositório e realizamos a poda fina.[0m
+2025-12-09T22:41:49.3253782Z [36;1mrm -rf deploy/.git deploy/.github deploy/.husky deploy/.vscode[0m
+2025-12-09T22:41:49.3254090Z [36;1m[0m
+2025-12-09T22:41:49.3254360Z [36;1m# Mantemos os binários Debian do Prisma (compatíveis com o runner do SWA)[0m
+2025-12-09T22:41:49.3254764Z [36;1m# e removemos apenas arquivos grandes ou não usados.[0m
+2025-12-09T22:41:49.3255097Z [36;1mbash scripts/prune-deploy-artifact.sh deploy[0m
+2025-12-09T22:41:49.3255357Z [36;1m[0m
+2025-12-09T22:41:49.3274095Z [36;1mecho "--- 4. AÇÕES EXTRA ---"[0m
+2025-12-09T22:41:49.3274547Z [36;1m# Esvaziar pasta Public da FUNCTION[0m
+2025-12-09T22:41:49.3275117Z [36;1m# (Os arquivos estáticos já foram subidos para o CDN na etapa de build padrão)[0m
+2025-12-09T22:41:49.3275848Z [36;1m# A Function não precisa dos vídeos MP4/MOV, apenas o navegador precisa.[0m
+2025-12-09T22:41:49.3276261Z [36;1mfind deploy/public -name "*.mp4" -delete[0m
+2025-12-09T22:41:49.3276548Z [36;1mfind deploy/public -name "*.mov" -delete[0m
+2025-12-09T22:41:49.3277071Z [36;1mfind deploy/public -name "*.jpg" -delete[0m
+2025-12-09T22:41:49.3277359Z [36;1mfind deploy/public -name "*.png" -delete[0m
+2025-12-09T22:41:49.3277595Z [36;1m[0m
+2025-12-09T22:41:49.3277778Z [36;1m# Limpeza Geral[0m
+2025-12-09T22:41:49.3277987Z [36;1mrm -rf deploy/docs[0m
+2025-12-09T22:41:49.3278201Z [36;1mrm -rf deploy/logs[0m
+2025-12-09T22:41:49.3278438Z [36;1mrm -rf deploy/Vitrine-De-Craques-App[0m
+2025-12-09T22:41:49.3278738Z [36;1mrm -rf deploy/Vitrine-De-Craques-App-iOS[0m
+2025-12-09T22:41:49.3278993Z [36;1m[0m
+2025-12-09T22:41:49.3279177Z [36;1mecho "--- 5. RELATÓRIO FINAL ---"[0m
+2025-12-09T22:41:49.3279443Z [36;1mecho "Tamanho Total (Meta: < 100MB):"[0m
+2025-12-09T22:41:49.3279694Z [36;1mdu -sh deploy[0m
+2025-12-09T22:41:49.3279882Z [36;1m[0m
+2025-12-09T22:41:49.3280136Z [36;1mecho "Conteúdo de @next (bins presentes no artefato final):"[0m
+2025-12-09T22:41:49.3280559Z [36;1mls deploy/node_modules/@next || echo "Pasta @next não encontrada"[0m
+2025-12-09T22:41:49.3313256Z shell: /usr/bin/bash -e {0}
+2025-12-09T22:41:49.3313480Z ##[endgroup]
+2025-12-09T22:41:49.3346163Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/51957705-39fb-44c8-b34c-afaa9a8f6227.sh
+2025-12-09T22:41:49.3367360Z --- 1. REGERANDO CLIENTE PRISMA ---
+2025-12-09T22:41:50.7064262Z Prisma schema loaded from prisma/schema.prisma
+2025-12-09T22:41:51.6268843Z 
+2025-12-09T22:41:51.6270971Z ✔ Generated Prisma Client (v6.16.2) to ./node_modules/@prisma/client in 418ms
+2025-12-09T22:41:51.6272435Z 
+2025-12-09T22:41:51.6273022Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-12-09T22:41:51.6273547Z 
+2025-12-09T22:41:51.6274000Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+2025-12-09T22:41:51.6274475Z 
+2025-12-09T22:41:51.6547766Z --- 2. MONTAGEM DO PACOTE ---
+2025-12-09T22:41:52.3853800Z --- 2.1. Ajustando start script para standalone ---
+2025-12-09T22:41:52.7693829Z package.json atualizado com "start": "node server.js" para o artefato standalone
+2025-12-09T22:41:52.7726285Z --- 3. OTIMIZAÇÃO DO ARTEFATO ---
+2025-12-09T22:41:52.8279726Z Pruning unused Prisma runtime binaries...
+2025-12-09T22:41:52.8388458Z Removing unused Prisma client engines...
+2025-12-09T22:41:52.8467379Z deploy/node_modules/.prisma/client/libquery_engine-darwin-arm64.dylib.node
+2025-12-09T22:41:52.8469709Z deploy/node_modules/.prisma/client/libquery_engine-darwin.dylib.node
+2025-12-09T22:41:52.8471717Z Cleaning up optional sharp binaries...
+2025-12-09T22:41:52.8512143Z Removing development dependencies from deploy artifact...
+2025-12-09T22:41:52.8862212Z Deleting dependency source maps...
+2025-12-09T22:41:52.8971097Z Removing Next.js build cache...
+2025-12-09T22:41:52.9190960Z Pruning finished.
+2025-12-09T22:41:52.9194761Z --- 4. AÇÕES EXTRA ---
+2025-12-09T22:41:53.0140551Z --- 5. RELATÓRIO FINAL ---
+2025-12-09T22:41:53.0141220Z Tamanho Total (Meta: < 100MB):
+2025-12-09T22:41:53.0414910Z 112M	deploy
+2025-12-09T22:41:53.0418651Z Conteúdo de @next (bins presentes no artefato final):
+2025-12-09T22:41:53.0429930Z env
+2025-12-09T22:41:53.0439954Z ##[debug]Finishing: Prepare standalone artifact for deployment
+2025-12-09T22:41:53.0452034Z ##[debug]Evaluating condition for step: 'Build And Deploy'
+2025-12-09T22:41:53.0454101Z ##[debug]Evaluating: success()
+2025-12-09T22:41:53.0454658Z ##[debug]Evaluating success:
+2025-12-09T22:41:53.0455396Z ##[debug]=> true
+2025-12-09T22:41:53.0455935Z ##[debug]Result: true
+2025-12-09T22:41:53.0456903Z ##[debug]Starting: Build And Deploy
+2025-12-09T22:41:53.0489766Z ##[debug]Loading inputs
+2025-12-09T22:41:53.0492510Z ##[debug]Evaluating: secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810
+2025-12-09T22:41:53.0492944Z ##[debug]Evaluating Index:
+2025-12-09T22:41:53.0493169Z ##[debug]..Evaluating secrets:
+2025-12-09T22:41:53.0493412Z ##[debug]..=> Object
+2025-12-09T22:41:53.0493632Z ##[debug]..Evaluating String:
+2025-12-09T22:41:53.0493955Z ##[debug]..=> 'AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810'
+2025-12-09T22:41:53.0495024Z ##[debug]=> '***'
+2025-12-09T22:41:53.0495625Z ##[debug]Result: '***'
+2025-12-09T22:41:53.0496151Z ##[debug]Evaluating: secrets.GITHUB_TOKEN
+2025-12-09T22:41:53.0496459Z ##[debug]Evaluating Index:
+2025-12-09T22:41:53.0497201Z ##[debug]..Evaluating secrets:
+2025-12-09T22:41:53.0497474Z ##[debug]..=> Object
+2025-12-09T22:41:53.0497694Z ##[debug]..Evaluating String:
+2025-12-09T22:41:53.0497919Z ##[debug]..=> 'GITHUB_TOKEN'
+2025-12-09T22:41:53.0498284Z ##[debug]=> '***'
+2025-12-09T22:41:53.0498610Z ##[debug]Result: '***'
+2025-12-09T22:41:53.0501943Z ##[debug]Loading env
+2025-12-09T22:41:53.0508903Z ##[group]Run Azure/static-web-apps-deploy@v1
+2025-12-09T22:41:53.0509164Z with:
+2025-12-09T22:41:53.0509810Z   azure_static_web_apps_api_token: ***
+2025-12-09T22:41:53.0510149Z   repo_token: ***
+2025-12-09T22:41:53.0510334Z   action: upload
+2025-12-09T22:41:53.0510512Z   app_location: deploy
+2025-12-09T22:41:53.0510700Z   skip_app_build: true
+2025-12-09T22:41:53.0510882Z   skip_api_build: true
+2025-12-09T22:41:53.0511056Z ##[endgroup]
+2025-12-09T22:41:53.0610264Z ##[command]/usr/bin/docker run --name aa79522f4206da4c36be6ed6aa4c40c191_6394ba --label 8178aa --workdir /github/workspace --rm -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_SKIP_API_BUILD" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_DEBUG" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp":"/github/runner_temp" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site":"/github/workspace" 8178aa:79522f4206da4c36be6ed6aa4c40c191
+2025-12-09T22:41:53.4558063Z DeploymentId: 90bf3d65-c5f1-4179-af83-9ac6b66a2768
+2025-12-09T22:41:53.4558511Z 
+2025-12-09T22:41:53.5725955Z [37mTry to validate location at: '/github/workspace/deploy'.[0m
+2025-12-09T22:41:53.5738839Z [37mApp Directory Location: 'deploy' was found.[0m
+2025-12-09T22:41:53.5740884Z [37mTry to validate location at: '/github/workspace/swa-db-connections'.[0m
+2025-12-09T22:41:53.5745273Z [37mLooking for event info[0m
+2025-12-09T22:41:54.2210317Z [37mSkipping step to build /github/workspace/deploy with Oryx[0m
+2025-12-09T22:41:54.2374336Z [37mDetected the following framework: Next.js[0m
+2025-12-09T22:41:54.2376566Z [37mTry to validate location at: '/github/workspace/deploy/.next'.[0m
+2025-12-09T22:41:54.2673024Z [37mUsing 'staticwebapp.config.json' file for configuration information, 'routes.json' will be ignored.[0m
+2025-12-09T22:41:54.3469628Z [33m[WARNING] For Next.js apps, staticwebapp.config.json features are not fully supported yet![0m
+2025-12-09T22:41:54.3491423Z [37mPlease note: For Next.js applications if skip_api_build=true, Static Web Apps will not remove dev dependencies or add the sharp package by default. If you want these optimizations, kindly add them to your custom build steps before passing skip_app_build=true[0m
+2025-12-09T22:41:54.3521432Z [37mRepackaged Next.js app to deploy on the backend.[0m
+2025-12-09T22:41:54.3532002Z [37mSkipping step to build /github/workspace/deploy with Oryx[0m
+2025-12-09T22:41:54.3533113Z [33mWeb App Runtime Information. OS: linux, node version: 20[0m
+2025-12-09T22:41:54.7127948Z [37mZipping Api Artifacts[0m
+2025-12-09T22:41:59.9353067Z [37mDone Zipping Api Artifacts[0m
+2025-12-09T22:42:00.6372687Z [37mZipping App Artifacts[0m
+2025-12-09T22:42:00.7153204Z [37mDone Zipping App Artifacts[0m
+2025-12-09T22:42:00.7155105Z [37mUploading build artifacts.[0m
+2025-12-09T22:42:02.4166374Z [32mFinished Upload. Polling on deployment.[0m
+2025-12-09T22:42:02.6014437Z [37mStatus: InProgress. Time: 0.1825022(s)[0m
+2025-12-09T22:42:17.7229445Z [37mStatus: InProgress. Time: 15.3064024(s)[0m
+2025-12-09T22:42:32.9653653Z [37mStatus: InProgress. Time: 30.5486593(s)[0m
+2025-12-09T22:42:48.0753278Z [37mStatus: InProgress. Time: 45.6586378(s)[0m
+2025-12-09T22:43:03.1908560Z [37mStatus: InProgress. Time: 60.7741164(s)[0m
+2025-12-09T22:43:18.3187620Z [37mStatus: InProgress. Time: 75.9020453(s)[0m
+2025-12-09T22:43:33.4517694Z [37mStatus: InProgress. Time: 91.0348369(s)[0m
+2025-12-09T22:43:48.5775368Z [37mStatus: InProgress. Time: 106.1604891(s)[0m
+2025-12-09T22:44:05.1223150Z [37mStatus: InProgress. Time: 122.7053666(s)[0m
+2025-12-09T22:44:20.2552324Z [37mStatus: InProgress. Time: 137.8387914(s)[0m
+2025-12-09T22:44:35.3898980Z [37mStatus: InProgress. Time: 152.9734325(s)[0m
+2025-12-09T22:44:50.5182535Z [37mStatus: InProgress. Time: 168.1015542(s)[0m
+2025-12-09T22:45:07.8629806Z [37mStatus: InProgress. Time: 185.4463578(s)[0m
+2025-12-09T22:45:23.0115646Z [37mStatus: InProgress. Time: 200.5948511(s)[0m
+2025-12-09T22:45:38.1324654Z [37mStatus: InProgress. Time: 215.715775(s)[0m
+2025-12-09T22:45:53.2832600Z [37mStatus: InProgress. Time: 230.8664927(s)[0m
+2025-12-09T22:46:08.4015284Z [37mStatus: InProgress. Time: 245.984825(s)[0m
+2025-12-09T22:46:23.5199343Z [37mStatus: InProgress. Time: 261.1028839(s)[0m
+2025-12-09T22:46:38.6506236Z [37mStatus: InProgress. Time: 276.2339753(s)[0m
+2025-12-09T22:46:54.8654591Z [37mStatus: InProgress. Time: 292.4486846(s)[0m
+2025-12-09T22:47:10.0040272Z [37mStatus: InProgress. Time: 307.5876161(s)[0m
+2025-12-09T22:47:25.1249533Z [37mStatus: InProgress. Time: 322.708324(s)[0m
+2025-12-09T22:47:40.2648856Z [37mStatus: InProgress. Time: 337.8480911(s)[0m
+2025-12-09T22:47:55.5768317Z [37mStatus: InProgress. Time: 353.1601431(s)[0m
+2025-12-09T22:48:11.3807517Z [37mStatus: InProgress. Time: 368.9620316(s)[0m
+2025-12-09T22:48:26.4975711Z [37mStatus: InProgress. Time: 384.0809331(s)[0m
+2025-12-09T22:48:41.6549210Z [37mStatus: InProgress. Time: 399.2380676(s)[0m
+2025-12-09T22:48:56.8107647Z [37mStatus: InProgress. Time: 414.3936889(s)[0m
+2025-12-09T22:49:11.9266966Z [37mStatus: InProgress. Time: 429.5098256(s)[0m
+2025-12-09T22:49:27.0387623Z [37mStatus: InProgress. Time: 444.6219853(s)[0m
+2025-12-09T22:49:42.1583341Z [37mStatus: InProgress. Time: 459.7419026(s)[0m
+2025-12-09T22:49:57.2839082Z [37mStatus: InProgress. Time: 474.8674197(s)[0m
+2025-12-09T22:50:12.5192033Z [37mStatus: InProgress. Time: 490.1025247(s)[0m
+2025-12-09T22:50:27.6336053Z [37mStatus: InProgress. Time: 505.2170772(s)[0m
+2025-12-09T22:50:42.7978518Z [37mStatus: InProgress. Time: 520.3813778(s)[0m
+2025-12-09T22:50:57.9324528Z [37mStatus: InProgress. Time: 535.516(s)[0m
+2025-12-09T22:51:13.0428100Z [37mStatus: InProgress. Time: 550.6262749(s)[0m
+2025-12-09T22:51:28.1750236Z [37mStatus: InProgress. Time: 565.758266(s)[0m
+2025-12-09T22:51:43.3267197Z [37mStatus: Failed. Time: 580.9094239(s)[0m
+2025-12-09T22:51:43.3268418Z [31mDeployment Failed :([0m
+2025-12-09T22:51:43.3275156Z [31mDeployment Failure Reason: Web app warm up timed out. Please try again later.[0m
+2025-12-09T22:51:43.3488358Z [37m[0m
+2025-12-09T22:51:43.3490229Z [33mFor further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/[0m
+2025-12-09T22:51:43.3492109Z [33mIf you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/[0m
+2025-12-09T22:51:43.3492923Z [33mExiting[0m
+2025-12-09T22:51:43.4521741Z ##[debug]Docker Action run completed with exit code 1
+2025-12-09T22:51:43.4527314Z ##[debug]Finishing: Build And Deploy
+2025-12-09T22:51:43.4536089Z ##[debug]Evaluating condition for step: 'Post Setup Node'
+2025-12-09T22:51:43.4538040Z ##[debug]Evaluating: success()
+2025-12-09T22:51:43.4538392Z ##[debug]Evaluating success:
+2025-12-09T22:51:43.4538755Z ##[debug]=> false
+2025-12-09T22:51:43.4539058Z ##[debug]Result: false
+2025-12-09T22:51:43.4543867Z ##[debug]Evaluating condition for step: 'Post Run actions/checkout@v4'
+2025-12-09T22:51:43.4545813Z ##[debug]Evaluating: always()
+2025-12-09T22:51:43.4546159Z ##[debug]Evaluating always:
+2025-12-09T22:51:43.4547217Z ##[debug]=> true
+2025-12-09T22:51:43.4547618Z ##[debug]Result: true
+2025-12-09T22:51:43.4548070Z ##[debug]Starting: Post Run actions/checkout@v4
+2025-12-09T22:51:43.4576094Z ##[debug]Loading inputs
+2025-12-09T22:51:43.4577546Z ##[debug]Evaluating: github.repository
+2025-12-09T22:51:43.4577854Z ##[debug]Evaluating Index:
+2025-12-09T22:51:43.4578084Z ##[debug]..Evaluating github:
+2025-12-09T22:51:43.4578330Z ##[debug]..=> Object
+2025-12-09T22:51:43.4578557Z ##[debug]..Evaluating String:
+2025-12-09T22:51:43.4578783Z ##[debug]..=> 'repository'
+2025-12-09T22:51:43.4579100Z ##[debug]=> 'aspepper/vitrine-de-craques-web-site'
+2025-12-09T22:51:43.4579447Z ##[debug]Result: 'aspepper/vitrine-de-craques-web-site'
+2025-12-09T22:51:43.4580765Z ##[debug]Evaluating: github.token
+2025-12-09T22:51:43.4581045Z ##[debug]Evaluating Index:
+2025-12-09T22:51:43.4581258Z ##[debug]..Evaluating github:
+2025-12-09T22:51:43.4581493Z ##[debug]..=> Object
+2025-12-09T22:51:43.4581694Z ##[debug]..Evaluating String:
+2025-12-09T22:51:43.4581903Z ##[debug]..=> 'token'
+2025-12-09T22:51:43.4582316Z ##[debug]=> '***'
+2025-12-09T22:51:43.4582613Z ##[debug]Result: '***'
+2025-12-09T22:51:43.4588717Z ##[debug]Loading env
+2025-12-09T22:51:43.4592326Z Post job cleanup.
+2025-12-09T22:51:43.5550460Z ##[debug]Getting git version
+2025-12-09T22:51:43.5565713Z [command]/usr/bin/git version
+2025-12-09T22:51:43.5609767Z git version 2.52.0
+2025-12-09T22:51:43.5633777Z ##[debug]0
+2025-12-09T22:51:43.5634780Z ##[debug]git version 2.52.0
+2025-12-09T22:51:43.5635158Z ##[debug]
+2025-12-09T22:51:43.5636335Z ##[debug]Set git useragent to: git/2.52.0 (github-actions-checkout)
+2025-12-09T22:51:43.5640648Z ::add-mask::***
+2025-12-09T22:51:43.5658651Z Temporarily overriding HOME='/home/runner/work/_temp/19947a94-8dea-48eb-a7ef-cf570128955d' before making global git config changes
+2025-12-09T22:51:43.5660121Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-09T22:51:43.5666974Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vitrine-de-craques-web-site/vitrine-de-craques-web-site
+2025-12-09T22:51:43.5701498Z ##[debug]0
+2025-12-09T22:51:43.5703852Z ##[debug]
+2025-12-09T22:51:43.5712617Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-09T22:51:43.5740732Z ##[debug]1
+2025-12-09T22:51:43.5741613Z ##[debug]
+2025-12-09T22:51:43.5748334Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-09T22:51:43.6018983Z ##[debug]0
+2025-12-09T22:51:43.6020944Z ##[debug]
+2025-12-09T22:51:43.6028106Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-09T22:51:43.6050597Z http.https://github.com/.extraheader
+2025-12-09T22:51:43.6058663Z ##[debug]0
+2025-12-09T22:51:43.6059736Z ##[debug]http.https://github.com/.extraheader
+2025-12-09T22:51:43.6060170Z ##[debug]
+2025-12-09T22:51:43.6066460Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-12-09T22:51:43.6094034Z ##[debug]0
+2025-12-09T22:51:43.6095032Z ##[debug]
+2025-12-09T22:51:43.6100759Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-09T22:51:43.6339355Z ##[debug]0
+2025-12-09T22:51:43.6340247Z ##[debug]
+2025-12-09T22:51:43.6347193Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-09T22:51:43.6374121Z ##[debug]1
+2025-12-09T22:51:43.6375175Z ##[debug]
+2025-12-09T22:51:43.6382467Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-09T22:51:43.6663188Z ##[debug]0
+2025-12-09T22:51:43.6664278Z ##[debug]
+2025-12-09T22:51:43.6671805Z ##[debug]Unsetting HOME override
+2025-12-09T22:51:43.6851690Z ##[debug]Node Action run completed with exit code 0
+2025-12-09T22:51:43.6854640Z ##[debug]Finishing: Post Run actions/checkout@v4
+2025-12-09T22:51:43.6980881Z ##[debug]Starting: Complete job
+2025-12-09T22:51:43.6982769Z Cleaning up orphan processes
+2025-12-09T22:51:43.7379243Z ##[debug]Finishing: Complete job
+2025-12-09T22:51:43.7414046Z ##[debug]Finishing: Build and Deploy Job

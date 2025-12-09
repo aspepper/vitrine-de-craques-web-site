@@ -57,54 +57,47 @@ jobs:
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
 
-          echo "--- 3. INJEÇÃO DO MOTOR PRISMA (CÓPIA ÚNICA) ---"
+          echo "--- 3. INJEÇÃO DO MOTOR PRISMA ---"
           mkdir -p deploy/node_modules/.prisma/client
           
-          # Procura o motor 'musl' (Alpine)
           ENGINE_PATH=$(find . -not -path "./deploy/*" -name "libquery_engine-linux-musl*.node" | head -n 1)
-          
           if [ -z "$ENGINE_PATH" ]; then
             echo "❌ ERRO CRÍTICO: Motor Alpine não encontrado!"
             exit 1
           fi
-          
-          echo "✅ Motor Alpine encontrado: $ENGINE_PATH"
-          echo "Copiando para o deploy..."
+          echo "✅ Motor copiado: $ENGINE_PATH"
           cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
 
-          echo "--- 4. DIETA DO PACOTE (LIMPEZA TOTAL) ---"
-          echo "Tamanho ANTES da limpeza:"
-          du -sh deploy
-          
-          # AÇÃO 1: Remover SHARP e LIBVIPS
+          echo "--- 4. DIETA DO PACOTE ---"
+          # Remoções padrão
           rm -rf deploy/node_modules/sharp
           rm -rf deploy/node_modules/@img
           rm -rf deploy/node_modules/libvips
-          
-          # AÇÃO 2: Remover pastas proibidas
           rm -rf deploy/docs
           rm -rf deploy/logs
           rm -rf deploy/Vitrine-De-Craques-App
           rm -rf deploy/Vitrine-De-Craques-App-iOS
-          
-          # AÇÃO 3: Cache e Mapas
           rm -rf deploy/.next/cache
           find deploy -name "*.map" -delete
-          
-          # AÇÃO 4: Remover binários de TODOS os outros sistemas
-          # O Ubuntu do GitHub gera o 'debian', que precisamos apagar!
-          echo "Removendo motores inúteis (debian, darwin, windows, rhel)..."
           find deploy/node_modules -name "*debian*" -delete
           find deploy/node_modules -name "*darwin*" -delete
           find deploy/node_modules -name "*windows*" -delete
           find deploy/node_modules -name "*rhel*" -delete
-          
-          echo "Tamanho FINAL do pacote:"
+
+          echo "--- 5. RELATÓRIO RAIO-X (DEBUG DE TAMANHO) ---"
+          echo "Tamanho Total:"
           du -sh deploy
           
-          # Lista para conferir se sobrou APENAS o linux-musl
-          echo "Motores restantes na pasta:"
-          ls -l deploy/node_modules/.prisma/client/
+          echo "Contagem de Arquivos (Muitos arquivos pequenos também travam):"
+          find deploy -type f | wc -l
+          
+          echo "TOP 50 ARQUIVOS MAIS PESADOS:"
+          echo "----------------------------------------------------------------"
+          find deploy -type f -exec du -h {} + | sort -rh | head -n 50
+          echo "----------------------------------------------------------------"
+          
+          echo "TOP 20 PASTAS MAIS PESADAS (NODE_MODULES):"
+          du -h deploy/node_modules | sort -rh | head -n 20
 
       - name: Build And Deploy
         id: builddeploy

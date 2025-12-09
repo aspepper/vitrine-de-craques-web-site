@@ -21,15 +21,6 @@ const nextConfig = {
       '@prisma/client',
       'prisma'
     ],
-    outputFileTracingIncludes: {
-      '/': [
-        './node_modules/.prisma/client/**',
-        './node_modules/@prisma/client/**',
-        ...prismaEnginePaths,
-        './node_modules/applicationinsights/**',
-        './prisma/**',
-      ],
-    },
   },
   reactStrictMode: true,
   images: {

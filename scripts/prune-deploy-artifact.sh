@@ -48,6 +48,28 @@ if [ -d "$IMG_DIR" ]; then
   rm -rf "$IMG_DIR"/sharp-libvips-linuxmusl-x64 "$IMG_DIR"/sharp-linuxmusl-x64 || true
 fi
 
+# Remove devDependencies manually. npm prune --omit=dev can re-install packages in
+# the standalone bundle, so we explicitly delete anything declared as a
+# devDependency to keep the SWA artifact small.
+if [ -d "$TARGET_DIR/node_modules" ] && [ -f "$TARGET_DIR/package.json" ]; then
+  echo "Removing development dependencies from deploy artifact..."
+  node <<'NODE' "$TARGET_DIR/package.json"
+const path = require('path');
+const fs = require('fs');
+
+const pkgPath = process.argv[1];
+const pkg = require(pkgPath);
+const base = path.dirname(pkgPath);
+const devDeps = Object.keys(pkg.devDependencies || {});
+
+for (const dep of devDeps) {
+  const target = path.join(base, 'node_modules', ...dep.split('/'));
+  fs.rmSync(target, { recursive: true, force: true });
+}
+NODE
+  find "$TARGET_DIR/node_modules" -type d -empty -delete
+fi
+
 # Remove source maps for dependencies to shrink the artifact a bit further.
 if [ -d "$TARGET_DIR/node_modules" ]; then
   echo "Deleting dependency source maps..."

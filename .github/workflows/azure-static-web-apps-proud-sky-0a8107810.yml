@@ -18,29 +18,11 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-      AUTH_TRUST_HOST: 'true'
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          # O repositório contém entradas de submódulo sem configuração em .gitmodules,
-          # portanto a tentativa de inicialização causa falha (exit code 128).
-          # Como o build web não depende desses submódulos (app mobile/iOS é tratado
-          # em pipeline separado), desativamos a sincronização automática aqui.
           submodules: false
           lfs: false
-          # Mantemos o checkout enxuto para evitar que pastas irrelevantes (mobile e docs)
-          # aumentem o tempo de preparação/empacotamento do deploy.
-          sparse-checkout: |
-            *
-            !Vitrine-De-Craques-App/
-            !Vitrine-De-Craques-App-iOS/
-            !docs/
-          sparse-checkout-cone-mode: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -48,16 +30,16 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # Nota: este workflow trata apenas do app web Next.js; o app_mobile é construído em pipeline separado.
       - name: Install dependencies
         run: npm ci
 
-      - name: Build web app (includes Prisma client)
+      - name: Build web app
         run: npm run build
-        
-      - name: Prepare standalone artifact for deployment
+
+      - name: Prepare standalone artifact (Dieta Rigorosa)
         run: |
-          echo "--- 1. LIMPEZA E GERAÇÃO (PRISMA) ---"
+          echo "--- 1. LIMPEZA E GERAÇÃO PRISMA (FORÇADA) ---"
+          # Garante que o motor Alpine (musl) seja baixado agora
           rm -rf node_modules/.prisma
           rm -rf node_modules/@prisma/client
           npx prisma generate
@@ -66,80 +48,75 @@ jobs:
           rm -rf deploy
           mkdir -p deploy
           
-          # Copia o App Next.js
+          # Copia o App Next.js Standalone
           cp -R .next/standalone/. deploy/
           
-          # Copia estáticos (Public)
+          # Copia estáticos
           if [ -d public ]; then cp -R public deploy/public; fi
           mkdir -p deploy/.next/static
           cp -R .next/static/. deploy/.next/static
           
+          # Configurações
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
 
-          echo "--- 3. INJEÇÃO DO MOTOR PRISMA ---"
+          echo "--- 3. INJEÇÃO DO MOTOR PRISMA (CÓPIA ÚNICA) ---"
           mkdir -p deploy/node_modules/.prisma/client
-          mkdir -p deploy/node_modules/@prisma/client
-
+          
+          # Procura o motor 'linux-musl' (qualquer versão)
           ENGINE_PATH=$(find . -not -path "./deploy/*" -name "libquery_engine-linux-musl*.node" | head -n 1)
+          
           if [ -z "$ENGINE_PATH" ]; then
-            echo "❌ ERRO: Motor Alpine não encontrado!"
+            echo "❌ ERRO CRÍTICO: Motor Alpine não encontrado! Verifique o schema.prisma."
             exit 1
           fi
+          
+          echo "✅ Motor encontrado: $ENGINE_PATH"
+          echo "Copiando para deploy/node_modules/.prisma/client/ ..."
           cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
-          cp "$ENGINE_PATH" deploy/node_modules/@prisma/client/
 
-          echo "--- 4. DIETA DO PACOTE (LIMPEZA EXPLÍCITA) ---"
+          echo "--- 4. DIETA DO PACOTE (REMOÇÃO DO LIXO) ---"
           echo "Tamanho ANTES da limpeza:"
           du -sh deploy
           
-          # AÇÃO 0: REMOÇÃO EXPLÍCITA DAS PASTAS PESADAS (O QUE VOCÊ PEDIU)
-          # Removemos caso elas tenham sido copiadas via 'public' ou rastreamento
-          echo "Removendo pastas proibidas..."
+          # AÇÃO 1: Remover SHARP e LIBVIPS (Incompatíveis com Alpine e pesados)
+          # Isso previne o erro 'Failed to deploy Azure Functions'
+          rm -rf deploy/node_modules/sharp
+          rm -rf deploy/node_modules/@img
+          rm -rf deploy/node_modules/libvips
+          
+          # AÇÃO 2: Remover pastas proibidas/pesadas do repositório
           rm -rf deploy/docs
           rm -rf deploy/logs
           rm -rf deploy/Vitrine-De-Craques-App
           rm -rf deploy/Vitrine-De-Craques-App-iOS
           
-          # AÇÃO 1: Remover Cache de Build
+          # AÇÃO 3: Remover Cache de Build e Mapas
           rm -rf deploy/.next/cache
-          
-          # AÇÃO 2: Remover Vídeos da pasta Public do servidor
-          find deploy/public -name "*.mp4" -delete
-          find deploy/public -name "*.mov" -delete
-          
-          # AÇÃO 3: Remover Mapas de Fonte e Lixo
           find deploy -name "*.map" -delete
+          
+          # AÇÃO 4: Remover binários de outros sistemas (Darwin/Windows)
           find deploy/node_modules -name "*darwin*" -delete
           find deploy/node_modules -name "*windows*" -delete
           
-          echo "Tamanho DEPOIS da limpeza:"
+          echo "Tamanho FINAL do pacote:"
           du -sh deploy
           
-          # Debug: Mostrar os 10 arquivos mais pesados restantes
-          find deploy -type f -exec du -h {} + | sort -rh | head -n 10
-
-      # (Opcional de diagnóstico: ver Node & Prisma)
-      - name: Diagnostics
-        run: |
-          node -v
-          npx prisma -v
+          # Lista o que sobrou na pasta do Prisma para confirmar
+          ls -l deploy/node_modules/.prisma/client/
 
       - name: Build And Deploy
-        if: github.event_name == 'push'
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "deploy" # artefato pré-montado (standalone) gerado nas etapas anteriores
+          app_location: "deploy"
           api_location: ""
-          output_location: "" # não é necessário quando skip_app_build = true
-          skip_app_build: true # evita rebuild via Oryx e usa o pacote pronto em deploy/
-          ###### End of Repository/Build Configurations ######
+          output_location: ""
+          skip_app_build: true
+          skip_api_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

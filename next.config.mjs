@@ -18,8 +18,7 @@ const nextConfig = {
     // Isso é crucial para o Prisma e Sharp funcionarem no Azure SWA
     serverComponentsExternalPackages: [
       '@prisma/client',
-      'prisma',
-      'sharp' 
+      'prisma'
     ],
     outputFileTracingIncludes: {
       '/': [

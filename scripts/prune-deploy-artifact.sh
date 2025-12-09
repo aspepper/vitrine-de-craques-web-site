@@ -82,6 +82,9 @@ if [ -d "$TARGET_DIR/.next/cache" ]; then
   rm -rf "$TARGET_DIR/.next/cache"
 fi
 
+# Strip version control and editor metadata that can bloat the SWA artifact.
+rm -rf "$TARGET_DIR/.git" "$TARGET_DIR/.github" "$TARGET_DIR/.husky" "$TARGET_DIR/.vscode" "$TARGET_DIR/.idea"
+
 # Remove any empty directories left behind by the pruning steps.
 find "$TARGET_DIR" -type d -empty -delete
 

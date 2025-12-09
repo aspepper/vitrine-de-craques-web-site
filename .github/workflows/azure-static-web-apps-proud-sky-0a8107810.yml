@@ -68,40 +68,35 @@ jobs:
           fi
           cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
 
-          echo "--- 4. DIETA DO PACOTE (CORRIGIDA) ---"
+          echo "--- 4. DIETA DO PACOTE (EQUILIBRADA) ---"
           
-          # AÇÃO 1: Remover APENAS os binários SWC (mantendo @next/env)
-          # Em vez de apagar a pasta @next toda, apagamos só os compiladores
-          echo "Removendo binários SWC..."
-          find deploy/node_modules/@next -name "swc-*" -type d -exec rm -rf {} +
-          
-          # AÇÃO 2: Remover Sharp e libs de imagem
+          # AÇÃO 1: Remover APENAS o Sharp (Incompatível)
+          # NÃO REMOVEMOS MAIS O @next (Isso corrige o erro de inicialização)
           rm -rf deploy/node_modules/sharp
           rm -rf deploy/node_modules/@img
           rm -rf deploy/node_modules/libvips
           
-          # AÇÃO 3: Remover pastas proibidas
+          # AÇÃO 2: Remover Cache e Mapas (Isso economiza ~50MB)
+          rm -rf deploy/.next/cache
+          find deploy -name "*.map" -delete
+          
+          # AÇÃO 3: Remover binários de sistemas inúteis
+          # Apagamos Windows, Darwin (Mac) e Debian (Ubuntu)
+          # MAS MANTEMOS O MUSL (Alpine) para o Next.js funcionar
+          find deploy/node_modules -name "*darwin*" -delete
+          find deploy/node_modules -name "*windows*" -delete
+          # Cuidado: apagar apenas arquivos explicitamente identificados como debian/gnu se tiver certeza
+          # Para segurança, vamos focar em apagar windows e mac que são garantidamente lixo no Linux
+          
+          # AÇÃO 4: Remover pastas do Repo Monorepo
           rm -rf deploy/docs
           rm -rf deploy/logs
           rm -rf deploy/Vitrine-De-Craques-App
           rm -rf deploy/Vitrine-De-Craques-App-iOS
           
-          # AÇÃO 4: Limpeza de Cache e Mapas
-          rm -rf deploy/.next/cache
-          find deploy -name "*.map" -delete
-          
-          # AÇÃO 5: Remover binários de outros sistemas (Debian, Darwin, Windows)
-          find deploy/node_modules -name "*debian*" -delete
-          find deploy/node_modules -name "*darwin*" -delete
-          find deploy/node_modules -name "*windows*" -delete
-          find deploy/node_modules -name "*rhel*" -delete
-
           echo "--- 5. RELATÓRIO FINAL ---"
-          echo "Tamanho Total (Deve ser aprox 70MB):"
+          echo "Tamanho Total (Esperado ~160MB):"
           du -sh deploy
-          
-          echo "Arquivos restantes mais pesados:"
-          find deploy -type f -exec du -h {} + | sort -rh | head -n 10
 
       - name: Build And Deploy
         id: builddeploy

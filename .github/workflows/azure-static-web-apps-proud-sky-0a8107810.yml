@@ -60,43 +60,44 @@ jobs:
           echo "--- 3. INJEÇÃO DO MOTOR PRISMA ---"
           mkdir -p deploy/node_modules/.prisma/client
           
+          # Copia o motor Alpine
           ENGINE_PATH=$(find . -not -path "./deploy/*" -name "libquery_engine-linux-musl*.node" | head -n 1)
           if [ -z "$ENGINE_PATH" ]; then
-            echo "❌ ERRO CRÍTICO: Motor Alpine não encontrado!"
+            echo "❌ ERRO: Motor Alpine não encontrado!"
             exit 1
           fi
-          echo "✅ Motor copiado: $ENGINE_PATH"
           cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
 
-          echo "--- 4. DIETA DO PACOTE (AGRESSIVA) ---"
+          echo "--- 4. DIETA DO PACOTE (CORRIGIDA) ---"
           
-          # 1. Remover compiladores SWC (85MB de lixo no runtime)
-          # Isso é o principal causador do peso atual
-          rm -rf deploy/node_modules/@next
+          # AÇÃO 1: Remover APENAS os binários SWC (mantendo @next/env)
+          # Em vez de apagar a pasta @next toda, apagamos só os compiladores
+          echo "Removendo binários SWC..."
+          find deploy/node_modules/@next -name "swc-*" -type d -exec rm -rf {} +
           
-          # 2. Remover Sharp e libs de imagem
+          # AÇÃO 2: Remover Sharp e libs de imagem
           rm -rf deploy/node_modules/sharp
           rm -rf deploy/node_modules/@img
           rm -rf deploy/node_modules/libvips
           
-          # 3. Remover pastas proibidas
+          # AÇÃO 3: Remover pastas proibidas
           rm -rf deploy/docs
           rm -rf deploy/logs
           rm -rf deploy/Vitrine-De-Craques-App
           rm -rf deploy/Vitrine-De-Craques-App-iOS
           
-          # 4. Remover binários de sistema incompatíveis
-          # Apagamos tudo que for 'debian', 'darwin', 'windows'
+          # AÇÃO 4: Limpeza de Cache e Mapas
+          rm -rf deploy/.next/cache
+          find deploy -name "*.map" -delete
+          
+          # AÇÃO 5: Remover binários de outros sistemas (Debian, Darwin, Windows)
           find deploy/node_modules -name "*debian*" -delete
           find deploy/node_modules -name "*darwin*" -delete
           find deploy/node_modules -name "*windows*" -delete
-          
-          # 5. Limpeza de Cache
-          rm -rf deploy/.next/cache
-          find deploy -name "*.map" -delete
+          find deploy/node_modules -name "*rhel*" -delete
 
           echo "--- 5. RELATÓRIO FINAL ---"
-          echo "Tamanho Total (Esperado < 80MB):"
+          echo "Tamanho Total (Deve ser aprox 70MB):"
           du -sh deploy
           
           echo "Arquivos restantes mais pesados:"

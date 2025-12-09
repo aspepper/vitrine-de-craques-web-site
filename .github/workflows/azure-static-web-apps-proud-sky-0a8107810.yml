@@ -36,10 +36,9 @@ jobs:
       - name: Build web app
         run: npm run build
 
-      - name: Prepare standalone artifact (Dieta Rigorosa)
+      - name: Prepare standalone artifact for deployment
         run: |
-          echo "--- 1. LIMPEZA E GERAÇÃO PRISMA (FORÇADA) ---"
-          # Garante que o motor Alpine (musl) seja baixado agora
+          echo "--- 1. LIMPEZA E GERAÇÃO PRISMA ---"
           rm -rf node_modules/.prisma
           rm -rf node_modules/@prisma/client
           npx prisma generate
@@ -48,61 +47,63 @@ jobs:
           rm -rf deploy
           mkdir -p deploy
           
-          # Copia o App Next.js Standalone
+          # Copia o App Next.js
           cp -R .next/standalone/. deploy/
           
-          # Copia estáticos
           if [ -d public ]; then cp -R public deploy/public; fi
           mkdir -p deploy/.next/static
           cp -R .next/static/. deploy/.next/static
           
-          # Configurações
           cp next.config.mjs deploy/next.config.mjs
           cp staticwebapp.config.json deploy/staticwebapp.config.json
 
           echo "--- 3. INJEÇÃO DO MOTOR PRISMA (CÓPIA ÚNICA) ---"
           mkdir -p deploy/node_modules/.prisma/client
           
-          # Procura o motor 'linux-musl' (qualquer versão)
+          # Procura o motor 'musl' (Alpine)
           ENGINE_PATH=$(find . -not -path "./deploy/*" -name "libquery_engine-linux-musl*.node" | head -n 1)
           
           if [ -z "$ENGINE_PATH" ]; then
-            echo "❌ ERRO CRÍTICO: Motor Alpine não encontrado! Verifique o schema.prisma."
+            echo "❌ ERRO CRÍTICO: Motor Alpine não encontrado!"
             exit 1
           fi
           
-          echo "✅ Motor encontrado: $ENGINE_PATH"
-          echo "Copiando para deploy/node_modules/.prisma/client/ ..."
+          echo "✅ Motor Alpine encontrado: $ENGINE_PATH"
+          echo "Copiando para o deploy..."
           cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
 
-          echo "--- 4. DIETA DO PACOTE (REMOÇÃO DO LIXO) ---"
+          echo "--- 4. DIETA DO PACOTE (LIMPEZA TOTAL) ---"
           echo "Tamanho ANTES da limpeza:"
           du -sh deploy
           
-          # AÇÃO 1: Remover SHARP e LIBVIPS (Incompatíveis com Alpine e pesados)
-          # Isso previne o erro 'Failed to deploy Azure Functions'
+          # AÇÃO 1: Remover SHARP e LIBVIPS
           rm -rf deploy/node_modules/sharp
           rm -rf deploy/node_modules/@img
           rm -rf deploy/node_modules/libvips
           
-          # AÇÃO 2: Remover pastas proibidas/pesadas do repositório
+          # AÇÃO 2: Remover pastas proibidas
           rm -rf deploy/docs
           rm -rf deploy/logs
           rm -rf deploy/Vitrine-De-Craques-App
           rm -rf deploy/Vitrine-De-Craques-App-iOS
           
-          # AÇÃO 3: Remover Cache de Build e Mapas
+          # AÇÃO 3: Cache e Mapas
           rm -rf deploy/.next/cache
           find deploy -name "*.map" -delete
           
-          # AÇÃO 4: Remover binários de outros sistemas (Darwin/Windows)
+          # AÇÃO 4: Remover binários de TODOS os outros sistemas
+          # O Ubuntu do GitHub gera o 'debian', que precisamos apagar!
+          echo "Removendo motores inúteis (debian, darwin, windows, rhel)..."
+          find deploy/node_modules -name "*debian*" -delete
           find deploy/node_modules -name "*darwin*" -delete
           find deploy/node_modules -name "*windows*" -delete
+          find deploy/node_modules -name "*rhel*" -delete
           
           echo "Tamanho FINAL do pacote:"
           du -sh deploy
           
-          # Lista o que sobrou na pasta do Prisma para confirmar
+          # Lista para conferir se sobrou APENAS o linux-musl
+          echo "Motores restantes na pasta:"
           ls -l deploy/node_modules/.prisma/client/
 
       - name: Build And Deploy

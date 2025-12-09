@@ -59,19 +59,19 @@ jobs:
 
           echo "--- 2.1. Ajustando start script para standalone ---"
           node <<'NODE'
-const fs = require('fs');
-const path = require('path');
-const pkgPath = path.join('deploy', 'package.json');
-const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+          const fs = require('fs');
+          const path = require('path');
+          const pkgPath = path.join('deploy', 'package.json');
+          const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 
-pkg.scripts = {
-  ...pkg.scripts,
-  start: 'node server.js',
-};
+          pkg.scripts = {
+            ...pkg.scripts,
+            start: 'node server.js',
+          };
 
-fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-console.log('package.json atualizado com "start": "node server.js" para o artefato standalone');
-NODE
+          fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+          console.log('package.json atualizado com "start": "node server.js" para o artefato standalone');
+          NODE
 
           echo "--- 3. OTIMIZAÇÃO DO ARTEFATO ---"
           # Mantemos o node_modules já empacotado pelo output "standalone" do Next.js

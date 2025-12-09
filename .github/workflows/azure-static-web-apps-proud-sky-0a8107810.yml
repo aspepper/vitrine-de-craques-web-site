@@ -38,77 +38,52 @@ jobs:
 
       - name: Prepare standalone artifact for deployment
         run: |
-          echo "--- 1. LIMPEZA E GERAÇÃO PRISMA ---"
-          rm -rf node_modules/.prisma
-          rm -rf node_modules/@prisma/client
+          set -euo pipefail
+
+          echo "--- 1. REGERANDO CLIENTE PRISMA ---"
           npx prisma generate
 
           echo "--- 2. MONTAGEM DO PACOTE ---"
           rm -rf deploy
           mkdir -p deploy
-          
+
           # Copia o App Next.js
           cp -R .next/standalone/. deploy/
-          
+
           # Copia estáticos (mas vamos limpar os pesados depois)
           if [ -d public ]; then cp -R public deploy/public; fi
           mkdir -p deploy/.next/static
           cp -R .next/static/. deploy/.next/static
-          
-          cp next.config.mjs deploy/next.config.mjs
+
           cp staticwebapp.config.json deploy/staticwebapp.config.json
 
-          echo "--- 3. INJEÇÃO DO MOTOR PRISMA ---"
-          mkdir -p deploy/node_modules/.prisma/client
-          
-          # Copia o motor Alpine (musl)
-          ENGINE_PATH=$(find . -not -path "./deploy/*" -name "libquery_engine-linux-musl*.node" | head -n 1)
-          if [ -z "$ENGINE_PATH" ]; then
-            echo "❌ ERRO: Motor Alpine não encontrado!"
-            exit 1
-          fi
-          cp "$ENGINE_PATH" deploy/node_modules/.prisma/client/
+          echo "--- 3. DEPENDÊNCIAS DE PRODUÇÃO NO ARTEFATO ---"
+          npm ci --omit=dev --prefix deploy
 
-          echo "--- 4. DIETA DO PACOTE (CIRÚRGICA) ---"
-          
-          # AÇÃO 1: Remover o Sharp (Incompatível)
-          rm -rf deploy/node_modules/sharp
-          rm -rf deploy/node_modules/@img
-          rm -rf deploy/node_modules/libvips
-          
-          # AÇÃO 2: Remover Motores Prisma Inúteis (Debian/Ubuntu, Mac, Windows)
-          # Mantemos APENAS o 'musl' que copiamos acima
-          find deploy/node_modules -name "*debian-openssl*" -delete
-          find deploy/node_modules -name "*darwin*" -delete
-          find deploy/node_modules -name "*windows*" -delete
-          find deploy/node_modules -name "*rhel*" -delete
-          
-          # AÇÃO 3: Remover Binários SWC do Ubuntu (Pesados!)
-          # O Next traz o 'linux-x64-gnu' (Ubuntu) e o 'linux-x64-musl' (Alpine).
-          # Precisamos apagar o GNU e deixar o MUSL.
-          find deploy/node_modules/@next -name "swc-linux-x64-gnu" -type d -exec rm -rf {} +
-          
-          # AÇÃO 4: Esvaziar pasta Public da FUNCTION
+          echo "--- 4. OTIMIZAÇÃO DO ARTEFATO ---"
+          # Mantemos os binários Debian do Prisma (compatíveis com o runner do SWA)
+          # e removemos apenas arquivos grandes ou não usados.
+          bash scripts/prune-deploy-artifact.sh deploy
+
+          # AÇÃO EXTRA: Esvaziar pasta Public da FUNCTION
           # (Os arquivos estáticos já foram subidos para o CDN na etapa de build padrão)
           # A Function não precisa dos vídeos MP4/MOV, apenas o navegador precisa.
           find deploy/public -name "*.mp4" -delete
           find deploy/public -name "*.mov" -delete
           find deploy/public -name "*.jpg" -delete
           find deploy/public -name "*.png" -delete
-          
-          # AÇÃO 5: Limpeza Geral
+
+          # Limpeza Geral
           rm -rf deploy/docs
           rm -rf deploy/logs
           rm -rf deploy/Vitrine-De-Craques-App
           rm -rf deploy/Vitrine-De-Craques-App-iOS
-          rm -rf deploy/.next/cache
-          find deploy -name "*.map" -delete
-          
+
           echo "--- 5. RELATÓRIO FINAL ---"
           echo "Tamanho Total (Meta: < 100MB):"
           du -sh deploy
           
-          echo "Conteúdo de @next (Verificando se sobrou apenas musl):"
+          echo "Conteúdo de @next (bins presentes no artefato final):"
           ls deploy/node_modules/@next || echo "Pasta @next não encontrada"
 
       - name: Build And Deploy

@@ -66,7 +66,7 @@ jobs:
 
           pkg.scripts = {
             ...pkg.scripts,
-            start: 'HOSTNAME=0.0.0.0 PORT=${PORT:-4280} node server.js',
+            start: next start',
           };
 
           fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));

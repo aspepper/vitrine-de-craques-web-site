@@ -4,93 +4,121 @@ set -euo pipefail
 TARGET_DIR="${1:-deploy}"
 
 if [ ! -d "$TARGET_DIR" ]; then
-  echo "Target directory '$TARGET_DIR' does not exist.  Nothing to prune." >&2
+  echo "❌ Target directory '$TARGET_DIR' does not exist." >&2
   exit 0
 fi
 
-echo "=== INICIANDO OTIMIZAÇÃO AGRESSIVA DO ARTEFATO ==="
+echo "=== 🚀 INICIANDO OTIMIZAÇÃO AGRESSIVA DO ARTEFATO ==="
+echo "📂 Diretório alvo: $TARGET_DIR"
+echo ""
+
+# Tamanho inicial
+TAMANHO_INICIAL=$(du -sm "$TARGET_DIR" | cut -f1)
+echo "📏 Tamanho inicial: ${TAMANHO_INICIAL}MB"
+echo ""
 
 # ============================================================================
-# 1. REMOVER PASTAS DO REPOSITÓRIO QUE NÃO DEVEM IR PARA O ARTEFATO
+# 1. REMOVER PASTAS DO REPOSITÓRIO
 # ============================================================================
-echo "🗑️  Removendo pastas de desenvolvimento..."
-rm -rf "$TARGET_DIR/docs" \
-       "$TARGET_DIR/logs" \
-       "$TARGET_DIR/Vitrine-De-Craques-App" \
-       "$TARGET_DIR/Vitrine-De-Craques-App-iOS" \
-       "$TARGET_DIR/. git" \
-       "$TARGET_DIR/. github" \
-       "$TARGET_DIR/. husky" \
-       "$TARGET_DIR/. vscode" \
-       "$TARGET_DIR/. idea" \
-       "$TARGET_DIR/. next/cache" 2>/dev/null || true
+echo "🗑️  [1/10] Removendo pastas de desenvolvimento..."
+rm -rf \
+  "$TARGET_DIR/docs" \
+  "$TARGET_DIR/logs" \
+  "$TARGET_DIR/Vitrine-De-Craques-App" \
+  "$TARGET_DIR/Vitrine-De-Craques-App-iOS" \
+  "$TARGET_DIR/. git" \
+  "$TARGET_DIR/. github" \
+  "$TARGET_DIR/. husky" \
+  "$TARGET_DIR/. vscode" \
+  "$TARGET_DIR/. idea" \
+  "$TARGET_DIR/. next/cache" \
+  2>/dev/null || true
 
 # ============================================================================
-# 2. OTIMIZAÇÃO AGRESSIVA DO PRISMA
+# 2. OTIMIZAÇÃO CRÍTICA DO SHARP (@img)
 # ============================================================================
-echo "🔧 Otimizando Prisma (mantendo apenas PostgreSQL para Debian)..."
+echo "📐 [2/10] Otimizando Sharp (maior culpado:  33MB → ~10MB)..."
 
-# Remove engines para outros bancos de dados
-PRISMA_RUNTIME="$TARGET_DIR/node_modules/@prisma/client/runtime"
-if [ -d "$PRISMA_RUNTIME" ]; then
-  find "$PRISMA_RUNTIME" -maxdepth 1 -type f \( \
-    -name "*cockroachdb*" -o \
-    -name "*mysql*" -o \
-    -name "*sqlite*" -o \
-    -name "*sqlserver*" \
-  \) -delete 2>/dev/null || true
+# Remove TODOS os binários Sharp exceto Linux x64
+SHARP_MODULES="$TARGET_DIR/node_modules/@img"
+if [ -d "$SHARP_MODULES" ]; then
+  # Lista TODOS os subdiretórios de @img
+  for dir in "$SHARP_MODULES"/*; do
+    if [ -d "$dir" ]; then
+      dirname=$(basename "$dir")
+      # Mantém APENAS sharp-linux-x64
+      if [[ "$dirname" != "sharp-linux-x64" ]]; then
+        echo "  🔸 Removendo: @img/$dirname"
+        rm -rf "$dir"
+      fi
+    fi
+  done
 fi
 
-# Remove schema engines (não necessários em runtime)
-PRISMA_ENGINES="$TARGET_DIR/node_modules/@prisma/engines"
-if [ -d "$PRISMA_ENGINES" ]; then
-  find "$PRISMA_ENGINES" -maxdepth 1 \( \
-    -name "schema-engine-*" -o \
-    -name "prisma-fmt-*" -o \
-    -name "introspection-engine-*" \
-  \) -delete 2>/dev/null || true
-fi
-
-# Mantém apenas query engines para Debian/Linux
-PRISMA_CLIENT="$TARGET_DIR/node_modules/. prisma/client"
-if [ -d "$PRISMA_CLIENT" ]; then
-  find "$PRISMA_CLIENT" -maxdepth 1 -type f -name "libquery_engine*" \
-    !  -name "*debian-openssl-3.0.x*" \
-    ! -name "*debian-openssl-1.1.x*" \
-    -delete 2>/dev/null || true
-fi
-
-# ============================================================================
-# 3. OTIMIZAÇÃO DO SHARP
-# ============================================================================
-echo "📐 Otimizando Sharp (mantendo apenas Linux x64)..."
+# Remove arquivos desnecessários do sharp principal
 SHARP_DIR="$TARGET_DIR/node_modules/sharp"
 if [ -d "$SHARP_DIR" ]; then
-  # Remove binários para outros sistemas operacionais
-  find "$SHARP_DIR" -type d \( \
-    -name "*darwin*" -o \
-    -name "*win32*" -o \
-    -name "*linuxmusl*" \
-  \) -exec rm -rf {} + 2>/dev/null || true
+  rm -rf "$SHARP_DIR/vendor" \
+         "$SHARP_DIR/src" \
+         "$SHARP_DIR/docs" \
+         "$SHARP_DIR/test" \
+         2>/dev/null || true
 fi
 
 # ============================================================================
-# 4. REMOVER AWS SDK COMPLETO (mantendo apenas S3)
+# 3. OTIMIZAÇÃO DO PRISMA
 # ============================================================================
-echo "☁️ Otimizando AWS SDK..."
+echo "🔧 [3/10] Otimizando Prisma..."
+
+# Remove engines de outros bancos
+PRISMA_CLIENT="$TARGET_DIR/node_modules/. prisma/client"
+if [ -d "$PRISMA_CLIENT" ]; then
+  # Mantém APENAS libquery_engine para Debian OpenSSL 3.0.x
+  find "$PRISMA_CLIENT" -type f -name "libquery_engine*" \
+    !  -name "*debian-openssl-3.0.x*" \
+    -exec echo "  🔸 Removendo: {}" \; \
+    -exec rm -f {} \; 2>/dev/null || true
+fi
+
+# Remove schema engines (não usados em runtime)
+PRISMA_ENGINES="$TARGET_DIR/node_modules/@prisma/engines"
+if [ -d "$PRISMA_ENGINES" ]; then
+  rm -rf "$PRISMA_ENGINES"/schema-engine-* \
+         "$PRISMA_ENGINES"/prisma-fmt-* \
+         2>/dev/null || true
+fi
+
+# ============================================================================
+# 4. REMOVER AWS SDK COMPLETO (mantendo apenas S3 se necessário)
+# ============================================================================
+echo "☁️  [4/10] Otimizando AWS SDK..."
 AWS_SDK="$TARGET_DIR/node_modules/@aws-sdk"
 if [ -d "$AWS_SDK" ]; then
-  # Lista todos os pacotes AWS exceto client-s3
-  find "$AWS_SDK" -maxdepth 1 -type d !  -name "@aws-sdk" !  -name "client-s3" \
-    -exec rm -rf {} + 2>/dev/null || true
+  # Conta quantos pacotes AWS existem
+  AWS_COUNT=$(find "$AWS_SDK" -maxdepth 1 -type d | wc -l)
+  echo "  📦 Encontrados $AWS_COUNT pacotes AWS SDK"
+  
+  # Remove TODOS exceto client-s3 e dependências essenciais
+  for dir in "$AWS_SDK"/*; do
+    if [ -d "$dir" ]; then
+      dirname=$(basename "$dir")
+      # Mantém apenas client-s3 e algumas dependências essenciais
+      if [[ "$dirname" != "client-s3" && "$dirname" != "@aws-sdk" ]]; then
+        # Verifica se não é uma dependência crítica do S3
+        if [[ ! "$dirname" =~ ^(smithy|types|util|middleware|signature) ]]; then
+          echo "  🔸 Removendo:  @aws-sdk/$dirname"
+          rm -rf "$dir"
+        fi
+      fi
+    fi
+  done
 fi
 
 # ============================================================================
-# 5. REMOVER TESTES, DOCUMENTAÇÃO E ARQUIVOS DE DESENVOLVIMENTO
+# 5. REMOVER TESTES E DOCUMENTAÇÃO DE NODE_MODULES
 # ============================================================================
-echo "📚 Removendo testes e documentação..."
+echo "📚 [5/10] Removendo testes e documentação..."
 if [ -d "$TARGET_DIR/node_modules" ]; then
-  # Remover pastas
   find "$TARGET_DIR/node_modules" -type d \( \
     -name "__tests__" -o \
     -name "test" -o \
@@ -102,115 +130,113 @@ if [ -d "$TARGET_DIR/node_modules" ]; then
     -name "documentation" -o \
     -name "coverage" -o \
     -name ". github" -o \
-    -name "man" -o \
-    -name "scripts" \
+    -name "man" \
   \) -exec rm -rf {} + 2>/dev/null || true
   
-  # Remover arquivos de documentação
   find "$TARGET_DIR/node_modules" -type f \( \
     -name "README*" -o \
     -name "CHANGELOG*" -o \
     -name "HISTORY*" -o \
     -name "LICENSE*" -o \
     -name "CONTRIBUTING*" -o \
-    -name "AUTHORS*" -o \
     -name "*. md" -o \
-    -name "*.markdown" -o \
     -name ". npmignore" -o \
     -name ". gitignore" -o \
-    -name ". git attributes" -o \
     -name ". eslintrc*" -o \
     -name ". prettierrc*" -o \
-    -name "tsconfig.json" -o \
-    -name "jest.config*" -o \
-    -name "vitest.config*" -o \
-    -name ". editorconfig" \
+    -name "tsconfig. json" \
   \) -delete 2>/dev/null || true
 fi
 
 # ============================================================================
-# 6. REMOVER SOURCE MAPS E ARQUIVOS TYPESCRIPT
+# 6. REMOVER SOURCE MAPS E TYPESCRIPT
 # ============================================================================
-echo "🗺️  Removendo source maps e TypeScript..."
+echo "🗺️  [6/10] Removendo source maps e TypeScript..."
 if [ -d "$TARGET_DIR/node_modules" ]; then
   find "$TARGET_DIR/node_modules" -type f \( \
-    -name "*.map" -o \
-    -name "*. d.ts. map" -o \
-    -name "*.ts" \
-  \) ! -name "*. d.ts" -delete 2>/dev/null || true
+    -name "*. map" -o \
+    -name "*. d.ts. map" \
+  \) -delete 2>/dev/null || true
   
-  # Remove arquivos . d.ts também (não necessários em runtime)
+  # Remove arquivos . d.ts (não necessários em runtime)
   find "$TARGET_DIR/node_modules" -name "*.d.ts" -delete 2>/dev/null || true
 fi
 
 # ============================================================================
 # 7. REMOVER BINÁRIOS DESNECESSÁRIOS
 # ============================================================================
-echo "⚙️  Removendo binários desnecessários..."
+echo "⚙️  [7/10] Removendo binários desnecessários..."
 if [ -d "$TARGET_DIR/node_modules/. bin" ]; then
-  # Remove todos os binários exceto prisma (se necessário)
-  find "$TARGET_DIR/node_modules/.bin" -type f -o -type l \
-    ! -name "prisma" -delete 2>/dev/null || true
+  # Remove todos os binários (Next.js standalone não precisa deles)
+  rm -rf "$TARGET_DIR/node_modules/.bin" 2>/dev/null || true
 fi
 
 # ============================================================================
-# 8. REMOVER DEPENDÊNCIAS DE DESENVOLVIMENTO DO STANDALONE
+# 8. REMOVER DEV DEPENDENCIES RESIDUAIS
 # ============================================================================
-echo "🧹 Limpando devDependencies residuais..."
-if [ -f "$TARGET_DIR/package.json" ]; then
-  # Remove pacotes conhecidos de desenvolvimento que podem ter sobrado
-  DEV_PACKAGES=(
-    "eslint"
-    "prettier"
-    "typescript"
-    "@types"
-    "vitest"
-    "playwright"
-    "@vitejs"
-    "husky"
-    "lint-staged"
-  )
+echo "🧹 [8/10] Removendo devDependencies residuais..."
+DEV_PACKAGES=(
+  "eslint*"
+  "prettier*"
+  "typescript"
+  "@types/*"
+  "vitest*"
+  "playwright*"
+  "@vitejs/*"
+  "husky*"
+  "lint-staged*"
+)
+
+for pattern in "${DEV_PACKAGES[@]}"; do
+  find "$TARGET_DIR/node_modules" -maxdepth 1 -type d -name "$pattern" \
+    -exec rm -rf {} + 2>/dev/null || true
+done
+
+# ============================================================================
+# 9. OTIMIZAÇÃO DE NEXT.JS
+# ============================================================================
+echo "⚡ [9/10] Otimizando Next.js..."
+NEXT_DIR="$TARGET_DIR/node_modules/next"
+if [ -d "$NEXT_DIR" ]; then
+  # Remove arquivos WASM não usados
+  find "$NEXT_DIR" -name "*.wasm" -delete 2>/dev/null || true
   
-  for pkg in "${DEV_PACKAGES[@]}"; do
-    find "$TARGET_DIR/node_modules" -maxdepth 1 -type d -name "$pkg*" \
-      -exec rm -rf {} + 2>/dev/null || true
-  done
-fi
-
-# ============================================================================
-# 9. REMOVER ARQUIVOS GRANDES DE FONTES E ASSETS
-# ============================================================================
-echo "🎨 Otimizando assets..."
-if [ -d "$TARGET_DIR/node_modules" ]; then
-  # Remove fontes não usadas (se houver)
-  find "$TARGET_DIR/node_modules" -type f \( \
-    -name "*. ttf" -o \
-    -name "*.woff" -o \
-    -name "*.woff2" -o \
-    -name "*.eot" \
-  \) -size +100k -delete 2>/dev/null || true
+  # Remove source maps do Next.js
+  find "$NEXT_DIR" -name "*. map" -delete 2>/dev/null || true
 fi
 
 # ============================================================================
 # 10. LIMPEZA FINAL
 # ============================================================================
-echo "🧽 Limpeza final..."
+echo "🧽 [10/10] Limpeza final..."
+
+# Remove package-lock.json (não necessário em runtime)
+rm -f "$TARGET_DIR/package-lock.json" 2>/dev/null || true
+
 # Remove diretórios vazios
 find "$TARGET_DIR" -type d -empty -delete 2>/dev/null || true
 
-# Remove package-lock.json se existir (não necessário em runtime)
-rm -f "$TARGET_DIR/package-lock.json"
+# Tamanho final
+TAMANHO_FINAL=$(du -sm "$TARGET_DIR" | cut -f1)
+REDUCAO=$((TAMANHO_INICIAL - TAMANHO_FINAL))
 
 echo ""
 echo "=== ✅ OTIMIZAÇÃO CONCLUÍDA ==="
 echo ""
-echo "📊 Tamanho final do artefato:"
-du -sh "$TARGET_DIR"
+echo "📊 Resumo:"
+echo "   Tamanho inicial: ${TAMANHO_INICIAL}MB"
+echo "   Tamanho final:    ${TAMANHO_FINAL}MB"
+echo "   Redução:         ${REDUCAO}MB"
 echo ""
-echo "📦 Principais componentes:"
-du -sh "$TARGET_DIR/node_modules" 2>/dev/null || echo "node_modules:  N/A"
-du -sh "$TARGET_DIR/. next" 2>/dev/null || echo ". next: N/A"
-du -sh "$TARGET_DIR/public" 2>/dev/null || echo "public: N/A"
-echo ""
-echo "🔍 Top 10 maiores pastas em node_modules:"
-du -sh "$TARGET_DIR/node_modules/"* 2>/dev/null | sort -rh | head -10 || echo "N/A"
+
+# Verifica se atingiu a meta
+if [ "$TAMANHO_FINAL" -le 100 ]; then
+  echo "✅ META ATINGIDA!  Artefato com ${TAMANHO_FINAL}MB (< 100MB)"
+else
+  echo "⚠️  Meta não atingida. Artefato com ${TAMANHO_FINAL}MB (meta: < 100MB)"
+  echo ""
+  echo "🔍 Top 10 maiores pastas:"
+  du -sm "$TARGET_DIR/node_modules"/* 2>/dev/null | sort -rn | head -10 || true
+fi
+
+echo "Prune aplicado com sucesso"

@@ -26,12 +26,12 @@ rm -rf \
   "$TARGET_DIR/logs" \
   "$TARGET_DIR/Vitrine-De-Craques-App" \
   "$TARGET_DIR/Vitrine-De-Craques-App-iOS" \
-  "$TARGET_DIR/. git" \
-  "$TARGET_DIR/. github" \
-  "$TARGET_DIR/. husky" \
-  "$TARGET_DIR/. vscode" \
-  "$TARGET_DIR/. idea" \
-  "$TARGET_DIR/. next/cache" \
+  "$TARGET_DIR/.git" \
+  "$TARGET_DIR/.github" \
+  "$TARGET_DIR/.husky" \
+  "$TARGET_DIR/.vscode" \
+  "$TARGET_DIR/.idea" \
+  "$TARGET_DIR/.next/cache" \
   2>/dev/null || true
 
 # ============================================================================
@@ -46,8 +46,8 @@ if [ -d "$SHARP_MODULES" ]; then
   for dir in "$SHARP_MODULES"/*; do
     if [ -d "$dir" ]; then
       dirname=$(basename "$dir")
-      # Mantém APENAS sharp-linux-x64
-      if [[ "$dirname" != "sharp-linux-x64" ]]; then
+      # Mantém apenas os binários Linux x64 necessários
+      if [[ "$dirname" != "sharp-linux-x64" && "$dirname" != "sharp-libvips-linux-x64" ]]; then
         echo "  🔸 Removendo: @img/$dirname"
         rm -rf "$dir"
       fi
@@ -71,7 +71,7 @@ fi
 echo "🔧 [3/10] Otimizando Prisma..."
 
 # Remove engines de outros bancos
-PRISMA_CLIENT="$TARGET_DIR/node_modules/. prisma/client"
+PRISMA_CLIENT="$TARGET_DIR/node_modules/.prisma/client"
 if [ -d "$PRISMA_CLIENT" ]; then
   # Mantém APENAS libquery_engine para Debian OpenSSL 3.0.x
   find "$PRISMA_CLIENT" -type f -name "libquery_engine*" \
@@ -89,29 +89,27 @@ if [ -d "$PRISMA_ENGINES" ]; then
 fi
 
 # ============================================================================
-# 4. REMOVER AWS SDK COMPLETO (mantendo apenas S3 se necessário)
+# 4. AWS SDK (mantido por padrão para evitar falhas em runtime)
 # ============================================================================
-echo "☁️  [4/10] Otimizando AWS SDK..."
-AWS_SDK="$TARGET_DIR/node_modules/@aws-sdk"
-if [ -d "$AWS_SDK" ]; then
-  # Conta quantos pacotes AWS existem
-  AWS_COUNT=$(find "$AWS_SDK" -maxdepth 1 -type d | wc -l)
-  echo "  📦 Encontrados $AWS_COUNT pacotes AWS SDK"
-  
-  # Remove TODOS exceto client-s3 e dependências essenciais
-  for dir in "$AWS_SDK"/*; do
-    if [ -d "$dir" ]; then
-      dirname=$(basename "$dir")
-      # Mantém apenas client-s3 e algumas dependências essenciais
-      if [[ "$dirname" != "client-s3" && "$dirname" != "@aws-sdk" ]]; then
-        # Verifica se não é uma dependência crítica do S3
-        if [[ ! "$dirname" =~ ^(smithy|types|util|middleware|signature) ]]; then
-          echo "  🔸 Removendo:  @aws-sdk/$dirname"
-          rm -rf "$dir"
+echo "☁️  [4/10] AWS SDK mantido por padrão..."
+if [ "${PRUNE_AWS_SDK:-false}" = "true" ]; then
+  AWS_SDK="$TARGET_DIR/node_modules/@aws-sdk"
+  if [ -d "$AWS_SDK" ]; then
+    AWS_COUNT=$(find "$AWS_SDK" -maxdepth 1 -type d | wc -l)
+    echo "  📦 Encontrados $AWS_COUNT pacotes AWS SDK"
+
+    for dir in "$AWS_SDK"/*; do
+      if [ -d "$dir" ]; then
+        dirname=$(basename "$dir")
+        if [[ "$dirname" != "client-s3" && "$dirname" != "@aws-sdk" ]]; then
+          if [[ ! "$dirname" =~ ^(smithy|types|util|middleware|signature) ]]; then
+            echo "  🔸 Removendo:  @aws-sdk/$dirname"
+            rm -rf "$dir"
+          fi
         fi
       fi
-    fi
-  done
+    done
+  fi
 fi
 
 # ============================================================================
@@ -123,13 +121,13 @@ if [ -d "$TARGET_DIR/node_modules" ]; then
     -name "__tests__" -o \
     -name "test" -o \
     -name "tests" -o \
-    -name "*. test" -o \
+    -name "*.test" -o \
     -name "examples" -o \
     -name "example" -o \
     -name "docs" -o \
     -name "documentation" -o \
     -name "coverage" -o \
-    -name ". github" -o \
+    -name ".github" -o \
     -name "man" \
   \) -exec rm -rf {} + 2>/dev/null || true
   
@@ -139,12 +137,12 @@ if [ -d "$TARGET_DIR/node_modules" ]; then
     -name "HISTORY*" -o \
     -name "LICENSE*" -o \
     -name "CONTRIBUTING*" -o \
-    -name "*. md" -o \
-    -name ". npmignore" -o \
-    -name ". gitignore" -o \
-    -name ". eslintrc*" -o \
-    -name ". prettierrc*" -o \
-    -name "tsconfig. json" \
+    -name "*.md" -o \
+    -name ".npmignore" -o \
+    -name ".gitignore" -o \
+    -name ".eslintrc*" -o \
+    -name ".prettierrc*" -o \
+    -name "tsconfig.json" \
   \) -delete 2>/dev/null || true
 fi
 
@@ -154,8 +152,8 @@ fi
 echo "🗺️  [6/10] Removendo source maps e TypeScript..."
 if [ -d "$TARGET_DIR/node_modules" ]; then
   find "$TARGET_DIR/node_modules" -type f \( \
-    -name "*. map" -o \
-    -name "*. d.ts. map" \
+    -name "*.map" -o \
+    -name "*.d.ts.map" \
   \) -delete 2>/dev/null || true
   
   # Remove arquivos . d.ts (não necessários em runtime)
@@ -166,7 +164,7 @@ fi
 # 7. REMOVER BINÁRIOS DESNECESSÁRIOS
 # ============================================================================
 echo "⚙️  [7/10] Removendo binários desnecessários..."
-if [ -d "$TARGET_DIR/node_modules/. bin" ]; then
+if [ -d "$TARGET_DIR/node_modules/.bin" ]; then
   # Remove todos os binários (Next.js standalone não precisa deles)
   rm -rf "$TARGET_DIR/node_modules/.bin" 2>/dev/null || true
 fi
@@ -202,7 +200,7 @@ if [ -d "$NEXT_DIR" ]; then
   find "$NEXT_DIR" -name "*.wasm" -delete 2>/dev/null || true
   
   # Remove source maps do Next.js
-  find "$NEXT_DIR" -name "*. map" -delete 2>/dev/null || true
+  find "$NEXT_DIR" -name "*.map" -delete 2>/dev/null || true
 fi
 
 # ============================================================================

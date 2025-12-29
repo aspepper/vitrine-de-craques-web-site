@@ -24,87 +24,6 @@ jobs:
           submodules: false
           lfs: false
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build web app
-        run: npm run build
-
-      - name: Prepare standalone artifact for deployment
-        run: |
-          set -euo pipefail
-
-          echo "--- 1. REGERANDO CLIENTE PRISMA ---"
-          npx prisma generate
-
-          echo "--- 2. MONTAGEM DO PACOTE ---"
-          rm -rf deploy
-          mkdir -p deploy
-
-          # Copia o App Next.js
-          cp -R .next/standalone/. deploy/
-
-          # Copia estáticos (mas vamos limpar os pesados depois)
-          if [ -d public ]; then cp -R public deploy/public; fi
-          mkdir -p deploy/.next/static
-          cp -R .next/static/. deploy/.next/static
-
-          cp staticwebapp.config.json deploy/staticwebapp.config.json
-
-          echo "--- 2.1. Ajustando start script para standalone ---"
-          node <<'NODE'
-          const fs = require('fs');
-          const path = require('path');
-          const pkgPath = path.join('deploy', 'package.json');
-          const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-
-          pkg.scripts = {
-            ...pkg.scripts,
-            start: 'node server.js',
-          };
-
-          fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-          console.log('package.json atualizado com "start": "node server.js" para o artefato standalone');
-          NODE
-
-          echo "--- 3. OTIMIZAÇÃO DO ARTEFATO ---"
-          # Mantemos o node_modules já empacotado pelo output "standalone" do Next.js
-          # (ele já contém apenas as dependências necessárias em produção).
-          # Depois removemos metadados de repositório e realizamos a poda fina.
-          rm -rf deploy/.git deploy/.github deploy/.husky deploy/.vscode
-
-          # Mantemos os binários Debian do Prisma (compatíveis com o runner do SWA)
-          # e removemos apenas arquivos grandes ou não usados.
-          bash scripts/prune-deploy-artifact.sh deploy
-
-          echo "--- 4. AÇÕES EXTRA ---"
-          # Esvaziar pasta Public da FUNCTION
-          # (Os arquivos estáticos já foram subidos para o CDN na etapa de build padrão)
-          # A Function não precisa dos vídeos MP4/MOV, apenas o navegador precisa.
-          find deploy/public -name "*.mp4" -delete
-          find deploy/public -name "*.mov" -delete
-          find deploy/public -name "*.jpg" -delete
-          find deploy/public -name "*.png" -delete
-
-          # Limpeza Geral
-          rm -rf deploy/docs
-          rm -rf deploy/logs
-          rm -rf deploy/Vitrine-De-Craques-App
-          rm -rf deploy/Vitrine-De-Craques-App-iOS
-
-          echo "--- 5. RELATÓRIO FINAL ---"
-          echo "Tamanho Total (Meta: < 100MB):"
-          du -sh deploy
-          
-          echo "Conteúdo de @next (bins presentes no artefato final):"
-          ls deploy/node_modules/@next || echo "Pasta @next não encontrada"
-
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -112,11 +31,10 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_SKY_0A8107810 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "deploy"
+          app_location: "/"
           api_location: ""
           output_location: ""
-          skip_app_build: true
-          skip_api_build: true
+          app_build_command: "npm run build"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

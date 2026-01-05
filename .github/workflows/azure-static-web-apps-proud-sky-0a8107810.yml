@@ -1,4 +1,4 @@
-name: Azure Web App CI/CD
+name: Azure Static Web Apps CI/CD
 
 on:
   push:
@@ -24,43 +24,13 @@ jobs:
           submodules: false
           lfs: false
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
         with:
-          node-version-file: ".nvmrc"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Next.js (standalone)
-        run: npm run build
-
-      - name: Prepare deploy artifact
-        run: |
-          rm -rf deploy
-          mkdir -p deploy/.next
-          cp -R .next/standalone/* deploy/
-          cp -R .next/static deploy/.next/
-          if [ -d "public" ]; then
-            cp -R public deploy/
-          fi
-          if [ -f "package-lock.json" ]; then
-            cp package-lock.json deploy/
-          fi
-          npm ci --omit=dev --prefix deploy
-
-      - name: Prune deploy artifact
-        run: bash scripts/prune-deploy-artifact.sh deploy
-
-      - name: Create deployment zip
-        run: |
-          cd deploy
-          zip -r ../deploy.zip .
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: deploy.zip
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"
+          api_location: ""
+          output_location: ".next"
+          app_build_command: "npm run build"

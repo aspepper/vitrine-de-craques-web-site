@@ -68,3 +68,4 @@ jobs:
           app-name: 'VitrineDeCraquesWeb'
           slot-name: 'Production'
           package: .
+

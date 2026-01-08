@@ -17,12 +17,21 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+
     name: Build and Deploy Job
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
       AUTH_TRUST_HOST: 'true'
+      # ADICIONE ESTAS LINHAS ABAIXO:
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
+      R2_PUBLIC_BASE_URL: ${{ secrets.R2_PUBLIC_BASE_URL }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      NEXT_PUBLIC_R2_BASE: ${{ secrets.NEXT_PUBLIC_R2_BASE }}
+      NEXT_PUBLIC_R2_BUCKET: ${{ secrets.NEXT_PUBLIC_R2_BUCKET }}
 
     steps:
       - uses: actions/checkout@v3

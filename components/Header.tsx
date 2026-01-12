@@ -136,7 +136,7 @@ export function Header() {
                 <Link href="/login">Login</Link>
               </Button>
               <Button asChild variant="secondary" size="md" rounded="pill" className="px-6">
-                <Link href="/registrar-escolha-perfil">Cadastre-se</Link>
+                <Link href="/cadastro">Cadastre-se</Link>
               </Button>
             </>
           )}
@@ -145,4 +145,3 @@ export function Header() {
     </header>
   )
 }
-

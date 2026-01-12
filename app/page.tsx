@@ -316,7 +316,7 @@ export default async function HomePage() {
                       variant={isAuthenticated ? 'secondary' : undefined}
                       className="h-14 rounded-full px-8 text-[16px] font-semibold shadow-sm"
                     >
-                      <Link href={isAuthenticated ? '/perfil' : '/registrar-escolha-perfil'}>
+                      <Link href={isAuthenticated ? '/perfil' : '/cadastro'}>
                         {isAuthenticated ? 'Perfil' : 'Cadastre-se'}
                       </Link>
                     </Button>

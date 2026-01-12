@@ -299,7 +299,7 @@ export function Header() {
                   className="h-10 rounded-full px-5 bg-secondary text-white hover:bg-secondary/90"
                   title="Cadastre-se"
                 >
-                  <Link href="/registrar-escolha-perfil">Cadastre-se</Link>
+                  <Link href="/cadastro">Cadastre-se</Link>
                 </Button>
               </>
             )}
@@ -375,7 +375,7 @@ export function Header() {
                     <Link href="/login">Login</Link>
                   </Button>
                   <Button asChild variant="secondary" className="w-full">
-                    <Link href="/registrar-escolha-perfil">Cadastre-se</Link>
+                    <Link href="/cadastro">Cadastre-se</Link>
                   </Button>
                 </div>
               )}

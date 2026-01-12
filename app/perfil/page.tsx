@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 
 import { type Role } from "@prisma/client";
-import { MapPin, Phone, UserRound } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, MapPin, Phone, Sparkles, UserRound } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -492,6 +493,27 @@ export default async function PerfilPage() {
                 Complete seu cadastro para liberar o acesso às informações e começar a acompanhar seus atletas de interesse.
               </p>
             </div>
+            <Link
+              href="/registrar-escolha-perfil"
+              className="group flex w-full flex-col items-start gap-3 rounded-[24px] border border-emerald-100 bg-emerald-50/70 px-6 py-5 text-left shadow-[0_22px_50px_-35px_rgba(16,185,129,0.55)] transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-white dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:hover:bg-slate-900/80"
+            >
+              <div className="flex items-center gap-3 text-emerald-700 dark:text-emerald-200">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_-12px_rgba(16,185,129,0.6)] dark:bg-slate-950">
+                  <Sparkles className="h-5 w-5" aria-hidden />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-500 dark:text-emerald-300">Interaja mais</p>
+                  <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">Escolha seu perfil e personalize sua jornada</p>
+                </div>
+              </div>
+              <div className="flex w-full items-center justify-between text-sm text-slate-600 dark:text-slate-300">
+                <span>Atleta, clube, imprensa, torcedor e mais.</span>
+                <span className="inline-flex items-center gap-2 font-semibold text-emerald-600 transition group-hover:translate-x-1 dark:text-emerald-300">
+                  Ir para escolha de perfil
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </span>
+              </div>
+            </Link>
           </section>
         )}
       </main>

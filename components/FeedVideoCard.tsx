@@ -647,7 +647,7 @@ export function FeedVideoCard({
 
   const handleNavigateToRegister = useCallback(() => {
     closeLoginDialog(true);
-    router.push("/registrar-escolha-perfil");
+    router.push("/cadastro");
   }, [closeLoginDialog, router]);
 
   const dialogContent = loginDialogAction

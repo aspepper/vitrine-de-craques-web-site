@@ -66,7 +66,7 @@ export default function LoginPage() {
                     Ou entre com e-mail e senha
                   </p>
                   <Link
-                    href="/registrar-escolha-perfil"
+                    href="/cadastro"
                     className="text-sm font-semibold text-primary hover:underline"
                   >
                     Não tem conta? Cadastre-se
@@ -133,4 +133,3 @@ export default function LoginPage() {
     </div>
   )
 }
-

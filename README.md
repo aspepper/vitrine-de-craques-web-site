@@ -22,6 +22,74 @@ O projeto é uma plataforma para compartilhamento de vídeos curtos, permitindo 
 
 Consulte o arquivo `out/INSTRUCOES.md` para um guia detalhado de como instalar, configurar e rodar o projeto localmente.
 
+## Auth0: habilitando logins sociais (Google, Facebook, Microsoft e Apple)
+
+Se você quiser centralizar os logins sociais com o Auth0, siga os passos abaixo. Eles habilitam as conexões sociais no Auth0 e deixam pronto para integrar no projeto.
+
+### 1) Criar tenant e aplicação no Auth0
+
+1. Crie um tenant em https://manage.auth0.com/.
+2. Em **Applications → Create Application**, escolha **Regular Web App**.
+3. Em **Settings**, configure:
+   - **Allowed Callback URLs**:
+     - `http://localhost:3000/api/auth/callback/auth0`
+     - `https://SEU_DOMINIO/api/auth/callback/auth0`
+   - **Allowed Logout URLs**:
+     - `http://localhost:3000`
+     - `https://SEU_DOMINIO`
+   - **Allowed Web Origins**:
+     - `http://localhost:3000`
+     - `https://SEU_DOMINIO`
+4. Salve e copie **Client ID**, **Client Secret** e **Domain** (Issuer).
+
+> Observação: se você preferir usar os providers diretos do NextAuth (Google, Facebook, etc.), basta preencher as variáveis `GOOGLE_CLIENT_ID`, `FACEBOOK_CLIENT_ID`, `MICROSOFT_CLIENT_ID` e `APPLE_CLIENT_ID` no `.env.local`. O fluxo abaixo é para quem usa Auth0 como hub de autenticação.
+
+### 2) Ativar conexões sociais no Auth0
+
+No Auth0, vá em **Authentication → Social** e habilite cada conexão.
+
+#### Google
+1. No Google Cloud Console, crie um projeto e ative **OAuth consent screen**.
+2. Em **APIs & Services → Credentials**, crie **OAuth Client ID (Web)**.
+3. Configure o **Authorized redirect URIs**:
+   - `https://SEU_DOMINIO_AUTH0/login/callback`
+4. Copie **Client ID** e **Client Secret** para a conexão Google no Auth0.
+
+#### Facebook
+1. No Meta for Developers, crie um App.
+2. Em **Facebook Login → Settings**, adicione o **Valid OAuth Redirect URIs**:
+   - `https://SEU_DOMINIO_AUTH0/login/callback`
+3. Copie **App ID** e **App Secret** e configure a conexão Facebook no Auth0.
+
+#### Microsoft
+1. No Azure Portal, registre um app em **Azure Active Directory → App registrations**.
+2. Em **Authentication**, adicione um **Web Redirect URI**:
+   - `https://SEU_DOMINIO_AUTH0/login/callback`
+3. Crie um **Client Secret** e copie **Application (client) ID** + **Secret**.
+4. Configure esses dados na conexão **Microsoft** no Auth0.
+
+#### Apple
+1. No Apple Developer, crie um **Service ID** e habilite **Sign in with Apple**.
+2. Configure o **Return URL**:
+   - `https://SEU_DOMINIO_AUTH0/login/callback`
+3. Gere a **Key (.p8)**, copie **Key ID**, **Team ID** e **Service ID**.
+4. Informe esses dados na conexão Apple no Auth0.
+
+### 3) Variáveis de ambiente para Auth0 (caso use o provider Auth0)
+
+Adicione no `.env.local`:
+
+```
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=uma-chave-secreta-forte
+
+AUTH0_CLIENT_ID=seu_client_id
+AUTH0_CLIENT_SECRET=seu_client_secret
+AUTH0_ISSUER_BASE_URL=https://SEU_DOMINIO_AUTH0
+```
+
+Depois, reinicie o servidor local. Em produção, use `NEXTAUTH_URL` com o domínio real da aplicação.
+
 ## Estrutura do Projeto
 
 -   `app/`: Contém todas as rotas, páginas e layouts da aplicação (App Router).
@@ -169,6 +237,5 @@ Is CN=Alex Pimenta, OU=Vitrine de Craques, O=Vitrine de Craques, L=Santos, ST=SP
 Generating 4,096 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 36,500 days <br />
 	for: CN=Alex Pimenta, OU=Vitrine de Craques, O=Vitrine de Craques, L=Santos, ST=SP, C=BR <br />
 [Storing vitrine-release.p12] <br />
-
 
 

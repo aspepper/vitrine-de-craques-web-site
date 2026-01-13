@@ -22,6 +22,44 @@ O projeto é uma plataforma para compartilhamento de vídeos curtos, permitindo 
 
 Consulte o arquivo `out/INSTRUCOES.md` para um guia detalhado de como instalar, configurar e rodar o projeto localmente.
 
+## Deploy no Azure Static Web Apps (SWA)
+
+### Variáveis de ambiente (SWA)
+Defina as variáveis abaixo em **Configuration > Application settings** no Azure Static Web Apps.
+
+- `DATABASE_URL`
+- `NEXTAUTH_URL`
+- `NEXTAUTH_SECRET`
+- `AUTH_TRUST_HOST` (usar `true` em produção no SWA)
+- `R2_ACCOUNT_ID`
+- `R2_ACCESS_KEY_ID`
+- `R2_SECRET_ACCESS_KEY`
+- `R2_BUCKET_NAME`
+- `R2_PUBLIC_BASE_URL`
+- `NEXT_PUBLIC_R2_BASE`
+- `NEXT_PUBLIC_R2_BUCKET`
+
+> Se você usar um provedor S3 diferente do R2, ajuste as variáveis `STORAGE_*` conforme a configuração do projeto em `lib/storage.ts`.
+
+### Build local
+
+```bash
+npm ci
+npm run prisma:generate
+npm run build
+```
+
+### Migrations (execução separada do build)
+As migrations não devem rodar automaticamente no CI/CD do SWA. Execute de forma controlada (manual ou em um pipeline separado):
+
+```bash
+export DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DB?sslmode=require"
+npm run prisma:deploy
+```
+
+Para desenvolvimento local, use `npm run prisma:migrate`.
+
+
 ## Auth0: habilitando logins sociais (Google, Facebook, Microsoft e Apple)
 
 Se você quiser centralizar os logins sociais com o Auth0, siga os passos abaixo. Eles habilitam as conexões sociais no Auth0 e deixam pronto para integrar no projeto.

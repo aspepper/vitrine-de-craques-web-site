@@ -59,6 +59,31 @@ npm run prisma:deploy
 
 Para desenvolvimento local, use `npm run prisma:migrate`.
 
+### Atualização do Prisma (local)
+Para atualizar dependências e validar o build local após mudanças no Prisma:
+
+```bash
+npm ci
+npx prisma generate
+npm run build
+```
+
+### Migrations com segurança (manual ou pipeline separado)
+Nunca execute `prisma migrate` no build do SWA. Faça a aplicação das migrations manualmente ou em um pipeline dedicado, garantindo que o `DATABASE_URL` aponta para o ambiente correto.
+
+```bash
+export DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DB?sslmode=require"
+npm run prisma:deploy
+```
+
+### Rollback rápido
+Para reverter uma atualização do Prisma:
+
+```bash
+git revert <sha-do-commit>
+npm ci
+```
+
 
 ## Auth0: habilitando logins sociais (Google, Facebook, Microsoft e Apple)
 
@@ -275,5 +300,4 @@ Is CN=Alex Pimenta, OU=Vitrine de Craques, O=Vitrine de Craques, L=Santos, ST=SP
 Generating 4,096 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 36,500 days <br />
 	for: CN=Alex Pimenta, OU=Vitrine de Craques, O=Vitrine de Craques, L=Santos, ST=SP, C=BR <br />
 [Storing vitrine-release.p12] <br />
-
 

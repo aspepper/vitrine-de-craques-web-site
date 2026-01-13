@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -32,23 +33,40 @@ export default function CadastroPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
   })
+  const [apiError, setApiError] = useState<string | null>(null)
 
   const onSubmit = async (data: RegisterFormValues) => {
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: data.login,
-        email: data.email,
-        password: data.password,
+    setApiError(null)
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.login,
+          email: data.email,
+          password: data.password,
+        }),
       })
-    })
-    if (res.ok) {
-      router.push('/login')
+
+      if (res.ok) {
+        router.push("/login")
+        return
+      }
+
+      const payload = await res.json().catch(() => ({}))
+      const errorMessage =
+        typeof payload?.error === "string"
+          ? payload.error
+          : payload?.error?.fieldErrors
+            ? "Confira os dados preenchidos e tente novamente."
+            : "Não foi possível criar sua conta. Tente novamente."
+      setApiError(errorMessage)
+    } catch (error) {
+      setApiError("Não foi possível criar sua conta. Verifique sua conexão e tente novamente.")
     }
   }
 
@@ -146,8 +164,18 @@ export default function CadastroPage() {
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full text-sm font-semibold italic">
-                    Criar conta
+                  {apiError && (
+                    <p className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                      {apiError}
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    className="w-full text-sm font-semibold italic"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Criando conta..." : "Criar conta"}
                   </Button>
                 </form>
 

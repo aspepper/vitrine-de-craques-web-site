@@ -8,6 +8,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export const dynamic = 'force-dynamic'
 
+type PendingAppeal = {
+  id: string
+  title: string
+  blockReason: string | null
+  blockAppealAt: Date | null
+  blockAppealMessage: string | null
+  user: {
+    email: string | null
+    profile: { displayName: string | null } | null
+  }
+}
+
 export default async function AdministratorDashboardPage() {
   const session = await getServerSession(authOptions)
   if (!session?.user?.role || !isAdminRole(session.user.role)) {
@@ -16,7 +28,7 @@ export default async function AdministratorDashboardPage() {
 
   const summary = await getAdminDashboardSummary()
 
-  const pendingAppeals = await prisma.video.findMany({
+  const pendingAppeals: PendingAppeal[] = await prisma.video.findMany({
     where: { blockAppealStatus: 'PENDING' },
     orderBy: { blockAppealAt: 'desc' },
     take: 5,

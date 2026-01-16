@@ -16,9 +16,17 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres?schema=public
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Validate repository layout
         run: |
@@ -27,6 +35,15 @@ jobs:
           test -f next.config.mjs
           node -e "const pkg=require('./package.json'); if(!pkg.scripts?.build){throw new Error('Missing build script in package.json')}"
           rg 'output:\s*"standalone"' next.config.mjs
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js app
+        run: npm run build
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -51,10 +68,12 @@ jobs:
       - name: Azure login
         uses: azure/login@v2
         with:
+          # Requires AZURE_CREDENTIALS secret with a Service Principal JSON.
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Container Apps
         run: |
+          # Requires AZURE_CONTAINER_APP_NAME and AZURE_RESOURCE_GROUP secrets.
           az containerapp update \
             --name "${{ secrets.AZURE_CONTAINER_APP_NAME }}" \
             --resource-group "${{ secrets.AZURE_RESOURCE_GROUP }}" \

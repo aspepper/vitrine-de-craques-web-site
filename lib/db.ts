@@ -1,15 +1,18 @@
 import { PrismaClient } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 
 import { ensurePrismaEnginePath } from './prisma-engine'
 
 ensurePrismaEnginePath()
 
 const prismaClientSingleton = () => {
-  if (!process.env.DATABASE_URL) {
+  const databaseUrl = process.env.DATABASE_URL
+  if (!databaseUrl) {
     return null
   }
 
-  return new PrismaClient()
+  const adapter = new PrismaPg({ connectionString: databaseUrl })
+  return new PrismaClient({ adapter })
 }
 
 declare global {

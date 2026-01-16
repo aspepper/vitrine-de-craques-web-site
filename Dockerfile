@@ -16,7 +16,10 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 FROM deps AS builder
+ARG DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
+ENV DATABASE_URL=$DATABASE_URL
 COPY prisma ./prisma
+COPY prisma.config.ts ./prisma.config.ts
 RUN npx prisma generate
 COPY . .
 RUN npm run build
